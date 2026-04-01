@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ item.title }} — Recognition Systems — ChampionsAwards{% endblock %}
+{% block meta_description %}{{ item.summary }}{% endblock %}
+{% block canonical %}{{ item.canonical_url }}{% endblock %}
+{% block canonical_link %}{{ item.canonical_url }}{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Recognition System</p>
+    <h1>{{ item.title }}</h1>
+    <p class="lead">{{ item.summary }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow prose">
+    {% if item.introduction %}
+    <h2>System overview</h2>
+    <p>{{ item.introduction }}</p>
+    {% endif %}
+
+    {% if item.power_structure %}
+    <h2>Power structure</h2>
+    <p>{{ item.power_structure }}</p>
+    {% endif %}
+
+    {% if item.selection_logic %}
+    <h2>Selection logic</h2>
+    <p>{{ item.selection_logic }}</p>
+    {% endif %}
+
+    <h2>Why it matters</h2>
+    <p>
+      Recognition systems shape institutional memory. They do not merely reward excellence;
+      they decide which forms of excellence become visible, transmissible, and historically durable.
+    </p>
+  </div>
+</section>
+{% endblock %}
