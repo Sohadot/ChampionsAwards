@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ item.title }} — The Unawarded Archive — ChampionsAwards{% endblock %}
+{% block meta_description %}{{ item.summary }}{% endblock %}
+{% block canonical %}{{ item.canonical_url }}{% endblock %}
+{% block canonical_link %}{{ item.canonical_url }}{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">The Unawarded Archive</p>
+    <h1>{{ item.title }}</h1>
+    <p class="lead">{{ item.summary }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow prose">
+    {% if item.introduction %}
+    <h2>Context</h2>
+    <p>{{ item.introduction }}</p>
+    {% endif %}
+
+    {% if item.omission_case %}
+    <h2>Why this case matters</h2>
+    <p>{{ item.omission_case }}</p>
+    {% endif %}
+
+    {% if item.structural_reason %}
+    <h2>Structural reason for omission</h2>
+    <p>{{ item.structural_reason }}</p>
+    {% endif %}
+
+    <h2>Archive function</h2>
+    <p>
+      The Unawarded Archive exists to document the gap between contribution and recognition,
+      preserving cases where historical visibility failed to match actual significance.
+    </p>
+  </div>
+</section>
+{% endblock %}
