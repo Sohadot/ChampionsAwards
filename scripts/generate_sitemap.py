@@ -1,54 +1,33 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from pathlib import Path
+from typing import Any
+
 import yaml
 
-ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / "src" / "data"
-OUT = ROOT / "public"
-
-CORE_URLS = [
-    "/",
-    "/protocol",
-    "/framework",
-    "/methodology",
-    "/calculator",
-    "/about",
-]
-
-CLUSTERS = [
-    "awards",
-    "recognition-systems",
-    "concepts",
-    "unawarded",
-    "sectors",
-    "rankings",
-    "reports",
-    "timeline",
-]
+from config import CLUSTERS, CORE_URLS, DATA, OUT, normalize_domain
 
 
-def load_yaml_file(path: Path) -> dict:
+def load_yaml_file(path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        data = yaml.safe_load(f)
+    return data if isinstance(data, dict) else {}
 
 
-def load_site_config() -> dict:
+def load_site_config() -> dict[str, Any]:
     return load_yaml_file(DATA / "site.yaml")
 
 
-def load_cluster_items(cluster_name: str) -> list[dict]:
+def load_cluster_items(cluster_name: str) -> list[dict[str, Any]]:
     folder = DATA / cluster_name
     if not folder.exists():
         return []
 
-    items: list[dict] = []
+    items: list[dict[str, Any]] = []
     for path in sorted(folder.glob("*.yaml")):
         item = load_yaml_file(path)
-        if isinstance(item, dict):
-            item["_source_file"] = path.name
-            items.append(item)
+        item["_source_file"] = path.name
+        items.append(item)
     return items
 
 
@@ -59,10 +38,6 @@ def build_url_entry(loc: str, lastmod: str) -> str:
   </url>"""
 
 
-def normalize_domain(domain: str) -> str:
-    return domain.rstrip("/")
-
-
 def main() -> None:
     site = load_site_config()
     domain = normalize_domain(site["domain"])
@@ -70,28 +45,26 @@ def main() -> None:
 
     urls: list[str] = []
 
-    # الصفحات العليا
-    for path in CORE_URLS:
-        urls.append(f"{domain}{path}")
+    for core_path in CORE_URLS:
+        urls.append(f"{domain}{core_path}")
 
-    # صفحات العناقيد
     for cluster_name in CLUSTERS:
         items = load_cluster_items(cluster_name)
 
-        # صفحة hub للعنقود نفسه
         if items:
             urls.append(f"{domain}/{cluster_name}")
 
-        # الصفحات المفردة
         for item in items:
             slug = item.get("slug")
             if not slug:
                 continue
+            slug = str(slug).strip().strip("/")
+            if not slug:
+                continue
             urls.append(f"{domain}/{cluster_name}/{slug}")
 
-    # إزالة التكرار مع الحفاظ على الترتيب
     seen = set()
-    unique_urls = []
+    unique_urls: list[str] = []
     for url in urls:
         if url not in seen:
             seen.add(url)
@@ -99,7 +72,7 @@ def main() -> None:
 
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     ]
 
     for url in unique_urls:
