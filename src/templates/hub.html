@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ hub_title }} — ChampionsAwards{% endblock %}
+{% block meta_description %}Explore {{ hub_title|lower }} within ChampionsAwards, a global reference platform for legitimacy, recognition systems, deservingness, and the unfinished record of excellence.{% endblock %}
+{% block canonical %}{{ hub_canonical_url }}{% endblock %}
+{% block canonical_link %}{{ hub_canonical_url }}{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Reference Cluster</p>
+    <h1>{{ hub_title }}</h1>
+    <p class="lead">
+      This cluster organizes a core layer of the ChampionsAwards reference architecture,
+      linking analysis, structured entries, and thematic records into a coherent research surface.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Cluster Index</p>
+      <h2>Structured entries</h2>
+    </div>
+
+    <div class="grid two">
+      {% for item in items %}
+      <article class="card">
+        <h3><a href="{{ item.url }}">{{ item.title }}</a></h3>
+        <p>{{ item.summary }}</p>
+        <a href="{{ item.url }}">Open entry</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
