@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ item.title }} — Concepts — ChampionsAwards{% endblock %}
+{% block meta_description %}{{ item.summary }}{% endblock %}
+{% block canonical %}{{ item.canonical_url }}{% endblock %}
+{% block canonical_link %}{{ item.canonical_url }}{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Concept</p>
+    <h1>{{ item.title }}</h1>
+    <p class="lead">{{ item.summary }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow prose">
+    {% if item.definition %}
+    <h2>Definition</h2>
+    <p>{{ item.definition }}</p>
+    {% endif %}
+
+    {% if item.explanation %}
+    <h2>Explanation</h2>
+    <p>{{ item.explanation }}</p>
+    {% endif %}
+
+    {% if item.implications %}
+    <h2>Implications</h2>
+    <p>{{ item.implications }}</p>
+    {% endif %}
+
+    <h2>Reference function</h2>
+    <p>
+      Concept pages establish the semantic authority of the platform. They define the vocabulary
+      that underlies every score, archive entry, report, and evaluative claim across ChampionsAwards.
+    </p>
+  </div>
+</section>
+{% endblock %}
