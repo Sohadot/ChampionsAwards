@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}{{ item.title }} — Awards — ChampionsAwards{% endblock %}
+{% block meta_description %}{{ item.summary }}{% endblock %}
+{% block canonical %}{{ item.canonical_url }}{% endblock %}
+{% block canonical_link %}{{ item.canonical_url }}{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Award Entry</p>
+    <h1>{{ item.title }}</h1>
+    <p class="lead">{{ item.summary }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow prose">
+    {% if item.introduction %}
+    <h2>Overview</h2>
+    <p>{{ item.introduction }}</p>
+    {% endif %}
+
+    {% if item.legitimacy_question %}
+    <h2>Legitimacy question</h2>
+    <p>{{ item.legitimacy_question }}</p>
+    {% endif %}
+
+    {% if item.structural_notes %}
+    <h2>Structural notes</h2>
+    <p>{{ item.structural_notes }}</p>
+    {% endif %}
+
+    <h2>Cluster position</h2>
+    <p>
+      This entry belongs to the awards cluster, where individual prizes are examined not merely
+      as brands of prestige, but as systems of symbolic distribution, institutional power, and
+      recognition consequence.
+    </p>
+  </div>
+</section>
+{% endblock %}
