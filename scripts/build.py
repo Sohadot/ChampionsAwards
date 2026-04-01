@@ -15,14 +15,14 @@ ASSETS = SRC / "assets"
 DATA = SRC / "data"
 OUT = ROOT / "public"
 
-CORE_PAGES = [
-    "index.html",
-    "protocol.html",
-    "framework.html",
-    "methodology.html",
-    "calculator.html",
-    "about.html",
-]
+CORE_PAGES = {
+    "index.html": "index.html",
+    "protocol.html": "protocol/index.html",
+    "framework.html": "framework/index.html",
+    "methodology.html": "methodology/index.html",
+    "calculator.html": "calculator/index.html",
+    "about.html": "about/index.html",
+}
 
 
 def load_site_config() -> dict:
@@ -52,10 +52,10 @@ def render_core_pages(env: Environment, site: dict) -> None:
         "build_timestamp": datetime.now(timezone.utc).isoformat(),
     }
 
-    for page in CORE_PAGES:
-        template = env.get_template(page)
+    for template_name, output_relative_path in CORE_PAGES.items():
+        template = env.get_template(template_name)
         html = template.render(**common_context)
-        out_path = OUT / page
+        out_path = OUT / output_relative_path
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(html, encoding="utf-8")
 
@@ -72,30 +72,6 @@ def copy_root_files() -> None:
             shutil.copy2(src_file, OUT / filename)
 
 
-def generate_sitemap(site: dict) -> None:
-    urls = [
-        f"{site['domain']}/",
-        f"{site['domain']}/protocol.html",
-        f"{site['domain']}/framework.html",
-        f"{site['domain']}/methodology.html",
-        f"{site['domain']}/calculator.html",
-        f"{site['domain']}/about.html",
-    ]
-
-    sitemap = [
-        '<?xml version="1.0" encoding="UTF-8"?>',
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-    ]
-
-    for url in urls:
-        sitemap.append("  <url>")
-        sitemap.append(f"    <loc>{url}</loc>")
-        sitemap.append("  </url>")
-
-    sitemap.append("</urlset>")
-    (OUT / "sitemap.xml").write_text("\n".join(sitemap), encoding="utf-8")
-
-
 def main() -> None:
     site = load_site_config()
     clean_output_dir()
@@ -103,8 +79,7 @@ def main() -> None:
     render_core_pages(env, site)
     copy_assets()
     copy_root_files()
-    generate_sitemap(site)
-    print("Build completed successfully.")
+    print("Core build completed successfully.")
 
 
 if __name__ == "__main__":
