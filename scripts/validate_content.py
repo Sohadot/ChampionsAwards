@@ -10,6 +10,7 @@ from config import (
     DDI_KEYS,
     MIN_SUMMARY_LENGTH,
     REQUIRED_FIELDS_BY_CLUSTER,
+    VALID_STATUSES,
     is_valid_slug,
     normalize_slug,
 )
@@ -48,8 +49,75 @@ def validate_item(cluster_name: str, item: dict[str, Any], source_file: str) -> 
                 f"({len(summary.strip())} chars, minimum {MIN_SUMMARY_LENGTH})"
             )
 
+    status = item.get("status")
+    if status is not None and str(status).strip().lower() not in VALID_STATUSES:
+        errors.append(
+            f"{cluster_name}/{source_file}: invalid status '{status}' "
+            f"(expected one of: {', '.join(sorted(VALID_STATUSES))})"
+        )
+
     errors.extend(validate_sources(cluster_name, item, source_file))
     errors.extend(validate_assessment(cluster_name, item, source_file))
+    errors.extend(validate_key_facts(cluster_name, item, source_file))
+    errors.extend(validate_analysis(cluster_name, item, source_file))
+
+    return errors
+
+
+def validate_key_facts(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """key_facts is an optional list of {fact, source} where 'source' is a
+    1-based index into the entry's 'sources' list, keeping every fact traceable."""
+    errors: list[str] = []
+    key_facts = item.get("key_facts")
+    if key_facts is None:
+        return errors
+
+    if not isinstance(key_facts, list) or not key_facts:
+        errors.append(f"{cluster_name}/{source_file}: 'key_facts' must be a non-empty list when present")
+        return errors
+
+    source_count = len(item.get("sources") or [])
+    for index, entry in enumerate(key_facts, start=1):
+        if not isinstance(entry, dict):
+            errors.append(f"{cluster_name}/{source_file}: key_fact #{index} must be a mapping")
+            continue
+
+        fact = entry.get("fact")
+        if not isinstance(fact, str) or not fact.strip():
+            errors.append(f"{cluster_name}/{source_file}: key_fact #{index} needs a non-empty 'fact'")
+
+        ref = entry.get("source")
+        if ref is not None:
+            if not isinstance(ref, int) or isinstance(ref, bool) or not (1 <= ref <= source_count):
+                errors.append(
+                    f"{cluster_name}/{source_file}: key_fact #{index} 'source' must be a 1-based "
+                    f"index into 'sources' (1..{source_count})"
+                )
+
+    return errors
+
+
+def validate_analysis(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """analysis is an optional list of {heading, body} sections."""
+    errors: list[str] = []
+    analysis = item.get("analysis")
+    if analysis is None:
+        return errors
+
+    if not isinstance(analysis, list) or not analysis:
+        errors.append(f"{cluster_name}/{source_file}: 'analysis' must be a non-empty list when present")
+        return errors
+
+    for index, section in enumerate(analysis, start=1):
+        if not isinstance(section, dict):
+            errors.append(f"{cluster_name}/{source_file}: analysis section #{index} must be a mapping")
+            continue
+        for field in ("heading", "body"):
+            value = section.get(field)
+            if not isinstance(value, str) or not value.strip():
+                errors.append(
+                    f"{cluster_name}/{source_file}: analysis section #{index} needs a non-empty '{field}'"
+                )
 
     return errors
 

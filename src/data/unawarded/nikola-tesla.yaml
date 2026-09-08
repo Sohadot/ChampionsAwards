@@ -29,3 +29,16 @@ sources:
     publisher: IEEE (Engineering and Technology History Wiki)
     url: https://ethw.org/Nikola_Tesla
     type: secondary
+status: published
+key_facts:
+  - fact: Nikola Tesla was born on 10 July 1856 in Smiljan, then part of the Austrian Empire (modern-day Croatia).
+    source: 1
+  - fact: He developed the alternating-current induction motor and polyphase AC power system.
+    source: 2
+  - fact: The SI unit of magnetic flux density, the tesla (T), is named in his honour.
+    source: 1
+  - fact: Despite his influence on electrical engineering, Tesla never received a Nobel Prize.
+    source: 1
+analysis:
+  - heading: What the recognition gap captures
+    body: Tesla's assessed structural impact is high and durable, yet his lifetime institutional recognition lagged - a divergence this archive treats as evidence, not trivia. The gap reflects how AC power became infrastructure so ubiquitous that its authorship faded from public view, and how contested credit across contemporaries diluted the formal honours a single figure might otherwise have received.

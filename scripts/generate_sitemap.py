@@ -5,7 +5,7 @@ from typing import Any
 
 import yaml
 
-from config import CLUSTERS, CORE_URLS, DATA, OUT, normalize_domain
+from config import CLUSTERS, CORE_URLS, DATA, OUT, is_published, normalize_domain
 
 
 def load_yaml_file(path) -> dict[str, Any]:
@@ -49,7 +49,7 @@ def main() -> None:
         urls.append(f"{domain}{core_path}")
 
     for cluster_name in CLUSTERS:
-        items = load_cluster_items(cluster_name)
+        items = [item for item in load_cluster_items(cluster_name) if is_published(item)]
 
         if items:
             urls.append(f"{domain}/{cluster_name}")

@@ -1,0 +1,35 @@
+{% set type_map = {
+  "unawarded": "Person",
+  "concepts": "DefinedTerm",
+  "awards": "CreativeWork",
+  "recognition-systems": "Organization",
+  "sectors": "Thing",
+  "rankings": "ItemList",
+  "reports": "Report",
+  "timeline": "Thing"
+} %}
+<script type="application/ld+json">
+{{
+  {
+    "@context": "https://schema.org",
+    "@type": type_map.get(item.cluster, "Thing"),
+    "name": item.title,
+    "description": item.summary,
+    "url": item.canonical_url,
+    "isPartOf": {"@type": "WebSite", "name": site.site_name, "url": site.domain}
+  } | tojson
+}}
+</script>
+<script type="application/ld+json">
+{{
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": site.domain},
+      {"@type": "ListItem", "position": 2, "name": hub_title, "item": site.domain ~ "/" ~ item.cluster},
+      {"@type": "ListItem", "position": 3, "name": item.title, "item": item.canonical_url}
+    ]
+  } | tojson
+}}
+</script>

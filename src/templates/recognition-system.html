@@ -4,6 +4,7 @@
 {% block meta_description %}{{ item.summary }}{% endblock %}
 {% block canonical %}{{ item.canonical_url }}{% endblock %}
 {% block canonical_link %}{{ item.canonical_url }}{% endblock %}
+{% block structured_data %}{% include "_jsonld_item.html" %}{% endblock %}
 
 {% block content %}
 <section class="page-hero">
@@ -37,6 +38,7 @@
       they decide which forms of excellence become visible, transmissible, and historically durable.
     </p>
 
+    {% include "_body.html" %}
     {% include "_sources.html" %}
   </div>
 </section>

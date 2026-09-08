@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+from datetime import date
 from pathlib import Path
 from typing import Final
 
@@ -136,3 +137,84 @@ def recognition_gap_label(gap: float) -> str:
     if gap > -25:
         return "recognition exceeds assessed merit"
     return "recognition far exceeds assessed merit"
+
+
+# ---------------------------------------------------------------------------
+# Editorial governance
+# validate_content.py checks well-formedness; quality_gate.py enforces the
+# publication policy below on entries that declare themselves published.
+# ---------------------------------------------------------------------------
+VALID_STATUSES: Final[frozenset[str]] = frozenset({"published", "draft"})
+DEFAULT_STATUS: Final[str] = "published"
+
+# ISO 8601 date, e.g. 2026-09-08
+ISO_DATE_PATTERN: Final[re.Pattern[str]] = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+# Published entries must be reviewed at least this recently to stay published.
+# (Enforced as a presence + validity check; staleness is a soft warning.)
+REQUIRE_SOURCES: Final[bool] = True
+REQUIRE_LAST_REVIEWED: Final[bool] = True
+
+# Neutrality discipline: unscoped superlatives the editorial protocol bans in
+# entry prose. Matched case-insensitively as whole phrases.
+BANNED_TERMS: Final[tuple[str, ...]] = (
+    "sovereign-grade",
+    "definitive",
+    "the greatest",
+    "world's greatest",
+    "unrivaled",
+    "unrivalled",
+    "unquestionably",
+    "indisputably",
+    "flawless",
+    "perfect record",
+    "best in the world",
+    "world's leading",
+    "without equal",
+    "beyond dispute",
+)
+
+# Entry string fields scanned for banned terms and depth.
+PROSE_FIELDS: Final[tuple[str, ...]] = (
+    "summary",
+    "introduction",
+    "definition",
+    "explanation",
+    "implications",
+    "legitimacy_question",
+    "structural_notes",
+    "omission_case",
+    "structural_reason",
+    "power_structure",
+    "selection_logic",
+)
+
+
+def get_status(item: dict) -> str:
+    raw = item.get("status")
+    status = str(raw).strip().lower() if raw is not None else DEFAULT_STATUS
+    return status if status in VALID_STATUSES else DEFAULT_STATUS
+
+
+def is_published(item: dict) -> bool:
+    return get_status(item) == "published"
+
+
+def is_iso_date(value: object) -> bool:
+    # PyYAML parses unquoted YYYY-MM-DD as a datetime.date; accept both forms.
+    if isinstance(value, date):
+        return True
+    return isinstance(value, str) and bool(ISO_DATE_PATTERN.fullmatch(value.strip()))
+
+
+def find_banned_terms(item: dict) -> list[str]:
+    hits: list[str] = []
+    for field in PROSE_FIELDS:
+        value = item.get(field)
+        if not isinstance(value, str):
+            continue
+        haystack = value.lower()
+        for term in BANNED_TERMS:
+            if term in haystack:
+                hits.append(f"{field}: \"{term}\"")
+    return hits

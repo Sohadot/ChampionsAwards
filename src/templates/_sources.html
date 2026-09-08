@@ -6,7 +6,7 @@
 </p>
 <ol class="sources">
   {% for src in item.sources %}
-  <li>
+  <li id="source-{{ loop.index }}">
     {% if src.url %}<a href="{{ src.url }}" rel="nofollow noopener" target="_blank">{{ src.title }}</a>{% else %}{{ src.title }}{% endif %}
     {% if src.publisher %}— {{ src.publisher }}{% endif %}
     {% if src.type %}<span class="badge">{{ src.type }}</span>{% endif %}

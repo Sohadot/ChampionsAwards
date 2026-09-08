@@ -14,3 +14,11 @@ sources:
     publisher: The Nobel Foundation (nobelprize.org)
     url: https://www.nobelprize.org/alfred-nobel/alfred-nobels-will/
     type: primary
+status: published
+key_facts:
+  - fact: The Nobel Prize system was established by the 1895 will of Alfred Nobel, with the first prizes awarded in 1901.
+    source: 2
+  - fact: The system is administered under the Statutes of the Nobel Foundation, which govern nomination and selection.
+    source: 1
+  - fact: Nobel's will created five prize categories - physics, chemistry, physiology or medicine, literature, and peace.
+    source: 2

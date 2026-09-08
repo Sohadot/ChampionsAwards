@@ -15,6 +15,7 @@ from config import (
     TEMPLATES,
     compute_ddi,
     ddi_band,
+    is_published,
     is_valid_slug,
     normalize_domain,
     normalize_slug,
@@ -112,6 +113,10 @@ def build_cluster_item_pages(
 
         if not raw_slug:
             print(f"Warning: missing slug in {cluster_name}/{item['_source_file']}")
+            continue
+
+        if not is_published(item):
+            print(f"Skipping draft: {cluster_name}/{item['_source_file']}")
             continue
 
         slug = normalize_slug(str(raw_slug))

@@ -1,0 +1,20 @@
+{% if item.analysis %}
+{% for section in item.analysis %}
+<h2>{{ section.heading }}</h2>
+<p>{{ section.body }}</p>
+{% endfor %}
+{% endif %}
+
+{% if item.key_facts %}
+<h2>Key facts</h2>
+<ul class="key-facts">
+  {% for kf in item.key_facts %}
+  <li>
+    {{ kf.fact }}
+    {% if kf.source and item.sources and kf.source <= item.sources|length %}
+    <a class="cite" href="#source-{{ kf.source }}" title="{{ item.sources[kf.source - 1].title }}">[{{ kf.source }}]</a>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}

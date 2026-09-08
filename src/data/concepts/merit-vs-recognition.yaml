@@ -10,3 +10,9 @@ sources:
     publisher: "Robert K. Merton, Science, Vol. 159 (1968)"
     url: https://www.science.org/doi/10.1126/science.159.3810.56
     type: primary
+status: published
+key_facts:
+  - fact: The "Matthew effect" describes how already-eminent scientists receive disproportionate credit while lesser-known contributors receive less, widening the gap between merit and recognition.
+    source: 1
+  - fact: The effect was named and analysed by sociologist Robert K. Merton in 1968.
+    source: 1

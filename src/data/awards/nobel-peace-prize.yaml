@@ -14,3 +14,14 @@ sources:
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/topic/Nobel-Prize
     type: secondary
+status: published
+key_facts:
+  - fact: The Nobel Peace Prize was first awarded in 1901, following the 1895 will of Alfred Nobel.
+    source: 1
+  - fact: It is awarded by the Norwegian Nobel Committee, whose five members are appointed by the Norwegian Parliament (Storting).
+    source: 1
+  - fact: The prize can be withheld in years when the committee judges that no candidate meets the criteria.
+    source: 1
+analysis:
+  - heading: Why its legitimacy is contested
+    body: Because peace is judged politically rather than measured technically, each award doubles as an endorsement of a contested interpretation of events. The same decision can read as principled recognition or as premature diplomatic signaling depending on how history later resolves — which is precisely why the prize draws sustained scrutiny across eras and ideologies.
