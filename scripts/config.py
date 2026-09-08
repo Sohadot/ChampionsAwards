@@ -80,3 +80,59 @@ def is_valid_slug(slug: str) -> bool:
 
 def normalize_domain(domain: str) -> str:
     return domain.rstrip("/")
+
+
+# ---------------------------------------------------------------------------
+# Deservingness Index (DDI v1.0)
+# The single source of truth for scoring, mirrored by the client-side
+# calculator in src/core/calculator.html and documented at /methodology.
+# Weights MUST sum to 1.00.
+# ---------------------------------------------------------------------------
+DDI_VERSION: Final[str] = "DDI v1.0"
+
+DDI_DIMENSIONS: Final[tuple[tuple[str, str, float], ...]] = (
+    ("impact", "Structural impact", 0.28),
+    ("verification", "Independent verification", 0.20),
+    ("uniqueness", "Counterfactual uniqueness", 0.16),
+    ("durability", "Temporal durability", 0.16),
+    ("breadth", "Breadth of benefit", 0.12),
+    ("attribution", "Transparency of attribution", 0.08),
+)
+
+DDI_KEYS: Final[tuple[str, ...]] = tuple(key for key, _label, _weight in DDI_DIMENSIONS)
+
+
+def _clamp_score(value: float) -> float:
+    return max(0.0, min(100.0, float(value)))
+
+
+def compute_ddi(assessment: dict) -> float:
+    """Weighted sum of the six dimension scores (0-100)."""
+    total = 0.0
+    for key, _label, weight in DDI_DIMENSIONS:
+        total += _clamp_score(assessment.get(key, 0)) * weight
+    return round(total)
+
+
+def ddi_band(score: float) -> str:
+    if score >= 85:
+        return "Landmark"
+    if score >= 70:
+        return "Major"
+    if score >= 55:
+        return "Substantial"
+    if score >= 40:
+        return "Moderate"
+    return "Limited"
+
+
+def recognition_gap_label(gap: float) -> str:
+    if gap >= 25:
+        return "significantly under-recognized"
+    if gap >= 10:
+        return "under-recognized"
+    if gap > -10:
+        return "recognition roughly matches assessed merit"
+    if gap > -25:
+        return "recognition exceeds assessed merit"
+    return "recognition far exceeds assessed merit"

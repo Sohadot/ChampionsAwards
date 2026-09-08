@@ -7,6 +7,7 @@ import yaml
 from config import (
     CLUSTERS,
     DATA,
+    DDI_KEYS,
     MIN_SUMMARY_LENGTH,
     REQUIRED_FIELDS_BY_CLUSTER,
     is_valid_slug,
@@ -48,6 +49,36 @@ def validate_item(cluster_name: str, item: dict[str, Any], source_file: str) -> 
             )
 
     errors.extend(validate_sources(cluster_name, item, source_file))
+    errors.extend(validate_assessment(cluster_name, item, source_file))
+
+    return errors
+
+
+def _is_score(value: Any) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and 0 <= value <= 100
+
+
+def validate_assessment(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """A DDI assessment is optional, but when present every dimension must carry
+    a 0-100 score so the composite is well-defined and reproducible."""
+    errors: list[str] = []
+    assessment = item.get("assessment")
+    if assessment is None:
+        return errors
+
+    if not isinstance(assessment, dict):
+        errors.append(f"{cluster_name}/{source_file}: 'assessment' must be a mapping when present")
+        return errors
+
+    for key in DDI_KEYS:
+        if key not in assessment:
+            errors.append(f"{cluster_name}/{source_file}: assessment missing dimension '{key}'")
+        elif not _is_score(assessment[key]):
+            errors.append(f"{cluster_name}/{source_file}: assessment '{key}' must be a number 0-100")
+
+    recognition = assessment.get("observed_recognition")
+    if recognition is not None and not _is_score(recognition):
+        errors.append(f"{cluster_name}/{source_file}: 'observed_recognition' must be a number 0-100")
 
     return errors
 
