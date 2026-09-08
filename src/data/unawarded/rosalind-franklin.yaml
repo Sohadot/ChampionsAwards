@@ -1,0 +1,42 @@
+title: Rosalind Franklin
+slug: rosalind-franklin
+status: published
+last_reviewed: 2026-09-08
+summary: Rosalind Franklin's X-ray diffraction work was central to determining the structure of DNA, yet the 1962 Nobel Prize for that discovery went to James Watson, Francis Crick, and Maurice Wilkins.
+introduction: Franklin's case is frequently cited because her experimental images were pivotal evidence for the double-helix model, while the recognition architecture of the era routed the prize elsewhere.
+omission_case: Her omission matters because Nobel Prizes are not awarded posthumously, and Franklin died in 1958, four years before the 1962 award - so the case also exposes how timing and institutional rules interact with credit.
+structural_reason: Recognition was shaped by the norms of the period, the informal circulation of her data, and the rule against posthumous awards, which together placed her contribution outside the prize's reach.
+assessment:
+  impact: 85
+  verification: 88
+  uniqueness: 70
+  durability: 92
+  breadth: 82
+  attribution: 55
+  observed_recognition: 40
+  rationale:
+    impact: The diffraction evidence was central to establishing the structure of DNA.
+    verification: Her role is documented in independent histories of molecular biology.
+    uniqueness: The experimental technique was specialized, though several researchers contributed to the wider effort.
+    durability: The DNA double helix is foundational to modern biology.
+    breadth: Molecular biology's downstream benefits are extremely wide.
+    attribution: Credit was heavily contested and only widely acknowledged posthumously.
+key_facts:
+  - fact: The 1962 Nobel Prize in Physiology or Medicine was awarded to James Watson, Francis Crick, and Maurice Wilkins.
+    source: 2
+  - fact: Franklin's X-ray diffraction images of DNA provided key evidence for the double-helix structure.
+    source: 1
+  - fact: Franklin died in 1958, and Nobel Prizes are not awarded posthumously.
+    source: 1
+analysis:
+  - heading: How rules and timing shaped the record
+    body: "Two structural facts frame this case: the prize's rule against posthumous awards, and Franklin's death in 1958. Whatever the contemporary attribution disputes, the institution could not have recognized her in 1962 even in principle - a reminder that recognition systems encode rules that can foreclose merit independently of judgment."
+sources:
+  - title: Rosalind Franklin - biography and contribution to DNA structure
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/biography/Rosalind-Franklin
+    type: secondary
+  - title: The Nobel Prize in Physiology or Medicine 1962
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/medicine/1962/summary/
+    type: official

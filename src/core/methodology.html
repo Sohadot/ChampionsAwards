@@ -90,13 +90,48 @@
       the durable, verifiable record — the question the awards and recognition-system clusters exist to ask.
     </p>
 
-    <h2>A second instrument: Recognition Legitimacy (RLS)</h2>
+    <h2>A second instrument: Recognition Legitimacy (RLS v1.0)</h2>
     <p>
       Individuals are scored with the DDI. <em>Systems</em> — prizes, honors, ranking bodies — are
-      assessed separately with the Recognition Legitimacy Score, which weighs process integrity,
-      representational breadth, transparency, and the long-term significance of past selections. RLS is
-      documented here and applied in the recognition-systems cluster; its interactive form is planned,
-      not yet shipped, and we will not pretend otherwise.
+      assessed separately with the Recognition Legitimacy Score. It does not judge whether any single
+      laureate deserved their award; it judges whether the <em>process</em> that produced the awards is
+      sound. Five weighted dimensions, summing to 1.00:
+    </p>
+
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr><th>Dimension</th><th class="num">Weight</th><th>What a high score requires</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Process integrity</strong></td><td class="num">0.25</td><td>Nomination and selection follow rigorous, consistent, documented procedure.</td></tr>
+          <tr><td><strong>Representational breadth</strong></td><td class="num">0.20</td><td>The eligible pool and actual recipients span geographies, groups, and sub-fields.</td></tr>
+          <tr><td><strong>Historical track record</strong></td><td class="num">0.20</td><td>Past selections have held up as sound and durable rather than eroding over time.</td></tr>
+          <tr><td><strong>Transparency</strong></td><td class="num">0.18</td><td>Criteria, and ideally deliberations and records, are publicly available.</td></tr>
+          <tr><td><strong>Independence</strong></td><td class="num">0.17</td><td>The body is insulated from political and commercial capture.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="card" style="font-family:monospace; font-size:0.95rem;">
+      RLS = 0.25·process + 0.20·breadth + 0.20·track_record + 0.18·transparency + 0.17·independence
+    </p>
+
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Band</th><th class="num">Score</th><th>Interpretation</th></tr></thead>
+        <tbody>
+          <tr><td>Exemplary</td><td class="num">85–100</td><td>A process others can reasonably treat as a benchmark.</td></tr>
+          <tr><td>Strong</td><td class="num">70–84</td><td>Sound process with limited, identifiable weaknesses.</td></tr>
+          <tr><td>Adequate</td><td class="num">55–69</td><td>Legitimate but with real structural gaps.</td></tr>
+          <tr><td>Contested</td><td class="num">40–54</td><td>Serious, recurring questions about the process.</td></tr>
+          <tr><td>Fragile</td><td class="num">0–39</td><td>Legitimacy rests more on prestige than on defensible process.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      RLS is applied in the recognition-systems cluster and available in the
+      <a href="/calculator">calculator</a> alongside the DDI.
     </p>
 
     <h2>Limits we accept</h2>

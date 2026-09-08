@@ -1,44 +1,59 @@
 {% extends "base.html" %}
 
-{% block title %}Deservingness Index Calculator (DDI v1.0) — {{ site.site_name }}{% endblock %}
-{% block meta_description %}An interactive, transparent implementation of the ChampionsAwards Deservingness Index. Score any contribution across six weighted dimensions and see the recognition gap in real time.{% endblock %}
+{% block title %}Calculators — Deservingness Index & Recognition Legitimacy — {{ site.site_name }}{% endblock %}
+{% block meta_description %}Two transparent, in-browser instruments: the Deservingness Index (DDI v1.0) scores individual contributions; the Recognition Legitimacy Score (RLS v1.0) scores award systems. Both run the published formulas locally.{% endblock %}
 {% block canonical_link %}{{ site.domain }}/calculator{% endblock %}
 
 {% block content %}
 <section class="page-hero">
   <div class="container narrow">
-    <p class="eyebrow">Interactive · DDI v1.0</p>
-    <h1>Deservingness Index calculator</h1>
+    <p class="eyebrow">Interactive · DDI v1.0 &amp; RLS v1.0</p>
+    <h1>The calculators</h1>
     <p class="lead">
-      Move each slider to score a subject against the rubric. The math is the published
-      <a href="/methodology">DDI v1.0</a> formula, running entirely in your browser — nothing is sent anywhere.
+      Two instruments, one principle: the score is produced the same way every time, from inputs you
+      can see. Everything runs in your browser — nothing is sent anywhere.
     </p>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <div class="grid two" style="align-items:start;">
-      <div class="calc" id="calc">
-        <!-- rows injected by script -->
-      </div>
+    <div class="tabs" role="tablist">
+      <button class="tab is-active" id="tab-ddi" role="tab" aria-selected="true" aria-controls="panel-ddi">
+        Deservingness — individuals
+      </button>
+      <button class="tab" id="tab-rls" role="tab" aria-selected="false" aria-controls="panel-rls">
+        Legitimacy — systems
+      </button>
+    </div>
 
+    <div class="grid two" style="align-items:start;" id="panel-ddi" role="tabpanel" aria-labelledby="tab-ddi">
+      <div class="calc" data-calc="ddi"></div>
       <aside class="result">
-        <p class="eyebrow">Composite</p>
-        <div class="score-big"><span id="ddi">0</span><span style="font-size:1.4rem;color:var(--muted);">/100</span></div>
-        <div class="score-band" id="band">—</div>
-
+        <p class="eyebrow">Deservingness composite</p>
+        <div class="score-big"><span id="ddi-score">0</span><span style="font-size:1.4rem;color:var(--muted);">/100</span></div>
+        <div class="score-band" id="ddi-band">—</div>
         <div class="gap-line">
           <label style="display:flex;justify-content:space-between;font-weight:600;">
-            <span>Observed recognition</span><span class="val" id="recVal">50</span>
+            <span>Observed recognition</span><span class="val" id="ddi-recVal">50</span>
           </label>
-          <input type="range" id="rec" min="0" max="100" value="50" step="1">
-          <p class="small muted" id="gapText" style="margin:12px 0 0;">Recognition gap: —</p>
+          <input type="range" id="ddi-rec" min="0" max="100" value="50" step="1">
+          <p class="small muted" id="ddi-gap" style="margin:12px 0 0;">Recognition gap: —</p>
         </div>
-
         <p class="small muted" style="margin-top:18px;">
-          Scores are structured estimates, not measurements. See the
-          <a href="/methodology">methodology</a> for what this can and cannot say.
+          Structured estimate, not a measurement. See the <a href="/methodology">methodology</a>.
+        </p>
+      </aside>
+    </div>
+
+    <div class="grid two" style="align-items:start;" id="panel-rls" role="tabpanel" aria-labelledby="tab-rls" hidden>
+      <div class="calc" data-calc="rls"></div>
+      <aside class="result">
+        <p class="eyebrow">Legitimacy composite</p>
+        <div class="score-big"><span id="rls-score">0</span><span style="font-size:1.4rem;color:var(--muted);">/100</span></div>
+        <div class="score-band" id="rls-band">—</div>
+        <p class="small muted" style="margin-top:18px;">
+          Scores the process, not any single laureate. See the <a href="/methodology">methodology</a>.
         </p>
       </aside>
     </div>
@@ -50,42 +65,36 @@
 <script>
   (function () {
     "use strict";
-    // DDI v1.0 — weights must sum to 1.00 (mirrors /methodology).
-    var DIMENSIONS = [
-      { key: "impact",       label: "Structural impact",         weight: 0.28, hint: "Depth of change to a field, system, or population." },
-      { key: "verification", label: "Independent verification",  weight: 0.20, hint: "Confirmed by primary or independent sources." },
-      { key: "uniqueness",   label: "Counterfactual uniqueness", weight: 0.16, hint: "Unlikely to have arrived as soon from someone else." },
-      { key: "durability",   label: "Temporal durability",       weight: 0.16, hint: "Significance held or grew over time." },
-      { key: "breadth",      label: "Breadth of benefit",        weight: 0.12, hint: "Benefit reached widely, not a narrow group." },
-      { key: "attribution",  label: "Transparency of attribution", weight: 0.08, hint: "Who did what is clear and traceable." }
-    ];
+    // Mirrors DDI_DIMENSIONS / RLS_DIMENSIONS in scripts/config.py.
+    var MODELS = {
+      ddi: {
+        bands: [[85, "Landmark"], [70, "Major"], [55, "Substantial"], [40, "Moderate"], [0, "Limited"]],
+        dims: [
+          { key: "impact", label: "Structural impact", weight: 0.28, hint: "Depth of change to a field, system, or population." },
+          { key: "verification", label: "Independent verification", weight: 0.20, hint: "Confirmed by primary or independent sources." },
+          { key: "uniqueness", label: "Counterfactual uniqueness", weight: 0.16, hint: "Unlikely to have arrived as soon from someone else." },
+          { key: "durability", label: "Temporal durability", weight: 0.16, hint: "Significance held or grew over time." },
+          { key: "breadth", label: "Breadth of benefit", weight: 0.12, hint: "Benefit reached widely, not a narrow group." },
+          { key: "attribution", label: "Transparency of attribution", weight: 0.08, hint: "Who did what is clear and traceable." }
+        ]
+      },
+      rls: {
+        bands: [[85, "Exemplary"], [70, "Strong"], [55, "Adequate"], [40, "Contested"], [0, "Fragile"]],
+        dims: [
+          { key: "process", label: "Process integrity", weight: 0.25, hint: "Rigorous, consistent, documented selection." },
+          { key: "breadth", label: "Representational breadth", weight: 0.20, hint: "Recipients span geographies, groups, sub-fields." },
+          { key: "track_record", label: "Historical track record", weight: 0.20, hint: "Past selections held up as sound and durable." },
+          { key: "transparency", label: "Transparency", weight: 0.18, hint: "Criteria and records are publicly available." },
+          { key: "independence", label: "Independence", weight: 0.17, hint: "Insulated from political and commercial capture." }
+        ]
+      }
+    };
 
-    var calc = document.getElementById("calc");
-    var state = {};
-
-    DIMENSIONS.forEach(function (d) {
-      state[d.key] = 50;
-      var row = document.createElement("div");
-      row.className = "row";
-      row.innerHTML =
-        '<label>' + d.label +
-        '<span class="w">weight ' + d.weight.toFixed(2) + ' · <span class="val" id="v_' + d.key + '">50</span></span></label>' +
-        '<p class="hint">' + d.hint + '</p>' +
-        '<input type="range" min="0" max="100" step="1" value="50" id="s_' + d.key + '">';
-      calc.appendChild(row);
-      row.querySelector("#s_" + d.key).addEventListener("input", function (e) {
-        state[d.key] = Number(e.target.value);
-        document.getElementById("v_" + d.key).textContent = e.target.value;
-        render();
-      });
-    });
-
-    function bandFor(score) {
-      if (score >= 85) return "Landmark";
-      if (score >= 70) return "Major";
-      if (score >= 55) return "Substantial";
-      if (score >= 40) return "Moderate";
-      return "Limited";
+    function bandFor(bands, score) {
+      for (var i = 0; i < bands.length; i++) {
+        if (score >= bands[i][0]) return bands[i][1];
+      }
+      return bands[bands.length - 1][1];
     }
 
     function gapLabel(gap) {
@@ -96,23 +105,63 @@
       return "recognition far exceeds assessed merit";
     }
 
-    function render() {
-      var ddi = 0;
-      DIMENSIONS.forEach(function (d) { ddi += state[d.key] * d.weight; });
-      ddi = Math.round(ddi);
-      document.getElementById("ddi").textContent = ddi;
-      document.getElementById("band").textContent = bandFor(ddi);
+    Object.keys(MODELS).forEach(function (name) {
+      var model = MODELS[name];
+      var container = document.querySelector('.calc[data-calc="' + name + '"]');
+      var state = {};
 
-      var rec = Number(document.getElementById("rec").value);
-      document.getElementById("recVal").textContent = rec;
-      var gap = ddi - rec;
-      var sign = gap > 0 ? "+" : "";
-      document.getElementById("gapText").textContent =
-        "Recognition gap: " + sign + gap + " — " + gapLabel(gap) + ".";
+      model.dims.forEach(function (d) {
+        state[d.key] = 50;
+        var row = document.createElement("div");
+        row.className = "row";
+        row.innerHTML =
+          '<label>' + d.label +
+          '<span class="w">weight ' + d.weight.toFixed(2) + ' · <span class="val" id="' + name + '_v_' + d.key + '">50</span></span></label>' +
+          '<p class="hint">' + d.hint + '</p>' +
+          '<input type="range" min="0" max="100" step="1" value="50" id="' + name + '_s_' + d.key + '">';
+        container.appendChild(row);
+        row.querySelector("input").addEventListener("input", function (e) {
+          state[d.key] = Number(e.target.value);
+          document.getElementById(name + "_v_" + d.key).textContent = e.target.value;
+          render();
+        });
+      });
+
+      function render() {
+        var score = 0;
+        model.dims.forEach(function (d) { score += state[d.key] * d.weight; });
+        score = Math.round(score);
+        document.getElementById(name + "-score").textContent = score;
+        document.getElementById(name + "-band").textContent = bandFor(model.bands, score);
+
+        if (name === "ddi") {
+          var rec = Number(document.getElementById("ddi-rec").value);
+          document.getElementById("ddi-recVal").textContent = rec;
+          var gap = score - rec;
+          document.getElementById("ddi-gap").textContent =
+            "Recognition gap: " + (gap > 0 ? "+" : "") + gap + " — " + gapLabel(gap) + ".";
+        }
+      }
+
+      if (name === "ddi") {
+        document.getElementById("ddi-rec").addEventListener("input", render);
+      }
+      render();
+    });
+
+    // Tabs
+    var tabs = { ddi: document.getElementById("tab-ddi"), rls: document.getElementById("tab-rls") };
+    var panels = { ddi: document.getElementById("panel-ddi"), rls: document.getElementById("panel-rls") };
+    function activate(which) {
+      Object.keys(tabs).forEach(function (k) {
+        var on = k === which;
+        tabs[k].classList.toggle("is-active", on);
+        tabs[k].setAttribute("aria-selected", on ? "true" : "false");
+        panels[k].hidden = !on;
+      });
     }
-
-    document.getElementById("rec").addEventListener("input", render);
-    render();
+    tabs.ddi.addEventListener("click", function () { activate("ddi"); });
+    tabs.rls.addEventListener("click", function () { activate("rls"); });
   })();
 </script>
 {% endblock %}

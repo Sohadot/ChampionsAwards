@@ -4,6 +4,7 @@ tagline: An independent, source-anchored study of recognition, merit, and the ga
 description: ChampionsAwards is an independent reference project that measures the distance between merit and recognition — scoring contributions with a published, reproducible index, assessing recognition systems, and documenting the record of excellence they missed.
 language: en
 methodology_version: DDI v1.0
+rls_version: RLS v1.0
 theme:
   primary_bg: "#080914"
   panel_bg: "#101423"

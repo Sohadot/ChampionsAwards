@@ -1,0 +1,39 @@
+title: Fields Medal
+slug: fields-medal
+status: published
+last_reviewed: 2026-09-08
+summary: The Fields Medal is one of the most prestigious honours in mathematics, awarded by the International Mathematical Union, and its age restriction makes it a revealing case study in how eligibility rules shape a recognition system.
+introduction: Established through the will of Canadian mathematician John Charles Fields and first awarded in 1936, the medal recognises outstanding mathematical achievement while deliberately privileging early-career work.
+power_structure: The medal derives its authority from the International Mathematical Union and the mathematical community's consensus, rather than from commercial or state sponsorship, giving it strong independence.
+selection_logic: Because eligibility is capped at mathematicians under 40 in the year of the International Congress, the system structurally excludes late-blooming or late-recognised work, trading breadth for a focus on emerging talent.
+rls_assessment:
+  process: 80
+  breadth: 60
+  track_record: 82
+  transparency: 62
+  independence: 85
+  rationale:
+    process: Selection is run by International Mathematical Union committees under established criteria.
+    breadth: The under-40 rule and concentration in a small number of elite institutions narrow representational breadth.
+    track_record: Recipients have overwhelmingly gone on to sustained mathematical leadership.
+    transparency: The criteria and recipients are public, though committee deliberations are private.
+    independence: Academic governance keeps it largely free of commercial or political capture.
+key_facts:
+  - fact: The Fields Medal is awarded by the International Mathematical Union, typically every four years at the International Congress of Mathematicians.
+    source: 1
+  - fact: Recipients must normally be under 40 years of age in the year of the award.
+    source: 1
+  - fact: The medal was first awarded in 1936.
+    source: 2
+analysis:
+  - heading: What the age rule reveals
+    body: The under-40 restriction is the medal's defining design choice. It sharpens the prize into a signal about emerging talent, but it also means the system cannot, by construction, recognise work whose significance is only established later in a career - a legitimacy trade-off the RLS captures as reduced representational breadth rather than as a flaw in process.
+sources:
+  - title: Fields Medal - official award page and eligibility
+    publisher: International Mathematical Union
+    url: https://www.mathunion.org/imu-awards/fields-medal
+    type: official
+  - title: Fields Medal - history and overview
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/science/Fields-Medal
+    type: secondary

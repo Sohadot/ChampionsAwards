@@ -58,11 +58,12 @@ def enforce_publication_policy(cluster_name: str, item: dict[str, Any], source_f
             errors.append(f"{ref}: 'last_reviewed' must be an ISO date (YYYY-MM-DD)")
 
     # Any assessment on a published entry must justify every dimension.
-    assessment = item.get("assessment")
-    if isinstance(assessment, dict):
-        rationale = assessment.get("rationale")
-        if not isinstance(rationale, dict) or not rationale:
-            errors.append(f"{ref}: a published assessment must include a 'rationale' for its scores")
+    for block in ("assessment", "rls_assessment"):
+        assessment = item.get(block)
+        if isinstance(assessment, dict):
+            rationale = assessment.get("rationale")
+            if not isinstance(rationale, dict) or not rationale:
+                errors.append(f"{ref}: a published {block} must include a 'rationale' for its scores")
 
     return errors
 
