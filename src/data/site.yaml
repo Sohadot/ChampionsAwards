@@ -1,8 +1,9 @@
 site_name: ChampionsAwards
 domain: https://championsawards.com
-tagline: A global recognition infrastructure for defining and measuring true excellence.
-description: ChampionsAwards is a sovereign-grade reference platform for evaluating recognition systems, measuring deservingness, and documenting the unfinished record of global excellence.
+tagline: An independent, source-anchored study of recognition, merit, and the gap between them.
+description: ChampionsAwards is an independent reference project that measures the distance between merit and recognition — scoring contributions with a published, reproducible index, assessing recognition systems, and documenting the record of excellence they missed.
 language: en
+methodology_version: DDI v1.0
 theme:
   primary_bg: "#080914"
   panel_bg: "#101423"
@@ -13,13 +14,13 @@ theme:
 navigation:
   - title: Home
     url: /
-  - title: Protocol
-    url: /protocol.html
   - title: Framework
-    url: /framework.html
+    url: /framework
   - title: Methodology
-    url: /methodology.html
+    url: /methodology
   - title: Calculator
-    url: /calculator.html
+    url: /calculator
+  - title: Protocol
+    url: /protocol
   - title: About
-    url: /about.html
+    url: /about

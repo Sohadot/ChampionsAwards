@@ -4,3 +4,13 @@ summary: Nikola Tesla stands as one of the most cited examples of a figure whose
 introduction: Tesla’s work shaped electrical modernity at a structural level, yet his public recognition fluctuated dramatically and often failed to match the scale of his technical and conceptual impact.
 omission_case: His case matters because it captures the difference between invention, commercial visibility, institutional endorsement, and historical afterlife.
 structural_reason: Recognition systems often favor actors who align with prevailing institutions of capital, narrative, and consolidation. Tesla’s position within that structure remained unstable.
+last_reviewed: 2026-09-08
+sources:
+  - title: Nikola Tesla — biography and engineering contributions
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/biography/Nikola-Tesla
+    type: secondary
+  - title: Nikola Tesla and alternating-current systems (rotating magnetic field)
+    publisher: IEEE (Engineering and Technology History Wiki)
+    url: https://ethw.org/Nikola_Tesla
+    type: secondary

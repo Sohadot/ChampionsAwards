@@ -47,6 +47,36 @@ def validate_item(cluster_name: str, item: dict[str, Any], source_file: str) -> 
                 f"({len(summary.strip())} chars, minimum {MIN_SUMMARY_LENGTH})"
             )
 
+    errors.extend(validate_sources(cluster_name, item, source_file))
+
+    return errors
+
+
+def validate_sources(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """Sourcing is optional, but when present it must meet the editorial protocol shape:
+    a non-empty list of references, each with a title and a checkable URL."""
+    errors: list[str] = []
+    sources = item.get("sources")
+    if sources is None:
+        return errors
+
+    if not isinstance(sources, list) or not sources:
+        errors.append(f"{cluster_name}/{source_file}: 'sources' must be a non-empty list when present")
+        return errors
+
+    for index, source in enumerate(sources, start=1):
+        if not isinstance(source, dict):
+            errors.append(f"{cluster_name}/{source_file}: source #{index} must be a mapping")
+            continue
+
+        title = source.get("title")
+        if not isinstance(title, str) or not title.strip():
+            errors.append(f"{cluster_name}/{source_file}: source #{index} is missing a non-empty 'title'")
+
+        url = source.get("url")
+        if not isinstance(url, str) or not url.strip().startswith(("http://", "https://")):
+            errors.append(f"{cluster_name}/{source_file}: source #{index} needs a valid http(s) 'url'")
+
     return errors
 
 

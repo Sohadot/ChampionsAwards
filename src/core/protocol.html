@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Editorial Protocol — How entries earn trust — {{ site.site_name }}{% endblock %}
+{% block meta_description %}The editorial protocol of ChampionsAwards: sourcing standards, neutrality rules, conflict-of-interest disclosure, correction policy, and methodology versioning — the rules that make the reference trustworthy.{% endblock %}
+{% block canonical_link %}{{ site.domain }}/protocol{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Editorial protocol</p>
+    <h1>The rules that make this a reference</h1>
+    <p class="lead">
+      Authority is not asserted; it is constrained into existence. These are the standards every entry
+      is held to, published so they can be checked against the entries themselves.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow prose">
+    <h2>1. Sourcing standard</h2>
+    <p>
+      Every substantive claim must be anchored to an independently checkable source, cited on the entry.
+      Preference order: primary documents, then independent secondary scholarship, then official records.
+      Self-descriptions and single-institution claims are marked as such. An entry that cannot meet this
+      standard stays in draft and is not published.
+    </p>
+
+    <h2>2. Neutrality of language</h2>
+    <p>
+      Entries describe structure and evidence, not destiny. Superlatives ("greatest", "definitive",
+      "sovereign-grade") are avoided in favor of scoped, falsifiable statements. The goal is a reader who
+      trusts the reasoning, not one who is impressed by the tone.
+    </p>
+
+    <h2>3. Separation of score and opinion</h2>
+    <p>
+      A Deservingness Index score is only ever the output of the <a href="/methodology">published formula</a>
+      applied to stated inputs. Editorial commentary is kept distinct from the score, so the number can be
+      reproduced independently of anyone's view.
+    </p>
+
+    <h2>4. Conflict-of-interest disclosure</h2>
+    <p>
+      Any material relationship between the project and a subject, institution, or sponsor is disclosed on
+      the relevant entry. Sponsorship, if it ever exists, never influences a score or an entry's inclusion.
+    </p>
+
+    <h2>5. Correction policy</h2>
+    <p>
+      Being wrong in public is treated as normal and fixable. Substantive corrections are logged with a date
+      and a note on what changed, rather than silently overwritten. Readers can challenge any entry, and a
+      well-sourced challenge is grounds for revision.
+    </p>
+
+    <h2>6. Methodology versioning</h2>
+    <p>
+      The scoring model is versioned (currently <strong>DDI v1.0</strong>). Any change to dimensions,
+      weights, or bands increments the version and is dated, so a score always names the model that produced it.
+    </p>
+
+    <h2>7. What this project does not claim</h2>
+    <p>
+      It does not claim to deliver final judgment, to be exhaustive, or to be free of bias. It claims only to
+      be transparent, source-anchored, reproducible, and correctable — and to be judged on whether it keeps
+      those promises.
+    </p>
+  </div>
+</section>
+{% endblock %}

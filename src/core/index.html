@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}{{ site.site_name }} — Measuring recognition, merit, and the gap between them{% endblock %}
+{% block meta_description %}{{ site.description }}{% endblock %}
+{% block canonical_link %}{{ site.domain }}/{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Independent recognition research</p>
+    <h1>Recognition is not the same as merit.<br>We measure the distance between them.</h1>
+    <p class="lead">
+      {{ site.site_name }} is an open, source-anchored reference project that studies how recognition
+      systems decide who becomes visible — and documents the record of excellence they missed.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculator">Try the Deservingness Index</a>
+      <a class="btn btn-ghost" href="/methodology">Read the methodology</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">What this is</p>
+      <h2>A transparent framework, not a hall of fame</h2>
+    </div>
+    <div class="grid three">
+      <article class="card">
+        <h3>Score the claim</h3>
+        <p>A documented, reproducible index scores contribution across six weighted dimensions — the same inputs for everyone, published in full.</p>
+      </article>
+      <article class="card">
+        <h3>Audit the systems</h3>
+        <p>We examine award and recognition systems as structures of power and selection, not as brands of prestige.</p>
+      </article>
+      <article class="card">
+        <h3>Record the omissions</h3>
+        <p>The Unawarded Archive preserves cases where historical visibility failed to match actual significance.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Reference clusters</p>
+      <h2>Explore the record</h2>
+    </div>
+    <div class="grid two">
+      <article class="card">
+        <h3><a href="/awards">Awards</a></h3>
+        <p>Individual prizes examined as systems of symbolic distribution and consequence.</p>
+      </article>
+      <article class="card">
+        <h3><a href="/recognition-systems">Recognition Systems</a></h3>
+        <p>The institutions that decide which forms of excellence become visible and durable.</p>
+      </article>
+      <article class="card">
+        <h3><a href="/unawarded">The Unawarded Archive</a></h3>
+        <p>Documented cases of contribution that outran the recognition available to it.</p>
+      </article>
+      <article class="card">
+        <h3><a href="/concepts">Concepts</a></h3>
+        <p>The defined vocabulary underlying every score and evaluative claim on the platform.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow">
+    <p class="eyebrow">Why it can be trusted</p>
+    <h2>Authority is earned, not declared</h2>
+    <p class="muted">
+      This project makes no claim to final judgment. Its usefulness rests on three commitments:
+      a published, versioned methodology anyone can critique; sourcing standards that keep unverifiable
+      entries out; and a correction policy that treats being wrong in public as normal. Those rules live
+      in the <a href="/protocol">editorial protocol</a>.
+    </p>
+  </div>
+</section>
+{% endblock %}
