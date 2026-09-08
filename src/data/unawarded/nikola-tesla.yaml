@@ -4,3 +4,28 @@ summary: Nikola Tesla stands as one of the most cited examples of a figure whose
 introduction: Tesla’s work shaped electrical modernity at a structural level, yet his public recognition fluctuated dramatically and often failed to match the scale of his technical and conceptual impact.
 omission_case: His case matters because it captures the difference between invention, commercial visibility, institutional endorsement, and historical afterlife.
 structural_reason: Recognition systems often favor actors who align with prevailing institutions of capital, narrative, and consolidation. Tesla’s position within that structure remained unstable.
+last_reviewed: 2026-09-08
+assessment:
+  impact: 92
+  verification: 85
+  uniqueness: 78
+  durability: 95
+  breadth: 90
+  attribution: 70
+  observed_recognition: 45
+  rationale:
+    impact: Polyphase alternating current and the induction motor reshaped how electrical power is generated and distributed worldwide.
+    verification: Contributions are documented in patents and independent engineering histories, not only in self-account.
+    uniqueness: Rotating-field AC was arrived at near-simultaneously by others (e.g. Ferraris), tempering strict irreplaceability.
+    durability: AC power remains the global backbone more than a century later.
+    breadth: Electrification is among the most broadly distributed technological benefits in history.
+    attribution: Credit is genuinely contested across Edison, Westinghouse, and Marconi disputes, lowering attribution clarity.
+sources:
+  - title: Nikola Tesla — biography and engineering contributions
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/biography/Nikola-Tesla
+    type: secondary
+  - title: Nikola Tesla and alternating-current systems (rotating magnetic field)
+    publisher: IEEE (Engineering and Technology History Wiki)
+    url: https://ethw.org/Nikola_Tesla
+    type: secondary

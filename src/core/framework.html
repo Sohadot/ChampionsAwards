@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Framework — How ChampionsAwards thinks — {{ site.site_name }}{% endblock %}
+{% block meta_description %}The conceptual framework behind ChampionsAwards: separating merit from recognition, treating awards as systems, and mapping the gap the platform exists to measure.{% endblock %}
+{% block canonical_link %}{{ site.domain }}/framework{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Conceptual framework</p>
+    <h1>Four ideas the whole platform rests on</h1>
+    <p class="lead">
+      The framework is deliberately small. If these four claims hold, the scoring and the archive follow;
+      if they fail, the project should be argued out of them.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow prose">
+    <h2>1. Merit and recognition are different things</h2>
+    <p>
+      Merit is the structural value of a contribution. Recognition is whether an institution chose to
+      validate it publicly. Conflating the two is the core error the platform is built to avoid — and
+      the reason a defined <a href="/concepts">vocabulary</a> comes before any score.
+    </p>
+
+    <h2>2. Awards are systems, not verdicts</h2>
+    <p>
+      A prize is an output of a selection process shaped by history, capital, narrative, and institutional
+      continuity. Studying that process — its integrity, breadth, and blind spots — tells you more than the
+      list of laureates does. That is the work of the <a href="/recognition-systems">recognition-systems</a> cluster.
+    </p>
+
+    <h2>3. The gap is measurable</h2>
+    <p>
+      The distance between assessed merit and observed recognition can be estimated, consistently, with a
+      published instrument. That is the <a href="/methodology">Deservingness Index</a>. The number matters
+      less than the fact that it is produced the same way for everyone.
+    </p>
+
+    <h2>4. Omission is part of the record</h2>
+    <p>
+      A recognition system is defined as much by what it left out as by what it honored. The
+      <a href="/unawarded">Unawarded Archive</a> treats documented omission as primary evidence, not as trivia.
+    </p>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/concepts">Explore the concepts</a>
+      <a class="btn btn-ghost" href="/methodology">See how it is measured</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

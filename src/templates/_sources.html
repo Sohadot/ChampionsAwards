@@ -1,0 +1,19 @@
+{% if item.sources %}
+<h2>Sources &amp; references</h2>
+<p class="small muted">
+  Every substantive claim in this entry is anchored to independently checkable references.
+  Entries without adequate sourcing are held in draft and not published.
+</p>
+<ol class="sources">
+  {% for src in item.sources %}
+  <li>
+    {% if src.url %}<a href="{{ src.url }}" rel="nofollow noopener" target="_blank">{{ src.title }}</a>{% else %}{{ src.title }}{% endif %}
+    {% if src.publisher %}— {{ src.publisher }}{% endif %}
+    {% if src.type %}<span class="badge">{{ src.type }}</span>{% endif %}
+  </li>
+  {% endfor %}
+</ol>
+{% if item.last_reviewed %}
+<p class="small muted">Last reviewed: {{ item.last_reviewed }}.</p>
+{% endif %}
+{% endif %}

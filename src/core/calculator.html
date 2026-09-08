@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Deservingness Index Calculator (DDI v1.0) — {{ site.site_name }}{% endblock %}
+{% block meta_description %}An interactive, transparent implementation of the ChampionsAwards Deservingness Index. Score any contribution across six weighted dimensions and see the recognition gap in real time.{% endblock %}
+{% block canonical_link %}{{ site.domain }}/calculator{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Interactive · DDI v1.0</p>
+    <h1>Deservingness Index calculator</h1>
+    <p class="lead">
+      Move each slider to score a subject against the rubric. The math is the published
+      <a href="/methodology">DDI v1.0</a> formula, running entirely in your browser — nothing is sent anywhere.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid two" style="align-items:start;">
+      <div class="calc" id="calc">
+        <!-- rows injected by script -->
+      </div>
+
+      <aside class="result">
+        <p class="eyebrow">Composite</p>
+        <div class="score-big"><span id="ddi">0</span><span style="font-size:1.4rem;color:var(--muted);">/100</span></div>
+        <div class="score-band" id="band">—</div>
+
+        <div class="gap-line">
+          <label style="display:flex;justify-content:space-between;font-weight:600;">
+            <span>Observed recognition</span><span class="val" id="recVal">50</span>
+          </label>
+          <input type="range" id="rec" min="0" max="100" value="50" step="1">
+          <p class="small muted" id="gapText" style="margin:12px 0 0;">Recognition gap: —</p>
+        </div>
+
+        <p class="small muted" style="margin-top:18px;">
+          Scores are structured estimates, not measurements. See the
+          <a href="/methodology">methodology</a> for what this can and cannot say.
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block body_end %}
+<script>
+  (function () {
+    "use strict";
+    // DDI v1.0 — weights must sum to 1.00 (mirrors /methodology).
+    var DIMENSIONS = [
+      { key: "impact",       label: "Structural impact",         weight: 0.28, hint: "Depth of change to a field, system, or population." },
+      { key: "verification", label: "Independent verification",  weight: 0.20, hint: "Confirmed by primary or independent sources." },
+      { key: "uniqueness",   label: "Counterfactual uniqueness", weight: 0.16, hint: "Unlikely to have arrived as soon from someone else." },
+      { key: "durability",   label: "Temporal durability",       weight: 0.16, hint: "Significance held or grew over time." },
+      { key: "breadth",      label: "Breadth of benefit",        weight: 0.12, hint: "Benefit reached widely, not a narrow group." },
+      { key: "attribution",  label: "Transparency of attribution", weight: 0.08, hint: "Who did what is clear and traceable." }
+    ];
+
+    var calc = document.getElementById("calc");
+    var state = {};
+
+    DIMENSIONS.forEach(function (d) {
+      state[d.key] = 50;
+      var row = document.createElement("div");
+      row.className = "row";
+      row.innerHTML =
+        '<label>' + d.label +
+        '<span class="w">weight ' + d.weight.toFixed(2) + ' · <span class="val" id="v_' + d.key + '">50</span></span></label>' +
+        '<p class="hint">' + d.hint + '</p>' +
+        '<input type="range" min="0" max="100" step="1" value="50" id="s_' + d.key + '">';
+      calc.appendChild(row);
+      row.querySelector("#s_" + d.key).addEventListener("input", function (e) {
+        state[d.key] = Number(e.target.value);
+        document.getElementById("v_" + d.key).textContent = e.target.value;
+        render();
+      });
+    });
+
+    function bandFor(score) {
+      if (score >= 85) return "Landmark";
+      if (score >= 70) return "Major";
+      if (score >= 55) return "Substantial";
+      if (score >= 40) return "Moderate";
+      return "Limited";
+    }
+
+    function gapLabel(gap) {
+      if (gap >= 25) return "significantly under-recognized";
+      if (gap >= 10) return "under-recognized";
+      if (gap > -10) return "recognition roughly matches assessed merit";
+      if (gap > -25) return "recognition exceeds assessed merit";
+      return "recognition far exceeds assessed merit";
+    }
+
+    function render() {
+      var ddi = 0;
+      DIMENSIONS.forEach(function (d) { ddi += state[d.key] * d.weight; });
+      ddi = Math.round(ddi);
+      document.getElementById("ddi").textContent = ddi;
+      document.getElementById("band").textContent = bandFor(ddi);
+
+      var rec = Number(document.getElementById("rec").value);
+      document.getElementById("recVal").textContent = rec;
+      var gap = ddi - rec;
+      var sign = gap > 0 ? "+" : "";
+      document.getElementById("gapText").textContent =
+        "Recognition gap: " + sign + gap + " — " + gapLabel(gap) + ".";
+    }
+
+    document.getElementById("rec").addEventListener("input", render);
+    render();
+  })();
+</script>
+{% endblock %}

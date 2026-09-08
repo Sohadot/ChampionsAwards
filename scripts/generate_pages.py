@@ -9,13 +9,47 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from config import (
     CLUSTERS,
     DATA,
+    DDI_DIMENSIONS,
     HUB_TITLES,
     OUT,
     TEMPLATES,
+    compute_ddi,
+    ddi_band,
     is_valid_slug,
     normalize_domain,
     normalize_slug,
+    recognition_gap_label,
 )
+
+
+def attach_assessment(item: dict[str, Any]) -> None:
+    """When an entry carries a DDI assessment, compute its score, band, and
+    recognition gap at build time so pages never hand-transcribe the numbers."""
+    assessment = item.get("assessment")
+    if not isinstance(assessment, dict):
+        return
+
+    score = compute_ddi(assessment)
+    rationale = assessment.get("rationale") or {}
+
+    item["ddi_score"] = score
+    item["ddi_band"] = ddi_band(score)
+    item["ddi_rows"] = [
+        {
+            "label": label,
+            "weight": weight,
+            "score": assessment.get(key),
+            "rationale": rationale.get(key),
+        }
+        for key, label, weight in DDI_DIMENSIONS
+    ]
+
+    recognition = assessment.get("observed_recognition")
+    if isinstance(recognition, (int, float)):
+        gap = score - recognition
+        item["observed_recognition"] = recognition
+        item["recognition_gap"] = gap
+        item["recognition_gap_label"] = recognition_gap_label(gap)
 
 
 def load_yaml_file(path) -> dict[str, Any]:
@@ -93,6 +127,7 @@ def build_cluster_item_pages(
         item["cluster"] = cluster_name
         item["url"] = f"/{cluster_name}/{slug}"
         item["canonical_url"] = f"{domain}/{cluster_name}/{slug}"
+        attach_assessment(item)
 
         output_path = OUT / cluster_name / slug / "index.html"
 

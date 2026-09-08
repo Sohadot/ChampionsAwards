@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}About — {{ site.site_name }}{% endblock %}
+{% block meta_description %}What ChampionsAwards is, why it exists, and the honest terms on which it asks to be trusted.{% endblock %}
+{% block canonical_link %}{{ site.domain }}/about{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">About</p>
+    <h1>Why this exists</h1>
+    <p class="lead">
+      Recognition shapes what a civilization remembers. When it misfires, the record — not just a career —
+      is distorted. This project studies that machinery in the open.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow prose">
+    <h2>The problem</h2>
+    <p>
+      Awards and honors are treated as conclusions when they are really outputs of a process — one that can
+      reward the visible over the significant, the timely over the durable, and the well-placed over the
+      overlooked. The gap between who is recognized and who contributed is real, recurring, and rarely measured.
+    </p>
+
+    <h2>The approach</h2>
+    <p>
+      Rather than issuing opinions, {{ site.site_name }} publishes a <a href="/methodology">method</a> and applies
+      it consistently: a weighted index for contributions, a legitimacy assessment for systems, and an
+      <a href="/unawarded">archive</a> for documented omissions — all bound by an <a href="/protocol">editorial protocol</a>
+      of sourcing, neutrality, and correction.
+    </p>
+
+    <h2>What we are honest about</h2>
+    <p>
+      This is a young project with a small published record. Its scores are structured estimates, not
+      measurements, and its weights are a defensible choice open to challenge. Its value will be earned slowly,
+      one well-sourced entry at a time — not declared. That trade is deliberate.
+    </p>
+
+    <h2>Contact &amp; contributions</h2>
+    <p>
+      Corrections and well-sourced challenges are welcome and are the fastest way the record improves.
+      A public channel for submissions and disclosures will be listed here as the project opens to contributors.
+    </p>
+  </div>
+</section>
+{% endblock %}

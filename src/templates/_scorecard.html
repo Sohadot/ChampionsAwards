@@ -1,0 +1,43 @@
+{% if item.ddi_score is defined %}
+<h2>Assessment — Deservingness Index ({{ site.methodology_version | default('DDI v1.0') }})</h2>
+<p class="small muted">
+  Computed at build time from the scores below using the published
+  <a href="/methodology">DDI formula</a>. The number is reproducible; the inputs are open to challenge.
+</p>
+
+<div class="grid two" style="align-items:start; margin:10px 0 6px;">
+  <div class="result" style="position:static;">
+    <p class="eyebrow">Composite</p>
+    <div class="score-big">{{ item.ddi_score }}<span style="font-size:1.4rem;color:var(--muted);">/100</span></div>
+    <div class="score-band">{{ item.ddi_band }}</div>
+    {% if item.recognition_gap is defined %}
+    <div class="gap-line">
+      <div class="small muted">Observed recognition: {{ item.observed_recognition }}/100</div>
+      <div style="margin-top:6px;">
+        Recognition gap: <strong>{% if item.recognition_gap > 0 %}+{% endif %}{{ item.recognition_gap }}</strong>
+        — {{ item.recognition_gap_label }}.
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="table-wrap">
+    <table class="data">
+      <thead><tr><th>Dimension</th><th class="num">Weight</th><th class="num">Score</th></tr></thead>
+      <tbody>
+        {% for row in item.ddi_rows %}
+        <tr>
+          <td>{{ row.label }}{% if row.rationale %}<div class="small muted" style="margin-top:2px;">{{ row.rationale }}</div>{% endif %}</td>
+          <td class="num">{{ "%.2f"|format(row.weight) }}</td>
+          <td class="num">{{ row.score }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<p class="small muted">
+  This is a structured estimate, not a measurement. See the
+  <a href="/methodology">methodology</a> and <a href="/protocol">editorial protocol</a>.
+</p>
+{% endif %}

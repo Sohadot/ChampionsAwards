@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Methodology — The Deservingness Index (DDI v1.0) — {{ site.site_name }}{% endblock %}
+{% block meta_description %}The full, versioned methodology behind ChampionsAwards: the six weighted dimensions of the Deservingness Index, the scoring rubric, the recognition gap, and the limits of the model.{% endblock %}
+{% block canonical_link %}{{ site.domain }}/methodology{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Methodology · DDI v1.0</p>
+    <h1>The Deservingness Index</h1>
+    <p class="lead">
+      A single number is never the point. The point is that the number is produced the same way every
+      time, from inputs anyone can inspect, argue with, and reproduce.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow prose">
+    <h2>What the index measures</h2>
+    <p>
+      The Deservingness Index (DDI) estimates the <em>assessed structural significance</em> of a
+      contribution — how much a person or work actually changed, independent of whether an institution
+      chose to reward it. It is a research instrument, not a verdict. It is deliberately separate from
+      recognition itself, so that the two can be compared.
+    </p>
+
+    <h2>The six dimensions</h2>
+    <p>
+      Each dimension is scored from 0 to 100 against the rubric below, then combined using fixed weights
+      that sum to 1.00. The weights encode a claim we are willing to defend: that durable, independently
+      verified, hard-to-substitute impact matters most.
+    </p>
+
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr><th>Dimension</th><th class="num">Weight</th><th>What a high score requires</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Structural impact</strong></td><td class="num">0.28</td><td>The contribution changed a field, system, or population at a deep level — not incrementally.</td></tr>
+          <tr><td><strong>Independent verification</strong></td><td class="num">0.20</td><td>The impact is confirmed by primary or independent sources, not by the actor's own account or a single institution.</td></tr>
+          <tr><td><strong>Counterfactual uniqueness</strong></td><td class="num">0.16</td><td>The contribution was unlikely to have arrived as soon, or in the same form, from someone else.</td></tr>
+          <tr><td><strong>Temporal durability</strong></td><td class="num">0.16</td><td>The significance held or grew over time rather than fading with its moment.</td></tr>
+          <tr><td><strong>Breadth of benefit</strong></td><td class="num">0.12</td><td>The benefit reached widely, not only a narrow or already-privileged group.</td></tr>
+          <tr><td><strong>Transparency of attribution</strong></td><td class="num">0.08</td><td>Who did what is clear and traceable, reducing the risk of misattributed credit.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>The formula</h2>
+    <p>
+      The composite score is a straightforward weighted sum:
+    </p>
+    <p class="card" style="font-family:monospace; font-size:0.95rem;">
+      DDI = 0.28·impact + 0.20·verification + 0.16·uniqueness + 0.16·durability + 0.12·breadth + 0.08·attribution
+    </p>
+    <p>
+      Because the weights sum to 1.00 and every input is on a 0–100 scale, the result is always
+      between 0 and 100. No hidden terms, no post-hoc adjustments.
+    </p>
+
+    <h2>Reading the result</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Band</th><th class="num">Score</th><th>Interpretation</th></tr></thead>
+        <tbody>
+          <tr><td>Landmark</td><td class="num">85–100</td><td>Field- or era-defining significance under this assessment.</td></tr>
+          <tr><td>Major</td><td class="num">70–84</td><td>Substantial, durable, broadly verified contribution.</td></tr>
+          <tr><td>Substantial</td><td class="num">55–69</td><td>Clear significance with meaningful limits or open questions.</td></tr>
+          <tr><td>Moderate</td><td class="num">40–54</td><td>Real but bounded, contested, or not yet durable.</td></tr>
+          <tr><td>Limited</td><td class="num">0–39</td><td>Significance is narrow or not yet established under this model.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>The recognition gap</h2>
+    <p>
+      Deservingness is only half the story. Alongside the DDI we record an <strong>observed recognition
+      level</strong> (0–100) — how much formal recognition the subject actually received. The
+      <strong>recognition gap</strong> is the difference:
+    </p>
+    <p class="card" style="font-family:monospace; font-size:0.95rem;">
+      gap = DDI − observed recognition
+    </p>
+    <p>
+      A large positive gap is the signature of the Unawarded Archive: assessed significance that the
+      recognition architecture failed to match. A large negative gap flags recognition that may exceed
+      the durable, verifiable record — the question the awards and recognition-system clusters exist to ask.
+    </p>
+
+    <h2>A second instrument: Recognition Legitimacy (RLS)</h2>
+    <p>
+      Individuals are scored with the DDI. <em>Systems</em> — prizes, honors, ranking bodies — are
+      assessed separately with the Recognition Legitimacy Score, which weighs process integrity,
+      representational breadth, transparency, and the long-term significance of past selections. RLS is
+      documented here and applied in the recognition-systems cluster; its interactive form is planned,
+      not yet shipped, and we will not pretend otherwise.
+    </p>
+
+    <h2>Limits we accept</h2>
+    <ul>
+      <li>Scores are <strong>estimates from human judgment against a rubric</strong>, not measurements. Two careful evaluators can disagree, and the model surfaces that rather than hiding it.</li>
+      <li>The weights are a defensible choice, not a law of nature. Changing them changes results; that is why the version is stamped on every page.</li>
+      <li>The model can encode the same biases it studies. The <a href="/protocol">editorial protocol</a> and public corrections are the countermeasure, not a claim of neutrality.</li>
+    </ul>
+
+    <h2>Versioning</h2>
+    <p>
+      This is <strong>DDI v1.0</strong>. Any change to dimensions, weights, or bands increments the
+      version, and prior versions remain on record so past scores stay interpretable. Reproducibility is
+      the whole point.
+    </p>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/calculator">Open the calculator</a>
+      <a class="btn btn-ghost" href="/protocol">Editorial protocol</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

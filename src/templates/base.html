@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{ site.language | default('en') }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ site.site_name }}{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{{ site.description }}{% endblock %}">
+  <link rel="canonical" href="{% block canonical_link %}{{ site.domain }}{% endblock %}">
+  <meta name="robots" content="index,follow">
+  <meta property="og:site_name" content="{{ site.site_name }}">
+  <meta property="og:title" content="{{ self.title() }}">
+  <meta property="og:description" content="{{ self.meta_description() }}">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="{{ site.theme.primary_bg | default('#080914') }}">
+  <link rel="stylesheet" href="/assets/styles.css">
+  {% block head_extra %}{% endblock %}
+</head>
+<body>
+  <header class="site-header">
+    <div class="bar">
+      <a class="brand" href="/">Champions<span>Awards</span></a>
+      <nav class="nav" aria-label="Primary">
+        {% for link in site.navigation %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="cols">
+        <div>
+          <div class="brand" style="margin-bottom:6px;">Champions<span>Awards</span></div>
+          <div>{{ site.tagline }}</div>
+        </div>
+        <div>
+          {% for link in site.navigation %}
+          <a href="{{ link.url }}" style="margin-left:14px;">{{ link.title }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <p class="small" style="margin-top:24px;">
+        © {{ build_year }} {{ site.site_name }}. An independent research and reference project.
+        Methodology {{ site.methodology_version | default('DDI v1.0') }}.
+      </p>
+    </div>
+  </footer>
+  {% block body_end %}{% endblock %}
+</body>
+</html>
