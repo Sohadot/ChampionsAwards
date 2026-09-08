@@ -28,6 +28,7 @@ def main() -> None:
     run_step("quality_gate.py")
     run_step("generate_core.py")
     run_step("generate_pages.py")
+    run_step("generate_rankings.py")
     run_step("generate_sitemap.py")
 
     print("Full build completed successfully.")

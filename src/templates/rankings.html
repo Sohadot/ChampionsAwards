@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}Recognition Gap Index & Legitimacy Index — {{ site.site_name }}{% endblock %}
+{% block meta_description %}Computed rankings from the ChampionsAwards dataset: individuals ranked by recognition gap (assessed merit minus observed recognition) and award systems ranked by Recognition Legitimacy Score.{% endblock %}
+{% block canonical_link %}{{ rankings_canonical_url }}{% endblock %}
+{% block structured_data %}
+{% if deservingness %}
+<script type="application/ld+json">
+{{
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Recognition Gap Index",
+    "description": "Individuals ranked by recognition gap (assessed DDI minus observed recognition).",
+    "itemListOrder": "https://schema.org/ItemListOrderDescending",
+    "numberOfItems": deservingness | length,
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": deservingness[0].title, "url": deservingness[0].url}
+    ]
+  } | tojson
+}}
+</script>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Computed indices</p>
+    <h1>The rankings</h1>
+    <p class="lead">
+      These tables are generated directly from the scored dataset — no editorial reordering. Change the
+      underlying <a href="/methodology">assessments</a> and the ranks change with them.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Recognition Gap Index</p>
+      <h2>Assessed merit that outran recognition</h2>
+    </div>
+    <p class="muted" style="margin-top:-10px;max-width:640px;">
+      Ranked by <strong>recognition gap</strong> — the Deservingness Index minus the observed level of
+      formal recognition. A large positive gap is the signature of the Unawarded Archive.
+    </p>
+
+    {% if deservingness %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th class="num">#</th><th>Subject</th><th class="num">DDI</th>
+            <th class="num">Recognition</th><th class="num">Gap</th><th>Reading</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in deservingness %}
+          <tr>
+            <td class="num">{{ loop.index }}</td>
+            <td><a href="{{ row.url }}">{{ row.title }}</a></td>
+            <td class="num">{{ row.score }}</td>
+            <td class="num">{% if row.recognition is defined %}{{ row.recognition }}{% else %}—{% endif %}</td>
+            <td class="num">{% if row.gap is defined %}{% if row.gap > 0 %}+{% endif %}{{ row.gap }}{% else %}—{% endif %}</td>
+            <td class="small muted">{% if row.gap_label is defined %}{{ row.gap_label }}{% else %}not yet compared{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="muted">No scored individuals yet.</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Legitimacy Index</p>
+      <h2>Recognition systems by assessed legitimacy</h2>
+    </div>
+    <p class="muted" style="margin-top:-10px;max-width:640px;">
+      Ranked by <strong>Recognition Legitimacy Score</strong> — an assessment of the process, not a
+      verdict on any individual laureate.
+    </p>
+
+    {% if legitimacy %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr><th class="num">#</th><th>System</th><th class="num">RLS</th><th>Band</th></tr>
+        </thead>
+        <tbody>
+          {% for row in legitimacy %}
+          <tr>
+            <td class="num">{{ loop.index }}</td>
+            <td><a href="{{ row.url }}">{{ row.title }}</a></td>
+            <td class="num">{{ row.score }}</td>
+            <td class="small muted">{{ row.band }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="muted">No scored systems yet.</p>
+    {% endif %}
+
+    <p class="small muted" style="margin-top:24px;">
+      Every figure is reproducible from the published <a href="/methodology">methodology</a> and each
+      entry's stated inputs. See the <a href="/protocol">editorial protocol</a> for how entries qualify.
+    </p>
+  </div>
+</section>
+{% endblock %}
