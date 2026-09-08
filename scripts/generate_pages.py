@@ -13,13 +13,16 @@ from config import (
     HUB_TITLES,
     OUT,
     TEMPLATES,
+    RLS_DIMENSIONS,
     compute_ddi,
+    compute_rls,
     ddi_band,
     is_published,
     is_valid_slug,
     normalize_domain,
     normalize_slug,
     recognition_gap_label,
+    rls_band,
 )
 
 
@@ -51,6 +54,29 @@ def attach_assessment(item: dict[str, Any]) -> None:
         item["observed_recognition"] = recognition
         item["recognition_gap"] = gap
         item["recognition_gap_label"] = recognition_gap_label(gap)
+
+
+def attach_rls(item: dict[str, Any]) -> None:
+    """When a system entry carries an RLS assessment, compute its legitimacy
+    score and band at build time (companion to attach_assessment)."""
+    assessment = item.get("rls_assessment")
+    if not isinstance(assessment, dict):
+        return
+
+    score = compute_rls(assessment)
+    rationale = assessment.get("rationale") or {}
+
+    item["rls_score"] = score
+    item["rls_band"] = rls_band(score)
+    item["rls_rows"] = [
+        {
+            "label": label,
+            "weight": weight,
+            "score": assessment.get(key),
+            "rationale": rationale.get(key),
+        }
+        for key, label, weight in RLS_DIMENSIONS
+    ]
 
 
 def load_yaml_file(path) -> dict[str, Any]:
@@ -133,6 +159,7 @@ def build_cluster_item_pages(
         item["url"] = f"/{cluster_name}/{slug}"
         item["canonical_url"] = f"{domain}/{cluster_name}/{slug}"
         attach_assessment(item)
+        attach_rls(item)
 
         output_path = OUT / cluster_name / slug / "index.html"
 

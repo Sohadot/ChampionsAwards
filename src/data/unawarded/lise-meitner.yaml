@@ -1,0 +1,46 @@
+title: Lise Meitner
+slug: lise-meitner
+status: published
+last_reviewed: 2026-09-08
+summary: Lise Meitner co-developed the theoretical explanation of nuclear fission, yet the 1944 Nobel Prize in Chemistry for the discovery was awarded solely to her long-time collaborator Otto Hahn.
+introduction: Meitner's case is among the most documented in the history of scientific recognition, because the physics she and Otto Frisch interpreted was inseparable from the chemistry that was honored, and yet the two were institutionally divided.
+omission_case: Her exclusion from the 1944 Chemistry prize matters because the fission result depended on a physical interpretation she supplied, making the omission a question about how disciplinary boundaries decide credit.
+structural_reason: Recognition was shaped by wartime displacement, the separation of physics from chemistry in the prize architecture, and Meitner's forced emigration from Nazi Germany, which severed her from the laboratory where the experiments continued.
+assessment:
+  impact: 88
+  verification: 90
+  uniqueness: 72
+  durability: 90
+  breadth: 80
+  attribution: 60
+  observed_recognition: 50
+  rationale:
+    impact: The interpretation of nuclear fission reshaped nuclear physics and its later applications.
+    verification: The Meitner-Frisch interpretation is documented in the peer record and independent histories.
+    uniqueness: The physical interpretation was distinctive, though the underlying experimental program involved several actors.
+    durability: Fission remains foundational to nuclear science and energy.
+    breadth: The consequences of fission are broad, spanning energy and, unavoidably, weapons.
+    attribution: Credit was contested and institutionally split between chemistry and physics.
+key_facts:
+  - fact: The 1944 Nobel Prize in Chemistry was awarded to Otto Hahn alone for the discovery of nuclear fission.
+    source: 2
+  - fact: Meitner and her nephew Otto Frisch published the physical interpretation of fission in 1939.
+    source: 1
+  - fact: Element 109, meitnerium (Mt), was named in her honour.
+    source: 3
+analysis:
+  - heading: Why the recognition gap is structural, not incidental
+    body: The fission result sat on the seam between chemistry and physics, and the prize architecture forced it onto one side. Combined with Meitner's exile, which removed her from the bench where the work was completed, the division of credit followed the shape of institutions rather than the shape of the contribution - the exact pattern this archive exists to document.
+sources:
+  - title: Lise Meitner - biography and role in nuclear fission
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/biography/Lise-Meitner
+    type: secondary
+  - title: The Nobel Prize in Chemistry 1944 (awarded to Otto Hahn)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/chemistry/1944/summary/
+    type: official
+  - title: Meitnerium - element 109
+    publisher: Royal Society of Chemistry (Periodic Table)
+    url: https://www.rsc.org/periodic-table/element/109/meitnerium
+    type: secondary

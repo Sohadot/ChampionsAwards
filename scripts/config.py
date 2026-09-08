@@ -140,6 +140,45 @@ def recognition_gap_label(gap: float) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Recognition Legitimacy Score (RLS v1.0)
+# The companion instrument to the DDI: it scores *systems* (prizes, honors,
+# ranking bodies) rather than individuals. Mirrored by the client-side
+# calculator and documented at /methodology. Weights MUST sum to 1.00.
+# ---------------------------------------------------------------------------
+RLS_VERSION: Final[str] = "RLS v1.0"
+
+RLS_DIMENSIONS: Final[tuple[tuple[str, str, float], ...]] = (
+    ("process", "Process integrity", 0.25),
+    ("breadth", "Representational breadth", 0.20),
+    ("track_record", "Historical track record", 0.20),
+    ("transparency", "Transparency", 0.18),
+    ("independence", "Independence", 0.17),
+)
+
+RLS_KEYS: Final[tuple[str, ...]] = tuple(key for key, _label, _weight in RLS_DIMENSIONS)
+
+
+def compute_rls(assessment: dict) -> float:
+    """Weighted sum of the five legitimacy dimension scores (0-100)."""
+    total = 0.0
+    for key, _label, weight in RLS_DIMENSIONS:
+        total += _clamp_score(assessment.get(key, 0)) * weight
+    return round(total)
+
+
+def rls_band(score: float) -> str:
+    if score >= 85:
+        return "Exemplary"
+    if score >= 70:
+        return "Strong"
+    if score >= 55:
+        return "Adequate"
+    if score >= 40:
+        return "Contested"
+    return "Fragile"
+
+
+# ---------------------------------------------------------------------------
 # Editorial governance
 # validate_content.py checks well-formedness; quality_gate.py enforces the
 # publication policy below on entries that declare themselves published.

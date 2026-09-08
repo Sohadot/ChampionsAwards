@@ -22,3 +22,15 @@ key_facts:
     source: 1
   - fact: Nobel's will created five prize categories - physics, chemistry, physiology or medicine, literature, and peace.
     source: 2
+rls_assessment:
+  process: 72
+  breadth: 58
+  track_record: 80
+  transparency: 55
+  independence: 78
+  rationale:
+    process: Nomination and selection follow a long-established, committee-driven procedure, though deliberations are not open in real time.
+    breadth: Historically concentrated in Western Europe and North America, with representation broadening only gradually across the twentieth century.
+    track_record: Most scientific selections have proven durable, though several well-documented omissions persist.
+    transparency: Award criteria are public, but nomination records and committee deliberations are sealed for 50 years.
+    independence: Funded by an independent endowment, insulating most categories from direct commercial or political control.
