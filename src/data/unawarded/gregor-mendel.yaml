@@ -14,6 +14,14 @@ assessment:
   breadth: 70
   attribution: 72
   observed_recognition: 40
+  evidence:
+    impact: [1]
+    verification: [1]
+    uniqueness: [1]
+    durability: [1]
+    breadth: [1]
+    attribution: [1]
+    observed_recognition: [1]
   rationale:
     impact: Mendel's laws are foundational to the entire field of genetics.
     verification: His experiments and their rediscovery are extensively documented.

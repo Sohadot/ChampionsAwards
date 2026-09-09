@@ -208,6 +208,56 @@ def validate_assessment(cluster_name: str, item: dict[str, Any], source_file: st
     if recognition is not None and not _is_score(recognition):
         errors.append(f"{cluster_name}/{source_file}: 'observed_recognition' must be a number 0-100")
 
+    errors.extend(
+        validate_evidence(
+            cluster_name, item, source_file, "assessment",
+            allowed_keys=set(DDI_KEYS) | {"observed_recognition"},
+        )
+    )
+
+    return errors
+
+
+def validate_evidence(
+    cluster_name: str,
+    item: dict[str, Any],
+    source_file: str,
+    block_name: str,
+    allowed_keys: set[str],
+) -> list[str]:
+    """Score-level provenance: `evidence` maps each dimension (and, for the DDI,
+    observed_recognition) to 1-based indices into the entry's `sources`, so every
+    judgment is traceable to specific references. Shape-checked when present; the
+    quality gate decides where it is required."""
+    errors: list[str] = []
+    block = item.get(block_name)
+    if not isinstance(block, dict):
+        return errors
+    evidence = block.get("evidence")
+    if evidence is None:
+        return errors
+
+    if not isinstance(evidence, dict) or not evidence:
+        errors.append(f"{cluster_name}/{source_file}: {block_name}.evidence must be a non-empty mapping")
+        return errors
+
+    source_count = len(item.get("sources") or [])
+    for key, refs in evidence.items():
+        if key not in allowed_keys:
+            errors.append(f"{cluster_name}/{source_file}: {block_name}.evidence has unknown key '{key}'")
+            continue
+        if not isinstance(refs, list) or not refs:
+            errors.append(
+                f"{cluster_name}/{source_file}: {block_name}.evidence['{key}'] must be a non-empty list"
+            )
+            continue
+        for ref in refs:
+            if not isinstance(ref, int) or isinstance(ref, bool) or not (1 <= ref <= source_count):
+                errors.append(
+                    f"{cluster_name}/{source_file}: {block_name}.evidence['{key}'] has out-of-range "
+                    f"source index {ref!r} (1..{source_count})"
+                )
+
     return errors
 
 
@@ -228,6 +278,12 @@ def validate_rls_assessment(cluster_name: str, item: dict[str, Any], source_file
             errors.append(f"{cluster_name}/{source_file}: rls_assessment missing dimension '{key}'")
         elif not _is_score(assessment[key]):
             errors.append(f"{cluster_name}/{source_file}: rls_assessment '{key}' must be a number 0-100")
+
+    errors.extend(
+        validate_evidence(
+            cluster_name, item, source_file, "rls_assessment", allowed_keys=set(RLS_KEYS)
+        )
+    )
 
     return errors
 

@@ -12,6 +12,12 @@ rls_assessment:
   track_record: 88
   transparency: 60
   independence: 78
+  evidence:
+    process: [1]
+    breadth: [1, 2]
+    track_record: [2]
+    transparency: [1]
+    independence: [1]
   rationale:
     process: Selection follows an established juried procedure administered by the foundation.
     breadth: Recognition is biomedical and has historically been oriented toward the United States.

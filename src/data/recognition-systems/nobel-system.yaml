@@ -28,6 +28,12 @@ rls_assessment:
   track_record: 80
   transparency: 55
   independence: 78
+  evidence:
+    process: [1]
+    breadth: [1]
+    track_record: [1]
+    transparency: [1]
+    independence: [1, 2]
   rationale:
     process: Nomination and selection follow a long-established, committee-driven procedure, though deliberations are not open in real time.
     breadth: Historically concentrated in Western Europe and North America, with representation broadening only gradually across the twentieth century.

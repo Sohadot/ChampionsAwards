@@ -9,11 +9,13 @@ from config import (
     ASSESSMENT_CLUSTERS,
     CLUSTERS,
     DATA,
+    DDI_KEYS,
     REQUIRE_DOMAIN,
     REQUIRE_LAST_REVIEWED,
     REQUIRE_OBSERVED_RECOGNITION,
     REQUIRE_SOURCES,
     RLS_CLUSTERS,
+    RLS_KEYS,
     find_banned_terms,
     get_status,
     is_iso_date,
@@ -79,13 +81,29 @@ def enforce_publication_policy(cluster_name: str, item: dict[str, Any], source_f
         elif not is_iso_date(last_reviewed):
             errors.append(f"{ref}: 'last_reviewed' must be an ISO date (YYYY-MM-DD)")
 
-    # Any assessment on a published entry must justify every dimension.
+    # Any assessment on a published entry must justify every dimension, and
+    # carry score-level provenance: an evidence trail from each dimension to
+    # specific sources (Source -> evidence -> judgment -> score -> gap -> rank).
+    required_evidence_keys = {
+        "assessment": list(DDI_KEYS) + ["observed_recognition"],
+        "rls_assessment": list(RLS_KEYS),
+    }
     for block in ("assessment", "rls_assessment"):
         assessment = item.get(block)
         if isinstance(assessment, dict):
             rationale = assessment.get("rationale")
             if not isinstance(rationale, dict) or not rationale:
                 errors.append(f"{ref}: a published {block} must include a 'rationale' for its scores")
+
+            evidence = assessment.get("evidence")
+            if not isinstance(evidence, dict) or not evidence:
+                errors.append(f"{ref}: a published {block} must include 'evidence' mapping each score to sources")
+            else:
+                missing = [k for k in required_evidence_keys[block] if not evidence.get(k)]
+                if missing:
+                    errors.append(
+                        f"{ref}: {block}.evidence is missing source refs for: {', '.join(missing)}"
+                    )
 
     # A published DDI assessment must state observed_recognition so its
     # recognition gap is computable and the Gap Index is complete.

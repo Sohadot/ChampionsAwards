@@ -14,13 +14,14 @@
 
   <div class="table-wrap">
     <table class="data">
-      <thead><tr><th>Dimension</th><th class="num">Weight</th><th class="num">Score</th></tr></thead>
+      <thead><tr><th>Dimension</th><th class="num">Weight</th><th class="num">Score</th><th>Evidence</th></tr></thead>
       <tbody>
         {% for row in item.rls_rows %}
         <tr>
           <td>{{ row.label }}{% if row.rationale %}<div class="small muted" style="margin-top:2px;">{{ row.rationale }}</div>{% endif %}</td>
           <td class="num">{{ "%.2f"|format(row.weight) }}</td>
           <td class="num">{{ row.score }}</td>
+          <td class="small">{% for ref in row.evidence %}<a class="cite" href="#source-{{ ref }}">[{{ ref }}]</a>{% endfor %}</td>
         </tr>
         {% endfor %}
       </tbody>

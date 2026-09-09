@@ -35,6 +35,7 @@ def attach_assessment(item: dict[str, Any]) -> None:
 
     score = compute_ddi(assessment)
     rationale = assessment.get("rationale") or {}
+    evidence = assessment.get("evidence") or {}
 
     item["ddi_score"] = score
     item["ddi_band"] = ddi_band(score)
@@ -44,6 +45,7 @@ def attach_assessment(item: dict[str, Any]) -> None:
             "weight": weight,
             "score": assessment.get(key),
             "rationale": rationale.get(key),
+            "evidence": evidence.get(key) or [],
         }
         for key, label, weight in DDI_DIMENSIONS
     ]
@@ -52,6 +54,7 @@ def attach_assessment(item: dict[str, Any]) -> None:
     if isinstance(recognition, (int, float)):
         gap = score - recognition
         item["observed_recognition"] = recognition
+        item["observed_recognition_evidence"] = evidence.get("observed_recognition") or []
         item["recognition_gap"] = gap
         item["recognition_gap_label"] = recognition_gap_label(gap)
 
@@ -65,6 +68,7 @@ def attach_rls(item: dict[str, Any]) -> None:
 
     score = compute_rls(assessment)
     rationale = assessment.get("rationale") or {}
+    evidence = assessment.get("evidence") or {}
 
     item["rls_score"] = score
     item["rls_band"] = rls_band(score)
@@ -74,6 +78,7 @@ def attach_rls(item: dict[str, Any]) -> None:
             "weight": weight,
             "score": assessment.get(key),
             "rationale": rationale.get(key),
+            "evidence": evidence.get(key) or [],
         }
         for key, label, weight in RLS_DIMENSIONS
     ]

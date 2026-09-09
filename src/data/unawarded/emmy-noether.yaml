@@ -14,6 +14,14 @@ assessment:
   breadth: 65
   attribution: 70
   observed_recognition: 45
+  evidence:
+    impact: [1]
+    verification: [1]
+    uniqueness: [1]
+    durability: [1]
+    breadth: [1]
+    attribution: [1]
+    observed_recognition: [1]
   rationale:
     impact: Noether's theorem connects symmetries and conservation laws across physics.
     verification: Her contributions in algebra and physics are extensively documented.
