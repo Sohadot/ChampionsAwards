@@ -38,6 +38,7 @@ def main() -> None:
     # immature domain or a claim resting on secondary sources is a status.
     run_step("domain_status.py")
     run_step("source_audit.py")
+    run_step("domain_comparison.py")
 
 
 if __name__ == "__main__":
