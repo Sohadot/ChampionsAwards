@@ -54,3 +54,6 @@ analysis:
 domain: physics-astronomy
 patterns:
   - credit-misattribution
+
+pattern_evidence:
+  credit-misattribution: [1]

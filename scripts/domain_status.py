@@ -49,8 +49,12 @@ def domain_report(domain: str) -> dict[str, Any]:
             recognition = assessment.get("observed_recognition")
             if isinstance(recognition, (int, float)) and not isinstance(recognition, bool):
                 gaps.append(score - recognition)
+            # A case supports a pattern only when it carries explicit
+            # pattern_evidence for it (source refs proving the mechanism).
+            pattern_evidence = item.get("pattern_evidence") or {}
             for pat in item.get("patterns") or []:
-                patterns[pat] += 1
+                if pattern_evidence.get(pat):
+                    patterns[pat] += 1
 
     rls_scores: list[int] = []
     for cluster in RLS_CLUSTERS:

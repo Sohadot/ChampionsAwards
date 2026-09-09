@@ -53,3 +53,7 @@ domain: biology-medicine
 patterns:
   - posthumous-recognition
   - credit-misattribution
+
+pattern_evidence:
+  posthumous-recognition: [1, 2]
+  credit-misattribution: [1]

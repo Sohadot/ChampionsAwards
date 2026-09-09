@@ -46,3 +46,6 @@ sources:
 domain: biology-medicine
 patterns:
   - delayed-recognition
+
+pattern_evidence:
+  delayed-recognition: [1]

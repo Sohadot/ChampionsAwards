@@ -214,6 +214,11 @@ DOMAINS: Final[dict[str, str]] = {
 # Published scored entries must be placed in a domain (no orphans).
 REQUIRE_DOMAIN: Final[bool] = True
 
+# A case only counts toward a structural pattern when it carries explicit
+# `pattern_evidence` for that pattern (source refs proving the mechanism, not
+# merely the tag). Published cases must supply evidence for every pattern.
+REQUIRE_PATTERN_EVIDENCE: Final[bool] = True
+
 # Pattern lifecycle: a structural cause is only "established" in a domain once
 # at least this many independent cases in that domain exhibit it. A pattern
 # supported by a single case is "emergent" and does NOT count toward the DoD.

@@ -70,7 +70,10 @@ carry a single `domain`, systems carry a `domains` list, and both must reference
 a domain registered in `scripts/config.py` (`DOMAINS`). The gate rejects an
 orphaned scored entry. Cases may also declare `patterns` — structural-cause
 concepts (e.g. `credit-misattribution`) that must resolve to a **published**
-concept, keeping the ontology connected.
+concept, keeping the ontology connected. Every declared pattern on a published
+case must also carry `pattern_evidence` (source refs proving the mechanism in
+that case); the maturity report counts a case toward a pattern only when that
+evidence is present, so a pattern is always a sourced claim, never a bare tag.
 
 The project deepens one domain to maturity before opening the next. The model,
 the seven layers, and the machine-checked Definition of Done live in

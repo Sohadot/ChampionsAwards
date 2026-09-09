@@ -50,3 +50,6 @@ sources:
     publisher: "arXiv (history of physics)"
     url: https://arxiv.org/abs/1411.0172
     type: secondary
+
+pattern_evidence:
+  credit-misattribution: [1, 2]
