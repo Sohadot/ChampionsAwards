@@ -4,8 +4,8 @@ status: published
 last_reviewed: 2026-09-09
 domain: physics-astronomy
 patterns:
-  - credit-misattribution
-  - institutional-exclusion
+- credit-misattribution
+- institutional-exclusion
 summary: Cecilia Payne-Gaposchkin showed in her 1925 thesis that stars are composed overwhelmingly of hydrogen and helium, but she was pressured to describe her own result as almost certainly not real, and credit for the conclusion later attached substantially to a senior astronomer.
 introduction: Payne-Gaposchkin's doctoral work overturned assumptions about stellar composition, yet the recognition around it was shaped by senior opposition and by the constrained position of women in early twentieth-century astronomy.
 omission_case: Her case matters because the record shows both a contribution being publicly doubted by an authority and that authority later reaching the same conclusion and receiving much of the credit.
@@ -19,13 +19,23 @@ assessment:
   attribution: 52
   observed_recognition: 46
   evidence:
-    impact: [1, 2]
-    verification: [1]
-    uniqueness: [1]
-    durability: [1]
-    breadth: [1]
-    attribution: [1, 2]
-    observed_recognition: [1, 2]
+    impact:
+    - 1
+    - 2
+    verification:
+    - 1
+    uniqueness:
+    - 1
+    durability:
+    - 1
+    breadth:
+    - 1
+    attribution:
+    - 1
+    - 2
+    observed_recognition:
+    - 1
+    - 2
   rationale:
     impact: The finding on stellar composition is foundational to astrophysics.
     verification: Her thesis and the surrounding history are well documented.
@@ -35,23 +45,52 @@ assessment:
     attribution: A senior astronomer who initially opposed the result later received much of the credit.
     observed_recognition: Her formal standing was delayed for decades despite the result's importance.
 key_facts:
-  - fact: In her 1925 thesis Payne-Gaposchkin concluded that stars are composed overwhelmingly of hydrogen and helium.
-    source: 1
-  - fact: A senior astronomer pressed her to qualify the result, then reached the same conclusion and was often credited for it.
-    source: 2
+- fact: In her 1925 thesis Payne-Gaposchkin concluded that stars are composed overwhelmingly of hydrogen and helium.
+  source: 1
+- fact: A senior astronomer pressed her to qualify the result, then reached the same conclusion and was often credited for it.
+  source: 2
 analysis:
-  - heading: Resistance to the idea, then displaced credit
-    body: "Payne-Gaposchkin's gap combines two mechanisms the archive tracks separately - a result doubted and downplayed under senior pressure, and credit later flowing to that senior figure. Layered on institutional limits placed on women at her observatory, the case shows how opposition and displacement can compound."
+- heading: Resistance to the idea, then displaced credit
+  body: Payne-Gaposchkin's gap combines two mechanisms the archive tracks separately - a result doubted and downplayed under senior pressure, and credit later flowing to that senior figure. Layered on institutional limits placed on women at her observatory, the case shows how opposition and displacement can compound.
 sources:
-  - title: Cecilia Payne-Gaposchkin - scientific biography
-    publisher: Science History Institute
-    url: https://www.sciencehistory.org/education/scientific-biographies/cecilia-payne-gaposchkin/
-    type: institutional
-  - title: "Cecilia Payne-Gaposchkin - the woman who found hydrogen in the stars"
-    publisher: Physics World
-    url: https://physicsworld.com/a/cecilia-payne-gaposchkin-the-woman-who-found-hydrogen-in-the-stars/
-    type: general-secondary
-
+- title: Cecilia Payne-Gaposchkin - scientific biography
+  publisher: Science History Institute
+  url: https://www.sciencehistory.org/education/scientific-biographies/cecilia-payne-gaposchkin/
+  type: reference-secondary
+- title: Cecilia Payne-Gaposchkin - the woman who found hydrogen in the stars
+  publisher: Physics World
+  url: https://physicsworld.com/a/cecilia-payne-gaposchkin-the-woman-who-found-hydrogen-in-the-stars/
+  type: general-secondary
 pattern_evidence:
-  credit-misattribution: [1, 2]
-  institutional-exclusion: [1, 2]
+  credit-misattribution:
+  - 1
+  - 2
+  institutional-exclusion:
+  - 1
+  - 2
+audit_exceptions:
+- claim: contribution
+  search_date: '2026-09-09'
+  search_note: Searched for a stable link to Payne's 1925 thesis 'Stellar Atmospheres'.
+  best_source: 1
+  reason: Her result is documented by a history-of-science institute and the physics press; the primary thesis was not linked to a stable record this pass.
+- claim: attribution
+  search_date: '2026-09-09'
+  search_note: Searched for a primary record of Russell's later publication and the crediting.
+  best_source: 2
+  reason: Documented in the physics press and history accounts; no primary adjudication linked this pass.
+- claim: observed-recognition
+  search_date: '2026-09-09'
+  search_note: Searched for an institutional record of her delayed standing and later professorship.
+  best_source: 1
+  reason: Documented in secondary accounts; a consolidated institutional record was not linked this pass.
+- claim: pattern:credit-misattribution
+  search_date: '2026-09-09'
+  search_note: As for attribution.
+  best_source: 2
+  reason: Documented in secondary accounts; no primary adjudication linked this pass.
+- claim: pattern:institutional-exclusion
+  search_date: '2026-09-09'
+  search_note: Searched for an institutional/archival record of the limits placed on women at her observatory.
+  best_source: 1
+  reason: Documented in secondary biography; institutional record not linked this pass.

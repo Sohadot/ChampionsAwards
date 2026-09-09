@@ -15,13 +15,20 @@ assessment:
   attribution: 60
   observed_recognition: 38
   evidence:
-    impact: [1]
-    verification: [1]
-    uniqueness: [1]
-    durability: [1]
-    breadth: [1]
-    attribution: [1]
-    observed_recognition: [1]
+    impact:
+    - 1
+    verification:
+    - 1
+    uniqueness:
+    - 1
+    durability:
+    - 1
+    breadth:
+    - 1
+    attribution:
+    - 1
+    observed_recognition:
+    - 1
   rationale:
     impact: The period-luminosity relation is a cornerstone of the cosmic distance ladder.
     verification: Her contribution is documented in the astronomical record and independent histories.
@@ -30,24 +37,56 @@ assessment:
     breadth: The benefit is scientific and broad within astronomy and cosmology.
     attribution: Later distance work is often credited to those who applied her relation.
 key_facts:
-  - fact: Leavitt discovered the period-luminosity relation for Cepheid variable stars, published in her Harvard work.
-    source: 1
-  - fact: The relation became a foundational method for determining astronomical distances.
-    source: 1
+- fact: Leavitt discovered the period-luminosity relation for Cepheid variable stars, published in her Harvard work.
+  source: 1
+- fact: The relation became a foundational method for determining astronomical distances.
+  source: 1
 analysis:
-  - heading: Creating a tool versus wielding it
-    body: "Leavitt's large recognition gap reflects a specific mechanism: the person who forges an enabling instrument is often eclipsed by those who make headline measurements with it. Her relation is invoked constantly in cosmology, while her name is far less visible than the discoveries it made possible."
+- heading: Creating a tool versus wielding it
+  body: 'Leavitt''s large recognition gap reflects a specific mechanism: the person who forges an enabling instrument is often eclipsed by those who make headline measurements with it. Her relation is invoked constantly in cosmology, while her name is far less visible than the discoveries it made possible.'
 sources:
-  - title: Henrietta Swan Leavitt - biography and the period-luminosity relation
-    publisher: Encyclopaedia Britannica
-    url: https://www.britannica.com/biography/Henrietta-Swan-Leavitt
-    type: reference-secondary
-
+- title: Henrietta Swan Leavitt - biography and the period-luminosity relation
+  publisher: Encyclopaedia Britannica
+  url: https://www.britannica.com/biography/Henrietta-Swan-Leavitt
+  type: reference-secondary
+- title: Periods of 25 Variable Stars in the Small Magellanic Cloud
+  publisher: H. S. Leavitt, Harvard College Observatory Circular 173 (1912)
+  url: https://ui.adsabs.harvard.edu/abs/1912HarCi.173....1L/abstract
+  type: primary
+- title: Henrietta Swan Leavitt - Variable Stars (institutional record of her work and position)
+  publisher: Wolbach Library, Harvard & Smithsonian
+  url: https://library.cfa.harvard.edu/henrietta-swan-leavitt/variable-stars
+  type: archival
 domain: physics-astronomy
 patterns:
-  - credit-misattribution
-  - institutional-exclusion
-
+- credit-misattribution
+- institutional-exclusion
 pattern_evidence:
-  credit-misattribution: [1]
-  institutional-exclusion: [1]
+  credit-misattribution:
+  - 1
+  institutional-exclusion:
+  - 1
+provenance:
+  contribution:
+    record_anchor:
+    - 2
+    basis: primary-publication
+  observed-recognition:
+    record_anchor:
+    - 3
+    basis: institutional-archive
+  pattern:institutional-exclusion:
+    record_anchor:
+    - 3
+    basis: institutional-archive
+audit_exceptions:
+- claim: attribution
+  search_date: '2026-09-09'
+  search_note: Searched for a primary record adjudicating credit for distance measurements built on Leavitt's relation.
+  best_source: 1
+  reason: The later crediting of others is a historical judgment; no primary adjudication exists, and the reference biography is sufficient for the scoped claim.
+- claim: pattern:credit-misattribution
+  search_date: '2026-09-09'
+  search_note: As above for the credit-displacement mechanism.
+  best_source: 1
+  reason: Documented in secondary histories; no primary adjudication exists.

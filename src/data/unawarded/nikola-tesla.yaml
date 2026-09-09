@@ -14,13 +14,24 @@ assessment:
   attribution: 70
   observed_recognition: 45
   evidence:
-    impact: [1, 2]
-    verification: [1, 2]
-    uniqueness: [1, 2]
-    durability: [1, 2]
-    breadth: [1]
-    attribution: [1]
-    observed_recognition: [1]
+    impact:
+    - 1
+    - 2
+    verification:
+    - 1
+    - 2
+    uniqueness:
+    - 1
+    - 2
+    durability:
+    - 1
+    - 2
+    breadth:
+    - 1
+    attribution:
+    - 1
+    observed_recognition:
+    - 1
   rationale:
     impact: Polyphase alternating current and the induction motor reshaped how electrical power is generated and distributed worldwide.
     verification: Contributions are documented in patents and independent engineering histories, not only in self-account.
@@ -29,31 +40,51 @@ assessment:
     breadth: Electrification is among the most broadly distributed technological benefits in history.
     attribution: Credit is genuinely contested across Edison, Westinghouse, and Marconi disputes, lowering attribution clarity.
 sources:
-  - title: Nikola Tesla — biography and engineering contributions
-    publisher: Encyclopaedia Britannica
-    url: https://www.britannica.com/biography/Nikola-Tesla
-    type: reference-secondary
-  - title: Nikola Tesla and alternating-current systems (rotating magnetic field)
-    publisher: IEEE (Engineering and Technology History Wiki)
-    url: https://ethw.org/Nikola_Tesla
-    type: institutional
+- title: Nikola Tesla — biography and engineering contributions
+  publisher: Encyclopaedia Britannica
+  url: https://www.britannica.com/biography/Nikola-Tesla
+  type: reference-secondary
+- title: Nikola Tesla and alternating-current systems (rotating magnetic field)
+  publisher: IEEE (Engineering and Technology History Wiki)
+  url: https://ethw.org/Nikola_Tesla
+  type: institutional
 status: published
 key_facts:
-  - fact: Nikola Tesla was born on 10 July 1856 in Smiljan, then part of the Austrian Empire (modern-day Croatia).
-    source: 1
-  - fact: He developed the alternating-current induction motor and polyphase AC power system.
-    source: 2
-  - fact: The SI unit of magnetic flux density, the tesla (T), is named in his honour.
-    source: 1
-  - fact: Despite his influence on electrical engineering, Tesla never received a Nobel Prize.
-    source: 1
+- fact: Nikola Tesla was born on 10 July 1856 in Smiljan, then part of the Austrian Empire (modern-day Croatia).
+  source: 1
+- fact: He developed the alternating-current induction motor and polyphase AC power system.
+  source: 2
+- fact: The SI unit of magnetic flux density, the tesla (T), is named in his honour.
+  source: 1
+- fact: Despite his influence on electrical engineering, Tesla never received a Nobel Prize.
+  source: 1
 analysis:
-  - heading: What the recognition gap captures
-    body: Tesla's assessed structural impact is high and durable, yet his lifetime institutional recognition lagged - a divergence this archive treats as evidence, not trivia. The gap reflects how AC power became infrastructure so ubiquitous that its authorship faded from public view, and how contested credit across contemporaries diluted the formal honours a single figure might otherwise have received.
-
+- heading: What the recognition gap captures
+  body: Tesla's assessed structural impact is high and durable, yet his lifetime institutional recognition lagged - a divergence this archive treats as evidence, not trivia. The gap reflects how AC power became infrastructure so ubiquitous that its authorship faded from public view, and how contested credit across contemporaries diluted the formal honours a single figure might otherwise have received.
 domain: physics-astronomy
 patterns:
-  - credit-misattribution
-
+- credit-misattribution
 pattern_evidence:
-  credit-misattribution: [1]
+  credit-misattribution:
+  - 1
+provenance:
+  contribution:
+    record_anchor:
+    - 2
+    basis: institutional-archive
+audit_exceptions:
+- claim: attribution
+  search_date: '2026-09-09'
+  search_note: Searched for a primary or institutional record adjudicating the Edison/Westinghouse/Marconi credit disputes.
+  best_source: 1
+  reason: The contested-credit narrative is historical interpretation with no single authoritative record; the reference biography is the best available and the claim is scoped to it.
+- claim: observed-recognition
+  search_date: '2026-09-09'
+  search_note: Searched for an institutional record consolidating Tesla's lifetime honours and the SI-unit naming.
+  best_source: 1
+  reason: Lifetime-recognition characterization rests on reputable secondary biography; no single institutional record consolidates it.
+- claim: pattern:credit-misattribution
+  search_date: '2026-09-09'
+  search_note: Searched for a record-grade source for the credit-dispute mechanism.
+  best_source: 1
+  reason: The mechanism is documented in secondary histories; no primary adjudication exists.

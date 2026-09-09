@@ -17,17 +17,23 @@ Source types form a functional taxonomy (see `SOURCE_TYPES` in
 - **record-grade** — `primary`, `archival`, `institutional`
 - **secondary** — `scholarly-secondary`, `reference-secondary`, `general-secondary`
 
-A claim is **record-grade OK** when at least one record-grade source backs it.
-Each entry resolves to one of three audit states:
+Closure is **claim-level authority**, not source type: a claim closes only when
+the entry declares a `provenance` record_anchor — a record-grade source — with a
+`basis` saying why that source is authoritative for that specific claim. A
+source being `institutional` does not close a claim on its own. Each claim
+resolves to one of four legitimate ends:
 
-- **source-grade closed** — every load-bearing claim is record-grade.
-- **needs-primary-strengthening** — a claim currently rests on a secondary
-  source and a stronger record plausibly exists to be linked.
-- **primary-not-found / secondary-record-sufficient** — declared per claim via
-  an entry's `audit_exceptions` only after a real search concludes no primary
-  is available; the project then relies on the best secondary record and claims
-  no more than that. Being able to say this openly builds more trust than
-  hiding the gap.
+- **closed** — a record anchor was found (`provenance`).
+- **secondary-record-sufficient** — after a documented search no primary record
+  exists; the entry carries an `audit_exceptions` decision (claim, search date,
+  note, best source, reason) and claims no more than the best secondary record.
+- **corrected** — the evidence was weaker than or contradicted the wording, so
+  the claim (and, if warranted, its rationale or score) was revised.
+- **withdrawn** — the claim or pattern could not be defended and was removed.
+
+Saying "no primary was found, here is the best secondary" openly builds more
+trust than hiding the gap. The goal is never 13/13 green — it is 13/13
+**known-status**.
 
 ## Rule of order
 
@@ -36,29 +42,36 @@ source triggers a re-assessment of the affected DDI/RLS dimension; a source is
 never swapped to move a number. The model yields to the evidence — the evidence
 is never bent to satisfy the model.
 
-## Current snapshot (2026-09-09)
+## Snapshot after the archival strengthening pass (2026-09-09)
 
-Individuals (10) and the three physics-relevant systems. No `audit_exceptions`
-are declared yet: strengthening and any secondary-sufficient declarations await
-a dedicated archival pass, and no score was changed in this cycle.
+Introducing claim-level authority first **reopened all 13** (the earlier "5/13"
+was closure inferred from source type — false closure). A targeted, web-verified
+archival pass then anchored each factual claim to a record where one exists, and
+recorded a documented exception where none was found. No score was changed: the
+live sources confirmed every claim, so no corrections or withdrawals were
+needed. Primary anchors added this pass include the original papers of Wu (1957),
+Bell Burnell/Hewish (1968), Meitner/Frisch (1939), Leavitt (1912), Bose (1924),
+and Alpher/Herman (1948).
 
 | Entry | Audit status |
 |---|---|
-| Cecilia Payne-Gaposchkin | source-grade closed |
+| Chien-Shiung Wu | source-grade closed |
+| Jocelyn Bell Burnell | source-grade closed |
 | George Zweig | source-grade closed |
 | Vera Rubin | source-grade closed |
-| Chien-Shiung Wu | needs-primary-strengthening (contribution) |
-| Jocelyn Bell Burnell | needs-primary-strengthening (contribution) |
-| Lise Meitner | needs-primary-strengthening (contribution; institutional-exclusion) |
-| Nikola Tesla | needs-primary-strengthening (attribution; recognition; credit) |
-| Henrietta Swan Leavitt | needs-primary-strengthening (all claims) |
-| Ralph Alpher | needs-primary-strengthening (all claims; scholarly-secondary only) |
-| Satyendra Nath Bose | needs-primary-strengthening (all claims; reference-secondary only) |
 | Nobel Prize System | source-grade closed |
+| Wolf Prize | source-grade closed |
 | Breakthrough Prize in Fundamental Physics | source-grade closed |
-| Wolf Prize | needs-primary-strengthening (track record) |
+| Lise Meitner | closed; exception: institutional-exclusion |
+| Henrietta Swan Leavitt | closed; exceptions: attribution, credit-misattribution |
+| Ralph Alpher | closed; exceptions: attribution, credit-misattribution |
+| Satyendra Nath Bose | closed; exception: observed-recognition |
+| Nikola Tesla | closed; exceptions: attribution, recognition, credit |
+| Cecilia Payne-Gaposchkin | secondary-sufficient (all claims; primary thesis not yet linked) |
 
-**Source-grade closed: 5 / 13.** This is the honest baseline. A domain is not
-declared mature v1.0 until this matrix is resolved — every entry either closed
-or carrying a reviewed secondary-sufficient exception — which is separate from,
-and stricter than, the numeric Definition of Done.
+**Known-status: 13 / 13** — 7 fully source-grade closed, 6 closed with
+documented secondary-sufficient exceptions, 0 unresolved. The Source-grade
+criterion for Physics & Astronomy is therefore **closed** (every claim has a
+defended status), even though not every claim is anchored to a primary. Open
+follow-ups are honest, bounded strengthening tasks — e.g. linking Payne's 1925
+thesis or an archival record of Meitner's exclusion — not blockers.

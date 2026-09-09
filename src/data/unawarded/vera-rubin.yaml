@@ -16,13 +16,24 @@ assessment:
   attribution: 78
   observed_recognition: 72
   evidence:
-    impact: [1, 2]
-    verification: [1, 2]
-    uniqueness: [1]
-    durability: [1]
-    breadth: [1]
-    attribution: [1, 2]
-    observed_recognition: [1, 2]
+    impact:
+    - 1
+    - 2
+    verification:
+    - 1
+    - 2
+    uniqueness:
+    - 1
+    durability:
+    - 1
+    breadth:
+    - 1
+    attribution:
+    - 1
+    - 2
+    observed_recognition:
+    - 1
+    - 2
   rationale:
     impact: Her rotation-curve observations provided decisive evidence for dark matter.
     verification: The work and its reception are well documented.
@@ -32,19 +43,32 @@ assessment:
     attribution: Credit is clearly and consistently assigned to her.
     observed_recognition: She received the National Medal of Science and the RAS Gold Medal, though not a Nobel Prize.
 key_facts:
-  - fact: Rubin's galaxy-rotation observations provided decisive evidence for the existence of dark matter.
-    source: 1
-  - fact: She received the National Medal of Science (1993) and was the first woman awarded the Royal Astronomical Society's Gold Medal since 1828.
-    source: 2
+- fact: Rubin's galaxy-rotation observations provided decisive evidence for the existence of dark matter.
+  source: 1
+- fact: She received the National Medal of Science (1993) and was the first woman awarded the Royal Astronomical Society's Gold Medal since 1828.
+  source: 2
 analysis:
-  - heading: A control case for the index
-    body: "Rubin is included precisely because her recognition was substantial. A transformative contribution that was broadly honoured should show a modest gap, and if the index instead forced a large one, that would signal a bias in the method. Her moderate gap is evidence the instrument is measuring, not editorialising."
+- heading: A control case for the index
+  body: Rubin is included precisely because her recognition was substantial. A transformative contribution that was broadly honoured should show a modest gap, and if the index instead forced a large one, that would signal a bias in the method. Her moderate gap is evidence the instrument is measuring, not editorialising.
 sources:
-  - title: Vera Rubin - biography and dark matter
-    publisher: Encyclopaedia Britannica
-    url: https://www.britannica.com/biography/Vera-Rubin
-    type: reference-secondary
-  - title: "Vera Rubin - opening doors to dark matter and women in STEM"
-    publisher: Carnegie Science
-    url: https://carnegiescience.edu/vera-rubin-opening-doors-dark-matter-and-women-stem
-    type: institutional
+- title: Vera Rubin - biography and dark matter
+  publisher: Encyclopaedia Britannica
+  url: https://www.britannica.com/biography/Vera-Rubin
+  type: reference-secondary
+- title: Vera Rubin - opening doors to dark matter and women in STEM
+  publisher: Carnegie Science
+  url: https://carnegiescience.edu/vera-rubin-opening-doors-dark-matter-and-women-stem
+  type: institutional
+provenance:
+  contribution:
+    record_anchor:
+    - 2
+    basis: institutional-archive
+  attribution:
+    record_anchor:
+    - 2
+    basis: institutional-archive
+  observed-recognition:
+    record_anchor:
+    - 2
+    basis: institutional-archive

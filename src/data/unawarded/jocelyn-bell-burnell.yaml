@@ -15,13 +15,22 @@ assessment:
   attribution: 55
   observed_recognition: 58
   evidence:
-    impact: [1]
-    verification: [1]
-    uniqueness: [1]
-    durability: [1]
-    breadth: [1]
-    attribution: [1, 2]
-    observed_recognition: [1, 2]
+    impact:
+    - 1
+    verification:
+    - 1
+    uniqueness:
+    - 1
+    durability:
+    - 1
+    breadth:
+    - 1
+    attribution:
+    - 1
+    - 2
+    observed_recognition:
+    - 1
+    - 2
   rationale:
     impact: Pulsars opened a major field of astrophysics and provided new tests of fundamental physics.
     verification: The discovery is documented in the observational record and independent histories.
@@ -30,28 +39,50 @@ assessment:
     breadth: The benefit is scientific and broad within astrophysics, though not a mass public good.
     attribution: Credit was assigned to supervisors at the time, and only later widely corrected.
 key_facts:
-  - fact: Bell Burnell detected the first radio pulsars in 1967 while a graduate student at Cambridge.
-    source: 1
-  - fact: The 1974 Nobel Prize in Physics was awarded to Antony Hewish and Martin Ryle.
-    source: 2
-  - fact: In 2018 she received the Special Breakthrough Prize in Fundamental Physics for the discovery.
-    source: 1
+- fact: Bell Burnell detected the first radio pulsars in 1967 while a graduate student at Cambridge.
+  source: 1
+- fact: The 1974 Nobel Prize in Physics was awarded to Antony Hewish and Martin Ryle.
+  source: 2
+- fact: In 2018 she received the Special Breakthrough Prize in Fundamental Physics for the discovery.
+  source: 1
 analysis:
-  - heading: A gap the field itself later corrected
-    body: "Bell Burnell's recognition gap is moderate rather than extreme, because the scientific community substantially corrected the record over subsequent decades through major honours. The case illustrates a softer failure mode than outright erasure: delayed recognition routed first through the institutional hierarchy before reaching the discoverer."
+- heading: A gap the field itself later corrected
+  body: 'Bell Burnell''s recognition gap is moderate rather than extreme, because the scientific community substantially corrected the record over subsequent decades through major honours. The case illustrates a softer failure mode than outright erasure: delayed recognition routed first through the institutional hierarchy before reaching the discoverer.'
 sources:
-  - title: Jocelyn Bell Burnell - biography and discovery of pulsars
-    publisher: Encyclopaedia Britannica
-    url: https://www.britannica.com/biography/Jocelyn-Bell-Burnell
-    type: reference-secondary
-  - title: The Nobel Prize in Physics 1974 (Ryle and Hewish)
-    publisher: The Nobel Foundation (nobelprize.org)
-    url: https://www.nobelprize.org/prizes/physics/1974/summary/
-    type: institutional
-
+- title: Jocelyn Bell Burnell - biography and discovery of pulsars
+  publisher: Encyclopaedia Britannica
+  url: https://www.britannica.com/biography/Jocelyn-Bell-Burnell
+  type: reference-secondary
+- title: The Nobel Prize in Physics 1974 (Ryle and Hewish)
+  publisher: The Nobel Foundation (nobelprize.org)
+  url: https://www.nobelprize.org/prizes/physics/1974/summary/
+  type: institutional
+- title: Observation of a Rapidly Pulsating Radio Source
+  publisher: A. Hewish, S. J. Bell et al., Nature 217, 709 (1968)
+  url: https://www.nature.com/articles/217709a0
+  type: primary
 domain: physics-astronomy
 patterns:
-  - credit-misattribution
-
+- credit-misattribution
 pattern_evidence:
-  credit-misattribution: [1, 2]
+  credit-misattribution:
+  - 1
+  - 2
+provenance:
+  contribution:
+    record_anchor:
+    - 3
+    basis: primary-publication
+  attribution:
+    record_anchor:
+    - 2
+    basis: awarding-institution-record
+  observed-recognition:
+    record_anchor:
+    - 2
+    basis: awarding-institution-record
+  pattern:credit-misattribution:
+    record_anchor:
+    - 2
+    - 3
+    basis: awarding-institution-record

@@ -16,13 +16,24 @@ assessment:
   attribution: 68
   observed_recognition: 62
   evidence:
-    impact: [1, 2]
-    verification: [1, 2]
-    uniqueness: [1]
-    durability: [1]
-    breadth: [1]
-    attribution: [1, 2]
-    observed_recognition: [1, 2]
+    impact:
+    - 1
+    - 2
+    verification:
+    - 1
+    - 2
+    uniqueness:
+    - 1
+    durability:
+    - 1
+    breadth:
+    - 1
+    attribution:
+    - 1
+    - 2
+    observed_recognition:
+    - 1
+    - 2
   rationale:
     impact: Bose's statistics underpin a broad class of quantum phenomena.
     verification: His derivation and its history are well documented.
@@ -32,19 +43,38 @@ assessment:
     attribution: His name is attached to the statistics and the boson, though Einstein is often foregrounded.
     observed_recognition: Eponymous recognition is high, yet he never received a Nobel Prize.
 key_facts:
-  - fact: In 1924 Bose derived a new quantum statistics, which Einstein translated into German and submitted for publication.
-    source: 1
-  - fact: The term boson was later coined after Bose, and he did not receive a Nobel Prize.
-    source: 2
+- fact: In 1924 Bose derived a new quantum statistics, which Einstein translated into German and submitted for publication.
+  source: 1
+- fact: The term boson was later coined after Bose, and he did not receive a Nobel Prize.
+  source: 2
 analysis:
-  - heading: Recognition that partly succeeded
-    body: "Bose's gap is deliberately modest in this archive. His name is woven into physics, so the case is not one of erasure but of dependence - his result travelled only once a metropolitan intermediary vouched for it. Including such cases keeps the index honest and resistant to a bias toward dramatic injustice alone."
+- heading: Recognition that partly succeeded
+  body: Bose's gap is deliberately modest in this archive. His name is woven into physics, so the case is not one of erasure but of dependence - his result travelled only once a metropolitan intermediary vouched for it. Including such cases keeps the index honest and resistant to a bias toward dramatic injustice alone.
 sources:
-  - title: Satyendra Nath Bose - biography and Bose-Einstein statistics
-    publisher: Encyclopaedia Britannica
-    url: https://www.britannica.com/biography/Satyendra-Nath-Bose
-    type: reference-secondary
-  - title: Satyendra Nath Bose and the Einstein-Bose Statistics
-    publisher: MacTutor History of Mathematics (University of St Andrews)
-    url: https://mathshistory.st-andrews.ac.uk/SH/bose_sh.pdf
-    type: reference-secondary
+- title: Satyendra Nath Bose - biography and Bose-Einstein statistics
+  publisher: Encyclopaedia Britannica
+  url: https://www.britannica.com/biography/Satyendra-Nath-Bose
+  type: reference-secondary
+- title: Satyendra Nath Bose and the Einstein-Bose Statistics
+  publisher: MacTutor History of Mathematics (University of St Andrews)
+  url: https://mathshistory.st-andrews.ac.uk/SH/bose_sh.pdf
+  type: reference-secondary
+- title: Plancks Gesetz und Lichtquantenhypothese
+  publisher: S. N. Bose, Zeitschrift fuer Physik 26, 178 (1924)
+  url: https://link.springer.com/article/10.1007/BF01327326
+  type: primary
+provenance:
+  contribution:
+    record_anchor:
+    - 3
+    basis: primary-publication
+  attribution:
+    record_anchor:
+    - 3
+    basis: primary-publication
+audit_exceptions:
+- claim: observed-recognition
+  search_date: '2026-09-09'
+  search_note: Searched for an institutional record consolidating the eponymous recognition (boson) and the absence of a Nobel.
+  best_source: 1
+  reason: These are documented across reference works; no single institutional record consolidates the recognition outcome.

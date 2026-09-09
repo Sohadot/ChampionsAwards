@@ -312,6 +312,26 @@ def is_valid_source_type(value: object) -> bool:
     return isinstance(value, str) and value in SOURCE_TYPES
 
 
+# Claim-level authority. Source type says what KIND of source something is;
+# `basis` says WHY a source is authoritative for a specific claim. A claim is
+# source-grade closed only when an entry declares a `provenance` record_anchor
+# (record-grade source) with one of these bases - never on source type alone.
+BASIS_VOCAB: Final[frozenset[str]] = frozenset(
+    {
+        "primary-publication",          # the original paper, preprint, or patent
+        "awarding-institution-record",  # the prize body's own record of the outcome
+        "institutional-archive",        # a university/society/institution archive of the record
+        "contemporary-record",          # a contemporaneous document (letter, minutes, circular)
+        "scholarly-history",            # peer-reviewed history that establishes the fact
+        "reference-consensus",          # reference works in agreement (uncontested facts only)
+    }
+)
+
+
+def is_valid_basis(value: object) -> bool:
+    return isinstance(value, str) and value in BASIS_VOCAB
+
+
 def get_status(item: dict) -> str:
     raw = item.get("status")
     status = str(raw).strip().lower() if raw is not None else DEFAULT_STATUS

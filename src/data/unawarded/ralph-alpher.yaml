@@ -4,7 +4,7 @@ status: published
 last_reviewed: 2026-09-09
 domain: physics-astronomy
 patterns:
-  - credit-misattribution
+- credit-misattribution
 summary: Ralph Alpher, with Robert Herman, predicted the cosmic microwave background radiation in 1948, yet the prediction was widely overlooked and often folded into the reputation of his supervisor George Gamow.
 introduction: Alpher's doctoral work produced one of the most consequential predictions in cosmology, but the recognition architecture routed credit toward more established names and did not connect his prediction to the later observational discovery.
 omission_case: His case matters because a specific, quantitative prediction of the background radiation preceded its 1960s detection, yet that predictive priority was not reflected when the discovery was celebrated.
@@ -18,13 +18,24 @@ assessment:
   attribution: 45
   observed_recognition: 48
   evidence:
-    impact: [1, 2]
-    verification: [1, 2]
-    uniqueness: [1]
-    durability: [1]
-    breadth: [1]
-    attribution: [1, 2]
-    observed_recognition: [1, 2]
+    impact:
+    - 1
+    - 2
+    verification:
+    - 1
+    - 2
+    uniqueness:
+    - 1
+    durability:
+    - 1
+    breadth:
+    - 1
+    attribution:
+    - 1
+    - 2
+    observed_recognition:
+    - 1
+    - 2
   rationale:
     impact: The prediction of the cosmic microwave background is central to modern cosmology.
     verification: The prediction and its history are documented in peer-reviewed histories of physics.
@@ -34,22 +45,51 @@ assessment:
     attribution: Credit was frequently misattributed to Gamow and disconnected from the later detection.
     observed_recognition: Lifetime recognition lagged the significance of the prediction.
 key_facts:
-  - fact: Alpher and Robert Herman predicted the cosmic microwave background radiation in 1948.
-    source: 1
-  - fact: The prediction was widely underappreciated and often misattributed to George Gamow.
-    source: 2
+- fact: Alpher and Robert Herman predicted the cosmic microwave background radiation in 1948.
+  source: 1
+- fact: The prediction was widely underappreciated and often misattributed to George Gamow.
+  source: 2
 analysis:
-  - heading: Priority lost between prediction and detection
-    body: "Alpher's gap turns on a seam the recognition system handles poorly - the distance between predicting a phenomenon and later detecting it. Because the 1960s detection was celebrated without connecting it to the earlier quantitative prediction, predictive priority dissolved, and the multi-author origin was compressed onto a more famous name."
+- heading: Priority lost between prediction and detection
+  body: Alpher's gap turns on a seam the recognition system handles poorly - the distance between predicting a phenomenon and later detecting it. Because the 1960s detection was celebrated without connecting it to the earlier quantitative prediction, predictive priority dissolved, and the multi-author origin was compressed onto a more famous name.
 sources:
-  - title: "Ralph A. Alpher, Robert C. Herman, and the Cosmic Microwave Background Radiation"
-    publisher: "Physics in Perspective (Springer)"
-    url: https://link.springer.com/article/10.1007/s00016-012-0088-7
-    type: scholarly-secondary
-  - title: "Ralph A. Alpher, George Antonovich Gamow, and the Prediction of the Cosmic Microwave Background Radiation"
-    publisher: "arXiv (history of physics)"
-    url: https://arxiv.org/abs/1411.0172
-    type: scholarly-secondary
-
+- title: Ralph A. Alpher, Robert C. Herman, and the Cosmic Microwave Background Radiation
+  publisher: Physics in Perspective (Springer)
+  url: https://link.springer.com/article/10.1007/s00016-012-0088-7
+  type: scholarly-secondary
+- title: Ralph A. Alpher, George Antonovich Gamow, and the Prediction of the Cosmic Microwave Background Radiation
+  publisher: arXiv (history of physics)
+  url: https://arxiv.org/abs/1411.0172
+  type: scholarly-secondary
+- title: Evolution of the Universe (first prediction of the cosmic microwave background)
+  publisher: R. A. Alpher & R. C. Herman, Nature 162, 774 (1948)
+  url: https://www.nature.com/articles/162774b0
+  type: primary
+- title: Ralph Asher Alpher - obituary and record of honours
+  publisher: Physics Today (American Institute of Physics)
+  url: https://physicstoday.aip.org/obituaries/ralph-asher-alpher
+  type: institutional
 pattern_evidence:
-  credit-misattribution: [1, 2]
+  credit-misattribution:
+  - 1
+  - 2
+provenance:
+  contribution:
+    record_anchor:
+    - 3
+    basis: primary-publication
+  observed-recognition:
+    record_anchor:
+    - 4
+    basis: institutional-archive
+audit_exceptions:
+- claim: attribution
+  search_date: '2026-09-09'
+  search_note: Searched for a primary record of the misattribution of the CMB prediction to Gamow.
+  best_source: 1
+  reason: The misattribution and neglect are established by peer-reviewed history; there is no primary 'record of a misattribution', so scholarly history is the appropriate and sufficient authority.
+- claim: pattern:credit-misattribution
+  search_date: '2026-09-09'
+  search_note: As above for the credit-misattribution mechanism.
+  best_source: 1
+  reason: Established by peer-reviewed history; no primary adjudication exists.
