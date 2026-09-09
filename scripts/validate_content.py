@@ -7,6 +7,7 @@ import yaml
 from config import (
     AWARD_ARCHITECTURE_KEYS,
     CLUSTERS,
+    INTERACTION_TYPES,
     DATA,
     DDI_KEYS,
     MIN_SUMMARY_LENGTH,
@@ -18,6 +19,7 @@ from config import (
     is_iso_date,
     is_valid_basis,
     is_valid_domain,
+    is_valid_interaction_type,
     is_valid_slug,
     is_valid_source_type,
     normalize_slug,
@@ -125,6 +127,8 @@ def validate_corpus_relations(
     if not isinstance(relations, list) or not relations:
         errors.append(f"{cluster_name}/{source_file}: 'corpus_relations' must be a non-empty list when present")
         return errors
+    tmap = _source_types_by_index(item)
+    count = len(tmap)
     for index, rel in enumerate(relations, start=1):
         if not isinstance(rel, dict):
             errors.append(f"{cluster_name}/{source_file}: corpus_relation #{index} must be a mapping")
@@ -134,13 +138,50 @@ def validate_corpus_relations(
             errors.append(
                 f"{cluster_name}/{source_file}: corpus_relation #{index} 'case' must be a published case slug"
             )
-        element = rel.get("architecture_element")
-        if element not in AWARD_ARCHITECTURE_KEYS:
+        if rel.get("architecture_element") not in AWARD_ARCHITECTURE_KEYS:
             errors.append(
                 f"{cluster_name}/{source_file}: corpus_relation #{index} 'architecture_element' must be a known architecture field"
             )
-        if not isinstance(rel.get("note"), str) or not rel["note"].strip():
-            errors.append(f"{cluster_name}/{source_file}: corpus_relation #{index} needs a non-empty 'note'")
+        if not is_valid_interaction_type(rel.get("interaction_type")):
+            errors.append(
+                f"{cluster_name}/{source_file}: corpus_relation #{index} needs an 'interaction_type' from the vocabulary"
+            )
+        if not isinstance(rel.get("claim"), str) or not rel["claim"].strip():
+            errors.append(f"{cluster_name}/{source_file}: corpus_relation #{index} needs a non-empty 'claim'")
+
+        # A relation is either anchored to a record-grade source, or carries a
+        # documented secondary-sufficient exception - exactly one of the two.
+        anchor = rel.get("record_anchor")
+        exception = rel.get("exception")
+        if (anchor is None) == (exception is None):
+            errors.append(
+                f"{cluster_name}/{source_file}: corpus_relation #{index} needs exactly one of "
+                f"'record_anchor' or 'exception'"
+            )
+        if anchor is not None:
+            if not isinstance(anchor, list) or not anchor:
+                errors.append(f"{cluster_name}/{source_file}: corpus_relation #{index} record_anchor must be a non-empty list")
+            else:
+                for ref in anchor:
+                    if not isinstance(ref, int) or isinstance(ref, bool) or not (1 <= ref <= count):
+                        errors.append(f"{cluster_name}/{source_file}: corpus_relation #{index} record_anchor {ref!r} out of range (1..{count})")
+                    elif tmap.get(ref) not in RECORD_GRADE_SOURCE_TYPES:
+                        errors.append(
+                            f"{cluster_name}/{source_file}: corpus_relation #{index} record_anchor [{ref}] is "
+                            f"'{tmap.get(ref)}', not record-grade (use 'exception' instead)"
+                        )
+        if exception is not None:
+            if not isinstance(exception, dict):
+                errors.append(f"{cluster_name}/{source_file}: corpus_relation #{index} 'exception' must be a mapping")
+            else:
+                for field in ("search_note", "reason"):
+                    if not isinstance(exception.get(field), str) or not exception[field].strip():
+                        errors.append(f"{cluster_name}/{source_file}: corpus_relation #{index} exception needs '{field}'")
+                if not is_iso_date(exception.get("search_date")):
+                    errors.append(f"{cluster_name}/{source_file}: corpus_relation #{index} exception needs an ISO 'search_date'")
+                best = exception.get("best_source")
+                if best is not None and (not isinstance(best, int) or isinstance(best, bool) or not (1 <= best <= count)):
+                    errors.append(f"{cluster_name}/{source_file}: corpus_relation #{index} exception 'best_source' out of range")
     return errors
 
 
