@@ -34,3 +34,8 @@ sources:
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Henrietta-Swan-Leavitt
     type: secondary
+
+domain: physics-astronomy
+patterns:
+  - credit-misattribution
+  - institutional-exclusion

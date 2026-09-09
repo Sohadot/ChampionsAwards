@@ -34,3 +34,7 @@ rls_assessment:
     track_record: Most scientific selections have proven durable, though several well-documented omissions persist.
     transparency: Award criteria are public, but nomination records and committee deliberations are sealed for 50 years.
     independence: Funded by an independent endowment, insulating most categories from direct commercial or political control.
+
+domains:
+  - physics-astronomy
+  - biology-medicine

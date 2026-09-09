@@ -1,0 +1,16 @@
+title: Posthumous Recognition
+slug: posthumous-recognition
+status: published
+last_reviewed: 2026-09-09
+summary: Posthumous recognition describes cases where acknowledgment arrives only after a contributor's death, sometimes foreclosed entirely by rules that prevent certain honours from being awarded to the deceased.
+definition: Posthumous recognition is a pattern in which timing and eligibility rules, rather than merit, determine whether a contribution can be formally honoured within a given system.
+explanation: Some systems encode explicit constraints. The Statutes of the Nobel Foundation provide that a prize is not, as a general rule, awarded posthumously, so a contributor who dies before selection can be structurally ineligible regardless of the work's significance.
+implications: Posthumous recognition shows that recognition systems embed rules that can foreclose merit independently of judgment, and that the timing of a life can decide the shape of the record.
+key_facts:
+  - fact: Under the Statutes of the Nobel Foundation, a prize is generally not awarded posthumously.
+    source: 1
+sources:
+  - title: Statutes of the Nobel Foundation (posthumous-award provision)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/organization/statutes-of-the-nobel-foundation/
+    type: primary

@@ -34,3 +34,7 @@ sources:
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Emmy-Noether
     type: secondary
+
+domain: mathematics-computing
+patterns:
+  - institutional-exclusion

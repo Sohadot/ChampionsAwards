@@ -34,3 +34,7 @@ sources:
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Oswald-Avery
     type: secondary
+
+domain: biology-medicine
+patterns:
+  - delayed-recognition

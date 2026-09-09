@@ -40,3 +40,8 @@ sources:
     publisher: The Nobel Foundation (nobelprize.org)
     url: https://www.nobelprize.org/prizes/medicine/1962/summary/
     type: official
+
+domain: biology-medicine
+patterns:
+  - posthumous-recognition
+  - credit-misattribution

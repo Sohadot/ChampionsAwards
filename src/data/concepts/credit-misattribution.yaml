@@ -1,0 +1,16 @@
+title: Credit Misattribution
+slug: credit-misattribution
+status: published
+last_reviewed: 2026-09-09
+summary: Credit misattribution describes cases where recognition for a contribution flows to someone other than its principal author, often the more eminent, more senior, or more institutionally central figure.
+definition: Credit misattribution is a pattern in which the visible reward for work is displaced away from its main contributor, whether toward a supervisor, a theorist over an experimentalist, or an already-eminent name.
+explanation: The sociology of science describes a reinforcing mechanism, the Matthew effect, in which eminent scientists accrue disproportionate credit for work to which lesser-known researchers also contributed. Hierarchy, visibility, and prior status all bias where credit lands.
+implications: Where credit misattribution operates, the recognition record diverges from the contribution record, and a system that does not correct for it will tend to concentrate honour on those who already hold it.
+key_facts:
+  - fact: The Matthew effect describes how eminent scientists receive disproportionate credit relative to less-known contributors.
+    source: 1
+sources:
+  - title: "The Matthew Effect in Science (accumulated advantage in recognition)"
+    publisher: "Robert K. Merton, Science, Vol. 159 (1968)"
+    url: https://www.science.org/doi/10.1126/science.159.3810.56
+    type: primary

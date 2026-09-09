@@ -9,6 +9,7 @@ from config import (
     ASSESSMENT_CLUSTERS,
     CLUSTERS,
     DATA,
+    REQUIRE_DOMAIN,
     REQUIRE_LAST_REVIEWED,
     REQUIRE_OBSERVED_RECOGNITION,
     REQUIRE_SOURCES,
@@ -17,6 +18,7 @@ from config import (
     get_status,
     is_iso_date,
     is_published,
+    is_valid_domain,
     normalize_slug,
 )
 
@@ -94,6 +96,18 @@ def enforce_publication_policy(cluster_name: str, item: dict[str, Any], source_f
                 f"{ref}: a published DDI assessment must include a numeric 'observed_recognition' "
                 f"(required for the Recognition Gap Index)"
             )
+
+    # Domain placement: no orphaned scored entries. Individuals carry a single
+    # 'domain'; systems carry a non-empty 'domains' list.
+    if REQUIRE_DOMAIN:
+        if cluster_name in ASSESSMENT_CLUSTERS:
+            domain = item.get("domain")
+            if not (isinstance(domain, str) and is_valid_domain(domain)):
+                errors.append(f"{ref}: a published entry here must declare a known 'domain'")
+        if cluster_name in RLS_CLUSTERS:
+            domains = item.get("domains")
+            if not isinstance(domains, list) or not domains:
+                errors.append(f"{ref}: a published system must declare a non-empty 'domains' list")
 
     return errors
 
