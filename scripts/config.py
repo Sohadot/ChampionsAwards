@@ -186,6 +186,19 @@ def rls_band(score: float) -> str:
 VALID_STATUSES: Final[frozenset[str]] = frozenset({"published", "draft"})
 DEFAULT_STATUS: Final[str] = "published"
 
+# Type boundaries for the two instruments (see /methodology):
+#   - the DDI scores individual contributions;
+#   - the RLS scores recognition systems.
+# A misplaced assessment block is a modeling error, not a formatting one, so the
+# quality gate rejects it regardless of publication status. The rankings
+# generator also honors these sets as defense in depth.
+ASSESSMENT_CLUSTERS: Final[frozenset[str]] = frozenset({"unawarded"})
+RLS_CLUSTERS: Final[frozenset[str]] = frozenset({"recognition-systems"})
+
+# A published DDI assessment must state observed_recognition, because the
+# Recognition Gap Index is only meaningful when the gap is computable.
+REQUIRE_OBSERVED_RECOGNITION: Final[bool] = True
+
 # ISO 8601 date, e.g. 2026-09-08
 ISO_DATE_PATTERN: Final[re.Pattern[str]] = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 

@@ -7,9 +7,11 @@ import yaml
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from config import (
+    ASSESSMENT_CLUSTERS,
     CLUSTERS,
     DATA,
     OUT,
+    RLS_CLUSTERS,
     TEMPLATES,
     compute_ddi,
     compute_rls,
@@ -63,26 +65,29 @@ def collect_scored_entries(domain: str) -> tuple[list[dict[str, Any]], list[dict
             slug = normalize_slug(str(raw_slug))
             url = f"{domain}/{cluster_name}/{slug}"
 
+            # DDI: only from individual clusters, and only when the gap is computable.
             ddi_assessment = item.get("assessment")
-            if isinstance(ddi_assessment, dict):
-                score = compute_ddi(ddi_assessment)
+            if cluster_name in ASSESSMENT_CLUSTERS and isinstance(ddi_assessment, dict):
                 recognition = ddi_assessment.get("observed_recognition")
-                row = {
-                    "title": item.get("title", slug),
-                    "url": url,
-                    "cluster": cluster_name,
-                    "score": score,
-                    "band": ddi_band(score),
-                }
-                if isinstance(recognition, (int, float)):
+                if isinstance(recognition, (int, float)) and not isinstance(recognition, bool):
+                    score = compute_ddi(ddi_assessment)
                     gap = score - recognition
-                    row["recognition"] = recognition
-                    row["gap"] = gap
-                    row["gap_label"] = recognition_gap_label(gap)
-                deservingness.append(row)
+                    deservingness.append(
+                        {
+                            "title": item.get("title", slug),
+                            "url": url,
+                            "cluster": cluster_name,
+                            "score": score,
+                            "band": ddi_band(score),
+                            "recognition": recognition,
+                            "gap": gap,
+                            "gap_label": recognition_gap_label(gap),
+                        }
+                    )
 
+            # RLS: only from system clusters.
             rls_assessment = item.get("rls_assessment")
-            if isinstance(rls_assessment, dict):
+            if cluster_name in RLS_CLUSTERS and isinstance(rls_assessment, dict):
                 score = compute_rls(rls_assessment)
                 legitimacy.append(
                     {
@@ -95,10 +100,28 @@ def collect_scored_entries(domain: str) -> tuple[list[dict[str, Any]], list[dict
                 )
 
     # Recognition Gap Index: largest positive gap first, then by raw DDI.
-    deservingness.sort(key=lambda r: (r.get("gap", float("-inf")), r["score"]), reverse=True)
+    deservingness.sort(key=lambda r: (r["gap"], r["score"]), reverse=True)
     # Legitimacy Index: strongest legitimacy first.
     legitimacy.sort(key=lambda r: r["score"], reverse=True)
     return deservingness, legitimacy
+
+
+def build_itemlist(name: str, description: str, rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+    """A complete schema.org ItemList describing the published ranking order."""
+    if not rows:
+        return None
+    return {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": name,
+        "description": description,
+        "itemListOrder": "https://schema.org/ItemListOrderDescending",
+        "numberOfItems": len(rows),
+        "itemListElement": [
+            {"@type": "ListItem", "position": index, "name": row["title"], "url": row["url"]}
+            for index, row in enumerate(rows, start=1)
+        ],
+    }
 
 
 def main() -> None:
@@ -115,6 +138,16 @@ def main() -> None:
         "deservingness": deservingness,
         "legitimacy": legitimacy,
         "rankings_canonical_url": f"{domain}/rankings",
+        "jsonld_deservingness": build_itemlist(
+            "Recognition Gap Index",
+            "Individuals ranked by recognition gap (assessed DDI minus observed recognition).",
+            deservingness,
+        ),
+        "jsonld_legitimacy": build_itemlist(
+            "Recognition Legitimacy Index",
+            "Recognition systems ranked by Recognition Legitimacy Score (RLS).",
+            legitimacy,
+        ),
     }
 
     output_path = OUT / "rankings" / "index.html"
