@@ -5,6 +5,7 @@ from typing import Any
 import yaml
 
 from config import (
+    AWARD_ARCHITECTURE_KEYS,
     CLUSTERS,
     DATA,
     DDI_KEYS,
@@ -34,6 +35,7 @@ def validate_item(
     item: dict[str, Any],
     source_file: str,
     concept_slugs: set[str] | None = None,
+    case_slugs: set[str] | None = None,
 ) -> list[str]:
     errors: list[str] = []
 
@@ -77,7 +79,68 @@ def validate_item(
     errors.extend(validate_patterns(cluster_name, item, source_file, concept_slugs or set()))
     errors.extend(validate_provenance(cluster_name, item, source_file))
     errors.extend(validate_audit_exceptions(cluster_name, item, source_file))
+    errors.extend(validate_architecture(cluster_name, item, source_file))
+    errors.extend(validate_corpus_relations(cluster_name, item, source_file, case_slugs or set()))
 
+    return errors
+
+
+def validate_architecture(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """The formal-architecture layer of an award: a mapping whose keys are the
+    known architecture fields and whose values are non-empty text or lists."""
+    errors: list[str] = []
+    architecture = item.get("architecture")
+    if architecture is None:
+        return errors
+    if not isinstance(architecture, dict) or not architecture:
+        errors.append(f"{cluster_name}/{source_file}: 'architecture' must be a non-empty mapping when present")
+        return errors
+    for key, value in architecture.items():
+        if key not in AWARD_ARCHITECTURE_KEYS:
+            errors.append(
+                f"{cluster_name}/{source_file}: architecture has unknown field '{key}' "
+                f"(known: {', '.join(sorted(AWARD_ARCHITECTURE_KEYS))})"
+            )
+        if isinstance(value, str):
+            if not value.strip():
+                errors.append(f"{cluster_name}/{source_file}: architecture['{key}'] is empty")
+        elif isinstance(value, list):
+            if not value or not all(isinstance(v, str) and v.strip() for v in value):
+                errors.append(f"{cluster_name}/{source_file}: architecture['{key}'] must be a list of non-empty strings")
+        else:
+            errors.append(f"{cluster_name}/{source_file}: architecture['{key}'] must be text or a list")
+    return errors
+
+
+def validate_corpus_relations(
+    cluster_name: str, item: dict[str, Any], source_file: str, case_slugs: set[str]
+) -> list[str]:
+    """The corpus-interaction layer: each relation ties a case to one architecture
+    element with a scoped note. The case must resolve to a published entry, so the
+    relation is evidenced by an already-audited case, not asserted editorially."""
+    errors: list[str] = []
+    relations = item.get("corpus_relations")
+    if relations is None:
+        return errors
+    if not isinstance(relations, list) or not relations:
+        errors.append(f"{cluster_name}/{source_file}: 'corpus_relations' must be a non-empty list when present")
+        return errors
+    for index, rel in enumerate(relations, start=1):
+        if not isinstance(rel, dict):
+            errors.append(f"{cluster_name}/{source_file}: corpus_relation #{index} must be a mapping")
+            continue
+        case = rel.get("case")
+        if not isinstance(case, str) or case not in case_slugs:
+            errors.append(
+                f"{cluster_name}/{source_file}: corpus_relation #{index} 'case' must be a published case slug"
+            )
+        element = rel.get("architecture_element")
+        if element not in AWARD_ARCHITECTURE_KEYS:
+            errors.append(
+                f"{cluster_name}/{source_file}: corpus_relation #{index} 'architecture_element' must be a known architecture field"
+            )
+        if not isinstance(rel.get("note"), str) or not rel["note"].strip():
+            errors.append(f"{cluster_name}/{source_file}: corpus_relation #{index} needs a non-empty 'note'")
     return errors
 
 
@@ -436,9 +499,9 @@ def validate_sources(cluster_name: str, item: dict[str, Any], source_file: str) 
     return errors
 
 
-def collect_published_concept_slugs() -> set[str]:
+def collect_published_slugs(cluster: str) -> set[str]:
     slugs: set[str] = set()
-    folder = DATA / "concepts"
+    folder = DATA / cluster
     if not folder.exists():
         return slugs
     for path in sorted(folder.glob("*.yaml")):
@@ -452,7 +515,8 @@ def collect_published_concept_slugs() -> set[str]:
 
 def main() -> None:
     all_errors: list[str] = []
-    concept_slugs = collect_published_concept_slugs()
+    concept_slugs = collect_published_slugs("concepts")
+    case_slugs = collect_published_slugs("unawarded")
 
     for cluster_name in CLUSTERS:
         folder = DATA / cluster_name
@@ -461,7 +525,7 @@ def main() -> None:
 
         for path in sorted(folder.glob("*.yaml")):
             item = load_yaml_file(path)
-            item_errors = validate_item(cluster_name, item, path.name, concept_slugs)
+            item_errors = validate_item(cluster_name, item, path.name, concept_slugs, case_slugs)
             all_errors.extend(item_errors)
 
     if all_errors:

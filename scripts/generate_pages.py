@@ -7,6 +7,7 @@ import yaml
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from config import (
+    AWARD_ARCHITECTURE_FIELDS,
     CLUSTERS,
     DATA,
     DDI_DIMENSIONS,
@@ -84,6 +85,74 @@ def attach_rls(item: dict[str, Any]) -> None:
     ]
 
 
+ARCH_LABELS = dict(AWARD_ARCHITECTURE_FIELDS)
+
+
+def build_case_index() -> dict[str, dict[str, str]]:
+    """slug -> {title, url} for published individual cases, so award pages can
+    resolve corpus relations to real, linkable entries."""
+    index: dict[str, dict[str, str]] = {}
+    folder = DATA / "unawarded"
+    if not folder.exists():
+        return index
+    for path in sorted(folder.glob("*.yaml")):
+        with path.open("r", encoding="utf-8") as f:
+            item = yaml.safe_load(f) or {}
+        if str(item.get("status", "published")).strip().lower() != "published":
+            continue
+        slug = item.get("slug")
+        if slug:
+            slug = str(slug).strip().strip("/")
+            index[slug] = {"title": item.get("title", slug), "url": f"/unawarded/{slug}"}
+    return index
+
+
+def attach_award_architecture(item: dict[str, Any], case_index: dict[str, dict[str, str]]) -> None:
+    """Expose the three award layers to the template: formal architecture rows
+    (each with its provenance anchor), and corpus-interaction relations resolved
+    to real cases plus a computed count per architecture element."""
+    provenance = item.get("provenance") or {}
+    architecture = item.get("architecture")
+    if isinstance(architecture, dict):
+        rows = []
+        for key, label in AWARD_ARCHITECTURE_FIELDS:
+            if key not in architecture:
+                continue
+            prov = provenance.get(f"architecture:{key}") or {}
+            rows.append(
+                {
+                    "label": label,
+                    "value": architecture[key],
+                    "is_list": isinstance(architecture[key], list),
+                    "anchor": prov.get("record_anchor") or [],
+                    "basis": prov.get("basis"),
+                }
+            )
+        item["architecture_rows"] = rows
+
+    relations = item.get("corpus_relations")
+    if isinstance(relations, list):
+        rel_rows = []
+        counts: dict[str, int] = {}
+        for rel in relations:
+            element = rel.get("architecture_element")
+            info = case_index.get(rel.get("case"), {})
+            rel_rows.append(
+                {
+                    "case_title": info.get("title", rel.get("case")),
+                    "case_url": info.get("url", "#"),
+                    "element_label": ARCH_LABELS.get(element, element),
+                    "note": rel.get("note"),
+                }
+            )
+            counts[element] = counts.get(element, 0) + 1
+        item["corpus_relation_rows"] = rel_rows
+        item["relation_counts"] = sorted(
+            ({"label": ARCH_LABELS.get(k, k), "count": v} for k, v in counts.items()),
+            key=lambda r: (-r["count"], r["label"]),
+        )
+
+
 def load_yaml_file(path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
@@ -130,6 +199,7 @@ def build_cluster_item_pages(
     cluster_name: str,
     template_name: str,
     common_context: dict[str, Any],
+    case_index: dict[str, dict[str, str]] | None = None,
 ) -> tuple[int, list[dict[str, Any]]]:
     items = load_cluster_items(cluster_name)
     if not items:
@@ -165,6 +235,7 @@ def build_cluster_item_pages(
         item["canonical_url"] = f"{domain}/{cluster_name}/{slug}"
         attach_assessment(item)
         attach_rls(item)
+        attach_award_architecture(item, case_index or {})
 
         output_path = OUT / cluster_name / slug / "index.html"
 
@@ -217,6 +288,7 @@ def main() -> None:
     }
 
     total_generated = 0
+    case_index = build_case_index()
 
     for cluster_name, template_name in CLUSTERS.items():
         generated_count, published_items = build_cluster_item_pages(
@@ -225,6 +297,7 @@ def main() -> None:
             cluster_name=cluster_name,
             template_name=template_name,
             common_context=common_context,
+            case_index=case_index,
         )
 
         if published_items:

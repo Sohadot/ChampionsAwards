@@ -332,6 +332,31 @@ def is_valid_basis(value: object) -> bool:
     return isinstance(value, str) and value in BASIS_VOCAB
 
 
+# ---------------------------------------------------------------------------
+# Award Architecture Model
+# An award page is an anatomy of a recognition mechanism, kept in three
+# separate layers: formal architecture (what the rules say), historical
+# operation (key_facts, what the record shows), and corpus interaction (which
+# ChampionsAwards cases touch this structure). The fields below are the formal
+# architecture; each is a factual claim anchorable via provenance ("architecture:<key>").
+# ---------------------------------------------------------------------------
+AWARD_ARCHITECTURE_FIELDS: Final[tuple[tuple[str, str], ...]] = (
+    ("granting_body", "Granting body"),
+    ("governing_documents", "Governing documents"),
+    ("eligibility", "Eligibility"),
+    ("nomination", "Nomination"),
+    ("selection_body", "Selection & evaluation"),
+    ("decision_stages", "Decision stages"),
+    ("sharing_rule", "Sharing rule"),
+    ("posthumous_rule", "Posthumous rule"),
+    ("secrecy", "Secrecy"),
+    ("withholding", "Withholding / deferral"),
+    ("finality", "Finality"),
+)
+
+AWARD_ARCHITECTURE_KEYS: Final[frozenset[str]] = frozenset(k for k, _ in AWARD_ARCHITECTURE_FIELDS)
+
+
 def get_status(item: dict) -> str:
     raw = item.get("status")
     status = str(raw).strip().lower() if raw is not None else DEFAULT_STATUS
