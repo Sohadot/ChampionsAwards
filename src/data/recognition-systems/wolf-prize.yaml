@@ -36,11 +36,11 @@ sources:
   - title: Wolf Prize - official site
     publisher: The Wolf Foundation
     url: https://wolffund.org.il/the-wolf-prize/
-    type: official
+    type: institutional
   - title: Wolf Prize - overview
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/topic/Wolf-Prize
-    type: secondary
+    type: reference-secondary
 
 domains:
   - physics-astronomy

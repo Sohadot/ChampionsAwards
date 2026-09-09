@@ -41,7 +41,7 @@ sources:
   - title: Gregor Mendel - biography and laws of inheritance
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Gregor-Mendel
-    type: secondary
+    type: reference-secondary
 
 domain: biology-medicine
 patterns:

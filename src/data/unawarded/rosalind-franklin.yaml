@@ -43,11 +43,11 @@ sources:
   - title: Rosalind Franklin - biography and contribution to DNA structure
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Rosalind-Franklin
-    type: secondary
+    type: reference-secondary
   - title: The Nobel Prize in Physiology or Medicine 1962
     publisher: The Nobel Foundation (nobelprize.org)
     url: https://www.nobelprize.org/prizes/medicine/1962/summary/
-    type: official
+    type: institutional
 
 domain: biology-medicine
 patterns:

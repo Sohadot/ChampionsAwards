@@ -11,9 +11,11 @@ from config import (
     MIN_SUMMARY_LENGTH,
     REQUIRED_FIELDS_BY_CLUSTER,
     RLS_KEYS,
+    SOURCE_TYPES,
     VALID_STATUSES,
     is_valid_domain,
     is_valid_slug,
+    is_valid_source_type,
     normalize_slug,
 )
 
@@ -339,6 +341,15 @@ def validate_sources(cluster_name: str, item: dict[str, Any], source_file: str) 
         url = source.get("url")
         if not isinstance(url, str) or not url.strip().startswith(("http://", "https://")):
             errors.append(f"{cluster_name}/{source_file}: source #{index} needs a valid http(s) 'url'")
+
+        source_type = source.get("type")
+        if source_type is None:
+            errors.append(f"{cluster_name}/{source_file}: source #{index} needs a 'type' from the taxonomy")
+        elif not is_valid_source_type(source_type):
+            errors.append(
+                f"{cluster_name}/{source_file}: source #{index} has unknown type '{source_type}' "
+                f"(expected one of: {', '.join(sorted(SOURCE_TYPES))})"
+            )
 
     return errors
 

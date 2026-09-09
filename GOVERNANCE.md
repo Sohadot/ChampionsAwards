@@ -19,8 +19,12 @@ an automated gate before it can be published. The gate is code, not a promise:
 An entry is **published** unless it declares `status: draft`. Published entries
 must satisfy:
 
-- **Sourcing.** At least one reference in `sources`, each with a title and a
-  valid `http(s)` URL. Unsourced work stays `status: draft`.
+- **Sourcing.** At least one reference in `sources`, each with a title, a valid
+  `http(s)` URL, and a `type` from the source-authority taxonomy
+  (`SOURCE_TYPES`: primary, archival, institutional, scholarly-secondary,
+  reference-secondary, general-secondary). Unsourced work stays `status: draft`.
+  `scripts/source_audit.py` reports, per load-bearing claim, whether it is
+  anchored to a record-grade source; see `docs/DOMAIN-CYCLES.md`.
 - **Review date.** A `last_reviewed` field in ISO `YYYY-MM-DD` form.
 - **Justified scores.** Any `assessment` / `rls_assessment` block must include a
   `rationale` for its dimensions, and every dimension must be a number 0–100.

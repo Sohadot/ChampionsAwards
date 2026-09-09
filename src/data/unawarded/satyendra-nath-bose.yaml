@@ -43,8 +43,8 @@ sources:
   - title: Satyendra Nath Bose - biography and Bose-Einstein statistics
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Satyendra-Nath-Bose
-    type: secondary
+    type: reference-secondary
   - title: Satyendra Nath Bose and the Einstein-Bose Statistics
     publisher: MacTutor History of Mathematics (University of St Andrews)
     url: https://mathshistory.st-andrews.ac.uk/SH/bose_sh.pdf
-    type: secondary
+    type: reference-secondary

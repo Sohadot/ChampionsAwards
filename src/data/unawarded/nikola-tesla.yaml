@@ -32,11 +32,11 @@ sources:
   - title: Nikola Tesla — biography and engineering contributions
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Nikola-Tesla
-    type: secondary
+    type: reference-secondary
   - title: Nikola Tesla and alternating-current systems (rotating magnetic field)
     publisher: IEEE (Engineering and Technology History Wiki)
     url: https://ethw.org/Nikola_Tesla
-    type: secondary
+    type: institutional
 status: published
 key_facts:
   - fact: Nikola Tesla was born on 10 July 1856 in Smiljan, then part of the Austrian Empire (modern-day Croatia).

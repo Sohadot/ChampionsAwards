@@ -36,11 +36,11 @@ sources:
   - title: A.M. Turing Award - official site and recipients
     publisher: Association for Computing Machinery
     url: https://amturing.acm.org/
-    type: official
+    type: institutional
   - title: Turing Award - overview and history
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/topic/Turing-Award
-    type: secondary
+    type: reference-secondary
 
 domains:
   - mathematics-computing

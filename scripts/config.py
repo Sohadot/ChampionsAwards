@@ -281,6 +281,37 @@ PROSE_FIELDS: Final[tuple[str, ...]] = (
 )
 
 
+# ---------------------------------------------------------------------------
+# Source authority taxonomy
+# Function, not rank: a primary paper is not automatically "better" than an
+# institutional record for every question. The type says what KIND of record a
+# source is, so the provenance audit can ask whether a claim is anchored to a
+# record-grade source or rests on a secondary account.
+# ---------------------------------------------------------------------------
+SOURCE_TYPES: Final[frozenset[str]] = frozenset(
+    {
+        "primary",              # the original paper, letter, contemporary record, or founding decision
+        "archival",             # a university/institution/society archive preserving the historical record
+        "institutional",        # an institution describing its own record or awards (Nobel, CERN, Royal Society...)
+        "scholarly-secondary",  # peer-reviewed history-of-science or academic study
+        "reference-secondary",  # Britannica, MacTutor, and similar reference works
+        "general-secondary",    # a reputable editorial source that is not the record bearing the claim
+    }
+)
+
+# Record-grade tiers can anchor a load-bearing claim to a record; the secondary
+# tiers are accounts of it. Used by source_audit.py, never to auto-change a score.
+RECORD_GRADE_SOURCE_TYPES: Final[frozenset[str]] = frozenset(
+    {"primary", "archival", "institutional"}
+)
+
+REQUIRE_SOURCE_TYPE: Final[bool] = True
+
+
+def is_valid_source_type(value: object) -> bool:
+    return isinstance(value, str) and value in SOURCE_TYPES
+
+
 def get_status(item: dict) -> str:
     raw = item.get("status")
     status = str(raw).strip().lower() if raw is not None else DEFAULT_STATUS

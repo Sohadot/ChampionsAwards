@@ -38,8 +38,8 @@ sources:
   - title: "Breakthrough Prize in Fundamental Physics - official prize page, committee and rules"
     publisher: Breakthrough Prize Foundation
     url: https://breakthroughprize.org/Prize/1
-    type: official
+    type: institutional
   - title: "Breakthrough Prize in Fundamental Physics - overview"
     publisher: ALLEA (All European Academies)
     url: https://allea.org/breakthrough-prize/breakthrough-prize-fundamental-physics/
-    type: secondary
+    type: institutional

@@ -43,11 +43,11 @@ sources:
   - title: Jocelyn Bell Burnell - biography and discovery of pulsars
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Jocelyn-Bell-Burnell
-    type: secondary
+    type: reference-secondary
   - title: The Nobel Prize in Physics 1974 (Ryle and Hewish)
     publisher: The Nobel Foundation (nobelprize.org)
     url: https://www.nobelprize.org/prizes/physics/1974/summary/
-    type: official
+    type: institutional
 
 domain: physics-astronomy
 patterns:

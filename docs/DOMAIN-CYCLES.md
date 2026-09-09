@@ -95,9 +95,21 @@ domain reports 3/4; a truthful "not yet" is preferred to a manufactured pass.
 
 Before a domain is declared mature v1.0, each case is reviewed for whether a
 central claim — a discovery priority, an exclusion, a prize outcome — can be
-anchored to a primary, archival, or institutional record rather than a
-reputable secondary source alone. This does not reject secondary sources; it
-requires that load-bearing claims reach primary provenance wherever one exists.
+anchored to a record-grade source rather than a reputable secondary source
+alone. This does not reject secondary sources; it requires that load-bearing
+claims reach record-grade provenance wherever one exists.
+
+Sources carry a `type` from a functional taxonomy (`SOURCE_TYPES` in
+`scripts/config.py`): record-grade (`primary`, `archival`, `institutional`) or
+secondary (`scholarly-secondary`, `reference-secondary`, `general-secondary`).
+The gate rejects an unknown type. `scripts/source_audit.py` inspects each
+load-bearing claim — not a source count — and reports one of three states per
+entry: **source-grade closed**, **needs-primary-strengthening**, or
+**primary-not-found / secondary-record-sufficient** (declared per claim via an
+entry's `audit_exceptions`, only after a real search finds no primary). The
+audit inspects evidence before scores: a source is strengthened because the
+record is better, never to move a number. The living matrix for the current
+cycle is `docs/physics-astronomy-provenance.md`.
 
 Qualitative criteria (reviewed, not auto-counted):
 

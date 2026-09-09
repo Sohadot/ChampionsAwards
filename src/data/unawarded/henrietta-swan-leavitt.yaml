@@ -41,7 +41,7 @@ sources:
   - title: Henrietta Swan Leavitt - biography and the period-luminosity relation
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Henrietta-Swan-Leavitt
-    type: secondary
+    type: reference-secondary
 
 domain: physics-astronomy
 patterns:

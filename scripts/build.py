@@ -33,9 +33,11 @@ def main() -> None:
 
     print("Full build completed successfully.")
 
-    # Informational: report domain maturity against the Definition of Done.
-    # Never fails the build; an immature domain is a status, not an error.
+    # Informational: report domain maturity against the Definition of Done,
+    # and the source-grade provenance audit. Neither fails the build; an
+    # immature domain or a claim resting on secondary sources is a status.
     run_step("domain_status.py")
+    run_step("source_audit.py")
 
 
 if __name__ == "__main__":

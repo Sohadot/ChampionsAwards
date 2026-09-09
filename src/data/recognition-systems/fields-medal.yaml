@@ -38,11 +38,11 @@ sources:
   - title: Fields Medal - official award page and eligibility
     publisher: International Mathematical Union
     url: https://www.mathunion.org/imu-awards/fields-medal
-    type: official
+    type: institutional
   - title: Fields Medal - history and overview
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/science/Fields-Medal
-    type: secondary
+    type: reference-secondary
 
 domains:
   - mathematics-computing

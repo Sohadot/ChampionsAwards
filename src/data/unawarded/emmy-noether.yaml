@@ -41,7 +41,7 @@ sources:
   - title: Emmy Noether - biography, Noether's theorem, and abstract algebra
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Emmy-Noether
-    type: secondary
+    type: reference-secondary
 
 domain: mathematics-computing
 patterns:

@@ -46,11 +46,11 @@ sources:
   - title: Cecilia Payne-Gaposchkin - scientific biography
     publisher: Science History Institute
     url: https://www.sciencehistory.org/education/scientific-biographies/cecilia-payne-gaposchkin/
-    type: secondary
+    type: institutional
   - title: "Cecilia Payne-Gaposchkin - the woman who found hydrogen in the stars"
     publisher: Physics World
     url: https://physicsworld.com/a/cecilia-payne-gaposchkin-the-woman-who-found-hydrogen-in-the-stars/
-    type: secondary
+    type: general-secondary
 
 pattern_evidence:
   credit-misattribution: [1, 2]
