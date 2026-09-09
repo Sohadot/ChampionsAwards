@@ -199,6 +199,34 @@ RLS_CLUSTERS: Final[frozenset[str]] = frozenset({"recognition-systems"})
 # Recognition Gap Index is only meaningful when the gap is computable.
 REQUIRE_OBSERVED_RECOGNITION: Final[bool] = True
 
+# ---------------------------------------------------------------------------
+# Domains (recognition domains)
+# ChampionsAwards deepens one domain at a time to maturity rather than growing
+# horizontally. Every scored individual carries a single `domain`; every scored
+# system carries `domains` (a list), because a prize can span fields.
+# ---------------------------------------------------------------------------
+DOMAINS: Final[dict[str, str]] = {
+    "physics-astronomy": "Physics & Astronomy",
+    "biology-medicine": "Biology & Medicine",
+    "mathematics-computing": "Mathematics & Computing",
+}
+
+# Published scored entries must be placed in a domain (no orphans).
+REQUIRE_DOMAIN: Final[bool] = True
+
+# Definition of Done for declaring a domain "mature v1.0". A domain is closed
+# only when every threshold is met; domain_status.py reports progress and the
+# criteria that remain. These are practical thresholds, not scientific limits.
+DOMAIN_DOD: Final[dict[str, int]] = {
+    "ddi_cases": 10,      # individual contributions scored with the DDI
+    "rls_systems": 3,     # recognition systems scored with the RLS
+    "patterns": 4,        # distinct structural-cause concepts exhibited
+}
+
+
+def is_valid_domain(domain: str) -> bool:
+    return domain in DOMAINS
+
 # ISO 8601 date, e.g. 2026-09-08
 ISO_DATE_PATTERN: Final[re.Pattern[str]] = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 

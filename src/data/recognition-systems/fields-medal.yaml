@@ -37,3 +37,6 @@ sources:
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/science/Fields-Medal
     type: secondary
+
+domains:
+  - mathematics-computing

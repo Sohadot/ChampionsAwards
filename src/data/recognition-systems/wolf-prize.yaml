@@ -35,3 +35,8 @@ sources:
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/topic/Wolf-Prize
     type: secondary
+
+domains:
+  - physics-astronomy
+  - biology-medicine
+  - mathematics-computing

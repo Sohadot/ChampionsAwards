@@ -59,6 +59,20 @@ The Deservingness Index (DDI) weights live in one place — `DDI_DIMENSIONS` in
 bump** (`methodology_version` in `src/data/site.yaml`), so past scores remain
 interpretable.
 
+## Domains and deepening cycles
+
+Every published scored entry is placed in a recognition domain: individuals
+carry a single `domain`, systems carry a `domains` list, and both must reference
+a domain registered in `scripts/config.py` (`DOMAINS`). The gate rejects an
+orphaned scored entry. Cases may also declare `patterns` — structural-cause
+concepts (e.g. `credit-misattribution`) that must resolve to a **published**
+concept, keeping the ontology connected.
+
+The project deepens one domain to maturity before opening the next. The model,
+the seven layers, and the machine-checked Definition of Done live in
+[`docs/DOMAIN-CYCLES.md`](docs/DOMAIN-CYCLES.md); `scripts/domain_status.py`
+reports each domain's status from the same scoring engine the site uses.
+
 ## Correction policy
 
 Being wrong in public is normal and fixable. Substantive corrections are made

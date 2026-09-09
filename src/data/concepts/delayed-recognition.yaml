@@ -1,0 +1,16 @@
+title: Delayed Recognition
+slug: delayed-recognition
+status: published
+last_reviewed: 2026-09-09
+summary: Delayed recognition describes cases where a contribution's significance is acknowledged long after it is made, sometimes decades later, because the receiving community was not ready or able to absorb it at the time.
+definition: Delayed recognition is a pattern in which the gap between a contribution and its acknowledgment is primarily a function of time and reception, rather than of contested credit between rival claimants.
+explanation: It arises when work sits outside the prevailing framework, is published through low-visibility channels, or precedes the tools needed to appreciate it. The scientometric literature describes an extreme form as a "sleeping beauty" - a publication that goes largely uncited for years before a sudden rise in attention.
+implications: Delayed recognition shows that recognition depends on the receiver as much as on the contribution, and that a system's readiness to absorb unfamiliar work is itself a measurable property.
+key_facts:
+  - fact: The scientometric literature describes long-dormant, later-celebrated publications as "sleeping beauties" in science.
+    source: 1
+sources:
+  - title: "Sleeping Beauties in science (long-dormant, later-cited publications)"
+    publisher: "A. F. J. van Raan, Scientometrics, Vol. 59 (2004)"
+    url: https://doi.org/10.1023/B:SCIE.0000013305.28055.63
+    type: primary

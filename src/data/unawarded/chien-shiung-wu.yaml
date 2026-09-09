@@ -40,3 +40,7 @@ sources:
     publisher: The Nobel Foundation (nobelprize.org)
     url: https://www.nobelprize.org/prizes/physics/1957/summary/
     type: official
+
+domain: physics-astronomy
+patterns:
+  - credit-misattribution

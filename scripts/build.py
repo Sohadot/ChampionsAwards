@@ -33,6 +33,10 @@ def main() -> None:
 
     print("Full build completed successfully.")
 
+    # Informational: report domain maturity against the Definition of Done.
+    # Never fails the build; an immature domain is a status, not an error.
+    run_step("domain_status.py")
+
 
 if __name__ == "__main__":
     main()

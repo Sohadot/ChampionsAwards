@@ -44,3 +44,8 @@ sources:
     publisher: Royal Society of Chemistry (Periodic Table)
     url: https://www.rsc.org/periodic-table/element/109/meitnerium
     type: secondary
+
+domain: physics-astronomy
+patterns:
+  - credit-misattribution
+  - institutional-exclusion

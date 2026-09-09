@@ -12,6 +12,7 @@ from config import (
     REQUIRED_FIELDS_BY_CLUSTER,
     RLS_KEYS,
     VALID_STATUSES,
+    is_valid_domain,
     is_valid_slug,
     normalize_slug,
 )
@@ -23,7 +24,12 @@ def load_yaml_file(path) -> dict[str, Any]:
     return data if isinstance(data, dict) else {}
 
 
-def validate_item(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+def validate_item(
+    cluster_name: str,
+    item: dict[str, Any],
+    source_file: str,
+    concept_slugs: set[str] | None = None,
+) -> list[str]:
     errors: list[str] = []
 
     required_fields = REQUIRED_FIELDS_BY_CLUSTER.get(cluster_name, ())
@@ -62,6 +68,58 @@ def validate_item(cluster_name: str, item: dict[str, Any], source_file: str) -> 
     errors.extend(validate_rls_assessment(cluster_name, item, source_file))
     errors.extend(validate_key_facts(cluster_name, item, source_file))
     errors.extend(validate_analysis(cluster_name, item, source_file))
+    errors.extend(validate_domains(cluster_name, item, source_file))
+    errors.extend(validate_patterns(cluster_name, item, source_file, concept_slugs or set()))
+
+    return errors
+
+
+def validate_domains(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """`domain` (a single value) and `domains` (a list) must reference known
+    domains when present. Both are validated for shape here; the gate decides
+    where they are required."""
+    errors: list[str] = []
+
+    domain = item.get("domain")
+    if domain is not None and not (isinstance(domain, str) and is_valid_domain(domain)):
+        errors.append(
+            f"{cluster_name}/{source_file}: unknown domain '{domain}' "
+            f"(add it to DOMAINS in config.py first)"
+        )
+
+    domains = item.get("domains")
+    if domains is not None:
+        if not isinstance(domains, list) or not domains:
+            errors.append(f"{cluster_name}/{source_file}: 'domains' must be a non-empty list when present")
+        else:
+            for value in domains:
+                if not (isinstance(value, str) and is_valid_domain(value)):
+                    errors.append(f"{cluster_name}/{source_file}: unknown domain '{value}' in 'domains'")
+
+    return errors
+
+
+def validate_patterns(
+    cluster_name: str, item: dict[str, Any], source_file: str, concept_slugs: set[str]
+) -> list[str]:
+    """`patterns` links a case to structural-cause concepts by slug. Each slug
+    must resolve to a published concept, so the ontology stays connected."""
+    errors: list[str] = []
+    patterns = item.get("patterns")
+    if patterns is None:
+        return errors
+
+    if not isinstance(patterns, list) or not patterns:
+        errors.append(f"{cluster_name}/{source_file}: 'patterns' must be a non-empty list when present")
+        return errors
+
+    for slug in patterns:
+        if not isinstance(slug, str) or not slug.strip():
+            errors.append(f"{cluster_name}/{source_file}: each pattern must be a concept slug string")
+        elif slug not in concept_slugs:
+            errors.append(
+                f"{cluster_name}/{source_file}: pattern '{slug}' does not match any published concept"
+            )
 
     return errors
 
@@ -202,8 +260,23 @@ def validate_sources(cluster_name: str, item: dict[str, Any], source_file: str) 
     return errors
 
 
+def collect_published_concept_slugs() -> set[str]:
+    slugs: set[str] = set()
+    folder = DATA / "concepts"
+    if not folder.exists():
+        return slugs
+    for path in sorted(folder.glob("*.yaml")):
+        item = load_yaml_file(path)
+        status = str(item.get("status", "published")).strip().lower()
+        raw_slug = item.get("slug")
+        if raw_slug and status == "published":
+            slugs.add(normalize_slug(str(raw_slug)))
+    return slugs
+
+
 def main() -> None:
     all_errors: list[str] = []
+    concept_slugs = collect_published_concept_slugs()
 
     for cluster_name in CLUSTERS:
         folder = DATA / cluster_name
@@ -212,7 +285,7 @@ def main() -> None:
 
         for path in sorted(folder.glob("*.yaml")):
             item = load_yaml_file(path)
-            item_errors = validate_item(cluster_name, item, path.name)
+            item_errors = validate_item(cluster_name, item, path.name, concept_slugs)
             all_errors.extend(item_errors)
 
     if all_errors:

@@ -35,3 +35,6 @@ sources:
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/topic/Lasker-Award
     type: secondary
+
+domains:
+  - biology-medicine

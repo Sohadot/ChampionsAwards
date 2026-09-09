@@ -42,3 +42,7 @@ key_facts:
 analysis:
   - heading: What the recognition gap captures
     body: Tesla's assessed structural impact is high and durable, yet his lifetime institutional recognition lagged - a divergence this archive treats as evidence, not trivia. The gap reflects how AC power became infrastructure so ubiquitous that its authorship faded from public view, and how contested credit across contemporaries diluted the formal honours a single figure might otherwise have received.
+
+domain: physics-astronomy
+patterns:
+  - credit-misattribution
