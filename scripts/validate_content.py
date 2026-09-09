@@ -10,9 +10,12 @@ from config import (
     DDI_KEYS,
     MIN_SUMMARY_LENGTH,
     REQUIRED_FIELDS_BY_CLUSTER,
+    RECORD_GRADE_SOURCE_TYPES,
     RLS_KEYS,
     SOURCE_TYPES,
     VALID_STATUSES,
+    is_iso_date,
+    is_valid_basis,
     is_valid_domain,
     is_valid_slug,
     is_valid_source_type,
@@ -72,7 +75,86 @@ def validate_item(
     errors.extend(validate_analysis(cluster_name, item, source_file))
     errors.extend(validate_domains(cluster_name, item, source_file))
     errors.extend(validate_patterns(cluster_name, item, source_file, concept_slugs or set()))
+    errors.extend(validate_provenance(cluster_name, item, source_file))
+    errors.extend(validate_audit_exceptions(cluster_name, item, source_file))
 
+    return errors
+
+
+def _source_types_by_index(item: dict[str, Any]) -> dict[int, str]:
+    return {i: (s.get("type") or "?") for i, s in enumerate(item.get("sources") or [], start=1)}
+
+
+def validate_provenance(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """Claim-level authority. `provenance` maps a claim to a record_anchor (source
+    indices) plus a `basis` explaining why that source is authoritative FOR that
+    claim. Every anchor index must point to a record-grade source, so a claim
+    cannot be closed on a source's mere type."""
+    errors: list[str] = []
+    provenance = item.get("provenance")
+    if provenance is None:
+        return errors
+
+    if not isinstance(provenance, dict) or not provenance:
+        errors.append(f"{cluster_name}/{source_file}: 'provenance' must be a non-empty mapping when present")
+        return errors
+
+    tmap = _source_types_by_index(item)
+    count = len(tmap)
+    for claim, decl in provenance.items():
+        if not isinstance(decl, dict):
+            errors.append(f"{cluster_name}/{source_file}: provenance['{claim}'] must be a mapping")
+            continue
+        anchor = decl.get("record_anchor")
+        basis = decl.get("basis")
+        if not isinstance(anchor, list) or not anchor:
+            errors.append(f"{cluster_name}/{source_file}: provenance['{claim}'] needs a non-empty 'record_anchor'")
+        else:
+            for ref in anchor:
+                if not isinstance(ref, int) or isinstance(ref, bool) or not (1 <= ref <= count):
+                    errors.append(
+                        f"{cluster_name}/{source_file}: provenance['{claim}'] record_anchor {ref!r} out of range (1..{count})"
+                    )
+                elif tmap.get(ref) not in RECORD_GRADE_SOURCE_TYPES:
+                    errors.append(
+                        f"{cluster_name}/{source_file}: provenance['{claim}'] record_anchor [{ref}] is "
+                        f"'{tmap.get(ref)}', not a record-grade source (use audit_exceptions instead)"
+                    )
+        if not is_valid_basis(basis):
+            errors.append(
+                f"{cluster_name}/{source_file}: provenance['{claim}'] needs a 'basis' from the vocabulary"
+            )
+    return errors
+
+
+def validate_audit_exceptions(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """A source-grade exception is a documented decision, not a bare tag: it must
+    record the claim, the search date, a note, the best available source, and why
+    no stronger record was found."""
+    errors: list[str] = []
+    exceptions = item.get("audit_exceptions")
+    if exceptions is None:
+        return errors
+
+    if not isinstance(exceptions, list) or not exceptions:
+        errors.append(f"{cluster_name}/{source_file}: 'audit_exceptions' must be a non-empty list when present")
+        return errors
+
+    count = len(item.get("sources") or [])
+    for index, decision in enumerate(exceptions, start=1):
+        if not isinstance(decision, dict):
+            errors.append(f"{cluster_name}/{source_file}: audit_exception #{index} must be a mapping")
+            continue
+        for field in ("claim", "search_note", "reason"):
+            if not isinstance(decision.get(field), str) or not decision[field].strip():
+                errors.append(f"{cluster_name}/{source_file}: audit_exception #{index} needs a non-empty '{field}'")
+        if not is_iso_date(decision.get("search_date")):
+            errors.append(f"{cluster_name}/{source_file}: audit_exception #{index} needs an ISO 'search_date'")
+        best = decision.get("best_source")
+        if not isinstance(best, int) or isinstance(best, bool) or not (1 <= best <= count):
+            errors.append(
+                f"{cluster_name}/{source_file}: audit_exception #{index} needs 'best_source' in range (1..{count})"
+            )
     return errors
 
 

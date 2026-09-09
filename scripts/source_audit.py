@@ -32,36 +32,37 @@ def types_by_index(item: dict[str, Any]) -> dict[int, str]:
     return {i: (s.get("type") or "?") for i, s in enumerate(item.get("sources") or [], start=1)}
 
 
-def slot_line(refs: list[int], tmap: dict[int, str]) -> tuple[str, bool]:
-    kinds = [tmap.get(r, "?") for r in refs]
-    record_grade = any(k in RECORD_GRADE_SOURCE_TYPES for k in kinds)
-    label = ", ".join(f"[{r}]{tmap.get(r, '?')}" for r in refs) or "(no evidence)"
-    return label, record_grade
+def evidence_label(refs: list[int], tmap: dict[int, str]) -> str:
+    return ", ".join(f"[{r}]{tmap.get(r, '?')}" for r in refs) or "(no evidence)"
 
 
 def audit_entry(item: dict[str, Any], slots: dict[str, list[int]]) -> None:
     tmap = types_by_index(item)
-    exceptions = set(item.get("audit_exceptions") or [])
+    provenance = item.get("provenance") or {}
+    exceptions = {d.get("claim"): d for d in (item.get("audit_exceptions") or []) if isinstance(d, dict)}
     pending: list[str] = []
     excepted: list[str] = []
 
     print(f"\n{item.get('title', item.get('slug'))}")
     for name, refs in slots.items():
-        label, record_grade = slot_line(refs, tmap)
-        if record_grade:
-            mark = "record-grade OK"
-        elif name in exceptions:
-            mark = "primary-not-found / secondary-record-sufficient"
+        prov = provenance.get(name)
+        exc = exceptions.get(name)
+        context = evidence_label(refs, tmap)
+        if isinstance(prov, dict) and prov.get("record_anchor"):
+            anchors = ", ".join(f"[{r}]" for r in prov["record_anchor"])
+            mark = f"CLOSED via {anchors} ({prov.get('basis', '?')})"
+        elif exc:
+            mark = f"secondary-record-sufficient (searched {exc.get('search_date', '?')}, best [{exc.get('best_source', '?')}])"
             excepted.append(name)
         else:
-            mark = "needs-primary-strengthening"
+            mark = f"needs-primary-strengthening (evidence: {context})"
             pending.append(name)
-        print(f"  {name:32} {label:24} -> {mark}")
+        print(f"  {name:34} -> {mark}")
 
     if pending:
         status = "needs-primary-strengthening"
     elif excepted:
-        status = "source-grade closed (with reviewed secondary exceptions)"
+        status = "source-grade closed (with documented secondary-sufficient exceptions)"
     else:
         status = "source-grade closed"
     print(f"  audit status -> {status}")
@@ -100,8 +101,11 @@ def audit_systems(domain: str) -> None:
             item = load_yaml_file(path)
             if not is_published(item) or domain not in (item.get("domains") or []):
                 continue
-            evidence = (item.get("rls_assessment") or {}).get("evidence") or {}
-            slots = {f"rls:{k}": list(evidence.get(k, []) or []) for k in RLS_KEYS}
+            # The source-grade audit targets factual claims, not the evaluative
+            # RLS dimensions (those are assessments governed by rationale +
+            # evidence). For a system, the load-bearing fact is how the award is
+            # constituted and administered - which its own institution documents.
+            slots = {"system-facts": list((item.get("rls_assessment") or {}).get("evidence", {}).get("process", []) or [])}
             audit_entry(item, slots)
 
 

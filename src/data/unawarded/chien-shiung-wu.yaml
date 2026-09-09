@@ -15,13 +15,22 @@ assessment:
   attribution: 58
   observed_recognition: 60
   evidence:
-    impact: [1]
-    verification: [1]
-    uniqueness: [1]
-    durability: [1]
-    breadth: [1]
-    attribution: [1, 2]
-    observed_recognition: [1, 2]
+    impact:
+    - 1
+    verification:
+    - 1
+    uniqueness:
+    - 1
+    durability:
+    - 1
+    breadth:
+    - 1
+    attribution:
+    - 1
+    - 2
+    observed_recognition:
+    - 1
+    - 2
   rationale:
     impact: The result overturned an assumed symmetry and reshaped particle physics.
     verification: The Wu experiment is thoroughly documented in the physics literature.
@@ -30,30 +39,57 @@ assessment:
     breadth: The benefit is scientific and concentrated within physics.
     attribution: Credit was split between theory and experiment, with the experiment under-recognised by the prize.
 key_facts:
-  - fact: Wu led the 1956-57 experiment demonstrating that parity is not conserved in weak interactions.
-    source: 1
-  - fact: The 1957 Nobel Prize in Physics was awarded to Tsung-Dao Lee and Chen Ning Yang.
-    source: 2
-  - fact: In 1978 Wu received the inaugural Wolf Prize in Physics.
-    source: 1
+- fact: Wu led the 1956-57 experiment demonstrating that parity is not conserved in weak interactions.
+  source: 1
+- fact: The 1957 Nobel Prize in Physics was awarded to Tsung-Dao Lee and Chen Ning Yang.
+  source: 2
+- fact: In 1978 Wu received the inaugural Wolf Prize in Physics.
+  source: 1
 analysis:
-  - heading: Theory versus experiment in the credit structure
-    body: "Wu's case exposes a recurring asymmetry: prize architectures often reward the prediction over the proof, even when the proof is what converts a hypothesis into accepted science. The recognition gap here is moderate, softened by later honours, but the pattern is structural rather than incidental."
+- heading: Theory versus experiment in the credit structure
+  body: 'Wu''s case exposes a recurring asymmetry: prize architectures often reward the prediction over the proof, even when the proof is what converts a hypothesis into accepted science. The recognition gap here is moderate, softened by later honours, but the pattern is structural rather than incidental.'
 sources:
-  - title: Chien-Shiung Wu - biography and the parity experiment
-    publisher: Encyclopaedia Britannica
-    url: https://www.britannica.com/biography/Chien-Shiung-Wu
-    type: reference-secondary
-  - title: The Nobel Prize in Physics 1957 (Yang and Lee)
-    publisher: The Nobel Foundation (nobelprize.org)
-    url: https://www.nobelprize.org/prizes/physics/1957/summary/
-    type: institutional
-
+- title: Chien-Shiung Wu - biography and the parity experiment
+  publisher: Encyclopaedia Britannica
+  url: https://www.britannica.com/biography/Chien-Shiung-Wu
+  type: reference-secondary
+- title: The Nobel Prize in Physics 1957 (Yang and Lee)
+  publisher: The Nobel Foundation (nobelprize.org)
+  url: https://www.nobelprize.org/prizes/physics/1957/summary/
+  type: institutional
+- title: Experimental Test of Parity Conservation in Beta Decay
+  publisher: C. S. Wu et al., Physical Review 105, 1413 (1957)
+  url: https://link.aps.org/doi/10.1103/PhysRev.105.1413
+  type: primary
 domain: physics-astronomy
 patterns:
-  - credit-misattribution
-  - theory-experiment-asymmetry
-
+- credit-misattribution
+- theory-experiment-asymmetry
 pattern_evidence:
-  credit-misattribution: [1, 2]
-  theory-experiment-asymmetry: [1, 2]
+  credit-misattribution:
+  - 1
+  - 2
+  theory-experiment-asymmetry:
+  - 1
+  - 2
+provenance:
+  contribution:
+    record_anchor:
+    - 3
+    basis: primary-publication
+  attribution:
+    record_anchor:
+    - 2
+    basis: awarding-institution-record
+  observed-recognition:
+    record_anchor:
+    - 2
+    basis: awarding-institution-record
+  pattern:credit-misattribution:
+    record_anchor:
+    - 2
+    basis: awarding-institution-record
+  pattern:theory-experiment-asymmetry:
+    record_anchor:
+    - 2
+    basis: awarding-institution-record

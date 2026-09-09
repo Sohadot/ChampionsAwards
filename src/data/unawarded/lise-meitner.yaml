@@ -15,13 +15,22 @@ assessment:
   attribution: 60
   observed_recognition: 50
   evidence:
-    impact: [1]
-    verification: [1]
-    uniqueness: [1]
-    durability: [1]
-    breadth: [1]
-    attribution: [1, 2]
-    observed_recognition: [2, 3]
+    impact:
+    - 1
+    verification:
+    - 1
+    uniqueness:
+    - 1
+    durability:
+    - 1
+    breadth:
+    - 1
+    attribution:
+    - 1
+    - 2
+    observed_recognition:
+    - 2
+    - 3
   rationale:
     impact: The interpretation of nuclear fission reshaped nuclear physics and its later applications.
     verification: The Meitner-Frisch interpretation is documented in the peer record and independent histories.
@@ -30,34 +39,63 @@ assessment:
     breadth: The consequences of fission are broad, spanning energy and, unavoidably, weapons.
     attribution: Credit was contested and institutionally split between chemistry and physics.
 key_facts:
-  - fact: The 1944 Nobel Prize in Chemistry was awarded to Otto Hahn alone for the discovery of nuclear fission.
-    source: 2
-  - fact: Meitner and her nephew Otto Frisch published the physical interpretation of fission in 1939.
-    source: 1
-  - fact: Element 109, meitnerium (Mt), was named in her honour.
-    source: 3
+- fact: The 1944 Nobel Prize in Chemistry was awarded to Otto Hahn alone for the discovery of nuclear fission.
+  source: 2
+- fact: Meitner and her nephew Otto Frisch published the physical interpretation of fission in 1939.
+  source: 1
+- fact: Element 109, meitnerium (Mt), was named in her honour.
+  source: 3
 analysis:
-  - heading: Why the recognition gap is structural, not incidental
-    body: The fission result sat on the seam between chemistry and physics, and the prize architecture forced it onto one side. Combined with Meitner's exile, which removed her from the bench where the work was completed, the division of credit followed the shape of institutions rather than the shape of the contribution - the exact pattern this archive exists to document.
+- heading: Why the recognition gap is structural, not incidental
+  body: The fission result sat on the seam between chemistry and physics, and the prize architecture forced it onto one side. Combined with Meitner's exile, which removed her from the bench where the work was completed, the division of credit followed the shape of institutions rather than the shape of the contribution - the exact pattern this archive exists to document.
 sources:
-  - title: Lise Meitner - biography and role in nuclear fission
-    publisher: Encyclopaedia Britannica
-    url: https://www.britannica.com/biography/Lise-Meitner
-    type: reference-secondary
-  - title: The Nobel Prize in Chemistry 1944 (awarded to Otto Hahn)
-    publisher: The Nobel Foundation (nobelprize.org)
-    url: https://www.nobelprize.org/prizes/chemistry/1944/summary/
-    type: institutional
-  - title: Meitnerium - element 109
-    publisher: Royal Society of Chemistry (Periodic Table)
-    url: https://www.rsc.org/periodic-table/element/109/meitnerium
-    type: institutional
-
+- title: Lise Meitner - biography and role in nuclear fission
+  publisher: Encyclopaedia Britannica
+  url: https://www.britannica.com/biography/Lise-Meitner
+  type: reference-secondary
+- title: The Nobel Prize in Chemistry 1944 (awarded to Otto Hahn)
+  publisher: The Nobel Foundation (nobelprize.org)
+  url: https://www.nobelprize.org/prizes/chemistry/1944/summary/
+  type: institutional
+- title: Meitnerium - element 109
+  publisher: Royal Society of Chemistry (Periodic Table)
+  url: https://www.rsc.org/periodic-table/element/109/meitnerium
+  type: institutional
+- title: 'Disintegration of Uranium by Neutrons: a New Type of Nuclear Reaction'
+  publisher: L. Meitner & O. R. Frisch, Nature 143, 239 (1939)
+  url: https://www.nature.com/articles/143239a0
+  type: primary
 domain: physics-astronomy
 patterns:
-  - credit-misattribution
-  - institutional-exclusion
-
+- credit-misattribution
+- institutional-exclusion
 pattern_evidence:
-  credit-misattribution: [1, 2]
-  institutional-exclusion: [1]
+  credit-misattribution:
+  - 1
+  - 2
+  institutional-exclusion:
+  - 1
+provenance:
+  contribution:
+    record_anchor:
+    - 4
+    basis: primary-publication
+  attribution:
+    record_anchor:
+    - 2
+    basis: awarding-institution-record
+  observed-recognition:
+    record_anchor:
+    - 2
+    - 3
+    basis: awarding-institution-record
+  pattern:credit-misattribution:
+    record_anchor:
+    - 2
+    basis: awarding-institution-record
+audit_exceptions:
+- claim: pattern:institutional-exclusion
+  search_date: '2026-09-09'
+  search_note: Searched for an institutional or archival record of Meitner's 1938 forced emigration and exclusion.
+  best_source: 1
+  reason: Her flight and exclusion are documented in reputable biographies; a consolidated primary archival record was not located this pass.

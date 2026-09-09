@@ -13,11 +13,17 @@ rls_assessment:
   transparency: 58
   independence: 76
   evidence:
-    process: [1]
-    breadth: [1, 2]
-    track_record: [2]
-    transparency: [1]
-    independence: [1]
+    process:
+    - 1
+    breadth:
+    - 1
+    - 2
+    track_record:
+    - 2
+    transparency:
+    - 1
+    independence:
+    - 1
   rationale:
     process: International juries select recipients under established criteria.
     breadth: Coverage spans multiple sciences and the arts, broadening representation across fields.
@@ -25,24 +31,28 @@ rls_assessment:
     transparency: Criteria and recipients are public, while deliberations are not.
     independence: Foundation and jury governance provide independence within a national context.
 key_facts:
-  - fact: The Wolf Prize has been awarded by the Wolf Foundation since 1978.
-    source: 1
-  - fact: It is awarded across multiple fields, including sciences and the arts.
-    source: 2
+- fact: The Wolf Prize has been awarded by the Wolf Foundation since 1978.
+  source: 1
+- fact: It is awarded across multiple fields, including sciences and the arts.
+  source: 2
 analysis:
-  - heading: Breadth as a design choice
-    body: "The Wolf Prize trades some depth in any single field for coverage across many, which lifts its representational breadth relative to single-discipline awards. The RLS records this as a distinct legitimacy profile rather than ranking it against instruments built for one field only."
+- heading: Breadth as a design choice
+  body: The Wolf Prize trades some depth in any single field for coverage across many, which lifts its representational breadth relative to single-discipline awards. The RLS records this as a distinct legitimacy profile rather than ranking it against instruments built for one field only.
 sources:
-  - title: Wolf Prize - official site
-    publisher: The Wolf Foundation
-    url: https://wolffund.org.il/the-wolf-prize/
-    type: institutional
-  - title: Wolf Prize - overview
-    publisher: Encyclopaedia Britannica
-    url: https://www.britannica.com/topic/Wolf-Prize
-    type: reference-secondary
-
+- title: Wolf Prize - official site
+  publisher: The Wolf Foundation
+  url: https://wolffund.org.il/the-wolf-prize/
+  type: institutional
+- title: Wolf Prize - overview
+  publisher: Encyclopaedia Britannica
+  url: https://www.britannica.com/topic/Wolf-Prize
+  type: reference-secondary
 domains:
-  - physics-astronomy
-  - biology-medicine
-  - mathematics-computing
+- physics-astronomy
+- biology-medicine
+- mathematics-computing
+provenance:
+  system-facts:
+    record_anchor:
+    - 1
+    basis: awarding-institution-record

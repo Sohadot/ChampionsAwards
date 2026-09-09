@@ -6,22 +6,22 @@ power_structure: The Nobel system derives authority from history, elite institut
 selection_logic: Its legitimacy depends not only on the status of the institutions involved, but on the integrity of process, representational breadth, and the long-term significance of recognized outcomes.
 last_reviewed: 2026-09-08
 sources:
-  - title: Statutes of the Nobel Foundation (selection and award governance)
-    publisher: The Nobel Foundation (nobelprize.org)
-    url: https://www.nobelprize.org/organization/statutes-of-the-nobel-foundation/
-    type: institutional
-  - title: Alfred Nobel's will and the founding of the prize system
-    publisher: The Nobel Foundation (nobelprize.org)
-    url: https://www.nobelprize.org/alfred-nobel/alfred-nobels-will/
-    type: primary
+- title: Statutes of the Nobel Foundation (selection and award governance)
+  publisher: The Nobel Foundation (nobelprize.org)
+  url: https://www.nobelprize.org/organization/statutes-of-the-nobel-foundation/
+  type: institutional
+- title: Alfred Nobel's will and the founding of the prize system
+  publisher: The Nobel Foundation (nobelprize.org)
+  url: https://www.nobelprize.org/alfred-nobel/alfred-nobels-will/
+  type: primary
 status: published
 key_facts:
-  - fact: The Nobel Prize system was established by the 1895 will of Alfred Nobel, with the first prizes awarded in 1901.
-    source: 2
-  - fact: The system is administered under the Statutes of the Nobel Foundation, which govern nomination and selection.
-    source: 1
-  - fact: Nobel's will created five prize categories - physics, chemistry, physiology or medicine, literature, and peace.
-    source: 2
+- fact: The Nobel Prize system was established by the 1895 will of Alfred Nobel, with the first prizes awarded in 1901.
+  source: 2
+- fact: The system is administered under the Statutes of the Nobel Foundation, which govern nomination and selection.
+  source: 1
+- fact: Nobel's will created five prize categories - physics, chemistry, physiology or medicine, literature, and peace.
+  source: 2
 rls_assessment:
   process: 72
   breadth: 58
@@ -29,18 +29,28 @@ rls_assessment:
   transparency: 55
   independence: 78
   evidence:
-    process: [1]
-    breadth: [1]
-    track_record: [1]
-    transparency: [1]
-    independence: [1, 2]
+    process:
+    - 1
+    breadth:
+    - 1
+    track_record:
+    - 1
+    transparency:
+    - 1
+    independence:
+    - 1
+    - 2
   rationale:
     process: Nomination and selection follow a long-established, committee-driven procedure, though deliberations are not open in real time.
     breadth: Historically concentrated in Western Europe and North America, with representation broadening only gradually across the twentieth century.
     track_record: Most scientific selections have proven durable, though several well-documented omissions persist.
     transparency: Award criteria are public, but nomination records and committee deliberations are sealed for 50 years.
     independence: Funded by an independent endowment, insulating most categories from direct commercial or political control.
-
 domains:
-  - physics-astronomy
-  - biology-medicine
+- physics-astronomy
+- biology-medicine
+provenance:
+  system-facts:
+    record_anchor:
+    - 1
+    basis: awarding-institution-record
