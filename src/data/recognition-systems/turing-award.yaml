@@ -1,0 +1,37 @@
+title: Turing Award
+slug: turing-award
+status: published
+last_reviewed: 2026-09-09
+summary: The ACM A.M. Turing Award is the most prominent honour in computer science, often described as the field's equivalent of a Nobel Prize, and it offers a clear case of a discipline-specific recognition system.
+introduction: Established by the Association for Computing Machinery and first awarded in 1966, the Turing Award recognises contributions of lasting technical importance to computing.
+power_structure: The award draws its authority from the professional computing community through the ACM, giving it strong independence from state or commercial control.
+selection_logic: Selection favours contributions whose technical importance has already proven durable, which sharpens reliability but tends to reward established, later-career work.
+rls_assessment:
+  process: 82
+  breadth: 58
+  track_record: 85
+  transparency: 62
+  independence: 85
+  rationale:
+    process: Selection is run by ACM committees under established criteria.
+    breadth: The award is confined to computing and has historically skewed toward a small set of institutions and regions.
+    track_record: Recipients are broadly regarded as foundational figures in the field.
+    transparency: Criteria and recipients are public, though deliberations are private.
+    independence: Professional-society governance keeps it largely free of commercial or political capture.
+key_facts:
+  - fact: The Turing Award is presented by the Association for Computing Machinery (ACM).
+    source: 1
+  - fact: It was first awarded in 1966 and is named after Alan Turing.
+    source: 2
+analysis:
+  - heading: Reliability at the cost of breadth
+    body: "The Turing Award scores well on process and track record because it waits for durability before recognising work. That same patience narrows breadth: emerging or unconventional contributions wait longer, and the RLS captures this as reduced representational breadth rather than a defect in process."
+sources:
+  - title: A.M. Turing Award - official site and recipients
+    publisher: Association for Computing Machinery
+    url: https://amturing.acm.org/
+    type: official
+  - title: Turing Award - overview and history
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/topic/Turing-Award
+    type: secondary

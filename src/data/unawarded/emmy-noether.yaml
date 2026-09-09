@@ -1,0 +1,36 @@
+title: Emmy Noether
+slug: emmy-noether
+status: published
+last_reviewed: 2026-09-09
+summary: Emmy Noether proved the theorem linking symmetries to conservation laws, a result foundational to modern physics and mathematics, yet she faced sustained institutional barriers to recognition during her career.
+introduction: Noether's theorem is one of the organising ideas of theoretical physics, while the mathematics profession of her time repeatedly obstructed her formal academic standing.
+omission_case: Her case matters because a contribution central to physics and algebra was produced against explicit institutional resistance to appointing and paying her.
+structural_reason: Recognition was shaped by the exclusion of women from university positions in early twentieth-century Germany and by the delayed diffusion of her results into physics.
+assessment:
+  impact: 88
+  verification: 86
+  uniqueness: 82
+  durability: 92
+  breadth: 65
+  attribution: 70
+  observed_recognition: 45
+  rationale:
+    impact: Noether's theorem connects symmetries and conservation laws across physics.
+    verification: Her contributions in algebra and physics are extensively documented.
+    uniqueness: The theorem and her work in abstract algebra were highly original.
+    durability: Both remain foundational in their fields.
+    breadth: The benefit is deep within physics and mathematics.
+    attribution: Credit is now clear, but formal standing was withheld in her lifetime.
+key_facts:
+  - fact: Noether's theorem relates continuous symmetries to conservation laws in physics.
+    source: 1
+  - fact: She made foundational contributions to abstract algebra.
+    source: 1
+analysis:
+  - heading: Barriers before the record could form
+    body: "Noether's gap is distinctive because the obstruction operated before recognition could even accrue: institutional rules limited her appointments and pay, constraining the visibility from which honours normally follow. The theorem's centrality today throws the earlier exclusion into sharp relief."
+sources:
+  - title: Emmy Noether - biography, Noether's theorem, and abstract algebra
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/biography/Emmy-Noether
+    type: secondary

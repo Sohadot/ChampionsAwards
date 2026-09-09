@@ -1,0 +1,42 @@
+title: Chien-Shiung Wu
+slug: chien-shiung-wu
+status: published
+last_reviewed: 2026-09-09
+summary: Chien-Shiung Wu designed and led the experiment that demonstrated the violation of parity conservation in 1956-57, yet the 1957 Nobel Prize in Physics went to the theorists Tsung-Dao Lee and Chen Ning Yang.
+introduction: Wu's case is frequently cited because the experimental confirmation that made the theory credible was hers, while the prize recognised the theoretical prediction alone.
+omission_case: Her exclusion matters because a prediction of this magnitude required decisive experimental proof, and that proof was the contribution the prize did not honour.
+structural_reason: Recognition was shaped by the era's tendency to elevate theory over experiment and by the position of women in mid-century physics institutions.
+assessment:
+  impact: 84
+  verification: 92
+  uniqueness: 68
+  durability: 85
+  breadth: 58
+  attribution: 58
+  observed_recognition: 60
+  rationale:
+    impact: The result overturned an assumed symmetry and reshaped particle physics.
+    verification: The Wu experiment is thoroughly documented in the physics literature.
+    uniqueness: The experiment demanded exceptional technique, though experimental confirmation was foreseeable in principle.
+    durability: Parity violation remains a settled and foundational result.
+    breadth: The benefit is scientific and concentrated within physics.
+    attribution: Credit was split between theory and experiment, with the experiment under-recognised by the prize.
+key_facts:
+  - fact: Wu led the 1956-57 experiment demonstrating that parity is not conserved in weak interactions.
+    source: 1
+  - fact: The 1957 Nobel Prize in Physics was awarded to Tsung-Dao Lee and Chen Ning Yang.
+    source: 2
+  - fact: In 1978 Wu received the inaugural Wolf Prize in Physics.
+    source: 1
+analysis:
+  - heading: Theory versus experiment in the credit structure
+    body: "Wu's case exposes a recurring asymmetry: prize architectures often reward the prediction over the proof, even when the proof is what converts a hypothesis into accepted science. The recognition gap here is moderate, softened by later honours, but the pattern is structural rather than incidental."
+sources:
+  - title: Chien-Shiung Wu - biography and the parity experiment
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/biography/Chien-Shiung-Wu
+    type: secondary
+  - title: The Nobel Prize in Physics 1957 (Yang and Lee)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/physics/1957/summary/
+    type: official
