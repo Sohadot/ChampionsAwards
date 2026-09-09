@@ -1,0 +1,37 @@
+title: Lasker Award
+slug: lasker-award
+status: published
+last_reviewed: 2026-09-09
+summary: The Albert Lasker Medical Research Awards are among the most respected honours in biomedical science and are noted for how often their recipients later receive the Nobel Prize.
+introduction: Administered by the Lasker Foundation, the awards recognise major contributions to medical research, and their strong overlap with subsequent Nobel Prizes has made them a closely watched signal in the field.
+power_structure: The awards derive authority from the biomedical research community and a private foundation, giving them substantial independence while tying their funding to that foundation.
+selection_logic: Selection emphasises contributions with clear and durable impact on medicine, which strengthens the track record but concentrates recognition within well-resourced research centres.
+rls_assessment:
+  process: 80
+  breadth: 60
+  track_record: 88
+  transparency: 60
+  independence: 78
+  rationale:
+    process: Selection follows an established juried procedure administered by the foundation.
+    breadth: Recognition is biomedical and has historically been oriented toward the United States.
+    track_record: A high proportion of recipients later receive the Nobel Prize, indicating durable selections.
+    transparency: Criteria and recipients are public, though deliberations are private.
+    independence: Foundation governance provides independence, with funding concentrated in a single foundation.
+key_facts:
+  - fact: The Lasker Awards are administered by the Albert and Mary Lasker Foundation.
+    source: 1
+  - fact: Many Lasker laureates have subsequently received the Nobel Prize.
+    source: 2
+analysis:
+  - heading: A predictive signal, and what it concentrates
+    body: "The Lasker Awards score highly on track record precisely because their selections so often anticipate the Nobel. That predictive strength, however, tends to concentrate on already well-resourced research environments, which the RLS reflects as a limit on representational breadth rather than a process failure."
+sources:
+  - title: Albert Lasker Medical Research Awards - official site
+    publisher: The Lasker Foundation
+    url: https://laskerfoundation.org/awards/
+    type: official
+  - title: Lasker Award - overview
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/topic/Lasker-Award
+    type: secondary

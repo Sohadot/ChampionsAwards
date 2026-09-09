@@ -1,0 +1,36 @@
+title: Oswald Avery
+slug: oswald-avery
+status: published
+last_reviewed: 2026-09-09
+summary: Oswald Avery and his colleagues provided key evidence in 1944 that DNA is the material of heredity, a result central to molecular biology, yet Avery never received a Nobel Prize.
+introduction: Avery's case is often cited because the identification of DNA as the carrier of genetic information was among the most consequential results of twentieth-century biology, and it went unrecognised by the Nobel committees.
+omission_case: His case matters because a finding that reoriented biology toward DNA was not honoured by the era's leading prize, illustrating how caution and disciplinary framing can delay or block recognition.
+structural_reason: Recognition was shaped by contemporary scepticism about the result, by the framing of the work within bacteriology, and by the conservatism of prize deliberations.
+assessment:
+  impact: 85
+  verification: 84
+  uniqueness: 72
+  durability: 85
+  breadth: 66
+  attribution: 62
+  observed_recognition: 50
+  rationale:
+    impact: The Avery-MacLeod-McCarty experiment pointed decisively toward DNA as the genetic material.
+    verification: The work is documented in the primary literature and independent histories.
+    uniqueness: The experimental identification was distinctive, though it built on a wider research program.
+    durability: The centrality of DNA to heredity is a settled foundation of biology.
+    breadth: Molecular biology's downstream benefits are extremely wide.
+    attribution: Credit is acknowledged historically but was not matched by contemporary prize recognition.
+key_facts:
+  - fact: The 1944 Avery-MacLeod-McCarty experiment provided key evidence that DNA carries genetic information.
+    source: 1
+  - fact: Avery did not receive a Nobel Prize despite the significance of the work.
+    source: 1
+analysis:
+  - heading: Caution as a recognition filter
+    body: "Avery's gap illustrates how a prize's own conservatism can act as a filter: a result that later proved pivotal was treated cautiously in its moment, and the window for recognition closed. The case is a reminder that being early and correct is not sufficient when the receiving institution is slow to accept a paradigm shift."
+sources:
+  - title: Oswald Avery - biography and the identification of DNA
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/biography/Oswald-Avery
+    type: secondary

@@ -1,0 +1,36 @@
+title: Henrietta Swan Leavitt
+slug: henrietta-swan-leavitt
+status: published
+last_reviewed: 2026-09-09
+summary: Henrietta Swan Leavitt discovered the period-luminosity relation for Cepheid variable stars, which became a foundational tool for measuring cosmic distances, yet her recognition during her lifetime remained limited.
+introduction: Leavitt's relation gave astronomy its first reliable standard candle, underpinning later measurements of the scale of the universe, while her institutional position as a computer at Harvard constrained her recognition.
+omission_case: Her case matters because a result that enabled the measurement of galactic distances was produced from a role with little formal scientific standing at the time.
+structural_reason: Recognition was shaped by the limited roles available to women in early twentieth-century astronomy and by the tendency to credit those who applied a tool over those who created it.
+assessment:
+  impact: 86
+  verification: 88
+  uniqueness: 74
+  durability: 90
+  breadth: 62
+  attribution: 60
+  observed_recognition: 38
+  rationale:
+    impact: The period-luminosity relation is a cornerstone of the cosmic distance ladder.
+    verification: Her contribution is documented in the astronomical record and independent histories.
+    uniqueness: The insight linking period to luminosity was distinctive and enabling.
+    durability: The relation remains fundamental to extragalactic distance measurement.
+    breadth: The benefit is scientific and broad within astronomy and cosmology.
+    attribution: Later distance work is often credited to those who applied her relation.
+key_facts:
+  - fact: Leavitt discovered the period-luminosity relation for Cepheid variable stars, published in her Harvard work.
+    source: 1
+  - fact: The relation became a foundational method for determining astronomical distances.
+    source: 1
+analysis:
+  - heading: Creating a tool versus wielding it
+    body: "Leavitt's large recognition gap reflects a specific mechanism: the person who forges an enabling instrument is often eclipsed by those who make headline measurements with it. Her relation is invoked constantly in cosmology, while her name is far less visible than the discoveries it made possible."
+sources:
+  - title: Henrietta Swan Leavitt - biography and the period-luminosity relation
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/biography/Henrietta-Swan-Leavitt
+    type: secondary

@@ -1,0 +1,42 @@
+title: Jocelyn Bell Burnell
+slug: jocelyn-bell-burnell
+status: published
+last_reviewed: 2026-09-09
+summary: Jocelyn Bell Burnell detected the first radio pulsars as a graduate student in 1967, yet the 1974 Nobel Prize in Physics for the discovery was awarded to her supervisor Antony Hewish and Martin Ryle, not to her.
+introduction: Bell Burnell's case is among the most discussed in twentieth-century physics recognition, because the observational discovery was hers while the prize followed the era's hierarchy of supervisor over student.
+omission_case: Her exclusion matters because the pulsar signal was identified and pursued through her own observational persistence, making the omission a question about how credit flows within research hierarchies.
+structural_reason: Recognition was shaped by the norms of the period regarding students and supervisors, and by the tendency of prize committees to reward established figures over early-career discoverers.
+assessment:
+  impact: 82
+  verification: 88
+  uniqueness: 70
+  durability: 85
+  breadth: 60
+  attribution: 55
+  observed_recognition: 58
+  rationale:
+    impact: Pulsars opened a major field of astrophysics and provided new tests of fundamental physics.
+    verification: The discovery is documented in the observational record and independent histories.
+    uniqueness: The detection depended on her attention to an anomalous signal others might have dismissed.
+    durability: Pulsar astronomy remains an active and productive field.
+    breadth: The benefit is scientific and broad within astrophysics, though not a mass public good.
+    attribution: Credit was assigned to supervisors at the time, and only later widely corrected.
+key_facts:
+  - fact: Bell Burnell detected the first radio pulsars in 1967 while a graduate student at Cambridge.
+    source: 1
+  - fact: The 1974 Nobel Prize in Physics was awarded to Antony Hewish and Martin Ryle.
+    source: 2
+  - fact: In 2018 she received the Special Breakthrough Prize in Fundamental Physics for the discovery.
+    source: 1
+analysis:
+  - heading: A gap the field itself later corrected
+    body: "Bell Burnell's recognition gap is moderate rather than extreme, because the scientific community substantially corrected the record over subsequent decades through major honours. The case illustrates a softer failure mode than outright erasure: delayed recognition routed first through the institutional hierarchy before reaching the discoverer."
+sources:
+  - title: Jocelyn Bell Burnell - biography and discovery of pulsars
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/biography/Jocelyn-Bell-Burnell
+    type: secondary
+  - title: The Nobel Prize in Physics 1974 (Ryle and Hewish)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/physics/1974/summary/
+    type: official

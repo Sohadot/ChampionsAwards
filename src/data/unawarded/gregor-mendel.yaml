@@ -1,0 +1,36 @@
+title: Gregor Mendel
+slug: gregor-mendel
+status: published
+last_reviewed: 2026-09-09
+summary: Gregor Mendel established the basic laws of inheritance through his experiments with pea plants, but his work was largely overlooked for decades until its rediscovery around 1900, long after its publication.
+introduction: Mendel's case is a classic example of delayed recognition, where foundational work sat unread by the wider scientific community until independent researchers rediscovered it at the turn of the century.
+omission_case: His case matters because the delay was not a failure of the work but of the recognition system, which lacked the channels and readiness to absorb an unfamiliar result from outside its established centres.
+structural_reason: Recognition was shaped by Mendel's position outside major research institutions and by a scientific community not yet primed to interpret the significance of his statistical approach.
+assessment:
+  impact: 90
+  verification: 85
+  uniqueness: 80
+  durability: 92
+  breadth: 70
+  attribution: 72
+  observed_recognition: 40
+  rationale:
+    impact: Mendel's laws are foundational to the entire field of genetics.
+    verification: His experiments and their rediscovery are extensively documented.
+    uniqueness: The systematic, quantitative approach to inheritance was highly distinctive for its time.
+    durability: Mendelian inheritance remains a pillar of biology.
+    breadth: Genetics underpins vast areas of science and medicine.
+    attribution: Credit is now clearly his, though it arrived decades late.
+key_facts:
+  - fact: Mendel derived the basic principles of heredity from experiments on pea plants.
+    source: 1
+  - fact: His work was largely neglected until it was rediscovered around 1900.
+    source: 1
+analysis:
+  - heading: When the system is not ready to receive the work
+    body: "Mendel's gap is a story about timing and channels rather than contested credit. The recognition architecture of his era had no ready place for a quantitative result from a peripheral position, so the work waited for a community that could read it - a reminder that recognition depends on the receiver as much as the contribution."
+sources:
+  - title: Gregor Mendel - biography and laws of inheritance
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/biography/Gregor-Mendel
+    type: secondary
