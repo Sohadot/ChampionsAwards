@@ -43,8 +43,8 @@ sources:
   - title: Vera Rubin - biography and dark matter
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Vera-Rubin
-    type: secondary
+    type: reference-secondary
   - title: "Vera Rubin - opening doors to dark matter and women in STEM"
     publisher: Carnegie Science
     url: https://carnegiescience.edu/vera-rubin-opening-doors-dark-matter-and-women-stem
-    type: secondary
+    type: institutional

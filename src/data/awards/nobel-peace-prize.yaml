@@ -9,11 +9,11 @@ sources:
   - title: The Nobel Peace Prize — official prize archive and selection process
     publisher: The Nobel Foundation (nobelprize.org)
     url: https://www.nobelprize.org/prizes/peace/
-    type: official
+    type: institutional
   - title: Nobel Peace Prize — history, criteria, and controversies
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/topic/Nobel-Prize
-    type: secondary
+    type: reference-secondary
 status: published
 key_facts:
   - fact: The Nobel Peace Prize was first awarded in 1901, following the 1895 will of Alfred Nobel.

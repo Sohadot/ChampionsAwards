@@ -46,11 +46,11 @@ sources:
   - title: "K for KLOE... and Z for Zweig"
     publisher: CERN Courier
     url: https://cerncourier.com/a/k-for-kloe-and-z-for-zweig/
-    type: secondary
+    type: institutional
   - title: "Nineteen sixty-four (the quark model and Zweig's aces)"
     publisher: CERN Courier
     url: https://cerncourier.com/nineteen-sixty-four/
-    type: secondary
+    type: institutional
 
 pattern_evidence:
   credit-misattribution: [1, 2]

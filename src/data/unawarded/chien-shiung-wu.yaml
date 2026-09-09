@@ -43,11 +43,11 @@ sources:
   - title: Chien-Shiung Wu - biography and the parity experiment
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Chien-Shiung-Wu
-    type: secondary
+    type: reference-secondary
   - title: The Nobel Prize in Physics 1957 (Yang and Lee)
     publisher: The Nobel Foundation (nobelprize.org)
     url: https://www.nobelprize.org/prizes/physics/1957/summary/
-    type: official
+    type: institutional
 
 domain: physics-astronomy
 patterns:

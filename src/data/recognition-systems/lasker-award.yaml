@@ -36,11 +36,11 @@ sources:
   - title: Albert Lasker Medical Research Awards - official site
     publisher: The Lasker Foundation
     url: https://laskerfoundation.org/awards/
-    type: official
+    type: institutional
   - title: Lasker Award - overview
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/topic/Lasker-Award
-    type: secondary
+    type: reference-secondary
 
 domains:
   - biology-medicine

@@ -45,11 +45,11 @@ sources:
   - title: "Ralph A. Alpher, Robert C. Herman, and the Cosmic Microwave Background Radiation"
     publisher: "Physics in Perspective (Springer)"
     url: https://link.springer.com/article/10.1007/s00016-012-0088-7
-    type: secondary
+    type: scholarly-secondary
   - title: "Ralph A. Alpher, George Antonovich Gamow, and the Prediction of the Cosmic Microwave Background Radiation"
     publisher: "arXiv (history of physics)"
     url: https://arxiv.org/abs/1411.0172
-    type: secondary
+    type: scholarly-secondary
 
 pattern_evidence:
   credit-misattribution: [1, 2]
