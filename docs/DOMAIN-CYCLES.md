@@ -150,6 +150,21 @@ this from drifting into causal-looking statistics:
 These hold for the coming comparison layer too: it reports distributions with
 denominators, and never infers prevalence or causation from descriptive relations.
 
+### Canonical aggregation engine
+
+All domain statistics come from one module, `scripts/domain_comparison.py`;
+`domain_status.py`, the sector page, the synthesis, and any export read from it,
+so a number is never computed twice. It returns **observations only** (medians,
+distributions, counts, ranges, evidenced pattern support) — never `conclusions`.
+Quartiles use one frozen inclusive definition (tested in
+`scripts/test_domain_comparison.py`); every layer carries its own denominator
+(DDI cases, RLS systems, and award relations are distinct populations); and each
+result carries a deterministic, data-derived `corpus_snapshot` id so a finding is
+attributable to the exact corpus it was computed from — "true for Cycle 01
+corpus vN", not an eternal claim. The machine checks freeze the quartile
+definition, guarantee determinism, and enforce the eligibility and
+denominator rules.
+
 ## Cycle order
 
 1. **Cycle 01 — Physics & Astronomy** *(open)*

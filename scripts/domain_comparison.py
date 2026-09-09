@@ -1,0 +1,380 @@
+"""Canonical aggregation engine for a recognition domain.
+
+One corpus -> one aggregation engine -> many representations. domain_status.py,
+the (future) sector page, the synthesis, and any export all read from here, so
+the same numbers are never computed twice.
+
+The engine returns OBSERVATIONS only - medians, distributions, counts, ranges,
+evidenced pattern support. It never emits causal conclusions, and every count
+carries an explicit denominator. Corpus frequency is not field prevalence.
+
+Determinism: all inputs are sorted by slug before aggregation, quartiles use a
+single fixed (inclusive) definition, and a data-derived snapshot id identifies
+the corpus a result was computed from.
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+from datetime import datetime, timezone
+from typing import Any
+
+import yaml
+
+from config import (
+    ASSESSMENT_CLUSTERS,
+    DATA,
+    PATTERN_ESTABLISHED_MIN,
+    RLS_CLUSTERS,
+    RLS_DIMENSIONS,
+    compute_ddi,
+    compute_rls,
+    ddi_band,
+    is_published,
+    recognition_gap_label,
+    rls_band,
+)
+
+RLS_KEYS = tuple(k for k, _label, _w in RLS_DIMENSIONS)
+
+
+# --------------------------------------------------------------------------
+# Deterministic statistics (no external stats library; frozen definitions)
+# --------------------------------------------------------------------------
+def median(values: list[float]) -> float | None:
+    """Median. Even n -> mean of the two central values. Deterministic."""
+    if not values:
+        return None
+    s = sorted(values)
+    n = len(s)
+    mid = n // 2
+    if n % 2 == 1:
+        return float(s[mid])
+    return (s[mid - 1] + s[mid]) / 2
+
+
+def quartiles(values: list[float]) -> dict[str, float | None]:
+    """Inclusive quartiles (frozen definition, tested in test_domain_comparison.py).
+
+    Sort; split at the median. For odd n the median element is included in BOTH
+    halves; for even n the halves are the two contiguous halves. Q1/Q3 are the
+    medians of the lower/upper halves. Example: [1,2,3,4,5] -> Q1=2, Q3=4.
+    """
+    if not values:
+        return {"q1": None, "q3": None, "iqr": None, "min": None, "max": None}
+    s = sorted(values)
+    n = len(s)
+    if n == 1:
+        return {"q1": float(s[0]), "q3": float(s[0]), "iqr": 0.0, "min": float(s[0]), "max": float(s[0])}
+    if n % 2 == 1:
+        lower = s[: n // 2 + 1]
+        upper = s[n // 2:]
+    else:
+        lower = s[: n // 2]
+        upper = s[n // 2:]
+    q1 = median(lower)
+    q3 = median(upper)
+    return {"q1": q1, "q3": q3, "iqr": (q3 - q1), "min": float(s[0]), "max": float(s[-1])}
+
+
+# --------------------------------------------------------------------------
+# Loading (sorted by slug -> order independent)
+# --------------------------------------------------------------------------
+def _load_cluster(cluster: str) -> list[dict[str, Any]]:
+    folder = DATA / cluster
+    if not folder.exists():
+        return []
+    items: list[dict[str, Any]] = []
+    for path in sorted(folder.glob("*.yaml")):
+        with path.open("r", encoding="utf-8") as f:
+            item = yaml.safe_load(f) or {}
+        if is_published(item) and item.get("slug"):
+            items.append(item)
+    # dedupe by slug (no duplicate case counting) and sort deterministically
+    by_slug: dict[str, dict[str, Any]] = {}
+    for it in items:
+        by_slug[str(it["slug"]).strip().strip("/")] = it
+    return [by_slug[s] for s in sorted(by_slug)]
+
+
+def _load_site() -> dict[str, Any]:
+    with (DATA / "site.yaml").open("r", encoding="utf-8") as f:
+        return yaml.safe_load(f) or {}
+
+
+def _domain_cases(domain: str) -> list[dict[str, Any]]:
+    cases = []
+    for cluster in sorted(ASSESSMENT_CLUSTERS):
+        for item in _load_cluster(cluster):
+            if item.get("domain") == domain and isinstance(item.get("assessment"), dict):
+                cases.append(item)
+    return sorted(cases, key=lambda c: c["slug"])
+
+
+def _domain_systems(domain: str) -> list[dict[str, Any]]:
+    systems = []
+    for cluster in sorted(RLS_CLUSTERS):
+        for item in _load_cluster(cluster):
+            if domain in (item.get("domains") or []) and isinstance(item.get("rls_assessment"), dict):
+                systems.append(item)
+    return sorted(systems, key=lambda s: s["slug"])
+
+
+def _domain_award_relations(domain: str) -> list[dict[str, Any]]:
+    """Hardened corpus relations only: interaction_type + claim + (anchor XOR exception)."""
+    rels = []
+    for item in _load_cluster("awards"):
+        if item.get("domain") != domain:
+            continue
+        award = item["slug"]
+        for rel in item.get("corpus_relations") or []:
+            hardened = (
+                isinstance(rel.get("interaction_type"), str)
+                and isinstance(rel.get("claim"), str)
+                and ((rel.get("record_anchor") is None) != (rel.get("exception") is None))
+            )
+            if hardened:
+                rels.append({"award": award, **rel})
+    return sorted(rels, key=lambda r: (r["award"], r["case"], r["interaction_type"]))
+
+
+# --------------------------------------------------------------------------
+# Aggregations (observations only)
+# --------------------------------------------------------------------------
+def corpus_distribution(domain: str) -> dict[str, Any]:
+    cases = _domain_cases(domain)
+    rows = []
+    ddi_vals: list[float] = []
+    obs_vals: list[float] = []
+    gap_vals: list[float] = []
+    ddi_bands: dict[str, int] = {}
+    gap_bands: dict[str, int] = {}
+    for c in cases:
+        a = c["assessment"]
+        ddi = compute_ddi(a)
+        ddi_vals.append(ddi)
+        ddi_bands[ddi_band(ddi)] = ddi_bands.get(ddi_band(ddi), 0) + 1
+        obs = a.get("observed_recognition")
+        row = {"slug": c["slug"], "title": c.get("title", c["slug"]),
+               "url": f"/unawarded/{c['slug']}", "ddi": ddi, "band": ddi_band(ddi)}
+        if isinstance(obs, (int, float)) and not isinstance(obs, bool):
+            gap = ddi - obs
+            obs_vals.append(obs)
+            gap_vals.append(gap)
+            row.update({"observed": obs, "gap": gap, "gap_reading": recognition_gap_label(gap)})
+            gap_bands[recognition_gap_label(gap)] = gap_bands.get(recognition_gap_label(gap), 0) + 1
+        rows.append(row)
+
+    # Invariant: the gate requires observed_recognition on published DDI cases,
+    # so every case must have a computable gap. Guard against silent drift.
+    if len(gap_vals) != len(cases):
+        raise AssertionError("gap denominator != case denominator (a case lacks a computable gap)")
+
+    ranked = sorted(rows, key=lambda r: (-r.get("gap", float("-inf")), -r["ddi"], r["slug"]))
+    gq = quartiles(gap_vals)
+    return {
+        "n_cases": len(cases),
+        "median_ddi": median(ddi_vals),
+        "median_observed_recognition": median(obs_vals),
+        "median_gap": median(gap_vals),
+        "gap_min": gq["min"], "gap_max": gq["max"],
+        "gap_q1": gq["q1"], "gap_q3": gq["q3"], "gap_iqr": gq["iqr"],
+        "ddi_band_counts": dict(sorted(ddi_bands.items())),
+        "gap_band_counts": dict(sorted(gap_bands.items())),
+        "ranked_cases": ranked,
+    }
+
+
+def pattern_distribution(domain: str) -> dict[str, Any]:
+    cases = _domain_cases(domain)
+    denom = len(cases)  # denominator = all DDI cases in the domain
+    support: dict[str, list[dict[str, str]]] = {}
+    for c in cases:
+        evidence = c.get("pattern_evidence") or {}
+        for pat in c.get("patterns") or []:
+            if evidence.get(pat):  # evidence-backed only
+                support.setdefault(pat, []).append(
+                    {"slug": c["slug"], "title": c.get("title", c["slug"]), "url": f"/unawarded/{c['slug']}"}
+                )
+    patterns = []
+    for pat in sorted(support):
+        cs = sorted(support[pat], key=lambda x: x["slug"])
+        n = len(cs)
+        patterns.append({
+            "pattern": pat,
+            "support": n,
+            "denominator": denom,
+            "corpus_percentage": round(100 * n / denom) if denom else 0,
+            "status": "established" if n >= PATTERN_ESTABLISHED_MIN else "emergent",
+            "cases": cs,
+        })
+    patterns.sort(key=lambda p: (-p["support"], p["pattern"]))
+    return {
+        "denominator": denom,
+        "denominator_meaning": "DDI cases in this domain",
+        "established_count": sum(1 for p in patterns if p["status"] == "established"),
+        "patterns": patterns,
+    }
+
+
+def rls_profiles(domain: str) -> dict[str, Any]:
+    systems = _domain_systems(domain)
+    profiles = []
+    composites: list[float] = []
+    for s in systems:
+        a = s["rls_assessment"]
+        composite = compute_rls(a)
+        composites.append(composite)
+        dims = {k: a.get(k) for k in RLS_KEYS}
+        hi = max(dims, key=lambda k: dims[k]) if dims else None
+        lo = min(dims, key=lambda k: dims[k]) if dims else None
+        profiles.append({
+            "slug": s["slug"], "title": s.get("title", s["slug"]),
+            "composite": composite, "band": rls_band(composite),
+            "dimensions": dims, "highest_dimension": hi, "lowest_dimension": lo,
+        })
+    dim_spread = {}
+    for k in RLS_KEYS:
+        vals = [p["dimensions"][k] for p in profiles if isinstance(p["dimensions"].get(k), (int, float))]
+        if vals:
+            dim_spread[k] = {"min": min(vals), "max": max(vals), "median": median(vals),
+                             "spread": max(vals) - min(vals)}
+    return {
+        "n_systems": len(systems),
+        "median_composite": median(composites),
+        "composite_min": min(composites) if composites else None,
+        "composite_max": max(composites) if composites else None,
+        "dimension_spread": dim_spread,
+        "profiles": profiles,
+        "note": "Model results within the RLS v1.0 instrument, not absolute judgments of legitimacy.",
+    }
+
+
+def award_interaction_distribution(domain: str) -> dict[str, Any]:
+    rels = _domain_award_relations(domain)
+    denom = len(rels)  # denominator = award relations, NOT cases
+    by_type: dict[str, int] = {}
+    for r in rels:
+        by_type[r["interaction_type"]] = by_type.get(r["interaction_type"], 0) + 1
+    distribution = [
+        {"interaction_type": k, "count": v, "denominator": denom}
+        for k, v in sorted(by_type.items(), key=lambda kv: (-kv[1], kv[0]))
+    ]
+    return {
+        "denominator": denom,
+        "denominator_meaning": "hardened award relations in this domain",
+        "distribution": distribution,
+    }
+
+
+# --------------------------------------------------------------------------
+# Snapshot identity (deterministic, data-derived, order-independent)
+# --------------------------------------------------------------------------
+def _snapshot_id(domain: str, site: dict[str, Any]) -> str:
+    payload = {
+        "methodology_version": site.get("methodology_version"),
+        "rls_version": site.get("rls_version"),
+        "cases": [
+            {"slug": c["slug"], "assessment": c.get("assessment"),
+             "patterns": sorted(c.get("patterns") or []),
+             "pattern_evidence": c.get("pattern_evidence")}
+            for c in _domain_cases(domain)
+        ],
+        "systems": [
+            {"slug": s["slug"], "rls_assessment": s.get("rls_assessment")}
+            for s in _domain_systems(domain)
+        ],
+        "award_relations": _domain_award_relations(domain),
+    }
+    blob = json.dumps(payload, sort_keys=True, ensure_ascii=True, default=str)
+    return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:12]
+
+
+def build_comparison(domain: str) -> dict[str, Any]:
+    site = _load_site()
+    corpus = corpus_distribution(domain)
+    patterns = pattern_distribution(domain)
+    systems = rls_profiles(domain)
+    awards = award_interaction_distribution(domain)
+    return {
+        "population": {
+            "domain": domain,
+            "ddi_cases": corpus["n_cases"],
+            "rls_systems": systems["n_systems"],
+            "award_relations": awards["denominator"],
+            "snapshot_date": datetime.now(timezone.utc).date().isoformat(),
+            "methodology_version": site.get("methodology_version"),
+            "rls_version": site.get("rls_version"),
+        },
+        "corpus_snapshot": _snapshot_id(domain, site),
+        "limitations": [
+            "The corpus is purposively built around recognition-gap cases; it is not a representative sample of the field.",
+            "Corpus frequency is not field prevalence.",
+            "Relations describe what the record connects, not why an outcome occurred.",
+            "Denominators differ by layer: DDI cases, RLS systems, and award relations are distinct populations.",
+        ],
+        "observations": {
+            "corpus_distribution": corpus,
+            "structural_patterns": patterns,
+            "recognition_system_profiles": systems,
+            "award_interactions": awards,
+        },
+    }
+
+
+def _fmt(v: Any) -> str:
+    if isinstance(v, float):
+        return f"{v:.1f}".rstrip("0").rstrip(".")
+    return str(v)
+
+
+def print_report(result: dict[str, Any]) -> None:
+    pop = result["population"]
+    print("ChampionsAwards - Domain comparison (observations only)")
+    print("=" * 58)
+    print(f"Comparison population: {pop['domain']}")
+    print(f"  DDI cases: {pop['ddi_cases']} | RLS systems: {pop['rls_systems']} | award relations: {pop['award_relations']}")
+    print(f"  methodology {pop['methodology_version']} / {pop['rls_version']} | snapshot {result['corpus_snapshot']} | {pop['snapshot_date']}")
+
+    c = result["observations"]["corpus_distribution"]
+    print(f"\nCorpus distribution (n={c['n_cases']})")
+    print(f"  median DDI {_fmt(c['median_ddi'])} | median observed {_fmt(c['median_observed_recognition'])} | median gap {_fmt(c['median_gap'])}")
+    print(f"  gap min {_fmt(c['gap_min'])} Q1 {_fmt(c['gap_q1'])} Q3 {_fmt(c['gap_q3'])} max {_fmt(c['gap_max'])} (IQR {_fmt(c['gap_iqr'])})")
+    print(f"  DDI bands: {c['ddi_band_counts']}")
+    print(f"  gap bands: {c['gap_band_counts']}")
+
+    p = result["observations"]["structural_patterns"]
+    print(f"\nStructural patterns (denominator {p['denominator']} {p['denominator_meaning']})")
+    for pat in p["patterns"]:
+        print(f"  {pat['pattern']}: {pat['support']}/{pat['denominator']} ({pat['corpus_percentage']}% of this corpus) [{pat['status']}]")
+    print("  (corpus frequency, not estimated prevalence in the field)")
+
+    s = result["observations"]["recognition_system_profiles"]
+    print(f"\nRecognition-system profiles (n={s['n_systems']}, median RLS {_fmt(s['median_composite'])}, range {_fmt(s['composite_min'])}-{_fmt(s['composite_max'])})")
+    for pr in s["profiles"]:
+        print(f"  {pr['title']}: RLS {pr['composite']} [{pr['band']}] hi={pr['highest_dimension']} lo={pr['lowest_dimension']}")
+    print("  dimension spread (max-min across systems):")
+    for k, sp in s["dimension_spread"].items():
+        print(f"    {k}: {sp['min']}-{sp['max']} (spread {sp['spread']})")
+
+    a = result["observations"]["award_interactions"]
+    print(f"\nAward interactions (denominator {a['denominator']} {a['denominator_meaning']})")
+    for d in a["distribution"]:
+        print(f"  {d['interaction_type']}: {d['count']}/{d['denominator']}")
+
+
+def main() -> None:
+    result = build_comparison("physics-astronomy")
+    print_report(result)
+    # Machine-readable artifact (regenerated each build; deterministic content).
+    out_dir = DATA.parent.parent / "public" / "data"
+    try:
+        out_dir.mkdir(parents=True, exist_ok=True)
+        with (out_dir / "physics-astronomy-comparison.json").open("w", encoding="utf-8") as f:
+            json.dump(result, f, indent=2, sort_keys=True)
+    except OSError:
+        pass  # standalone runs without a build output directory are fine
+
+
+if __name__ == "__main__":
+    main()
