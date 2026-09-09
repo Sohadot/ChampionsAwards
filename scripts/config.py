@@ -356,6 +356,28 @@ AWARD_ARCHITECTURE_FIELDS: Final[tuple[tuple[str, str], ...]] = (
 
 AWARD_ARCHITECTURE_KEYS: Final[frozenset[str]] = frozenset(k for k, _ in AWARD_ARCHITECTURE_FIELDS)
 
+# Corpus-relation semantics. `architecture_element` says WHICH part of the award
+# apparatus a relation touches; `interaction_type` says WHAT the record shows
+# happened. Keeping them separate stops a descriptive relation from being read
+# as a causal one. A relation may state what the record connects; it may not
+# state why the outcome occurred unless the record establishes causation.
+INTERACTION_TYPES: Final[frozenset[str]] = frozenset(
+    {
+        "documented-award-outcome",   # a specific award decision on record (who was/was not a laureate)
+        "documented-nomination",      # a nomination on record (rare; nominations are sealed 50 years)
+        "eligibility-constraint",     # a formal eligibility rule that bears on the case
+        "sharing-constraint",         # the maximum-laureates rule bears on the case
+        "posthumous-constraint",      # the no-posthumous rule bears on the case
+        "archival-selection-record",  # an archival record of the selection/deliberation
+        "historical-non-award",       # the record shows no award was made (a negative, not a nomination claim)
+        "analytical-touchpoint",      # our analytical link, explicitly not a documented event
+    }
+)
+
+
+def is_valid_interaction_type(value: object) -> bool:
+    return isinstance(value, str) and value in INTERACTION_TYPES
+
 
 def get_status(item: dict) -> str:
     raw = item.get("status")

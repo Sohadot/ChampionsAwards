@@ -129,6 +129,27 @@ When all of the above hold, the domain is declared, in this document:
 This gives the project **versioned knowledge maturity** — not "a site with N
 pages" but "Physics recognition system — mapped; Biology — mapped; …".
 
+## Corpus-relation semantics & denominator discipline
+
+An award page's third layer links cases to the award's structure. Two rules keep
+this from drifting into causal-looking statistics:
+
+- **Descriptive, not causal.** A relation states *what the record connects*, never
+  *why* an outcome occurred, unless the record establishes causation. Each
+  relation separates `architecture_element` (which part of the apparatus) from
+  `interaction_type` (what the record shows — a controlled vocabulary), carries a
+  `claim`, and is either anchored to a record-grade source or backed by a
+  documented exception. "Not among the 1957 laureates" is allowed; "excluded
+  because the committee favoured theory" is a synthesis hypothesis, not a corpus
+  fact.
+- **Corpus frequency ≠ field prevalence.** The corpus is purposively built around
+  recognition-gap cases, so counts within it describe the dataset, not the field.
+  Every computed finding must show its denominator and carry this caveat: *"N of
+  the M cases in the governed corpus exhibit X"*, never *"X dominates physics."*
+
+These hold for the coming comparison layer too: it reports distributions with
+denominators, and never infers prevalence or causation from descriptive relations.
+
 ## Cycle order
 
 1. **Cycle 01 — Physics & Astronomy** *(open)*

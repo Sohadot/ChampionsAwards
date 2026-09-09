@@ -136,19 +136,26 @@ def attach_award_architecture(item: dict[str, Any], case_index: dict[str, dict[s
         counts: dict[str, int] = {}
         for rel in relations:
             element = rel.get("architecture_element")
+            interaction = rel.get("interaction_type")
             info = case_index.get(rel.get("case"), {})
             rel_rows.append(
                 {
                     "case_title": info.get("title", rel.get("case")),
                     "case_url": info.get("url", "#"),
                     "element_label": ARCH_LABELS.get(element, element),
-                    "note": rel.get("note"),
+                    "interaction": interaction,
+                    "interaction_label": (interaction or "").replace("-", " "),
+                    "claim": rel.get("claim"),
+                    "anchor": rel.get("record_anchor") or [],
+                    "has_exception": bool(rel.get("exception")),
                 }
             )
-            counts[element] = counts.get(element, 0) + 1
+            # The comparison variable is the interaction type (homogeneous in
+            # meaning), not the architecture element.
+            counts[interaction] = counts.get(interaction, 0) + 1
         item["corpus_relation_rows"] = rel_rows
         item["relation_counts"] = sorted(
-            ({"label": ARCH_LABELS.get(k, k), "count": v} for k, v in counts.items()),
+            ({"label": (k or "").replace("-", " "), "count": v} for k, v in counts.items()),
             key=lambda r: (-r["count"], r["label"]),
         )
 

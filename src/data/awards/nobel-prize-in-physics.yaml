@@ -64,23 +64,39 @@ key_facts:
     source: 4
 corpus_relations:
   - case: chien-shiung-wu
-    architecture_element: selection_body
-    note: The 1957 Physics Prize was awarded to the two theorists who predicted parity non-conservation; Wu, who led the confirming experiment, was not among the laureates.
+    architecture_element: decision_stages
+    interaction_type: documented-award-outcome
+    record_anchor: [5]
+    claim: The 1957 Physics Prize was awarded to Tsung-Dao Lee and Chen Ning Yang; Wu, who led the confirming experiment, was not among the laureates.
   - case: jocelyn-bell-burnell
-    architecture_element: selection_body
-    note: The 1974 Physics Prize for work connected to the pulsar discovery was awarded to Hewish and Ryle; the graduate student who first identified the signal was not among the laureates.
+    architecture_element: decision_stages
+    interaction_type: documented-award-outcome
+    record_anchor: [7]
+    claim: The 1974 Physics Prize was awarded to Martin Ryle and Antony Hewish; the graduate student who first identified the pulsar signal was not among the laureates.
   - case: george-zweig
-    architecture_element: selection_body
-    note: The 1969 Physics Prize recognised the quark-model work associated with Gell-Mann; Zweig, who independently proposed the model, was not among the laureates.
+    architecture_element: decision_stages
+    interaction_type: documented-award-outcome
+    record_anchor: [6]
+    claim: The 1969 Physics Prize was awarded to Murray Gell-Mann for the classification of elementary particles; Zweig, who independently proposed the quark model, was not among the laureates.
   - case: ralph-alpher
-    architecture_element: eligibility
-    note: The 1978 Physics Prize recognised the detection of the cosmic microwave background; the 1948 prediction by Alpher and Herman was not among the recognised work.
-  - case: satyendra-nath-bose
-    architecture_element: nomination
-    note: Although Bose-Einstein statistics and the boson carry his name, Bose was never awarded a Nobel Prize in Physics.
+    architecture_element: decision_stages
+    interaction_type: documented-award-outcome
+    record_anchor: [8]
+    claim: The cosmic-microwave-background half of the 1978 Physics Prize was awarded to Penzias and Wilson for the detection; the 1948 prediction by Alpher and Herman was not among the recognised work.
   - case: vera-rubin
     architecture_element: posthumous_rule
-    note: Rubin's dark-matter evidence was not recognised by a Physics Prize in her lifetime; after her death in 2016 the no-posthumous rule forecloses it.
+    interaction_type: posthumous-constraint
+    record_anchor: [2]
+    claim: Under the no-posthumous rule in the Statutes, a Physics Prize cannot be awarded to Rubin after her death in 2016; she received none in her lifetime.
+  - case: satyendra-nath-bose
+    architecture_element: eligibility
+    interaction_type: historical-non-award
+    exception:
+      search_date: '2026-09-09'
+      search_note: Searched the Nobel Prize records for any Physics award to Bose.
+      reason: The record shows no Physics Prize awarded to Bose; this is a negative fact, and nomination records are sealed for fifty years, so no positive record can be cited.
+      best_source: 4
+    claim: The record shows no Nobel Prize in Physics awarded to Bose.
 sources:
   - title: Nomination and selection of physics laureates (who may nominate; fifty-year secrecy)
     publisher: The Nobel Foundation (nobelprize.org)
@@ -97,4 +113,20 @@ sources:
   - title: Nobel Prize facts (first awarded 1901; years withheld)
     publisher: The Nobel Foundation (nobelprize.org)
     url: https://www.nobelprize.org/prizes/facts/nobel-prize-facts/
+    type: institutional
+  - title: The Nobel Prize in Physics 1957 (Yang and Lee)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/physics/1957/summary/
+    type: institutional
+  - title: The Nobel Prize in Physics 1969 (Gell-Mann)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/physics/1969/summary/
+    type: institutional
+  - title: The Nobel Prize in Physics 1974 (Ryle and Hewish)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/physics/1974/summary/
+    type: institutional
+  - title: The Nobel Prize in Physics 1978 (Kapitsa; Penzias and Wilson)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/physics/1978/summary/
     type: institutional

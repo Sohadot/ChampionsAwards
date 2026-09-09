@@ -90,15 +90,15 @@
       <h2>Where our cases meet this structure</h2>
     </div>
     <p class="muted small" style="max-width:680px;margin-top:-8px;">
-      This layer is our analysis, kept separate from the award's own rules and record. Each row ties a
-      documented case to one architecture element; the relation is evidenced by that case's own audited
-      record, and states no cause beyond it.
+      This layer is our analysis, kept separate from the award's rules and record. Each relation names
+      what the record connects (its interaction type) and which part of the apparatus it touches, is
+      anchored to a record or a documented exception, and states no cause beyond the record.
     </p>
 
     {% if item.relation_counts %}
-    <div class="table-wrap" style="margin-bottom:18px;">
+    <div class="table-wrap" style="margin-bottom:6px;">
       <table class="data">
-        <thead><tr><th>Architecture element</th><th class="num">Related cases (computed)</th></tr></thead>
+        <thead><tr><th>Interaction type (computed)</th><th class="num">Relations</th></tr></thead>
         <tbody>
           {% for c in item.relation_counts %}
           <tr><td>{{ c.label }}</td><td class="num">{{ c.count }}</td></tr>
@@ -106,14 +106,25 @@
         </tbody>
       </table>
     </div>
+    <p class="small muted" style="margin-bottom:18px;">
+      Counts describe relations in this governed corpus, which is purposively built around
+      recognition-gap cases — corpus frequency is not field prevalence.
+    </p>
     {% endif %}
 
     <div class="grid two">
       {% for rel in item.corpus_relation_rows %}
       <article class="card">
         <h3><a href="{{ rel.case_url }}">{{ rel.case_title }}</a></h3>
-        <p class="small" style="color:var(--accent);margin:0 0 6px;">{{ rel.element_label }}</p>
-        <p>{{ rel.note }}</p>
+        <p class="small" style="margin:0 0 6px;">
+          <span style="color:var(--accent);">{{ rel.interaction_label }}</span>
+          <span class="muted"> · {{ rel.element_label }}</span>
+        </p>
+        <p>{{ rel.claim }}</p>
+        <p class="small muted" style="margin:6px 0 0;">
+          {% if rel.anchor %}Record anchor: {% for ref in rel.anchor %}<a class="cite" href="#source-{{ ref }}">[{{ ref }}]</a>{% endfor %}
+          {% else %}Documented exception (no positive record available){% endif %}
+        </p>
       </article>
       {% endfor %}
     </div>
