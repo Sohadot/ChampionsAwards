@@ -1,0 +1,100 @@
+title: Nobel Prize in Physics
+slug: nobel-prize-in-physics
+status: published
+last_reviewed: 2026-09-09
+domain: physics-astronomy
+summary: The Nobel Prize in Physics is a closed-nomination, committee-screened award decided by the Royal Swedish Academy of Sciences, with a three-laureate limit, a fifty-year secrecy rule, no posthumous awards, and no appeal - an anatomy of a recognition mechanism rather than a hall of fame.
+introduction: This entry reads the Physics prize as a mechanism. It separates what the rules formally say (architecture), what the historical record shows (operation), and where ChampionsAwards cases touch that structure (our analysis) - keeping the three strictly apart.
+architecture:
+  granting_body: The Royal Swedish Academy of Sciences awards the Nobel Prize in Physics, within the framework of the Nobel Foundation.
+  governing_documents:
+    - Alfred Nobel's will (1895)
+    - Statutes of the Nobel Foundation
+  eligibility: Awarded for a discovery or invention in the field of physics; a candidate must be nominated, and self-nomination is not accepted.
+  nomination: Only invited, qualified nominators may propose candidates - members of the Academy, tenured physics professors in the Nordic countries, holders of chairs the Academy selects, prior laureates, and others the Academy chooses to invite. Nomination is not open to the public.
+  selection_body: The Nobel Committee for Physics screens the nominations, commissions expert assessments, and recommends laureates to the Academy.
+  decision_stages:
+    - Invited nominations submitted
+    - Committee screening and expert evaluation
+    - Committee recommendation
+    - Final decision by the Royal Swedish Academy of Sciences
+  sharing_rule: A prize may be divided among at most three laureates and among no more than two different works.
+  posthumous_rule: A prize is not awarded posthumously, unless the laureate died after the award decision was announced.
+  secrecy: Information on nominations - nominees, nominators, investigations and opinions - is sealed for fifty years.
+  withholding: If none of the works under consideration meets the criteria, the prize money may be reserved to the following year or withheld.
+  finality: A decision of the prize-awarding body on the award of a prize may not be appealed.
+provenance:
+  architecture:granting_body:
+    record_anchor: [3]
+    basis: awarding-institution-record
+  architecture:governing_documents:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  architecture:eligibility:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:nomination:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:selection_body:
+    record_anchor: [3]
+    basis: awarding-institution-record
+  architecture:decision_stages:
+    record_anchor: [3]
+    basis: awarding-institution-record
+  architecture:sharing_rule:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  architecture:posthumous_rule:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  architecture:secrecy:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:withholding:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  architecture:finality:
+    record_anchor: [2]
+    basis: awarding-institution-record
+key_facts:
+  - fact: The Nobel Prize in Physics was first awarded in 1901.
+    source: 4
+  - fact: In several years no Physics prize was awarded, the decision being reserved or the prize withheld.
+    source: 4
+corpus_relations:
+  - case: chien-shiung-wu
+    architecture_element: selection_body
+    note: The 1957 Physics Prize was awarded to the two theorists who predicted parity non-conservation; Wu, who led the confirming experiment, was not among the laureates.
+  - case: jocelyn-bell-burnell
+    architecture_element: selection_body
+    note: The 1974 Physics Prize for work connected to the pulsar discovery was awarded to Hewish and Ryle; the graduate student who first identified the signal was not among the laureates.
+  - case: george-zweig
+    architecture_element: selection_body
+    note: The 1969 Physics Prize recognised the quark-model work associated with Gell-Mann; Zweig, who independently proposed the model, was not among the laureates.
+  - case: ralph-alpher
+    architecture_element: eligibility
+    note: The 1978 Physics Prize recognised the detection of the cosmic microwave background; the 1948 prediction by Alpher and Herman was not among the recognised work.
+  - case: satyendra-nath-bose
+    architecture_element: nomination
+    note: Although Bose-Einstein statistics and the boson carry his name, Bose was never awarded a Nobel Prize in Physics.
+  - case: vera-rubin
+    architecture_element: posthumous_rule
+    note: Rubin's dark-matter evidence was not recognised by a Physics Prize in her lifetime; after her death in 2016 the no-posthumous rule forecloses it.
+sources:
+  - title: Nomination and selection of physics laureates (who may nominate; fifty-year secrecy)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/nomination/physics/
+    type: institutional
+  - title: Statutes of the Nobel Foundation (sharing, posthumous, withholding, finality)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/about/statutes-of-the-nobel-foundation/
+    type: institutional
+  - title: The nomination and decision process for the Nobel Prizes
+    publisher: Royal Swedish Academy of Sciences (kva.se)
+    url: https://www.kva.se/en/prizes/nobel-prizes/the-nomination-and-decision-process-nobel/
+    type: institutional
+  - title: Nobel Prize facts (first awarded 1901; years withheld)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/facts/nobel-prize-facts/
+    type: institutional

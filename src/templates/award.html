@@ -9,37 +9,120 @@
 {% block content %}
 <section class="page-hero">
   <div class="container narrow">
-    <p class="eyebrow">Award Entry</p>
+    <p class="eyebrow">Award — anatomy of a recognition mechanism</p>
     <h1>{{ item.title }}</h1>
     <p class="lead">{{ item.summary }}</p>
   </div>
 </section>
 
+{% if item.introduction or item.legitimacy_question or item.structural_notes %}
 <section class="section">
   <div class="container narrow prose">
-    {% if item.introduction %}
-    <h2>Overview</h2>
-    <p>{{ item.introduction }}</p>
-    {% endif %}
+    {% if item.introduction %}<h2>Overview</h2><p>{{ item.introduction }}</p>{% endif %}
+    {% if item.legitimacy_question %}<h2>Legitimacy question</h2><p>{{ item.legitimacy_question }}</p>{% endif %}
+    {% if item.structural_notes %}<h2>Structural notes</h2><p>{{ item.structural_notes }}</p>{% endif %}
+  </div>
+</section>
+{% endif %}
 
-    {% if item.legitimacy_question %}
-    <h2>Legitimacy question</h2>
-    <p>{{ item.legitimacy_question }}</p>
-    {% endif %}
+{% if item.architecture_rows %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Layer 1 · Formal architecture</p>
+      <h2>What the rules say</h2>
+    </div>
+    <p class="muted small" style="max-width:640px;margin-top:-8px;">
+      The award's own governing rules. Each row is a factual claim anchored to a record-grade
+      source; the reference number links to that source below.
+    </p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Element</th><th>Rule</th><th>Anchor</th></tr></thead>
+        <tbody>
+          {% for row in item.architecture_rows %}
+          <tr>
+            <td>{{ row.label }}</td>
+            <td>
+              {% if row.is_list %}
+                <ul style="margin:0;padding-left:18px;">{% for v in row.value %}<li>{{ v }}</li>{% endfor %}</ul>
+              {% else %}{{ row.value }}{% endif %}
+            </td>
+            <td class="small">
+              {% for ref in row.anchor %}<a class="cite" href="#source-{{ ref }}">[{{ ref }}]</a>{% endfor %}
+              {% if row.basis %}<div class="muted" style="margin-top:2px;">{{ row.basis }}</div>{% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endif %}
 
-    {% if item.structural_notes %}
-    <h2>Structural notes</h2>
-    <p>{{ item.structural_notes }}</p>
-    {% endif %}
+{% if item.key_facts %}
+<section class="section">
+  <div class="container narrow prose">
+    <div class="section-heading">
+      <p class="eyebrow">Layer 2 · Historical operation</p>
+      <h2>What the record shows</h2>
+    </div>
+    <ul class="key-facts">
+      {% for kf in item.key_facts %}
+      <li>
+        {{ kf.fact }}
+        {% if kf.source and item.sources and kf.source <= item.sources|length %}
+        <a class="cite" href="#source-{{ kf.source }}">[{{ kf.source }}]</a>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
 
-    <h2>Cluster position</h2>
-    <p>
-      This entry belongs to the awards cluster, where individual prizes are examined not merely
-      as brands of prestige, but as systems of symbolic distribution, institutional power, and
-      recognition consequence.
+{% if item.corpus_relation_rows %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Layer 3 · Corpus interaction · ChampionsAwards analysis</p>
+      <h2>Where our cases meet this structure</h2>
+    </div>
+    <p class="muted small" style="max-width:680px;margin-top:-8px;">
+      This layer is our analysis, kept separate from the award's own rules and record. Each row ties a
+      documented case to one architecture element; the relation is evidenced by that case's own audited
+      record, and states no cause beyond it.
     </p>
 
-    {% include "_body.html" %}
+    {% if item.relation_counts %}
+    <div class="table-wrap" style="margin-bottom:18px;">
+      <table class="data">
+        <thead><tr><th>Architecture element</th><th class="num">Related cases (computed)</th></tr></thead>
+        <tbody>
+          {% for c in item.relation_counts %}
+          <tr><td>{{ c.label }}</td><td class="num">{{ c.count }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+
+    <div class="grid two">
+      {% for rel in item.corpus_relation_rows %}
+      <article class="card">
+        <h3><a href="{{ rel.case_url }}">{{ rel.case_title }}</a></h3>
+        <p class="small" style="color:var(--accent);margin:0 0 6px;">{{ rel.element_label }}</p>
+        <p>{{ rel.note }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section">
+  <div class="container narrow prose">
     {% include "_sources.html" %}
   </div>
 </section>
