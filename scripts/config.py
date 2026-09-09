@@ -214,13 +214,19 @@ DOMAINS: Final[dict[str, str]] = {
 # Published scored entries must be placed in a domain (no orphans).
 REQUIRE_DOMAIN: Final[bool] = True
 
+# Pattern lifecycle: a structural cause is only "established" in a domain once
+# at least this many independent cases in that domain exhibit it. A pattern
+# supported by a single case is "emergent" and does NOT count toward the DoD.
+# This prevents inventing labels just to reach a threshold.
+PATTERN_ESTABLISHED_MIN: Final[int] = 2
+
 # Definition of Done for declaring a domain "mature v1.0". A domain is closed
 # only when every threshold is met; domain_status.py reports progress and the
 # criteria that remain. These are practical thresholds, not scientific limits.
 DOMAIN_DOD: Final[dict[str, int]] = {
     "ddi_cases": 10,      # individual contributions scored with the DDI
     "rls_systems": 3,     # recognition systems scored with the RLS
-    "patterns": 4,        # distinct structural-cause concepts exhibited
+    "patterns": 4,        # ESTABLISHED structural-cause concepts (>= PATTERN_ESTABLISHED_MIN cases)
 }
 
 

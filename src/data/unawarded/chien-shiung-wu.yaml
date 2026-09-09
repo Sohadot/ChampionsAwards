@@ -14,6 +14,14 @@ assessment:
   breadth: 58
   attribution: 58
   observed_recognition: 60
+  evidence:
+    impact: [1]
+    verification: [1]
+    uniqueness: [1]
+    durability: [1]
+    breadth: [1]
+    attribution: [1, 2]
+    observed_recognition: [1, 2]
   rationale:
     impact: The result overturned an assumed symmetry and reshaped particle physics.
     verification: The Wu experiment is thoroughly documented in the physics literature.
@@ -44,3 +52,4 @@ sources:
 domain: physics-astronomy
 patterns:
   - credit-misattribution
+  - theory-experiment-asymmetry

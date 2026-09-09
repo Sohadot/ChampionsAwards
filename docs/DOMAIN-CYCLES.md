@@ -49,7 +49,32 @@ Measured thresholds (`DOMAIN_DOD` in `scripts/config.py`):
 
 - **DDI cases ≥ 10** — high-quality, sourced individual contributions.
 - **RLS systems ≥ 3** — relevant recognition systems scored.
-- **Structural-cause concepts ≥ 4** — distinct patterns exhibited by the cases.
+- **Established structural-cause patterns ≥ 4** — see the pattern lifecycle below.
+
+### Pattern lifecycle
+
+A structural cause is not counted just because it is named once. Each pattern in
+a domain is:
+
+- **emergent** — exhibited by a single documented case; recorded, but **not**
+  counted toward the DoD; or
+- **established** — exhibited by at least `PATTERN_ESTABLISHED_MIN` (2)
+  independent cases in that domain.
+
+Only established patterns count. This prevents inventing four labels to reach
+4/4; a real structural pattern must actually recur. Patterns are surfaced by
+auditing the cases, never imposed on them.
+
+### Score-level provenance
+
+Reproducibility of the formula is not enough. Every dimension score — and
+`observed_recognition` — carries an `evidence` list pointing to specific
+`sources`, so a reader can follow the full chain:
+
+> source → factual evidence → dimension judgment → weighted score → gap → rank.
+
+The quality gate requires this evidence on every published assessment; fact,
+assessment, and interpretation stay visibly separate.
 
 Qualitative criteria (reviewed, not auto-counted):
 

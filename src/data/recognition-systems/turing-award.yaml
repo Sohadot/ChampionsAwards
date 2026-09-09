@@ -12,6 +12,12 @@ rls_assessment:
   track_record: 85
   transparency: 62
   independence: 85
+  evidence:
+    process: [1]
+    breadth: [1, 2]
+    track_record: [2]
+    transparency: [1]
+    independence: [1]
   rationale:
     process: Selection is run by ACM committees under established criteria.
     breadth: The award is confined to computing and has historically skewed toward a small set of institutions and regions.

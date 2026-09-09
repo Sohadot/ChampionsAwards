@@ -24,6 +24,10 @@ must satisfy:
 - **Review date.** A `last_reviewed` field in ISO `YYYY-MM-DD` form.
 - **Justified scores.** Any `assessment` / `rls_assessment` block must include a
   `rationale` for its dimensions, and every dimension must be a number 0–100.
+- **Score-level provenance.** A published assessment must include an `evidence`
+  map that ties every dimension — and `observed_recognition` — to specific
+  `sources` by 1-based index, so each judgment is traceable
+  (source → evidence → judgment → score → gap → rank).
 - **Computable gap.** A published DDI `assessment` must state a numeric
   `observed_recognition`, so its recognition gap is defined and the Recognition
   Gap Index is complete.

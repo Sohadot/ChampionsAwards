@@ -12,6 +12,12 @@ rls_assessment:
   track_record: 82
   transparency: 62
   independence: 85
+  evidence:
+    process: [1]
+    breadth: [1, 2]
+    track_record: [2]
+    transparency: [1]
+    independence: [1]
   rationale:
     process: Selection is run by International Mathematical Union committees under established criteria.
     breadth: The under-40 rule and concentration in a small number of elite institutions narrow representational breadth.

@@ -13,6 +13,14 @@ assessment:
   breadth: 90
   attribution: 70
   observed_recognition: 45
+  evidence:
+    impact: [1, 2]
+    verification: [1, 2]
+    uniqueness: [1, 2]
+    durability: [1, 2]
+    breadth: [1]
+    attribution: [1]
+    observed_recognition: [1]
   rationale:
     impact: Polyphase alternating current and the induction motor reshaped how electrical power is generated and distributed worldwide.
     verification: Contributions are documented in patents and independent engineering histories, not only in self-account.

@@ -11,6 +11,7 @@ from config import (
     DATA,
     DOMAIN_DOD,
     DOMAINS,
+    PATTERN_ESTABLISHED_MIN,
     RLS_CLUSTERS,
     compute_ddi,
     compute_rls,
@@ -70,11 +71,15 @@ def domain_report(domain: str) -> dict[str, Any]:
     }
 
 
+def established_patterns(patterns: Counter[str]) -> list[str]:
+    return [p for p, n in patterns.items() if n >= PATTERN_ESTABLISHED_MIN]
+
+
 def dod_status(report: dict[str, Any]) -> tuple[bool, list[str]]:
     checks = {
         "ddi_cases": report["ddi_cases"],
         "rls_systems": report["rls_systems"],
-        "patterns": len(report["patterns"]),
+        "patterns": len(established_patterns(report["patterns"])),
     }
     pending: list[str] = []
     for key, threshold in DOMAIN_DOD.items():
@@ -97,8 +102,12 @@ def main() -> None:
         )
         print(f"  RLS systems: {r['rls_systems']}  (median RLS {r['median_rls']})")
         if r["patterns"]:
-            dist = ", ".join(f"{p} x{n}" for p, n in r["patterns"].most_common())
-            print(f"  Structural causes ({len(r['patterns'])}): {dist}")
+            est = set(established_patterns(r["patterns"]))
+            dist = ", ".join(
+                f"{p} x{n} [{'established' if p in est else 'emergent'}]"
+                for p, n in r["patterns"].most_common()
+            )
+            print(f"  Structural causes ({len(est)} established / {len(r['patterns'])} total): {dist}")
         else:
             print("  Structural causes (0): none tagged")
         if pending:

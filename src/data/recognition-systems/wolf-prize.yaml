@@ -12,6 +12,12 @@ rls_assessment:
   track_record: 82
   transparency: 58
   independence: 76
+  evidence:
+    process: [1]
+    breadth: [1, 2]
+    track_record: [2]
+    transparency: [1]
+    independence: [1]
   rationale:
     process: International juries select recipients under established criteria.
     breadth: Coverage spans multiple sciences and the arts, broadening representation across fields.

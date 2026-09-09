@@ -14,6 +14,14 @@ assessment:
   breadth: 62
   attribution: 60
   observed_recognition: 38
+  evidence:
+    impact: [1]
+    verification: [1]
+    uniqueness: [1]
+    durability: [1]
+    breadth: [1]
+    attribution: [1]
+    observed_recognition: [1]
   rationale:
     impact: The period-luminosity relation is a cornerstone of the cosmic distance ladder.
     verification: Her contribution is documented in the astronomical record and independent histories.
