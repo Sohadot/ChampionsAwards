@@ -6,16 +6,23 @@ from typing import Any
 import yaml
 
 from config import (
+    ASSESSMENT_CLUSTERS,
     CLUSTERS,
     DATA,
     REQUIRE_LAST_REVIEWED,
+    REQUIRE_OBSERVED_RECOGNITION,
     REQUIRE_SOURCES,
+    RLS_CLUSTERS,
     find_banned_terms,
     get_status,
     is_iso_date,
     is_published,
     normalize_slug,
 )
+
+
+def _is_number(value) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 # Minimum sourced facts a published entry must carry, so "published" always
 # means "load-bearing and checkable", never a bare stub.
@@ -37,6 +44,19 @@ def enforce_publication_policy(cluster_name: str, item: dict[str, Any], source_f
     # Neutrality discipline applies to every entry, published or draft.
     for hit in find_banned_terms(item):
         errors.append(f"{ref}: banned unscoped superlative in {hit} (see /protocol)")
+
+    # Type boundaries are structural: a DDI assessment belongs only on individual
+    # contributions, an RLS assessment only on systems. Enforced regardless of status.
+    if "assessment" in item and cluster_name not in ASSESSMENT_CLUSTERS:
+        errors.append(
+            f"{ref}: a DDI 'assessment' is only valid in {sorted(ASSESSMENT_CLUSTERS)} "
+            f"(the DDI scores individuals, not this cluster)"
+        )
+    if "rls_assessment" in item and cluster_name not in RLS_CLUSTERS:
+        errors.append(
+            f"{ref}: an 'rls_assessment' is only valid in {sorted(RLS_CLUSTERS)} "
+            f"(the RLS scores systems, not this cluster)"
+        )
 
     if not is_published(item):
         return errors
@@ -64,6 +84,16 @@ def enforce_publication_policy(cluster_name: str, item: dict[str, Any], source_f
             rationale = assessment.get("rationale")
             if not isinstance(rationale, dict) or not rationale:
                 errors.append(f"{ref}: a published {block} must include a 'rationale' for its scores")
+
+    # A published DDI assessment must state observed_recognition so its
+    # recognition gap is computable and the Gap Index is complete.
+    if REQUIRE_OBSERVED_RECOGNITION:
+        ddi = item.get("assessment")
+        if isinstance(ddi, dict) and not _is_number(ddi.get("observed_recognition")):
+            errors.append(
+                f"{ref}: a published DDI assessment must include a numeric 'observed_recognition' "
+                f"(required for the Recognition Gap Index)"
+            )
 
     return errors
 
