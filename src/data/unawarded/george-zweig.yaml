@@ -1,0 +1,53 @@
+title: George Zweig
+slug: george-zweig
+status: published
+last_reviewed: 2026-09-09
+domain: physics-astronomy
+patterns:
+  - credit-misattribution
+  - institutional-gatekeeping
+summary: George Zweig independently proposed the quark model in 1964, which he called aces, but his manuscript was obstructed from journal publication at CERN, and the credit for the idea attached largely to Murray Gell-Mann.
+introduction: Working at CERN in 1964, Zweig arrived at the same underlying constituent model as Gell-Mann, yet institutional resistance to publishing it shaped how the discovery entered the record.
+omission_case: His case matters because it combines a simultaneous discovery with active obstruction of publication, making it a clear study of how control over channels decides credit.
+structural_reason: Recognition was shaped by pressure over where and whether to publish, by the absence of an established reputation, and by the concentration of credit on the better-known co-originator.
+assessment:
+  impact: 80
+  verification: 85
+  uniqueness: 62
+  durability: 88
+  breadth: 58
+  attribution: 45
+  observed_recognition: 50
+  evidence:
+    impact: [1, 2]
+    verification: [1]
+    uniqueness: [1, 2]
+    durability: [1]
+    breadth: [1]
+    attribution: [1, 2]
+    observed_recognition: [1]
+  rationale:
+    impact: The quark model is foundational to the modern understanding of matter.
+    verification: The episode is documented in CERN's own historical accounts.
+    uniqueness: The discovery was simultaneous with Gell-Mann's, which lowers strict counterfactual uniqueness.
+    durability: Quarks remain a settled foundation of particle physics.
+    breadth: The benefit is scientific and concentrated within physics.
+    attribution: Credit concentrated on the better-known co-originator despite the independent derivation.
+    observed_recognition: Recognition arrived later and remained uneven relative to the contribution.
+key_facts:
+  - fact: In 1964 Zweig independently proposed a constituent (quark) model he called aces, as a CERN preprint.
+    source: 1
+  - fact: His manuscript was obstructed from journal publication at CERN, and a planned seminar was cancelled.
+    source: 1
+analysis:
+  - heading: When the channel decides the credit
+    body: "Zweig's gap has two layers - a simultaneous discovery that shared credit, and active gatekeeping that delayed his version entering the literature. The second is the sharper point: when a gatekeeper controls whether and where work appears, priority is decided by access rather than by the contribution."
+sources:
+  - title: "K for KLOE... and Z for Zweig"
+    publisher: CERN Courier
+    url: https://cerncourier.com/a/k-for-kloe-and-z-for-zweig/
+    type: secondary
+  - title: "Nineteen sixty-four (the quark model and Zweig's aces)"
+    publisher: CERN Courier
+    url: https://cerncourier.com/nineteen-sixty-four/
+    type: secondary

@@ -1,0 +1,53 @@
+title: Cecilia Payne-Gaposchkin
+slug: cecilia-payne-gaposchkin
+status: published
+last_reviewed: 2026-09-09
+domain: physics-astronomy
+patterns:
+  - credit-misattribution
+  - institutional-exclusion
+summary: Cecilia Payne-Gaposchkin showed in her 1925 thesis that stars are composed overwhelmingly of hydrogen and helium, but she was pressured to describe her own result as almost certainly not real, and credit for the conclusion later attached substantially to a senior astronomer.
+introduction: Payne-Gaposchkin's doctoral work overturned assumptions about stellar composition, yet the recognition around it was shaped by senior opposition and by the constrained position of women in early twentieth-century astronomy.
+omission_case: Her case matters because the record shows both a contribution being publicly doubted by an authority and that authority later reaching the same conclusion and receiving much of the credit.
+structural_reason: Recognition was shaped by the deference demanded toward a senior figure and by the institutional limits placed on women at her observatory, which delayed her own standing for decades.
+assessment:
+  impact: 86
+  verification: 88
+  uniqueness: 76
+  durability: 90
+  breadth: 60
+  attribution: 52
+  observed_recognition: 46
+  evidence:
+    impact: [1, 2]
+    verification: [1]
+    uniqueness: [1]
+    durability: [1]
+    breadth: [1]
+    attribution: [1, 2]
+    observed_recognition: [1, 2]
+  rationale:
+    impact: The finding on stellar composition is foundational to astrophysics.
+    verification: Her thesis and the surrounding history are well documented.
+    uniqueness: The rigorous derivation of elemental abundances was distinctive for its time.
+    durability: The hydrogen-helium composition of stars is a settled result.
+    breadth: The benefit is scientific and broad within astrophysics.
+    attribution: A senior astronomer who initially opposed the result later received much of the credit.
+    observed_recognition: Her formal standing was delayed for decades despite the result's importance.
+key_facts:
+  - fact: In her 1925 thesis Payne-Gaposchkin concluded that stars are composed overwhelmingly of hydrogen and helium.
+    source: 1
+  - fact: A senior astronomer pressed her to qualify the result, then reached the same conclusion and was often credited for it.
+    source: 2
+analysis:
+  - heading: Resistance to the idea, then displaced credit
+    body: "Payne-Gaposchkin's gap combines two mechanisms the archive tracks separately - a result doubted and downplayed under senior pressure, and credit later flowing to that senior figure. Layered on institutional limits placed on women at her observatory, the case shows how opposition and displacement can compound."
+sources:
+  - title: Cecilia Payne-Gaposchkin - scientific biography
+    publisher: Science History Institute
+    url: https://www.sciencehistory.org/education/scientific-biographies/cecilia-payne-gaposchkin/
+    type: secondary
+  - title: "Cecilia Payne-Gaposchkin - the woman who found hydrogen in the stars"
+    publisher: Physics World
+    url: https://physicsworld.com/a/cecilia-payne-gaposchkin-the-woman-who-found-hydrogen-in-the-stars/
+    type: secondary
