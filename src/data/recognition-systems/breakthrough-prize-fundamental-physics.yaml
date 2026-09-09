@@ -1,0 +1,45 @@
+title: Breakthrough Prize in Fundamental Physics
+slug: breakthrough-prize-fundamental-physics
+status: published
+last_reviewed: 2026-09-09
+domains:
+  - physics-astronomy
+summary: The Breakthrough Prize in Fundamental Physics is a privately funded award established in 2012, distinctive for its open public nomination, a selection committee of previous laureates, and a discretionary Special Prize that can be given at any time.
+introduction: The prize offers a different legitimacy profile from older scientific honours - large, privately endowed, and procedurally unusual - which makes it a useful comparison case rather than another instance of the traditional model.
+power_structure: Authority rests on private philanthropic funding and on a committee of prior laureates, which grants independence from state or professional-society control but concentrates influence among past winners and founders.
+selection_logic: Winners are chosen by a committee of previous laureates from candidates nominated through an open online process, and a Special Prize may be awarded outside the ordinary annual cycle and is not limited to recent discoveries.
+rls_assessment:
+  process: 68
+  breadth: 60
+  track_record: 68
+  transparency: 66
+  independence: 60
+  evidence:
+    process: [1]
+    breadth: [1, 2]
+    track_record: [2]
+    transparency: [1]
+    independence: [1]
+  rationale:
+    process: An open nomination process and a laureate committee are established, but a discretionary Special Prize can bypass the ordinary cycle, which tempers procedural consistency.
+    breadth: The prize is confined to fundamental physics, though open nomination widens who may be put forward.
+    track_record: Recipients are eminent, but the prize is young (since 2012), so its long-term selection record is still short.
+    transparency: Criteria, the named laureate committee, and an open nomination route are public, while deliberations are not.
+    independence: Private philanthropic funding frees it from state or society control but concentrates influence among founders and past winners.
+key_facts:
+  - fact: The Breakthrough Prize in Fundamental Physics was established in 2012 and is chosen by a committee of previous laureates from openly nominated candidates.
+    source: 1
+  - fact: A Special Breakthrough Prize can be awarded at any time, outside the annual cycle, and is not limited to recent discoveries.
+    source: 1
+analysis:
+  - heading: A different shape of legitimacy
+    body: "The Breakthrough Prize scores lower than the traditional honours already in the archive, not because it is weaker but because its structure is different: private funding, an open nomination funnel, a laureate-only committee, and a discretionary Special Prize. The RLS registers this as moderate rather than strong legitimacy, which is exactly the comparison value a new-model prize adds."
+sources:
+  - title: "Breakthrough Prize in Fundamental Physics - official prize page, committee and rules"
+    publisher: Breakthrough Prize Foundation
+    url: https://breakthroughprize.org/Prize/1
+    type: official
+  - title: "Breakthrough Prize in Fundamental Physics - overview"
+    publisher: ALLEA (All European Academies)
+    url: https://allea.org/breakthrough-prize/breakthrough-prize-fundamental-physics/
+    type: secondary

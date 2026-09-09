@@ -51,3 +51,7 @@ sources:
     publisher: Physics World
     url: https://physicsworld.com/a/cecilia-payne-gaposchkin-the-woman-who-found-hydrogen-in-the-stars/
     type: secondary
+
+pattern_evidence:
+  credit-misattribution: [1, 2]
+  institutional-exclusion: [1, 2]

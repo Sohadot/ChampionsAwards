@@ -53,3 +53,7 @@ domain: physics-astronomy
 patterns:
   - credit-misattribution
   - theory-experiment-asymmetry
+
+pattern_evidence:
+  credit-misattribution: [1, 2]
+  theory-experiment-asymmetry: [1, 2]

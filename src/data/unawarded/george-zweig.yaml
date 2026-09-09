@@ -51,3 +51,7 @@ sources:
     publisher: CERN Courier
     url: https://cerncourier.com/nineteen-sixty-four/
     type: secondary
+
+pattern_evidence:
+  credit-misattribution: [1, 2]
+  institutional-gatekeeping: [1]

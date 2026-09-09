@@ -1,0 +1,17 @@
+{% if item.patterns %}
+<h2>Structural patterns</h2>
+<p class="small muted">
+  The recurring mechanisms this case exhibits, each linked to its concept and to the
+  specific sources that document the mechanism in this case.
+</p>
+<ul class="key-facts">
+  {% for slug in item.patterns %}
+  <li>
+    <a href="/concepts/{{ slug }}">{{ slug.replace('-', ' ') | title }}</a>
+    {% if item.pattern_evidence and item.pattern_evidence[slug] %}
+      {% for ref in item.pattern_evidence[slug] %}<a class="cite" href="#source-{{ ref }}">[{{ ref }}]</a>{% endfor %}
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}

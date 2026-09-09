@@ -46,3 +46,6 @@ sources:
 domain: mathematics-computing
 patterns:
   - institutional-exclusion
+
+pattern_evidence:
+  institutional-exclusion: [1]

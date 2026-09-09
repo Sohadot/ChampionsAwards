@@ -13,6 +13,7 @@ from config import (
     REQUIRE_DOMAIN,
     REQUIRE_LAST_REVIEWED,
     REQUIRE_OBSERVED_RECOGNITION,
+    REQUIRE_PATTERN_EVIDENCE,
     REQUIRE_SOURCES,
     RLS_CLUSTERS,
     RLS_KEYS,
@@ -114,6 +115,21 @@ def enforce_publication_policy(cluster_name: str, item: dict[str, Any], source_f
                 f"{ref}: a published DDI assessment must include a numeric 'observed_recognition' "
                 f"(required for the Recognition Gap Index)"
             )
+
+    # Every declared pattern on a published case must carry evidence proving the
+    # mechanism, so a pattern is a sourced claim rather than a bare tag.
+    if REQUIRE_PATTERN_EVIDENCE:
+        patterns = item.get("patterns")
+        if isinstance(patterns, list) and patterns:
+            pattern_evidence = item.get("pattern_evidence")
+            if not isinstance(pattern_evidence, dict) or not pattern_evidence:
+                errors.append(f"{ref}: a published entry with 'patterns' must include 'pattern_evidence'")
+            else:
+                missing = [p for p in patterns if not pattern_evidence.get(p)]
+                if missing:
+                    errors.append(
+                        f"{ref}: pattern_evidence is missing source refs for: {', '.join(missing)}"
+                    )
 
     # Domain placement: no orphaned scored entries. Individuals carry a single
     # 'domain'; systems carry a non-empty 'domains' list.

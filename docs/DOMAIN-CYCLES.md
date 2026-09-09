@@ -76,6 +76,29 @@ Reproducibility of the formula is not enough. Every dimension score — and
 The quality gate requires this evidence on every published assessment; fact,
 assessment, and interpretation stay visibly separate.
 
+### Pattern-level provenance
+
+A pattern is a sourced claim, not a tag. Every case that declares a `pattern`
+must supply `pattern_evidence` — source refs that document the *mechanism* in
+that case — and the quality gate rejects a pattern without it. Crucially,
+`domain_status.py` counts a case toward a pattern's support **only** when that
+case carries explicit pattern evidence for it. The full ontological chain is:
+
+> source → fact → structural mechanism → recurring pattern → domain finding.
+
+Patterns are surfaced by a cross-case audit of the evidence — asking which
+mechanisms actually recur — never by hunting for a second instance to promote a
+label. If the evidence yields three established patterns rather than four, the
+domain reports 3/4; a truthful "not yet" is preferred to a manufactured pass.
+
+### Source-grade audit (closure criterion)
+
+Before a domain is declared mature v1.0, each case is reviewed for whether a
+central claim — a discovery priority, an exclusion, a prize outcome — can be
+anchored to a primary, archival, or institutional record rather than a
+reputable secondary source alone. This does not reject secondary sources; it
+requires that load-bearing claims reach primary provenance wherever one exists.
+
 Qualitative criteria (reviewed, not auto-counted):
 
 - Specific-award pages where an award's rules or history warrant it.

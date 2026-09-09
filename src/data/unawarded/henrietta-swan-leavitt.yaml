@@ -47,3 +47,7 @@ domain: physics-astronomy
 patterns:
   - credit-misattribution
   - institutional-exclusion
+
+pattern_evidence:
+  credit-misattribution: [1]
+  institutional-exclusion: [1]

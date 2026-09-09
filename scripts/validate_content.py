@@ -103,7 +103,9 @@ def validate_patterns(
     cluster_name: str, item: dict[str, Any], source_file: str, concept_slugs: set[str]
 ) -> list[str]:
     """`patterns` links a case to structural-cause concepts by slug. Each slug
-    must resolve to a published concept, so the ontology stays connected."""
+    must resolve to a published concept, so the ontology stays connected.
+    `pattern_evidence` ties each pattern to specific sources proving the
+    mechanism; its keys must be a subset of `patterns` and its refs in range."""
     errors: list[str] = []
     patterns = item.get("patterns")
     if patterns is None:
@@ -120,6 +122,31 @@ def validate_patterns(
             errors.append(
                 f"{cluster_name}/{source_file}: pattern '{slug}' does not match any published concept"
             )
+
+    pattern_evidence = item.get("pattern_evidence")
+    if pattern_evidence is not None:
+        if not isinstance(pattern_evidence, dict) or not pattern_evidence:
+            errors.append(f"{cluster_name}/{source_file}: 'pattern_evidence' must be a non-empty mapping")
+            return errors
+        source_count = len(item.get("sources") or [])
+        pattern_set = {p for p in patterns if isinstance(p, str)}
+        for slug, refs in pattern_evidence.items():
+            if slug not in pattern_set:
+                errors.append(
+                    f"{cluster_name}/{source_file}: pattern_evidence key '{slug}' is not in 'patterns'"
+                )
+                continue
+            if not isinstance(refs, list) or not refs:
+                errors.append(
+                    f"{cluster_name}/{source_file}: pattern_evidence['{slug}'] must be a non-empty list"
+                )
+                continue
+            for ref in refs:
+                if not isinstance(ref, int) or isinstance(ref, bool) or not (1 <= ref <= source_count):
+                    errors.append(
+                        f"{cluster_name}/{source_file}: pattern_evidence['{slug}'] has out-of-range "
+                        f"source index {ref!r} (1..{source_count})"
+                    )
 
     return errors
 
