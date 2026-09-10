@@ -36,18 +36,19 @@ def evidence_label(refs: list[int], tmap: dict[int, str]) -> str:
     return ", ".join(f"[{r}]{tmap.get(r, '?')}" for r in refs) or "(no evidence)"
 
 
-def audit_entry(item: dict[str, Any], slots: dict[str, list[int]]) -> None:
+def entry_status(item: dict[str, Any], slots: dict[str, list[int]]) -> dict[str, Any]:
+    """Per-claim audit result for one entry, with no printing, so the Definition
+    of Done can read the same computation the report prints."""
     tmap = types_by_index(item)
     provenance = item.get("provenance") or {}
     exceptions = {d.get("claim"): d for d in (item.get("audit_exceptions") or []) if isinstance(d, dict)}
+    rows: list[dict[str, str]] = []
     pending: list[str] = []
     excepted: list[str] = []
 
-    print(f"\n{item.get('title', item.get('slug'))}")
     for name, refs in slots.items():
         prov = provenance.get(name)
         exc = exceptions.get(name)
-        context = evidence_label(refs, tmap)
         if isinstance(prov, dict) and prov.get("record_anchor"):
             anchors = ", ".join(f"[{r}]" for r in prov["record_anchor"])
             mark = f"CLOSED via {anchors} ({prov.get('basis', '?')})"
@@ -55,9 +56,9 @@ def audit_entry(item: dict[str, Any], slots: dict[str, list[int]]) -> None:
             mark = f"secondary-record-sufficient (searched {exc.get('search_date', '?')}, best [{exc.get('best_source', '?')}])"
             excepted.append(name)
         else:
-            mark = f"needs-primary-strengthening (evidence: {context})"
+            mark = f"needs-primary-strengthening (evidence: {evidence_label(refs, tmap)})"
             pending.append(name)
-        print(f"  {name:34} -> {mark}")
+        rows.append({"claim": name, "mark": mark})
 
     if pending:
         status = "needs-primary-strengthening"
@@ -65,7 +66,71 @@ def audit_entry(item: dict[str, Any], slots: dict[str, list[int]]) -> None:
         status = "source-grade closed (with documented secondary-sufficient exceptions)"
     else:
         status = "source-grade closed"
-    print(f"  audit status -> {status}")
+    return {"title": item.get("title", item.get("slug")), "rows": rows,
+            "pending": pending, "excepted": excepted, "status": status}
+
+
+def audit_entry(item: dict[str, Any], slots: dict[str, list[int]]) -> dict[str, Any]:
+    result = entry_status(item, slots)
+    print(f"\n{result['title']}")
+    for row in result["rows"]:
+        print(f"  {row['claim']:34} -> {row['mark']}")
+    print(f"  audit status -> {result['status']}")
+    return result
+
+
+def case_slots(item: dict[str, Any]) -> dict[str, list[int]]:
+    assessment = item.get("assessment") or {}
+    evidence = assessment.get("evidence") or {}
+    slots: dict[str, list[int]] = {}
+    for name, keys in CASE_CLAIM_SLOTS.items():
+        refs: list[int] = []
+        for k in keys:
+            for r in evidence.get(k, []) or []:
+                if r not in refs:
+                    refs.append(r)
+        slots[name] = refs
+    for pat, refs in (item.get("pattern_evidence") or {}).items():
+        slots[f"pattern:{pat}"] = list(refs)
+    return slots
+
+
+def domain_entries(domain: str) -> list[tuple[dict[str, Any], dict[str, list[int]]]]:
+    """Every audited entry in a domain with its claim slots: cases (claims and
+    pattern claims) and systems (the constitutive system facts)."""
+    entries: list[tuple[dict[str, Any], dict[str, list[int]]]] = []
+    for cluster in ASSESSMENT_CLUSTERS:
+        folder = DATA / cluster
+        if folder.exists():
+            for path in sorted(folder.glob("*.yaml")):
+                item = load_yaml_file(path)
+                if is_published(item) and item.get("domain") == domain:
+                    entries.append((item, case_slots(item)))
+    for cluster in RLS_CLUSTERS:
+        folder = DATA / cluster
+        if folder.exists():
+            for path in sorted(folder.glob("*.yaml")):
+                item = load_yaml_file(path)
+                if is_published(item) and domain in (item.get("domains") or []):
+                    slots = {"system-facts": list(
+                        (item.get("rls_assessment") or {}).get("evidence", {}).get("process", []) or []
+                    )}
+                    entries.append((item, slots))
+    return entries
+
+
+def domain_audit_status(domain: str) -> dict[str, Any]:
+    """Domain-level closure: how many entries are closed, and which claims are
+    still open. "Known-status" counts as closed only where the exception is a
+    documented decision, which validation already enforces."""
+    results = [entry_status(item, slots) for item, slots in domain_entries(domain)]
+    open_claims = [f"{r['title']}: {c}" for r in results for c in r["pending"]]
+    return {
+        "n_entries": len(results),
+        "n_closed": sum(1 for r in results if not r["pending"]),
+        "open_claims": open_claims,
+        "closed": not open_claims,
+    }
 
 
 def audit_cases(domain: str) -> None:

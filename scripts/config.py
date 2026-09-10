@@ -228,14 +228,60 @@ REQUIRE_PATTERN_EVIDENCE: Final[bool] = True
 # This prevents inventing labels just to reach a threshold.
 PATTERN_ESTABLISHED_MIN: Final[int] = 2
 
-# Definition of Done for declaring a domain "mature v1.0". A domain is closed
-# only when every threshold is met; domain_status.py reports progress and the
-# criteria that remain. These are practical thresholds, not scientific limits.
+# ---------------------------------------------------------------------------
+# Definition of Done - DoD v1.1
+#
+# Maturity is completeness of accountable inquiry, not conformity of findings to
+# a target outcome.
+#
+# SUPERSEDED - DoD v1.0 (in force until 2026-09-10):
+#     {"ddi_cases": 10, "rls_systems": 3, "patterns": 4}
+# The v1.0 requirement of four ESTABLISHED mechanisms was set before any domain
+# had completed a full mechanism audit. Cycle 01 ran every layer that precedes
+# judgment - case deepening, provenance, source-grade audit, award anatomy,
+# comparison, synthesis, and a dedicated mechanism audit of the two unexplained
+# cases - and the established count stayed at 2 while mechanism accounting
+# reached 10/10. That is the evidence that the count measured an empirical
+# property of the corpus, not the completeness of the investigation, and that
+# holding it as a gate created an incentive to find more labels or more cases to
+# clear a target. v1.1 therefore removes the established-pattern count from the
+# maturity criteria and replaces it with complete mechanism accounting. Pattern
+# recurrence is still measured and still published - it no longer decides
+# whether the evidence has been fully investigated.
+#
+# Note what did NOT change: PATTERN_ESTABLISHED_MIN stays 2. That is a definition
+# of what makes a pattern recurring rather than singular, and it remains in force.
+# No datum moves because of this governance decision; only the question "when is
+# a domain's inquiry complete?" is answered differently.
+# ---------------------------------------------------------------------------
+DOD_VERSION: Final[str] = "DoD v1.1"
+
 DOMAIN_DOD: Final[dict[str, int]] = {
     "ddi_cases": 10,      # individual contributions scored with the DDI
     "rls_systems": 3,     # recognition systems scored with the RLS
-    "patterns": 4,        # ESTABLISHED structural-cause concepts (>= PATTERN_ESTABLISHED_MIN cases)
 }
+
+# Accounting criteria: every case must be examined, and the examination recorded.
+DOMAIN_DOD_ACCOUNTING: Final[dict[str, int]] = {
+    "mechanism_accounting_percentage": 100,  # every case: evidenced mechanism OR dated audit
+    "cases_unaudited": 0,                    # and nothing left unexamined
+}
+
+# Layer criteria: measured as present, not asserted in prose.
+DOMAIN_DOD_LAYERS: Final[tuple[str, ...]] = (
+    "source_grade_closure",  # every load-bearing claim closed or excepted by a documented decision
+    "award_anatomy",         # at least one award mapped in full (architecture + corpus relations)
+    "synthesis",             # at least one published synthesis report deriving from this domain
+)
+
+# Reported alongside maturity, and deliberately NOT a gate: how many mechanisms
+# the corpus happens to evidence is a result, not a measure of thoroughness.
+DOMAIN_OBSERVED_ONLY: Final[tuple[str, ...]] = (
+    "evidenced_mechanisms",
+    "established_mechanisms",
+    "emergent_mechanisms",
+    "cases_unexplained_after_audit",
+)
 
 
 def is_valid_domain(domain: str) -> bool:

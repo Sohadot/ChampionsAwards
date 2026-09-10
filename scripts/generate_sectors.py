@@ -23,7 +23,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from config import (
     DDI_DIMENSIONS,
-    DOMAIN_DOD,
+    DOD_VERSION,
     DOMAINS,
     DATA,
     OUT,
@@ -35,6 +35,7 @@ from config import (
     normalize_domain,
 )
 from domain_comparison import _domain_awards, build_comparison
+from domain_status import dod_rows, observed_rows
 from generate_pages import attach_award_architecture, build_case_index
 
 # PUBLISHED_SECTORS (config.py) lists the domains with a sector page. A sector
@@ -265,12 +266,10 @@ def build_sector(domain: str, site: dict[str, Any]) -> dict[str, Any]:
             "constraints": [r for r in relations if r["interaction"] not in OUTCOME_TYPES],
         })
 
-    # Maturity is reported as measured, not as desired.
-    measured = {"ddi_cases": corpus["n_cases"], "rls_systems": systems["n_systems"],
-                "patterns": patterns["established_count"]}
-    dod_rows = [{"requirement": key.replace("_", " "), "have": measured.get(key, 0), "need": need,
-                 "met": measured.get(key, 0) >= need}
-                for key, need in DOMAIN_DOD.items()]
+    # Maturity is reported as measured, from the same Definition of Done the
+    # status report applies - never recomputed here.
+    maturity = dod_rows(domain)
+    observed = observed_rows(domain)
 
     # RLS systems are shown in a fixed alphabetical order, never ranked: the page
     # presents profiles, not a podium.
@@ -301,8 +300,10 @@ def build_sector(domain: str, site: dict[str, Any]) -> dict[str, Any]:
         "awards": awards,
         "award_entries": award_entries,
         "award_reading": award_reading(awards, len(award_entries)),
-        "dod_rows": dod_rows,
-        "mature": all(row["met"] for row in dod_rows),
+        "dod_rows": maturity,
+        "observed_rows": observed,
+        "dod_version": DOD_VERSION,
+        "mature": all(row["met"] for row in maturity),
         "ddi_dimensions": [{"label": label, "weight": weight} for _k, label, weight in DDI_DIMENSIONS],
         "matrix": matrix,
     }

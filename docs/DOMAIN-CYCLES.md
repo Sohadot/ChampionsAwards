@@ -39,17 +39,78 @@ A domain is mature only when all seven layers exist and cohere:
 
 We move horizontally **only** after the current domain reaches maturity.
 
-## Definition of Done (a domain is "mature v1.0" when)
+## Definition of Done — DoD v1.1
 
-The thresholds below are enforced-as-measured by `scripts/domain_status.py`,
-which reads the same scoring engine the site uses. A domain is closed only when
-every threshold is met and the qualitative criteria hold.
+> **Maturity is completeness of accountable inquiry, not conformity of findings
+> to a target outcome.**
 
-Measured thresholds (`DOMAIN_DOD` in `scripts/config.py`):
+A domain is "mature v1.0" when its inquiry is complete and recorded — not when
+its findings came out a particular way. The criteria below are enforced-as-measured
+by `scripts/domain_status.py`, which reads the same engine and the same
+provenance audit the site publishes.
 
-- **DDI cases ≥ 10** — high-quality, sourced individual contributions.
-- **RLS systems ≥ 3** — relevant recognition systems scored.
-- **Established structural-cause patterns ≥ 4** — see the pattern lifecycle below.
+Measured criteria:
+
+- **DDI cases ≥ 10** (`DOMAIN_DOD`) — high-quality, sourced individual contributions.
+- **RLS systems ≥ 3** (`DOMAIN_DOD`) — relevant recognition systems scored.
+- **Mechanism accounting = 100 %** (`DOMAIN_DOD_ACCOUNTING`) — every case either
+  carries one or more mechanisms backed by `pattern_evidence`, or carries an
+  explicit, dated audit concluding that no evidenced mechanism was found.
+- **Cases unaudited = 0** — nothing left unexamined.
+- **Source-grade closure** — every load-bearing claim closed against a
+  record-grade anchor or carried by a documented exception (the "known-status"
+  model), measured by `scripts/source_audit.py`.
+- **Award anatomy** — at least one award in the domain mapped in full: formal
+  architecture plus corpus relations.
+- **Synthesis** — at least one published report deriving from this domain, with
+  hypotheses that can be confirmed or refuted.
+
+Qualitative criteria (reviewed, not auto-counted): computed sector aggregation,
+primary or institutional sources wherever possible, contested claims shown as
+contested, fact/assessment/interpretation kept visibly separate, full internal
+linking, no thin pages, every figure derived from the one published engine.
+
+Reported alongside maturity and **deliberately not gates** (`DOMAIN_OBSERVED_ONLY`):
+evidenced mechanisms, established mechanisms, emergent mechanisms, and cases left
+unexplained after audit. These describe what a corpus turned out to contain.
+
+### DoD v1.0 — superseded 2026-09-10
+
+v1.0 required, in addition to the case and system thresholds:
+
+- **Established structural-cause patterns ≥ 4.**
+
+That requirement is withdrawn. The reason is recorded here rather than edited
+away:
+
+> The v1.0 requirement of four established mechanisms was set before any domain
+> had completed a full mechanism audit. Cycle 01 ran every layer that precedes
+> judgment — case deepening, provenance, source-grade auditing, award anatomy,
+> comparison, synthesis, and a dedicated mechanism audit of the two unexplained
+> cases — and the established count stayed at 2 while mechanism accounting
+> reached 10/10. That is evidence that the count measured an empirical outcome of
+> the corpus rather than the completeness of the audit, and that holding it as a
+> gate created an incentive to seek additional labels or cases simply to meet a
+> target. v1.1 therefore removes the established-pattern count from the domain
+> maturity criteria and replaces it with complete mechanism accounting. Pattern
+> recurrence continues to be measured and reported, but it no longer determines
+> whether the evidence has been fully investigated.
+
+A milder version of the same mistake was also rejected: "≥ 2 established +
+100 % coverage" would have turned today's observed figure into tomorrow's
+threshold. A mature field may evidence one recurring mechanism, or none that the
+record can prove; requiring two would rebuild the same incentive to invent a
+taxonomy or pad a corpus to clear a gate.
+
+**What did not change:** `PATTERN_ESTABLISHED_MIN` remains 2. That is a
+definition of what makes a pattern recurring rather than singular, and it stands.
+Nothing in the data moved because of this decision: credit misattribution and
+institutional exclusion remain established, institutional gatekeeping and
+theory-experiment asymmetry remain emergent. The only thing that changed is the
+answer to "when is a domain's inquiry complete?"
+
+Pattern establishment is a property of the **result**. Mechanism accounting is a
+property of the **investigation**. v1.1 gates the second and reports the first.
 
 ### Pattern lifecycle
 
@@ -61,9 +122,10 @@ a domain is:
 - **established** — exhibited by at least `PATTERN_ESTABLISHED_MIN` (2)
   independent cases in that domain.
 
-Only established patterns count. This prevents inventing four labels to reach
-4/4; a real structural pattern must actually recur. Patterns are surfaced by
-auditing the cases, never imposed on them.
+The distinction is reported, never required (DoD v1.1): a real structural pattern
+must actually recur to be called established, but how many a domain evidences
+does not decide whether the domain is mature. Patterns are surfaced by auditing
+the cases, never imposed on them.
 
 ### Score-level provenance
 
@@ -88,8 +150,9 @@ case carries explicit pattern evidence for it. The full ontological chain is:
 
 Patterns are surfaced by a cross-case audit of the evidence — asking which
 mechanisms actually recur — never by hunting for a second instance to promote a
-label. If the evidence yields three established patterns rather than four, the
-domain reports 3/4; a truthful "not yet" is preferred to a manufactured pass.
+label. If the evidence yields two established patterns, the domain reports two; a
+truthful count is preferred to a manufactured one, and under DoD v1.1 that count
+gates nothing.
 
 ### Mechanism audit (coverage, not label count)
 
