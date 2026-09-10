@@ -10,13 +10,23 @@ carries an explicit denominator. Corpus frequency is not field prevalence.
 
 Determinism: all inputs are sorted by slug before aggregation, quartiles use a
 single fixed (inclusive) definition, and a data-derived snapshot id identifies
-the corpus a result was computed from.
+the corpus a result was computed from. Nothing in the result depends on wall
+clock time. The corpus is dated by `data_through` - the most recent
+`last_reviewed` among the inputs actually included - not by build time. Build
+time is available separately (`generated_at()`), is operational metadata only,
+and is excluded from the identity and from every stable output.
+
+Publication boundary: this module writes no file into the site output directory.
+Cycle 01 defers public data export / API, so the JSON report is a build-internal
+artifact under `reports/` and the sector page calls `build_comparison()` at build
+time and renders HTML. Nothing here creates a machine-readable public endpoint.
 """
 from __future__ import annotations
 
 import hashlib
 import json
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
 import yaml
@@ -24,6 +34,8 @@ import yaml
 from config import (
     ASSESSMENT_CLUSTERS,
     DATA,
+    OUT,
+    ROOT,
     PATTERN_ESTABLISHED_MIN,
     RLS_CLUSTERS,
     RLS_DIMENSIONS,
@@ -120,6 +132,10 @@ def _domain_systems(domain: str) -> list[dict[str, Any]]:
     return sorted(systems, key=lambda s: s["slug"])
 
 
+def _domain_awards(domain: str) -> list[dict[str, Any]]:
+    return [item for item in _load_cluster("awards") if item.get("domain") == domain]
+
+
 def _domain_award_relations(domain: str) -> list[dict[str, Any]]:
     """Hardened corpus relations only: interaction_type + claim + (anchor XOR exception)."""
     rels = []
@@ -136,6 +152,45 @@ def _domain_award_relations(domain: str) -> list[dict[str, Any]]:
             if hardened:
                 rels.append({"award": award, **rel})
     return sorted(rels, key=lambda r: (r["award"], r["case"], r["interaction_type"]))
+
+
+def _as_iso_date(value: Any) -> str | None:
+    """Normalise a last_reviewed value (str or datetime.date) to YYYY-MM-DD."""
+    if isinstance(value, str):
+        v = value.strip()
+        return v if len(v) == 10 and v[4] == "-" and v[7] == "-" else None
+    if isinstance(value, datetime):
+        return value.date().isoformat()
+    if hasattr(value, "isoformat") and not isinstance(value, (int, float)):
+        try:
+            return value.isoformat()[:10]
+        except Exception:
+            return None
+    return None
+
+
+def data_through(domain: str) -> str | None:
+    """The corpus date: the most recent `last_reviewed` among the inputs actually
+    included in this comparison (DDI cases, RLS systems, award entries).
+
+    This is derived from the data, never from the clock: re-running the build on
+    a later day cannot change it, and a changed date always means a changed
+    review. Absent any dated input it is None rather than an invented date.
+    """
+    dates = []
+    for item in (*_domain_cases(domain), *_domain_systems(domain), *_domain_awards(domain)):
+        iso = _as_iso_date(item.get("last_reviewed"))
+        if iso:
+            dates.append(iso)
+    return max(dates) if dates else None
+
+
+def generated_at() -> str:
+    """Operational metadata: when this process ran. Deliberately NOT part of the
+    result, the snapshot identity, or any stable output - it is returned only on
+    request, so a wall-clock value can never leak into a reproducible figure.
+    """
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
 # --------------------------------------------------------------------------
@@ -290,6 +345,13 @@ def _snapshot_id(domain: str, site: dict[str, Any]) -> str:
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:12]
 
 
+def _reference_form(domain: str, site: dict[str, Any]) -> str:
+    """How a figure from this engine should be cited: corpus + methodology + date."""
+    through = data_through(domain) or "undated"
+    return (f"corpus {_snapshot_id(domain, site)} + methodology "
+            f"{site.get('methodology_version')} + data through {through}")
+
+
 def build_comparison(domain: str) -> dict[str, Any]:
     site = _load_site()
     corpus = corpus_distribution(domain)
@@ -302,11 +364,12 @@ def build_comparison(domain: str) -> dict[str, Any]:
             "ddi_cases": corpus["n_cases"],
             "rls_systems": systems["n_systems"],
             "award_relations": awards["denominator"],
-            "snapshot_date": datetime.now(timezone.utc).date().isoformat(),
+            "data_through": data_through(domain),
             "methodology_version": site.get("methodology_version"),
             "rls_version": site.get("rls_version"),
         },
         "corpus_snapshot": _snapshot_id(domain, site),
+        "reference_form": _reference_form(domain, site),
         "limitations": [
             "The corpus is purposively built around recognition-gap cases; it is not a representative sample of the field.",
             "Corpus frequency is not field prevalence.",
@@ -334,7 +397,7 @@ def print_report(result: dict[str, Any]) -> None:
     print("=" * 58)
     print(f"Comparison population: {pop['domain']}")
     print(f"  DDI cases: {pop['ddi_cases']} | RLS systems: {pop['rls_systems']} | award relations: {pop['award_relations']}")
-    print(f"  methodology {pop['methodology_version']} / {pop['rls_version']} | snapshot {result['corpus_snapshot']} | {pop['snapshot_date']}")
+    print(f"  methodology {pop['methodology_version']} / {pop['rls_version']} | snapshot {result['corpus_snapshot']} | data through {pop['data_through']}")
 
     c = result["observations"]["corpus_distribution"]
     print(f"\nCorpus distribution (n={c['n_cases']})")
@@ -363,17 +426,38 @@ def print_report(result: dict[str, Any]) -> None:
         print(f"  {d['interaction_type']}: {d['count']}/{d['denominator']}")
 
 
-def main() -> None:
-    result = build_comparison("physics-astronomy")
-    print_report(result)
-    # Machine-readable artifact (regenerated each build; deterministic content).
-    out_dir = DATA.parent.parent / "public" / "data"
+REPORTS: Path = ROOT / "reports"
+
+
+def write_report(result: dict[str, Any], domain: str) -> Path | None:
+    """Write the build-internal JSON report.
+
+    It lands in `reports/`, never in OUT (`public/`): Cycle 01 defers public data
+    export and APIs, so this artifact is for inspection, diffing and tests - not
+    an endpoint. `generated_at` is written into a sibling run-log rather than the
+    report, so the report stays byte-identical across runs of the same corpus.
+    """
+    path = REPORTS / f"{domain}-comparison.json"
     try:
-        out_dir.mkdir(parents=True, exist_ok=True)
-        with (out_dir / "physics-astronomy-comparison.json").open("w", encoding="utf-8") as f:
+        REPORTS.mkdir(parents=True, exist_ok=True)
+        with path.open("w", encoding="utf-8") as f:
             json.dump(result, f, indent=2, sort_keys=True)
+            f.write("\n")
+        with (REPORTS / "last-run.txt").open("w", encoding="utf-8") as f:
+            f.write(f"{domain} generated_at={generated_at()} snapshot={result['corpus_snapshot']}\n")
     except OSError:
-        pass  # standalone runs without a build output directory are fine
+        return None
+    return path
+
+
+def main() -> None:
+    domain = "physics-astronomy"
+    result = build_comparison(domain)
+    print_report(result)
+    path = write_report(result, domain)
+    if path is not None:
+        assert OUT not in path.parents, "comparison report must not be written under the site output directory"
+        print(f"\nBuild-internal report: {path.relative_to(ROOT)}  (not published; Cycle 01 defers data export)")
 
 
 if __name__ == "__main__":

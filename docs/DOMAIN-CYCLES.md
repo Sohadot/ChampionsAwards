@@ -161,7 +161,24 @@ Quartiles use one frozen inclusive definition (tested in
 (DDI cases, RLS systems, and award relations are distinct populations); and each
 result carries a deterministic, data-derived `corpus_snapshot` id so a finding is
 attributable to the exact corpus it was computed from — "true for Cycle 01
-corpus vN", not an eternal claim. The machine checks freeze the quartile
+corpus vN", not an eternal claim.
+
+**The corpus is dated by its own data.** A comparison declares `data_through` —
+the most recent `last_reviewed` among the inputs actually included — never the
+build date. Re-running the build on a later day cannot change a published figure;
+a changed date always means a changed review. Build time exists only as
+operational metadata (`generated_at()`), excluded from the identity and from
+every stable output. A figure is therefore cited in one form:
+
+> corpus `<snapshot>` + methodology `<version>` + data through `<YYYY-MM-DD>`
+
+**Publication boundary.** The engine writes no file into the site output
+directory. Cycle 01 defers public data export and APIs, so its JSON report is a
+build-internal artifact under `reports/` (untracked) for inspection, diffing and
+tests. Representations that *are* published — the sector page, the synthesis —
+call `build_comparison()` at build time and render HTML. The machine checks
+enforce both rules: no wall-clock value may enter the result, and no JSON
+endpoint may appear under `public/`. The machine checks freeze the quartile
 definition, guarantee determinism, and enforce the eligibility and
 denominator rules.
 
