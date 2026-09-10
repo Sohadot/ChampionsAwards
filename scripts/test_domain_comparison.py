@@ -55,6 +55,22 @@ _evidence_ok = all(
 )
 check("every counted pattern-case has pattern_evidence for that pattern", _evidence_ok)
 
+# 5b. Both sides of the gap are reported separately, and the mechanism layer
+#     accounts for every case: one with evidence, or one counted as without.
+check("gap sides are reported with their own ranges",
+      corpus["ddi_spread"] == corpus["ddi_max"] - corpus["ddi_min"]
+      and corpus["observed_spread"] == corpus["observed_max"] - corpus["observed_min"])
+_with_evidence = {c["slug"] for p in patterns["patterns"] for c in p["cases"]}
+check("cases without an evidenced mechanism are counted, not dropped",
+      patterns["n_cases_without_evidenced_pattern"] == corpus["n_cases"] - len(_with_evidence),
+      f"{patterns['n_cases_without_evidenced_pattern']} vs {corpus['n_cases'] - len(_with_evidence)}")
+_support = {p["pattern"]: p["support"] for p in patterns["patterns"]}
+check("no co-occurrence pair exceeds either mechanism's own support",
+      all(pair["count"] <= min(_support[pair["pair"][0]], _support[pair["pair"][1]])
+          for pair in patterns["co_occurrence"]))
+check("co-occurrence uses the case denominator",
+      all(pair["denominator"] == corpus["n_cases"] for pair in patterns["co_occurrence"]))
+
 # 6. Systems outside the domain are excluded; profiles come only from in-domain systems.
 systems = r1["observations"]["recognition_system_profiles"]
 check("system count matches in-domain systems", systems["n_systems"] == len(dc._domain_systems(DOMAIN)))
@@ -84,6 +100,59 @@ check("hardened filter accepts a well-formed relation",
 # 9. Observations only - no 'conclusions' key anywhere near the top level.
 check("engine emits observations, not conclusions",
       "observations" in r1 and "conclusions" not in r1)
+
+# 10. The result is clock-independent. `data_through` dates the corpus by its own
+#     inputs; build time must never enter the result, the identity, or any stable
+#     output. Rebuild under a moved clock and require byte-identical output.
+import datetime as _dt
+import json as _json
+
+
+class _FrozenFuture(_dt.datetime):
+    @classmethod
+    def now(cls, tz=None):
+        return cls(2031, 3, 4, 5, 6, 7, tzinfo=tz)
+
+
+_real_datetime = dc.datetime
+dc.datetime = _FrozenFuture
+try:
+    r_future = dc.build_comparison(DOMAIN)
+    stamp_future = dc.generated_at()
+finally:
+    dc.datetime = _real_datetime
+
+check("build_comparison is independent of wall-clock time", r_future == r1)
+check("generated_at does read the clock (it is operational metadata)",
+      stamp_future.startswith("2031-03-04") and not dc.generated_at().startswith("2031"))
+
+_serialized = _json.dumps(r1, sort_keys=True, default=str)
+check("no build timestamp leaks into the result",
+      "generated_at" not in _serialized and "snapshot_date" not in _serialized)
+
+# 11. data_through is the most recent last_reviewed among the INCLUDED inputs.
+_reviewed = sorted(
+    d for d in (
+        dc._as_iso_date(i.get("last_reviewed"))
+        for i in (*dc._domain_cases(DOMAIN), *dc._domain_systems(DOMAIN), *dc._domain_awards(DOMAIN))
+    ) if d
+)
+_through = r1["population"]["data_through"]
+check("data_through == max(last_reviewed) of included inputs",
+      _through == _reviewed[-1], f"{_through} vs {_reviewed[-1] if _reviewed else None}")
+check("data_through is an ISO date, not a timestamp",
+      isinstance(_through, str) and len(_through) == 10)
+check("reference form cites corpus + methodology + data_through",
+      r1["reference_form"].endswith(_through) and r1["corpus_snapshot"] in r1["reference_form"])
+
+# 12. Publication boundary: Cycle 01 defers public data export, so the engine
+#     must not write any artifact into the site output directory.
+_report_path = dc.REPORTS / f"{DOMAIN}-comparison.json"
+check("report path is outside the site output directory (public/)",
+      dc.OUT not in _report_path.parents and dc.OUT != dc.REPORTS)
+_published_json = sorted(dc.OUT.rglob("*.json")) if dc.OUT.exists() else []
+check("no JSON endpoint is published under public/",
+      not _published_json, str(_published_json[:3]))
 
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

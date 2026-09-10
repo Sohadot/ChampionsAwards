@@ -281,3 +281,85 @@ table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .site-footer .cols { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .site-footer a { color: var(--muted); }
 .site-footer a:hover { color: var(--text); }
+
+/* ---------- Sector reference ---------- */
+.landscape {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  margin: 30px 0 0;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.landscape > div { background: var(--panel); padding: 14px 16px; }
+.landscape dt { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.landscape dd { margin: 4px 0 0; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+/* a 12-character hash must never be clipped: it is the identity of the figures */
+.landscape dd.mono { font-size: 1.02rem; letter-spacing: 0.01em; word-break: break-all; padding-top: 6px; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+.figure {
+  margin: 24px 0 0;
+  padding: 18px 16px 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.figure figcaption { margin-top: 10px; }
+.fig-label { fill: var(--muted); font-size: 11px; font-family: var(--font); }
+.fig-tick { fill: var(--muted); font-size: 11px; font-family: var(--font); }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+.panel .key-facts { margin: 0; }
+h3.sub { margin: 0 0 6px; font-size: 1.02rem; }
+.pending { color: var(--accent-2); }
+
+.dim { margin-bottom: 9px; }
+.dim-head { display: flex; justify-content: space-between; color: var(--muted); }
+.dim-bar { height: 6px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); overflow: hidden; }
+.dim-bar span { display: block; height: 100%; background: var(--accent); }
+
+.rel-list { list-style: none; margin: 10px 0 0; padding: 0; }
+.rel-list li {
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+.cite-form {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+
+@media (max-width: 720px) {
+  .landscape dd { font-size: 1.25rem; }
+}
+
+/* ---------- Synthesis report ---------- */
+.findings { margin: 0; padding-left: 22px; }
+.findings li { margin-bottom: 22px; }
+.findings li p { color: #d5d9e8; margin: 0 0 6px; }
+.chip {
+  display: inline-block;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  margin: 0 6px 6px 0;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--muted);
+}
+.panel p:last-child { margin-bottom: 0; }
+.panel.is-refuted { border-color: rgba(255, 123, 123, 0.35); }
+.badge.refuted { color: var(--danger); border-color: rgba(255, 123, 123, 0.4); }
+.struck { text-decoration: line-through; text-decoration-color: rgba(255, 123, 123, 0.6); }

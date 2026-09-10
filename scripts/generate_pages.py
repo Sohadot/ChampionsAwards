@@ -160,6 +160,50 @@ def attach_award_architecture(item: dict[str, Any], case_index: dict[str, dict[s
         )
 
 
+def attach_report(item: dict[str, Any]) -> None:
+    """A synthesis report states figures as tokens; this resolves them from the
+    canonical engine at build time. Nothing numeric on the rendered page was
+    typed by an author - validation rejects a bare number in report prose - so a
+    report cannot drift from the corpus it derives from.
+    """
+    domain = item.get("derives_from")
+    if not isinstance(domain, str):
+        return
+    from domain_comparison import build_comparison
+    from synthesis_figures import figure_map, resolve
+
+    figures = figure_map(domain)
+    comparison = build_comparison(domain)
+
+    def r(text: Any) -> Any:
+        return resolve(text, figures) if isinstance(text, str) else text
+
+    item["summary"] = r(item.get("summary"))
+    item["question"] = r(item.get("question"))
+    item["scope"] = r(item.get("scope"))
+    item["observation_rows"] = [
+        {"statement": r(obs.get("statement")), "derived_from": obs.get("derived_from") or []}
+        for obs in item.get("observations") or []
+    ]
+    item["hypothesis_rows"] = [
+        {
+            "statement": r(hyp.get("statement")),
+            "basis": r(hyp.get("basis")),
+            "refuted_by": r(hyp.get("refuted_by")),
+            # A refuted hypothesis stays on the page, marked. Removing it would
+            # hide the one thing a reader most needs to see: that the corpus was
+            # allowed to overturn a published interpretation.
+            "state": hyp.get("state", "open"),
+            "outcome": r(hyp.get("outcome")),
+        }
+        for hyp in item.get("hypotheses") or []
+    ]
+    item["limit_rows"] = [r(limit) for limit in item.get("limits") or []]
+    item["comparison"] = comparison
+    item["corpus_cases"] = comparison["observations"]["corpus_distribution"]["ranked_cases"]
+    item["sector_url"] = f"/sectors/{domain}"
+
+
 def load_yaml_file(path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
@@ -243,6 +287,7 @@ def build_cluster_item_pages(
         attach_assessment(item)
         attach_rls(item)
         attach_award_architecture(item, case_index or {})
+        attach_report(item)
 
         output_path = OUT / cluster_name / slug / "index.html"
 

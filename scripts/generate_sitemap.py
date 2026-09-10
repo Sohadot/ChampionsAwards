@@ -5,7 +5,7 @@ from typing import Any
 
 import yaml
 
-from config import CLUSTERS, CORE_URLS, DATA, OUT, is_published, normalize_domain
+from config import CLUSTERS, CORE_URLS, DATA, OUT, PUBLISHED_SECTORS, is_published, normalize_domain
 
 
 def load_yaml_file(path) -> dict[str, Any]:
@@ -47,6 +47,12 @@ def main() -> None:
 
     for core_path in CORE_URLS:
         urls.append(f"{domain}{core_path}")
+
+    # Computed sector references (generate_sectors.py) are pages, not a cluster.
+    if PUBLISHED_SECTORS:
+        urls.append(f"{domain}/sectors")
+        for sector in PUBLISHED_SECTORS:
+            urls.append(f"{domain}/sectors/{sector}")
 
     for cluster_name in CLUSTERS:
         items = [item for item in load_cluster_items(cluster_name) if is_published(item)]

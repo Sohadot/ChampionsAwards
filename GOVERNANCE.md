@@ -12,7 +12,14 @@ an automated gate before it can be published. The gate is code, not a promise:
 2. **`quality_gate.py`** — publication policy (below).
 3. **`generate_core.py` / `generate_pages.py`** — render pages. Draft entries
    are skipped and never emitted.
-4. **`generate_sitemap.py`** — sitemap of published URLs only.
+4. **`generate_rankings.py` / `generate_sectors.py`** — computed aggregate pages,
+   rendered from the canonical engine, never hand-edited.
+5. **`generate_sitemap.py`** — sitemap of published URLs only.
+
+`python scripts/run_checks.py` runs the machine checks behind these rules
+(frozen statistics, determinism, denominators, the publication boundary, the
+sector page's fidelity to the engine, and the synthesis rules below). A failing
+check means a claim the project makes is no longer enforced by its code.
 
 ## Publication policy (enforced)
 
@@ -83,6 +90,38 @@ The project deepens one domain to maturity before opening the next. The model,
 the seven layers, and the machine-checked Definition of Done live in
 [`docs/DOMAIN-CYCLES.md`](docs/DOMAIN-CYCLES.md); `scripts/domain_status.py`
 reports each domain's status from the same scoring engine the site uses.
+
+## Synthesis reports (enforced)
+
+A synthesis is where prose is most tempted to outrun the evidence, so reports in
+`src/data/reports/` are held to rules the gate can check:
+
+- **A report declares the corpus it derives from** (`derives_from`, a registered
+  domain) instead of restating sources. Its evidence is that governed corpus, and
+  every case in it already carries audited sources and provenance anchors.
+- **A report may not type a statistic.** Figures appear as tokens —
+  `{median_gap}`, `{pattern_support:credit-misattribution}` — resolved at build
+  time from the canonical engine (`scripts/synthesis_figures.py`). A bare number
+  in report prose fails validation; years are the only literal numbers allowed.
+  An unknown token fails too, so a report cannot cite a figure the engine does
+  not produce.
+- **Observation and hypothesis stay structurally apart.** An observation must
+  cite at least one figure and declare the figures it rests on. A hypothesis must
+  state its basis in the corpus *and* what would refute it: a claim that cannot
+  be refuted is not published as one.
+- **Limits are published with the report**, on the page rather than in a footer,
+  including the selection effect that makes corpus frequency ≠ field prevalence.
+
+## Mechanism audits (enforced)
+
+A case may declare a `mechanism_audit`: a dated record of the search for a
+structural mechanism, naming the mechanisms considered, the finding
+(`mechanism-evidenced` or `no-mechanism-evidenced`), what the record did and did
+not support, and the best sources found. The gate rejects an audit that
+contradicts the case's own `patterns`. This makes "no mechanism recorded" a
+documented decision rather than a silence, and lets the engine report **mechanism
+accounting** — how much of the corpus has actually been examined — separately from
+how many mechanisms recur.
 
 ## Correction policy
 

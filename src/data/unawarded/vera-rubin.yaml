@@ -1,12 +1,12 @@
 title: Vera Rubin
 slug: vera-rubin
 status: published
-last_reviewed: 2026-09-09
+last_reviewed: 2026-09-10
 domain: physics-astronomy
 summary: Vera Rubin's observations of galaxy rotation provided decisive evidence for dark matter, and she received major honours including the National Medal of Science and the Royal Astronomical Society's Gold Medal, though never a Nobel Prize.
 introduction: Rubin's work transformed cosmology, and she was widely honoured during her lifetime, which makes her a deliberate high-recognition case for testing whether assessed merit and recognition can align closely.
 omission_case: Her case matters as a control on the archive - a contribution of the first rank that was substantially recognised, so its recognition gap is expected to be modest rather than extreme.
-structural_reason: Where a gap remains, it reflects the absence of the field's single highest honour rather than any broad failure of recognition, which was in her case substantial and sustained.
+structural_reason: "Two things hold at once in this case. Formal barriers are documented: she was denied use of the 200-inch Hale telescope at Palomar because women were not allowed access until the 1960s, and she became the first woman officially permitted to observe there in 1965. Her recognition was nonetheless substantial and sustained, so the remaining gap reflects the absence of the field's single highest honour rather than a failure of recognition overall."
 assessment:
   impact: 88
   verification: 92
@@ -47,6 +47,45 @@ key_facts:
   source: 1
 - fact: She received the National Medal of Science (1993) and was the first woman awarded the Royal Astronomical Society's Gold Medal since 1828.
   source: 2
+- fact: She was denied the use of the Hale telescope at Palomar because women were not allowed access until the 1960s, and in 1965 became the first woman officially invited to observe there.
+  source: 3
+- fact: "In her own account she records being invited to use a Carnegie telescope at Palomar that was \"still not available to women\", first observing there in December 1965, and describes the single men's toilet as the facility \"that kept women from observing at Palomar for decades\"."
+  source: 4
+patterns:
+- institutional-exclusion
+pattern_evidence:
+  institutional-exclusion:
+  - 2
+  - 3
+  - 4
+mechanism_audit:
+  search_date: '2026-09-10'
+  considered:
+  - institutional-exclusion
+  - credit-misattribution
+  - institutional-gatekeeping
+  - delayed-recognition
+  - theory-experiment-asymmetry
+  - recognition-bias
+  finding: mechanism-evidenced
+  note: >-
+    Institutional exclusion is supported by the record: access to the 200-inch Hale telescope at
+    Palomar - the instrument through which observational standing in this field was built - was closed
+    to women until the 1960s, and her admission in 1965 is recorded as a first. The National Academy of
+    Sciences memoir states the denial directly, her own institution records the 1965 admission, and her
+    own published account records the invitation to a telescope "still not available to women". One
+    further editorial episode was found and deliberately not tagged: she records an Astronomical Journal
+    editor saying he would not publish her students' names, and relenting when she offered to withdraw
+    the paper. An attempt that was withdrawn did not shape the record, so it does not evidence
+    gatekeeping; it is noted here rather than counted.
+    Credit misattribution was tested and does not hold: attribution of the rotation-curve work to her is
+    consistent across the record. Gatekeeping, delayed recognition and theory-experiment asymmetry were
+    tested and are not supported. Tagging this mechanism does not imply it produced her measured gap,
+    which is the smallest in this corpus; the mechanism is documented in the case, and her recognition
+    was nonetheless substantial. No score was changed by this audit.
+  best_sources:
+  - 2
+  - 3
 analysis:
 - heading: A control case for the index
   body: Rubin is included precisely because her recognition was substantial. A transformative contribution that was broadly honoured should show a modest gap, and if the index instead forced a large one, that would signal a bias in the method. Her moderate gap is evidence the instrument is measuring, not editorialising.
@@ -59,6 +98,14 @@ sources:
   publisher: Carnegie Science
   url: https://carnegiescience.edu/vera-rubin-opening-doors-dark-matter-and-women-stem
   type: institutional
+- title: "Vera Cooper Rubin 1928-2016: A Biographical Memoir"
+  publisher: Neta A. Bahcall, National Academy of Sciences (2021)
+  url: https://www.nasonline.org/wp-content/uploads/2024/06/rubin-vera.pdf
+  type: scholarly-secondary
+- title: An Interesting Voyage (her own account of the Palomar restriction)
+  publisher: Vera C. Rubin, Annual Review of Astronomy and Astrophysics 49, 1-28 (2011)
+  url: https://www.annualreviews.org/doi/abs/10.1146/annurev-astro-081710-102545
+  type: primary
 provenance:
   contribution:
     record_anchor:
@@ -72,3 +119,7 @@ provenance:
     record_anchor:
     - 2
     basis: institutional-archive
+  pattern:institutional-exclusion:
+    record_anchor:
+    - 4
+    basis: participant-testimony

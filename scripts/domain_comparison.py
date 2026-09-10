@@ -10,13 +10,23 @@ carries an explicit denominator. Corpus frequency is not field prevalence.
 
 Determinism: all inputs are sorted by slug before aggregation, quartiles use a
 single fixed (inclusive) definition, and a data-derived snapshot id identifies
-the corpus a result was computed from.
+the corpus a result was computed from. Nothing in the result depends on wall
+clock time. The corpus is dated by `data_through` - the most recent
+`last_reviewed` among the inputs actually included - not by build time. Build
+time is available separately (`generated_at()`), is operational metadata only,
+and is excluded from the identity and from every stable output.
+
+Publication boundary: this module writes no file into the site output directory.
+Cycle 01 defers public data export / API, so the JSON report is a build-internal
+artifact under `reports/` and the sector page calls `build_comparison()` at build
+time and renders HTML. Nothing here creates a machine-readable public endpoint.
 """
 from __future__ import annotations
 
 import hashlib
 import json
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
 import yaml
@@ -24,6 +34,8 @@ import yaml
 from config import (
     ASSESSMENT_CLUSTERS,
     DATA,
+    OUT,
+    ROOT,
     PATTERN_ESTABLISHED_MIN,
     RLS_CLUSTERS,
     RLS_DIMENSIONS,
@@ -120,6 +132,10 @@ def _domain_systems(domain: str) -> list[dict[str, Any]]:
     return sorted(systems, key=lambda s: s["slug"])
 
 
+def _domain_awards(domain: str) -> list[dict[str, Any]]:
+    return [item for item in _load_cluster("awards") if item.get("domain") == domain]
+
+
 def _domain_award_relations(domain: str) -> list[dict[str, Any]]:
     """Hardened corpus relations only: interaction_type + claim + (anchor XOR exception)."""
     rels = []
@@ -136,6 +152,45 @@ def _domain_award_relations(domain: str) -> list[dict[str, Any]]:
             if hardened:
                 rels.append({"award": award, **rel})
     return sorted(rels, key=lambda r: (r["award"], r["case"], r["interaction_type"]))
+
+
+def _as_iso_date(value: Any) -> str | None:
+    """Normalise a last_reviewed value (str or datetime.date) to YYYY-MM-DD."""
+    if isinstance(value, str):
+        v = value.strip()
+        return v if len(v) == 10 and v[4] == "-" and v[7] == "-" else None
+    if isinstance(value, datetime):
+        return value.date().isoformat()
+    if hasattr(value, "isoformat") and not isinstance(value, (int, float)):
+        try:
+            return value.isoformat()[:10]
+        except Exception:
+            return None
+    return None
+
+
+def data_through(domain: str) -> str | None:
+    """The corpus date: the most recent `last_reviewed` among the inputs actually
+    included in this comparison (DDI cases, RLS systems, award entries).
+
+    This is derived from the data, never from the clock: re-running the build on
+    a later day cannot change it, and a changed date always means a changed
+    review. Absent any dated input it is None rather than an invented date.
+    """
+    dates = []
+    for item in (*_domain_cases(domain), *_domain_systems(domain), *_domain_awards(domain)):
+        iso = _as_iso_date(item.get("last_reviewed"))
+        if iso:
+            dates.append(iso)
+    return max(dates) if dates else None
+
+
+def generated_at() -> str:
+    """Operational metadata: when this process ran. Deliberately NOT part of the
+    result, the snapshot identity, or any stable output - it is returned only on
+    request, so a wall-clock value can never leak into a reproducible figure.
+    """
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
 # --------------------------------------------------------------------------
@@ -172,11 +227,20 @@ def corpus_distribution(domain: str) -> dict[str, Any]:
 
     ranked = sorted(rows, key=lambda r: (-r.get("gap", float("-inf")), -r["ddi"], r["slug"]))
     gq = quartiles(gap_vals)
+    # The two sides of the gap are reported separately, each with its own spread:
+    # a gap can widen because assessments differ or because recognition differs,
+    # and only the separated ranges let a reader see which varies in this corpus.
     return {
         "n_cases": len(cases),
         "median_ddi": median(ddi_vals),
         "median_observed_recognition": median(obs_vals),
         "median_gap": median(gap_vals),
+        "ddi_min": min(ddi_vals) if ddi_vals else None,
+        "ddi_max": max(ddi_vals) if ddi_vals else None,
+        "ddi_spread": (max(ddi_vals) - min(ddi_vals)) if ddi_vals else None,
+        "observed_min": min(obs_vals) if obs_vals else None,
+        "observed_max": max(obs_vals) if obs_vals else None,
+        "observed_spread": (max(obs_vals) - min(obs_vals)) if obs_vals else None,
         "gap_min": gq["min"], "gap_max": gq["max"],
         "gap_q1": gq["q1"], "gap_q3": gq["q3"], "gap_iqr": gq["iqr"],
         "ddi_band_counts": dict(sorted(ddi_bands.items())),
@@ -209,11 +273,68 @@ def pattern_distribution(domain: str) -> dict[str, Any]:
             "cases": cs,
         })
     patterns.sort(key=lambda p: (-p["support"], p["pattern"]))
+
+    # Cases with a documented gap but no evidenced mechanism are counted, not
+    # hidden: absence of evidence here means none was recorded in this corpus,
+    # never that no mechanism operated.
+    with_evidence = {c["slug"] for p in patterns for c in p["cases"]}
+    without = sorted(
+        (
+            {"slug": c["slug"], "title": c.get("title", c["slug"]), "url": f"/unawarded/{c['slug']}",
+             "audited": bool(c.get("mechanism_audit"))}
+            for c in cases
+            if c["slug"] not in with_evidence
+        ),
+        key=lambda x: x["slug"],
+    )
+
+    # Mechanism accounting: a case is *accounted for* when the corpus can say
+    # something dated about its mechanism - either evidence for one, or a
+    # documented audit that searched and found none. Cases that are neither are
+    # simply not yet audited, and are reported as such rather than absorbed into
+    # the "no mechanism" count. This measures how thoroughly the corpus has been
+    # examined, which is a different question from how many mechanisms recur.
+    audited = {c["slug"] for c in cases if isinstance(c.get("mechanism_audit"), dict)}
+    accounted = sorted(with_evidence | audited)
+    unaudited = sorted(
+        (
+            {"slug": c["slug"], "title": c.get("title", c["slug"]), "url": f"/unawarded/{c['slug']}"}
+            for c in cases
+            if c["slug"] not in with_evidence and c["slug"] not in audited
+        ),
+        key=lambda x: x["slug"],
+    )
+
+    # Co-occurrence: how often two evidenced mechanisms appear in the same case.
+    # Descriptive only - a pair count says the record documents both in one case,
+    # never that one mechanism produced the other.
+    by_case: dict[str, list[str]] = {}
+    for p in patterns:
+        for c in p["cases"]:
+            by_case.setdefault(c["slug"], []).append(p["pattern"])
+    pair_counts: dict[tuple[str, str], int] = {}
+    for pats in by_case.values():
+        ordered = sorted(pats)
+        for i, a in enumerate(ordered):
+            for b in ordered[i + 1:]:
+                pair_counts[(a, b)] = pair_counts.get((a, b), 0) + 1
+    co_occurrence = [
+        {"pair": [a, b], "count": n, "denominator": denom}
+        for (a, b), n in sorted(pair_counts.items(), key=lambda kv: (-kv[1], kv[0]))
+    ]
+
     return {
         "denominator": denom,
         "denominator_meaning": "DDI cases in this domain",
         "established_count": sum(1 for p in patterns if p["status"] == "established"),
         "patterns": patterns,
+        "cases_without_evidenced_pattern": without,
+        "n_cases_without_evidenced_pattern": len(without),
+        "n_cases_audited": len(audited),
+        "n_cases_accounted": len(accounted),
+        "accounting_coverage_percentage": round(100 * len(accounted) / denom) if denom else 0,
+        "cases_unaudited": unaudited,
+        "co_occurrence": co_occurrence,
     }
 
 
@@ -277,7 +398,8 @@ def _snapshot_id(domain: str, site: dict[str, Any]) -> str:
         "cases": [
             {"slug": c["slug"], "assessment": c.get("assessment"),
              "patterns": sorted(c.get("patterns") or []),
-             "pattern_evidence": c.get("pattern_evidence")}
+             "pattern_evidence": c.get("pattern_evidence"),
+             "mechanism_audit": c.get("mechanism_audit")}
             for c in _domain_cases(domain)
         ],
         "systems": [
@@ -288,6 +410,13 @@ def _snapshot_id(domain: str, site: dict[str, Any]) -> str:
     }
     blob = json.dumps(payload, sort_keys=True, ensure_ascii=True, default=str)
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:12]
+
+
+def _reference_form(domain: str, site: dict[str, Any]) -> str:
+    """How a figure from this engine should be cited: corpus + methodology + date."""
+    through = data_through(domain) or "undated"
+    return (f"corpus {_snapshot_id(domain, site)} + methodology "
+            f"{site.get('methodology_version')} + data through {through}")
 
 
 def build_comparison(domain: str) -> dict[str, Any]:
@@ -302,11 +431,12 @@ def build_comparison(domain: str) -> dict[str, Any]:
             "ddi_cases": corpus["n_cases"],
             "rls_systems": systems["n_systems"],
             "award_relations": awards["denominator"],
-            "snapshot_date": datetime.now(timezone.utc).date().isoformat(),
+            "data_through": data_through(domain),
             "methodology_version": site.get("methodology_version"),
             "rls_version": site.get("rls_version"),
         },
         "corpus_snapshot": _snapshot_id(domain, site),
+        "reference_form": _reference_form(domain, site),
         "limitations": [
             "The corpus is purposively built around recognition-gap cases; it is not a representative sample of the field.",
             "Corpus frequency is not field prevalence.",
@@ -334,12 +464,14 @@ def print_report(result: dict[str, Any]) -> None:
     print("=" * 58)
     print(f"Comparison population: {pop['domain']}")
     print(f"  DDI cases: {pop['ddi_cases']} | RLS systems: {pop['rls_systems']} | award relations: {pop['award_relations']}")
-    print(f"  methodology {pop['methodology_version']} / {pop['rls_version']} | snapshot {result['corpus_snapshot']} | {pop['snapshot_date']}")
+    print(f"  methodology {pop['methodology_version']} / {pop['rls_version']} | snapshot {result['corpus_snapshot']} | data through {pop['data_through']}")
 
     c = result["observations"]["corpus_distribution"]
     print(f"\nCorpus distribution (n={c['n_cases']})")
     print(f"  median DDI {_fmt(c['median_ddi'])} | median observed {_fmt(c['median_observed_recognition'])} | median gap {_fmt(c['median_gap'])}")
     print(f"  gap min {_fmt(c['gap_min'])} Q1 {_fmt(c['gap_q1'])} Q3 {_fmt(c['gap_q3'])} max {_fmt(c['gap_max'])} (IQR {_fmt(c['gap_iqr'])})")
+    print(f"  assessed DDI {_fmt(c['ddi_min'])}-{_fmt(c['ddi_max'])} (spread {_fmt(c['ddi_spread'])}) | "
+          f"observed recognition {_fmt(c['observed_min'])}-{_fmt(c['observed_max'])} (spread {_fmt(c['observed_spread'])})")
     print(f"  DDI bands: {c['ddi_band_counts']}")
     print(f"  gap bands: {c['gap_band_counts']}")
 
@@ -347,6 +479,14 @@ def print_report(result: dict[str, Any]) -> None:
     print(f"\nStructural patterns (denominator {p['denominator']} {p['denominator_meaning']})")
     for pat in p["patterns"]:
         print(f"  {pat['pattern']}: {pat['support']}/{pat['denominator']} ({pat['corpus_percentage']}% of this corpus) [{pat['status']}]")
+    if p["co_occurrence"]:
+        print("  co-occurrence (same case, both evidenced):")
+        for pair in p["co_occurrence"]:
+            print(f"    {pair['pair'][0]} + {pair['pair'][1]}: {pair['count']}/{pair['denominator']}")
+    print(f"  cases with a gap but no evidenced mechanism recorded: {p['n_cases_without_evidenced_pattern']}/{p['denominator']}")
+    print(f"  mechanism accounting: {p['n_cases_accounted']}/{p['denominator']} "
+          f"({p['accounting_coverage_percentage']}%) - evidenced or audited; "
+          f"{len(p['cases_unaudited'])} not yet audited")
     print("  (corpus frequency, not estimated prevalence in the field)")
 
     s = result["observations"]["recognition_system_profiles"]
@@ -363,17 +503,38 @@ def print_report(result: dict[str, Any]) -> None:
         print(f"  {d['interaction_type']}: {d['count']}/{d['denominator']}")
 
 
-def main() -> None:
-    result = build_comparison("physics-astronomy")
-    print_report(result)
-    # Machine-readable artifact (regenerated each build; deterministic content).
-    out_dir = DATA.parent.parent / "public" / "data"
+REPORTS: Path = ROOT / "reports"
+
+
+def write_report(result: dict[str, Any], domain: str) -> Path | None:
+    """Write the build-internal JSON report.
+
+    It lands in `reports/`, never in OUT (`public/`): Cycle 01 defers public data
+    export and APIs, so this artifact is for inspection, diffing and tests - not
+    an endpoint. `generated_at` is written into a sibling run-log rather than the
+    report, so the report stays byte-identical across runs of the same corpus.
+    """
+    path = REPORTS / f"{domain}-comparison.json"
     try:
-        out_dir.mkdir(parents=True, exist_ok=True)
-        with (out_dir / "physics-astronomy-comparison.json").open("w", encoding="utf-8") as f:
+        REPORTS.mkdir(parents=True, exist_ok=True)
+        with path.open("w", encoding="utf-8") as f:
             json.dump(result, f, indent=2, sort_keys=True)
+            f.write("\n")
+        with (REPORTS / "last-run.txt").open("w", encoding="utf-8") as f:
+            f.write(f"{domain} generated_at={generated_at()} snapshot={result['corpus_snapshot']}\n")
     except OSError:
-        pass  # standalone runs without a build output directory are fine
+        return None
+    return path
+
+
+def main() -> None:
+    domain = "physics-astronomy"
+    result = build_comparison(domain)
+    print_report(result)
+    path = write_report(result, domain)
+    if path is not None:
+        assert OUT not in path.parents, "comparison report must not be written under the site output directory"
+        print(f"\nBuild-internal report: {path.relative_to(ROOT)}  (not published; Cycle 01 defers data export)")
 
 
 if __name__ == "__main__":

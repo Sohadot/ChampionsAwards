@@ -91,6 +91,29 @@ mechanisms actually recur — never by hunting for a second instance to promote 
 label. If the evidence yields three established patterns rather than four, the
 domain reports 3/4; a truthful "not yet" is preferred to a manufactured pass.
 
+### Mechanism audit (coverage, not label count)
+
+A case can carry a measured recognition gap and no evidenced mechanism. That is a
+legitimate result — but only when it is the outcome of a search, never a silence.
+A `mechanism_audit` on the case records that search: the date, the mechanisms
+considered (each a published concept), the finding
+(`mechanism-evidenced` / `no-mechanism-evidenced`), a note stating what the
+record did and did not support, and the best sources found. Validation rejects an
+audit whose finding disagrees with the case's own pattern tags, so the audit and
+the tags can never say different things.
+
+From this the engine computes **mechanism accounting**: how many cases are
+accounted for — by evidence for a mechanism, or by a dated audit that searched and
+found none — and how many remain unaudited. Coverage measures how thoroughly the
+corpus has been examined, which is a different question from how many mechanisms
+recur, and the two are reported separately rather than blended.
+
+Auditing a case may end in any of four ways, and three of them do not add a tag:
+the record supports an existing mechanism; it supports none; a claim is corrected;
+or the case is withdrawn. An audit is never a search for a label that would help a
+threshold — and where the ontology does not fit the record, the finding is
+"no mechanism evidenced", not a new name invented to fill the gap.
+
 ### Source-grade audit (closure criterion)
 
 Before a domain is declared mature v1.0, each case is reviewed for whether a
@@ -161,9 +184,93 @@ Quartiles use one frozen inclusive definition (tested in
 (DDI cases, RLS systems, and award relations are distinct populations); and each
 result carries a deterministic, data-derived `corpus_snapshot` id so a finding is
 attributable to the exact corpus it was computed from — "true for Cycle 01
-corpus vN", not an eternal claim. The machine checks freeze the quartile
+corpus vN", not an eternal claim.
+
+**The corpus is dated by its own data.** A comparison declares `data_through` —
+the most recent `last_reviewed` among the inputs actually included — never the
+build date. Re-running the build on a later day cannot change a published figure;
+a changed date always means a changed review. Build time exists only as
+operational metadata (`generated_at()`), excluded from the identity and from
+every stable output. A figure is therefore cited in one form:
+
+> corpus `<snapshot>` + methodology `<version>` + data through `<YYYY-MM-DD>`
+
+**Publication boundary.** The engine writes no file into the site output
+directory. Cycle 01 defers public data export and APIs, so its JSON report is a
+build-internal artifact under `reports/` (untracked) for inspection, diffing and
+tests. Representations that *are* published — the sector page, the synthesis —
+call `build_comparison()` at build time and render HTML. The machine checks
+enforce both rules: no wall-clock value may enter the result, and no JSON
+endpoint may appear under `public/`. The machine checks freeze the quartile
 definition, guarantee determinism, and enforce the eligibility and
 denominator rules.
+
+### Sector reference pages
+
+A sector page (`/sectors/<domain>`) is layer 6, and it is a **representation of
+the engine, never a second calculation**. `scripts/generate_sectors.py` calls
+`build_comparison()` at build time and renders HTML; there is no authorable
+`sectors/*.yaml` that could contradict the computed result, and no number on the
+page is hand-entered. Its order is fixed, from landscape to boundary:
+
+1. **Recognition landscape** — the populations and the corpus identity.
+2. **Recognition gap distribution** — the actual distribution drawn from the
+   values (box, median, whiskers, one dot per case), not summary cards.
+3. **Structural mechanisms** — evidenced support with the denominator and the
+   corpus-frequency caveat in the same context, never in a footnote.
+4. **Recognition systems** — multidimensional profiles in fixed alphabetical
+   order. No podium, no "#1": the page presents profiles, not a ranking.
+5. **Award architecture** — the mapped award's rules, then its corpus relations
+   split into documented outcomes and constraints / non-award records.
+6. **Case matrix** — every case with DDI, observed recognition, gap, and its
+   evidenced mechanisms.
+7. **Methodological boundary** — what the page does not claim, and domain
+   maturity as measured, including thresholds not met, on the page itself.
+8. **Provenance & reproducibility** — instruments, corpus snapshot, data
+   through, and the one citation form.
+
+**No narrative finding unless it is literally derived from the engine.** A
+generated reading states a count against its denominator — "8 of 10 governed
+cases exhibit evidenced credit misattribution — the highest support count in
+this corpus" — and never that a mechanism is dominant, typical, or proven.
+`generate_sectors.py` lints its own generated prose for banned superlatives and
+for generalisation terms, and fails the build on a hit;
+`scripts/test_sector_page.py` checks that the page's figures equal the engine's,
+that the distribution plots every case once, that maturity reports the
+established count, that systems are unranked, and that no data endpoint is
+emitted.
+
+### Synthesis reports (layer 7)
+
+Layer 7 is where reference authority begins, so it carries the strictest rule in
+the project: **a report may not type a statistic.** Report prose states figures
+as tokens resolved at build time from the canonical engine; a bare number or an
+unknown token fails validation (`scripts/synthesis_figures.py`,
+`validate_report` in `scripts/validate_content.py`). A report declares
+`derives_from` — the governed corpus that carries its evidence — instead of its
+own source list, and its page links every case behind its figures.
+
+Observation and interpretation are kept structurally apart, not merely
+separated by tone:
+
+- an **observation** is a statement about the corpus that cites at least one
+  engine figure and declares the figures it rests on;
+- a **hypothesis** must state its basis in the corpus *and* what would refute
+  it. A claim that cannot be refuted is not published as one.
+
+An observation may not use a universal ("every", "never", "all"): the engine
+computes counts, so an observation states a count with its denominator, and a
+universal claim belongs among the hypotheses where it carries a refutation
+condition. When the corpus later meets a hypothesis's refutation condition, the
+hypothesis is marked `state: refuted` and keeps an `outcome` recording what
+refuted it and when. **A refuted hypothesis stays published, struck through, not
+deleted** — the record of a discarded interpretation is part of the evidence, and
+the corpus that refuted it is the same corpus that suggested it.
+
+This is the reading of "the model must yield to the evidence" that a build can
+enforce: if the corpus changes, the report's numbers change with it, and a
+hypothesis stays labelled as a hypothesis until evidence — not confidence —
+promotes it.
 
 ## Cycle order
 

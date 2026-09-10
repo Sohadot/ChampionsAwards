@@ -1,0 +1,476 @@
+{% extends "base.html" %}
+{% set pop = sector.population %}
+
+{% block title %}{{ sector.domain_label }} — Recognition Architecture — ChampionsAwards{% endblock %}
+{% block meta_description %}A governed reference for recognition in {{ sector.domain_label|lower }}: {{ pop.ddi_cases }} assessed cases, {{ pop.rls_systems }} scored recognition systems, and the measured distance between assessed merit and observed recognition.{% endblock %}
+{% block canonical_link %}{{ sector.canonical_url }}{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{{
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": sector.domain_label ~ " — Recognition Architecture",
+    "url": sector.canonical_url,
+    "description": "Computed recognition reference for " ~ sector.domain_label ~ ": corpus distribution, evidenced structural mechanisms, recognition-system profiles, and award architecture.",
+    "isPartOf": {"@type": "WebSite", "name": site.site_name, "url": site.domain},
+    "inLanguage": site.language | default("en"),
+    "creativeWorkStatus": "Cycle 01 — open",
+    "version": pop.methodology_version,
+    "temporalCoverage": pop.data_through,
+    "about": {"@type": "Thing", "name": sector.domain_label}
+  } | tojson
+}}
+</script>
+<script type="application/ld+json">
+{{
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": site.domain},
+      {"@type": "ListItem", "position": 2, "name": "Sectors", "item": site.domain ~ "/sectors"},
+      {"@type": "ListItem", "position": 3, "name": sector.domain_label, "item": sector.canonical_url}
+    ]
+  } | tojson
+}}
+</script>
+{% endblock %}
+
+{% block content %}
+{# ---------- 1. Recognition landscape ---------- #}
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Sector reference · {{ pop.domain }}</p>
+    <h1>{{ sector.domain_label }} — recognition architecture</h1>
+    <p class="lead">
+      What this domain's governed record shows about the distance between assessed contribution and
+      observed recognition. Every figure on this page is computed at build time from one corpus by one
+      aggregation engine; none is hand-entered.
+    </p>
+    <dl class="landscape">
+      <div><dt>Assessed cases</dt><dd>{{ pop.ddi_cases }}</dd></div>
+      <div><dt>Recognition systems scored</dt><dd>{{ pop.rls_systems }}</dd></div>
+      <div><dt>Awards mapped</dt><dd>{{ sector.award_entries|length }}</dd></div>
+      <div><dt>Award relations</dt><dd>{{ pop.award_relations }}</dd></div>
+      <div><dt>Corpus snapshot</dt><dd class="mono">{{ sector.corpus_snapshot }}</dd></div>
+      <div><dt>Data through</dt><dd>{{ pop.data_through }}</dd></div>
+    </dl>
+  </div>
+</section>
+
+{# ---------- 2. Recognition gap distribution ---------- #}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Distribution · DDI {{ pop.methodology_version }}</p>
+      <h2>Recognition gap across the corpus</h2>
+    </div>
+    <p class="prose" style="max-width:760px;">{{ sector.gap_reading }}</p>
+
+    {% if sector.figure %}
+    <figure class="figure">
+      <svg viewBox="0 0 {{ sector.figure.width }} {{ sector.figure.height }}" width="100%"
+           role="img" aria-label="Distribution of recognition gaps across {{ sector.corpus.n_cases }} governed cases">
+        <title>Recognition gap distribution ({{ sector.corpus.n_cases }} cases)</title>
+        {# interquartile box + median + whiskers #}
+        <line x1="{{ sector.figure.whisker_lo }}" y1="{{ sector.figure.whisker_y }}"
+              x2="{{ sector.figure.whisker_hi }}" y2="{{ sector.figure.whisker_y }}"
+              stroke="rgba(255,255,255,0.22)" stroke-width="1"></line>
+        <line x1="{{ sector.figure.whisker_lo }}" y1="{{ sector.figure.box_y }}"
+              x2="{{ sector.figure.whisker_lo }}" y2="{{ sector.figure.box_y + sector.figure.box_h }}"
+              stroke="rgba(255,255,255,0.22)" stroke-width="1"></line>
+        <line x1="{{ sector.figure.whisker_hi }}" y1="{{ sector.figure.box_y }}"
+              x2="{{ sector.figure.whisker_hi }}" y2="{{ sector.figure.box_y + sector.figure.box_h }}"
+              stroke="rgba(255,255,255,0.22)" stroke-width="1"></line>
+        <rect x="{{ sector.figure.box_x }}" y="{{ sector.figure.box_y }}"
+              width="{{ sector.figure.box_w }}" height="{{ sector.figure.box_h }}"
+              fill="rgba(139,123,255,0.14)" stroke="rgba(139,123,255,0.5)" rx="3"></rect>
+        <line x1="{{ sector.figure.median_x }}" y1="{{ sector.figure.box_y - 6 }}"
+              x2="{{ sector.figure.median_x }}" y2="{{ sector.figure.box_y + sector.figure.box_h + 6 }}"
+              stroke="#8b7bff" stroke-width="2"></line>
+        <text x="{{ sector.figure.median_x }}" y="{{ sector.figure.box_y - 12 }}" class="fig-label"
+              text-anchor="middle">median {{ sector.corpus.median_gap | num }}</text>
+        {# one dot per case #}
+        {% for p in sector.figure.points %}
+        <circle cx="{{ p.cx }}" cy="{{ p.cy }}" r="5" fill="#5ce1c6" fill-opacity="0.85">
+          <title>{{ p.title }} — gap {{ p.gap }}</title>
+        </circle>
+        {% endfor %}
+        {# axis #}
+        <line x1="30" y1="{{ sector.figure.axis_y }}" x2="{{ sector.figure.width - 14 }}" y2="{{ sector.figure.axis_y }}"
+              stroke="rgba(255,255,255,0.18)"></line>
+        {% for t in sector.figure.ticks %}
+        <line x1="{{ t.x }}" y1="{{ sector.figure.axis_y }}" x2="{{ t.x }}" y2="{{ sector.figure.axis_y + 5 }}"
+              stroke="rgba(255,255,255,0.18)"></line>
+        <text x="{{ t.x }}" y="{{ sector.figure.axis_y + 18 }}" class="fig-tick" text-anchor="middle">{{ t.label }}</text>
+        {% endfor %}
+      </svg>
+      <figcaption class="small muted">
+        Each dot is one governed case (hover for the case). The box spans the interquartile range
+        Q1&nbsp;{{ sector.corpus.gap_q1 | num }}–Q3&nbsp;{{ sector.corpus.gap_q3 | num }}; the vertical line is the median
+        {{ sector.corpus.median_gap | num }}; the whiskers reach the observed minimum {{ sector.corpus.gap_min | num }} and
+        maximum {{ sector.corpus.gap_max | num }}. Horizontal axis: recognition gap in DDI points
+        (assessed score minus observed recognition). Quartiles use one frozen inclusive definition.
+      </figcaption>
+    </figure>
+    {% endif %}
+
+    <div class="grid two" style="margin-top:26px;">
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Assessed band (DDI)</th><th class="num">Cases</th></tr></thead>
+          <tbody>
+            {% for band, count in sector.corpus.ddi_band_counts.items() %}
+            <tr><td>{{ band }}</td><td class="num">{{ count }}/{{ sector.corpus.n_cases }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Gap reading</th><th class="num">Cases</th></tr></thead>
+          <tbody>
+            {% for band, count in sector.corpus.gap_band_counts.items() %}
+            <tr><td>{{ band }}</td><td class="num">{{ count }}/{{ sector.corpus.n_cases }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---------- 3. Structural mechanisms ---------- #}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Mechanisms · evidence-backed only</p>
+      <h2>Structural mechanisms in this corpus</h2>
+    </div>
+    <p class="muted small" style="max-width:760px;margin-top:-10px;">
+      A case counts toward a mechanism only where it carries source evidence documenting that
+      mechanism in that case. Denominator: {{ sector.patterns.denominator }}
+      {{ sector.patterns.denominator_meaning }}. This corpus is purposively built around
+      recognition-gap cases, so these are frequencies <em>within the dataset</em> — corpus frequency is
+      not field prevalence, and no count here estimates how often a mechanism occurs in the field.
+    </p>
+    {% for line in sector.pattern_readings %}
+    <p class="prose" style="max-width:760px;margin:0 0 8px;">{{ line }}</p>
+    {% endfor %}
+
+    <div class="table-wrap" style="margin-top:18px;">
+      <table class="data">
+        <thead>
+          <tr><th>Mechanism</th><th class="num">Support</th><th class="num">Share of corpus</th><th>Status</th><th>Cases</th></tr>
+        </thead>
+        <tbody>
+          {% for p in sector.patterns.patterns %}
+          <tr>
+            <td>
+              {% if p.pattern in sector.concept_slugs %}
+              <a href="/concepts/{{ p.pattern }}">{{ p.pattern.replace('-', ' ') }}</a>
+              {% else %}{{ p.pattern.replace('-', ' ') }}{% endif %}
+            </td>
+            <td class="num">{{ p.support }}/{{ p.denominator }}</td>
+            <td class="num">{{ p.corpus_percentage }}%</td>
+            <td><span class="badge">{{ p.status }}</span></td>
+            <td class="small">
+              {% for c in p.cases %}<a href="{{ c.url }}">{{ c.title }}</a>{% if not loop.last %} · {% endif %}{% endfor %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">
+      A mechanism is <strong>established</strong> at {{ sector.pattern_min }} or more independent
+      evidenced cases and <strong>emergent</strong> below that. Emergent mechanisms are recorded
+      but not counted toward domain maturity.
+    </p>
+
+    {% if sector.patterns.cases_without_evidenced_pattern %}
+    <div class="panel" style="margin-top:18px;max-width:820px;">
+      <h3 class="sub">Cases with a gap and no evidenced mechanism
+        ({{ sector.patterns.n_cases_without_evidenced_pattern }}/{{ sector.patterns.denominator }})</h3>
+      <p class="small muted">
+        A measured gap with no mechanism evidenced is a result, not an omission — but only when a search
+        was actually made. Each case below carries a dated mechanism audit recording what was considered
+        and what the record did not support.
+      </p>
+      <ul class="key-facts">
+        {% for case in sector.patterns.cases_without_evidenced_pattern %}
+        <li>
+          <a href="{{ case.url }}">{{ case.title }}</a> —
+          {% if case.audited %}audited, no mechanism evidenced{% else %}not yet audited{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{# ---------- 4. Recognition systems ---------- #}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Systems · RLS {{ pop.rls_version }}</p>
+      <h2>Recognition systems governing this domain</h2>
+    </div>
+    <p class="prose" style="max-width:760px;">{{ sector.rls_reading }}</p>
+    <p class="muted small" style="max-width:760px;">
+      Profiles, not a ranking: systems are listed alphabetically and read across five dimensions.
+      {{ sector.systems.note }}
+    </p>
+
+    <div class="grid three" style="margin-top:20px;">
+      {% for profile in sector.profiles %}
+      <article class="card">
+        <h3><a href="/recognition-systems/{{ profile.slug }}">{{ profile.title }}</a></h3>
+        <p class="small" style="margin:0 0 12px;">
+          RLS {{ profile.composite | num }} <span class="badge">{{ profile.band }}</span>
+        </p>
+        {% for key, label in sector.rls_labels.items() %}
+        <div class="dim">
+          <div class="dim-head small">
+            <span>{{ label }}</span><span class="mono">{{ profile.dimensions[key] | num }}</span>
+          </div>
+          <div class="dim-bar"><span style="width:{{ profile.dimensions[key] | num }}%;"></span></div>
+        </div>
+        {% endfor %}
+        <p class="small muted" style="margin-top:12px;">
+          Strongest dimension: {{ profile.highest_dimension.replace('_', ' ') }} ·
+          weakest: {{ profile.lowest_dimension.replace('_', ' ') }}
+        </p>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="table-wrap" style="margin-top:24px;">
+      <table class="data">
+        <thead><tr><th>Dimension</th><th class="num">Lowest</th><th class="num">Median</th><th class="num">Highest</th><th class="num">Spread</th></tr></thead>
+        <tbody>
+          {% for key, s in sector.systems.dimension_spread.items() %}
+          <tr>
+            <td>{{ sector.rls_labels[key] }}</td>
+            <td class="num">{{ s.min | num }}</td><td class="num">{{ s.median | num }}</td>
+            <td class="num">{{ s.max | num }}</td><td class="num">{{ s.spread | num }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">Denominator: {{ sector.systems.n_systems }} scored systems — a different population from the {{ sector.corpus.n_cases }} assessed cases.</p>
+  </div>
+</section>
+
+{# ---------- 5. Award architecture ---------- #}
+{% for award in sector.award_entries %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Award architecture · mapped from governing documents</p>
+      <h2><a href="{{ award.url }}">{{ award.title }}</a></h2>
+    </div>
+    <p class="prose" style="max-width:760px;">{{ sector.award_reading }}</p>
+
+    {% if award.architecture_rows %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Element</th><th>Rule as recorded</th></tr></thead>
+        <tbody>
+          {% for row in award.architecture_rows %}
+          <tr>
+            <td>{{ row.label }}</td>
+            <td>
+              {% if row.is_list %}
+                <ul style="margin:0;padding-left:18px;">{% for v in row.value %}<li>{{ v }}</li>{% endfor %}</ul>
+              {% else %}{{ row.value }}{% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">Each rule is anchored to a record-grade source on the <a href="{{ award.url }}">award page</a>.</p>
+    {% endif %}
+
+    <div class="grid two" style="margin-top:22px;">
+      <div>
+        <h3 class="sub">Documented outcomes ({{ award.outcomes|length }}/{{ sector.awards.denominator }})</h3>
+        <p class="small muted">What the record shows was decided or recorded.</p>
+        <ul class="rel-list">
+          {% for rel in award.outcomes %}
+          <li>
+            <a href="{{ rel.case_url }}">{{ rel.case_title }}</a>
+            <span class="badge">{{ rel.interaction_label }}</span>
+            <div class="small">{{ rel.claim }}</div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h3 class="sub">Constraints and non-award records ({{ award.constraints|length }}/{{ sector.awards.denominator }})</h3>
+        <p class="small muted">Rules that bounded a case, and records showing no award was made.</p>
+        <ul class="rel-list">
+          {% for rel in award.constraints %}
+          <li>
+            <a href="{{ rel.case_url }}">{{ rel.case_title }}</a>
+            <span class="badge">{{ rel.interaction_label }}</span>
+            <div class="small">{{ rel.claim }}</div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <p class="small muted" style="margin-top:14px;">
+      A relation states what the record connects. It does not state why an outcome occurred unless the
+      record itself establishes causation. Denominator: {{ sector.awards.denominator }}
+      {{ sector.awards.denominator_meaning }} — again a distinct population from cases and systems.
+    </p>
+  </div>
+</section>
+{% endfor %}
+
+{# ---------- 6. Case matrix ---------- #}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Case matrix · {{ sector.corpus.n_cases }} governed cases</p>
+      <h2>Every case, every number</h2>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>Case</th><th class="num">DDI</th><th>Band</th><th class="num">Observed</th>
+            <th class="num">Gap</th><th>Reading</th><th>Evidenced mechanisms</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in sector.matrix %}
+          <tr>
+            <td><a href="{{ row.url }}">{{ row.title }}</a></td>
+            <td class="num">{{ row.ddi | num }}</td>
+            <td class="small">{{ row.band }}</td>
+            <td class="num">{{ row.observed | num }}</td>
+            <td class="num">{{ row.gap | num }}</td>
+            <td class="small">{{ row.gap_reading }}</td>
+            <td class="small">{{ row.patterns | join(' · ') if row.patterns else '—' }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">
+      Ordered by recognition gap. DDI is a weighted assessment
+      ({% for d in sector.ddi_dimensions %}{{ d.label|lower }} {{ (d.weight * 100)|round|int }}%{% if not loop.last %}, {% endif %}{% endfor %}),
+      not a measurement of a person; the full derivation for each case is on its page.
+    </p>
+  </div>
+</section>
+
+{% if sector.reports %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Synthesis</p>
+      <h2>Studies derived from this corpus</h2>
+    </div>
+    <div class="grid two">
+      {% for report in sector.reports %}
+      <article class="card">
+        <h3><a href="{{ report.url }}">{{ report.title }}</a></h3>
+        <p class="small muted">
+          A synthesis over the same corpus snapshot, with its figures resolved from this engine and its
+          hypotheses kept separate from its observations.
+        </p>
+        <a href="{{ report.url }}">Read the report</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ---------- 7. Methodological boundary (on the page, not in a footer) ---------- #}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Boundary</p>
+      <h2>What this page does not claim</h2>
+    </div>
+    <div class="grid two">
+      <div class="panel">
+        <ul class="key-facts">
+          {% for limitation in sector.limitations %}
+          <li>{{ limitation }}</li>
+          {% endfor %}
+          <li>DDI and RLS are model results within published instruments, not verdicts on merit or legitimacy.</li>
+          <li>Absence of a mechanism against a case means no evidence was recorded for it here, not that it did not occur.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 class="sub">Domain maturity — as measured</h3>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Requirement</th><th class="num">Have</th><th class="num">Need</th><th>Status</th></tr></thead>
+            <tbody>
+              {% for row in sector.dod_rows %}
+              <tr>
+                <td>{{ row.requirement }}</td>
+                <td class="num">{{ row.have }}</td>
+                <td class="num">{{ row.need }}</td>
+                <td>{% if row.met %}met{% else %}<span class="pending">not yet</span>{% endif %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted">
+          {% if sector.mature %}
+          All thresholds are met; this domain is declared mature at the snapshot below.
+          {% else %}
+          This domain is open: thresholds are reported as measured. A threshold is never lowered, and a
+          mechanism is never added, to close a cycle.
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---------- 8. Provenance and reproducibility ---------- #}
+<section class="section">
+  <div class="container narrow prose">
+    <div class="section-heading">
+      <p class="eyebrow">Provenance</p>
+      <h2>How to reproduce and cite these figures</h2>
+    </div>
+    <p>
+      Every number above was produced at build time by one aggregation engine reading one corpus, and is
+      identified by that corpus rather than by the day the page was built. Cite a figure in this form:
+    </p>
+    <p class="mono cite-form">{{ sector.reference_form }}</p>
+    <div class="table-wrap">
+      <table class="data">
+        <tbody>
+          <tr><td>Deservingness instrument</td><td>{{ pop.methodology_version }} — <a href="/methodology">methodology</a></td></tr>
+          <tr><td>Legitimacy instrument</td><td>{{ pop.rls_version }} — <a href="/framework">framework</a></td></tr>
+          <tr><td>Corpus snapshot</td><td class="mono">{{ sector.corpus_snapshot }}</td></tr>
+          <tr><td>Data through</td><td>{{ pop.data_through }} (most recent review date among the inputs included)</td></tr>
+          <tr><td>Populations</td><td>{{ pop.ddi_cases }} cases · {{ pop.rls_systems }} systems · {{ pop.award_relations }} award relations</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">
+      The snapshot is a hash of the assessed inputs themselves, so a changed score, mechanism, or
+      relation changes it. Re-running the build on a later date does not: identity and dating come from
+      the data, never from the clock. Scoring rules are published at
+      <a href="/methodology">/methodology</a>; the recognition-gap protocol at <a href="/protocol">/protocol</a>.
+    </p>
+  </div>
+</section>
+{% endblock %}

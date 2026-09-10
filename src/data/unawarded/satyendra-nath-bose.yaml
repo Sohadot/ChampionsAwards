@@ -1,7 +1,7 @@
 title: Satyendra Nath Bose
 slug: satyendra-nath-bose
 status: published
-last_reviewed: 2026-09-09
+last_reviewed: 2026-09-10
 domain: physics-astronomy
 summary: Satyendra Nath Bose derived the quantum statistics that underpin Bose-Einstein statistics and the boson, work whose importance was recognised largely because Einstein translated and championed it, and Bose never received a Nobel Prize.
 introduction: Bose's 1924 derivation reached the physics community through Einstein's mediation, and while his name became embedded in the vocabulary of physics, the case is a useful test of a smaller, more nuanced recognition gap.
@@ -47,6 +47,8 @@ key_facts:
   source: 1
 - fact: The term boson was later coined after Bose, and he did not receive a Nobel Prize.
   source: 2
+- fact: The Nobel nomination archive records Bose as a nominee in eleven nominations for the Nobel Prize in Physics between 1956 and 1972, by nominators including K. Banerji, D. S. Kothari, S. Bagchi, A. Dutta, L. Kothari and M. G. K. Menon.
+  source: 4
 analysis:
 - heading: Recognition that partly succeeded
   body: Bose's gap is deliberately modest in this archive. His name is woven into physics, so the case is not one of erasure but of dependence - his result travelled only once a metropolitan intermediary vouched for it. Including such cases keeps the index honest and resistant to a bias toward dramatic injustice alone.
@@ -63,6 +65,14 @@ sources:
   publisher: S. N. Bose, Zeitschrift fuer Physik 26, 178 (1924)
   url: https://link.springer.com/article/10.1007/BF01327326
   type: primary
+- title: Satyendra Nath Bose - Nomination Archive (nominee in 11 Physics nominations, 1956-1972)
+  publisher: The Nobel Prize (Nobel Prize Outreach), official nomination archive
+  url: https://www.nobelprize.org/nomination/archive/show_people.php?id=10677
+  type: institutional
+- title: Remembering the Life of Satyendra Nath Bose
+  publisher: Amitabha Bhattacharya, Economic and Political Weekly, Vol. 54, Issue 14 (2019), citing Rajinder Singh, "The Ultimate Facts - SN Bose and the Missed Physics Nobel Prize", Science and Culture 83 (2017)
+  url: https://www.epw.in/engage/article/remembering-life-satyendra-nath-bose
+  type: scholarly-secondary
 provenance:
   contribution:
     record_anchor:
@@ -72,6 +82,34 @@ provenance:
     record_anchor:
     - 3
     basis: primary-publication
+mechanism_audit:
+  search_date: '2026-09-10'
+  considered:
+  - credit-misattribution
+  - institutional-exclusion
+  - institutional-gatekeeping
+  - delayed-recognition
+  - theory-experiment-asymmetry
+  - recognition-bias
+  finding: no-mechanism-evidenced
+  note: >-
+    Audited against every published mechanism in the ontology, and none is supported by the record for
+    this case. Credit misattribution does not hold: the statistics and the boson carry his name.
+    Institutional exclusion does not hold: he held professorial positions, was elected FRS in 1958 and
+    made National Professor. Institutional gatekeeping was tested against the documented rejection of
+    the 1924 manuscript by Philosophical Magazine after a negative referee report; the record shows a
+    rejection, not the active obstruction the mechanism requires, and no referee report or editorial
+    record was found that would establish one. What the record does show is the opposite of an absent
+    process: the Nobel nomination archive lists him as a nominee in eleven Physics nominations between
+    1956 and 1972, and a historian working from the Nobel archives reports that the committee
+    commissioned an expert evaluation from Oskar Klein in 1956 which judged the contribution important
+    but below the standard of the awarded work. The gap in this case therefore sits between our
+    assessment and a documented evaluation, not between a contribution and a process that ignored it.
+    Scores are unchanged: new evidence about the recognition record is not a reason to move a score.
+  best_sources:
+  - 4
+  - 5
+
 audit_exceptions:
 - claim: observed-recognition
   search_date: '2026-09-09'

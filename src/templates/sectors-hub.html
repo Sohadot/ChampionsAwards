@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Sectors — Recognition Architecture by Domain — ChampionsAwards{% endblock %}
+{% block meta_description %}Domains whose recognition architecture has been mapped: assessed cases, scored recognition systems, evidenced structural mechanisms, and the measured gap between merit and recognition.{% endblock %}
+{% block canonical_link %}{{ hub_canonical_url }}{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Sectors</p>
+    <h1>Recognition architecture by domain</h1>
+    <p class="lead">
+      Domains are opened one at a time and taken to maturity before the next begins. Each sector page is
+      computed from the governed corpus for that domain — never hand-edited — and reports its maturity as
+      measured, including the thresholds it has not yet met.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid two">
+      {% for sector in sectors %}
+      <article class="card">
+        <h3><a href="{{ sector.url }}">{{ sector.domain_label }}</a></h3>
+        <p>
+          {{ sector.population.ddi_cases }} assessed cases · {{ sector.population.rls_systems }} recognition
+          systems · {{ sector.population.award_relations }} award relations. Median recognition gap
+          {{ sector.corpus.median_gap | num }} points (IQR {{ sector.corpus.gap_iqr | num }}).
+        </p>
+        <p class="small muted">
+          {% if sector.mature %}Mature{% else %}Open cycle{% endif %} ·
+          corpus <span class="mono">{{ sector.corpus_snapshot }}</span> · data through
+          {{ sector.population.data_through }}
+        </p>
+        <a href="{{ sector.url }}">Open sector reference</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

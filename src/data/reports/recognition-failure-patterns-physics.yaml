@@ -1,0 +1,136 @@
+title: Recognition Failure Patterns in Twentieth-Century Physics
+slug: recognition-failure-patterns-physics
+status: published
+domain: physics-astronomy
+derives_from: physics-astronomy
+last_reviewed: 2026-09-10
+summary: >-
+  A synthesis over the governed Physics & Astronomy corpus: what {n_cases} assessed cases,
+  {n_systems} scored recognition systems and {n_award_relations} documented award relations show about
+  where recognition and assessed contribution separate — and, as carefully, what a corpus built this way
+  cannot show.
+question: >-
+  When a contribution and its recognition diverge, does the divergence sit on the contribution side or
+  on the recognition side — and do the mechanisms recorded in individual cases recur often enough to be
+  treated as structural rather than anecdotal?
+scope: >-
+  The evidence is the governed corpus for {domain_label} at snapshot {corpus_snapshot}, data through
+  {data_through}: cases scored under {methodology_version}, systems under {rls_version}, and award
+  relations anchored to records or documented exceptions. Every figure below is resolved at build time
+  from the aggregation engine; none is transcribed by hand. The corpus was assembled purposively around
+  recognition-gap cases, so it is a study of that population, not a sample of physics.
+
+observations:
+  - statement: >-
+      Assessed contribution varies far less across this corpus than observed recognition does. Assessed
+      DDI spans {ddi_min} to {ddi_max} (spread {ddi_spread}); observed recognition spans {observed_min}
+      to {observed_max} (spread {observed_spread}). Within this corpus the recognition side accounts for
+      most of the variation between cases.
+    derived_from: [ddi_min, ddi_max, ddi_spread, observed_min, observed_max, observed_spread]
+  - statement: >-
+      The median gap is {median_gap} points — a median assessed {median_ddi} against a median observed
+      recognition of {median_observed} — with the middle half of cases between {gap_q1} and {gap_q3}
+      (IQR {gap_iqr}) and a full range of {gap_min} to {gap_max}.
+    derived_from: [median_gap, median_ddi, median_observed, gap_q1, gap_q3, gap_iqr, gap_min, gap_max]
+  - statement: >-
+      Credit misattribution is the most supported mechanism in this corpus: {pattern_support:credit-misattribution}
+      of {n_cases} governed cases carry source evidence documenting it, {pattern_share:credit-misattribution}
+      per cent of the corpus.
+    derived_from: [pattern_support:credit-misattribution, pattern_share:credit-misattribution, n_cases]
+  - statement: >-
+      Institutional exclusion is evidenced in {pattern_support:institutional-exclusion} of {n_cases} cases.
+      Of those, {pattern_pair:credit-misattribution+institutional-exclusion} also carry evidenced credit
+      misattribution, so the two mechanisms are recorded together in most, but not in all, of the cases
+      where exclusion appears.
+    derived_from: [pattern_support:institutional-exclusion, pattern_pair:credit-misattribution+institutional-exclusion, n_cases]
+  - statement: >-
+      {established_patterns} of {total_patterns} mechanisms reach the established threshold of
+      {pattern_min} independent evidenced cases; the remaining {emergent_patterns} are recorded as
+      emergent on a single case each. The domain's Definition of Done asks for {pattern_threshold}
+      established mechanisms, so this layer is reported as incomplete rather than filled.
+    derived_from: [established_patterns, total_patterns, pattern_min, emergent_patterns, pattern_threshold]
+  - statement: >-
+      {cases_without_mechanism} of {n_cases} cases carry a documented recognition gap with no structural
+      mechanism evidenced in this corpus. The gap is measured; the mechanism behind it is not recorded here.
+    derived_from: [cases_without_mechanism, n_cases]
+  - statement: >-
+      Mechanism accounting is complete for this corpus: {cases_accounted} of {n_cases} cases
+      ({accounting_coverage} per cent) either carry evidence for a mechanism or carry a dated audit that
+      searched the record and found none, with {cases_unaudited} cases left unaudited. Coverage measures
+      how thoroughly the corpus was examined, which is a different question from how many mechanisms recur.
+    derived_from: [cases_accounted, n_cases, accounting_coverage, cases_unaudited]
+  - statement: >-
+      The {n_systems} scored recognition systems cluster narrowly overall — RLS {rls_min} to {rls_max},
+      median {rls_median} — while separating most on {rls_widest_dimension}, which ranges {rls_widest_min}
+      to {rls_widest_max} (spread {rls_widest_spread}). Composite legitimacy scores hide differences that
+      the dimensions expose.
+    derived_from: [n_systems, rls_min, rls_max, rls_median, rls_widest_dimension, rls_widest_min, rls_widest_max, rls_widest_spread]
+  - statement: >-
+      Of {n_award_relations} hardened relations between these cases and the {n_awards} mapped award,
+      {award_count:documented-award-outcome} are documented award outcomes,
+      {award_count:documented-nomination} a documented nomination, and
+      {award_count:archival-selection-record} an archival record of the selection process; the remainder
+      are rule-bound constraints or records of no award being made. The corpus documents what the
+      apparatus decided far more often than why it decided it.
+    derived_from: [n_award_relations, n_awards, award_count:documented-award-outcome,
+                   award_count:documented-nomination, award_count:archival-selection-record]
+
+hypotheses:
+  - statement: >-
+      Recognition allocation in this domain responds to factors that the assessment of contribution does
+      not capture — the divergence is generated on the recognition side rather than by differences in
+      contribution.
+    basis: >-
+      In this corpus assessed contribution varies by {ddi_spread} points while observed recognition varies
+      by {observed_spread}, and {cases_accounted} of {n_cases} cases are accounted for by an evidenced
+      mechanism or a dated audit, so the divergence is not an artefact of unexamined cases.
+    refuted_by: >-
+      A governed corpus in which the assessed spread meets or exceeds the observed spread, or in which
+      cases with large gaps show no evidenced mechanism on the recognition side, would refute it.
+  - statement: >-
+      Credit misattribution operates as a gateway mechanism: where another mechanism is recorded, credit
+      misattribution tends to be recorded alongside it rather than instead of it.
+    basis: >-
+      At the previous corpus snapshot, every co-occurring pair paired credit misattribution with a second
+      mechanism, and no pair excluded it.
+    refuted_by: >-
+      Cases evidencing institutional exclusion, gatekeeping or theory-experiment asymmetry with no
+      evidenced credit misattribution would refute it; a single well-documented case is enough.
+    state: refuted
+    outcome: >-
+      Refuted by this corpus on 2026-09-10, by the mechanism audit of Vera Rubin. The audit found
+      institutional exclusion evidenced in that case - access to the Hale telescope at Palomar was
+      closed to women until the 1960s - with no evidenced credit misattribution, which is exactly the
+      refutation condition stated above. The hypothesis is kept on the record, marked refuted, rather
+      than removed: the corpus that killed it is the same corpus that suggested it.
+  - statement: >-
+      The narrow spread of composite legitimacy scores understates how differently these systems behave,
+      because opposing dimension scores cancel inside one composite.
+    basis: >-
+      The composites span {rls_min} to {rls_max}, while {rls_widest_dimension} alone spans
+      {rls_widest_spread} points across the same {n_systems} systems.
+    refuted_by: >-
+      Systems whose dimension profiles track their composites — narrow dimension spreads across a narrow
+      composite range — would refute it.
+
+limits:
+  - >-
+    The corpus is purposively built around recognition-gap cases. That every case shows a positive gap is
+    a property of how cases were selected, not a finding about physics; corpus frequency is not field
+    prevalence.
+  - >-
+    Counts describe what is evidenced in this corpus. A mechanism absent from a case means no evidence
+    was recorded here, not that the mechanism did not operate.
+  - >-
+    DDI and RLS are model results within published instruments. They express how an assessment framework
+    scores a contribution or a system, not a verdict on merit or legitimacy.
+  - >-
+    Relations to award architecture state what the record connects. Where the record does not establish
+    causation, none is claimed — the observations above name no committee's reason for any decision.
+  - >-
+    The hypotheses are hypotheses. They are stated with what would refute them precisely because the
+    corpus is too small and too purposively selected to settle them - and one of them has already been
+    refuted by an audit of this corpus, which is what the refutation conditions are for.
+  - >-
+    All figures are attributable to corpus snapshot {corpus_snapshot}, data through {data_through}. A
+    later corpus can change them, and this report is superseded rather than amended when it does.
