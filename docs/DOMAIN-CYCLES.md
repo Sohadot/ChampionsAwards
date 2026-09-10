@@ -212,6 +212,10 @@ When all of the above hold, the domain is declared, in this document:
 
 > `<Domain> Recognition Layer: closed / mature v1.0`
 
+The Definition of Done carries its own version (currently DoD v1.1); a closed
+knowledge layer carries the layer's version (`mature v1.0` at first closure).
+They are different things and are never merged into one number.
+
 This gives the project **versioned knowledge maturity** — not "a site with N
 pages" but "Physics recognition system — mapped; Biology — mapped; …".
 
@@ -337,8 +341,8 @@ promotes it.
 
 ## Cycle order
 
-1. **Cycle 01 — Physics & Astronomy** *(open)*
-2. Cycle 02 — Biology, Medicine & Genetics
+1. **Cycle 01 — Physics & Astronomy** *(closed 2026-09-10 — mature v1.0)*
+2. **Cycle 02 — Biology, Medicine & Genetics** *(next)*
 3. Cycle 03 — Mathematics & Computing
 4. Then, and only then, outside the sciences: Literature → Peace →
    Human Rights / Law → Arts → Social Sciences → Technology / Engineering.
@@ -348,11 +352,57 @@ once each is dense enough to stand alone.
 
 ---
 
-## Cycle 01 — Physics & Astronomy Recognition Architecture — OPEN
+## Cycle 01 — Physics & Astronomy Recognition Architecture — CLOSED
 
-Opened: 2026-09-09. Run `python scripts/domain_status.py` for live status.
+Opened 2026-09-09. Closed 2026-09-10.
 
-We do not exit this cycle until `physics-astronomy` meets the Definition of Done
-above. Deferred until then: sector pages for other domains, public data
-export / API, RSS, and any commercial layer. Uniqueness of the data and the
-methodology must come first; programmatic consumption does not create authority.
+> **Physics & Astronomy Recognition Layer — mature v1.0**
+> Corpus snapshot: `27036032e0e9` · data through 2026-09-10
+> Governed by DoD v1.1 (the layer closes at v1.0; the version numbers are
+> different things — v1.1 is the Definition of Done, v1.0 is this knowledge layer's
+> first closure)
+
+Every criterion measured and met (`python scripts/domain_status.py`):
+
+| Criterion | Measured |
+| --- | --- |
+| DDI cases ≥ 10 | 10 |
+| RLS systems ≥ 3 | 3 |
+| Mechanism accounting = 100 % | 10/10 |
+| Cases unaudited = 0 | 0 |
+| Source-grade closure | 13/13 entries closed |
+| Award anatomy | Nobel Prize in Physics mapped (11 architecture elements, 8 corpus relations) |
+| Synthesis | *Recognition Failure Patterns in Twentieth-Century Physics* |
+
+Reported, and required by nothing:
+
+| Observation | Value |
+| --- | --- |
+| Evidenced mechanisms | 4 |
+| Established mechanisms | 2 (credit misattribution 8/10, institutional exclusion 4/10) |
+| Emergent mechanisms | 2 (institutional gatekeeping, theory-experiment asymmetry) |
+| Cases unexplained after audit | 1/10 (Bose — audited, no mechanism evidenced) |
+
+Two results are worth naming, because they are what closure actually bought:
+
+- **Bose is not a deficiency.** After a dated audit against every published
+  mechanism, he is a case *known* to be unexplained by the current ontology,
+  with the Nobel nomination archive showing eleven nominations and a commissioned
+  expert evaluation. "Known unexplained" is information; "not yet looked at" is not.
+- **Rubin refuted a published hypothesis of ours.** The audit found institutional
+  exclusion evidenced with no evidenced credit misattribution — exactly the
+  refutation condition the synthesis had stated. The hypothesis stays on the page,
+  struck through, with what refuted it. That is worth more than a 4/4 score.
+
+**What the closure does not license.** Public data export / API, RSS and any
+commercial layer were deferred *until this cycle concluded*; that condition has
+now lapsed, but nothing has been enabled by it. Publishing a machine-readable
+endpoint remains a separate decision, not taken here — the engine still writes its
+report to `reports/`, outside the published site.
+
+**Not added to close it:** no eleventh physics case, no invented mechanism, no
+lowered threshold. The one governance change (DoD v1.1) was made *after* the
+evidence was complete, was recorded with its rationale, and moved no datum.
+
+Next: **Cycle 02 — Biology, Medicine & Genetics**, run on the method Cycle 01
+produced, from its own evidence — without reinventing the rules of maturity.
