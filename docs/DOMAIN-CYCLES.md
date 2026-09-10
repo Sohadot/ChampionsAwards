@@ -91,6 +91,29 @@ mechanisms actually recur — never by hunting for a second instance to promote 
 label. If the evidence yields three established patterns rather than four, the
 domain reports 3/4; a truthful "not yet" is preferred to a manufactured pass.
 
+### Mechanism audit (coverage, not label count)
+
+A case can carry a measured recognition gap and no evidenced mechanism. That is a
+legitimate result — but only when it is the outcome of a search, never a silence.
+A `mechanism_audit` on the case records that search: the date, the mechanisms
+considered (each a published concept), the finding
+(`mechanism-evidenced` / `no-mechanism-evidenced`), a note stating what the
+record did and did not support, and the best sources found. Validation rejects an
+audit whose finding disagrees with the case's own pattern tags, so the audit and
+the tags can never say different things.
+
+From this the engine computes **mechanism accounting**: how many cases are
+accounted for — by evidence for a mechanism, or by a dated audit that searched and
+found none — and how many remain unaudited. Coverage measures how thoroughly the
+corpus has been examined, which is a different question from how many mechanisms
+recur, and the two are reported separately rather than blended.
+
+Auditing a case may end in any of four ways, and three of them do not add a tag:
+the record supports an existing mechanism; it supports none; a claim is corrected;
+or the case is withdrawn. An audit is never a search for a label that would help a
+threshold — and where the ontology does not fit the record, the finding is
+"no mechanism evidenced", not a new name invented to fill the gap.
+
 ### Source-grade audit (closure criterion)
 
 Before a domain is declared mature v1.0, each case is reviewed for whether a
@@ -234,6 +257,15 @@ separated by tone:
   engine figure and declares the figures it rests on;
 - a **hypothesis** must state its basis in the corpus *and* what would refute
   it. A claim that cannot be refuted is not published as one.
+
+An observation may not use a universal ("every", "never", "all"): the engine
+computes counts, so an observation states a count with its denominator, and a
+universal claim belongs among the hypotheses where it carries a refutation
+condition. When the corpus later meets a hypothesis's refutation condition, the
+hypothesis is marked `state: refuted` and keeps an `outcome` recording what
+refuted it and when. **A refuted hypothesis stays published, struck through, not
+deleted** — the record of a discarded interpretation is part of the evidence, and
+the corpus that refuted it is the same corpus that suggested it.
 
 This is the reading of "the model must yield to the evidence" that a build can
 enforce: if the corpus changes, the report's numbers change with it, and a

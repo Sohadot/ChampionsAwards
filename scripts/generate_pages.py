@@ -186,7 +186,16 @@ def attach_report(item: dict[str, Any]) -> None:
         for obs in item.get("observations") or []
     ]
     item["hypothesis_rows"] = [
-        {"statement": r(hyp.get("statement")), "basis": r(hyp.get("basis")), "refuted_by": r(hyp.get("refuted_by"))}
+        {
+            "statement": r(hyp.get("statement")),
+            "basis": r(hyp.get("basis")),
+            "refuted_by": r(hyp.get("refuted_by")),
+            # A refuted hypothesis stays on the page, marked. Removing it would
+            # hide the one thing a reader most needs to see: that the corpus was
+            # allowed to overturn a published interpretation.
+            "state": hyp.get("state", "open"),
+            "outcome": r(hyp.get("outcome")),
+        }
         for hyp in item.get("hypotheses") or []
     ]
     item["limit_rows"] = [r(limit) for limit in item.get("limits") or []]

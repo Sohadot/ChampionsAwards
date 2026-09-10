@@ -194,6 +194,12 @@ def pattern_readings(patterns: dict[str, Any]) -> list[str]:
             f"Recorded in a single case each and therefore not counted as established "
             f"(threshold: {PATTERN_ESTABLISHED_MIN} independent cases): {names}."
         )
+    lines.append(
+        f"Mechanism accounting: {patterns['n_cases_accounted']} of {patterns['denominator']} cases "
+        f"({patterns['accounting_coverage_percentage']} per cent) either carry evidence for a mechanism "
+        f"or carry a dated audit that searched the record and found none; "
+        f"{len(patterns['cases_unaudited'])} remain unaudited."
+    )
     return lines
 
 

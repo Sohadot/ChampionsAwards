@@ -112,6 +112,17 @@ A synthesis is where prose is most tempted to outrun the evidence, so reports in
 - **Limits are published with the report**, on the page rather than in a footer,
   including the selection effect that makes corpus frequency ≠ field prevalence.
 
+## Mechanism audits (enforced)
+
+A case may declare a `mechanism_audit`: a dated record of the search for a
+structural mechanism, naming the mechanisms considered, the finding
+(`mechanism-evidenced` or `no-mechanism-evidenced`), what the record did and did
+not support, and the best sources found. The gate rejects an audit that
+contradicts the case's own `patterns`. This makes "no mechanism recorded" a
+documented decision rather than a silence, and lets the engine report **mechanism
+accounting** — how much of the corpus has actually been examined — separately from
+how many mechanisms recur.
+
 ## Correction policy
 
 Being wrong in public is normal and fixable. Substantive corrections are made

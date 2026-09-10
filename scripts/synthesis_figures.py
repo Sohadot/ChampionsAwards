@@ -23,9 +23,10 @@ from config import DOMAIN_DOD, DOMAINS, PATTERN_ESTABLISHED_MIN
 from domain_comparison import _domain_awards, build_comparison
 
 TOKEN_PATTERN = re.compile(r"\{([a-z0-9_]+)(?::([a-z0-9\-+]+))?\}")
-# Digits that are allowed to appear literally: years and decades. Everything
+# Digits that are allowed to appear literally: dates. A date says when the
+# record was made or read; it is not a statistic about the corpus. Everything
 # else numeric must come from a token.
-YEAR_PATTERN = re.compile(r"\b(?:1[5-9]\d{2}|20\d{2})s?\b")
+DATE_PATTERN = re.compile(r"\b(?:1[5-9]\d{2}|20\d{2})(?:-\d{2}-\d{2}|s)?\b")
 DIGITS_PATTERN = re.compile(r"\d+(?:\.\d+)?")
 
 
@@ -68,6 +69,10 @@ def figure_map(domain: str) -> dict[str, str]:
         "observed_max": _fmt(corpus["observed_max"]),
         "observed_spread": _fmt(corpus["observed_spread"]),
         "cases_without_mechanism": _fmt(patterns["n_cases_without_evidenced_pattern"]),
+        "cases_audited": _fmt(patterns["n_cases_audited"]),
+        "cases_accounted": _fmt(patterns["n_cases_accounted"]),
+        "accounting_coverage": _fmt(patterns["accounting_coverage_percentage"]),
+        "cases_unaudited": _fmt(len(patterns["cases_unaudited"])),
         "established_patterns": _fmt(patterns["established_count"]),
         "emergent_patterns": _fmt(sum(1 for p in patterns["patterns"] if p["status"] == "emergent")),
         "total_patterns": _fmt(len(patterns["patterns"])),
@@ -108,10 +113,10 @@ def unknown_tokens(text: str, figures: dict[str, str]) -> list[str]:
 
 
 def bare_numbers(text: str) -> list[str]:
-    """Numbers typed directly into report prose (years excluded). A statistic must
+    """Numbers typed directly into report prose (dates excluded). A statistic must
     arrive as a token so it can never drift from the corpus."""
     stripped = TOKEN_PATTERN.sub(" ", text)
-    stripped = YEAR_PATTERN.sub(" ", stripped)
+    stripped = DATE_PATTERN.sub(" ", stripped)
     return DIGITS_PATTERN.findall(stripped)
 
 

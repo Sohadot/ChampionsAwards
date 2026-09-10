@@ -92,11 +92,33 @@ corpus_relations:
     architecture_element: eligibility
     interaction_type: historical-non-award
     exception:
-      search_date: '2026-09-09'
-      search_note: Searched the Nobel Prize records for any Physics award to Bose.
-      reason: The record shows no Physics Prize awarded to Bose; this is a negative fact, and nomination records are sealed for fifty years, so no positive record can be cited.
+      search_date: '2026-09-10'
+      search_note: >-
+        Searched the Nobel Prize records for any Physics award to Bose. Correction to the earlier note on
+        this relation, which stated that nomination records are sealed for fifty years and that no
+        positive record could be cited: the fifty-year rule had already lapsed for these nominations, and
+        the nomination archive does publish them. That correction is recorded in the separate
+        documented-nomination relation below.
+      reason: The absence of an award is a negative fact; no institutional record states a non-award, so the laureate record is cited instead.
       best_source: 4
     claim: The record shows no Nobel Prize in Physics awarded to Bose.
+  - case: satyendra-nath-bose
+    architecture_element: nomination
+    interaction_type: documented-nomination
+    record_anchor: [9]
+    claim: The Nobel nomination archive records Bose as a nominee in eleven nominations for the Physics Prize between 1956 and 1972.
+  - case: satyendra-nath-bose
+    architecture_element: selection_body
+    interaction_type: archival-selection-record
+    exception:
+      search_date: '2026-09-10'
+      search_note: >-
+        Searched nobelprize.org and the Nobel archive interfaces for the committee's own evaluation
+        documents for the 1956 Physics nominations. The nomination archive publishes nominators and
+        nominees, not the committee's expert reports; the evaluation itself was not reachable.
+      reason: The evaluation is reported by a historian of science working from the Nobel archives, and is cited as that scholarly account rather than as the archival document, which was not inspected directly.
+      best_source: 10
+    claim: A historian working from the Nobel archives reports that the committee commissioned an expert evaluation of Bose's work from Oskar Klein in 1956.
 sources:
   - title: Nomination and selection of physics laureates (who may nominate; fifty-year secrecy)
     publisher: The Nobel Foundation (nobelprize.org)
@@ -130,3 +152,11 @@ sources:
     publisher: The Nobel Foundation (nobelprize.org)
     url: https://www.nobelprize.org/prizes/physics/1978/summary/
     type: institutional
+  - title: Satyendra Nath Bose - Nomination Archive (nominee in 11 Physics nominations, 1956-1972)
+    publisher: The Nobel Prize (Nobel Prize Outreach), official nomination archive
+    url: https://www.nobelprize.org/nomination/archive/show_people.php?id=10677
+    type: institutional
+  - title: Remembering the Life of Satyendra Nath Bose (reporting the 1956 committee evaluation)
+    publisher: Amitabha Bhattacharya, Economic and Political Weekly, Vol. 54, Issue 14 (2019), citing Rajinder Singh, "The Ultimate Facts - SN Bose and the Missed Physics Nobel Prize", Science and Culture 83 (2017)
+    url: https://www.epw.in/engage/article/remembering-life-satyendra-nath-bose
+    type: scholarly-secondary

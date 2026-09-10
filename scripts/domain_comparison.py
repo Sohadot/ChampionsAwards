@@ -280,9 +280,27 @@ def pattern_distribution(domain: str) -> dict[str, Any]:
     with_evidence = {c["slug"] for p in patterns for c in p["cases"]}
     without = sorted(
         (
-            {"slug": c["slug"], "title": c.get("title", c["slug"]), "url": f"/unawarded/{c['slug']}"}
+            {"slug": c["slug"], "title": c.get("title", c["slug"]), "url": f"/unawarded/{c['slug']}",
+             "audited": bool(c.get("mechanism_audit"))}
             for c in cases
             if c["slug"] not in with_evidence
+        ),
+        key=lambda x: x["slug"],
+    )
+
+    # Mechanism accounting: a case is *accounted for* when the corpus can say
+    # something dated about its mechanism - either evidence for one, or a
+    # documented audit that searched and found none. Cases that are neither are
+    # simply not yet audited, and are reported as such rather than absorbed into
+    # the "no mechanism" count. This measures how thoroughly the corpus has been
+    # examined, which is a different question from how many mechanisms recur.
+    audited = {c["slug"] for c in cases if isinstance(c.get("mechanism_audit"), dict)}
+    accounted = sorted(with_evidence | audited)
+    unaudited = sorted(
+        (
+            {"slug": c["slug"], "title": c.get("title", c["slug"]), "url": f"/unawarded/{c['slug']}"}
+            for c in cases
+            if c["slug"] not in with_evidence and c["slug"] not in audited
         ),
         key=lambda x: x["slug"],
     )
@@ -312,6 +330,10 @@ def pattern_distribution(domain: str) -> dict[str, Any]:
         "patterns": patterns,
         "cases_without_evidenced_pattern": without,
         "n_cases_without_evidenced_pattern": len(without),
+        "n_cases_audited": len(audited),
+        "n_cases_accounted": len(accounted),
+        "accounting_coverage_percentage": round(100 * len(accounted) / denom) if denom else 0,
+        "cases_unaudited": unaudited,
         "co_occurrence": co_occurrence,
     }
 
@@ -376,7 +398,8 @@ def _snapshot_id(domain: str, site: dict[str, Any]) -> str:
         "cases": [
             {"slug": c["slug"], "assessment": c.get("assessment"),
              "patterns": sorted(c.get("patterns") or []),
-             "pattern_evidence": c.get("pattern_evidence")}
+             "pattern_evidence": c.get("pattern_evidence"),
+             "mechanism_audit": c.get("mechanism_audit")}
             for c in _domain_cases(domain)
         ],
         "systems": [
@@ -461,6 +484,9 @@ def print_report(result: dict[str, Any]) -> None:
         for pair in p["co_occurrence"]:
             print(f"    {pair['pair'][0]} + {pair['pair'][1]}: {pair['count']}/{pair['denominator']}")
     print(f"  cases with a gap but no evidenced mechanism recorded: {p['n_cases_without_evidenced_pattern']}/{p['denominator']}")
+    print(f"  mechanism accounting: {p['n_cases_accounted']}/{p['denominator']} "
+          f"({p['accounting_coverage_percentage']}%) - evidenced or audited; "
+          f"{len(p['cases_unaudited'])} not yet audited")
     print("  (corpus frequency, not estimated prevalence in the field)")
 
     s = result["observations"]["recognition_system_profiles"]

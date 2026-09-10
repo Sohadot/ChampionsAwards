@@ -189,6 +189,26 @@
       evidenced cases and <strong>emergent</strong> below that. Emergent mechanisms are recorded
       but not counted toward domain maturity.
     </p>
+
+    {% if sector.patterns.cases_without_evidenced_pattern %}
+    <div class="panel" style="margin-top:18px;max-width:820px;">
+      <h3 class="sub">Cases with a gap and no evidenced mechanism
+        ({{ sector.patterns.n_cases_without_evidenced_pattern }}/{{ sector.patterns.denominator }})</h3>
+      <p class="small muted">
+        A measured gap with no mechanism evidenced is a result, not an omission — but only when a search
+        was actually made. Each case below carries a dated mechanism audit recording what was considered
+        and what the record did not support.
+      </p>
+      <ul class="key-facts">
+        {% for case in sector.patterns.cases_without_evidenced_pattern %}
+        <li>
+          <a href="{{ case.url }}">{{ case.title }}</a> —
+          {% if case.audited %}audited, no mechanism evidenced{% else %}not yet audited{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
   </div>
 </section>
 

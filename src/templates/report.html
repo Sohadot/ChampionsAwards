@@ -67,15 +67,22 @@
     <p class="muted small" style="max-width:720px;margin-top:-10px;">
       These are interpretations, marked as such and kept out of the observations above. Each is published
       with the evidence it rests on and with what would refute it; a hypothesis that cannot be refuted is
-      not published here.
+      not published here. A hypothesis the corpus later refutes stays on this page, marked refuted, with
+      what refuted it — the record of a discarded interpretation is part of the evidence.
     </p>
     <div class="grid two">
       {% for hyp in item.hypothesis_rows %}
-      <article class="panel">
-        <p class="eyebrow" style="margin:0 0 8px;">Hypothesis {{ loop.index }}</p>
-        <p>{{ hyp.statement }}</p>
+      <article class="panel{% if hyp.state == 'refuted' %} is-refuted{% endif %}">
+        <p class="eyebrow" style="margin:0 0 8px;">
+          Hypothesis {{ loop.index }}
+          {% if hyp.state == 'refuted' %}<span class="badge refuted">refuted by this corpus</span>{% endif %}
+        </p>
+        <p{% if hyp.state == 'refuted' %} class="struck"{% endif %}>{{ hyp.statement }}</p>
         <p class="small"><strong>Basis in this corpus.</strong> <span class="muted">{{ hyp.basis }}</span></p>
         <p class="small"><strong>What would refute it.</strong> <span class="muted">{{ hyp.refuted_by }}</span></p>
+        {% if hyp.outcome %}
+        <p class="small"><strong>Outcome.</strong> <span class="muted">{{ hyp.outcome }}</span></p>
+        {% endif %}
       </article>
       {% endfor %}
     </div>

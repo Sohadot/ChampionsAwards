@@ -38,10 +38,10 @@ observations:
       per cent of the corpus.
     derived_from: [pattern_support:credit-misattribution, pattern_share:credit-misattribution, n_cases]
   - statement: >-
-      Institutional exclusion is evidenced in {pattern_support:institutional-exclusion} of {n_cases} cases,
-      and every one of those cases also carries evidenced credit misattribution
-      ({pattern_pair:credit-misattribution+institutional-exclusion} of {n_cases} cases carry both). In this
-      corpus the two are recorded together, never apart.
+      Institutional exclusion is evidenced in {pattern_support:institutional-exclusion} of {n_cases} cases.
+      Of those, {pattern_pair:credit-misattribution+institutional-exclusion} also carry evidenced credit
+      misattribution, so the two mechanisms are recorded together in most, but not in all, of the cases
+      where exclusion appears.
     derived_from: [pattern_support:institutional-exclusion, pattern_pair:credit-misattribution+institutional-exclusion, n_cases]
   - statement: >-
       {established_patterns} of {total_patterns} mechanisms reach the established threshold of
@@ -54,6 +54,12 @@ observations:
       mechanism evidenced in this corpus. The gap is measured; the mechanism behind it is not recorded here.
     derived_from: [cases_without_mechanism, n_cases]
   - statement: >-
+      Mechanism accounting is complete for this corpus: {cases_accounted} of {n_cases} cases
+      ({accounting_coverage} per cent) either carry evidence for a mechanism or carry a dated audit that
+      searched the record and found none, with {cases_unaudited} cases left unaudited. Coverage measures
+      how thoroughly the corpus was examined, which is a different question from how many mechanisms recur.
+    derived_from: [cases_accounted, n_cases, accounting_coverage, cases_unaudited]
+  - statement: >-
       The {n_systems} scored recognition systems cluster narrowly overall — RLS {rls_min} to {rls_max},
       median {rls_median} — while separating most on {rls_widest_dimension}, which ranges {rls_widest_min}
       to {rls_widest_max} (spread {rls_widest_spread}). Composite legitimacy scores hide differences that
@@ -61,10 +67,13 @@ observations:
     derived_from: [n_systems, rls_min, rls_max, rls_median, rls_widest_dimension, rls_widest_min, rls_widest_max, rls_widest_spread]
   - statement: >-
       Of {n_award_relations} hardened relations between these cases and the {n_awards} mapped award,
-      {award_count:documented-award-outcome} are documented award outcomes; the rest are rule-bound
-      constraints and records of no award being made. The corpus documents what the apparatus decided far
-      more often than why it decided it.
-    derived_from: [n_award_relations, n_awards, award_count:documented-award-outcome]
+      {award_count:documented-award-outcome} are documented award outcomes,
+      {award_count:documented-nomination} a documented nomination, and
+      {award_count:archival-selection-record} an archival record of the selection process; the remainder
+      are rule-bound constraints or records of no award being made. The corpus documents what the
+      apparatus decided far more often than why it decided it.
+    derived_from: [n_award_relations, n_awards, award_count:documented-award-outcome,
+                   award_count:documented-nomination, award_count:archival-selection-record]
 
 hypotheses:
   - statement: >-
@@ -73,8 +82,8 @@ hypotheses:
       contribution.
     basis: >-
       In this corpus assessed contribution varies by {ddi_spread} points while observed recognition varies
-      by {observed_spread}, and every case with evidenced institutional exclusion also carries evidenced
-      credit misattribution.
+      by {observed_spread}, and {cases_accounted} of {n_cases} cases are accounted for by an evidenced
+      mechanism or a dated audit, so the divergence is not an artefact of unexamined cases.
     refuted_by: >-
       A governed corpus in which the assessed spread meets or exceeds the observed spread, or in which
       cases with large gaps show no evidenced mechanism on the recognition side, would refute it.
@@ -82,11 +91,18 @@ hypotheses:
       Credit misattribution operates as a gateway mechanism: where another mechanism is recorded, credit
       misattribution tends to be recorded alongside it rather than instead of it.
     basis: >-
-      Every co-occurring pair in this corpus pairs credit misattribution with a second mechanism, and no
-      pair excludes it.
+      At the previous corpus snapshot, every co-occurring pair paired credit misattribution with a second
+      mechanism, and no pair excluded it.
     refuted_by: >-
       Cases evidencing institutional exclusion, gatekeeping or theory-experiment asymmetry with no
       evidenced credit misattribution would refute it; a single well-documented case is enough.
+    state: refuted
+    outcome: >-
+      Refuted by this corpus on 2026-09-10, by the mechanism audit of Vera Rubin. The audit found
+      institutional exclusion evidenced in that case - access to the Hale telescope at Palomar was
+      closed to women until the 1960s - with no evidenced credit misattribution, which is exactly the
+      refutation condition stated above. The hypothesis is kept on the record, marked refuted, rather
+      than removed: the corpus that killed it is the same corpus that suggested it.
   - statement: >-
       The narrow spread of composite legitimacy scores understates how differently these systems behave,
       because opposing dimension scores cancel inside one composite.
@@ -113,7 +129,8 @@ limits:
     causation, none is claimed — the observations above name no committee's reason for any decision.
   - >-
     The hypotheses are hypotheses. They are stated with what would refute them precisely because the
-    corpus is too small and too purposively selected to settle them.
+    corpus is too small and too purposively selected to settle them - and one of them has already been
+    refuted by an audit of this corpus, which is what the refutation conditions are for.
   - >-
     All figures are attributable to corpus snapshot {corpus_snapshot}, data through {data_through}. A
     later corpus can change them, and this report is superseded rather than amended when it does.

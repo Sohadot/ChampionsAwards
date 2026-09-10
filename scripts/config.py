@@ -329,12 +329,45 @@ BASIS_VOCAB: Final[frozenset[str]] = frozenset(
         "contemporary-record",          # a contemporaneous document (letter, minutes, circular)
         "scholarly-history",            # peer-reviewed history that establishes the fact
         "reference-consensus",          # reference works in agreement (uncontested facts only)
+        "participant-testimony",        # the participant's own published account of an event they lived
+                                        # (a primary source in historical method; self-reported, and
+                                        # weaker than a contemporaneous document for contested facts)
     }
 )
 
 
 def is_valid_basis(value: object) -> bool:
     return isinstance(value, str) and value in BASIS_VOCAB
+
+
+# ---------------------------------------------------------------------------
+# Mechanism audit
+# A case may carry a measured recognition gap and no evidenced mechanism. That
+# is a legitimate result, but only when it is the outcome of an actual search -
+# never a silence. A mechanism audit records that search: what was considered,
+# when, what the record showed, and which sources were the best available. The
+# two findings below are the only ways an audit can end.
+# ---------------------------------------------------------------------------
+MECHANISM_FINDINGS: Final[frozenset[str]] = frozenset(
+    {
+        "mechanism-evidenced",     # the record supports at least one declared pattern
+        "no-mechanism-evidenced",  # searched, and the record supports none
+    }
+)
+
+
+def is_valid_mechanism_finding(value: object) -> bool:
+    return isinstance(value, str) and value in MECHANISM_FINDINGS
+
+
+# A published hypothesis is open until the corpus refutes it. "Refuted" is a
+# first-class state: a hypothesis the evidence killed stays on the page, marked,
+# rather than disappearing from the record.
+HYPOTHESIS_STATES: Final[frozenset[str]] = frozenset({"open", "refuted"})
+
+
+def is_valid_hypothesis_state(value: object) -> bool:
+    return isinstance(value, str) and value in HYPOTHESIS_STATES
 
 
 # ---------------------------------------------------------------------------

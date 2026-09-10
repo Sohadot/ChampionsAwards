@@ -6,6 +6,7 @@ import yaml
 
 from config import (
     AWARD_ARCHITECTURE_KEYS,
+    MECHANISM_FINDINGS,
     CLUSTERS,
     INTERACTION_TYPES,
     DATA,
@@ -19,7 +20,9 @@ from config import (
     is_iso_date,
     is_valid_basis,
     is_valid_domain,
+    is_valid_hypothesis_state,
     is_valid_interaction_type,
+    is_valid_mechanism_finding,
     is_valid_slug,
     is_valid_source_type,
     normalize_slug,
@@ -84,11 +87,79 @@ def validate_item(
     errors.extend(validate_architecture(cluster_name, item, source_file))
     errors.extend(validate_corpus_relations(cluster_name, item, source_file, case_slugs or set()))
     errors.extend(validate_report(cluster_name, item, source_file))
+    errors.extend(validate_mechanism_audit(cluster_name, item, source_file, concept_slugs or set()))
 
     return errors
 
 
+def validate_mechanism_audit(
+    cluster_name: str, item: dict[str, Any], source_file: str, concept_slugs: set[str]
+) -> list[str]:
+    """A mechanism audit turns "no mechanism recorded" from a silence into a
+    documented decision: what was considered, when, what the record showed, and
+    the best sources found. Its finding must agree with the case's patterns, so
+    an audit can never say one thing while the tags say another."""
+    ref = f"{cluster_name}/{source_file}"
+    audit = item.get("mechanism_audit")
+    if audit is None:
+        return []
+    if not isinstance(audit, dict):
+        return [f"{ref}: 'mechanism_audit' must be a mapping when present"]
+
+    errors: list[str] = []
+    if not is_iso_date(audit.get("search_date")):
+        errors.append(f"{ref}: mechanism_audit needs an ISO 'search_date' (the audit is dated evidence)")
+
+    considered = audit.get("considered")
+    if not isinstance(considered, list) or not considered:
+        errors.append(f"{ref}: mechanism_audit needs a non-empty 'considered' list of mechanisms tested")
+    else:
+        unknown = [c for c in considered if c not in concept_slugs]
+        if unknown:
+            errors.append(
+                f"{ref}: mechanism_audit considered unknown mechanism(s): {', '.join(map(str, unknown))} "
+                f"(each must be a published concept)"
+            )
+
+    finding = audit.get("finding")
+    if not is_valid_mechanism_finding(finding):
+        errors.append(
+            f"{ref}: mechanism_audit 'finding' must be one of: {', '.join(sorted(MECHANISM_FINDINGS))}"
+        )
+
+    note = audit.get("note")
+    if not (isinstance(note, str) and note.strip()):
+        errors.append(f"{ref}: mechanism_audit needs a 'note' stating what the record did and did not show")
+
+    sources = item.get("sources") if isinstance(item.get("sources"), list) else []
+    for ref_index in audit.get("best_sources") or []:
+        if not isinstance(ref_index, int) or not (1 <= ref_index <= len(sources)):
+            errors.append(f"{ref}: mechanism_audit best_sources reference #{ref_index} does not exist")
+
+    # The audit and the tags must agree.
+    declared = [p for p in (item.get("patterns") or []) if isinstance(p, str)]
+    if finding == "no-mechanism-evidenced" and declared:
+        errors.append(
+            f"{ref}: mechanism_audit says no mechanism is evidenced, but the case declares patterns: "
+            f"{', '.join(declared)}"
+        )
+    if finding == "mechanism-evidenced" and not declared:
+        errors.append(
+            f"{ref}: mechanism_audit says a mechanism is evidenced, but the case declares no patterns"
+        )
+    return errors
+
+
 REPORT_PROSE_FIELDS = ("summary", "question", "scope")
+
+# The engine emits counts, never universals. An observation that says "every",
+# "never" or "all" is asserting something the engine did not compute, and it is
+# the claim most likely to be quietly falsified by the next audited case - so it
+# is rejected in observations. Hypotheses and limits may quantify, because they
+# are labelled as interpretation and carry their own refutation conditions.
+UNIVERSAL_TERMS: tuple[str, ...] = (
+    "every", "never", "always", "all cases", "no case", "none of", "without exception", "invariably",
+)
 
 
 def _report_prose(item: dict[str, Any]) -> list[tuple[str, str]]:
@@ -104,7 +175,7 @@ def _report_prose(item: dict[str, Any]) -> list[tuple[str, str]]:
             blocks.append((f"observation #{index}", obs["statement"]))
     for index, hyp in enumerate(item.get("hypotheses") or [], start=1):
         if isinstance(hyp, dict):
-            for field in ("statement", "basis", "refuted_by"):
+            for field in ("statement", "basis", "refuted_by", "outcome"):
                 if isinstance(hyp.get(field), str):
                     blocks.append((f"hypothesis #{index}.{field}", hyp[field]))
     for index, limit in enumerate(item.get("limits") or [], start=1):
@@ -153,6 +224,13 @@ def validate_report(cluster_name: str, item: dict[str, Any], source_file: str) -
             if not isinstance(obs, dict) or not isinstance(obs.get("statement"), str) or not obs["statement"].strip():
                 errors.append(f"{ref}: observation #{index} needs a non-empty 'statement'")
                 continue
+            universal = [t for t in UNIVERSAL_TERMS if t in obs["statement"].lower()]
+            if universal:
+                errors.append(
+                    f"{ref}: observation #{index} uses the universal term(s) {', '.join(universal)}; "
+                    f"the engine computes counts, not universals - state the count with its denominator "
+                    f"(a universal claim belongs in 'hypotheses', where it carries a refutation condition)"
+                )
             if not cited_tokens(obs["statement"]):
                 errors.append(
                     f"{ref}: observation #{index} states no figure; an observation must cite at least one "
@@ -182,6 +260,14 @@ def validate_report(cluster_name: str, item: dict[str, Any], source_file: str) -
                             f"{ref}: hypothesis #{index} needs a non-empty '{field}' "
                             f"(a hypothesis that cannot be refuted is not published as one)"
                         )
+                state = hyp.get("state", "open")
+                if not is_valid_hypothesis_state(state):
+                    errors.append(f"{ref}: hypothesis #{index} has unknown state '{state}' (open or refuted)")
+                elif state == "refuted" and not (isinstance(hyp.get("outcome"), str) and hyp["outcome"].strip()):
+                    errors.append(
+                        f"{ref}: hypothesis #{index} is marked refuted and must record an 'outcome' "
+                        f"saying what refuted it and when (a refuted hypothesis stays on the record)"
+                    )
 
     limits = item.get("limits")
     if not isinstance(limits, list) or not limits or not all(isinstance(v, str) and v.strip() for v in limits):
