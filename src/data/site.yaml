@@ -21,6 +21,8 @@ navigation:
     url: /methodology
   - title: Calculator
     url: /calculator
+  - title: Sectors
+    url: /sectors
   - title: Rankings
     url: /rankings
   - title: Protocol

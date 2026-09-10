@@ -30,24 +30,28 @@ CORE_URLS: Final[list[str]] = [
     "/about",
 ]
 
-# Note: /rankings is a computed aggregate page (generate_rankings.py), not a
-# data cluster, so it deliberately does not appear in CLUSTERS below.
+# Note: /rankings and /sectors/<domain> are computed aggregate pages
+# (generate_rankings.py, generate_sectors.py), not data clusters, so they
+# deliberately do not appear in CLUSTERS below. Sector aggregation is computed,
+# never hand-edited: there is no authorable sectors/*.yaml to contradict the
+# engine.
 CLUSTERS: Final[dict[str, str]] = {
     "awards": "award.html",
     "recognition-systems": "recognition-system.html",
     "concepts": "concept.html",
     "unawarded": "unawarded.html",
-    "sectors": "sector.html",
     "reports": "report.html",
     "timeline": "timeline.html",
 }
+
+# Domains with a published sector reference at /sectors/<domain>.
+PUBLISHED_SECTORS: Final[tuple[str, ...]] = ("physics-astronomy",)
 
 HUB_TITLES: Final[dict[str, str]] = {
     "awards": "Awards",
     "recognition-systems": "Recognition Systems",
     "concepts": "Concepts",
     "unawarded": "The Unawarded Archive",
-    "sectors": "Sectors",
     "reports": "Reports",
     "timeline": "Timeline",
 }
@@ -57,7 +61,6 @@ REQUIRED_FIELDS_BY_CLUSTER: Final[dict[str, tuple[str, ...]]] = {
     "recognition-systems": ("title", "slug", "summary"),
     "concepts": ("title", "slug", "summary"),
     "unawarded": ("title", "slug", "summary"),
-    "sectors": ("title", "slug", "summary"),
     "reports": ("title", "slug", "summary"),
     "timeline": ("title", "slug", "summary"),
 }

@@ -182,6 +182,41 @@ endpoint may appear under `public/`. The machine checks freeze the quartile
 definition, guarantee determinism, and enforce the eligibility and
 denominator rules.
 
+### Sector reference pages
+
+A sector page (`/sectors/<domain>`) is layer 6, and it is a **representation of
+the engine, never a second calculation**. `scripts/generate_sectors.py` calls
+`build_comparison()` at build time and renders HTML; there is no authorable
+`sectors/*.yaml` that could contradict the computed result, and no number on the
+page is hand-entered. Its order is fixed, from landscape to boundary:
+
+1. **Recognition landscape** — the populations and the corpus identity.
+2. **Recognition gap distribution** — the actual distribution drawn from the
+   values (box, median, whiskers, one dot per case), not summary cards.
+3. **Structural mechanisms** — evidenced support with the denominator and the
+   corpus-frequency caveat in the same context, never in a footnote.
+4. **Recognition systems** — multidimensional profiles in fixed alphabetical
+   order. No podium, no "#1": the page presents profiles, not a ranking.
+5. **Award architecture** — the mapped award's rules, then its corpus relations
+   split into documented outcomes and constraints / non-award records.
+6. **Case matrix** — every case with DDI, observed recognition, gap, and its
+   evidenced mechanisms.
+7. **Methodological boundary** — what the page does not claim, and domain
+   maturity as measured, including thresholds not met, on the page itself.
+8. **Provenance & reproducibility** — instruments, corpus snapshot, data
+   through, and the one citation form.
+
+**No narrative finding unless it is literally derived from the engine.** A
+generated reading states a count against its denominator — "8 of 10 governed
+cases exhibit evidenced credit misattribution — the highest support count in
+this corpus" — and never that a mechanism is dominant, typical, or proven.
+`generate_sectors.py` lints its own generated prose for banned superlatives and
+for generalisation terms, and fails the build on a hit;
+`scripts/test_sector_page.py` checks that the page's figures equal the engine's,
+that the distribution plots every case once, that maturity reports the
+established count, that systems are unranked, and that no data endpoint is
+emitted.
+
 ## Cycle order
 
 1. **Cycle 01 — Physics & Astronomy** *(open)*
