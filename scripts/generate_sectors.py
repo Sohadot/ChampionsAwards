@@ -72,6 +72,24 @@ def concept_slugs() -> set[str]:
     return slugs
 
 
+def domain_reports(domain: str) -> list[dict[str, Any]]:
+    """Published synthesis reports derived from this domain, so the sector page
+    links its own layer 7 rather than leaving it undiscoverable."""
+    folder = DATA / "reports"
+    reports: list[dict[str, Any]] = []
+    if not folder.exists():
+        return reports
+    for path in sorted(folder.glob("*.yaml")):
+        with path.open("r", encoding="utf-8") as f:
+            item = yaml.safe_load(f) or {}
+        if str(item.get("status", "published")).strip().lower() != "published":
+            continue
+        if item.get("derives_from") == domain and item.get("slug"):
+            reports.append({"title": item.get("title", item["slug"]),
+                            "url": f"/reports/{str(item['slug']).strip().strip('/')}"})
+    return reports
+
+
 def load_site() -> dict[str, Any]:
     with (DATA / "site.yaml").open("r", encoding="utf-8") as f:
         return yaml.safe_load(f) or {}
@@ -257,6 +275,7 @@ def build_sector(domain: str, site: dict[str, Any]) -> dict[str, Any]:
         "domain": domain,
         "pattern_min": PATTERN_ESTABLISHED_MIN,
         "concept_slugs": concept_slugs(),
+        "reports": domain_reports(domain),
         "domain_label": DOMAINS.get(domain, domain),
         "url": f"/sectors/{domain}",
         "canonical_url": f"{normalize_domain(site['domain'])}/sectors/{domain}",

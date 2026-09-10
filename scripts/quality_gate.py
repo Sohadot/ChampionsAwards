@@ -69,7 +69,18 @@ def enforce_publication_policy(cluster_name: str, item: dict[str, Any], source_f
     if REQUIRE_SOURCES:
         sources = item.get("sources")
         count = len(sources) if isinstance(sources, list) else 0
-        if count < MIN_SOURCES_PUBLISHED:
+        # A synthesis report's evidence is the governed corpus it derives from -
+        # every case in it already carries its own audited sources - so a report
+        # declares 'derives_from' instead of restating them. This is a stricter
+        # requirement, not a lighter one: the corpus is computed, and the report
+        # may not type a figure that the engine did not produce (validate_content).
+        if cluster_name == "reports":
+            if not item.get("derives_from"):
+                errors.append(
+                    f"{ref}: a published report must declare 'derives_from' (the governed corpus that "
+                    f"carries its evidence)"
+                )
+        elif count < MIN_SOURCES_PUBLISHED:
             errors.append(
                 f"{ref}: published entries need at least {MIN_SOURCES_PUBLISHED} source(s); "
                 f"mark it 'status: draft' until sourced"

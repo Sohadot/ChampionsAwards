@@ -217,6 +217,29 @@ that the distribution plots every case once, that maturity reports the
 established count, that systems are unranked, and that no data endpoint is
 emitted.
 
+### Synthesis reports (layer 7)
+
+Layer 7 is where reference authority begins, so it carries the strictest rule in
+the project: **a report may not type a statistic.** Report prose states figures
+as tokens resolved at build time from the canonical engine; a bare number or an
+unknown token fails validation (`scripts/synthesis_figures.py`,
+`validate_report` in `scripts/validate_content.py`). A report declares
+`derives_from` — the governed corpus that carries its evidence — instead of its
+own source list, and its page links every case behind its figures.
+
+Observation and interpretation are kept structurally apart, not merely
+separated by tone:
+
+- an **observation** is a statement about the corpus that cites at least one
+  engine figure and declares the figures it rests on;
+- a **hypothesis** must state its basis in the corpus *and* what would refute
+  it. A claim that cannot be refuted is not published as one.
+
+This is the reading of "the model must yield to the evidence" that a build can
+enforce: if the corpus changes, the report's numbers change with it, and a
+hypothesis stays labelled as a hypothesis until evidence — not confidence —
+promotes it.
+
 ## Cycle order
 
 1. **Cycle 01 — Physics & Astronomy** *(open)*

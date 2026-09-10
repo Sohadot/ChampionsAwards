@@ -281,6 +281,8 @@ PROSE_FIELDS: Final[tuple[str, ...]] = (
     "structural_reason",
     "power_structure",
     "selection_logic",
+    "question",
+    "scope",
 )
 
 

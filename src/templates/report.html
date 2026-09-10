@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% set comparison = item.comparison %}
+{% set pop = comparison.population %}
+
+{% block title %}{{ item.title }} — Reports — ChampionsAwards{% endblock %}
+{% block meta_description %}{{ item.summary }}{% endblock %}
+{% block canonical_link %}{{ item.canonical_url }}{% endblock %}
+{% block structured_data %}{% include "_jsonld_item.html" %}{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Synthesis report · {{ item.domain }}</p>
+    <h1>{{ item.title }}</h1>
+    <p class="lead">{{ item.summary }}</p>
+    <p class="small muted">
+      Corpus <span class="mono">{{ comparison.corpus_snapshot }}</span> · data through {{ pop.data_through }} ·
+      {{ pop.methodology_version }} / {{ pop.rls_version }} ·
+      <a href="{{ item.sector_url }}">sector reference</a>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow prose">
+    <h2>Question</h2>
+    <p>{{ item.question }}</p>
+    <h2>Evidence and scope</h2>
+    <p>{{ item.scope }}</p>
+  </div>
+</section>
+
+{# ---------- Observations: computed, each showing what it rests on ---------- #}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Observations · resolved from the engine</p>
+      <h2>What the corpus shows</h2>
+    </div>
+    <p class="muted small" style="max-width:720px;margin-top:-10px;">
+      Each observation is a statement about this corpus with its figures resolved at build time. The
+      report may not type a number: a bare figure in report prose fails validation, so every number below
+      is the engine's, and the figures each observation rests on are named beside it.
+    </p>
+    <ol class="findings">
+      {% for obs in item.observation_rows %}
+      <li>
+        <p>{{ obs.statement }}</p>
+        <p class="small muted">
+          Derived from:
+          {% for figure in obs.derived_from %}<span class="chip mono">{{ figure }}</span>{% endfor %}
+        </p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+{# ---------- Hypotheses: kept structurally apart from observations ---------- #}
+{% if item.hypothesis_rows %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Hypotheses · not findings</p>
+      <h2>What the corpus suggests but does not establish</h2>
+    </div>
+    <p class="muted small" style="max-width:720px;margin-top:-10px;">
+      These are interpretations, marked as such and kept out of the observations above. Each is published
+      with the evidence it rests on and with what would refute it; a hypothesis that cannot be refuted is
+      not published here.
+    </p>
+    <div class="grid two">
+      {% for hyp in item.hypothesis_rows %}
+      <article class="panel">
+        <p class="eyebrow" style="margin:0 0 8px;">Hypothesis {{ loop.index }}</p>
+        <p>{{ hyp.statement }}</p>
+        <p class="small"><strong>Basis in this corpus.</strong> <span class="muted">{{ hyp.basis }}</span></p>
+        <p class="small"><strong>What would refute it.</strong> <span class="muted">{{ hyp.refuted_by }}</span></p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ---------- Limits, on the page ---------- #}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Boundary</p>
+      <h2>What this report does not claim</h2>
+    </div>
+    <div class="panel" style="max-width:820px;">
+      <ul class="key-facts">
+        {% for limit in item.limit_rows %}
+        <li>{{ limit }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{# ---------- The corpus this report derives from ---------- #}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Evidence base</p>
+      <h2>The cases behind these figures</h2>
+    </div>
+    <p class="muted small" style="max-width:720px;margin-top:-10px;">
+      This report cites no external sources of its own: its evidence is the governed corpus, and every
+      case below carries its own audited sources, score-level evidence, and provenance anchors.
+    </p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Case</th><th class="num">DDI</th><th class="num">Observed</th><th class="num">Gap</th></tr></thead>
+        <tbody>
+          {% for row in item.corpus_cases %}
+          <tr>
+            <td><a href="{{ row.url }}">{{ row.title }}</a></td>
+            <td class="num">{{ row.ddi }}</td>
+            <td class="num">{{ row.observed }}</td>
+            <td class="num">{{ row.gap }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">
+      Recognition systems and award architecture for this domain are set out on the
+      <a href="{{ item.sector_url }}">sector reference</a>; the scoring rules are at
+      <a href="/methodology">/methodology</a>.
+    </p>
+  </div>
+</section>
+
+{# ---------- Provenance ---------- #}
+<section class="section">
+  <div class="container narrow prose">
+    <div class="section-heading">
+      <p class="eyebrow">Provenance</p>
+      <h2>How to cite this report</h2>
+    </div>
+    <p class="mono cite-form">{{ comparison.reference_form }}</p>
+    <p class="small muted">
+      Figures resolve from the corpus at build time, so this page and the sector reference cannot
+      disagree. A changed score, mechanism, or relation changes the snapshot id; re-running the build on
+      a later date does not. Reviewed {{ item.last_reviewed }}.
+    </p>
+  </div>
+</section>
+{% endblock %}

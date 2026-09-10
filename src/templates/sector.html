@@ -352,6 +352,29 @@
   </div>
 </section>
 
+{% if sector.reports %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Synthesis</p>
+      <h2>Studies derived from this corpus</h2>
+    </div>
+    <div class="grid two">
+      {% for report in sector.reports %}
+      <article class="card">
+        <h3><a href="{{ report.url }}">{{ report.title }}</a></h3>
+        <p class="small muted">
+          A synthesis over the same corpus snapshot, with its figures resolved from this engine and its
+          hypotheses kept separate from its observations.
+        </p>
+        <a href="{{ report.url }}">Read the report</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
 {# ---------- 7. Methodological boundary (on the page, not in a footer) ---------- #}
 <section class="section">
   <div class="container">

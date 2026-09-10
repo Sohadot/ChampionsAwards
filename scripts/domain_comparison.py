@@ -227,11 +227,20 @@ def corpus_distribution(domain: str) -> dict[str, Any]:
 
     ranked = sorted(rows, key=lambda r: (-r.get("gap", float("-inf")), -r["ddi"], r["slug"]))
     gq = quartiles(gap_vals)
+    # The two sides of the gap are reported separately, each with its own spread:
+    # a gap can widen because assessments differ or because recognition differs,
+    # and only the separated ranges let a reader see which varies in this corpus.
     return {
         "n_cases": len(cases),
         "median_ddi": median(ddi_vals),
         "median_observed_recognition": median(obs_vals),
         "median_gap": median(gap_vals),
+        "ddi_min": min(ddi_vals) if ddi_vals else None,
+        "ddi_max": max(ddi_vals) if ddi_vals else None,
+        "ddi_spread": (max(ddi_vals) - min(ddi_vals)) if ddi_vals else None,
+        "observed_min": min(obs_vals) if obs_vals else None,
+        "observed_max": max(obs_vals) if obs_vals else None,
+        "observed_spread": (max(obs_vals) - min(obs_vals)) if obs_vals else None,
         "gap_min": gq["min"], "gap_max": gq["max"],
         "gap_q1": gq["q1"], "gap_q3": gq["q3"], "gap_iqr": gq["iqr"],
         "ddi_band_counts": dict(sorted(ddi_bands.items())),
@@ -264,11 +273,46 @@ def pattern_distribution(domain: str) -> dict[str, Any]:
             "cases": cs,
         })
     patterns.sort(key=lambda p: (-p["support"], p["pattern"]))
+
+    # Cases with a documented gap but no evidenced mechanism are counted, not
+    # hidden: absence of evidence here means none was recorded in this corpus,
+    # never that no mechanism operated.
+    with_evidence = {c["slug"] for p in patterns for c in p["cases"]}
+    without = sorted(
+        (
+            {"slug": c["slug"], "title": c.get("title", c["slug"]), "url": f"/unawarded/{c['slug']}"}
+            for c in cases
+            if c["slug"] not in with_evidence
+        ),
+        key=lambda x: x["slug"],
+    )
+
+    # Co-occurrence: how often two evidenced mechanisms appear in the same case.
+    # Descriptive only - a pair count says the record documents both in one case,
+    # never that one mechanism produced the other.
+    by_case: dict[str, list[str]] = {}
+    for p in patterns:
+        for c in p["cases"]:
+            by_case.setdefault(c["slug"], []).append(p["pattern"])
+    pair_counts: dict[tuple[str, str], int] = {}
+    for pats in by_case.values():
+        ordered = sorted(pats)
+        for i, a in enumerate(ordered):
+            for b in ordered[i + 1:]:
+                pair_counts[(a, b)] = pair_counts.get((a, b), 0) + 1
+    co_occurrence = [
+        {"pair": [a, b], "count": n, "denominator": denom}
+        for (a, b), n in sorted(pair_counts.items(), key=lambda kv: (-kv[1], kv[0]))
+    ]
+
     return {
         "denominator": denom,
         "denominator_meaning": "DDI cases in this domain",
         "established_count": sum(1 for p in patterns if p["status"] == "established"),
         "patterns": patterns,
+        "cases_without_evidenced_pattern": without,
+        "n_cases_without_evidenced_pattern": len(without),
+        "co_occurrence": co_occurrence,
     }
 
 
@@ -403,6 +447,8 @@ def print_report(result: dict[str, Any]) -> None:
     print(f"\nCorpus distribution (n={c['n_cases']})")
     print(f"  median DDI {_fmt(c['median_ddi'])} | median observed {_fmt(c['median_observed_recognition'])} | median gap {_fmt(c['median_gap'])}")
     print(f"  gap min {_fmt(c['gap_min'])} Q1 {_fmt(c['gap_q1'])} Q3 {_fmt(c['gap_q3'])} max {_fmt(c['gap_max'])} (IQR {_fmt(c['gap_iqr'])})")
+    print(f"  assessed DDI {_fmt(c['ddi_min'])}-{_fmt(c['ddi_max'])} (spread {_fmt(c['ddi_spread'])}) | "
+          f"observed recognition {_fmt(c['observed_min'])}-{_fmt(c['observed_max'])} (spread {_fmt(c['observed_spread'])})")
     print(f"  DDI bands: {c['ddi_band_counts']}")
     print(f"  gap bands: {c['gap_band_counts']}")
 
@@ -410,6 +456,11 @@ def print_report(result: dict[str, Any]) -> None:
     print(f"\nStructural patterns (denominator {p['denominator']} {p['denominator_meaning']})")
     for pat in p["patterns"]:
         print(f"  {pat['pattern']}: {pat['support']}/{pat['denominator']} ({pat['corpus_percentage']}% of this corpus) [{pat['status']}]")
+    if p["co_occurrence"]:
+        print("  co-occurrence (same case, both evidenced):")
+        for pair in p["co_occurrence"]:
+            print(f"    {pair['pair'][0]} + {pair['pair'][1]}: {pair['count']}/{pair['denominator']}")
+    print(f"  cases with a gap but no evidenced mechanism recorded: {p['n_cases_without_evidenced_pattern']}/{p['denominator']}")
     print("  (corpus frequency, not estimated prevalence in the field)")
 
     s = result["observations"]["recognition_system_profiles"]

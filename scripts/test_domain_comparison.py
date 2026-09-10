@@ -55,6 +55,22 @@ _evidence_ok = all(
 )
 check("every counted pattern-case has pattern_evidence for that pattern", _evidence_ok)
 
+# 5b. Both sides of the gap are reported separately, and the mechanism layer
+#     accounts for every case: one with evidence, or one counted as without.
+check("gap sides are reported with their own ranges",
+      corpus["ddi_spread"] == corpus["ddi_max"] - corpus["ddi_min"]
+      and corpus["observed_spread"] == corpus["observed_max"] - corpus["observed_min"])
+_with_evidence = {c["slug"] for p in patterns["patterns"] for c in p["cases"]}
+check("cases without an evidenced mechanism are counted, not dropped",
+      patterns["n_cases_without_evidenced_pattern"] == corpus["n_cases"] - len(_with_evidence),
+      f"{patterns['n_cases_without_evidenced_pattern']} vs {corpus['n_cases'] - len(_with_evidence)}")
+_support = {p["pattern"]: p["support"] for p in patterns["patterns"]}
+check("no co-occurrence pair exceeds either mechanism's own support",
+      all(pair["count"] <= min(_support[pair["pair"][0]], _support[pair["pair"][1]])
+          for pair in patterns["co_occurrence"]))
+check("co-occurrence uses the case denominator",
+      all(pair["denominator"] == corpus["n_cases"] for pair in patterns["co_occurrence"]))
+
 # 6. Systems outside the domain are excluded; profiles come only from in-domain systems.
 systems = r1["observations"]["recognition_system_profiles"]
 check("system count matches in-domain systems", systems["n_systems"] == len(dc._domain_systems(DOMAIN)))

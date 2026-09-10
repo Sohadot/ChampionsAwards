@@ -83,8 +83,131 @@ def validate_item(
     errors.extend(validate_audit_exceptions(cluster_name, item, source_file))
     errors.extend(validate_architecture(cluster_name, item, source_file))
     errors.extend(validate_corpus_relations(cluster_name, item, source_file, case_slugs or set()))
+    errors.extend(validate_report(cluster_name, item, source_file))
 
     return errors
+
+
+REPORT_PROSE_FIELDS = ("summary", "question", "scope")
+
+
+def _report_prose(item: dict[str, Any]) -> list[tuple[str, str]]:
+    """Every stretch of report prose, with a label, so the figure-token rules can
+    be applied uniformly instead of field by field."""
+    blocks: list[tuple[str, str]] = []
+    for field in REPORT_PROSE_FIELDS:
+        value = item.get(field)
+        if isinstance(value, str):
+            blocks.append((field, value))
+    for index, obs in enumerate(item.get("observations") or [], start=1):
+        if isinstance(obs, dict) and isinstance(obs.get("statement"), str):
+            blocks.append((f"observation #{index}", obs["statement"]))
+    for index, hyp in enumerate(item.get("hypotheses") or [], start=1):
+        if isinstance(hyp, dict):
+            for field in ("statement", "basis", "refuted_by"):
+                if isinstance(hyp.get(field), str):
+                    blocks.append((f"hypothesis #{index}.{field}", hyp[field]))
+    for index, limit in enumerate(item.get("limits") or [], start=1):
+        if isinstance(limit, str):
+            blocks.append((f"limit #{index}", limit))
+    return blocks
+
+
+def validate_report(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """A synthesis report is prose over a computed corpus, so it is held to two
+    rules the rest of the site cannot enforce on prose:
+
+      * it must declare the governed domain it derives from, and
+      * it may not type a statistic. Figures appear as tokens resolved from the
+        canonical engine at build time; an unknown token or a bare number is a
+        validation error, not a style note.
+
+    Observation and hypothesis are kept structurally apart: an observation must
+    cite at least one figure, and a hypothesis must say what would refute it.
+    """
+    if cluster_name != "reports":
+        return []
+    ref = f"{cluster_name}/{source_file}"
+    errors: list[str] = []
+
+    domain = item.get("derives_from")
+    if not (isinstance(domain, str) and is_valid_domain(domain)):
+        errors.append(f"{ref}: a report must declare 'derives_from' naming a known domain "
+                      f"(its evidence is that governed corpus)")
+        return errors
+
+    for field in ("question", "scope"):
+        value = item.get(field)
+        if not (isinstance(value, str) and value.strip()):
+            errors.append(f"{ref}: a report needs a non-empty '{field}'")
+
+    from synthesis_figures import bare_numbers, cited_tokens, unknown_tokens  # local: engine import
+
+    figures = figure_map_cached(domain)
+
+    observations = item.get("observations")
+    if not isinstance(observations, list) or not observations:
+        errors.append(f"{ref}: a report needs a non-empty 'observations' list")
+    else:
+        for index, obs in enumerate(observations, start=1):
+            if not isinstance(obs, dict) or not isinstance(obs.get("statement"), str) or not obs["statement"].strip():
+                errors.append(f"{ref}: observation #{index} needs a non-empty 'statement'")
+                continue
+            if not cited_tokens(obs["statement"]):
+                errors.append(
+                    f"{ref}: observation #{index} states no figure; an observation must cite at least one "
+                    f"engine figure token (a claim without a figure belongs in 'hypotheses')"
+                )
+            derived = obs.get("derived_from")
+            if not isinstance(derived, list) or not derived:
+                errors.append(f"{ref}: observation #{index} needs 'derived_from' naming the engine figures it rests on")
+            else:
+                unknown = [d for d in derived if d not in figures]
+                if unknown:
+                    errors.append(f"{ref}: observation #{index} derives from unknown figures: {', '.join(map(str, unknown))}")
+
+    hypotheses = item.get("hypotheses")
+    if hypotheses is not None:
+        if not isinstance(hypotheses, list) or not hypotheses:
+            errors.append(f"{ref}: 'hypotheses' must be a non-empty list when present")
+        else:
+            for index, hyp in enumerate(hypotheses, start=1):
+                if not isinstance(hyp, dict):
+                    errors.append(f"{ref}: hypothesis #{index} must be a mapping")
+                    continue
+                for field in ("statement", "basis", "refuted_by"):
+                    value = hyp.get(field)
+                    if not (isinstance(value, str) and value.strip()):
+                        errors.append(
+                            f"{ref}: hypothesis #{index} needs a non-empty '{field}' "
+                            f"(a hypothesis that cannot be refuted is not published as one)"
+                        )
+
+    limits = item.get("limits")
+    if not isinstance(limits, list) or not limits or not all(isinstance(v, str) and v.strip() for v in limits):
+        errors.append(f"{ref}: a report needs a non-empty 'limits' list of non-empty statements")
+
+    for label, text in _report_prose(item):
+        unknown = unknown_tokens(text, figures)
+        if unknown:
+            errors.append(f"{ref}: {label} cites unknown figure token(s): {', '.join(unknown)}")
+        typed = bare_numbers(text)
+        if typed:
+            errors.append(
+                f"{ref}: {label} types the number(s) {', '.join(typed)} directly; report figures must be "
+                f"tokens resolved from the engine (years are the only literal numbers allowed)"
+            )
+    return errors
+
+
+_FIGURE_CACHE: dict[str, dict[str, str]] = {}
+
+
+def figure_map_cached(domain: str) -> dict[str, str]:
+    if domain not in _FIGURE_CACHE:
+        from synthesis_figures import figure_map
+        _FIGURE_CACHE[domain] = figure_map(domain)
+    return _FIGURE_CACHE[domain]
 
 
 def validate_architecture(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:

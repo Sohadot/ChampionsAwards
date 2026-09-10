@@ -344,3 +344,19 @@ h3.sub { margin: 0 0 6px; font-size: 1.02rem; }
 @media (max-width: 720px) {
   .landscape dd { font-size: 1.25rem; }
 }
+
+/* ---------- Synthesis report ---------- */
+.findings { margin: 0; padding-left: 22px; }
+.findings li { margin-bottom: 22px; }
+.findings li p { color: #d5d9e8; margin: 0 0 6px; }
+.chip {
+  display: inline-block;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  margin: 0 6px 6px 0;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--muted);
+}
+.panel p:last-child { margin-bottom: 0; }
