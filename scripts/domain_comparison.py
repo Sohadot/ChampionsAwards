@@ -17,9 +17,11 @@ time is available separately (`generated_at()`), is operational metadata only,
 and is excluded from the identity and from every stable output.
 
 Publication boundary: this module writes no file into the site output directory.
-Cycle 01 defers public data export / API, so the JSON report is a build-internal
-artifact under `reports/` and the sector page calls `build_comparison()` at build
-time and renders HTML. Nothing here creates a machine-readable public endpoint.
+The JSON report is a build-internal artifact under `reports/`; published
+representations call `build_comparison()` at build time and render HTML. This
+began as a Cycle 01 deferral of public data export and outlived it: closing the
+cycle lapsed the deferral but enabled nothing. Publishing a machine-readable
+endpoint stays a separate decision, and until it is taken, nothing here creates one.
 """
 from __future__ import annotations
 
@@ -509,9 +511,9 @@ REPORTS: Path = ROOT / "reports"
 def write_report(result: dict[str, Any], domain: str) -> Path | None:
     """Write the build-internal JSON report.
 
-    It lands in `reports/`, never in OUT (`public/`): Cycle 01 defers public data
-    export and APIs, so this artifact is for inspection, diffing and tests - not
-    an endpoint. `generated_at` is written into a sibling run-log rather than the
+    It lands in `reports/`, never in OUT (`public/`): this artifact is for
+    inspection, diffing and tests - not an endpoint. Publishing one is a separate
+    decision that has not been taken. `generated_at` is written into a sibling run-log rather than the
     report, so the report stays byte-identical across runs of the same corpus.
     """
     path = REPORTS / f"{domain}-comparison.json"
@@ -534,7 +536,7 @@ def main() -> None:
     path = write_report(result, domain)
     if path is not None:
         assert OUT not in path.parents, "comparison report must not be written under the site output directory"
-        print(f"\nBuild-internal report: {path.relative_to(ROOT)}  (not published; Cycle 01 defers data export)")
+        print(f"\nBuild-internal report: {path.relative_to(ROOT)}  (not published; no data endpoint is exposed)")
 
 
 if __name__ == "__main__":
