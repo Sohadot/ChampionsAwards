@@ -297,6 +297,7 @@ table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .landscape dt { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
 .landscape dd { margin: 4px 0 0; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
 /* a 12-character hash must never be clipped: it is the identity of the figures */
+.landscape dd.status { font-size: 1.05rem; color: var(--accent-2); padding-top: 6px; }
 .landscape dd.mono { font-size: 1.02rem; letter-spacing: 0.01em; word-break: break-all; padding-top: 6px; }
 .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 

@@ -60,8 +60,9 @@ def dod_rows(domain: str) -> list[dict[str, Any]]:
     audit = domain_audit_status(domain)
 
     measured = {"ddi_cases": corpus["n_cases"], "rls_systems": systems["n_systems"]}
+    labels = {"ddi_cases": "DDI cases", "rls_systems": "RLS systems"}
     rows: list[dict[str, Any]] = [
-        {"requirement": key.replace("_", " "), "have": measured[key], "need": need,
+        {"requirement": labels.get(key, key.replace("_", " ")), "have": measured[key], "need": need,
          "met": measured[key] >= need, "kind": "threshold"}
         for key, need in DOMAIN_DOD.items()
     ]

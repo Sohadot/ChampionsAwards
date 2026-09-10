@@ -303,6 +303,7 @@ def build_sector(domain: str, site: dict[str, Any]) -> dict[str, Any]:
         "dod_rows": maturity,
         "observed_rows": observed,
         "dod_version": DOD_VERSION,
+        "maturity_label": "mature v1.0" if all(row["met"] for row in maturity) else "open cycle",
         "mature": all(row["met"] for row in maturity),
         "ddi_dimensions": [{"label": label, "weight": weight} for _k, label, weight in DDI_DIMENSIONS],
         "matrix": matrix,
