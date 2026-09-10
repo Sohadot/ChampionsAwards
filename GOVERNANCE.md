@@ -91,6 +91,14 @@ the seven layers, and the machine-checked Definition of Done live in
 [`docs/DOMAIN-CYCLES.md`](docs/DOMAIN-CYCLES.md); `scripts/domain_status.py`
 reports each domain's status from the same scoring engine the site uses.
 
+Maturity is governed by **DoD v1.1**: completeness of accountable inquiry, not
+conformity of findings to a target. The v1.0 requirement of four established
+mechanisms is superseded — it measured what a corpus happened to contain rather
+than how thoroughly it was examined — and is replaced by complete mechanism
+accounting. Pattern recurrence is still measured and published; it no longer
+decides whether a domain is done. The full rationale, and v1.0 kept visible as
+superseded, are in `docs/DOMAIN-CYCLES.md`.
+
 ## Synthesis reports (enforced)
 
 A synthesis is where prose is most tempted to outrun the evidence, so reports in

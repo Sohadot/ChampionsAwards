@@ -52,12 +52,20 @@ check("top mechanism reading states support over the denominator",
 check("gap reading states the case denominator",
       f"{corpus['n_cases']} governed cases" in sector["gap_reading"])
 
-# 4. Maturity is reported as measured, including what is not met.
+# 4. Maturity (DoD v1.1) is reported as measured, and pattern counts gate nothing.
 measured = {row["requirement"]: (row["have"], row["need"]) for row in sector["dod_rows"]}
-check("pattern maturity reports the established count, not the total",
-      measured["patterns"][0] == patterns["established_count"], str(measured))
 check("maturity flag matches the measurements",
       sector["mature"] == all(row["met"] for row in sector["dod_rows"]))
+check("no maturity criterion counts patterns",
+      not any("pattern" in row["requirement"] or "mechanism" in str(row["requirement"]).replace("mechanism accounting", "")
+              for row in sector["dod_rows"]), str(sorted(measured)))
+check("mechanism accounting is a maturity criterion",
+      "mechanism accounting" in measured and "cases unaudited" in measured, str(sorted(measured)))
+check("the corpus's mechanism counts are reported as observations, not criteria",
+      {"established mechanisms", "evidenced mechanisms"} <= {r["observation"] for r in sector["observed_rows"]})
+check("established count is reported unchanged from the engine",
+      next(r["value"] for r in sector["observed_rows"] if r["observation"] == "established mechanisms")
+      == patterns["established_count"])
 
 # 5. Systems are profiled, not ranked: fixed alphabetical order, no podium.
 check("systems are ordered alphabetically, not by score",

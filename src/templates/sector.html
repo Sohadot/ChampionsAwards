@@ -413,10 +413,10 @@
         </ul>
       </div>
       <div class="panel">
-        <h3 class="sub">Domain maturity — as measured</h3>
+        <h3 class="sub">Domain maturity — as measured ({{ sector.dod_version }})</h3>
         <div class="table-wrap">
           <table class="data">
-            <thead><tr><th>Requirement</th><th class="num">Have</th><th class="num">Need</th><th>Status</th></tr></thead>
+            <thead><tr><th>Criterion</th><th class="num">Have</th><th class="num">Need</th><th>Status</th></tr></thead>
             <tbody>
               {% for row in sector.dod_rows %}
               <tr>
@@ -429,11 +429,24 @@
             </tbody>
           </table>
         </div>
+        <h3 class="sub" style="margin-top:18px;">Reported, not required</h3>
+        <div class="table-wrap">
+          <table class="data">
+            <tbody>
+              {% for row in sector.observed_rows %}
+              <tr><td>{{ row.observation }}</td><td class="num">{{ row.value }}</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
         <p class="small muted">
           {% if sector.mature %}
-          All thresholds are met; this domain is declared mature at the snapshot below.
+          Every criterion is met: this domain's inquiry is complete at the snapshot below. Maturity here
+          means the evidence was fully examined and accounted for — not that the findings reached a
+          target. How many mechanisms the corpus turned out to evidence is reported above and gates
+          nothing.
           {% else %}
-          This domain is open: thresholds are reported as measured. A threshold is never lowered, and a
+          This domain is open; criteria are reported as measured. A criterion is never lowered, and a
           mechanism is never added, to close a cycle.
           {% endif %}
         </p>
