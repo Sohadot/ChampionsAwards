@@ -15,8 +15,8 @@
     <p class="lead">{{ item.summary }}</p>
     <p class="small muted">
       Corpus <span class="mono">{{ comparison.corpus_snapshot }}</span> · data through {{ pop.data_through }} ·
-      {{ pop.methodology_version }} / {{ pop.rls_version }} ·
-      <a href="{{ item.sector_url }}">sector reference</a>
+      {{ pop.methodology_version }} / {{ pop.rls_version }}
+      {% if item.sector_url %} · <a href="{{ item.sector_url }}">sector reference</a>{% endif %}
     </p>
   </div>
 </section>
@@ -90,6 +90,31 @@
 </section>
 {% endif %}
 
+{% if item.correction_rows %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Corrections</p>
+      <h2>What this report got wrong</h2>
+    </div>
+    <p class="muted small" style="max-width:720px;margin-top:-10px;">
+      A published synthesis is correctable on its own page. Each entry records what the report said,
+      what it says now, and why — so a reader sees the change rather than a silently improved document.
+    </p>
+    <div class="grid two">
+      {% for c in item.correction_rows %}
+      <article class="panel is-refuted">
+        <p class="eyebrow" style="margin:0 0 8px;">Corrected {{ c.date }}</p>
+        <p class="small"><strong>Was.</strong> <span class="muted struck">{{ c.was }}</span></p>
+        <p class="small"><strong>Now.</strong> <span class="muted">{{ c.now }}</span></p>
+        <p class="small"><strong>Why.</strong> <span class="muted">{{ c.reason }}</span></p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
 {# ---------- Limits, on the page ---------- #}
 <section class="section">
   <div class="container">
@@ -134,9 +159,14 @@
       </table>
     </div>
     <p class="small muted">
+      {% if item.sector_url %}
       Recognition systems and award architecture for this domain are set out on the
       <a href="{{ item.sector_url }}">sector reference</a>; the scoring rules are at
       <a href="/methodology">/methodology</a>.
+      {% else %}
+      The scoring rules are at <a href="/methodology">/methodology</a>; this domain's sector reference
+      is not yet published.
+      {% endif %}
     </p>
   </div>
 </section>

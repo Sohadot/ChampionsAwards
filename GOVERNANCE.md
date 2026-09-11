@@ -130,9 +130,12 @@ governing version is `established`. Validation rejects claiming a version is
 established when the rule cited takes effect after the event. `archive_visibility`
 records the secrecy rule, the release horizon with the date it was checked, and a
 state per case drawn from `ARCHIVE_VISIBILITY_STATES`: nomination-documented,
-no-nomination-in-open-archive, archive-year-not-released, deliberation-unavailable.
+no-nomination-in-open-archive, archive-year-not-released, deliberation-not-reached.
 The third and fourth exist because "we found nothing" and "those years are closed"
-are different facts and a corpus must not collapse them into silence.
+are different facts and a corpus must not collapse them into silence. The fourth
+is deliberately narrow: it records that no deliberation record was reached, not
+that none is obtainable — the Statutes allow access to be granted after fifty
+years, so the stronger claim would assert more than was checked.
 
 ## Temporal validity of rules (enforced)
 

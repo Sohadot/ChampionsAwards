@@ -434,6 +434,11 @@ def _report_prose(item: dict[str, Any]) -> list[tuple[str, str]]:
     for index, limit in enumerate(item.get("limits") or [], start=1):
         if isinstance(limit, str):
             blocks.append((f"limit #{index}", limit))
+    for index, entry in enumerate(item.get("corrections") or [], start=1):
+        if isinstance(entry, dict):
+            for field in ("was", "now", "reason"):
+                if isinstance(entry.get(field), str):
+                    blocks.append((f"correction #{index}.{field}", entry[field]))
     return blocks
 
 
@@ -467,7 +472,10 @@ def validate_report(cluster_name: str, item: dict[str, Any], source_file: str) -
 
     from synthesis_figures import bare_numbers, cited_tokens, unknown_tokens  # local: engine import
 
-    figures = figure_map_cached(domain)
+    figures = figure_map_cached(domain, tuple(item.get("compares_with") or ()))
+    for other in item.get("compares_with") or []:
+        if not is_valid_domain(other):
+            errors.append(f"{ref}: 'compares_with' names an unknown domain: {other}")
 
     observations = item.get("observations")
     if not isinstance(observations, list) or not observations:
@@ -522,6 +530,21 @@ def validate_report(cluster_name: str, item: dict[str, Any], source_file: str) -
                         f"saying what refuted it and when (a refuted hypothesis stays on the record)"
                     )
 
+    corrections = item.get("corrections")
+    if corrections is not None:
+        if not isinstance(corrections, list) or not corrections:
+            errors.append(f"{ref}: 'corrections' must be a non-empty list when present")
+        else:
+            for index, entry in enumerate(corrections, start=1):
+                if not isinstance(entry, dict):
+                    errors.append(f"{ref}: correction #{index} must be a mapping")
+                    continue
+                if not is_iso_date(entry.get("date")):
+                    errors.append(f"{ref}: correction #{index} needs an ISO 'date'")
+                for field in ("was", "now", "reason"):
+                    if not (isinstance(entry.get(field), str) and entry[field].strip()):
+                        errors.append(f"{ref}: correction #{index} needs a non-empty '{field}'")
+
     limits = item.get("limits")
     if not isinstance(limits, list) or not limits or not all(isinstance(v, str) and v.strip() for v in limits):
         errors.append(f"{ref}: a report needs a non-empty 'limits' list of non-empty statements")
@@ -539,14 +562,15 @@ def validate_report(cluster_name: str, item: dict[str, Any], source_file: str) -
     return errors
 
 
-_FIGURE_CACHE: dict[str, dict[str, str]] = {}
+_FIGURE_CACHE: dict[tuple[str, tuple[str, ...]], dict[str, str]] = {}
 
 
-def figure_map_cached(domain: str) -> dict[str, str]:
-    if domain not in _FIGURE_CACHE:
+def figure_map_cached(domain: str, compare: tuple[str, ...] = ()) -> dict[str, str]:
+    key = (domain, compare)
+    if key not in _FIGURE_CACHE:
         from synthesis_figures import figure_map
-        _FIGURE_CACHE[domain] = figure_map(domain)
-    return _FIGURE_CACHE[domain]
+        _FIGURE_CACHE[key] = figure_map(domain, compare)
+    return _FIGURE_CACHE[key]
 
 
 def validate_architecture(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:

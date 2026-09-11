@@ -3,7 +3,7 @@ slug: recognition-failure-patterns-physics
 status: published
 domain: physics-astronomy
 derives_from: physics-astronomy
-last_reviewed: 2026-09-10
+last_reviewed: 2026-09-11
 summary: >-
   A synthesis over the governed Physics & Astronomy corpus: what {n_cases} assessed cases,
   {n_systems} scored recognition systems and {n_award_relations} documented award relations show about
@@ -46,13 +46,16 @@ observations:
   - statement: >-
       {established_patterns} of {total_patterns} mechanisms reach the established threshold of
       {pattern_min} independent evidenced cases; the remaining {emergent_patterns} are recorded as
-      emergent on a single case each. The domain's Definition of Done asks for {pattern_threshold}
-      established mechanisms, so this layer is reported as incomplete rather than filled.
-    derived_from: [established_patterns, total_patterns, pattern_min, emergent_patterns, pattern_threshold]
+      emergent on a single case each. The corpus evidences {evidenced_concepts} of
+      {eligible_concepts} audit-eligible mechanism concepts in the ontology - a statement about the
+      ontology's coverage, not about how many cases carry a mechanism.
+    derived_from: [established_patterns, total_patterns, pattern_min, emergent_patterns,
+                   evidenced_concepts, eligible_concepts]
   - statement: >-
-      {cases_without_mechanism} of {n_cases} cases carry a documented recognition gap with no structural
-      mechanism evidenced in this corpus. The gap is measured; the mechanism behind it is not recorded here.
-    derived_from: [cases_without_mechanism, n_cases]
+      {unexplained_under_recognition} of {under_recognized_cases} cases with a recognition gap of
+      {under_recognition_threshold} points or more carry no evidenced mechanism after a dated audit.
+      The gap is measured; the mechanism behind it is not recorded here.
+    derived_from: [unexplained_under_recognition, under_recognized_cases, under_recognition_threshold]
   - statement: >-
       Mechanism accounting is complete for this corpus: {cases_accounted} of {n_cases} cases
       ({accounting_coverage} per cent) either carry evidence for a mechanism or carry a dated audit that
@@ -112,6 +115,33 @@ hypotheses:
     refuted_by: >-
       Systems whose dimension profiles track their composites — narrow dimension spreads across a narrow
       composite range — would refute it.
+
+corrections:
+  - date: '2026-09-11'
+    was: >-
+      "The domain's Definition of Done asks for {superseded_pattern_threshold} established mechanisms,
+      so this layer is reported as incomplete rather than filled."
+    now: >-
+      The Definition of Done asks for no number of established mechanisms. DoD v1.1 withdrew the
+      established-pattern count as a maturity criterion; pattern recurrence is reported and gates
+      nothing. The observation now states ontology coverage instead.
+    reason: >-
+      This report was published under DoD v1.0. When v1.1 removed the threshold, the sentence citing
+      it became false, and the figure token it cited resolved to zero - which would have published the
+      claim that the Definition of Done asks for zero established mechanisms. The token has been
+      withdrawn from the engine so no report can cite a threshold that no longer exists.
+  - date: '2026-09-11'
+    was: >-
+      "{cases_without_mechanism} of {n_cases} cases carry a documented recognition gap with no
+      structural mechanism evidenced in this corpus."
+    now: >-
+      The same count is now stated against the cases that have a recognition deficit at all - those
+      with a gap of {under_recognition_threshold} points or more - rather than against the whole corpus.
+    reason: >-
+      A case whose recognition roughly matches assessed merit has no deficit outstanding, so counting
+      it among the unexplained mistakes alignment for explanatory failure. In this corpus the two
+      figures happen to coincide, because every physics case carries a deficit; in the biology corpus
+      they do not.
 
 limits:
   - >-
