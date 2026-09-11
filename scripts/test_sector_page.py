@@ -83,12 +83,17 @@ if OUT.exists():
         page = OUT / "sectors" / domain / "index.html"
         if page.is_file():
             html = page.read_text(encoding="utf-8")
+            # Each published sector is checked against ITS OWN engine result - a
+            # second sector must not be validated against the first one's figures.
+            published = gs.build_sector(domain, site)
             check(f"published page carries the corpus caveat ({domain})",
                   "corpus frequency is not field prevalence" in html.lower())
-            check(f"published page carries the reference form ({domain})",
-                  sector["reference_form"] in html)
+            check(f"published page carries its own reference form ({domain})",
+                  published["reference_form"] in html, published["reference_form"])
             check(f"published page states the methodological boundary ({domain})",
                   "What this page does not claim" in html)
+            check(f"published page reports its own snapshot ({domain})",
+                  published["corpus_snapshot"] in html)
 
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)
