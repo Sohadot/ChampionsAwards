@@ -467,11 +467,19 @@ control, and returned the corpus's first "recognition roughly matches assessed
 merit" reading. Comparison read, including the five gaps that should govern the
 next three names: [`cycle-02-stage1-read.md`](cycle-02-stage1-read.md).
 
+Round 3, **Individuals expansion, stage 2** (2026-09-11): Just, Apgar and De —
+each chosen to test a specific gap rather than to add a name. The corpus is now
+at 10 cases and paused for assessment. Institutional exclusion is evidenced for
+the first time in biology (1/10, emergent — not established); the instrument
+produced its first negative gap (Apgar, −2); and five of ten cases are
+measured-but-unexplained after a dated audit. Full recompute:
+[`cycle-02-stage2-read.md`](cycle-02-stage2-read.md).
+
 Order from here:
 
-1. **Individuals expansion, stage 2** — three cases, chosen against the gaps the
-   stage 1 read identified rather than from a list drawn up in advance.
-2. Award anatomy for the domain, then synthesis.
+1. Award anatomy for the domain.
+2. Synthesis — which should take up the question the corpus generated for itself:
+   what it means that half of a fully audited domain returns no mechanism.
 
 No fourth recognition system is needed: Nobel, Lasker and Wolf already satisfy
 the RLS threshold. The work is making those three reliable, not adding a fourth.

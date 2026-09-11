@@ -1,0 +1,100 @@
+title: Sambhu Nath De
+slug: sambhu-nath-de
+status: published
+last_reviewed: 2026-09-11
+domain: biology-medicine
+summary: Sambhu Nath De, working in Calcutta, showed in 1953 that Vibrio cholerae acts on the intestinal mucous membrane through a ligated ileal-loop model and in 1959 that a bacteria-free culture filtrate reproduced the effect, establishing cholera as a toxin-mediated disease - work the World Health Organization later republished in its Bulletin.
+introduction: This entry was opened to move the corpus outside Western institutions and outside the Nobel-centred narrative that dominates the rest of it. The recognition question is approached from the work outward, not from an assumed injustice inward.
+omission_case: "His case matters because the contribution is anchored twice in primary literature and once institutionally, while the recognition record is thin and much of what is said about it circulates as claim rather than record - which is exactly the situation the corpus's rules were built to handle."
+structural_reason: "The record establishes a contribution and a sparse recognition trail, and does not establish a reason for the sparseness. This entry makes no claim that recognition was withheld deliberately, and it declines to treat his location outside the metropolitan centres of the field as a mechanism, because the corpus has no evidence tying the two together in this case."
+assessment:
+  impact: 88
+  verification: 90
+  uniqueness: 80
+  durability: 90
+  breadth: 85
+  attribution: 75
+  observed_recognition: 45
+  evidence:
+    impact: [1, 2, 3]
+    verification: [1, 2, 3]
+    uniqueness: [2, 4]
+    durability: [3, 4]
+    breadth: [4]
+    attribution: [4]
+    observed_recognition: [3, 4]
+  rationale:
+    impact: Establishing that the disease is produced by a toxin rather than by the organism itself reframed cholera pathogenesis and the rationale for rehydration therapy.
+    verification: Two primary publications carry the finding, and the World Health Organization republished the 1953 paper in its Bulletin.
+    uniqueness: The exotoxin was demonstrated seventy-five years after the organism was identified, and his ileal-loop demonstration is the step the later literature builds on.
+    durability: Cholera toxin remains a central object of microbiology and a standard teaching example of toxin-mediated disease.
+    breadth: The benefit reaches diarrhoeal disease globally, a field of very large public-health consequence.
+    attribution: Credit for the discovery is consistently his in the specialist literature.
+    observed_recognition: International standing among specialists and republication by WHO, against a thin formal honours record and, in the words of the journal of India's own medical research council, work that "remained unsung and unnoticed" at home.
+key_facts:
+  - fact: "De and Chatterje published \"An experimental study of the mechanism of action of Vibrio cholerae on the intestinal mucous membrane\" in the Journal of Pathology and Bacteriology in 1953."
+    source: 1
+  - fact: "De published \"Enterotoxicity of bacteria-free culture-filtrate of Vibrio cholerae\" in Nature in 1959, volume 183, pages 1533-1534."
+    source: 2
+  - fact: The Bulletin of the World Health Organization republished the 1953 paper in 2010, volume 88, pages 239-240.
+    source: 3
+  - fact: "The Indian Journal of Medical Research records that he received international recognition for this work, including a Nobel Prize nomination attributed to Joshua Lederberg, while \"back home in India, his work remained unsung and unnoticed\"."
+    source: 4
+analysis:
+  - heading: A recognition claim that cannot be checked, recorded as such
+    body: "The most repeated statement about De is that he was nominated for the Nobel Prize. The corpus cannot verify it: the Nobel nomination archive publishes Physiology or Medicine nominations only through 1953, and any nomination of De would fall decades later. The claim is therefore recorded with its source and its limitation, and it carries no weight in his observed-recognition score. A nomination is not recognition conferred in any case."
+  - heading: Why no mechanism is tagged
+    body: "It would be easy to write that a scientist working in Calcutta in the 1950s was overlooked because he worked in Calcutta. The corpus does not have the evidence for that sentence in this case, and the sentence is exactly the kind that sounds explanatory while resting on nothing checkable. What is documented is a contribution of the first rank, international standing among specialists, republication by a global health authority, and a thin formal honours record. The mechanism behind that combination is not recorded here."
+sources:
+  - title: "An experimental study of the mechanism of action of Vibrio cholerae on the intestinal mucous membrane (1953)"
+    publisher: "S. N. De and D. N. Chatterje, Journal of Pathology and Bacteriology 66: 559-562, PMID 13118463"
+    url: https://pubmed.ncbi.nlm.nih.gov/13118463/
+    type: primary
+  - title: "Enterotoxicity of bacteria-free culture-filtrate of Vibrio cholerae (1959)"
+    publisher: "S. N. De, Nature 183: 1533-1534, doi 10.1038/1831533a0, PMID 13666809"
+    url: https://pubmed.ncbi.nlm.nih.gov/13666809/
+    type: primary
+  - title: "Republication of De's 1953 paper in the Bulletin of the World Health Organization, 88: 239-240 (2010)"
+    publisher: World Health Organization
+    url: https://pubmed.ncbi.nlm.nih.gov/20635557/
+    type: institutional
+  - title: "Dr Sambhu Nath De: unsung hero (2011)"
+    publisher: "G. B. Nair and Y. Takeda, Indian Journal of Medical Research 133(2): 127, published by the Indian Council of Medical Research"
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3089041/
+    type: scholarly-secondary
+provenance:
+  contribution:
+    record_anchor: [2]
+    basis: primary-publication
+  attribution:
+    record_anchor: [1, 2]
+    basis: primary-publication
+audit_exceptions:
+  - claim: observed-recognition
+    search_date: '2026-09-11'
+    search_note: "Searched the WHO institutional repository and the Nobel nomination archive for records of honours or nominations. The nomination archive publishes Physiology or Medicine nominations only through 1953, so nominations attributed to the 1970s cannot be checked; WHO's repository returned no record naming him beyond the Bulletin republication. Career details reported in secondary literature - his headship at Calcutta Medical College, his retirement in 1973 and his death in 1985 - were not anchored institutionally and are therefore not stated as facts in this entry."
+    best_source: 4
+    reason: "Known-status: the contribution is anchored primarily and institutionally, the recognition record is not, and the entry says so rather than filling the gap with reported detail."
+mechanism_audit:
+  search_date: '2026-09-11'
+  considered:
+    - credit-misattribution
+    - institutional-exclusion
+    - delayed-recognition
+    - institutional-gatekeeping
+    - posthumous-recognition
+    - recognition-bias
+  finding: no-mechanism-evidenced
+  note: >-
+    No mechanism in the ontology is supported by the record reached here. Credit misattribution fails:
+    no rival claimant took the discovery, and the specialist literature attributes it to him.
+    Institutional exclusion fails on evidence, not on plausibility - he held a departmental position
+    and published in Nature, and nothing reached in this audit documents a formal barrier. Delayed
+    recognition is the closest candidate and is still not tagged: international standing came within
+    his working life, and the later republication by WHO is an institutional acknowledgment rather
+    than a delayed arrival of recognition that had been withheld. Gatekeeping and posthumous rules are
+    unsupported. The corpus notes, without tagging it, that this is the second case in the archive -
+    with Bose in physics - where a contribution made outside the metropolitan centres of a field
+    returns no evidenced mechanism. Whether that is a pattern or an artefact of two cases is a
+    question for the ontology review, not a finding.
+  best_sources: [2, 3]

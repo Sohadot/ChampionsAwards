@@ -1,0 +1,105 @@
+title: Ernest Everett Just
+slug: ernest-everett-just
+status: published
+last_reviewed: 2026-09-11
+domain: biology-medicine
+summary: Ernest Everett Just built an experimental programme on fertilisation and the biology of the cell surface, was the first recipient of the NAACP's Spingarn Medal in 1915, and - in his host laboratory's own words - was not offered faculty or research positions commensurate with his abilities, which took his research to Europe.
+introduction: This entry was opened to test whether institutional exclusion could be established in biology at claim level rather than inferred from an absence of awards. The mechanism was not assigned in advance; the audit decided it.
+omission_case: His case matters because the constraint on his career is stated by an institution that hosted his work, in its own record, rather than being reconstructed from the shape of his publication list.
+structural_reason: "The Marine Biological Laboratory records that Just, as the only African-American scientist there, faced considerable prejudice in the US academic world; that despite winning prestigious awards he was not offered faculty or research positions commensurate with his abilities; and that with limited opportunities in the US he travelled to Europe, working at the Stazione Zoologica, the Kaiser Wilhelm Institute and the Station Biologique until the war ended that route. What that constraint did to the recognition he received is a separate question, and this entry does not treat the two as the same claim."
+assessment:
+  impact: 76
+  verification: 85
+  uniqueness: 70
+  durability: 72
+  breadth: 60
+  attribution: 80
+  observed_recognition: 50
+  evidence:
+    impact: [1, 2]
+    verification: [1, 2]
+    uniqueness: [1, 2]
+    durability: [1, 2]
+    breadth: [2]
+    attribution: [2, 3]
+    observed_recognition: [2, 3]
+  rationale:
+    impact: His experimental work on the point at which fertilisation begins, and on the egg-cell surface, shaped a line of cell biology that his 1939 monograph set out in full.
+    verification: The contribution is anchored to his own monograph and documented by the laboratory where the work was done.
+    uniqueness: He worked in direct argument with Lillie and Loeb on the same questions, which bounds the counterfactual claim while leaving his experimental contribution distinct.
+    durability: The cell-surface programme was influential and partly anticipatory, though his specific theoretical framework was not adopted wholesale.
+    breadth: The benefit is within experimental biology rather than across society.
+    attribution: Credit for his published work is consistently his; the constraint documented here concerns positions, not authorship.
+    observed_recognition: The first Spingarn Medal in 1915, a doctorate from Chicago, a professorship at Howard and research at three major European institutes, against the documented absence of the US positions his work warranted.
+key_facts:
+  - fact: "Just published \"The Biology of the Cell Surface\" in 1939, the monograph in which his experimental programme on fertilisation and the egg-cell surface is set out."
+    source: 1
+  - fact: "The Marine Biological Laboratory records that Just \"enjoyed life at the MBL, but as the only African-American scientist, he faced considerable prejudice in the US academic world\", and that \"despite winning prestigious awards, he was not offered faculty or research positions commensurate with his abilities\"."
+    source: 2
+  - fact: With limited opportunities in the United States he travelled to Europe, undertaking research at the Stazione Zoologica in Italy, the Kaiser Wilhelm Institute for Biology in Germany and the Station Biologique in France, returning to the US shortly before his death in 1941.
+    source: 2
+  - fact: He received the first Spingarn Medal, awarded by the NAACP in 1915.
+    source: 3
+analysis:
+  - heading: A constraint on positions, stated by an institution
+    body: "The claim at the centre of this entry is not that a prize was withheld. It is that the positions through which a scientific career normally accumulates visibility were not offered, and that this is recorded by the laboratory where he worked rather than inferred by us. That is what the published definition of institutional exclusion requires: formal barriers to appointments constraining the visibility from which honours are usually derived."
+  - heading: What the audit did not conclude
+    body: "The audit tags the mechanism as documented in the case. It does not claim to have measured how much of his recognition gap the mechanism produced, and it does not treat his European research as evidence of exclusion in itself - working abroad is ordinary in science. The documented element is the absence of commensurate US positions, and that is the element the tag rests on."
+sources:
+  - title: "The Biology of the Cell Surface (1939), digitised"
+    publisher: "Ernest Everett Just, P. Blakiston's Son & Co."
+    url: https://archive.org/details/biologyofcellsur00just
+    type: primary
+  - title: Ernest Everett Just - Seeing Life exhibit
+    publisher: Marine Biological Laboratory, University of Chicago
+    url: https://www.mbl.edu/about/history-archives/seeing-life-exhibit/ernest-everett-just
+    type: institutional
+  - title: Spingarn Medal - history and list of recipients
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/topic/Spingarn-Medal
+    type: reference-secondary
+patterns:
+  - institutional-exclusion
+pattern_evidence:
+  institutional-exclusion: [2]
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+  pattern:institutional-exclusion:
+    record_anchor: [2]
+    basis: institutional-archive
+audit_exceptions:
+  - claim: attribution
+    search_date: '2026-09-11'
+    search_note: "Sought a record-grade source apportioning credit between Just and his collaborators, particularly Frank Lillie. His monograph and the MBL record document his work and his role; no document settling the credit question was found, and none is needed - no competing claim is made in this entry."
+    best_source: 2
+    reason: Secondary-record-sufficient. The entry claims authorship of his published programme, which the monograph itself establishes.
+  - claim: observed-recognition
+    search_date: '2026-09-11'
+    search_note: "Sought an NAACP record of the 1915 Spingarn Medal. The organisation's current pages for the medal did not resolve; the award and his primacy as its first recipient are documented in reference works."
+    best_source: 3
+    reason: Secondary-record-sufficient for the award; the constraint side of the recognition record is anchored institutionally.
+mechanism_audit:
+  search_date: '2026-09-11'
+  considered:
+    - institutional-exclusion
+    - credit-misattribution
+    - delayed-recognition
+    - institutional-gatekeeping
+    - posthumous-recognition
+    - recognition-bias
+  finding: mechanism-evidenced
+  note: >-
+    Institutional exclusion is evidenced, and by an institution rather than by inference: the Marine
+    Biological Laboratory's own record states that despite winning prestigious awards he was not
+    offered faculty or research positions commensurate with his abilities, and that limited
+    opportunities in the United States took his research to Europe. That matches the mechanism's
+    published definition, which turns on formal barriers to positions constraining the visibility from
+    which honours are derived. Credit misattribution was tested and is not supported: his published
+    work is attributed to him throughout. Gatekeeping is not supported - no act obstructing publication
+    or dissemination is documented in the sources consulted. Delayed recognition does not fit: he was
+    recognised in his own time, most visibly by the first Spingarn Medal in 1915. No claim is made
+    about how much of the measured gap the exclusion produced; the mechanism is documented in the case,
+    and the causal share is not.
+  best_sources: [1, 2]

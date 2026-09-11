@@ -1,0 +1,87 @@
+title: Virginia Apgar
+slug: virginia-apgar
+status: published
+last_reviewed: 2026-09-11
+domain: biology-medicine
+summary: Virginia Apgar proposed in 1953 a rapid scoring method for assessing a newborn's condition at birth, which became standard practice worldwide, and was recognised in her lifetime and after it by her university, her profession and her country.
+introduction: This entry is a deliberate stress test. The corpus had never produced a case where recognition met or exceeded assessed merit, and an index that can only find under-recognition is measuring its own selection rather than the world.
+omission_case: "Her case matters not as an omission but as a control on the instrument - a bounded, measurable contribution paired with an unusually complete recognition record, which is the combination that tests whether the gap can come out at or below zero."
+structural_reason: "No structural reason is offered, and none is evidenced. The National Library of Medicine's archive of her papers documents both the contribution and a recognition record that ran through her institution, her specialty and national honours. One career episode is documented and deliberately not treated as a mechanism: when the anaesthesiology division became a department in 1949 she expected the chair and it went to a male colleague, while she was made the first woman full professor at the college. That is recorded because it happened, not because the corpus has established that it shaped her recognition."
+assessment:
+  impact: 88
+  verification: 92
+  uniqueness: 62
+  durability: 92
+  breadth: 90
+  attribution: 95
+  observed_recognition: 88
+  evidence:
+    impact: [1, 2]
+    verification: [1, 2]
+    uniqueness: [1, 2]
+    durability: [2]
+    breadth: [2]
+    attribution: [1, 2]
+    observed_recognition: [2]
+  rationale:
+    impact: The score gave obstetric teams a common, immediate measure of a newborn's condition and, in the archive's words, laid the foundations of neonatology.
+    verification: The contribution is anchored to her own 1953 paper and documented in a national archive of her papers.
+    uniqueness: The instrument is elegantly simple and was quickly adopted, but a standardised newborn assessment was a need the field was converging on, which bounds the counterfactual claim.
+    durability: The method has been standard practice for seven decades.
+    breadth: It is applied to children born in hospitals worldwide.
+    attribution: The score carries her name in universal clinical use - attribution is as unambiguous as the corpus contains.
+    observed_recognition: A globally spoken eponym, the first woman appointed full professor at her college, major awards from her specialty and her university, a commemorative US postage stamp in 1994 and induction into the National Women's Hall of Fame in 1995.
+key_facts:
+  - fact: "Apgar published \"A proposal for a new method of evaluation of the newborn infant\" in Current Researches in Anesthesia and Analgesia in 1953."
+    source: 1
+  - fact: "The National Library of Medicine records that her method \"has long been standard practice\", that it \"reduced infant mortality and laid the foundations of neonatology\", and that the evaluation \"is now performed on all children born in hospitals worldwide\"."
+    source: 2
+  - fact: In 1949 she was appointed a full professor of anaesthesiology at Columbia's College of Physicians and Surgeons, the first woman to hold that rank there; the chair of the new department went to a male colleague.
+    source: 2
+  - fact: Her honours included the Elizabeth Blackwell Award (1966), the Distinguished Service Award of the American Society of Anesthesiologists (1966), Columbia's Alumni Gold Medal for Distinguished Achievement (1973), a commemorative US postage stamp in 1994 and induction into the National Women's Hall of Fame in 1995.
+    source: 2
+analysis:
+  - heading: The first case where recognition met assessed merit
+    body: "This is the result the entry was opened to test. The assessment produces a high score on impact, durability, breadth and attribution, and a deliberately bounded score on counterfactual uniqueness, while the recognition record is one of the strongest in the corpus. The gap comes out slightly negative, inside the band the instrument labels as recognition roughly matching assessed merit. That is not a finding about Apgar; it is a finding about the instrument, which had never before been shown capable of producing it."
+  - heading: A documented episode that is not a mechanism
+    body: "The archive records that she expected the departmental chair in 1949 and that it went to a male colleague. The corpus records that too, and stops. Her recognition record does not show the displacement that the institutional-exclusion mechanism describes - she was made full professor, led her specialty's honours list and became a national figure - so no mechanism is tagged. Reading one career episode as the cause of a recognition gap that the measurement does not find would be exactly the inference this project refuses elsewhere."
+sources:
+  - title: "A proposal for a new method of evaluation of the newborn infant (1953)"
+    publisher: "Virginia Apgar, Current Researches in Anesthesia and Analgesia 32: 260-267, PMID 13083014"
+    url: https://pubmed.ncbi.nlm.nih.gov/13083014/
+    type: primary
+  - title: "The Virginia Apgar Papers - Biographical Overview (Profiles in Science)"
+    publisher: US National Library of Medicine, National Institutes of Health
+    url: https://profiles.nlm.nih.gov/spotlight/cp/feature/biographical
+    type: archival
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+  observed-recognition:
+    record_anchor: [2]
+    basis: institutional-archive
+  attribution:
+    record_anchor: [1]
+    basis: primary-publication
+mechanism_audit:
+  search_date: '2026-09-11'
+  considered:
+    - institutional-exclusion
+    - credit-misattribution
+    - delayed-recognition
+    - institutional-gatekeeping
+    - posthumous-recognition
+    - recognition-bias
+  finding: no-mechanism-evidenced
+  note: >-
+    No mechanism is supported. Credit misattribution fails at once: the instrument carries her name in
+    daily worldwide use. Institutional exclusion was tested against two documented episodes - her move
+    from surgery to anaesthesiology, which the archive records as encouraged by the chief of surgery,
+    and the 1949 departmental chair going to a male colleague - and not tagged. The mechanism requires
+    that formal barriers constrain the visibility from which honours derive, and her honours record
+    shows the opposite: first woman full professor at her college, her specialty's distinguished
+    service award, her university's gold medal, a national postage stamp. Delayed recognition fails -
+    the method was adopted within years. Gatekeeping and posthumous rules are unsupported. The measured
+    gap is slightly negative, which is the outcome this case was accepted to test for.
+  best_sources: [1, 2]
