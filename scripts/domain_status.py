@@ -26,6 +26,7 @@ from domain_comparison import (
     explanatory_coverage,
     pattern_distribution,
     rls_profiles,
+    subfield_coverage,
 )
 from source_audit import domain_audit_status
 
@@ -111,7 +112,17 @@ def observed_rows(domain: str) -> list[dict[str, Any]]:
     """
     patterns = pattern_distribution(domain)
     coverage = explanatory_coverage(domain)
-    return [
+    coverage_rows = []
+    sub = subfield_coverage(domain)
+    if sub["composite"]:
+        split = " / ".join(f"{r['subfield']} {r['cases']}c {r['systems']}s" for r in sub["rows"])
+        coverage_rows.append({"observation": "subfield coverage", "value": split})
+        if sub["sides_without_cases"]:
+            coverage_rows.append({
+                "observation": "sides with no cases",
+                "value": ", ".join(sub["sides_without_cases"]) + " (maturity does not establish coverage)",
+            })
+    return coverage_rows + [
         {"observation": "evidenced mechanisms",
          "value": f"{len(patterns['patterns'])}/{coverage['n_eligible_concepts']} audit-eligible concepts"},
         {"observation": "established mechanisms", "value": patterns["established_count"]},

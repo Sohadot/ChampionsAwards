@@ -1,51 +1,110 @@
 title: Emmy Noether
 slug: emmy-noether
 status: published
-last_reviewed: 2026-09-09
-summary: Emmy Noether proved the theorem linking symmetries to conservation laws, a result foundational to modern physics and mathematics, yet she faced sustained institutional barriers to recognition during her career.
-introduction: Noether's theorem is one of the organising ideas of theoretical physics, while the mathematics profession of her time repeatedly obstructed her formal academic standing.
-omission_case: Her case matters because a contribution central to physics and algebra was produced against explicit institutional resistance to appointing and paying her.
-structural_reason: Recognition was shaped by the exclusion of women from university positions in early twentieth-century Germany and by the delayed diffusion of her results into physics.
+last_reviewed: 2026-09-11
+domain: mathematics-computing
+subfield: mathematics
+summary: Emmy Noether published in 1918 the theorem linking continuous symmetries to conservation laws, was refused the habilitation at Goettingen until 1919 because she was a woman, lectured for years under Hilbert's name, held no paid chair, and was dismissed in 1933.
+introduction: This entry keeps three questions apart that its earlier version merged - what she contributed, what formally constrained her academic standing, and how much recognition she actually received.
+omission_case: Her case matters because the constraint is documented as a rule rather than inferred from an absence of honours, and because the recognition she did receive was substantial enough that the earlier entry's score understated it.
+structural_reason: "The documented constraint is formal and specific: the habilitation, the standard route to an academic post, was closed to her as a woman, and was granted only in 1919 after a long dispute with the university authorities. During those years her courses were advertised under Hilbert's name. The earlier version of this entry also attributed her gap to the 'delayed diffusion' of her results into physics; that claim is withdrawn - the transmission of the 1918 theorem is a question about a result's uptake, not about recognition withheld from her, and the audit found no evidence tying the two together."
 assessment:
   impact: 88
-  verification: 86
+  verification: 90
   uniqueness: 82
   durability: 92
-  breadth: 65
-  attribution: 70
-  observed_recognition: 45
+  breadth: 68
+  attribution: 78
+  observed_recognition: 68
   evidence:
-    impact: [1]
-    verification: [1]
-    uniqueness: [1]
-    durability: [1]
-    breadth: [1]
-    attribution: [1]
-    observed_recognition: [1]
+    impact: [1, 2]
+    verification: [1, 2]
+    uniqueness: [1, 2]
+    durability: [2, 3]
+    breadth: [2]
+    attribution: [2]
+    observed_recognition: [2, 3]
   rationale:
-    impact: Noether's theorem connects symmetries and conservation laws across physics.
-    verification: Her contributions in algebra and physics are extensively documented.
-    uniqueness: The theorem and her work in abstract algebra were highly original.
-    durability: Both remain foundational in their fields.
-    breadth: The benefit is deep within physics and mathematics.
-    attribution: Credit is now clear, but formal standing was withheld in her lifetime.
+    impact: The 1918 theorem connects continuous symmetries to conservation laws and is foundational to theoretical physics, alongside her reshaping of abstract algebra.
+    verification: The contribution is anchored to her own published paper, and the results were adopted and extended across two fields.
+    uniqueness: The variational-symmetry result and the structural approach to algebra were distinctly hers.
+    durability: Noether's theorem and Noetherian structures remain standard.
+    breadth: The benefit is deep within physics and mathematics rather than broad across society.
+    attribution: Credit is unambiguous today and eponymous in both fields, though much of her work reached print in papers by colleagues and students rather than under her own name. Raised from 70 in the 2026-09-11 requalification.
+    observed_recognition: Invited addresses at the International Congress of Mathematicians in 1928 and 1932, the Ackermann-Teubner Memorial Prize in 1932 shared with Artin, and posthumous recognition that is close to total - eponymous results in two fields and an ICM lecture named after her - against no paid chair in her lifetime and dismissal in 1933. Raised from 45 in the 2026-09-11 requalification, which found the earlier figure did not account for the recognition actually documented.
 key_facts:
-  - fact: Noether's theorem relates continuous symmetries to conservation laws in physics.
+  - fact: "Noether published \"Invariante Variationsprobleme\" in the Nachrichten of the Goettingen Academy in 1918."
     source: 1
-  - fact: She made foundational contributions to abstract algebra.
-    source: 1
+  - fact: "The habilitation was not open to women, and at Goettingen it was granted to her only in 1919, after what the record describes as a long battle with the university authorities, at which point she became a Privatdozent."
+    source: 2
+  - fact: "During that period Hilbert advertised her courses under his own name - a 1916-17 catalogue entry reads \"Mathematical Physics Seminar: Professor Hilbert, with the assistance of Dr E Noether\"."
+    source: 2
+  - fact: She was invited to address the International Congress of Mathematicians in Bologna in 1928 and in Zurich in 1932, and in 1932 received the Alfred Ackermann-Teubner Memorial Prize jointly with Emil Artin.
+    source: 2
+  - fact: In April 1933 she was dismissed from the University of Goettingen because she was Jewish, and received no pension or other compensation.
+    source: 2
+  - fact: The International Mathematical Union's ICM Emmy Noether Lecture, a permanent ICM tradition since 2006, is named after her and honours women who have made fundamental and sustained contributions to the mathematical sciences.
+    source: 3
 analysis:
-  - heading: Barriers before the record could form
-    body: "Noether's gap is distinctive because the obstruction operated before recognition could even accrue: institutional rules limited her appointments and pay, constraining the visibility from which honours normally follow. The theorem's centrality today throws the earlier exclusion into sharp relief."
+  - heading: A rule, not an atmosphere
+    body: "What this entry claims about exclusion is narrow and documented: a formal route to an academic post that was closed to her as a woman, granted only after a dispute that took years, and years of teaching credited in the catalogue to someone else. That is the published definition of institutional exclusion - formal barriers to positions constraining the visibility from which honours follow. It is not a claim that every feature of her career followed from it."
+  - heading: What the requalification changed
+    body: "The earlier entry scored her observed recognition at 45 and explained her gap partly by the delayed diffusion of her results into physics. Both are revised. The recognition record documents two ICM invited addresses, a shared national prize in her lifetime, and eponymous standing in two fields afterwards, which the earlier figure did not reflect. The diffusion claim is withdrawn as unevidenced: how fast a theorem travelled is a question about a result, and the corpus found nothing tying it to recognition withheld from its author."
 sources:
-  - title: Emmy Noether - biography, Noether's theorem, and abstract algebra
-    publisher: Encyclopaedia Britannica
-    url: https://www.britannica.com/biography/Emmy-Noether
+  - title: "Invariante Variationsprobleme (1918), Nachrichten von der Gesellschaft der Wissenschaften zu Goettingen, Mathematisch-Physikalische Klasse - digitised"
+    publisher: "Emmy Noether, Goettinger Digitalisierungszentrum (SUB Goettingen)"
+    url: https://gdz.sub.uni-goettingen.de/id/PPN252457811_1918
+    type: primary
+  - title: "Emmy Noether - biography (habilitation, the Hilbert catalogue entry, ICM addresses, the 1932 prize, the 1933 dismissal)"
+    publisher: "J. J. O'Connor and E. F. Robertson, MacTutor History of Mathematics Archive, University of St Andrews"
+    url: https://mathshistory.st-andrews.ac.uk/Biographies/Noether_Emmy/
     type: reference-secondary
-
-domain: mathematics-computing
+  - title: ICM Emmy Noether Lecture
+    publisher: International Mathematical Union
+    url: https://www.mathunion.org/imu-awards/icm-emmy-noether-lecture
+    type: institutional
 patterns:
   - institutional-exclusion
-
 pattern_evidence:
-  institutional-exclusion: [1]
+  institutional-exclusion: [2]
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+  observed-recognition:
+    record_anchor: [3]
+    basis: institutional-archive
+audit_exceptions:
+  - claim: attribution
+    search_date: '2026-09-11'
+    search_note: "Sought a record-grade source for how credit for her work was distributed between her own papers and those of colleagues and students. The MacTutor biography states that much of her work appears in papers written by others; no archival document apportioning credit was reached."
+    best_source: 2
+    reason: Secondary-record-sufficient. The entry claims eponymous standing today, which is uncontested, and makes no claim that any individual displaced her credit.
+  - claim: pattern:institutional-exclusion
+    search_date: '2026-09-11'
+    search_note: "Sought the Goettingen faculty records of the habilitation dispute. The university's own archival documents were not reached; the sequence - refusal, years of lecturing under Hilbert's name with the catalogue entry quoted, habilitation granted 1919 - is documented consistently by the MacTutor biography maintained by the University of St Andrews."
+    best_source: 2
+    reason: "Secondary-record-sufficient. The rule and its application are documented; the underlying faculty minutes are not in hand, and the entry says so rather than implying archival access it does not have."
+mechanism_audit:
+  search_date: '2026-09-11'
+  considered:
+    - institutional-exclusion
+    - credit-misattribution
+    - delayed-recognition
+    - institutional-gatekeeping
+    - posthumous-recognition
+    - theory-experiment-asymmetry
+  finding: mechanism-evidenced
+  note: >-
+    Institutional exclusion is evidenced as a formal barrier: the habilitation was closed to women,
+    was granted to her at Goettingen only in 1919 after a protracted dispute, and in the interval her
+    courses were advertised under another professor's name. Credit misattribution was tested and not
+    tagged: much of her work reached print through colleagues and students, but no displacement of
+    reward to a named other is documented, and the modern record is eponymous. Delayed recognition was
+    tested and not tagged, and this is a change from the earlier entry: the slow transmission of the
+    1918 theorem into physics concerns a result's uptake, while her own recognition arrived during her
+    working life - two ICM invited addresses and a shared national prize - so the mechanism's
+    definition is not met. Gatekeeping is unsupported. Posthumous recognition is not tagged: her
+    recognition after death is large, but no eligibility rule foreclosed anything, which is what that
+    mechanism turns on.
+  best_sources: [1, 2]

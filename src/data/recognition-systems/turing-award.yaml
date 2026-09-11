@@ -1,17 +1,17 @@
 title: Turing Award
 slug: turing-award
 status: published
-last_reviewed: 2026-09-09
-summary: The ACM A.M. Turing Award is the most prominent honour in computer science, often described as the field's equivalent of a Nobel Prize, and it offers a clear case of a discipline-specific recognition system.
-introduction: Established by the Association for Computing Machinery and first awarded in 1966, the Turing Award recognises contributions of lasting technical importance to computing.
-power_structure: The award draws its authority from the professional computing community through the ACM, giving it strong independence from state or commercial control.
-selection_logic: Selection favours contributions whose technical importance has already proven durable, which sharpens reliability but tends to reward established, later-career work.
+last_reviewed: 2026-09-11
+summary: The ACM A.M. Turing Award, first presented in 1966, recognises contributions of a technical nature made to the computing community, and carries a prize of one million dollars whose financial support is provided by a single commercial sponsor.
+introduction: This entry records what the awarding body documents about the award's criteria, its history and its funding, and treats claims about where recipients come from, how they are regarded, or how the award compares to other prizes as claims requiring attribution rather than as properties of the award.
+power_structure: "Authority rests with a professional society, the Association for Computing Machinery, rather than a state body. The funding does not: the prize amount is provided by a commercial sponsor, Google, and rose to one million dollars in 2014 from the quarter of a million in force from 2007."
+selection_logic: Selection recognises contributions of a technical nature whose importance to computing is lasting and major, which in practice means the award follows demonstrated durability rather than early promise.
 rls_assessment:
   process: 82
   breadth: 58
-  track_record: 85
+  track_record: 76
   transparency: 62
-  independence: 85
+  independence: 62
   evidence:
     process: [1]
     breadth: [1, 2]
@@ -19,28 +19,59 @@ rls_assessment:
     transparency: [1]
     independence: [1]
   rationale:
-    process: Selection is run by ACM committees under established criteria.
-    breadth: The award is confined to computing and has historically skewed toward a small set of institutions and regions.
-    track_record: Recipients are broadly regarded as foundational figures in the field.
-    transparency: Criteria and recipients are public, though deliberations are private.
-    independence: Professional-society governance keeps it largely free of commercial or political capture.
+    process: "Selection is run by the awarding society under published criteria - contributions of a technical nature of lasting and major importance to computing - and the award has been made annually since 1966."
+    breadth: "The remit is computing only, which bounds the sub-field span. The claim that the award has historically skewed toward a small set of institutions and regions was carried by this entry until 2026-09-11 and is withdrawn as unevidenced - see the documented exception. Score unchanged, on the narrower justification."
+    track_record: "The recipient record is published in full back to 1966. The claim that recipients are broadly regarded as foundational figures was withdrawn on 2026-09-11 as an evaluative generalisation with no record-grade source. Lowered from 85, since the score rested on it."
+    transparency: Criteria and recipients are published; deliberations are not.
+    independence: "Governance rests with a professional society rather than a state or a firm, but the prize amount is funded by a single commercial sponsor of record. Lowered from 85 on 2026-09-11: the earlier score asserted freedom from commercial capture while the award's own documentation names a commercial funder, which the entry had not recorded."
 key_facts:
-  - fact: The Turing Award is presented by the Association for Computing Machinery (ACM).
+  - fact: "The award recognises contributions of a technical nature made to the computing community, of lasting and major technical importance to the field."
     source: 1
-  - fact: It was first awarded in 1966 and is named after Alan Turing.
+  - fact: It was first presented in 1966, to Alan J. Perlis, and is named after Alan Turing.
     source: 2
+  - fact: The prize was accompanied by 250,000 US dollars from 2007, and the funding level was increased to one million US dollars effective 2014.
+    source: 3
+  - fact: Financial support for the prize is provided by Google.
+    source: 1
 analysis:
-  - heading: Reliability at the cost of breadth
-    body: "The Turing Award scores well on process and track record because it waits for durability before recognising work. That same patience narrows breadth: emerging or unconventional contributions wait longer, and the RLS captures this as reduced representational breadth rather than a defect in process."
+  - heading: An independence score that had not read its own funding
+    body: "This entry previously scored independence at the level it gave the Nobel system, on the reasoning that professional-society governance keeps the award largely free of commercial capture. The award's own documentation names a single commercial sponsor as the source of its one-million-dollar prize. Governance and funding are different things, and the requalification separates them: the awarding body remains a scholarly society, and the money does not come from one. The score is lowered to reflect what the record says rather than what the governance structure suggests."
+  - heading: Three claims this entry stopped making
+    body: "Withdrawn in the Cycle 03 requalification: that the award has historically skewed toward a small set of institutions and regions, for which no source was found; that recipients are broadly regarded as foundational figures, which is an evaluative generalisation; and the description of the award as computing's equivalent of a Nobel Prize. The last is a widely used nickname rather than a property of the award, and the awarding body's own page could not be read directly in this audit, so it is not asserted here in reference language."
 sources:
-  - title: A.M. Turing Award - official site and recipients
+  - title: ACM A.M. Turing Award - official award page (criteria, prize amount, financial support)
     publisher: Association for Computing Machinery
-    url: https://amturing.acm.org/
+    url: https://awards.acm.org/turing
     type: institutional
   - title: Turing Award - overview and history
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/topic/Turing-Award
     type: reference-secondary
+  - title: "ACM A.M. Turing Award (criteria, first laureate, prize amount from 2007 and from 2014)"
+    publisher: Heidelberg Laureate Forum Foundation
+    url: https://www.heidelberg-laureate-forum.org/laureates/awards/acm-am-turing-award/
+    type: institutional
+provenance:
+  system-facts:
+    record_anchor: [1]
+    basis: awarding-institution-record
+audit_exceptions:
+  - claim: representational-breadth
+    search_date: '2026-09-11'
+    search_note: "Searched for a record-grade source on the institutional or geographic distribution of recipients. None was found. The recipient list is published, but compiling it into a distribution would be this project's own analysis presented as a documented fact."
+    best_source: 2
+    reason: "Known-status: the documented bound on breadth is the remit - computing only. The skew claim is withdrawn."
+  - claim: track-record
+    search_date: '2026-09-11'
+    search_note: "Searched for a record-grade basis for the claim that recipients are broadly regarded as foundational figures in computing. None was found."
+    best_source: 2
+    reason: Withdrawn. The score now rests on the published recipient record and the award's unbroken annual cycle, and was lowered accordingly.
+  - claim: nobel-comparison
+    search_date: '2026-09-11'
+    search_note: "The description of the award as the Nobel Prize of computing is widely used and is reported to appear in the awarding body's own materials, but those pages returned HTTP 403 to this audit and could not be read directly. A foundation page co-organised with the awarding society uses the phrase while attributing it to general recognition rather than to the society."
+    best_source: 3
+    reason: Not asserted. A nickname that cannot be attributed to a source this audit read has no place in reference language, so it was removed from the summary rather than repeated.
 
 domains:
   - mathematics-computing
+subfield: computing

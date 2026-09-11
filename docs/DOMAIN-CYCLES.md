@@ -365,7 +365,7 @@ promotes it.
 
 1. **Cycle 01 — Physics & Astronomy** *(closed 2026-09-10 — mature v1.0)*
 2. **Cycle 02 — Biology, Medicine & Genetics** *(closed 2026-09-11 — mature v1.0)*
-3. Cycle 03 — Mathematics & Computing
+3. **Cycle 03 — Mathematics & Computing** *(open — 2026-09-11)*
 4. Then, and only then, outside the sciences: Literature → Peace →
    Human Rights / Law → Arts → Social Sciences → Technology / Engineering.
 
@@ -560,3 +560,50 @@ to accuse anyone, and one of them returned the project's first negative gap.
 
 Next: **Cycle 03 — Mathematics & Computing**, which begins at 1 case, 3 systems,
 source-grade closure 1/4, and no award anatomy or synthesis.
+
+---
+
+## Cycle 03 — Mathematics & Computing — OPEN
+
+Opened: 2026-09-11. Run `python scripts/domain_status.py` for live status.
+
+Like Cycle 02, this cycle opens with a **baseline requalification** rather than an
+expansion — and with one question Cycle 02 did not have to ask:
+
+> Is Mathematics & Computing one coherent governance domain, or two recognition
+> cultures collected under a single label?
+
+Round 1 re-qualified the one inherited case (Noether) and the three recognition
+systems, and audited the domain's own name. Full account:
+[`cycle-03-requalification-ledger.md`](cycle-03-requalification-ledger.md).
+
+### Composite domains
+
+A domain whose name joins two recognition cultures can satisfy every numeric
+criterion while nearly all of its knowledge sits on one side of the join. Entries
+in such a domain (`DOMAIN_SUBFIELDS` in `scripts/config.py`) declare a `subfield`,
+and the engine reports coverage across the halves:
+
+> **Domain maturity threshold does not by itself establish subfield coverage.**
+
+This is an observation and gates nothing — the Definition of Done is unchanged and
+an uneven split blocks no cycle. What it refuses is the silence. Measured at the
+open of Cycle 03: mathematics 1 case and 1 system, computing **0 cases** and 1
+system, cross-cutting 1 system.
+
+### Planned order
+
+1. **Expansion in stages**, chosen after the baseline rather than in advance:
+   4 cases → comparison and mechanism read at 5 → 3 cases → read at 8 → the last
+   two chosen by what the corpus has revealed.
+2. **Award anatomy**, whose subject is decided by which apparatus turns out to be
+   load-bearing for the cases — not chosen now. If the corpus ends genuinely
+   balanced across the join, one anatomy may satisfy the Definition of Done while
+   being epistemically insufficient; in that case two are built without changing
+   the threshold.
+3. Synthesis, then sector reference and closure review.
+
+No names are proposed yet. The first decision after requalification is what kind
+of case the corpus needs — mathematical recognition, computing recognition,
+controls, eligibility-rule cases, attribution cases — or whether the baseline has
+revealed a different gap entirely.

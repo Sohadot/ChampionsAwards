@@ -232,6 +232,37 @@ DOMAINS: Final[dict[str, str]] = {
     "mathematics-computing": "Mathematics & Computing",
 }
 
+# ---------------------------------------------------------------------------
+# Composite domains
+#
+# Some domain names join two recognition cultures under one label. A domain like
+# that can satisfy every numeric criterion while nearly all of its knowledge sits
+# on one side of the join - ten cases and three systems, all mathematics, in a
+# domain called Mathematics & Computing.
+#
+# Entries in a composite domain declare which side they belong to, so coverage
+# can be measured. This is reported as an observation and gates nothing: the
+# Definition of Done is unchanged, and a domain is not blocked by an uneven
+# split. What is refused is the silence - a maturity claim that does not say
+# which half of its own name it rests on.
+# ---------------------------------------------------------------------------
+DOMAIN_SUBFIELDS: Final[dict[str, tuple[str, ...]]] = {
+    "mathematics-computing": ("mathematics", "computing", "cross-cutting"),
+}
+
+
+def domain_subfields(domain: str) -> tuple[str, ...]:
+    return DOMAIN_SUBFIELDS.get(domain, ())
+
+
+def is_composite_domain(domain: str) -> bool:
+    return bool(DOMAIN_SUBFIELDS.get(domain))
+
+
+def is_valid_subfield(domain: str, value: object) -> bool:
+    return isinstance(value, str) and value in DOMAIN_SUBFIELDS.get(domain, ())
+
+
 # Published scored entries must be placed in a domain (no orphans).
 REQUIRE_DOMAIN: Final[bool] = True
 

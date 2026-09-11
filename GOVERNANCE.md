@@ -149,6 +149,17 @@ rejects applying a rule to an event that predates it. Where the rule in force
 cannot be established, none is applied, and the outcome stands without a
 rule-based explanation.
 
+## Composite domains (enforced)
+
+Where a domain's name joins two recognition cultures (`DOMAIN_SUBFIELDS` in
+`scripts/config.py`), every entry placed in it declares a `subfield`, and the gate
+rejects an entry that does not. The engine then reports subfield coverage —
+cases, systems and awards per side — as an observation. **A domain maturity
+threshold does not by itself establish subfield coverage:** a composite domain can
+meet every criterion with one half empty, and the coverage report exists so that a
+maturity claim has to say which half it rests on. Coverage gates nothing, and the
+Definition of Done is unchanged.
+
 ## Concept semantics (enforced)
 
 Concepts declare a `concept_type`: `mechanism` (operative and case-level),

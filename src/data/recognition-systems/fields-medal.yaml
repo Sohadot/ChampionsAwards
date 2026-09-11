@@ -1,16 +1,16 @@
 title: Fields Medal
 slug: fields-medal
 status: published
-last_reviewed: 2026-09-08
-summary: The Fields Medal is one of the most prestigious honours in mathematics, awarded by the International Mathematical Union, and its age restriction makes it a revealing case study in how eligibility rules shape a recognition system.
-introduction: Established through the will of Canadian mathematician John Charles Fields and first awarded in 1936, the medal recognises outstanding mathematical achievement while deliberately privileging early-career work.
-power_structure: The medal derives its authority from the International Mathematical Union and the mathematical community's consensus, rather than from commercial or state sponsorship, giving it strong independence.
-selection_logic: Because eligibility is capped at mathematicians under 40 in the year of the International Congress, the system structurally excludes late-blooming or late-recognised work, trading breadth for a focus on emerging talent.
+last_reviewed: 2026-09-11
+summary: The Fields Medal is awarded every four years by the International Mathematical Union at the International Congress of Mathematicians, and its age rule - a candidate's fortieth birthday must not occur before 1 January of the Congress year - makes it a documented case of an eligibility rule shaping what a recognition system can see.
+introduction: The medal was first awarded in 1936. This entry records the selection machinery the International Mathematical Union publishes, and treats claims about where its recipients come from, or what they went on to do, as claims requiring evidence rather than as properties of the award.
+power_structure: "The IMU documents the funding: the medals and cash prizes come from a trust established by J. C. Fields at the University of Toronto, supplemented periodically. There is no commercial or state sponsor of record."
+selection_logic: "The Fields Medal Committee is chosen by the IMU Executive Committee and normally chaired by the IMU President; it is asked to choose at least two medalists, with a strong preference for four, and to have regard to representing a diversity of mathematical fields. The age rule means the system cannot, by construction, recognise work whose significance is established later in a career."
 rls_assessment:
   process: 80
   breadth: 60
-  track_record: 82
-  transparency: 62
+  track_record: 74
+  transparency: 70
   independence: 85
   evidence:
     process: [1]
@@ -19,23 +19,31 @@ rls_assessment:
     transparency: [1]
     independence: [1]
   rationale:
-    process: Selection is run by International Mathematical Union committees under established criteria.
-    breadth: The under-40 rule and concentration in a small number of elite institutions narrow representational breadth.
-    track_record: Recipients have overwhelmingly gone on to sustained mathematical leadership.
-    transparency: The criteria and recipients are public, though committee deliberations are private.
-    independence: Academic governance keeps it largely free of commercial or political capture.
+    process: "The IMU publishes the committee's composition rule, its size guidance, and the eligibility rule, and the medal has been awarded on a fixed four-year cycle since 1936."
+    breadth: "Two documented features pull in opposite directions: the committee is asked to have regard to representing a diversity of mathematical fields, while the age rule excludes work recognised later in a career. The claim that recipients concentrate in a small number of elite institutions was carried by this entry until 2026-09-11 and is withdrawn as unevidenced - see the documented exception. Score unchanged, on the narrower justification."
+    track_record: "The laureate record is published in full back to 1936. The claim that recipients overwhelmingly went on to sustained mathematical leadership was withdrawn on 2026-09-11: it is an evaluative generalisation about careers, and no record-grade source was found for it. Lowered from 82, since the score previously rested on that claim."
+    transparency: "The criteria, the laureates and the prize committees are published, including which members recused themselves; deliberations are not published."
+    independence: Funding comes from a trust at a university rather than from a commercial or state sponsor, and the awarding body is an international scholarly union.
 key_facts:
-  - fact: The Fields Medal is awarded by the International Mathematical Union, typically every four years at the International Congress of Mathematicians.
+  - fact: "The Fields Medal is awarded every four years at the International Congress of Mathematicians to recognise outstanding mathematical achievement for existing work and for the promise of future achievement."
     source: 1
-  - fact: Recipients must normally be under 40 years of age in the year of the award.
+  - fact: "The IMU states the age rule as: a candidate's fortieth birthday must not occur before 1 January of the year of the Congress at which the medals are awarded."
     source: 1
-  - fact: The medal was first awarded in 1936.
-    source: 2
+  - fact: The Fields Medal Committee is chosen by the IMU Executive Committee, is normally chaired by the IMU President, and is asked to choose at least two medalists, with a strong preference for four, having regard to representing a diversity of mathematical fields.
+    source: 1
+  - fact: The medals and cash prizes are funded by a trust established by J. C. Fields at the University of Toronto, supplemented periodically.
+    source: 1
+  - fact: The medal was first awarded in 1936, and the IMU publishes the full list of laureates and of past prize committees.
+    source: 1
+  - fact: A historian of mathematics records that the age limit was codified in 1966, replacing an earlier and vaguer criterion about candidates whose careers might benefit from encouragement.
+    source: 3
 analysis:
-  - heading: What the age rule reveals
-    body: The under-40 restriction is the medal's defining design choice. It sharpens the prize into a signal about emerging talent, but it also means the system cannot, by construction, recognise work whose significance is only established later in a career - a legitimacy trade-off the RLS captures as reduced representational breadth rather than as a flaw in process.
+  - heading: What the age rule reveals, and when it began
+    body: "The age rule is the medal's defining design choice: it sharpens the prize into a signal about early work, and means the system cannot, by construction, recognise significance established later in a career. Its current form is published by the IMU. Its history matters as much - the limit was codified in 1966, replacing a vaguer criterion about candidates whose careers might benefit from encouragement - so any future corpus case touching this rule must be dated against the version then in force rather than against today's."
+  - heading: Two claims this entry stopped making
+    body: "Until the Cycle 03 requalification this entry stated that recipients concentrate in a small number of elite institutions, and that they have overwhelmingly gone on to sustained mathematical leadership. Neither had a source. Tabulating laureates' affiliations or careers ourselves would be our own analysis presented as a documented fact, so both are now documented exceptions, and the track-record score is lowered to what the published laureate record alone supports."
 sources:
-  - title: Fields Medal - official award page and eligibility
+  - title: Fields Medal - official page (award cycle, age rule, committee composition, funding, laureates, past prize committees)
     publisher: International Mathematical Union
     url: https://www.mathunion.org/imu-awards/fields-medal
     type: institutional
@@ -43,6 +51,39 @@ sources:
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/science/Fields-Medal
     type: reference-secondary
+  - title: "The Fields Medal should return to its roots (on the 1966 codification of the age limit)"
+    publisher: "Michael J. Barany, Nature 553, 271-273 (2018)"
+    url: https://www.nature.com/articles/d41586-018-00513-8
+    type: scholarly-secondary
+rule_history:
+  - element: eligibility
+    current_rule: "A candidate's fortieth birthday must not occur before 1 January of the year of the Congress at which the Fields Medals are awarded."
+    effective_from: 1966
+    predecessor_state: >-
+      Known in outline. Before 1966 the criterion was not a fixed age but a judgment about candidates
+      whose careers might benefit from encouragement; a historian of mathematics records that the
+      fortieth-birthday limit was codified in 1966. The text of the earlier criterion was not reached
+      by this audit.
+    exception:
+      search_date: '2026-09-11'
+      search_note: "Searched the IMU's published pages for a dated history of the eligibility rule. The current rule is published; no IMU document giving its adoption date or its predecessor text was reached."
+      reason: The adoption date rests on a scholarly account rather than on the union's own record, and is stated as such. No corpus case is currently tied to this rule.
+provenance:
+  system-facts:
+    record_anchor: [1]
+    basis: awarding-institution-record
+audit_exceptions:
+  - claim: representational-breadth
+    search_date: '2026-09-11'
+    search_note: "Searched for a record-grade source on the institutional or geographic distribution of Fields medalists. None was found. The IMU publishes the laureates, but compiling their affiliations into a distribution would be this project's own analysis."
+    best_source: 1
+    reason: "Known-status: the documented features are the diversity-of-fields instruction to the committee and the age rule. The concentration claim is withdrawn."
+  - claim: track-record
+    search_date: '2026-09-11'
+    search_note: "Searched for a record-grade basis for the claim that recipients overwhelmingly went on to sustained mathematical leadership. None was found; the claim is an evaluative generalisation about careers."
+    best_source: 1
+    reason: Withdrawn. The score now rests on the published laureate record and the award's unbroken four-year cycle, and was lowered accordingly.
 
 domains:
   - mathematics-computing
+subfield: mathematics
