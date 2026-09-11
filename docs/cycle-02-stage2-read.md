@@ -1,5 +1,17 @@
 # Cycle 02 — Individuals Expansion, Stage 2: full recompute at 10
 
+> **Correction, 2026-09-11 (round 4).** This read framed its closing question as
+> "what it means that half of a fully audited domain returns no mechanism". That
+> framing is withdrawn. Five of ten cases return no evidenced mechanism, but two
+> of them — Apgar at −2 and Hilleman at +6 — sit inside the published band where
+> recognition roughly matches assessed merit and therefore have no deficit
+> outstanding to explain. Counting them as unexplained mistook alignment for
+> explanatory failure. Conditioned on there being a recognition deficit at all,
+> the figure is **3 of 8** cases with a gap of 10 or more, and 2 of 5 in the
+> significantly-under-recognized band. The engine now computes this directly; see
+> `cycle-02-explanatory-coverage.md`. The numbers below are unchanged — only what
+> they were said to mean.
+
 Round: **Just → Apgar → De**, 2026-09-11. Expansion complete; the corpus is
 paused at 10 cases for assessment before any award-anatomy or synthesis work.
 
@@ -25,11 +37,12 @@ biology case carrying it — 1/10, emergent. It remains established only in
 physics (4/10). One case does not make a pattern, and the threshold was not
 bent to accommodate the case the round was designed around.
 
-**3. What is the unexplained proportion?** **5 of 10** — Avery, Stevens,
-Hilleman, Apgar, De. Half the domain is now measured-but-unexplained. In physics
-the figure is 1 of 10. This is the largest single group in the biology corpus and
-is no longer plausibly a shortfall in effort: every one of the five carries a
-dated audit against the full ontology.
+**3. What is the unexplained proportion?** **5 of 10** cases return no evidenced
+mechanism — Avery, Stevens, Hilleman, Apgar, De — and every one carries a dated
+audit against the full ontology. *(Superseded framing: see the correction at the
+top. Conditioned on a recognition deficit, the figure is 3 of 8 — Avery, Stevens
+and De. Hilleman and Apgar are aligned cases with nothing outstanding to
+explain.)* In physics the comparable figure is 1 of 10.
 
 **4. Has the corpus's reliance on the Nobel decreased?** Yes, and the earlier
 statement of it was too loose. The stage 1 read said "six of seven interact with
@@ -51,10 +64,13 @@ WHO. That correction is recorded here rather than quietly fixed.
 | DDI bands | — | 2 Landmark / 5 Major | **4 Landmark / 6 Major** |
 
 **6. Has a new mechanism emerged, or is the ontology still narrow?** No new
-mechanism. The domain evidences three of the seven published concepts:
+mechanism. The domain evidences three of the six *audit-eligible* concepts
+(*corrected: the denominator was previously stated as seven published concepts,
+which included an umbrella tendency and a framework distinction that are not
+case-testable*):
 credit-misattribution (3/10, established), delayed-recognition (1/10, emergent),
-institutional-exclusion (1/10, emergent). Four published concepts have no biology
-case at all. The ontology is unchanged and, on this evidence, narrow.
+institutional-exclusion (1/10, emergent). Three audit-eligible mechanisms have no
+biology case at all. The ontology is unchanged and, on this evidence, narrow.
 
 ## What the round did not do
 
@@ -73,8 +89,8 @@ create one by fiat.
 
 The Definition of Done needs award anatomy and a synthesis; the counts above are
 reported, not required. The open question the corpus has generated for itself is
-not "which case next" but **what it means that half of a fully audited domain
-returns no mechanism** — whether the ontology is too narrow, the standard of
-evidence for a mechanism is too strict, or unexplained gaps are simply what an
+not "which case next" but **why 3 of 8 audited under-recognition cases retain no
+evidenced mechanism** — whether the ontology is too narrow, the standard of
+evidence for a mechanism is too strict, or unresolved deficits are simply what an
 honest recognition corpus looks like. That is the question the synthesis should
 take up, and it was produced by the evidence rather than chosen in advance.

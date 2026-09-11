@@ -83,7 +83,6 @@ mechanism_audit:
     - institutional-gatekeeping
     - delayed-recognition
     - posthumous-recognition
-    - recognition-bias
   finding: no-mechanism-evidenced
   note: >-
     No mechanism is supported, and none was sought beyond the ontology. Credit misattribution fails:

@@ -5,7 +5,9 @@ from typing import Any
 import yaml
 
 from config import (
+    AUDIT_ELIGIBLE_CONCEPT_TYPES,
     AWARD_ARCHITECTURE_KEYS,
+    CONCEPT_TYPES,
     MECHANISM_FINDINGS,
     TIME_DEPENDENT_INTERACTIONS,
     CLUSTERS,
@@ -20,6 +22,7 @@ from config import (
     VALID_STATUSES,
     is_iso_date,
     is_valid_basis,
+    is_valid_concept_type,
     is_valid_domain,
     is_valid_hypothesis_state,
     is_valid_interaction_type,
@@ -44,6 +47,7 @@ def validate_item(
     source_file: str,
     concept_slugs: set[str] | None = None,
     case_slugs: set[str] | None = None,
+    mechanism_slugs: set[str] | None = None,
 ) -> list[str]:
     errors: list[str] = []
 
@@ -84,16 +88,36 @@ def validate_item(
     errors.extend(validate_key_facts(cluster_name, item, source_file))
     errors.extend(validate_analysis(cluster_name, item, source_file))
     errors.extend(validate_domains(cluster_name, item, source_file))
-    errors.extend(validate_patterns(cluster_name, item, source_file, concept_slugs or set()))
+    errors.extend(validate_patterns(cluster_name, item, source_file, concept_slugs or set(),
+                                    mechanism_slugs if mechanism_slugs is not None else concept_slugs or set()))
     errors.extend(validate_provenance(cluster_name, item, source_file))
     errors.extend(validate_audit_exceptions(cluster_name, item, source_file))
     errors.extend(validate_architecture(cluster_name, item, source_file))
     errors.extend(validate_corpus_relations(cluster_name, item, source_file, case_slugs or set()))
     errors.extend(validate_report(cluster_name, item, source_file))
-    errors.extend(validate_mechanism_audit(cluster_name, item, source_file, concept_slugs or set()))
+    errors.extend(validate_mechanism_audit(
+        cluster_name, item, source_file,
+        mechanism_slugs if mechanism_slugs is not None else concept_slugs or set()))
     errors.extend(validate_temporal_validity(cluster_name, item, source_file))
+    errors.extend(validate_concept_type(cluster_name, item, source_file))
 
     return errors
+
+
+def validate_concept_type(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """Every concept declares what kind of thing it is. Only a `mechanism` can
+    be evidenced or refuted in a single case; the other kinds structure the
+    project's reasoning without ever being case-level claims."""
+    if cluster_name != "concepts":
+        return []
+    value = item.get("concept_type")
+    if value is None:
+        return [f"{cluster_name}/{source_file}: a concept must declare a 'concept_type' "
+                f"(one of: {', '.join(sorted(CONCEPT_TYPES))})"]
+    if not is_valid_concept_type(value):
+        return [f"{cluster_name}/{source_file}: unknown concept_type '{value}' "
+                f"(expected one of: {', '.join(sorted(CONCEPT_TYPES))})"]
+    return []
 
 
 def _record_grade_refs(item: dict[str, Any], refs: Any) -> list[str]:
@@ -203,7 +227,7 @@ def validate_temporal_validity(cluster_name: str, item: dict[str, Any], source_f
 
 
 def validate_mechanism_audit(
-    cluster_name: str, item: dict[str, Any], source_file: str, concept_slugs: set[str]
+    cluster_name: str, item: dict[str, Any], source_file: str, mechanism_slugs: set[str]
 ) -> list[str]:
     """A mechanism audit turns "no mechanism recorded" from a silence into a
     documented decision: what was considered, when, what the record showed, and
@@ -224,11 +248,13 @@ def validate_mechanism_audit(
     if not isinstance(considered, list) or not considered:
         errors.append(f"{ref}: mechanism_audit needs a non-empty 'considered' list of mechanisms tested")
     else:
-        unknown = [c for c in considered if c not in concept_slugs]
-        if unknown:
+        ineligible = [c for c in considered if c not in mechanism_slugs]
+        if ineligible:
             errors.append(
-                f"{ref}: mechanism_audit considered unknown mechanism(s): {', '.join(map(str, unknown))} "
-                f"(each must be a published concept)"
+                f"{ref}: mechanism_audit considered {', '.join(map(str, ineligible))}, which is not an "
+                f"audit-eligible concept. Only concept_type "
+                f"{', '.join(sorted(AUDIT_ELIGIBLE_CONCEPT_TYPES))} can be tested against a case - an "
+                f"umbrella tendency or a framework distinction cannot be a failed mechanism test."
             )
 
     finding = audit.get("finding")
@@ -607,7 +633,8 @@ def validate_domains(cluster_name: str, item: dict[str, Any], source_file: str) 
 
 
 def validate_patterns(
-    cluster_name: str, item: dict[str, Any], source_file: str, concept_slugs: set[str]
+    cluster_name: str, item: dict[str, Any], source_file: str, concept_slugs: set[str],
+    mechanism_slugs: set[str] | None = None,
 ) -> list[str]:
     """`patterns` links a case to structural-cause concepts by slug. Each slug
     must resolve to a published concept, so the ontology stays connected.
@@ -628,6 +655,11 @@ def validate_patterns(
         elif slug not in concept_slugs:
             errors.append(
                 f"{cluster_name}/{source_file}: pattern '{slug}' does not match any published concept"
+            )
+        elif mechanism_slugs is not None and slug not in mechanism_slugs:
+            errors.append(
+                f"{cluster_name}/{source_file}: pattern '{slug}' is not an audit-eligible concept "
+                f"(only concept_type {', '.join(sorted(AUDIT_ELIGIBLE_CONCEPT_TYPES))} can be evidenced in a case)"
             )
 
     pattern_evidence = item.get("pattern_evidence")
@@ -859,6 +891,21 @@ def validate_sources(cluster_name: str, item: dict[str, Any], source_file: str) 
     return errors
 
 
+def collect_concept_slugs_by_type(types: frozenset[str] | set[str]) -> set[str]:
+    """Published concepts whose declared type is in `types`."""
+    slugs: set[str] = set()
+    folder = DATA / "concepts"
+    if not folder.exists():
+        return slugs
+    for path in sorted(folder.glob("*.yaml")):
+        item = load_yaml_file(path)
+        if str(item.get("status", "published")).strip().lower() != "published":
+            continue
+        if item.get("concept_type") in types and item.get("slug"):
+            slugs.add(normalize_slug(str(item["slug"])))
+    return slugs
+
+
 def collect_published_slugs(cluster: str) -> set[str]:
     slugs: set[str] = set()
     folder = DATA / cluster
@@ -876,6 +923,7 @@ def collect_published_slugs(cluster: str) -> set[str]:
 def main() -> None:
     all_errors: list[str] = []
     concept_slugs = collect_published_slugs("concepts")
+    mechanism_slugs = collect_concept_slugs_by_type(AUDIT_ELIGIBLE_CONCEPT_TYPES)
     case_slugs = collect_published_slugs("unawarded")
 
     for cluster_name in CLUSTERS:
@@ -885,7 +933,8 @@ def main() -> None:
 
         for path in sorted(folder.glob("*.yaml")):
             item = load_yaml_file(path)
-            item_errors = validate_item(cluster_name, item, path.name, concept_slugs, case_slugs)
+            item_errors = validate_item(cluster_name, item, path.name, concept_slugs, case_slugs,
+                                        mechanism_slugs)
             all_errors.extend(item_errors)
 
     if all_errors:

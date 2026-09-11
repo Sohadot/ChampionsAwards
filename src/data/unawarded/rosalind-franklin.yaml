@@ -136,7 +136,6 @@ mechanism_audit:
     - institutional-exclusion
     - institutional-gatekeeping
     - delayed-recognition
-    - recognition-bias
   finding: mechanism-evidenced
   note: >-
     Posthumous recognition was carried by this entry and is withdrawn. It rested on applying the

@@ -130,16 +130,34 @@ def ddi_band(score: float) -> str:
     return "Limited"
 
 
+# Canonical gap bands. These thresholds are the single source for both the
+# reading printed against a case and the explanatory-coverage computation, so
+# "under-recognized" can never mean one thing on a page and another in a
+# statistic.
+SIGNIFICANT_UNDER_RECOGNITION_MIN_GAP: Final[float] = 25
+UNDER_RECOGNITION_MIN_GAP: Final[float] = 10
+OVER_RECOGNITION_MAX_GAP: Final[float] = -10
+FAR_OVER_RECOGNITION_MAX_GAP: Final[float] = -25
+
+
 def recognition_gap_label(gap: float) -> str:
-    if gap >= 25:
+    if gap >= SIGNIFICANT_UNDER_RECOGNITION_MIN_GAP:
         return "significantly under-recognized"
-    if gap >= 10:
+    if gap >= UNDER_RECOGNITION_MIN_GAP:
         return "under-recognized"
-    if gap > -10:
+    if gap > OVER_RECOGNITION_MAX_GAP:
         return "recognition roughly matches assessed merit"
-    if gap > -25:
+    if gap > FAR_OVER_RECOGNITION_MAX_GAP:
         return "recognition exceeds assessed merit"
     return "recognition far exceeds assessed merit"
+
+
+def is_under_recognized(gap: float) -> bool:
+    """Inside the bands the site already publishes, a case has a recognition
+    deficit to explain only from `under-recognized` upward. A case whose
+    recognition roughly matches assessed merit has nothing outstanding to
+    explain, and counting it as "unexplained" mistakes alignment for failure."""
+    return gap >= UNDER_RECOGNITION_MIN_GAP
 
 
 # ---------------------------------------------------------------------------
@@ -404,6 +422,36 @@ MECHANISM_FINDINGS: Final[frozenset[str]] = frozenset(
 
 def is_valid_mechanism_finding(value: object) -> bool:
     return isinstance(value, str) and value in MECHANISM_FINDINGS
+
+
+# ---------------------------------------------------------------------------
+# Concept semantics
+#
+# The concept cluster mixes levels. Some entries are operative, case-level
+# mechanisms with an operational definition (an act, a barrier, an interval that
+# can be looked for in a record). Others are umbrella tendencies covering
+# several possible mechanisms, or framework distinctions that structure the
+# project's thinking without ever being true or false of a single case.
+#
+# Only the first kind can be tested against a case. A framework concept cannot
+# be a "failed mechanism test", and counting it as one makes an ontology look
+# narrower than it is. The concepts are not rewritten to fit the classes; the
+# classes record what each concept already was.
+# ---------------------------------------------------------------------------
+CONCEPT_TYPES: Final[frozenset[str]] = frozenset(
+    {
+        "mechanism",            # operative and case-level: can be evidenced or not in a given case
+        "recognition-pattern",  # an umbrella tendency covering several mechanisms; not case-testable
+        "framework-concept",    # a distinction the project reasons with; never true or false of a case
+    }
+)
+
+# What a mechanism audit may consider, and what a case may declare as a pattern.
+AUDIT_ELIGIBLE_CONCEPT_TYPES: Final[frozenset[str]] = frozenset({"mechanism"})
+
+
+def is_valid_concept_type(value: object) -> bool:
+    return isinstance(value, str) and value in CONCEPT_TYPES
 
 
 # A published hypothesis is open until the corpus refutes it. "Refuted" is a

@@ -89,7 +89,6 @@ mechanism_audit:
     - posthumous-recognition
     - institutional-exclusion
     - institutional-gatekeeping
-    - recognition-bias
   finding: mechanism-evidenced
   note: >-
     Credit misattribution is evidenced by her own institution's record: her findings were published by

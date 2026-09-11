@@ -35,6 +35,7 @@ import yaml
 
 from config import (
     ASSESSMENT_CLUSTERS,
+    AUDIT_ELIGIBLE_CONCEPT_TYPES,
     DATA,
     OUT,
     ROOT,
@@ -45,6 +46,8 @@ from config import (
     compute_rls,
     ddi_band,
     is_published,
+    UNDER_RECOGNITION_MIN_GAP,
+    is_under_recognized,
     recognition_gap_label,
     rls_band,
 )
@@ -373,6 +376,80 @@ def rls_profiles(domain: str) -> dict[str, Any]:
     }
 
 
+def audit_eligible_concepts() -> list[str]:
+    """Published concepts that can actually be tested against a case. An umbrella
+    tendency or a framework distinction is not a candidate mechanism, so it must
+    not be counted when reporting how much of the ontology a domain evidences."""
+    return sorted(
+        item["slug"] for item in _load_cluster("concepts")
+        if item.get("concept_type") in AUDIT_ELIGIBLE_CONCEPT_TYPES
+    )
+
+
+_BAND_ORDER = [
+    "significantly under-recognized",
+    "under-recognized",
+    "recognition roughly matches assessed merit",
+    "recognition exceeds assessed merit",
+    "recognition far exceeds assessed merit",
+]
+
+
+def explanatory_coverage(domain: str) -> dict[str, Any]:
+    """How much of what needs explaining has been explained.
+
+    "No evidenced mechanism" is the raw audit result, and on its own it is a poor
+    measure: a case whose recognition roughly matches assessed merit has no
+    deficit outstanding, so finding no mechanism there is the expected result,
+    not a failure. This splits the corpus by the gap bands the site already
+    publishes and reports mechanism coverage inside each - so the number that
+    matters, unexplained UNDER-recognition, can never be inflated by cases that
+    had nothing to explain.
+    """
+    cases = _domain_cases(domain)
+    patterns = pattern_distribution(domain)
+    with_mechanism = {c["slug"] for p in patterns["patterns"] for c in p["cases"]}
+
+    rows: dict[str, dict[str, Any]] = {}
+    unexplained_deficit: list[dict[str, str]] = []
+    aligned_without_mechanism: list[dict[str, str]] = []
+    n_under = 0
+    for case in cases:
+        assessment = case["assessment"]
+        gap = compute_ddi(assessment) - assessment["observed_recognition"]
+        band = recognition_gap_label(gap)
+        row = rows.setdefault(band, {"band": band, "cases": 0, "with_mechanism": 0, "without_mechanism": 0})
+        row["cases"] += 1
+        entry = {"slug": case["slug"], "title": case.get("title", case["slug"]),
+                 "url": f"/unawarded/{case['slug']}", "gap": gap}
+        if case["slug"] in with_mechanism:
+            row["with_mechanism"] += 1
+        else:
+            row["without_mechanism"] += 1
+            (unexplained_deficit if is_under_recognized(gap) else aligned_without_mechanism).append(entry)
+        if is_under_recognized(gap):
+            n_under += 1
+
+    # Bands are reported from the largest deficit downward, in the published order.
+    ordered = [rows[band] for band in _BAND_ORDER if band in rows]
+
+    return {
+        "n_cases": len(cases),
+        "n_under_recognized": n_under,
+        "under_recognition_threshold": UNDER_RECOGNITION_MIN_GAP,
+        "n_unexplained_under_recognition": len(unexplained_deficit),
+        "unexplained_under_recognition": sorted(unexplained_deficit, key=lambda c: c["slug"]),
+        "n_aligned_without_mechanism": len(aligned_without_mechanism),
+        "aligned_without_mechanism": sorted(aligned_without_mechanism, key=lambda c: c["slug"]),
+        "by_band": ordered,
+        "eligible_concepts": audit_eligible_concepts(),
+        "n_eligible_concepts": len(audit_eligible_concepts()),
+        "n_evidenced_concepts": len(patterns["patterns"]),
+        "note": ("A case whose recognition roughly matches assessed merit has no deficit outstanding; "
+                 "finding no mechanism there is the expected result, not an explanatory failure."),
+    }
+
+
 def award_interaction_distribution(domain: str) -> dict[str, Any]:
     rels = _domain_award_relations(domain)
     denom = len(rels)  # denominator = award relations, NOT cases
@@ -448,6 +525,7 @@ def build_comparison(domain: str) -> dict[str, Any]:
         "observations": {
             "corpus_distribution": corpus,
             "structural_patterns": patterns,
+            "explanatory_coverage": explanatory_coverage(domain),
             "recognition_system_profiles": systems,
             "award_interactions": awards,
         },
@@ -489,6 +567,15 @@ def print_report(result: dict[str, Any]) -> None:
     print(f"  mechanism accounting: {p['n_cases_accounted']}/{p['denominator']} "
           f"({p['accounting_coverage_percentage']}%) - evidenced or audited; "
           f"{len(p['cases_unaudited'])} not yet audited")
+
+    e = result["observations"]["explanatory_coverage"]
+    print(f"\nExplanatory coverage (gap bands as published)")
+    for row in e["by_band"]:
+        print(f"  {row['band']:44} {row['cases']:>2} cases | mechanism {row['with_mechanism']} | none {row['without_mechanism']}")
+    print(f"  unexplained under-recognition (gap >= {_fmt(e['under_recognition_threshold'])}): "
+          f"{e['n_unexplained_under_recognition']}/{e['n_under_recognized']}")
+    print(f"  aligned, no mechanism needed: {e['n_aligned_without_mechanism']}")
+    print(f"  audit-eligible concepts evidenced: {e['n_evidenced_concepts']}/{e['n_eligible_concepts']}")
     print("  (corpus frequency, not estimated prevalence in the field)")
 
     s = result["observations"]["recognition_system_profiles"]

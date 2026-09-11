@@ -475,11 +475,22 @@ produced its first negative gap (Apgar, −2); and five of ten cases are
 measured-but-unexplained after a dated audit. Full recompute:
 [`cycle-02-stage2-read.md`](cycle-02-stage2-read.md).
 
+Round 4, **Ontology & explanatory-coverage hardening** (2026-09-11): concepts
+now declare a `concept_type`, only `mechanism` concepts may be tested against a
+case, and the engine reports explanatory coverage against the published gap bands
+so that alignment between merit and recognition is no longer counted as an
+explanatory failure. No case data changed. Recomputed: unexplained
+under-recognition is **3 of 8** in biology and **1 of 10** in physics; two biology
+cases are aligned and require no mechanism. Full account:
+[`cycle-02-explanatory-coverage.md`](cycle-02-explanatory-coverage.md).
+
 Order from here:
 
-1. Award anatomy for the domain.
-2. Synthesis — which should take up the question the corpus generated for itself:
-   what it means that half of a fully audited domain returns no mechanism.
+1. Award anatomy for the domain — bounded as an anatomy of one recognition system
+   interacting with the three cases where its record is load-bearing, not as an
+   explanatory model of biology recognition.
+2. Synthesis — structured on three outcomes: mechanism evidenced; recognition
+   aligned, no deficit to explain; under-recognition unresolved after audit.
 
 No fourth recognition system is needed: Nobel, Lasker and Wolf already satisfy
 the RLS threshold. The work is making those three reliable, not adding a fourth.
