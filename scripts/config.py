@@ -252,8 +252,7 @@ PATTERN_ESTABLISHED_MIN: Final[int] = 2
 # Maturity is completeness of accountable inquiry, not conformity of findings to
 # a target outcome.
 #
-# SUPERSEDED - DoD v1.0 (in force until 2026-09-10):
-#     {"ddi_cases": 10, "rls_systems": 3, "patterns": 4}
+# SUPERSEDED - DoD v1.0 (in force until 2026-09-10): DOMAIN_DOD_V1_0 below.
 # The v1.0 requirement of four ESTABLISHED mechanisms was set before any domain
 # had completed a full mechanism audit. Cycle 01 ran every layer that precedes
 # judgment - case deepening, provenance, source-grade audit, award anatomy,
@@ -273,6 +272,11 @@ PATTERN_ESTABLISHED_MIN: Final[int] = 2
 # a domain's inquiry complete?" is answered differently.
 # ---------------------------------------------------------------------------
 DOD_VERSION: Final[str] = "DoD v1.1"
+
+# The superseded criteria, kept as data rather than as prose, so a report
+# correcting a claim made under v1.0 can cite the number that was actually in
+# force instead of retyping it from memory.
+DOMAIN_DOD_V1_0: Final[dict[str, int]] = {"ddi_cases": 10, "rls_systems": 3, "patterns": 4}
 
 DOMAIN_DOD: Final[dict[str, int]] = {
     "ddi_cases": 10,      # individual contributions scored with the DDI
@@ -461,13 +465,19 @@ def is_valid_concept_type(value: object) -> bool:
 # "the years that would contain it are not released yet" are different facts,
 # and a corpus that collapses them into silence is asserting something it has
 # not checked. These four states keep them apart.
+#
+# Note the narrowness of the last one. This audit established that no
+# deliberation record was reached - not that none is obtainable. The Statutes
+# permit a prize-awarding body to give third parties access to the materials
+# behind a decision once fifty years have passed, so "unavailable" would assert
+# more than was checked.
 # ---------------------------------------------------------------------------
 ARCHIVE_VISIBILITY_STATES: Final[frozenset[str]] = frozenset(
     {
         "nomination-documented",          # a nomination record exists in the open archive
         "no-nomination-in-open-archive",  # the relevant years ARE open and contain none
         "archive-year-not-released",      # the relevant years fall after the release horizon
-        "deliberation-unavailable",       # committee evaluations are not published at all
+        "deliberation-not-reached",       # no deliberation record was reached by this audit
     }
 )
 

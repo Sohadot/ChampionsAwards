@@ -111,8 +111,13 @@ archive_visibility:
       record_anchor: [7]
     - case: albert-schatz
       years: '1952'
-      status: deliberation-unavailable
-      note: The Committee's evaluation of that nomination is not published; under the Statutes, investigations and opinions may not be divulged.
+      status: deliberation-not-reached
+      note: >-
+        No deliberation record for this nomination was reached by this audit, and no committee
+        rationale is therefore asserted. The Statutes restrict disclosure of proposals, investigations
+        and opinions, while permitting a prize-awarding body to give third parties access to the
+        materials behind a decision once fifty years have passed - so this records what was reached,
+        not what exists.
       record_anchor: [1]
     - case: oswald-avery
       years: 1932-1953
@@ -134,8 +139,11 @@ archive_visibility:
       record_anchor: [6]
     - case: rosalind-franklin
       years: '1962'
-      status: deliberation-unavailable
-      note: The Committee's deliberations for 1962 are not published, so no reason for the composition of that year's award is available.
+      status: deliberation-not-reached
+      note: >-
+        No deliberation record for the 1962 decision was reached by this audit, so no reason for the
+        composition of that year's award is asserted here. Disclosure is restricted under the
+        Statutes and may be granted at the awarding body's discretion after fifty years.
       record_anchor: [1]
 key_facts:
   - fact: The Nobel Assembly at Karolinska Institutet has 50 members and chooses the laureates by majority vote on the first Monday in October; the decision is final and without appeal.

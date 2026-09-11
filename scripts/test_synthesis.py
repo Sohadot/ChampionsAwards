@@ -33,6 +33,8 @@ check("figure map carries no build timestamp",
 # 2. Bare numbers are rejected; years are not.
 check("a typed statistic is caught", sf.bare_numbers("8 of 10 cases") == ["8", "10"])
 check("a date is not a statistic", sf.bare_numbers("the 1957 award, the 1930s, audited 2026-09-10") == [])
+check("a version identifier is not a statistic", sf.bare_numbers("DDI v1.0 under DoD v1.1") == [])
+check("a version-like statistic is still caught", sf.bare_numbers("3 of 8 cases") == ["3", "8"])
 check("a resolved token is not a typed number", sf.bare_numbers("{n_cases} cases") == [])
 check("an unknown token is caught", sf.unknown_tokens("{no_such_figure}", figures) == ["no_such_figure"])
 check("a known token resolves", sf.resolve("{n_cases}", figures) == figures["n_cases"])
@@ -40,11 +42,24 @@ check("a known token resolves", sf.resolve("{n_cases}", figures) == figures["n_c
 # 3. Every published report obeys the rules (and validate_report actually bites).
 report_files = sorted((DATA / "reports").glob("*.yaml")) if (DATA / "reports").exists() else []
 check("at least one synthesis report exists", bool(report_files))
+check("a cross-domain token resolves to the other corpus's figure",
+      sf.figure_map(DOMAIN, ("biology-medicine",)).get("n_cases@biology-medicine")
+      == sf.figure_map("biology-medicine")["n_cases"])
+check("an undeclared cross-domain token does not resolve",
+      "n_cases@biology-medicine" not in sf.figure_map(DOMAIN))
 for path in report_files:
     item = load_yaml_file(path)
     check(f"report validates ({path.name})", not validate_report("reports", item, path.name),
           str(validate_report("reports", item, path.name)))
-    check(f"report declares its corpus ({path.name})", item.get("derives_from") == DOMAIN)
+    from config import DOMAINS
+    check(f"report declares a governed corpus ({path.name})", item.get("derives_from") in DOMAINS)
+    check(f"report's compares_with names governed domains ({path.name})",
+          all(d in DOMAINS for d in item.get("compares_with") or []))
+    _figs = sf.figure_map(item["derives_from"], tuple(item.get("compares_with") or ()))
+    for index, obs in enumerate(item.get("observations") or [], start=1):
+        check(f"observation #{index} resolves every token ({path.name})",
+              not sf.unknown_tokens(obs["statement"], _figs),
+              str(sf.unknown_tokens(obs["statement"], _figs)))
     for index, obs in enumerate(item.get("observations") or [], start=1):
         cited = set(sf.cited_tokens(obs["statement"]))
         declared = set(obs.get("derived_from") or [])

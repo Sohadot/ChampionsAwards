@@ -1,0 +1,142 @@
+title: "Explained, Aligned, Unresolved: Recognition Outcomes in Biology & Medicine"
+slug: explained-aligned-unresolved-biology
+status: published
+domain: biology-medicine
+derives_from: biology-medicine
+compares_with:
+  - physics-astronomy
+last_reviewed: 2026-09-11
+summary: >-
+  What a governed recognition corpus can establish, and what remains unresolved when the record stops
+  short of causation. Across {n_cases} governed cases in {domain_label}, {under_recognized_cases} carry
+  a recognition deficit, {explained_under_recognition} of those carry an evidenced mechanism,
+  {unexplained_under_recognition} do not, and {aligned_without_mechanism} show no deficit at all.
+question: >-
+  When a recognition gap survives a full audit without an evidenced mechanism, what exactly has been
+  established - and what has not?
+scope: >-
+  The evidence is the governed corpus for {domain_label} at snapshot {corpus_snapshot}, data through
+  {data_through}: {n_cases} cases scored under {methodology_version}, {n_systems} recognition systems
+  scored under {rls_version}, and {n_award_relations} hardened relations to {n_awards} mapped award.
+  Mechanism accounting is complete at {cases_accounted} of {n_cases}, and the ontology offers
+  {eligible_concepts} audit-eligible mechanisms. The denominators below are different populations and
+  are not interchangeable: cases, cases with a deficit, ontology concepts, and award relations are four
+  distinct things.
+
+observations:
+  - statement: >-
+      {under_recognized_cases} of {n_cases} cases carry a recognition gap of
+      {under_recognition_threshold} points or more, the floor of the published under-recognized band.
+      The remaining {aligned_without_mechanism} sit in the band where recognition roughly matches
+      assessed merit.
+    derived_from: [under_recognized_cases, n_cases, under_recognition_threshold, aligned_without_mechanism]
+  - statement: >-
+      Outcome class A - mechanism evidenced. {explained_under_recognition} of the
+      {under_recognized_cases} cases with a deficit carry at least one mechanism evidenced against the
+      record.
+    derived_from: [explained_under_recognition, under_recognized_cases]
+  - statement: >-
+      The mechanisms that appear are credit misattribution in
+      {pattern_support:credit-misattribution} of {n_cases} cases ({pattern_status:credit-misattribution}),
+      institutional exclusion in {pattern_support:institutional-exclusion}
+      ({pattern_status:institutional-exclusion}), and delayed recognition in
+      {pattern_support:delayed-recognition} ({pattern_status:delayed-recognition}). Credit
+      misattribution has the highest support count in this governed corpus.
+    derived_from: [pattern_support:credit-misattribution, pattern_status:credit-misattribution,
+                   pattern_support:institutional-exclusion, pattern_status:institutional-exclusion,
+                   pattern_support:delayed-recognition, pattern_status:delayed-recognition, n_cases]
+  - statement: >-
+      The corpus evidences {evidenced_concepts} of {eligible_concepts} audit-eligible mechanism
+      concepts in the ontology. That is a statement about ontology coverage, and its denominator is the
+      ontology - not the corpus, and not the cases with a deficit.
+    derived_from: [evidenced_concepts, eligible_concepts]
+  - statement: >-
+      Outcome class B - recognition aligned. {aligned_without_mechanism} cases show no material
+      deficit: Virginia Apgar at {case_gap:virginia-apgar} and Maurice Hilleman at
+      {case_gap:maurice-hilleman}, both inside the band where recognition roughly matches assessed
+      merit. Neither carries an evidenced mechanism, which is the expected result where there is no
+      deficit to explain.
+    derived_from: [aligned_without_mechanism, case_gap:virginia-apgar, case_gap:maurice-hilleman]
+  - statement: >-
+      Outcome class C - under-recognition unresolved. {unexplained_under_recognition} of the
+      {under_recognized_cases} cases with a deficit carry no evidenced mechanism after a dated audit
+      against the {eligible_concepts} audit-eligible concepts: Oswald Avery at {case_gap:oswald-avery}, Nettie Stevens at
+      {case_gap:nettie-stevens}, and Sambhu Nath De at {case_gap:sambhu-nath-de} - the largest gap in
+      the domain.
+    derived_from: [unexplained_under_recognition, under_recognized_cases, eligible_concepts,
+                   case_gap:oswald-avery, case_gap:nettie-stevens, case_gap:sambhu-nath-de]
+  - statement: >-
+      The two governed corpora produce different explanatory profiles. Unresolved under-recognition is
+      {unexplained_under_recognition} of {under_recognized_cases} here and
+      {unexplained_under_recognition@physics-astronomy} of
+      {under_recognized_cases@physics-astronomy} in physics; aligned cases are
+      {aligned_without_mechanism} here and {aligned_without_mechanism@physics-astronomy} there. Both
+      corpora were purposively assembled by different selections, so the project infers no field-level
+      prevalence from the difference.
+    derived_from: [unexplained_under_recognition, under_recognized_cases, aligned_without_mechanism,
+                   unexplained_under_recognition@physics-astronomy,
+                   under_recognized_cases@physics-astronomy, aligned_without_mechanism@physics-astronomy]
+  - statement: >-
+      The award anatomy bounds what any of this can explain. Of {n_award_relations} hardened relations
+      to the one mapped award, {award_count:documented-nomination} are documented nominations and
+      {award_count:documented-award-outcome} documented outcomes. Institutional records establish
+      sequence and outcome without establishing motive.
+    derived_from: [n_award_relations, award_count:documented-nomination, award_count:documented-award-outcome]
+
+hypotheses:
+  - statement: >-
+      Ontology incompleteness. The unresolved cases are unresolved because the ontology does not yet
+      name the mechanism that operated in them.
+    basis: >-
+      The corpus evidences only {evidenced_concepts} of {eligible_concepts} audit-eligible concepts,
+      and the three unresolved cases share no feature that any current concept describes.
+    refuted_by: >-
+      Additional domains repeatedly producing unresolved deficits despite richer archives, without ever
+      converging on a new nameable mechanism, would refute it.
+  - statement: >-
+      Evidence-access ceiling. A mechanism operated, but the available record does not reach far enough
+      to establish it.
+    basis: >-
+      Avery is the strongest instance: a dense nomination history is documented while no deliberation
+      record was reached, so the outcome is visible and the reasoning behind it is not.
+    refuted_by: >-
+      Archival deliberation records becoming available later and still revealing no identifiable
+      mechanism would refute it.
+  - statement: >-
+      Causally diffuse deficits. Some recognition gaps are descriptively real without being produced by
+      any single nameable mechanism - emerging instead from timing, field structure, cumulative
+      attention and dispersed judgment, with no identifiable actor, rule or gate.
+    basis: >-
+      Stevens is the clearest instance in this corpus: a parallel discovery acknowledged by its
+      co-discoverer, substantial recognition during her lifetime, and a smaller place in the later
+      literature than the discovery holds - with no act, barrier or interval that any concept matches.
+    refuted_by: >-
+      A mechanism later evidenced in each of the currently unresolved cases would refute it; so would a
+      demonstration that every unresolved case shares an access limitation rather than a diffuse cause.
+
+limits:
+  - >-
+    "Unresolved" is an epistemic state, not a causal category. It means a recognition deficit is
+    measured and every audit-eligible mechanism was tested against the record without one meeting the
+    evidentiary threshold. It does not mean that no mechanism existed, that the recognition was fair,
+    that the recognition was biased, that the ontology is wrong, or that the archives are complete.
+  - >-
+    A mechanism of recognition is not the same thing as a mechanism of our uncertainty. Archive
+    secrecy limits what can be established about a decision; it is not evidence that secrecy produced
+    the outcome. This report makes no claim of the second kind.
+  - >-
+    The corpus is purposively built around recognition-gap cases and is not a representative sample of
+    the field. Corpus frequency is not field prevalence, and no count here estimates how often anything
+    occurs in biology.
+  - >-
+    Two cases in the archive - De here and Bose in physics - are contributions made outside the
+    metropolitan centres of their fields that return no evidenced mechanism. That similarity is
+    descriptive. Neither record establishes that geography produced the outcome, so no geographic
+    mechanism is proposed.
+  - >-
+    The denominators differ by layer and are not interchangeable: {n_cases} cases,
+    {under_recognized_cases} cases with a deficit, {eligible_concepts} ontology concepts and
+    {n_award_relations} award relations are four distinct populations.
+  - >-
+    All figures are attributable to corpus snapshot {corpus_snapshot}, data through {data_through}. A
+    later corpus can change them, and this report is superseded rather than amended when it does.

@@ -214,7 +214,7 @@ def attach_report(item: dict[str, Any]) -> None:
     from domain_comparison import build_comparison
     from synthesis_figures import figure_map, resolve
 
-    figures = figure_map(domain)
+    figures = figure_map(domain, tuple(item.get("compares_with") or ()))
     comparison = build_comparison(domain)
 
     def r(text: Any) -> Any:
@@ -241,9 +241,17 @@ def attach_report(item: dict[str, Any]) -> None:
         for hyp in item.get("hypotheses") or []
     ]
     item["limit_rows"] = [r(limit) for limit in item.get("limits") or []]
+    item["correction_rows"] = [
+        {"date": entry.get("date"), "was": r(entry.get("was")), "now": r(entry.get("now")),
+         "reason": r(entry.get("reason"))}
+        for entry in item.get("corrections") or []
+    ]
     item["comparison"] = comparison
     item["corpus_cases"] = comparison["observations"]["corpus_distribution"]["ranked_cases"]
-    item["sector_url"] = f"/sectors/{domain}"
+    # Only link the sector reference where one is actually published; a report
+    # may derive from a domain whose sector page has not been built yet.
+    from config import PUBLISHED_SECTORS
+    item["sector_url"] = f"/sectors/{domain}" if domain in PUBLISHED_SECTORS else None
 
 
 def load_yaml_file(path) -> dict[str, Any]:
