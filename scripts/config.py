@@ -463,6 +463,46 @@ def is_valid_interaction_type(value: object) -> bool:
     return isinstance(value, str) and value in INTERACTION_TYPES
 
 
+# ---------------------------------------------------------------------------
+# Temporal validity of rules
+#
+# Learned from the Franklin case: it is not enough for a source to be official
+# and a rule to be current. When a rule is tied to a historical event, the
+# version of the rule that was in force AT THAT TIME is what matters. The
+# Nobel Foundation's prohibition on posthumous awards entered the statutes in
+# 1974; citing today's statute against a 1962 decision is an anachronism, not a
+# provenance.
+#
+# This is deliberately narrow. Only claims of the form "this rule bore on this
+# case" need a `rule_at_time`; ordinary factual claims do not. The interaction
+# types below are exactly those claims.
+# ---------------------------------------------------------------------------
+TIME_DEPENDENT_INTERACTIONS: Final[frozenset[str]] = frozenset(
+    {
+        "eligibility-constraint",
+        "sharing-constraint",
+        "posthumous-constraint",
+    }
+)
+
+
+def is_year_or_iso_date(value: object) -> bool:
+    """A rule's validity may be dated to a year (1974) or to a full date."""
+    if isinstance(value, int):
+        return 1000 <= value <= 2999
+    if is_iso_date(value):
+        return True
+    return isinstance(value, str) and bool(re.fullmatch(r"\d{4}", value.strip()))
+
+
+def temporal_key(value: object) -> str:
+    """Comparable form of a year-or-date, for ordering checks."""
+    if isinstance(value, int):
+        return f"{value:04d}-00-00"
+    text = str(value).strip()
+    return f"{text}-00-00" if len(text) == 4 else text
+
+
 def get_status(item: dict) -> str:
     raw = item.get("status")
     status = str(raw).strip().lower() if raw is not None else DEFAULT_STATUS

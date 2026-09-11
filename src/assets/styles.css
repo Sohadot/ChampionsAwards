@@ -346,6 +346,12 @@ h3.sub { margin: 0 0 6px; font-size: 1.02rem; }
   .landscape dd { font-size: 1.25rem; }
 }
 
+/* A scorecard stacks: the composite band above the dimension table, so the
+   rationale column has room to be read rather than wrapping one word per line. */
+.scorecard { display: grid; gap: 16px; align-items: start; }
+.scorecard .result { position: static; }
+.scorecard table.data td:first-child { min-width: 190px; }
+
 /* ---------- Synthesis report ---------- */
 .findings { margin: 0; padding-left: 22px; }
 .findings li { margin-bottom: 22px; }

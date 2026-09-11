@@ -7,6 +7,7 @@ import yaml
 from config import (
     AWARD_ARCHITECTURE_KEYS,
     MECHANISM_FINDINGS,
+    TIME_DEPENDENT_INTERACTIONS,
     CLUSTERS,
     INTERACTION_TYPES,
     DATA,
@@ -23,6 +24,8 @@ from config import (
     is_valid_hypothesis_state,
     is_valid_interaction_type,
     is_valid_mechanism_finding,
+    is_year_or_iso_date,
+    temporal_key,
     is_valid_slug,
     is_valid_source_type,
     normalize_slug,
@@ -88,7 +91,114 @@ def validate_item(
     errors.extend(validate_corpus_relations(cluster_name, item, source_file, case_slugs or set()))
     errors.extend(validate_report(cluster_name, item, source_file))
     errors.extend(validate_mechanism_audit(cluster_name, item, source_file, concept_slugs or set()))
+    errors.extend(validate_temporal_validity(cluster_name, item, source_file))
 
+    return errors
+
+
+def _record_grade_refs(item: dict[str, Any], refs: Any) -> list[str]:
+    """Which of these source refs are not record-grade (or do not exist)."""
+    tmap = _source_types_by_index(item)
+    bad: list[str] = []
+    for ref in refs if isinstance(refs, list) else []:
+        if not isinstance(ref, int) or ref not in tmap:
+            bad.append(f"#{ref} (no such source)")
+        elif tmap[ref] not in RECORD_GRADE_SOURCE_TYPES:
+            bad.append(f"#{ref} ({tmap[ref]})")
+    return bad
+
+
+def validate_rule_at_time(
+    item: dict[str, Any], where: str, block: Any, ref: str
+) -> list[str]:
+    """A rule tied to a historical event must state the rule AS IT STOOD THEN.
+
+    Temporal validity is part of provenance: an official source for today's rule
+    is not evidence about a decision taken before that rule existed.
+    """
+    errors: list[str] = []
+    if not isinstance(block, dict):
+        return [f"{ref}: {where} 'rule_at_time' must be a mapping"]
+
+    if not is_year_or_iso_date(block.get("event_date")):
+        errors.append(f"{ref}: {where} rule_at_time needs an 'event_date' (a year or an ISO date)")
+
+    statement = block.get("rule_in_force")
+    if not (isinstance(statement, str) and statement.strip()):
+        errors.append(
+            f"{ref}: {where} rule_at_time needs 'rule_in_force' stating what the rule was at that date"
+        )
+
+    has_anchor = bool(block.get("record_anchor"))
+    has_exception = bool(block.get("exception"))
+    if has_anchor == has_exception:
+        errors.append(
+            f"{ref}: {where} rule_at_time needs exactly one of 'record_anchor' (record-grade) or "
+            f"'exception' (a documented search that found no record of the rule at that date)"
+        )
+    if has_anchor:
+        bad = _record_grade_refs(item, block.get("record_anchor"))
+        if bad:
+            errors.append(
+                f"{ref}: {where} rule_at_time record_anchor must be record-grade: {', '.join(bad)}"
+            )
+    if has_exception and not isinstance(block.get("exception"), dict):
+        errors.append(f"{ref}: {where} rule_at_time exception must be a mapping documenting the search")
+
+    for field in ("effective_from", "effective_to"):
+        if field in block and not is_year_or_iso_date(block[field]):
+            errors.append(f"{ref}: {where} rule_at_time '{field}' must be a year or an ISO date")
+    start, end = block.get("effective_from"), block.get("effective_to")
+    if is_year_or_iso_date(start) and is_year_or_iso_date(end) and temporal_key(start) > temporal_key(end):
+        errors.append(f"{ref}: {where} rule_at_time effective_from is after effective_to")
+
+    # The point of the field: the rule must actually have been in force at the event.
+    event = block.get("event_date")
+    if is_year_or_iso_date(event) and is_year_or_iso_date(start) and temporal_key(event) < temporal_key(start):
+        errors.append(
+            f"{ref}: {where} rule_at_time applies a rule effective from {start} to an event in {event} "
+            f"- a rule cannot govern a decision taken before it existed"
+        )
+    if is_year_or_iso_date(event) and is_year_or_iso_date(end) and temporal_key(event) > temporal_key(end):
+        errors.append(
+            f"{ref}: {where} rule_at_time applies a rule that ceased at {end} to an event in {event}"
+        )
+    return errors
+
+
+def validate_temporal_validity(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """Corpus relations that assert a rule bore on a case must date that rule.
+
+    Only the time-dependent interaction types require it; ordinary documented
+    outcomes do not. Provenance entries may also carry effective_from/effective_to
+    where the rule they cite has a known start or end.
+    """
+    ref = f"{cluster_name}/{source_file}"
+    errors: list[str] = []
+
+    for index, rel in enumerate(item.get("corpus_relations") or [], start=1):
+        if not isinstance(rel, dict):
+            continue
+        where = f"corpus_relation #{index}"
+        if "rule_at_time" in rel:
+            errors.extend(validate_rule_at_time(item, where, rel["rule_at_time"], ref))
+        elif rel.get("interaction_type") in TIME_DEPENDENT_INTERACTIONS:
+            errors.append(
+                f"{ref}: {where} is a '{rel['interaction_type']}' and must carry 'rule_at_time' - "
+                f"a rule that has changed over time may only be applied to an event once the record "
+                f"shows which version was then in force"
+            )
+
+    provenance = item.get("provenance")
+    if isinstance(provenance, dict):
+        for claim, entry in provenance.items():
+            if not isinstance(entry, dict):
+                continue
+            if "rule_at_time" in entry:
+                errors.extend(validate_rule_at_time(item, f"provenance['{claim}']", entry["rule_at_time"], ref))
+            for field in ("effective_from", "effective_to"):
+                if field in entry and not is_year_or_iso_date(entry[field]):
+                    errors.append(f"{ref}: provenance['{claim}'] '{field}' must be a year or an ISO date")
     return errors
 
 

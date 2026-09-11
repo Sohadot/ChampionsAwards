@@ -1,7 +1,7 @@
 title: Nobel Prize in Physics
 slug: nobel-prize-in-physics
 status: published
-last_reviewed: 2026-09-09
+last_reviewed: 2026-09-11
 domain: physics-astronomy
 summary: The Nobel Prize in Physics is a closed-nomination, committee-screened award decided by the Royal Swedish Academy of Sciences, with a three-laureate limit, a fifty-year secrecy rule, no posthumous awards, and no appeal - an anatomy of a recognition mechanism rather than a hall of fame.
 introduction: This entry reads the Physics prize as a mechanism. It separates what the rules formally say (architecture), what the historical record shows (operation), and where ChampionsAwards cases touch that structure (our analysis) - keeping the three strictly apart.
@@ -88,6 +88,14 @@ corpus_relations:
     interaction_type: posthumous-constraint
     record_anchor: [2]
     claim: Under the no-posthumous rule in the Statutes, a Physics Prize cannot be awarded to Rubin after her death in 2016; she received none in her lifetime.
+    rule_at_time:
+      event_date: 2016
+      effective_from: 1974
+      rule_in_force: >-
+        The prohibition on posthumous awards entered the Statutes of the Nobel Foundation in 1974 (a
+        prize cannot be awarded posthumously unless death occurred after the announcement), so it was
+        in force at the time of this event.
+      record_anchor: [2, 4]
   - case: satyendra-nath-bose
     architecture_element: eligibility
     interaction_type: historical-non-award
@@ -132,7 +140,7 @@ sources:
     publisher: Royal Swedish Academy of Sciences (kva.se)
     url: https://www.kva.se/en/prizes/nobel-prizes/the-nomination-and-decision-process-nobel/
     type: institutional
-  - title: Nobel Prize facts (first awarded 1901; years withheld)
+  - title: Nobel Prize facts (first awarded 1901; years withheld; posthumous rule from 1974)
     publisher: The Nobel Foundation (nobelprize.org)
     url: https://www.nobelprize.org/prizes/facts/nobel-prize-facts/
     type: institutional
