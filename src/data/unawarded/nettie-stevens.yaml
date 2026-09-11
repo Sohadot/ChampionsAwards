@@ -1,0 +1,92 @@
+title: Nettie Stevens
+slug: nettie-stevens
+status: published
+last_reviewed: 2026-09-11
+domain: biology-medicine
+summary: Nettie Stevens published the evidence in 1905 that sex is determined by a chromosomal difference, was independently paralleled the same year by E. B. Wilson, received substantial recognition during her lifetime, and died in 1912 before taking up a research professorship.
+introduction: This case was opened expecting a recognition gap and audited without one being assumed. What the record shows is a contribution of the first rank, a genuine parallel discovery, and a career that was recognised in its own time more than the popular account suggests.
+omission_case: Her case matters as a test of the method rather than as an instance of injustice - the corpus needs cases where the audit can come back without an evidenced mechanism, or the ontology will only ever confirm itself.
+structural_reason: "Two facts constrain any explanation. First, the discovery was made independently by E. B. Wilson in the same year, and Wilson acknowledged her work in a footnote to his 1905 publication, so this is a parallel discovery rather than a displaced one. Second, she was recognised in her lifetime: a Carnegie Institution grant in 1903 to study sex determination, the Ellen Richards Prize in 1905, inclusion among the top thousand in American Men of Science in 1910 as one of eighteen women, and a research professorship at Bryn Mawr offered in 1912. What is documented afterwards is thin citation of her monograph rather than an identified act of misattribution."
+assessment:
+  impact: 85
+  verification: 88
+  uniqueness: 65
+  durability: 90
+  breadth: 70
+  attribution: 70
+  observed_recognition: 60
+  evidence:
+    impact: [1, 2]
+    verification: [1, 2]
+    uniqueness: [2]
+    durability: [2]
+    breadth: [2]
+    attribution: [2]
+    observed_recognition: [2]
+  rationale:
+    impact: The chromosomal basis of sex determination is foundational to genetics.
+    verification: The contribution is anchored to her own Carnegie Institution monograph, and was independently reproduced in the same year.
+    uniqueness: Counterfactual uniqueness is genuinely bounded - E. B. Wilson reached the same conclusion independently in 1905, which the corpus records rather than discounts.
+    durability: Sex chromosomes remain a central object of biology.
+    breadth: The benefit is deep within biology rather than broad across society.
+    attribution: Wilson acknowledged her work in his own 1905 publication, and current scholarship credits her firmly; her monograph has nonetheless been cited fewer than a hundred times.
+    observed_recognition: Substantial recognition during her lifetime - a Carnegie grant, a named prize, listing among the leading scientists of the era, a professorship offered - against a modest position in the later record compared with her contemporaries.
+key_facts:
+  - fact: "Stevens published \"Studies in Spermatogenesis\" with the Carnegie Institution of Washington in 1905, showing that spermatozoa carrying the small chromosome determine male sex."
+    source: 1
+  - fact: E. B. Wilson published similar findings in 1905, independently, and acknowledged Stevens's work in a footnote to that publication.
+    source: 2
+  - fact: Stevens received a Carnegie Institution grant in 1903 to study sex determination, a postdoctoral position in 1904, the Ellen Richards Prize in 1905, listing among the top thousand in American Men of Science in 1910 as one of eighteen women, and an offer of a research professorship at Bryn Mawr in 1912.
+    source: 2
+  - fact: She died of breast cancer on 4 May 1912, aged fifty, and her monograph has been cited fewer than one hundred times against more than six thousand peer-reviewed articles published on sex chromosomes since.
+    source: 2
+analysis:
+  - heading: A case that did not produce a mechanism
+    body: "The audit for this entry tested every mechanism in the ontology and recorded none. Credit was not displaced to a named other: Wilson reached the same result independently and cited her. She was not excluded from the institutions of her field: she was funded by one, prized by another, and offered a professorship by a third. What the record shows is a real gap between the standing of the discovery and the standing of the discoverer in the later literature, with no documented act producing it. That is a finding, not a failure to find one."
+sources:
+  - title: "Studies in Spermatogenesis (1905), Carnegie Institution of Washington Publication No. 36 - digitised"
+    publisher: "Nettie M. Stevens, Carnegie Institution of Washington"
+    url: https://archive.org/details/studiesinspermat02stev
+    type: primary
+  - title: "The contributions of Nettie Stevens to the field of sex chromosome biology (2022)"
+    publisher: "S. B. Carey, L. Akoezbek and A. Harkess, Philosophical Transactions of the Royal Society B 377(1850): 20210215"
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC8941642/
+    type: scholarly-secondary
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+audit_exceptions:
+  - claim: attribution
+    search_date: '2026-09-11'
+    search_note: "Sought a record-grade source for how credit was apportioned between Stevens and Wilson. The best available account is a 2022 open-access review in Philosophical Transactions of the Royal Society B, which reports Wilson's footnote acknowledgment and the low citation count of her monograph."
+    best_source: 2
+    reason: Secondary-record-sufficient. The attribution question here concerns the distribution of later citation rather than a single documented act, and no record-grade document settles it.
+  - claim: observed-recognition
+    search_date: '2026-09-11'
+    search_note: "Sought institutional records for the Carnegie grant, the Ellen Richards Prize, the American Men of Science listing and the Bryn Mawr professorship offer. These are reported together in the 2022 review; individual institutional records were not reached."
+    best_source: 2
+    reason: Secondary-record-sufficient, from a peer-reviewed review in a record-keeping field.
+mechanism_audit:
+  search_date: '2026-09-11'
+  considered:
+    - credit-misattribution
+    - institutional-exclusion
+    - delayed-recognition
+    - institutional-gatekeeping
+    - posthumous-recognition
+    - recognition-bias
+  finding: no-mechanism-evidenced
+  note: >-
+    No mechanism in the ontology is supported for this case. Credit misattribution fails on the
+    evidence: Wilson's 1905 work was independent and acknowledged hers in a footnote, and current
+    scholarship credits her directly. Institutional exclusion fails: she held a Carnegie grant from
+    1903, a postdoctoral position from 1904, a named prize in 1905, listing among the leading
+    scientists of her era in 1910, and an offered research professorship in 1912. Delayed recognition
+    fails: recognition arrived during her lifetime rather than long after. Gatekeeping and posthumous
+    rules are unsupported by anything in the sources consulted. What remains documented is a
+    contribution of the first rank whose author occupies a smaller place in the later literature than
+    the discovery does - a gap measured without a mechanism recorded to explain it. Her early death
+    at fifty, shortly before taking up a research professorship, is a fact of the case and is not
+    offered here as a mechanism, since the ontology contains none that it matches.
+  best_sources: [1, 2]

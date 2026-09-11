@@ -459,13 +459,19 @@ mechanisms 1 → 0, source-grade closure 2/6 → 6/6, sources on the three cases
 4 → 15. Under DoD v1.1 the weakened findings block nothing; the completed
 accounting is what counts.
 
-Planned order from here:
+Round 2, **Individuals expansion, stage 1** (2026-09-11): researched six,
+published four — Schatz, Ball, Stevens, Hilleman; the two reserves were not
+needed. The corpus stands at 7 cases with mechanism accounting at 7/7 and
+source-grade closure at 10/10. One of the four was accepted expressly as a
+control, and returned the corpus's first "recognition roughly matches assessed
+merit" reading. Comparison read, including the five gaps that should govern the
+next three names: [`cycle-02-stage1-read.md`](cycle-02-stage1-read.md).
 
-1. **Individuals expansion, stage 1** — four cases, then a mechanism audit and a
-   comparison read before choosing any further names, so the corpus shows where
-   its own gaps are rather than having seven names picked at the outset.
-2. **Individuals expansion, stage 2** — three cases, informed by stage 1.
-3. Award anatomy for the domain, then synthesis.
+Order from here:
+
+1. **Individuals expansion, stage 2** — three cases, chosen against the gaps the
+   stage 1 read identified rather than from a list drawn up in advance.
+2. Award anatomy for the domain, then synthesis.
 
 No fourth recognition system is needed: Nobel, Lasker and Wolf already satisfy
 the RLS threshold. The work is making those three reliable, not adding a fourth.

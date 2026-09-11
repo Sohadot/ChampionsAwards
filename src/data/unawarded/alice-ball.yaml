@@ -1,0 +1,105 @@
+title: Alice Ball
+slug: alice-ball
+status: published
+last_reviewed: 2026-09-11
+domain: biology-medicine
+summary: Alice Ball developed the injectable chaulmoogra oil preparation that became the first effective treatment for Hansen's disease, died in 1916 at twenty-four before publishing it, and saw her work published by the president of her own college under his own name before credit was restored to her decades later.
+introduction: The attribution record in this case comes from the institution whose own president took the credit, which makes it an unusually direct documentary basis for a credit claim.
+omission_case: Her case matters because both halves of the sequence are institutionally documented - the displacement of credit and its later restoration - and because the recognition at issue has nothing to do with the Nobel system that dominates the rest of this corpus.
+structural_reason: "The University of Hawaii's own record states that after her death Arthur Dean, president of the College of Hawaii, continued her work and published her findings while failing to mention key research she conducted, mass-produced the treatment, was praised for the discovery, and called it 'The Dean Method'. It also records the restoration: a 1922 paper by Harry T. Hollmann attributing the process as the 'Ball Method', and institutional honours from 2007 onward."
+assessment:
+  impact: 78
+  verification: 85
+  uniqueness: 80
+  durability: 65
+  breadth: 70
+  attribution: 40
+  observed_recognition: 48
+  evidence:
+    impact: [2, 3]
+    verification: [1, 2, 3]
+    uniqueness: [2, 3]
+    durability: [2]
+    breadth: [2]
+    attribution: [2]
+    observed_recognition: [2, 3, 4]
+  rationale:
+    impact: The preparation was the most effective treatment for Hansen's disease in the first half of the twentieth century and allowed patients at Kalaupapa to return to their families.
+    verification: Her own master's thesis survives and is published by her university, which also documents the method and its history.
+    uniqueness: The water-soluble injectable form of the active chaulmoogra compounds was a distinct technical solution, developed when she was twenty-three.
+    durability: The method was superseded by sulfone drugs in the mid-1940s, which bounds its durability as a technique even though its historical significance stands.
+    breadth: The benefit reached a specific and severely affected patient population rather than a broad field.
+    attribution: Her findings were published by another under his own name without mention of key research she conducted, and the method was renamed after him.
+    observed_recognition: Nothing in her lifetime, decades of obscurity, then documented institutional restoration - a university medal in 2007, a state day in 2022, and designation of the Ball Method as a National Historic Chemical Landmark in 2026.
+key_facts:
+  - fact: Ball was the University of Hawaii's first African-American graduate and its first woman to earn a master's degree in chemistry, in 1915, and at twenty-three developed an injectable form of chaulmoogra oil for Hansen's disease.
+    source: 2
+  - fact: She died on 31 December 1916, at the age of twenty-four, before publishing her work.
+    source: 3
+  - fact: "The University of Hawaii records that Arthur Dean, president of the College of Hawaii, continued her work and published her findings but \"failed to mention key research she conducted\", mass-produced the treatment, was praised for the discovery, and called it \"The Dean Method\"."
+    source: 2
+  - fact: "In 1922 Harry T. Hollmann, the doctor at Kalihi Hospital who had encouraged Ball to work on chaulmoogra oil, published a paper attributing her process as the \"Ball Method\"."
+    source: 2
+  - fact: In 2007 the University of Hawaii Board of Regents posthumously awarded her its Medal of Distinction; in 2022 the Governor of Hawaii proclaimed 28 February "Alice Augusta Ball Day"; and in 2026 the Ball Method was designated a National Historic Chemical Landmark by the American Chemical Society.
+    source: 4
+analysis:
+  - heading: An institution documenting its own displacement of credit
+    body: "The central attribution claim here does not rest on a later reconstruction. The university whose president published her findings under his own name is the same institution that now records, in its own words, that he failed to mention key research she conducted and renamed the method after himself. Records that run against an institution's own interest are among the strongest evidence a corpus of this kind can hold."
+  - heading: Restoration is part of the record, not a coda
+    body: "The corpus treats the 1922 attribution, the 2007 medal, the 2022 state proclamation and the 2026 chemical landmark as recognition actually received, not as consolation. That is why her observed recognition is not scored near zero despite a lifetime that ended with none of it: the gap being measured is between contribution and recognition as the record now stands."
+sources:
+  - title: "Alice Ball's master's thesis (1915), digitised"
+    publisher: University of Hawaii
+    url: https://www.hawaii.edu/news/wp-content/uploads/2024/12/aliceball_thesis_final.pdf
+    type: primary
+  - title: "UH celebrates Alice Augusta Ball Day in Hawaii, February 28 (records the Dean episode and the Hollmann attribution)"
+    publisher: University of Hawaii System News
+    url: https://www.hawaii.edu/news/2022/02/28/alice-ball-day-february-28/
+    type: institutional
+  - title: Sculpture honors pioneering scientist Alice Ball (records her death in 1916 before publication, and the posthumous crediting)
+    publisher: University of Hawaii System News
+    url: https://www.hawaii.edu/news/2024/12/20/sculpture-honors-alice-ball/
+    type: institutional
+  - title: "'Ball Method' declared national historic landmark at Alice Ball celebration"
+    publisher: University of Hawaii System News
+    url: https://www.hawaii.edu/news/2026/02/26/ball-method-national-landmark/
+    type: institutional
+patterns:
+  - credit-misattribution
+pattern_evidence:
+  credit-misattribution: [2, 3]
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+  attribution:
+    record_anchor: [2]
+    basis: institutional-archive
+  observed-recognition:
+    record_anchor: [4]
+    basis: institutional-archive
+  pattern:credit-misattribution:
+    record_anchor: [2]
+    basis: institutional-archive
+mechanism_audit:
+  search_date: '2026-09-11'
+  considered:
+    - credit-misattribution
+    - delayed-recognition
+    - posthumous-recognition
+    - institutional-exclusion
+    - institutional-gatekeeping
+    - recognition-bias
+  finding: mechanism-evidenced
+  note: >-
+    Credit misattribution is evidenced by her own institution's record: her findings were published by
+    another under his own name, key research she conducted went unmentioned, and the method was
+    renamed after him. Delayed recognition was tested and deliberately not tagged, although the
+    interval is long: its published definition requires that the gap be a function of time and
+    reception "rather than of contested credit", and in this case contested credit is exactly what the
+    record documents. Posthumous recognition was tested and not tagged: recognition did arrive after
+    her death, but no eligibility rule foreclosed anything, which is what that mechanism turns on.
+    Institutional exclusion and gatekeeping are not supported by the sources consulted. Whether her
+    early death or the displacement of credit did more to produce the interval is not established, and
+    no claim is made about it.
+  best_sources: [2, 3]

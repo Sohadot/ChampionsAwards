@@ -1,0 +1,96 @@
+title: Maurice Hilleman
+slug: maurice-hilleman
+status: published
+last_reviewed: 2026-09-11
+domain: biology-medicine
+summary: Maurice Hilleman developed vaccines responsible for eight of the immunisations on the United States childhood schedule, and received the Lasker Public Service Award, the National Medal of Science and election to the National Academy of Sciences - but never a Nobel Prize.
+introduction: This entry was opened as a control. A corpus assembled only from dramatic attribution disputes would manufacture its own bias, so it needs cases where a very large contribution may turn out to have been recognised in proportion.
+omission_case: His case matters for what it tests rather than what it alleges - whether the instrument reports a small gap when recognition actually tracked contribution, instead of finding injustice wherever it looks.
+structural_reason: "No structural reason is offered. The record shows a contribution of exceptional scale and a recognition record of exceptional breadth across public, governmental and professional systems. The absence of a Nobel Prize is a fact about one award, not by itself evidence of a mechanism, and this entry does not treat it as one."
+assessment:
+  impact: 92
+  verification: 90
+  uniqueness: 72
+  durability: 92
+  breadth: 92
+  attribution: 85
+  observed_recognition: 82
+  evidence:
+    impact: [2, 3]
+    verification: [1, 2]
+    uniqueness: [2, 3]
+    durability: [2]
+    breadth: [2, 3]
+    attribution: [1, 3]
+    observed_recognition: [3, 4]
+  rationale:
+    impact: He was responsible for eight of the vaccines on the United States schedule of recommended childhood immunisations, including measles, mumps, hepatitis A and hepatitis B.
+    verification: The contribution is anchored to primary publication and is documented across institutional records.
+    uniqueness: Vaccine development at this scale is industrial and collaborative, which bounds any counterfactual claim about a single individual, though his personal role is documented.
+    durability: The vaccines remain in routine use decades later.
+    breadth: The benefit is about as broad as a biomedical contribution can be - routine childhood immunisation worldwide.
+    attribution: Credit is consistently and publicly assigned to him by the awarding and professional institutions.
+    observed_recognition: The Lasker Public Service Award in 1983, the National Medal of Science in 1988, and election to the National Academy of Sciences - a high level of recognition across independent systems, without the single highest scientific award.
+key_facts:
+  - fact: "Hilleman was first author of \"Live, attenuated mumps-virus vaccine\" in the New England Journal of Medicine in 1968, reporting the vaccine strain still used in the mumps component of MMR."
+    source: 1
+  - fact: By his death in 2005 he was responsible for eight vaccines on the United States schedule of recommended childhood immunisations - measles, mumps, hepatitis A, hepatitis B, chickenpox, and vaccines against Neisseria meningitidis, Streptococcus pneumoniae and Haemophilus influenzae.
+    source: 2
+  - fact: "He received the 1983 Albert Lasker Public Service Award \"for discovering the causes of certain viral disease, and for pioneering breakthroughs in vaccine development for the benefit of mankind\"."
+    source: 3
+  - fact: He received the National Medal of Science in 1988 and was elected to the National Academy of Sciences.
+    source: 4
+analysis:
+  - heading: What a control case is for
+    body: "If a recognition index finds a large gap wherever it looks, it is measuring its own selection rather than the world. This entry is the check. A contribution of the first rank, recognised by a major prize, a national medal and a national academy, should produce a small gap - and it does. The result is useful precisely because it is undramatic: it shows the instrument responding to recognition that was actually given."
+  - heading: The absence of one award is not a mechanism
+    body: "Hilleman received no Nobel Prize. The corpus records that as a fact about one recognition system and stops there. Treating a single non-award as evidence of a structural failure would be exactly the inference this project refuses to make elsewhere, and the mechanism audit for this case found nothing to support one."
+sources:
+  - title: "Live, attenuated mumps-virus vaccine (1968)"
+    publisher: "M. R. Hilleman, E. B. Buynak, R. E. Weibel and J. Stokes Jr, New England Journal of Medicine 278: 227-232, PMID 4169706"
+    url: https://pubmed.ncbi.nlm.nih.gov/4169706/
+    type: primary
+  - title: Maurice Hilleman, PhD - overview (eight vaccines on the US childhood schedule)
+    publisher: History of Vaccines, College of Physicians of Philadelphia
+    url: https://historyofvaccines.org/history/maurice-hilleman-phd/overview/
+    type: reference-secondary
+  - title: 1983 Lasker Award winners (Albert Lasker Public Service Award)
+    publisher: The Lasker Foundation
+    url: https://laskerfoundation.org/winners/1983-winners/
+    type: institutional
+  - title: Maurice Hilleman - biography and honours
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/biography/Maurice-Hilleman
+    type: reference-secondary
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+  observed-recognition:
+    record_anchor: [3]
+    basis: awarding-institution-record
+audit_exceptions:
+  - claim: attribution
+    search_date: '2026-09-11'
+    search_note: "Sought a record-grade source consolidating attribution of the eight childhood-schedule vaccines to him. The Lasker citation documents the award and its grounds; the vaccine count is reported by the College of Physicians of Philadelphia."
+    best_source: 3
+    reason: Secondary-record-sufficient for the aggregate count; the individual contribution is anchored to primary publication.
+mechanism_audit:
+  search_date: '2026-09-11'
+  considered:
+    - credit-misattribution
+    - institutional-exclusion
+    - institutional-gatekeeping
+    - delayed-recognition
+    - posthumous-recognition
+    - recognition-bias
+  finding: no-mechanism-evidenced
+  note: >-
+    No mechanism is supported, and none was sought beyond the ontology. Credit misattribution fails:
+    attribution is consistent and public across institutional records. Institutional exclusion fails:
+    he was elected to the National Academy of Sciences and awarded a national medal. Delayed
+    recognition fails: the major recognitions arrived during his career. Gatekeeping and posthumous
+    rules are unsupported. The absence of a Nobel Prize is recorded as a fact about one award and is
+    not treated as evidence of a mechanism. This case was accepted into the corpus expecting a small
+    gap, and the measured gap is small; that outcome is the point of including it.
+  best_sources: [1, 3]

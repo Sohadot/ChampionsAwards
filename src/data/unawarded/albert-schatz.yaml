@@ -1,0 +1,115 @@
+title: Albert Schatz
+slug: albert-schatz
+status: published
+last_reviewed: 2026-09-11
+domain: biology-medicine
+summary: Albert Schatz was first author of the 1944 paper reporting streptomycin, was named a co-discoverer in a 1950 civil action settled with his supervisor and Rutgers, and was excluded from the 1952 Nobel Prize that went to Selman Waksman alone - with a 1952 nomination on record that named all three authors.
+introduction: This case is unusual in the corpus because three independent record layers can be laid over one another - the primary publication, an archival legal record of co-discovery, and the awarding institution's own nomination and award record.
+omission_case: His case matters because the divergence between contribution and award is documented at every step by records made at the time, so nothing here depends on a later narrative about who deserved what.
+structural_reason: "The records establish a sequence, not a motive. Schatz was first author of the 1944 paper; a 1950 civil action stipulation in the Rutgers archive states that Schatz and Waksman were co-discoverers of streptomycin and charges Waksman with representing himself as the sole discoverer; a 1952 nomination in the Nobel archive named Bugie, Schatz and Waksman together; and the 1952 prize was awarded to Waksman alone. Why the committee awarded as it did is not published and is not claimed here."
+assessment:
+  impact: 85
+  verification: 90
+  uniqueness: 70
+  durability: 88
+  breadth: 80
+  attribution: 45
+  observed_recognition: 45
+  evidence:
+    impact: [1, 5]
+    verification: [1, 2, 3]
+    uniqueness: [1, 5]
+    durability: [5]
+    breadth: [5]
+    attribution: [2, 3, 4]
+    observed_recognition: [2, 3, 4]
+  rationale:
+    impact: Streptomycin was the first antibiotic effective against tuberculosis, as the awarding institution's own citation states.
+    verification: The contribution is anchored to the primary publication, the co-discovery to an archival legal record, and the award outcome to the awarding institution.
+    uniqueness: The isolation came out of a systematic screening programme rather than a single unrepeatable insight, which bounds the counterfactual claim.
+    durability: The role of streptomycin in the treatment of tuberculosis is historically settled.
+    breadth: The benefit reached tuberculosis patients worldwide.
+    attribution: Attribution was contested to the point of litigation, and the settlement records co-discovery that the award did not reflect.
+    observed_recognition: First authorship and legally recorded co-discovery, against exclusion from the field's highest award, which was given in full to his supervisor.
+key_facts:
+  - fact: "Schatz, Bugie and Waksman published \"Streptomycin, a substance exhibiting antibiotic activity against gram-positive and gram-negative bacteria\" in 1944, with Schatz as first author."
+    source: 1
+  - fact: "The Rutgers archival finding aid for the Waksman Papers records a civil action stipulation, docket C-1261-49, Schatz v. Waksman, \"stating that Schatz and Waksman were co-discovers of the drug Streptomycin and charges Waksman as representing himself as the sole discoverer\", alongside a 1950 complaint against the Rutgers Research and Endowment Foundation."
+    source: 2
+  - fact: "Nomination 84-0 for the 1952 Nobel Prize in Physiology or Medicine, submitted by Jevrem Nedelkovitch, named three nominees - Elisabeth Bugie, Albert Schatz and Selman A. Waksman."
+    source: 3
+  - fact: The 1952 Nobel Prize in Physiology or Medicine was awarded to Selman Abraham Waksman alone, with a prize share of 1/1, "for his discovery of streptomycin, the first antibiotic effective against tuberculosis".
+    source: 4
+  - fact: Rutgers records the discovery as having been made by Waksman and his graduate student Albert Schatz, and the 1952 Nobel Prize as having gone to Waksman.
+    source: 5
+analysis:
+  - heading: Three record layers over one outcome
+    body: "Most recognition-gap cases rest on one kind of evidence. This one has three that can be checked against each other: a primary paper naming Schatz first; a court record, held in the archive of the institution where the work was done, in which co-discovery is stipulated; and the awarding institution's own archive, which shows both that a nominator proposed the prize to all three authors in the award year and that the prize was given to one of them in full. The three layers agree about what happened. None of them says why."
+  - heading: What the archive shows about the patent, and why it is not tagged
+    body: "The same finding aid records that Schatz signed the patent application after being told his name would otherwise be removed from it. That is a documented episode about assignment of rights, not about the dissemination of the work, so it is recorded here and is not counted as institutional gatekeeping, whose published definition turns on preventing or slowing dissemination."
+sources:
+  - title: "Streptomycin, a substance exhibiting antibiotic activity against gram-positive and gram-negative bacteria (1944)"
+    publisher: "A. Schatz, E. Bugie and S. A. Waksman, Proc. Soc. Exp. Biol. Med. 55: 66-69; reprinted in Clinical Orthopaedics and Related Research 437: 3-6 (2005), PMID 16056018"
+    url: https://pubmed.ncbi.nlm.nih.gov/16056018/
+    type: primary
+  - title: "Selman A. Waksman Papers (R-MC 003) - finding aid, including patent litigation files and the Schatz v. Waksman civil action stipulation"
+    publisher: Rutgers University Archives and Special Collections
+    url: https://archives.libraries.rutgers.edu/repositories/3/resources/610
+    type: archival
+  - title: "Nomination 84-0 for the Nobel Prize in Physiology or Medicine 1952 (nominees Bugie, Schatz and Waksman)"
+    publisher: The Nobel Prize (Nobel Prize Outreach), official nomination archive
+    url: https://www.nobelprize.org/nomination/archive/show.php?id=12920
+    type: institutional
+  - title: The Nobel Prize in Physiology or Medicine 1952
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/medicine/1952/summary/
+    type: institutional
+  - title: "Revolutionary for 250 Years: Waksman, Schatz and the Discovery of Streptomycin"
+    publisher: Rutgers School of Environmental and Biological Sciences Newsroom
+    url: https://sebsnjaesnews.rutgers.edu/2016/04/revolutionary-for-250-years-waksman-schatz-and-the-discovery-of-streptomycin/
+    type: institutional
+patterns:
+  - credit-misattribution
+pattern_evidence:
+  credit-misattribution: [1, 2, 3, 4]
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+  attribution:
+    record_anchor: [2]
+    basis: institutional-archive
+  observed-recognition:
+    record_anchor: [4]
+    basis: awarding-institution-record
+  pattern:credit-misattribution:
+    record_anchor: [2, 3]
+    basis: institutional-archive
+audit_exceptions:
+  - claim: later-recognition
+    search_date: '2026-09-11'
+    search_note: "Secondary accounts report that Rutgers awarded Schatz the Rutgers Medal in 1994, on the fiftieth anniversary of the discovery. No record-grade Rutgers source for that award was found; the university page reached here records the discovery and the 1952 prize but not the medal."
+    best_source: 5
+    reason: The claim is therefore not made in this entry, and the observed-recognition score rests only on what the primary, archival and institutional records establish.
+mechanism_audit:
+  search_date: '2026-09-11'
+  considered:
+    - credit-misattribution
+    - institutional-gatekeeping
+    - institutional-exclusion
+    - delayed-recognition
+    - posthumous-recognition
+    - recognition-bias
+  finding: mechanism-evidenced
+  note: >-
+    Credit misattribution is evidenced by records rather than by recollection: first authorship on the
+    1944 paper, an archived civil action stipulating co-discovery and charging the senior author with
+    representing himself as sole discoverer, a 1952 nomination naming all three authors, and an award
+    given in full to the senior author. The mechanism's published definition - reward displaced toward
+    the more senior or institutionally central figure - is met on the face of these documents.
+    Institutional gatekeeping was tested against the archived patent episode and not tagged: that
+    concerns assignment of rights, not dissemination. Institutional exclusion does not hold - he held a
+    doctoral position at the institution where the work was done. Delayed recognition does not hold:
+    what the record shows is a contested credit, not a quiet interval. No claim is made about the
+    committee's reasons, which are not published.
+  best_sources: [2, 3]
