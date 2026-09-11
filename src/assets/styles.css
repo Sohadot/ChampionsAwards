@@ -145,6 +145,9 @@ h3 { font-size: 1.15rem; margin: 0 0 8px; }
 
 /* ---------- Cards / grid ---------- */
 .grid { display: grid; gap: 18px; }
+/* Grid items default to min-width:auto, which lets a wide child (a table, a long
+   token) push its column past the viewport. Every grid item may shrink. */
+.grid > * { min-width: 0; }
 .grid.two { grid-template-columns: repeat(2, 1fr); }
 .grid.three { grid-template-columns: repeat(3, 1fr); }
 
@@ -353,6 +356,7 @@ h3.sub { margin: 0 0 6px; font-size: 1.02rem; }
 /* A scorecard stacks: the composite band above the dimension table, so the
    rationale column has room to be read rather than wrapping one word per line. */
 .scorecard { display: grid; gap: 16px; align-items: start; }
+.scorecard > * { min-width: 0; }
 .scorecard .result { position: static; }
 .scorecard table.data td:first-child { min-width: 190px; }
 

@@ -494,11 +494,16 @@ interaction is bounded to the three cases where this award's record is
 load-bearing — Schatz, Avery, Franklin. No second RLS: the Nobel Prize System
 entry carries system legitimacy, this page carries award-level anatomy.
 
-Order from here:
+Round 6, **synthesis** (2026-09-11): *Explained, Aligned, Unresolved —
+Recognition Outcomes in Biology & Medicine*, structured on three outcome classes
+rather than a catalogue of failures, with cross-domain figures computed through
+`{figure@domain}` tokens rather than transcribed. It also corrected two claims in
+the physics synthesis that DoD v1.1 had left stale — recorded on that report's own
+page, struck through, under a new `corrections` block.
 
-1. Synthesis — structured on three outcomes: mechanism evidenced; recognition
-   aligned, no deficit to explain; under-recognition unresolved after audit.
-2. Sector reference and closure review for the domain.
+Round 7, **sector reference** (2026-09-11): `/sectors/biology-medicine` published
+from the same engine, carrying the explanatory-coverage panel and the domain's
+first negative-gap case in its distribution.
 
 No fourth recognition system is needed: Nobel, Lasker and Wolf already satisfy
 the RLS threshold. The work is making those three reliable, not adding a fourth.
