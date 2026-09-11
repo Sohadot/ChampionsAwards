@@ -23,8 +23,11 @@ from config import (
     VALID_STATUSES,
     is_iso_date,
     is_valid_basis,
+    domain_subfields,
+    is_composite_domain,
     is_valid_archive_state,
     is_valid_concept_type,
+    is_valid_subfield,
     is_valid_domain,
     is_valid_hypothesis_state,
     is_valid_interaction_type,
@@ -102,9 +105,36 @@ def validate_item(
         mechanism_slugs if mechanism_slugs is not None else concept_slugs or set()))
     errors.extend(validate_temporal_validity(cluster_name, item, source_file))
     errors.extend(validate_concept_type(cluster_name, item, source_file))
+    errors.extend(validate_subfield(cluster_name, item, source_file))
     errors.extend(validate_rule_history(cluster_name, item, source_file, case_slugs or set()))
     errors.extend(validate_archive_visibility(cluster_name, item, source_file, case_slugs or set()))
 
+    return errors
+
+
+def validate_subfield(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """In a composite domain, an entry says which side of the join it sits on.
+    Without it, a domain can report maturity while one half of its own name is
+    empty, and nothing in the record would show it."""
+    ref = f"{cluster_name}/{source_file}"
+    errors: list[str] = []
+    domains = [item["domain"]] if isinstance(item.get("domain"), str) else list(item.get("domains") or [])
+    composite = [d for d in domains if is_composite_domain(d)]
+    if not composite:
+        if "subfield" in item:
+            errors.append(f"{ref}: 'subfield' is only meaningful in a composite domain")
+        return errors
+    value = item.get("subfield")
+    if value is None:
+        errors.append(
+            f"{ref}: entries in {composite[0]} must declare a 'subfield' "
+            f"(one of: {', '.join(domain_subfields(composite[0]))})"
+        )
+    elif not any(is_valid_subfield(d, value) for d in composite):
+        errors.append(
+            f"{ref}: unknown subfield '{value}' for {composite[0]} "
+            f"(expected one of: {', '.join(domain_subfields(composite[0]))})"
+        )
     return errors
 
 
@@ -119,7 +149,7 @@ def validate_rule_history(
     The point of the layer is that the last question usually has the answer
     "no", and a page that cannot say so will silently answer it with today's rule.
     """
-    if cluster_name != "awards":
+    if cluster_name not in ("awards", "recognition-systems"):
         return []
     ref = f"{cluster_name}/{source_file}"
     history = item.get("rule_history")

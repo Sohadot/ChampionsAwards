@@ -169,6 +169,7 @@ check("the requalification ledger exists", _ledger.is_file())
 
 # 9. Explanatory coverage: alignment is not an explanatory failure.
 from config import AUDIT_ELIGIBLE_CONCEPT_TYPES, UNDER_RECOGNITION_MIN_GAP, is_under_recognized
+from domain_status import dod_rows
 from validate_content import (
     collect_concept_slugs_by_type,
     collect_published_slugs,
@@ -212,6 +213,27 @@ check("a framework concept cannot be a considered mechanism",
 _bad_pattern = {"patterns": ["merit-vs-recognition"], "sources": [{"type": "institutional"}]}
 check("a framework concept cannot be declared as a case pattern",
       bool(validate_patterns("unawarded", _bad_pattern, "s.yaml", _framework | _mech, _mech)))
+
+# 11. Composite domains: coverage is measured, and gates nothing.
+from config import DOMAIN_SUBFIELDS, is_composite_domain
+from validate_content import validate_subfield
+
+for _domain in DOMAIN_SUBFIELDS:
+    _sc = dc.subfield_coverage(_domain)
+    check(f"composite domain reports coverage ({_domain})", _sc["composite"] and bool(_sc["rows"]))
+    check(f"every case is assigned to a subfield ({_domain})", _sc["cases_unassigned"] == 0)
+    check(f"subfield case counts sum to the corpus ({_domain})",
+          sum(r["cases"] for r in _sc["rows"]) == _sc["n_cases"])
+    check(f"coverage is not a maturity criterion ({_domain})",
+          not any("subfield" in str(row["requirement"]) for row in dod_rows(_domain)))
+check("a non-composite domain reports no subfield coverage",
+      not dc.subfield_coverage("physics-astronomy")["composite"])
+check("an entry in a composite domain without a subfield fails validation",
+      bool(validate_subfield("unawarded", {"domain": "mathematics-computing"}, "s.yaml")))
+check("an unknown subfield fails validation",
+      bool(validate_subfield("unawarded", {"domain": "mathematics-computing", "subfield": "physics"}, "s.yaml")))
+check("a subfield on a non-composite domain fails validation",
+      bool(validate_subfield("unawarded", {"domain": "physics-astronomy", "subfield": "mathematics"}, "s.yaml")))
 
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

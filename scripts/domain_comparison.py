@@ -37,6 +37,7 @@ from config import (
     ASSESSMENT_CLUSTERS,
     AUDIT_ELIGIBLE_CONCEPT_TYPES,
     DATA,
+    domain_subfields,
     OUT,
     ROOT,
     PATTERN_ESTABLISHED_MIN,
@@ -450,6 +451,50 @@ def explanatory_coverage(domain: str) -> dict[str, Any]:
     }
 
 
+def subfield_coverage(domain: str) -> dict[str, Any]:
+    """For a composite domain, how the corpus is distributed across the halves of
+    its own name.
+
+    A domain can satisfy every numeric criterion while nearly all of its
+    knowledge sits on one side of the join. This measures that directly. It is an
+    observation and gates nothing: a domain maturity threshold does not by itself
+    establish subfield coverage, and the point of computing it is that a maturity
+    claim should have to say which half it rests on.
+    """
+    subfields = domain_subfields(domain)
+    if not subfields:
+        return {"composite": False, "subfields": [], "rows": [],
+                "note": "This domain is not composite; subfield coverage does not apply."}
+
+    cases = _domain_cases(domain)
+    systems = _domain_systems(domain)
+    awards = _domain_awards(domain)
+    rows = []
+    for name in subfields:
+        rows.append({
+            "subfield": name,
+            "cases": sum(1 for c in cases if c.get("subfield") == name),
+            "systems": sum(1 for s in systems if s.get("subfield") == name),
+            "awards": sum(1 for a in awards if a.get("subfield") == name),
+        })
+    sided = [r for r in rows if r["subfield"] != "cross-cutting"]
+    case_counts = [r["cases"] for r in sided]
+    empty_sides = [r["subfield"] for r in sided if r["cases"] == 0]
+    return {
+        "composite": True,
+        "subfields": list(subfields),
+        "rows": rows,
+        "n_cases": len(cases),
+        "n_systems": len(systems),
+        "cases_unassigned": sum(1 for c in cases if c.get("subfield") not in subfields),
+        "sides_without_cases": empty_sides,
+        "case_imbalance": (max(case_counts) - min(case_counts)) if case_counts else 0,
+        "comparison_meaningful": not empty_sides,
+        "note": ("Domain maturity threshold does not by itself establish subfield coverage. "
+                 "These counts are reported, and gate nothing."),
+    }
+
+
 def award_interaction_distribution(domain: str) -> dict[str, Any]:
     rels = _domain_award_relations(domain)
     denom = len(rels)  # denominator = award relations, NOT cases
@@ -526,6 +571,7 @@ def build_comparison(domain: str) -> dict[str, Any]:
             "corpus_distribution": corpus,
             "structural_patterns": patterns,
             "explanatory_coverage": explanatory_coverage(domain),
+            "subfield_coverage": subfield_coverage(domain),
             "recognition_system_profiles": systems,
             "award_interactions": awards,
         },
@@ -585,6 +631,16 @@ def print_report(result: dict[str, Any]) -> None:
     print("  dimension spread (max-min across systems):")
     for k, sp in s["dimension_spread"].items():
         print(f"    {k}: {sp['min']}-{sp['max']} (spread {sp['spread']})")
+
+    sc = result["observations"]["subfield_coverage"]
+    if sc["composite"]:
+        print(f"\nSubfield coverage (composite domain)")
+        for row in sc["rows"]:
+            print(f"  {row['subfield']:16} cases {row['cases']:>2} | systems {row['systems']:>2} | awards {row['awards']:>2}")
+        if sc["sides_without_cases"]:
+            print(f"  sides with no cases: {', '.join(sc['sides_without_cases'])}")
+        print(f"  cross-domain comparison meaningful: {'yes' if sc['comparison_meaningful'] else 'not yet'}")
+        print(f"  ({sc['note']})")
 
     a = result["observations"]["award_interactions"]
     print(f"\nAward interactions (denominator {a['denominator']} {a['denominator_meaning']})")
