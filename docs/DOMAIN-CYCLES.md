@@ -364,7 +364,7 @@ promotes it.
 ## Cycle order
 
 1. **Cycle 01 — Physics & Astronomy** *(closed 2026-09-10 — mature v1.0)*
-2. **Cycle 02 — Biology, Medicine & Genetics** *(open — 2026-09-11)*
+2. **Cycle 02 — Biology, Medicine & Genetics** *(closed 2026-09-11 — mature v1.0)*
 3. Cycle 03 — Mathematics & Computing
 4. Then, and only then, outside the sciences: Literature → Peace →
    Human Rights / Law → Arts → Social Sciences → Technology / Engineering.
@@ -442,7 +442,7 @@ produced, from its own evidence — without reinventing the rules of maturity.
 
 ---
 
-## Cycle 02 — Biology, Medicine & Genetics — OPEN
+## Cycle 02 — Biology, Medicine & Genetics — CLOSED
 
 Opened: 2026-09-11. Run `python scripts/domain_status.py` for live status.
 
@@ -507,3 +507,56 @@ first negative-gap case in its distribution.
 
 No fourth recognition system is needed: Nobel, Lasker and Wolf already satisfy
 the RLS threshold. The work is making those three reliable, not adding a fourth.
+
+### Closure
+
+> **Biology & Medicine Recognition Layer — mature v1.0**
+> Corpus snapshot `919d2f889371` · data through 2026-09-11 · governed by DoD v1.1
+
+| Criterion | Measured |
+| --- | --- |
+| DDI cases ≥ 10 | 10 |
+| RLS systems ≥ 3 | 3 |
+| Mechanism accounting = 100 % | 10/10 |
+| Cases unaudited = 0 | 0 |
+| Source-grade closure | 13/13 entries |
+| Award anatomy | Nobel Prize in Physiology or Medicine — four layers |
+| Synthesis | *Explained, Aligned, Unresolved* |
+
+Reported, required by nothing:
+
+| Observation | Value |
+| --- | --- |
+| Audit-eligible mechanisms evidenced | 3 of 6 ontology concepts |
+| Established mechanisms | 1 (credit misattribution, 3/10 cases) |
+| Emergent mechanisms | 2 (institutional exclusion, delayed recognition) |
+| Cases with a recognition deficit | 8/10 |
+| Unexplained under-recognition | 3/8 |
+| Aligned, no mechanism required | 2/10 |
+
+**Biology is not a second copy of Physics.** The cycle added three capabilities
+to the project, each forced by a case rather than designed in advance:
+
+1. **Temporal-rule provenance** — from the Franklin error. A rule may be applied
+   to a past event only where the record shows which version was then in force;
+   validation rejects the anachronism directly.
+2. **Archive-visibility semantics** — from the Nobel Medicine anatomy. "No
+   nomination found", "those years are not released" and "no deliberation record
+   was reached" are three different facts, and the corpus must not collapse them
+   into silence.
+3. **Explanatory coverage** — from the Apgar and Hilleman results. A case whose
+   recognition matches assessed merit has no deficit to explain, so alignment is
+   no longer counted as an explanatory failure.
+
+**What the cycle established.** Three outcome classes, not one: some deficits
+have evidenced mechanisms; some cases show no material deficit at all; and some
+deficits remain unresolved after accountable inquiry. The third class is not a
+weakness to hide — it is the boundary between what the record supports and what
+interpretation would have to invent.
+
+**Not added to close it:** no eleventh case, no invented mechanism, no lowered
+criterion. Two cases were accepted expressly to test the instrument rather than
+to accuse anyone, and one of them returned the project's first negative gap.
+
+Next: **Cycle 03 — Mathematics & Computing**, which begins at 1 case, 3 systems,
+source-grade closure 1/4, and no award anatomy or synthesis.
