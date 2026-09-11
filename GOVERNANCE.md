@@ -91,7 +91,8 @@ the seven layers, and the machine-checked Definition of Done live in
 [`docs/DOMAIN-CYCLES.md`](docs/DOMAIN-CYCLES.md); `scripts/domain_status.py`
 reports each domain's status from the same scoring engine the site uses.
 
-Maturity is governed by **DoD v1.1**: completeness of accountable inquiry, not
+Two domains are closed: Physics & Astronomy and Biology & Medicine, both at
+mature v1.0. Maturity is governed by **DoD v1.1**: completeness of accountable inquiry, not
 conformity of findings to a target. The v1.0 requirement of four established
 mechanisms is superseded — it measured what a corpus happened to contain rather
 than how thoroughly it was examined — and is replaced by complete mechanism
