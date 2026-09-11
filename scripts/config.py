@@ -45,7 +45,7 @@ CLUSTERS: Final[dict[str, str]] = {
 }
 
 # Domains with a published sector reference at /sectors/<domain>.
-PUBLISHED_SECTORS: Final[tuple[str, ...]] = ("physics-astronomy",)
+PUBLISHED_SECTORS: Final[tuple[str, ...]] = ("physics-astronomy", "biology-medicine")
 
 HUB_TITLES: Final[dict[str, str]] = {
     "awards": "Awards",
