@@ -177,6 +177,28 @@ or the case is withdrawn. An audit is never a search for a label that would help
 threshold — and where the ontology does not fit the record, the finding is
 "no mechanism evidenced", not a new name invented to fill the gap.
 
+### Temporal validity of rules
+
+Learned from the Franklin case, where this project applied a 1974 statute to a
+1962 decision:
+
+> **Temporal validity is part of provenance.** It is not enough that a source is
+> official and a rule is current. When a rule is tied to a historical event, the
+> record must show which version of the rule was in force at that time.
+
+The requirement is deliberately narrow — it applies only where a rule has
+changed. A relation whose `interaction_type` is one of
+`TIME_DEPENDENT_INTERACTIONS` (eligibility-constraint, sharing-constraint,
+posthumous-constraint) must carry a `rule_at_time`: the `event_date`, a statement
+of `rule_in_force`, and either a record-grade `record_anchor` or a documented
+`exception`. Optional `effective_from` / `effective_to` date the cited rule, and
+validation rejects the anachronism directly: a rule effective from 1974 may not
+be applied to an event in 1962. Provenance entries may carry the same dating.
+
+Where the rule in force cannot be established, none is applied. The outcome then
+stands as an outcome without a rule-based explanation — which is what the
+Franklin entry now says about 1962.
+
 ### Source-grade audit (closure criterion)
 
 Before a domain is declared mature v1.0, each case is reviewed for whether a
@@ -342,7 +364,7 @@ promotes it.
 ## Cycle order
 
 1. **Cycle 01 — Physics & Astronomy** *(closed 2026-09-10 — mature v1.0)*
-2. **Cycle 02 — Biology, Medicine & Genetics** *(next)*
+2. **Cycle 02 — Biology, Medicine & Genetics** *(open — 2026-09-11)*
 3. Cycle 03 — Mathematics & Computing
 4. Then, and only then, outside the sciences: Literature → Peace →
    Human Rights / Law → Arts → Social Sciences → Technology / Engineering.
@@ -357,7 +379,8 @@ once each is dense enough to stand alone.
 Opened 2026-09-09. Closed 2026-09-10.
 
 > **Physics & Astronomy Recognition Layer — mature v1.0**
-> Corpus snapshot: `27036032e0e9` · data through 2026-09-10
+> Closed at corpus snapshot `27036032e0e9` · data through 2026-09-10
+> Current snapshot `6f43ff80ba61` · data through 2026-09-11 — see the note below
 > Governed by DoD v1.1 (the layer closes at v1.0; the version numbers are
 > different things — v1.1 is the Definition of Done, v1.0 is this knowledge layer's
 > first closure)
@@ -400,9 +423,49 @@ now lapsed, but nothing has been enabled by it. Publishing a machine-readable
 endpoint remains a separate decision, not taken here — the engine still writes its
 report to `reports/`, outside the published site.
 
+**Post-closure change (2026-09-11).** The temporal-validity rule introduced in
+Cycle 02 was applied retroactively to this corpus: the Rubin posthumous-constraint
+relation now carries a `rule_at_time` showing that the Nobel prohibition on
+posthumous awards was in force (from 1974) at the time of the 2016 event it is
+applied to. The snapshot therefore moved from `27036032e0e9` to `6f43ff80ba61`.
+No score, mechanism, count or finding changed — the relation gained the date it
+should always have carried. A closed layer is not frozen: it stays closed and
+stays correctable, and each correction is recorded rather than folded silently
+into the original declaration.
+
 **Not added to close it:** no eleventh physics case, no invented mechanism, no
 lowered threshold. The one governance change (DoD v1.1) was made *after* the
 evidence was complete, was recorded with its rationale, and moved no datum.
 
 Next: **Cycle 02 — Biology, Medicine & Genetics**, run on the method Cycle 01
 produced, from its own evidence — without reinventing the rules of maturity.
+
+---
+
+## Cycle 02 — Biology, Medicine & Genetics — OPEN
+
+Opened: 2026-09-11. Run `python scripts/domain_status.py` for live status.
+
+The cycle opened with a **baseline requalification**, not an expansion. Cycle 01
+produced a standard the inherited entries had never been held to, and an
+inherited corpus is not automatically compliant with the standard that superseded
+it. Round 1 re-qualified the three existing cases (Mendel, Avery, Franklin) and
+the Lasker Award entry, corrected a historical error in the Franklin case, and
+introduced temporal-rule validity. Full account:
+[`cycle-02-requalification-ledger.md`](cycle-02-requalification-ledger.md).
+
+The result is a smaller, narrower baseline: median gap 42 → 24, established
+mechanisms 1 → 0, source-grade closure 2/6 → 6/6, sources on the three cases
+4 → 15. Under DoD v1.1 the weakened findings block nothing; the completed
+accounting is what counts.
+
+Planned order from here:
+
+1. **Individuals expansion, stage 1** — four cases, then a mechanism audit and a
+   comparison read before choosing any further names, so the corpus shows where
+   its own gaps are rather than having seven names picked at the outset.
+2. **Individuals expansion, stage 2** — three cases, informed by stage 1.
+3. Award anatomy for the domain, then synthesis.
+
+No fourth recognition system is needed: Nobel, Lasker and Wolf already satisfy
+the RLS threshold. The work is making those three reliable, not adding a fourth.

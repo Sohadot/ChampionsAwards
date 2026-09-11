@@ -1,51 +1,97 @@
 title: Gregor Mendel
 slug: gregor-mendel
 status: published
-last_reviewed: 2026-09-09
-summary: Gregor Mendel established the basic laws of inheritance through his experiments with pea plants, but his work was largely overlooked for decades until its rediscovery around 1900, long after its publication.
-introduction: Mendel's case is a classic example of delayed recognition, where foundational work sat unread by the wider scientific community until independent researchers rediscovered it at the turn of the century.
-omission_case: His case matters because the delay was not a failure of the work but of the recognition system, which lacked the channels and readiness to absorb an unfamiliar result from outside its established centres.
-structural_reason: Recognition was shaped by Mendel's position outside major research institutions and by a scientific community not yet primed to interpret the significance of his statistical approach.
+last_reviewed: 2026-09-11
+domain: biology-medicine
+summary: Gregor Mendel published his experiments on inheritance in pea plants in 1866, and the principles they established entered general scientific use only after three botanists independently rediscovered the work in 1900.
+introduction: Mendel's case records a measured interval between a published contribution and its uptake by the wider scientific community. The interval is documented; the reasons for it are contested in the historical literature and are not asserted here.
+omission_case: His case matters because the delay is precisely datable from the published record - a paper in 1866, independent rediscoveries in 1900 - which makes it a clean test of what a recognition gap looks like when no rival claimant is disputing credit.
+structural_reason: "What the record establishes is the interval itself: the paper was published in 1866 and the principles were rediscovered independently in 1900. Why the interval occurred is not established here. Explanations commonly offered - that the community was unprepared for a quantitative treatment of inheritance, or that his position outside a major research centre limited circulation - are historiographical hypotheses, and this entry previously asserted them as fact. They are withdrawn pending evidence that distinguishes them from the bare fact of the delay."
 assessment:
   impact: 90
-  verification: 85
+  verification: 90
   uniqueness: 80
   durability: 92
   breadth: 70
   attribution: 72
-  observed_recognition: 40
+  observed_recognition: 65
   evidence:
-    impact: [1]
-    verification: [1]
-    uniqueness: [1]
-    durability: [1]
-    breadth: [1]
-    attribution: [1]
-    observed_recognition: [1]
+    impact: [1, 2]
+    verification: [1, 3]
+    uniqueness: [1, 2]
+    durability: [2, 3]
+    breadth: [2]
+    attribution: [1, 2]
+    observed_recognition: [2, 3]
   rationale:
-    impact: Mendel's laws are foundational to the entire field of genetics.
-    verification: His experiments and their rediscovery are extensively documented.
-    uniqueness: The systematic, quantitative approach to inheritance was highly distinctive for its time.
+    impact: The principles set out in the 1866 paper are foundational to genetics.
+    verification: The contribution is anchored to the primary publication, and three botanists independently rediscovered the same principles in 1900 - independent confirmation of an unusually direct kind.
+    uniqueness: The systematic quantitative treatment of hybrid ratios was distinctive for its time.
     durability: Mendelian inheritance remains a pillar of biology.
-    breadth: Genetics underpins vast areas of science and medicine.
-    attribution: Credit is now clearly his, though it arrived decades late.
+    breadth: Genetics underpins wide areas of science and medicine.
+    attribution: Credit is unambiguously his in the modern record; it arrived decades after publication.
+    observed_recognition: He received no recognition in his lifetime for this work, but posthumous recognition is close to total - the laws and the field carry his name. Calibrated against comparable eponymous-but-unawarded cases in this corpus, this is high recognition arriving late, not absent recognition. Raised from 40 in the 2026-09-11 requalification.
 key_facts:
-  - fact: Mendel derived the basic principles of heredity from experiments on pea plants.
+  - fact: Mendel's experiments on pea hybrids were published in 1866 as "Versuche ueber Pflanzen-Hybriden" in the Verhandlungen des naturforschenden Vereines in Bruenn, volume IV, pages 3-47.
     source: 1
-  - fact: His work was largely neglected until it was rediscovered around 1900.
-    source: 1
+  - fact: Three botanists - Hugo de Vries, Carl Correns and Erich von Tschermak - independently rediscovered Mendel's work in 1900, a generation after he published.
+    source: 3
 analysis:
-  - heading: When the system is not ready to receive the work
-    body: "Mendel's gap is a story about timing and channels rather than contested credit. The recognition architecture of his era had no ready place for a quantitative result from a peripheral position, so the work waited for a community that could read it - a reminder that recognition depends on the receiver as much as the contribution."
+  - heading: A dated interval, without an explanation attached
+    body: "Mendel's is the cleanest recognition gap in this corpus to measure and the hardest to explain. Both endpoints are documented - publication in 1866, independent rediscovery in 1900 - and no rival claimant contested the credit. What produced the interval is a live question in the history of science, and this entry deliberately stops at the measurement. A gap whose cause is unknown is still a gap; calling it 'a community that was not ready' would be an explanation the record here does not carry."
 sources:
+  - title: "Versuche ueber Pflanzen-Hybriden (Experiments on Plant Hybridisation), 1866"
+    publisher: "Gregor Mendel, Verhandlungen des naturforschenden Vereines in Bruenn, Bd. IV, 3-47 (digitised scan)"
+    url: https://archive.org/details/versucheberpflan00mend
+    type: primary
   - title: Gregor Mendel - biography and laws of inheritance
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Gregor-Mendel
     type: reference-secondary
-
-domain: biology-medicine
+  - title: "1900: Rediscovery of Mendel's Work"
+    publisher: National Human Genome Research Institute (NHGRI), National Institutes of Health
+    url: https://www.genome.gov/25520238/online-education-kit-1900-rediscovery-of-mendels-work
+    type: reference-secondary
 patterns:
   - delayed-recognition
-
 pattern_evidence:
-  delayed-recognition: [1]
+  delayed-recognition: [1, 3]
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+  attribution:
+    record_anchor: [1]
+    basis: primary-publication
+audit_exceptions:
+  - claim: observed-recognition
+    search_date: '2026-09-11'
+    search_note: Searched for an institutional record consolidating the posthumous recognition (eponymous laws, the field of Mendelian genetics) and the absence of recognition in his lifetime.
+    best_source: 3
+    reason: The facts are uncontested across reference and institutional sources; no single record-grade document consolidates the recognition outcome.
+  - claim: pattern:delayed-recognition
+    search_date: '2026-09-11'
+    search_note: "The two endpoints of the interval have different provenance. The 1866 publication is anchored to the primary paper. For the 1900 rediscoveries, the primary papers (de Vries, Correns, von Tschermak) were not reachable in an open archive; the NHGRI institute page and reference works document them consistently."
+    best_source: 3
+    reason: "Secondary-record-sufficient for the closing endpoint only. The pattern claim here is the interval itself; no claim is made about its cause."
+mechanism_audit:
+  search_date: '2026-09-11'
+  considered:
+    - delayed-recognition
+    - credit-misattribution
+    - institutional-exclusion
+    - institutional-gatekeeping
+    - recognition-bias
+    - posthumous-recognition
+  finding: mechanism-evidenced
+  note: >-
+    Delayed recognition is evidenced as an interval: publication in 1866, independent rediscovery in
+    1900, with no rival claimant contesting credit - which is what the published definition of this
+    mechanism requires. Two caveats are recorded rather than hidden. First, this entry previously
+    asserted causes for the interval (an unprepared community, a peripheral institutional position);
+    those are withdrawn, because nothing in the record distinguishes them from the bare fact of the
+    delay. Second, the mechanism itself sits close to a description of the outcome it explains, which
+    is a weakness in the ontology rather than in this case; it is flagged here for the concept review.
+    Credit misattribution does not hold - no rival claimant. Institutional exclusion and gatekeeping
+    were tested: no formal barrier or act of obstruction is documented in the sources consulted.
+  best_sources: [1, 3]

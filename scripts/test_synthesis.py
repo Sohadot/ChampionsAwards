@@ -111,5 +111,46 @@ _no_outcome = {**sample, "hypotheses": [{"statement": "x", "basis": "y", "refute
 check("a refuted hypothesis without an outcome fails validation",
       bool(validate_report("reports", _no_outcome, "sample.yaml")))
 
+# 8. Temporal validity: a rule may not be applied to an event that predates it.
+from config import TIME_DEPENDENT_INTERACTIONS
+from validate_content import validate_temporal_validity
+
+_ok_relation = {"corpus_relations": [{
+    "case": "x", "interaction_type": "posthumous-constraint", "claim": "c", "record_anchor": [1],
+    "rule_at_time": {"event_date": 2016, "effective_from": 1974, "rule_in_force": "in force",
+                     "record_anchor": [1]},
+}], "sources": [{"type": "institutional"}]}
+check("a correctly dated rule passes", not validate_temporal_validity("awards", _ok_relation, "s.yaml"))
+
+_anachronism = {"corpus_relations": [{
+    "case": "x", "interaction_type": "posthumous-constraint", "claim": "c", "record_anchor": [1],
+    "rule_at_time": {"event_date": 1962, "effective_from": 1974, "rule_in_force": "later rule",
+                     "record_anchor": [1]},
+}], "sources": [{"type": "institutional"}]}
+check("applying a 1974 rule to a 1962 event fails validation",
+      bool(validate_temporal_validity("awards", _anachronism, "s.yaml")))
+
+_undated = {"corpus_relations": [{
+    "case": "x", "interaction_type": "posthumous-constraint", "claim": "c", "record_anchor": [1],
+}], "sources": [{"type": "institutional"}]}
+check("a time-dependent relation with no rule_at_time fails validation",
+      bool(validate_temporal_validity("awards", _undated, "s.yaml")))
+
+_not_time_dependent = {"corpus_relations": [{
+    "case": "x", "interaction_type": "documented-award-outcome", "claim": "c", "record_anchor": [1],
+}], "sources": [{"type": "institutional"}]}
+check("an ordinary documented outcome needs no rule_at_time",
+      not validate_temporal_validity("awards", _not_time_dependent, "s.yaml"))
+
+_secondary_anchor = {"corpus_relations": [{
+    "case": "x", "interaction_type": "sharing-constraint", "claim": "c", "record_anchor": [1],
+    "rule_at_time": {"event_date": 1962, "rule_in_force": "r", "record_anchor": [1]},
+}], "sources": [{"type": "general-secondary"}]}
+check("a rule dated only by a secondary source fails validation",
+      bool(validate_temporal_validity("awards", _secondary_anchor, "s.yaml")))
+
+_ledger = DATA.parent.parent / "docs" / "cycle-02-requalification-ledger.md"
+check("the requalification ledger exists", _ledger.is_file())
+
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

@@ -1,11 +1,12 @@
 title: Oswald Avery
 slug: oswald-avery
 status: published
-last_reviewed: 2026-09-09
-summary: Oswald Avery and his colleagues provided key evidence in 1944 that DNA is the material of heredity, a result central to molecular biology, yet Avery never received a Nobel Prize.
-introduction: Avery's case is often cited because the identification of DNA as the carrier of genetic information was among the most consequential results of twentieth-century biology, and it went unrecognised by the Nobel committees.
-omission_case: His case matters because a finding that reoriented biology toward DNA was not honoured by the era's leading prize, illustrating how caution and disciplinary framing can delay or block recognition.
-structural_reason: Recognition was shaped by contemporary scepticism about the result, by the framing of the work within bacteriology, and by the conservatism of prize deliberations.
+last_reviewed: 2026-09-11
+domain: biology-medicine
+summary: Oswald Avery, Colin MacLeod and Maclyn McCarty published evidence in 1944 that a deoxyribonucleic acid fraction carried the transforming principle in pneumococcus, and the Nobel nomination archive records Avery as a nominee in 38 nominations without an award.
+introduction: Avery's case pairs a primary publication with an unusually complete institutional record of non-award - the nomination archive documents who nominated him and when, across two decades.
+omission_case: His case matters because the recognition record is documented on both sides. The contribution is anchored to the 1944 paper; the absence of an award is anchored to the awarding institution's own nomination archive rather than inferred from silence.
+structural_reason: "The record establishes what happened, not why. Avery was nominated repeatedly between 1932 and 1953 and was never awarded. This entry previously attributed the outcome to the conservatism of prize deliberations and to disciplinary framing; those claims are withdrawn. The committee's evaluations are not published, and the nomination archive for Physiology or Medicine is currently open only through 1953, so no record available to this audit establishes the reasons for any decision."
 assessment:
   impact: 85
   verification: 84
@@ -15,37 +16,78 @@ assessment:
   attribution: 62
   observed_recognition: 50
   evidence:
-    impact: [1]
-    verification: [1]
-    uniqueness: [1]
-    durability: [1]
-    breadth: [1]
-    attribution: [1]
-    observed_recognition: [1]
+    impact: [1, 2]
+    verification: [1, 2]
+    uniqueness: [1, 2]
+    durability: [1, 2]
+    breadth: [2]
+    attribution: [1, 2]
+    observed_recognition: [3]
   rationale:
-    impact: The Avery-MacLeod-McCarty experiment pointed decisively toward DNA as the genetic material.
-    verification: The work is documented in the primary literature and independent histories.
-    uniqueness: The experimental identification was distinctive, though it built on a wider research program.
+    impact: The 1944 experiment identified a deoxyribonucleic acid fraction as the transforming principle, redirecting attention to DNA as the hereditary material.
+    verification: The contribution is anchored to the primary publication in the Journal of Experimental Medicine.
+    uniqueness: The experimental identification was distinctive, though it extended an existing research programme on pneumococcal transformation.
     durability: The centrality of DNA to heredity is a settled foundation of biology.
-    breadth: Molecular biology's downstream benefits are extremely wide.
-    attribution: Credit is acknowledged historically but was not matched by contemporary prize recognition.
+    breadth: Molecular biology's downstream benefits are wide.
+    attribution: Credit for the experiment is consistently assigned to Avery, MacLeod and McCarty in the record.
+    observed_recognition: Scientific credit is secure and the experiment is eponymous, while the era's leading prize was never awarded to him despite 38 recorded nominations. Unchanged by the 2026-09-11 requalification - the new evidence documents the non-award more precisely without changing how much recognition he received.
 key_facts:
-  - fact: The 1944 Avery-MacLeod-McCarty experiment provided key evidence that DNA carries genetic information.
-    source: 1
-  - fact: Avery did not receive a Nobel Prize despite the significance of the work.
-    source: 1
+  - fact: "Avery, MacLeod and McCarty published \"Studies on the chemical nature of the substance inducing transformation of pneumococcal types\" in the Journal of Experimental Medicine in 1944."
+    source: 2
+  - fact: The Nobel nomination archive records Oswald Theodore Avery as a nominee in 38 nominations - 37 for Physiology or Medicine between 1932 and 1953, and one for Chemistry in 1957, two years after his death in 1955.
+    source: 3
+  - fact: The Nobel nomination archive currently publishes nominations for Physiology or Medicine only through 1953, so nominations after that year cannot be checked.
+    source: 4
 analysis:
-  - heading: Caution as a recognition filter
-    body: "Avery's gap illustrates how a prize's own conservatism can act as a filter: a result that later proved pivotal was treated cautiously in its moment, and the window for recognition closed. The case is a reminder that being early and correct is not sufficient when the receiving institution is slow to accept a paradigm shift."
+  - heading: A documented non-award, without a documented reason
+    body: "Avery's record is unusual in this corpus: the absence of an award is not an inference from silence but a fact visible in the awarding institution's own archive, alongside 38 nominations across two decades. What that archive does not contain is a reason. The committee's evaluations are not published, and the Physiology or Medicine nominations are currently open only through 1953. This entry once explained the outcome by the prize's conservatism; that explanation is withdrawn, and nothing replaces it, because nothing in the available record supports one."
 sources:
   - title: Oswald Avery - biography and the identification of DNA
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/biography/Oswald-Avery
     type: reference-secondary
-
-domain: biology-medicine
-patterns:
-  - delayed-recognition
-
-pattern_evidence:
-  delayed-recognition: [1]
+  - title: "Studies on the chemical nature of the substance inducing transformation of pneumococcal types (1944)"
+    publisher: "O. T. Avery, C. M. MacLeod and M. McCarty, Journal of Experimental Medicine 79(2): 137-158"
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC2135445/
+    type: primary
+  - title: Oswald Theodore Avery - Nomination Archive (nominee in 38 nominations)
+    publisher: The Nobel Prize (Nobel Prize Outreach), official nomination archive
+    url: https://www.nobelprize.org/nomination/archive/show_people.php?id=574
+    type: institutional
+  - title: Nomination archive - coverage (Physiology or Medicine data available only to 1953)
+    publisher: The Nobel Prize (Nobel Prize Outreach)
+    url: https://www.nobelprize.org/nomination/archive/
+    type: institutional
+provenance:
+  contribution:
+    record_anchor: [2]
+    basis: primary-publication
+  attribution:
+    record_anchor: [2]
+    basis: primary-publication
+  observed-recognition:
+    record_anchor: [3]
+    basis: awarding-institution-record
+mechanism_audit:
+  search_date: '2026-09-11'
+  considered:
+    - delayed-recognition
+    - credit-misattribution
+    - institutional-exclusion
+    - institutional-gatekeeping
+    - recognition-bias
+    - posthumous-recognition
+  finding: no-mechanism-evidenced
+  note: >-
+    Delayed recognition was carried by this entry and is withdrawn. The mechanism describes
+    acknowledgment arriving long after a contribution; in this case no prize acknowledgment ever
+    arrived, and the scientific credit for the experiment was never in dispute - so what the record
+    shows is sustained non-award, not delayed recognition. Credit misattribution does not hold: the
+    experiment is attributed to Avery, MacLeod and McCarty throughout the record. Institutional
+    exclusion does not hold: he held a research position at the Rockefeller Institute and was
+    nominated by its own members and by laureates. Gatekeeping was tested and nothing in the available
+    record documents an act of obstruction. What the record does show is 38 nominations between 1932
+    and 1953 with no award, and no published reason for any decision - the Physiology or Medicine
+    nomination archive is open only through 1953 and committee evaluations are not published. The gap
+    is measured; the mechanism behind it is not recorded here.
+  best_sources: [3, 4]

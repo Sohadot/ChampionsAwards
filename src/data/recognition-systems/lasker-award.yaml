@@ -1,11 +1,11 @@
 title: Lasker Award
 slug: lasker-award
 status: published
-last_reviewed: 2026-09-09
-summary: The Albert Lasker Medical Research Awards are among the most respected honours in biomedical science and are noted for how often their recipients later receive the Nobel Prize.
-introduction: Administered by the Lasker Foundation, the awards recognise major contributions to medical research, and their strong overlap with subsequent Nobel Prizes has made them a closely watched signal in the field.
-power_structure: The awards derive authority from the biomedical research community and a private foundation, giving them substantial independence while tying their funding to that foundation.
-selection_logic: Selection emphasises contributions with clear and durable impact on medicine, which strengthens the track record but concentrates recognition within well-resourced research centres.
+last_reviewed: 2026-09-11
+summary: The Albert Lasker Medical Research Awards were created in 1945 and are administered by the Albert and Mary Lasker Foundation, which selects recipients through an international jury following an annual nomination round.
+introduction: The awards recognise contributions to medical research. They are widely described as a predictor of subsequent Nobel recognition; this entry records the selection machinery the foundation documents, and treats the predictive claim as a claim requiring evidence rather than as a property of the award.
+power_structure: The awards derive their authority from a private foundation and the biomedical research community, which gives the programme independence from state and commercial sponsors while concentrating its funding in a single foundation.
+selection_logic: "The foundation documents the mechanism: nominations are accepted annually from November to early February, and the medical research awards are selected by an international jury. What the selections concentrate on, by geography or institution, is not established by this entry - see the documented exception on representational breadth."
 rls_assessment:
   process: 80
   breadth: 60
@@ -19,28 +19,43 @@ rls_assessment:
     transparency: [1]
     independence: [1]
   rationale:
-    process: Selection follows an established juried procedure administered by the foundation.
-    breadth: Recognition is biomedical and has historically been oriented toward the United States.
-    track_record: A high proportion of recipients later receive the Nobel Prize, indicating durable selections.
-    transparency: Criteria and recipients are public, though deliberations are private.
-    independence: Foundation governance provides independence, with funding concentrated in a single foundation.
+    process: The foundation documents an annual nomination window and selection by an international jury for the medical research awards.
+    breadth: "The remit is biomedical only, which bounds the sub-field span. The distribution of recipients by geography or institution is not established here: the claim that selections concentrate on well-resourced research environments was carried by this entry until 2026-09-11 and is withdrawn as unevidenced. Score unchanged, on the narrower justification."
+    track_record: "Recipients are published back to 1945, and the programme's selections are widely treated as durable. The specific claim that a high proportion later receive the Nobel Prize is not anchored to a record-grade count in this entry - see the documented exception."
+    transparency: Criteria, the nomination window, the jury chair and the recipients are published; deliberations are not.
+    independence: Governance rests with a private foundation rather than a state or commercial sponsor, with funding concentrated in that single foundation.
 key_facts:
-  - fact: The Lasker Awards are administered by the Albert and Mary Lasker Foundation.
+  - fact: The Lasker Awards programme was created in 1945 by Albert and Mary Lasker.
     source: 1
-  - fact: Many Lasker laureates have subsequently received the Nobel Prize.
-    source: 2
+  - fact: The medical research awards are selected by an international jury, and the foundation accepts nominations annually from November to early February.
+    source: 1
 analysis:
-  - heading: A predictive signal, and what it concentrates
-    body: "The Lasker Awards score highly on track record precisely because their selections so often anticipate the Nobel. That predictive strength, however, tends to concentrate on already well-resourced research environments, which the RLS reflects as a limit on representational breadth rather than a process failure."
+  - heading: What this entry stopped claiming
+    body: "Two claims were removed from this entry in the Cycle 02 baseline requalification. The first was that its selections tend to favour well-resourced research environments: no record-grade source was found for it, and tabulating recipients ourselves would be our own analysis rather than a documented fact. The second was the predictive-overlap figure used to justify the track-record score, which was asserted without a count anchored to a record. Both are now documented exceptions rather than assertions. What the foundation itself documents - the founding year, the annual nomination window, and selection by an international jury - is retained and anchored."
 sources:
-  - title: Albert Lasker Medical Research Awards - official site
+  - title: About the Awards (created 1945; nomination window; selection by an international jury)
     publisher: The Lasker Foundation
-    url: https://laskerfoundation.org/awards/
+    url: https://laskerfoundation.org/awards/about-the-awards/
     type: institutional
   - title: Lasker Award - overview
     publisher: Encyclopaedia Britannica
     url: https://www.britannica.com/topic/Lasker-Award
     type: reference-secondary
+provenance:
+  system-facts:
+    record_anchor: [1]
+    basis: awarding-institution-record
+audit_exceptions:
+  - claim: track-record
+    search_date: '2026-09-11'
+    search_note: "Searched the foundation's own pages for a published count of Lasker recipients who subsequently received the Nobel Prize. The about-the-awards page names one jury chair who holds both honours but publishes no overall figure."
+    best_source: 2
+    reason: The overlap is widely reported but was not anchored to a record-grade count here, so the track-record score rests on the published recipient record rather than on a predictive statistic.
+  - claim: representational-breadth
+    search_date: '2026-09-11'
+    search_note: "Searched for a record-grade source on the distribution of recipients by geography or institution. None was found; the previous claim that selections concentrate on well-resourced research environments had no source and has been withdrawn."
+    best_source: 1
+    reason: "Known-status: the sub-field bound (biomedical only) is documented, the recipient distribution is not. The score is unchanged and its justification narrowed, rather than a number kept on an unevidenced claim."
 
 domains:
   - biology-medicine

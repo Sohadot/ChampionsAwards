@@ -120,6 +120,17 @@ A synthesis is where prose is most tempted to outrun the evidence, so reports in
 - **Limits are published with the report**, on the page rather than in a footer,
   including the selection effect that makes corpus frequency ≠ field prevalence.
 
+## Temporal validity of rules (enforced)
+
+An official source for today's rule is not evidence about a decision taken before
+that rule existed. Where a corpus relation asserts that a time-dependent rule bore
+on a case — `eligibility-constraint`, `sharing-constraint`, `posthumous-constraint`
+— it must carry a `rule_at_time` block stating the event date, the rule in force
+then, and either a record-grade anchor or a documented exception. Validation
+rejects applying a rule to an event that predates it. Where the rule in force
+cannot be established, none is applied, and the outcome stands without a
+rule-based explanation.
+
 ## Mechanism audits (enforced)
 
 A case may declare a `mechanism_audit`: a dated record of the search for a
