@@ -108,7 +108,7 @@ def build_case_index() -> dict[str, dict[str, str]]:
 
 
 def attach_award_architecture(item: dict[str, Any], case_index: dict[str, dict[str, str]]) -> None:
-    """Expose the three award layers to the template: formal architecture rows
+    """Expose the award layers to the template: formal architecture rows
     (each with its provenance anchor), and corpus-interaction relations resolved
     to real cases plus a computed count per architecture element."""
     provenance = item.get("provenance") or {}
@@ -129,6 +129,48 @@ def attach_award_architecture(item: dict[str, Any], case_index: dict[str, dict[s
                 }
             )
         item["architecture_rows"] = rows
+
+    # Layer 2: historical rule state - what is in force, since when, and whether
+    # the version that governed each corpus event is established at all.
+    history = item.get("rule_history")
+    if isinstance(history, list):
+        item["rule_history_rows"] = [
+            {
+                "label": ARCH_LABELS.get(entry.get("element"), entry.get("element")),
+                "current_rule": entry.get("current_rule"),
+                "effective_from": entry.get("effective_from"),
+                "predecessor_state": entry.get("predecessor_state"),
+                "anchor": entry.get("record_anchor") or [],
+                "has_exception": bool(entry.get("exception")),
+                "events": [
+                    {
+                        "case_title": (case_index.get(event.get("case")) or {}).get("title", event.get("case")),
+                        "case_url": (case_index.get(event.get("case")) or {}).get("url", "#"),
+                        "event_date": event.get("event_date"),
+                        "established": bool(event.get("established")),
+                        "note": event.get("note"),
+                    }
+                    for event in entry.get("events_covered") or []
+                ],
+            }
+            for entry in history
+        ]
+
+    # Layer 3: archive visibility - how far the award's own record is open.
+    archive = item.get("archive_visibility")
+    if isinstance(archive, dict):
+        item["archive_rows"] = [
+            {
+                "case_title": (case_index.get(row.get("case")) or {}).get("title", row.get("case")),
+                "case_url": (case_index.get(row.get("case")) or {}).get("url", "#"),
+                "years": row.get("years"),
+                "status": row.get("status"),
+                "status_label": str(row.get("status") or "").replace("-", " "),
+                "note": row.get("note"),
+                "anchor": row.get("record_anchor") or [],
+            }
+            for row in archive.get("case_status") or []
+        ]
 
     relations = item.get("corpus_relations")
     if isinstance(relations, list):

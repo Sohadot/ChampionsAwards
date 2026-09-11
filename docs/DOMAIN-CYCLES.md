@@ -484,13 +484,21 @@ under-recognition is **3 of 8** in biology and **1 of 10** in physics; two biolo
 cases are aligned and require no mechanism. Full account:
 [`cycle-02-explanatory-coverage.md`](cycle-02-explanatory-coverage.md).
 
+Round 5, **Nobel Prize in Physiology or Medicine — award anatomy**
+(2026-09-11): four layers rather than three. Biology needed two the physics page
+did not: **historical rule state** (what is in force, since when, what preceded
+it, and whether the version that governed each corpus event is established at
+all) and **archive visibility** (how far the award's own record is open, keeping
+"no nomination found" apart from "those years are not released"). Corpus
+interaction is bounded to the three cases where this award's record is
+load-bearing — Schatz, Avery, Franklin. No second RLS: the Nobel Prize System
+entry carries system legitimacy, this page carries award-level anatomy.
+
 Order from here:
 
-1. Award anatomy for the domain — bounded as an anatomy of one recognition system
-   interacting with the three cases where its record is load-bearing, not as an
-   explanatory model of biology recognition.
-2. Synthesis — structured on three outcomes: mechanism evidenced; recognition
+1. Synthesis — structured on three outcomes: mechanism evidenced; recognition
    aligned, no deficit to explain; under-recognition unresolved after audit.
+2. Sector reference and closure review for the domain.
 
 No fourth recognition system is needed: Nobel, Lasker and Wolf already satisfy
 the RLS threshold. The work is making those three reliable, not adding a fourth.

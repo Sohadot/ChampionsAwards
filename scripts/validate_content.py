@@ -5,6 +5,7 @@ from typing import Any
 import yaml
 
 from config import (
+    ARCHIVE_VISIBILITY_STATES,
     AUDIT_ELIGIBLE_CONCEPT_TYPES,
     AWARD_ARCHITECTURE_KEYS,
     CONCEPT_TYPES,
@@ -22,6 +23,7 @@ from config import (
     VALID_STATUSES,
     is_iso_date,
     is_valid_basis,
+    is_valid_archive_state,
     is_valid_concept_type,
     is_valid_domain,
     is_valid_hypothesis_state,
@@ -100,7 +102,122 @@ def validate_item(
         mechanism_slugs if mechanism_slugs is not None else concept_slugs or set()))
     errors.extend(validate_temporal_validity(cluster_name, item, source_file))
     errors.extend(validate_concept_type(cluster_name, item, source_file))
+    errors.extend(validate_rule_history(cluster_name, item, source_file, case_slugs or set()))
+    errors.extend(validate_archive_visibility(cluster_name, item, source_file, case_slugs or set()))
 
+    return errors
+
+
+def validate_rule_history(
+    cluster_name: str, item: dict[str, Any], source_file: str, case_slugs: set[str]
+) -> list[str]:
+    """The historical-rule layer of an award: for each rule element, what is in
+    force now, since when, what is known of the state before it, and - for each
+    corpus event the rule is asked about - whether the version that governed
+    that event is established at all.
+
+    The point of the layer is that the last question usually has the answer
+    "no", and a page that cannot say so will silently answer it with today's rule.
+    """
+    if cluster_name != "awards":
+        return []
+    ref = f"{cluster_name}/{source_file}"
+    history = item.get("rule_history")
+    if history is None:
+        return []
+    if not isinstance(history, list) or not history:
+        return [f"{ref}: 'rule_history' must be a non-empty list when present"]
+
+    errors: list[str] = []
+    for index, entry in enumerate(history, start=1):
+        where = f"rule_history #{index}"
+        if not isinstance(entry, dict):
+            errors.append(f"{ref}: {where} must be a mapping")
+            continue
+        if entry.get("element") not in AWARD_ARCHITECTURE_KEYS:
+            errors.append(
+                f"{ref}: {where} 'element' must be a known architecture field "
+                f"(got {entry.get('element')!r})"
+            )
+        for field in ("current_rule", "predecessor_state"):
+            if not (isinstance(entry.get(field), str) and entry[field].strip()):
+                errors.append(f"{ref}: {where} needs a non-empty '{field}'")
+        if "effective_from" in entry and not is_year_or_iso_date(entry["effective_from"]):
+            errors.append(f"{ref}: {where} 'effective_from' must be a year or an ISO date")
+        has_anchor, has_exception = bool(entry.get("record_anchor")), bool(entry.get("exception"))
+        if has_anchor == has_exception:
+            errors.append(f"{ref}: {where} needs exactly one of 'record_anchor' or 'exception'")
+        if has_anchor:
+            bad = _record_grade_refs(item, entry.get("record_anchor"))
+            if bad:
+                errors.append(f"{ref}: {where} record_anchor must be record-grade: {', '.join(bad)}")
+
+        for sub, event in enumerate(entry.get("events_covered") or [], start=1):
+            label = f"{where} event #{sub}"
+            if not isinstance(event, dict):
+                errors.append(f"{ref}: {label} must be a mapping")
+                continue
+            if event.get("case") not in case_slugs:
+                errors.append(f"{ref}: {label} 'case' must be a published case slug")
+            if not is_year_or_iso_date(event.get("event_date")):
+                errors.append(f"{ref}: {label} needs an 'event_date'")
+            if not isinstance(event.get("established"), bool):
+                errors.append(
+                    f"{ref}: {label} needs 'established' as true or false - whether the version of "
+                    f"this rule that governed this event is established by the record"
+                )
+            if not (isinstance(event.get("note"), str) and event["note"].strip()):
+                errors.append(f"{ref}: {label} needs a 'note'")
+            if event.get("established") is True and is_year_or_iso_date(entry.get("effective_from")) \
+                    and is_year_or_iso_date(event.get("event_date")) \
+                    and temporal_key(event["event_date"]) < temporal_key(entry["effective_from"]):
+                errors.append(
+                    f"{ref}: {label} claims the governing rule is established, but the rule cited "
+                    f"takes effect in {entry['effective_from']}, after the event in {event['event_date']}"
+                )
+    return errors
+
+
+def validate_archive_visibility(
+    cluster_name: str, item: dict[str, Any], source_file: str, case_slugs: set[str]
+) -> list[str]:
+    """The archive layer: how far the award's own record is open, and what that
+    means for each corpus case. Four states are kept apart, because "we found no
+    nomination" and "the years are not released" are different facts."""
+    if cluster_name != "awards":
+        return []
+    ref = f"{cluster_name}/{source_file}"
+    block = item.get("archive_visibility")
+    if block is None:
+        return []
+    if not isinstance(block, dict):
+        return [f"{ref}: 'archive_visibility' must be a mapping when present"]
+
+    errors: list[str] = []
+    if not (isinstance(block.get("secrecy_rule"), str) and block["secrecy_rule"].strip()):
+        errors.append(f"{ref}: archive_visibility needs a 'secrecy_rule'")
+    if "released_through" in block and not is_year_or_iso_date(block["released_through"]):
+        errors.append(f"{ref}: archive_visibility 'released_through' must be a year or an ISO date")
+    if not is_iso_date(block.get("as_of")):
+        errors.append(f"{ref}: archive_visibility needs an ISO 'as_of' date - a release horizon moves")
+    bad = _record_grade_refs(item, block.get("record_anchor"))
+    if not block.get("record_anchor") or bad:
+        errors.append(f"{ref}: archive_visibility needs a record-grade 'record_anchor'"
+                      + (f": {', '.join(bad)}" if bad else ""))
+
+    for index, row in enumerate(block.get("case_status") or [], start=1):
+        label = f"archive_visibility case_status #{index}"
+        if not isinstance(row, dict):
+            errors.append(f"{ref}: {label} must be a mapping")
+            continue
+        if row.get("case") not in case_slugs:
+            errors.append(f"{ref}: {label} 'case' must be a published case slug")
+        if not is_valid_archive_state(row.get("status")):
+            errors.append(
+                f"{ref}: {label} 'status' must be one of: {', '.join(sorted(ARCHIVE_VISIBILITY_STATES))}"
+            )
+        if not (isinstance(row.get("note"), str) and row["note"].strip()):
+            errors.append(f"{ref}: {label} needs a 'note'")
     return errors
 
 

@@ -61,11 +61,87 @@
 </section>
 {% endif %}
 
+{% if item.rule_history_rows %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Layer 2 · Historical rule state</p>
+      <h2>Which version of the rule was in force</h2>
+    </div>
+    <p class="muted small" style="max-width:700px;margin-top:-8px;">
+      A rule cited from today's governing documents is evidence about today. Where a rule is asked to
+      bear on a past decision, this layer records when the current version took effect, what is known
+      of the state before it, and — for each case — whether the version that actually governed that
+      event is established. Where it is not, no rule is applied.
+    </p>
+    {% for row in item.rule_history_rows %}
+    <article class="panel" style="margin-bottom:16px;">
+      <h3 class="sub">{{ row.label }}
+        {% if row.effective_from %}<span class="badge">in force from {{ row.effective_from }}</span>
+        {% else %}<span class="badge">start date not established</span>{% endif %}
+      </h3>
+      <p class="small"><strong>Now.</strong> <span class="muted">{{ row.current_rule }}</span>
+        {% for ref in row.anchor %}<a class="cite" href="#source-{{ ref }}">[{{ ref }}]</a>{% endfor %}
+      </p>
+      <p class="small"><strong>Before.</strong> <span class="muted">{{ row.predecessor_state }}</span></p>
+      {% for event in row.events %}
+      <p class="small" style="margin-bottom:4px;">
+        <strong><a href="{{ event.case_url }}">{{ event.case_title }}</a>, {{ event.event_date }}:</strong>
+        {% if event.established %}<span class="established">governing version established</span>
+        {% else %}<span class="unestablished">governing version not established — no rule applied</span>{% endif %}
+        <span class="muted"> — {{ event.note }}</span>
+      </p>
+      {% endfor %}
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if item.archive_rows %}
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Layer 3 · Archive visibility</p>
+      <h2>How far this award's own record is open</h2>
+    </div>
+    <p class="muted small" style="max-width:720px;margin-top:-8px;">
+      {{ item.archive_visibility.secrecy_rule }}
+      {% if item.archive_visibility.released_through %}
+      Nominations are published through {{ item.archive_visibility.released_through }}, checked
+      {{ item.archive_visibility.as_of }}.
+      {% endif %}
+      A record not found and a record not yet released are different facts, and are kept apart below.
+    </p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Case</th><th>Years</th><th>State of the record</th><th>What that means</th></tr></thead>
+        <tbody>
+          {% for row in item.archive_rows %}
+          <tr>
+            <td><a href="{{ row.case_url }}">{{ row.case_title }}</a></td>
+            <td class="small">{{ row.years }}</td>
+            <td class="small"><span style="color:var(--accent);">{{ row.status_label }}</span></td>
+            <td class="small">{{ row.note }}
+              {% for ref in row.anchor %}<a class="cite" href="#source-{{ ref }}">[{{ ref }}]</a>{% endfor %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% if item.archive_visibility.note %}
+    <p class="small muted">{{ item.archive_visibility.note }}</p>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
 {% if item.key_facts %}
 <section class="section">
   <div class="container narrow prose">
     <div class="section-heading">
-      <p class="eyebrow">Layer 2 · Historical operation</p>
+      <p class="eyebrow">Layer 2b · Historical operation</p>
       <h2>What the record shows</h2>
     </div>
     <ul class="key-facts">
@@ -86,7 +162,7 @@
 <section class="section">
   <div class="container">
     <div class="section-heading">
-      <p class="eyebrow">Layer 3 · Corpus interaction · ChampionsAwards analysis</p>
+      <p class="eyebrow">Layer 4 · Corpus interaction · ChampionsAwards analysis</p>
       <h2>Where our cases meet this structure</h2>
     </div>
     <p class="muted small" style="max-width:680px;margin-top:-8px;">

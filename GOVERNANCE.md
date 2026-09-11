@@ -120,6 +120,20 @@ A synthesis is where prose is most tempted to outrun the evidence, so reports in
 - **Limits are published with the report**, on the page rather than in a footer,
   including the selection effect that makes corpus frequency ≠ field prevalence.
 
+## Award anatomy: four layers (enforced where present)
+
+An award page separates what the rules say, when those rules took effect, how far
+the award's own archive is open, and where the corpus touches the apparatus.
+`rule_history` records, per rule element, the current text, its effective date,
+what is known of the state before it, and — for each corpus event — whether the
+governing version is `established`. Validation rejects claiming a version is
+established when the rule cited takes effect after the event. `archive_visibility`
+records the secrecy rule, the release horizon with the date it was checked, and a
+state per case drawn from `ARCHIVE_VISIBILITY_STATES`: nomination-documented,
+no-nomination-in-open-archive, archive-year-not-released, deliberation-unavailable.
+The third and fourth exist because "we found nothing" and "those years are closed"
+are different facts and a corpus must not collapse them into silence.
+
 ## Temporal validity of rules (enforced)
 
 An official source for today's rule is not evidence about a decision taken before

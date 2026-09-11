@@ -321,6 +321,10 @@ table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .panel .key-facts { margin: 0; }
 h3.sub { margin: 0 0 6px; font-size: 1.02rem; }
 .pending { color: var(--accent-2); }
+/* A rule whose governing version is established reads as settled; one that is
+   not is a known limit, not an error - so it is marked, not alarmed. */
+.established { color: var(--accent-2); }
+.unestablished { color: var(--text); border-bottom: 1px dashed var(--muted); }
 
 .dim { margin-bottom: 9px; }
 .dim-head { display: flex; justify-content: space-between; color: var(--muted); }

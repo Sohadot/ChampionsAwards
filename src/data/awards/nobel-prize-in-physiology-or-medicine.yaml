@@ -1,0 +1,249 @@
+title: Nobel Prize in Physiology or Medicine
+slug: nobel-prize-in-physiology-or-medicine
+status: published
+last_reviewed: 2026-09-11
+domain: biology-medicine
+summary: An anatomy of one recognition system at the points where its record touches this corpus - the rules that govern the award, the dates those rules took effect, how far its own archive is open, and the three governed cases where its record is load-bearing.
+introduction: This page maps an award, not a field. Seven of the ten governed biology cases rest on other institutions entirely; only three are decided in part by this apparatus, and only those three appear below.
+legitimacy_question: "The question this page can answer is narrow: what do the award's own governing documents and its own archive establish about three specific cases? The question it cannot answer is why any committee decided as it did - the Statutes forbid disclosure of proposals, investigations and opinions, and release begins only fifty years after a decision."
+structural_notes: "Biology adds a layer the physics page did not need. Two of the three cases here turn on when a rule took effect and on how far the archive is open, so the rules are dated and the archive's horizon is stated rather than assumed. Franklin is the test case: the prohibition on posthumous awards entered the Statutes in 1974 and cannot be applied to a decision taken in 1962."
+architecture:
+  granting_body: The Nobel Assembly at Karolinska Institutet, which has 50 members, selects the laureates from among the candidates recommended by the Nobel Committee for Physiology or Medicine.
+  governing_documents: The Statutes of the Nobel Foundation, together with the prize-specific regulations of the Nobel Assembly at Karolinska Institutet.
+  eligibility: >-
+    Candidates are those nominated by nominators invited by the Nobel Committee; no one may nominate
+    themselves. The prize is awarded for a discovery of major importance in life science or medicine -
+    lifetime achievement or scientific leadership cannot be considered.
+  nomination_eligibility:
+    - Members of the Nobel Assembly at Karolinska Institutet
+    - Swedish and foreign members of the Medicine and Biology classes of the Royal Swedish Academy of Sciences
+    - Nobel Prize laureates in physiology or medicine and in chemistry
+    - Members of the Nobel Committee not qualified under the first category
+    - Holders of established posts as full professors at the faculties of medicine in Sweden, and similar posts in Denmark, Finland, Iceland and Norway
+    - Holders of similar posts at no fewer than six other faculties of medicine worldwide, selected by the Nobel Assembly with a view to distribution among countries
+    - Scientists whom the Nobel Assembly may otherwise see fit to approach
+  nomination: >-
+    Nomination is by invitation only. The Nobel Committee sends confidential invitation letters -
+    more than three thousand a year - in September, and completed forms must reach the Committee no
+    later than 31 January of the following year. Under the Statutes, each year's adjudication embraces
+    the nominations submitted in the preceding twelve months up to 1 February.
+  selection_body: The Nobel Committee for Physiology or Medicine - five members and the Secretary of the Committee and Assembly - reviews the nominations and selects the candidates it recommends to the Assembly.
+  decision_stages:
+    - September - invitations to nominate are sent to qualified nominators
+    - 31 January - deadline for submissions
+    - March to May - the Committee commissions evaluation reports from international experts
+    - June to August - evaluation work; reports submitted by mid-August
+    - September - the Committee submits recommendations to the Assembly
+    - First Monday in October - the Assembly chooses the laureates by majority vote and announces the decision
+    - 10 December - the award ceremony in Stockholm
+  sharing_rule: >-
+    Under the Statutes, a prize amount may be divided equally between two works, and where a rewarded
+    work has been produced by two or three persons the prize is awarded to them jointly. In no case may
+    a prize amount be divided between more than three persons.
+  posthumous_rule: >-
+    Under the Statutes as they now stand, work produced by a person since deceased shall not be
+    considered for an award; if a prizewinner dies before receiving the prize, the prize may still be
+    presented. See the historical-rule layer below - this provision entered the Statutes in 1974.
+  secrecy: >-
+    Under the Statutes, proposals received for the award of a prize, and investigations and opinions
+    concerning it, may not be divulged, and divergent opinions may not be recorded. A prize-awarding
+    body may give third parties access to the materials behind a decision, but not until at least
+    fifty years have elapsed from that decision.
+  withholding: >-
+    If none of the works under consideration is found to be of the importance the will intends, the
+    prize money is reserved until the following year; if it cannot be awarded then either, the amount
+    is added to the Foundation's restricted funds.
+  finality: No appeals may be made against the decision of a prize-awarding body with regard to the award of a prize; the Assembly's decision is final and without appeal.
+rule_history:
+  - element: posthumous_rule
+    current_rule: Work produced by a person since deceased shall not be considered for an award, unless death occurred after the announcement of the prize.
+    effective_from: 1974
+    predecessor_state: >-
+      Partly known. The Nobel Foundation states that the prohibition entered the Statutes in 1974 and
+      that before 1974 the prize had been awarded posthumously twice - to Erik Axel Karlfeldt in 1931
+      and Dag Hammarskjoeld in 1961. The text of the provision that governed deceased candidates before
+      1974 was not reached by this audit.
+    record_anchor: [5]
+    events_covered:
+      - case: rosalind-franklin
+        event_date: 1962
+        established: false
+        note: >-
+          The rule in force in 1962 is not established. The modern prohibition postdates the decision
+          by twelve years and is not applied to it here. This entry therefore records the 1962 outcome
+          as an outcome, with no rule-based explanation attached.
+  - element: sharing_rule
+    current_rule: In no case may a prize amount be divided between more than three persons.
+    predecessor_state: >-
+      Unknown. The current Statutes carry this limit, but no dated source establishing when it entered
+      them, or what preceded it, was reached by this audit.
+    record_anchor: [1]
+    events_covered:
+      - case: albert-schatz
+        event_date: 1952
+        established: false
+        note: >-
+          The 1952 prize was awarded to one person, which is consistent with the modern limit but does
+          not require it. No claim is made that a sharing limit bore on this outcome.
+      - case: rosalind-franklin
+        event_date: 1962
+        established: false
+        note: >-
+          The 1962 prize was awarded to three people, the maximum the modern limit allows. Whether that
+          limit was in force in 1962 is not established, so the corpus does not say that it constrained
+          the decision.
+archive_visibility:
+  secrecy_rule: >-
+    Nominations and the selection process are closed for fifty years from the decision, under the
+    Statutes; the prize's own nomination page states the same rule.
+  released_through: 1953
+  as_of: '2026-09-11'
+  record_anchor: [6]
+  note: >-
+    The release horizon is a moving fact and is stated with the date it was checked. For Physiology or
+    Medicine the nomination archive currently publishes data only through 1953, which is earlier than
+    the fifty-year rule alone would imply.
+  case_status:
+    - case: albert-schatz
+      years: '1952'
+      status: nomination-documented
+      note: Nomination 84-0 for 1952 names Elisabeth Bugie, Albert Schatz and Selman Waksman together, and is published in the open archive.
+      record_anchor: [7]
+    - case: albert-schatz
+      years: '1952'
+      status: deliberation-unavailable
+      note: The Committee's evaluation of that nomination is not published; under the Statutes, investigations and opinions may not be divulged.
+      record_anchor: [1]
+    - case: oswald-avery
+      years: 1932-1953
+      status: nomination-documented
+      note: The archive records Avery as a nominee in 38 nominations - 37 for Physiology or Medicine between 1932 and 1953, and one for Chemistry in 1957.
+      record_anchor: [8]
+    - case: oswald-avery
+      years: after 1953
+      status: archive-year-not-released
+      note: Avery died in 1955; any nomination in 1954 or 1955 falls in years the Medicine archive has not released, so absence cannot be inferred for them.
+      record_anchor: [6]
+    - case: rosalind-franklin
+      years: 1954-1962
+      status: archive-year-not-released
+      note: >-
+        Neither Franklin's lifetime years nor the 1962 award year are open in the Medicine nomination
+        archive. Whether she was ever nominated is therefore not a question this corpus can answer -
+        which is different from finding that she was not.
+      record_anchor: [6]
+    - case: rosalind-franklin
+      years: '1962'
+      status: deliberation-unavailable
+      note: The Committee's deliberations for 1962 are not published, so no reason for the composition of that year's award is available.
+      record_anchor: [1]
+key_facts:
+  - fact: The Nobel Assembly at Karolinska Institutet has 50 members and chooses the laureates by majority vote on the first Monday in October; the decision is final and without appeal.
+    source: 2
+  - fact: More than three thousand confidential invitations to nominate are sent each September, and completed nominations must reach the Committee by 31 January.
+    source: 2
+  - fact: The Nobel Foundation states that the prohibition on posthumous awards entered the Statutes in 1974, and that two prizes had been awarded posthumously before then - in 1931 and 1961.
+    source: 5
+  - fact: The nomination archive currently publishes Physiology or Medicine nominations only through 1953.
+    source: 6
+corpus_relations:
+  - case: albert-schatz
+    architecture_element: nomination
+    interaction_type: documented-nomination
+    record_anchor: [7]
+    claim: Nomination 84-0 for the 1952 prize, submitted by Jevrem Nedelkovitch, named Elisabeth Bugie, Albert Schatz and Selman A. Waksman as its three nominees.
+  - case: albert-schatz
+    architecture_element: decision_stages
+    interaction_type: documented-award-outcome
+    record_anchor: [3]
+    claim: The 1952 prize was awarded to Selman Abraham Waksman alone, with a prize share of 1/1; Schatz was not among the laureates.
+  - case: oswald-avery
+    architecture_element: nomination
+    interaction_type: documented-nomination
+    record_anchor: [8]
+    claim: The nomination archive records Avery as a nominee in 37 nominations for Physiology or Medicine between 1932 and 1953.
+  - case: oswald-avery
+    architecture_element: decision_stages
+    interaction_type: historical-non-award
+    exception:
+      search_date: '2026-09-11'
+      search_note: Searched the laureate record for any Physiology or Medicine award to Avery, and the nomination archive for the years it publishes.
+      reason: The absence of an award is a negative fact; no institutional record states a non-award, so the laureate record and the nomination archive are cited instead. No reason for the outcome is available - deliberations are not published and the archive is open only through 1953.
+      best_source: 8
+    claim: The record shows no Nobel Prize in Physiology or Medicine awarded to Avery, across a nomination history spanning two decades.
+  - case: rosalind-franklin
+    architecture_element: decision_stages
+    interaction_type: documented-award-outcome
+    record_anchor: [4]
+    claim: The 1962 prize was awarded to James Watson, Francis Crick and Maurice Wilkins; Franklin, who died in 1958, was not among the laureates.
+provenance:
+  architecture:granting_body:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  architecture:governing_documents:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:eligibility:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  architecture:nomination_eligibility:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  architecture:nomination:
+    record_anchor: [1, 2]
+    basis: awarding-institution-record
+  architecture:selection_body:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  architecture:decision_stages:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  architecture:sharing_rule:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:posthumous_rule:
+    record_anchor: [1]
+    basis: awarding-institution-record
+    effective_from: 1974
+  architecture:secrecy:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:withholding:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:finality:
+    record_anchor: [1, 2]
+    basis: awarding-institution-record
+sources:
+  - title: Statutes of the Nobel Foundation (eligibility, sharing, posthumous provision, nomination deadline, secrecy, withholding, finality)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/about/statutes-of-the-nobel-foundation/
+    type: institutional
+  - title: Nomination and selection of medicine laureates (qualified nominators, selection stages, the Assembly and the Committee)
+    publisher: The Nobel Prize (nobelprize.org)
+    url: https://www.nobelprize.org/nomination/medicine/
+    type: institutional
+  - title: The Nobel Prize in Physiology or Medicine 1952
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/medicine/1952/summary/
+    type: institutional
+  - title: The Nobel Prize in Physiology or Medicine 1962
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/medicine/1962/summary/
+    type: institutional
+  - title: Nobel Prize facts - posthumous Nobel Prizes (provision introduced 1974; two awarded posthumously before then)
+    publisher: The Nobel Foundation (nobelprize.org)
+    url: https://www.nobelprize.org/prizes/facts/nobel-prize-facts/
+    type: institutional
+  - title: Nomination archive - coverage (Physiology or Medicine published only through 1953)
+    publisher: The Nobel Prize (Nobel Prize Outreach)
+    url: https://www.nobelprize.org/nomination/archive/
+    type: institutional
+  - title: Nomination 84-0 for the Nobel Prize in Physiology or Medicine 1952 (nominees Bugie, Schatz and Waksman)
+    publisher: The Nobel Prize (Nobel Prize Outreach), official nomination archive
+    url: https://www.nobelprize.org/nomination/archive/show.php?id=12920
+    type: institutional
+  - title: Oswald Theodore Avery - Nomination Archive (nominee in 38 nominations)
+    publisher: The Nobel Prize (Nobel Prize Outreach), official nomination archive
+    url: https://www.nobelprize.org/nomination/archive/show_people.php?id=574
+    type: institutional

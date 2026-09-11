@@ -454,6 +454,28 @@ def is_valid_concept_type(value: object) -> bool:
     return isinstance(value, str) and value in CONCEPT_TYPES
 
 
+# ---------------------------------------------------------------------------
+# Archive visibility
+#
+# An award's archive is part of its architecture. "No nomination found" and
+# "the years that would contain it are not released yet" are different facts,
+# and a corpus that collapses them into silence is asserting something it has
+# not checked. These four states keep them apart.
+# ---------------------------------------------------------------------------
+ARCHIVE_VISIBILITY_STATES: Final[frozenset[str]] = frozenset(
+    {
+        "nomination-documented",          # a nomination record exists in the open archive
+        "no-nomination-in-open-archive",  # the relevant years ARE open and contain none
+        "archive-year-not-released",      # the relevant years fall after the release horizon
+        "deliberation-unavailable",       # committee evaluations are not published at all
+    }
+)
+
+
+def is_valid_archive_state(value: object) -> bool:
+    return isinstance(value, str) and value in ARCHIVE_VISIBILITY_STATES
+
+
 # A published hypothesis is open until the corpus refutes it. "Refuted" is a
 # first-class state: a hypothesis the evidence killed stays on the page, marked,
 # rather than disappearing from the record.
@@ -476,7 +498,8 @@ AWARD_ARCHITECTURE_FIELDS: Final[tuple[tuple[str, str], ...]] = (
     ("granting_body", "Granting body"),
     ("governing_documents", "Governing documents"),
     ("eligibility", "Eligibility"),
-    ("nomination", "Nomination"),
+    ("nomination_eligibility", "Who may nominate"),
+    ("nomination", "Nomination process"),
     ("selection_body", "Selection & evaluation"),
     ("decision_stages", "Decision stages"),
     ("sharing_rule", "Sharing rule"),
