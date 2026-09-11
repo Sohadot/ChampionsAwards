@@ -72,7 +72,6 @@ mechanism_audit:
     - delayed-recognition
     - institutional-gatekeeping
     - posthumous-recognition
-    - recognition-bias
   finding: no-mechanism-evidenced
   note: >-
     No mechanism is supported. Credit misattribution fails at once: the instrument carries her name in

@@ -99,7 +99,6 @@ mechanism_audit:
     - institutional-exclusion
     - delayed-recognition
     - posthumous-recognition
-    - recognition-bias
   finding: mechanism-evidenced
   note: >-
     Credit misattribution is evidenced by records rather than by recollection: first authorship on the

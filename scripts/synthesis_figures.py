@@ -42,6 +42,7 @@ def figure_map(domain: str) -> dict[str, str]:
     result = build_comparison(domain)
     corpus = result["observations"]["corpus_distribution"]
     patterns = result["observations"]["structural_patterns"]
+    coverage = result["observations"]["explanatory_coverage"]
     systems = result["observations"]["recognition_system_profiles"]
     awards = result["observations"]["award_interactions"]
     spread = systems["dimension_spread"]
@@ -73,6 +74,12 @@ def figure_map(domain: str) -> dict[str, str]:
         "cases_accounted": _fmt(patterns["n_cases_accounted"]),
         "accounting_coverage": _fmt(patterns["accounting_coverage_percentage"]),
         "cases_unaudited": _fmt(len(patterns["cases_unaudited"])),
+        "under_recognized_cases": _fmt(coverage["n_under_recognized"]),
+        "unexplained_under_recognition": _fmt(coverage["n_unexplained_under_recognition"]),
+        "aligned_without_mechanism": _fmt(coverage["n_aligned_without_mechanism"]),
+        "under_recognition_threshold": _fmt(coverage["under_recognition_threshold"]),
+        "eligible_concepts": _fmt(coverage["n_eligible_concepts"]),
+        "evidenced_concepts": _fmt(coverage["n_evidenced_concepts"]),
         "established_patterns": _fmt(patterns["established_count"]),
         "emergent_patterns": _fmt(sum(1 for p in patterns["patterns"] if p["status"] == "emergent")),
         "total_patterns": _fmt(len(patterns["patterns"])),

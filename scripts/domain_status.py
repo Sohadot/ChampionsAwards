@@ -23,6 +23,7 @@ from config import (
 from domain_comparison import (
     _domain_awards,
     corpus_distribution,
+    explanatory_coverage,
     pattern_distribution,
     rls_profiles,
 )
@@ -100,15 +101,27 @@ def dod_rows(domain: str) -> list[dict[str, Any]]:
 
 def observed_rows(domain: str) -> list[dict[str, Any]]:
     """Reported, never required. These describe what the corpus turned out to
-    contain; none of them gates maturity under DoD v1.1."""
+    contain; none of them gates maturity under DoD v1.1.
+
+    Note what is NOT reported here any more: a bare count of cases with no
+    evidenced mechanism. That number mixes two different things - a deficit no
+    mechanism explains, and a case with no deficit to explain - and reporting it
+    alone made alignment between merit and recognition look like an explanatory
+    failure. Coverage is reported against the recognition deficit instead.
+    """
     patterns = pattern_distribution(domain)
+    coverage = explanatory_coverage(domain)
     return [
-        {"observation": "evidenced mechanisms", "value": len(patterns["patterns"])},
+        {"observation": "evidenced mechanisms",
+         "value": f"{len(patterns['patterns'])}/{coverage['n_eligible_concepts']} audit-eligible concepts"},
         {"observation": "established mechanisms", "value": patterns["established_count"]},
         {"observation": "emergent mechanisms",
          "value": sum(1 for p in patterns["patterns"] if p["status"] == "emergent")},
-        {"observation": "cases unexplained after audit",
-         "value": f"{patterns['n_cases_without_evidenced_pattern']}/{patterns['denominator']}"},
+        {"observation": "unexplained under-recognition",
+         "value": f"{coverage['n_unexplained_under_recognition']}/{coverage['n_under_recognized']} "
+                  f"cases with a gap >= {coverage['under_recognition_threshold']}"},
+        {"observation": "aligned, no mechanism required",
+         "value": f"{coverage['n_aligned_without_mechanism']}/{coverage['n_cases']}"},
     ]
 
 
@@ -130,8 +143,8 @@ def main() -> None:
         print(f"  RLS systems: {systems['n_systems']}  (median RLS {systems['median_composite']})")
         print(f"  Mechanism accounting: {patterns['n_cases_accounted']}/{patterns['denominator']} "
               f"({patterns['accounting_coverage_percentage']}%), unaudited {len(patterns['cases_unaudited'])}")
-        print("  Observed (not required): " + ", ".join(
-            f"{row['observation']} {row['value']}" for row in observed_rows(slug)))
+        for row in observed_rows(slug):
+            print(f"    {row['observation']}: {row['value']}   (observed, not required)")
         if pending:
             print(f"  Definition of Done pending -> {', '.join(pending)}")
         else:

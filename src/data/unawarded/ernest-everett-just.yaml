@@ -88,7 +88,6 @@ mechanism_audit:
     - delayed-recognition
     - institutional-gatekeeping
     - posthumous-recognition
-    - recognition-bias
   finding: mechanism-evidenced
   note: >-
     Institutional exclusion is evidenced, and by an institution rather than by inference: the Marine

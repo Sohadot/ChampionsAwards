@@ -90,7 +90,6 @@ mechanism_audit:
   - institutional-gatekeeping
   - delayed-recognition
   - theory-experiment-asymmetry
-  - recognition-bias
   finding: no-mechanism-evidenced
   note: >-
     Audited against every published mechanism in the ontology, and none is supported by the record for

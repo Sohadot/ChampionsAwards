@@ -204,6 +204,30 @@ def pattern_readings(patterns: dict[str, Any]) -> list[str]:
     return lines
 
 
+def coverage_reading(coverage: dict[str, Any]) -> str:
+    """States coverage against the deficit, not against the corpus. A case whose
+    recognition matches assessed merit is not an unexplained case."""
+    unexplained = coverage["n_unexplained_under_recognition"]
+    aligned = coverage["n_aligned_without_mechanism"]
+    text = (
+        f"{coverage['n_under_recognized']} of {coverage['n_cases']} cases carry a recognition gap of "
+        f"{_fmt(coverage['under_recognition_threshold'])} points or more. Of those, {unexplained} "
+        f"{'carries' if unexplained == 1 else 'carry'} no evidenced mechanism after a dated audit. "
+    )
+    if aligned:
+        text += (
+            f"A further {aligned} {'case shows' if aligned == 1 else 'cases show'} recognition roughly "
+            f"matching assessed merit and therefore {'has' if aligned == 1 else 'have'} no deficit "
+            f"outstanding to explain. "
+        )
+    else:
+        text += "No case in this corpus sits in the band where recognition roughly matches assessed merit. "
+    return text + (
+        f"The corpus evidences {coverage['n_evidenced_concepts']} of "
+        f"{coverage['n_eligible_concepts']} audit-eligible mechanisms."
+    )
+
+
 def rls_reading(systems: dict[str, Any]) -> str:
     spread = systems["dimension_spread"]
     widest = max(spread, key=lambda k: (spread[k]["spread"], k)) if spread else None
@@ -237,6 +261,7 @@ def build_sector(domain: str, site: dict[str, Any]) -> dict[str, Any]:
     result = build_comparison(domain)
     corpus = result["observations"]["corpus_distribution"]
     patterns = result["observations"]["structural_patterns"]
+    coverage = result["observations"]["explanatory_coverage"]
     systems = result["observations"]["recognition_system_profiles"]
     awards = result["observations"]["award_interactions"]
 
@@ -292,7 +317,9 @@ def build_sector(domain: str, site: dict[str, Any]) -> dict[str, Any]:
         "figure": gap_figure(corpus),
         "gap_reading": gap_reading(corpus),
         "patterns": patterns,
+        "coverage": coverage,
         "pattern_readings": pattern_readings(patterns),
+        "coverage_reading": coverage_reading(coverage),
         "systems": systems,
         "profiles": profiles,
         "rls_labels": rls_labels,
@@ -311,7 +338,8 @@ def build_sector(domain: str, site: dict[str, Any]) -> dict[str, Any]:
 
 
 def generated_readings(sector: dict[str, Any]) -> list[str]:
-    return [sector["gap_reading"], sector["rls_reading"], sector["award_reading"], *sector["pattern_readings"]]
+    return [sector["gap_reading"], sector["rls_reading"], sector["award_reading"],
+            sector["coverage_reading"], *sector["pattern_readings"]]
 
 
 def lint_generated_prose(sector: dict[str, Any]) -> list[str]:

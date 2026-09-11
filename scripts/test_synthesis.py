@@ -152,5 +152,51 @@ check("a rule dated only by a secondary source fails validation",
 _ledger = DATA.parent.parent / "docs" / "cycle-02-requalification-ledger.md"
 check("the requalification ledger exists", _ledger.is_file())
 
+# 9. Explanatory coverage: alignment is not an explanatory failure.
+from config import AUDIT_ELIGIBLE_CONCEPT_TYPES, UNDER_RECOGNITION_MIN_GAP, is_under_recognized
+from validate_content import (
+    collect_concept_slugs_by_type,
+    collect_published_slugs,
+    validate_mechanism_audit as _vma,
+    validate_patterns,
+)
+
+_cov = dc.explanatory_coverage(DOMAIN)
+_corpus = dc.corpus_distribution(DOMAIN)
+check("coverage bands account for every case",
+      sum(r["cases"] for r in _cov["by_band"]) == _corpus["n_cases"])
+check("every band's rows split into mechanism / no mechanism",
+      all(r["with_mechanism"] + r["without_mechanism"] == r["cases"] for r in _cov["by_band"]))
+check("unexplained under-recognition counts only cases above the published band floor",
+      all(is_under_recognized(c["gap"]) for c in _cov["unexplained_under_recognition"]))
+check("aligned cases are never counted as unexplained",
+      all(not is_under_recognized(c["gap"]) for c in _cov["aligned_without_mechanism"]))
+check("unexplained under-recognition never exceeds the under-recognized population",
+      _cov["n_unexplained_under_recognition"] <= _cov["n_under_recognized"] <= _cov["n_cases"])
+check("the band floor comes from the published gap bands, not a second number",
+      _cov["under_recognition_threshold"] == UNDER_RECOGNITION_MIN_GAP
+      and dc.recognition_gap_label(UNDER_RECOGNITION_MIN_GAP) == "under-recognized"
+      and dc.recognition_gap_label(UNDER_RECOGNITION_MIN_GAP - 1) == "recognition roughly matches assessed merit")
+
+# 10. Only audit-eligible concepts may be tested against a case.
+_mech = collect_concept_slugs_by_type(AUDIT_ELIGIBLE_CONCEPT_TYPES)
+_all_concepts = collect_published_slugs("concepts")
+check("audit-eligible concepts are a strict subset of published concepts",
+      bool(_mech) and _mech < _all_concepts,
+      f"{len(_mech)} eligible of {len(_all_concepts)} published")
+check("the engine's eligible list matches the validator's",
+      set(dc.audit_eligible_concepts()) == _mech)
+check("the engine counts ontology coverage against eligible concepts only",
+      _cov["n_eligible_concepts"] == len(_mech))
+_framework = {"merit-vs-recognition"}
+_bad_audit = {"sources": [{"type": "institutional"}], "patterns": ["credit-misattribution"],
+              "mechanism_audit": {"search_date": "2026-09-11", "considered": ["merit-vs-recognition"],
+                                  "finding": "mechanism-evidenced", "note": "x"}}
+check("a framework concept cannot be a considered mechanism",
+      bool(_vma("unawarded", _bad_audit, "s.yaml", _mech)))
+_bad_pattern = {"patterns": ["merit-vs-recognition"], "sources": [{"type": "institutional"}]}
+check("a framework concept cannot be declared as a case pattern",
+      bool(validate_patterns("unawarded", _bad_pattern, "s.yaml", _framework | _mech, _mech)))
+
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

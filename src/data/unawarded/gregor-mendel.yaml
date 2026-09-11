@@ -81,7 +81,6 @@ mechanism_audit:
     - credit-misattribution
     - institutional-exclusion
     - institutional-gatekeeping
-    - recognition-bias
     - posthumous-recognition
   finding: mechanism-evidenced
   note: >-

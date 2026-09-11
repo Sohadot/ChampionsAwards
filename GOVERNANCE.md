@@ -131,6 +131,16 @@ rejects applying a rule to an event that predates it. Where the rule in force
 cannot be established, none is applied, and the outcome stands without a
 rule-based explanation.
 
+## Concept semantics (enforced)
+
+Concepts declare a `concept_type`: `mechanism` (operative and case-level),
+`recognition-pattern` (an umbrella tendency covering several mechanisms) or
+`framework-concept` (a distinction the project reasons with). Only a `mechanism`
+can be evidenced in a case, so only a mechanism may appear in a case's `patterns`
+or in a `mechanism_audit.considered` list — an umbrella tendency or a framework
+distinction cannot be a failed mechanism test, and counting it as one makes the
+ontology look narrower than it is.
+
 ## Mechanism audits (enforced)
 
 A case may declare a `mechanism_audit`: a dated record of the search for a
@@ -141,6 +151,13 @@ contradicts the case's own `patterns`. This makes "no mechanism recorded" a
 documented decision rather than a silence, and lets the engine report **mechanism
 accounting** — how much of the corpus has actually been examined — separately from
 how many mechanisms recur.
+
+"No mechanism evidenced" is not the same as "unexplained". A case whose
+recognition roughly matches assessed merit has no deficit outstanding, so finding
+no mechanism there is the expected result. The engine therefore reports
+**explanatory coverage** against the published gap bands: unexplained
+under-recognition (no mechanism *and* a gap at or above the `under-recognized`
+floor) is counted separately from aligned cases that require no explanation.
 
 ## Correction policy
 
