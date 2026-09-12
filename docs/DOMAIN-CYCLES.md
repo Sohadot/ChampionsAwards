@@ -365,7 +365,7 @@ promotes it.
 
 1. **Cycle 01 — Physics & Astronomy** *(closed 2026-09-10 — mature v1.0)*
 2. **Cycle 02 — Biology, Medicine & Genetics** *(closed 2026-09-11 — mature v1.0)*
-3. **Cycle 03 — Mathematics & Computing** *(open — 2026-09-11)*
+3. **Cycle 03 — Mathematics & Computing** *(closed 2026-09-12 — mature v1.0)*
 4. Then, and only then, outside the sciences: Literature → Peace →
    Human Rights / Law → Arts → Social Sciences → Technology / Engineering.
 
@@ -570,9 +570,9 @@ source-grade closure 1/4, and no award anatomy or synthesis.
 
 ---
 
-## Cycle 03 — Mathematics & Computing — OPEN
+## Cycle 03 — Mathematics & Computing — CLOSED
 
-Opened: 2026-09-11. Run `python scripts/domain_status.py` for live status.
+Opened 2026-09-11. Closed 2026-09-12. Run `python scripts/domain_status.py` for live status.
 
 Like Cycle 02, this cycle opens with a **baseline requalification** rather than an
 expansion — and with one question Cycle 02 did not have to ask:
@@ -923,16 +923,70 @@ one's instances stand in separate contexts and the other's do not. Identical
 support, different status, is what the distinction between recurrence and
 replication looks like once it is measured rather than argued.
 
-### Definition of Done - every criterion met
+### Closure
 
-`python scripts/domain_status.py` reports **Mathematics & Computing - MATURE
-v1.0**: 10 DDI cases, 3 RLS systems, mechanism accounting 10/10 with 0 unaudited,
-source-grade closure 13/13, award anatomy mapped (three of them), synthesis
-published. Reported and required by nothing: 3 of 7 audit-eligible mechanisms
-evidenced, 1 established and 2 emergent, unexplained under-recognition 0 of 5,
-aligned cases 5 of 10, cross-cutting 0/0/0.
+> **Mathematics & Computing Recognition Layer — mature v1.0**
+> Closed at corpus snapshot `fb8f6090f4e8` · data through 2026-09-12 · governed by DoD v1.1
 
-Closure is a separate decision and is not declared here.
+Every criterion measured and met (`python scripts/domain_status.py`):
+
+| Criterion | Measured |
+| --- | --- |
+| DDI cases ≥ 10 | 10 |
+| RLS systems ≥ 3 | 3 |
+| Mechanism accounting = 100 % | 10/10 |
+| Cases unaudited = 0 | 0 |
+| Source-grade closure | 13/13 entries closed |
+| Award anatomy | Turing Award, Fields Medal and Wolf Prize mapped |
+| Synthesis | *Two Observations, One Context: Recognition Outcomes in Mathematics & Computing* |
+
+Reported, and required by nothing:
+
+| Observation | Value |
+| --- | --- |
+| Evidenced mechanisms | 3 of 7 audit-eligible concepts |
+| Established mechanisms | 1 — institutional exclusion (2 cases, 2 contexts) |
+| Emergent mechanisms | 2 — delayed recognition (1 case); compulsory secrecy (**2 cases, 1 context — regime-bounded**) |
+| Cases with a recognition deficit | 5 of 10 |
+| Deficits with an evidenced mechanism | 5 of 5 |
+| Unexplained under-recognition | 0 of 5 |
+| Recognition aligned, no deficit to explain | 5 of 10 |
+| Subfield coverage | mathematics 4c / computing 6c / **cross-cutting 0c 0s 0a** |
+
+The cross-cutting compartment stays in the vocabulary. It is not deleted because
+it is empty and it is not filled because it is available: the synthesis uses it
+honestly to describe a report spanning both halves, while coverage counts only
+cases, systems and awards. **The zero is a result.**
+
+### What this cycle added to the project
+
+Closure is not the arrival of a tenth person. Six things entered the project here
+that were not in it before, each because the corpus forced them rather than
+because a plan scheduled them:
+
+1. **Composite-domain accounting.** A domain whose name joins two recognition
+   cultures can no longer hide an empty half. `subfield_coverage` measures it,
+   publishes it, and gates nothing.
+2. **Recognition architecture became comparative.** Three anatomies in one domain
+   showed that systems sharing a field can differ radically in nomination, funding,
+   transparency and governance — open nomination and committees published since
+   1936 at the Fields Medal, invitation-only with fifty-year seals at the Nobel,
+   neither readable at the Turing Award.
+3. **Cross-domain award accounting.** A relation is counted in the domain of the
+   *case* it names, never of the award that carries it.
+4. **Recurrence is not replication.** Two cases inside one regime do not become an
+   established mechanism. Support and independent support are separate published
+   figures, and only the second decides lifecycle status.
+5. **Compulsory secrecy.** The ontology grew because the corpus produced two
+   documented deficits no concept described — not because a maturity gate asked
+   for another mechanism. The gate had already been removed in Cycle 01 for
+   exactly that reason.
+6. **SEO became governed architecture.** The reasoning graph and the rendered
+   graph are one structure, checked against the built artefact, rather than a
+   presentation layer applied afterwards.
+
+> **Mathematics & Computing did not mature by producing more mechanisms. It
+> matured by learning when two observations are still only one context.**
 
 Production verification in Search Console - submit the sitemap, inspect one URL
 per template family, confirm the Google-selected canonical and the structured-data
