@@ -634,3 +634,50 @@ alongside it. A constraint can be real, documented and consequential for one
 award without producing a present recognition deficit.
 
 The next three cases are not chosen. The read at 5 is the input to that choice.
+
+### Award anatomies, and the recompute at the same 5 (2026-09-12)
+
+Two things the Stage 1 corpus exposed were corrected before any further
+expansion, and no case was added, removed or rescored while doing it.
+
+**Identity.** The section label "The Unawarded Archive" had become narrower than
+its contents - Cycle 02 put two aligned cases in it, Stage 1 put a Turing laureate
+in it - and the unconditional paragraph beneath it asserted a failure that was
+false on four of twenty-five entries. The label is now **The Recognition Archive**,
+described by the project's own three-outcome logic: *a governed archive of how
+contribution and recognition align, diverge, or remain unresolved.* Display
+strings only; the `/unawarded` URL and the data cluster are unchanged, so
+`unawarded` survives as a corpus subset rather than as the public identity.
+
+**Two anatomies, not one.** A composite domain with one award anatomy would leave
+half its own name blind at the award layer - the failure mode `subfield_coverage`
+exists to stop passing silently. The Turing Award anatomy documents 3 of 12
+architecture elements and states that nine are absent because every page of the
+awarding society returned HTTP 403 across three domains; the Fields Medal anatomy
+documents 9 of 12 from the award's own published Statutes. Award relations in the
+domain went **0 to 3**, across three interaction types, and `eligibility-constraint`
+is the first of its kind in the corpus. Full account:
+[`cycle-03-anatomy-read.md`](cycle-03-anatomy-read.md).
+
+**Governance and funding are now separate by schema.** `funding_source` is a
+first-class architecture field; an anatomy that says who decides without saying
+who pays fails validation. Both Nobel anatomies were amended in the same pass.
+The requalification had lowered the Turing independence score from 85 to 62 on
+exactly this confusion; the schema is what stops the next anatomy repeating it.
+
+The recompute answered the domain-boundary question in a form it could not take
+before. Both halves now carry an award architecture under one schema, so they can
+be compared element by element - and the comparison returns a large contrast:
+open nomination and published committees at the Fields Medal, invitation-only
+nomination and fifty-year seals at the Nobel, neither readable at the Turing
+Award; a university trust, a bequest, and a single commercial sponsor. On that
+evidence the Fields Medal resembles the Nobel system more than it resembles the
+award in its own domain. **The two halves are comparable, and they are not
+alike** - which keeps the composite name as a unit of comparison and not as a
+claim of similarity. No split proposed.
+
+One Stage 1 inference was withdrawn in the same round: the 85-86 DDI compression
+is not evidence about this domain. Both mature domains show a DDI spread of 13-14
+at ten cases; a spread of 1 at five deliberately top-tier cases is most
+economically read as selection. That is an observation about the corpus, not
+about the domain or the instrument.

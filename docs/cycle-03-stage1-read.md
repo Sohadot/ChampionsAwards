@@ -1,5 +1,17 @@
 # Cycle 03 — Individuals Expansion, Stage 1: the pause at 5
 
+> **Correction, 2026-09-12 (anatomy round).** Two things below are amended. The
+> observed-recognition range is stated as "nineteen (75–94)"; it is **26 (68–94)**
+> — the figure omitted Noether at 68, the domain's inherited case. And the use of
+> the DDI compression as evidence for the composite-domain question is **withdrawn**.
+> A two-point DDI band across five cases is not evidence that merit is similar in
+> mathematics and computing, and it is not evidence that the two halves behave
+> alike: the two mature domains both show a DDI spread of 13–14 points at ten
+> cases, so the compression here most plausibly reflects which five contributors
+> were selected, not a property of the domain or of the instrument. The boundary
+> answer below now rests on two supports rather than three; see
+> [`cycle-03-anatomy-read.md`](cycle-03-anatomy-read.md).
+
 Round: **Liskov → Spärck Jones → Conway → Wiles**, 2026-09-12. Four researched,
 four published, no reserve drawn. The corpus is paused at 5 cases in
 Mathematics & Computing for assessment before any further expansion.
@@ -69,7 +81,9 @@ Three things now point the same way across the boundary. The DDI values sit in a
 band of two points across all five cases (85–86) while the observed recognition
 ranges over nineteen (75–94), so within this corpus the instrument is
 discriminating on the recognition side rather than on the merit side, and it does
-so identically in both subfields. Institutional exclusion is evidenced once on
+so identically in both subfields. *(Both halves of that sentence are corrected
+above: the observed range is 68–94, and the compression is withdrawn as evidence
+for this question.)* Institutional exclusion is evidenced once on
 each side. And both subfields have produced an aligned case, which means neither
 is behaving as a register of a single outcome class.
 
