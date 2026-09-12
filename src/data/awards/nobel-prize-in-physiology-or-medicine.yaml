@@ -9,6 +9,11 @@ legitimacy_question: "The question this page can answer is narrow: what do the a
 structural_notes: "Biology adds a layer the physics page did not need. Two of the three cases here turn on when a rule took effect and on how far the archive is open, so the rules are dated and the archive's horizon is stated rather than assumed. Franklin is the test case: the prohibition on posthumous awards entered the Statutes in 1974 and cannot be applied to a decision taken in 1962."
 architecture:
   granting_body: The Nobel Assembly at Karolinska Institutet, which has 50 members, selects the laureates from among the candidates recommended by the Nobel Committee for Physiology or Medicine.
+  funding_source: >-
+    The prize is paid from the fund established by Alfred Nobel's will and administered by the Nobel
+    Foundation. The Statutes name no external, commercial or state sponsor, and the body that
+    selects the laureates is not the body that holds the money. The mechanism by which the annual
+    prize amount is set was not re-read by this audit - see the documented exception.
   governing_documents: The Statutes of the Nobel Foundation, together with the prize-specific regulations of the Nobel Assembly at Karolinska Institutet.
   eligibility: >-
     Candidates are those nominated by nominators invited by the Nobel Committee; no one may nominate
@@ -188,6 +193,9 @@ provenance:
   architecture:granting_body:
     record_anchor: [2]
     basis: awarding-institution-record
+  architecture:funding_source:
+    record_anchor: [1]
+    basis: awarding-institution-record
   architecture:governing_documents:
     record_anchor: [1]
     basis: awarding-institution-record
@@ -222,6 +230,20 @@ provenance:
   architecture:finality:
     record_anchor: [1, 2]
     basis: awarding-institution-record
+audit_exceptions:
+  - claim: architecture:funding_source
+    search_date: '2026-09-12'
+    search_note: >-
+      Re-read of the Nobel Foundation's own page on how the prizes are funded was attempted on this
+      date and returned HTTP 403 to this audit, as did the foundation's other pages. The claim stated
+      here - that the prize is paid from the fund created by Alfred Nobel's will and administered by
+      the Nobel Foundation, with no external sponsor named in the governing documents - rests on the
+      Statutes and the will, which are the governing documents already cited by this entry.
+    best_source: 1
+    reason: >-
+      Governing-document-sufficient. What is asserted is the absence of an external sponsor in the
+      rules, which the governing documents carry. The mechanism that sets the annual amount is not
+      asserted, because the page describing it was not reached.
 sources:
   - title: Statutes of the Nobel Foundation (eligibility, sharing, posthumous provision, nomination deadline, secrecy, withholding, finality)
     publisher: The Nobel Foundation (nobelprize.org)

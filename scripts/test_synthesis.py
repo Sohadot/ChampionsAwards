@@ -7,6 +7,7 @@ must be refutable, and a hand-typed statistic must fail the build.
 """
 from __future__ import annotations
 
+import pathlib
 import yaml
 
 from config import DATA
@@ -234,6 +235,26 @@ check("an unknown subfield fails validation",
       bool(validate_subfield("unawarded", {"domain": "mathematics-computing", "subfield": "physics"}, "s.yaml")))
 check("a subfield on a non-composite domain fails validation",
       bool(validate_subfield("unawarded", {"domain": "physics-astronomy", "subfield": "mathematics"}, "s.yaml")))
+
+# 12. Award anatomy: who decides and who pays are separate, enforced fields.
+from config import AWARD_ARCHITECTURE_KEYS, FUNDING_SEPARATION_REQUIRED
+from validate_content import validate_architecture
+
+_decides, _pays = FUNDING_SEPARATION_REQUIRED
+check("funding is a first-class architecture field", _pays in AWARD_ARCHITECTURE_KEYS)
+check("an anatomy that names the granting body without the funder fails validation",
+      bool(validate_architecture("awards", {"architecture": {_decides: "A society."}}, "a.yaml")))
+check("naming both passes",
+      not validate_architecture(
+          "awards", {"architecture": {_decides: "A society.", _pays: "A company."}}, "a.yaml"))
+check("an anatomy may state the funder without the granting body",
+      not validate_architecture("awards", {"architecture": {_pays: "A company."}}, "a.yaml"))
+
+_award_dir = pathlib.Path(__file__).resolve().parent.parent / "src" / "data" / "awards"
+_anatomies = [yaml.safe_load(f.read_text(encoding="utf-8")) for f in sorted(_award_dir.glob("*.yaml"))]
+_with_arch = [a for a in _anatomies if isinstance(a.get("architecture"), dict) and a["architecture"]]
+check("every published anatomy separates governance from funding",
+      bool(_with_arch) and all(_pays in a["architecture"] for a in _with_arch))
 
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

@@ -7,6 +7,11 @@ summary: The Nobel Prize in Physics is a closed-nomination, committee-screened a
 introduction: This entry reads the Physics prize as a mechanism. It separates what the rules formally say (architecture), what the historical record shows (operation), and where ChampionsAwards cases touch that structure (our analysis) - keeping the three strictly apart.
 architecture:
   granting_body: The Royal Swedish Academy of Sciences awards the Nobel Prize in Physics, within the framework of the Nobel Foundation.
+  funding_source: >-
+    The prize is paid from the fund established by Alfred Nobel's will and administered by the Nobel
+    Foundation. The award's governing documents name no external, commercial or state sponsor, and
+    the body that decides is not the body that holds the money. The mechanism by which the annual
+    prize amount is set was not re-read by this audit - see the documented exception.
   governing_documents:
     - Alfred Nobel's will (1895)
     - Statutes of the Nobel Foundation
@@ -26,6 +31,9 @@ architecture:
 provenance:
   architecture:granting_body:
     record_anchor: [3]
+    basis: awarding-institution-record
+  architecture:funding_source:
+    record_anchor: [2]
     basis: awarding-institution-record
   architecture:governing_documents:
     record_anchor: [2]
@@ -127,6 +135,20 @@ corpus_relations:
       reason: The evaluation is reported by a historian of science working from the Nobel archives, and is cited as that scholarly account rather than as the archival document, which was not inspected directly.
       best_source: 10
     claim: A historian working from the Nobel archives reports that the committee commissioned an expert evaluation of Bose's work from Oskar Klein in 1956.
+audit_exceptions:
+  - claim: architecture:funding_source
+    search_date: '2026-09-12'
+    search_note: >-
+      Re-read of the Nobel Foundation's own page on how the prizes are funded was attempted on this
+      date and returned HTTP 403 to this audit, as did the foundation's other pages. The claim stated
+      here - that the prize is paid from the fund created by Alfred Nobel's will and administered by
+      the Nobel Foundation, with no external sponsor named in the governing documents - rests on the
+      Statutes and the will, which are the governing documents already cited by this entry.
+    best_source: 2
+    reason: >-
+      Governing-document-sufficient. What is asserted is the absence of an external sponsor in the
+      rules, which the governing documents carry. The mechanism that sets the annual amount is not
+      asserted, because the page describing it was not reached.
 sources:
   - title: Nomination and selection of physics laureates (who may nominate; fifty-year secrecy)
     publisher: The Nobel Foundation (nobelprize.org)

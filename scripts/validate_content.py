@@ -8,6 +8,7 @@ from config import (
     ARCHIVE_VISIBILITY_STATES,
     AUDIT_ELIGIBLE_CONCEPT_TYPES,
     AWARD_ARCHITECTURE_KEYS,
+    FUNDING_SEPARATION_REQUIRED,
     CONCEPT_TYPES,
     MECHANISM_FINDINGS,
     TIME_DEPENDENT_INTERACTIONS,
@@ -627,6 +628,14 @@ def validate_architecture(cluster_name: str, item: dict[str, Any], source_file: 
                 errors.append(f"{cluster_name}/{source_file}: architecture['{key}'] must be a list of non-empty strings")
         else:
             errors.append(f"{cluster_name}/{source_file}: architecture['{key}'] must be text or a list")
+
+    decides, pays = FUNDING_SEPARATION_REQUIRED
+    if decides in architecture and pays not in architecture:
+        errors.append(
+            f"{cluster_name}/{source_file}: architecture states '{decides}' without '{pays}' - "
+            f"who decides and who pays are separate facts, and an anatomy that gives only the first "
+            f"lets the reader infer the second. State the funder, or state that it was not reached."
+        )
     return errors
 
 

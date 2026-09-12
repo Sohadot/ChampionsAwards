@@ -1,0 +1,140 @@
+title: ACM A.M. Turing Award
+slug: acm-am-turing-award
+status: published
+last_reviewed: 2026-09-12
+domain: mathematics-computing
+subfield: computing
+summary: An anatomy of the computing side of a composite domain - what the award's record establishes about who decides, who pays, and one governed case that received it, and an explicit account of the nine architecture elements this audit could not reach because the awarding body's own pages are closed to it.
+introduction: This page maps an award, not a field. One of the five governed cases in this domain is a laureate of it, and that case is the only corpus relation below; the other four rest on other institutions or on no award apparatus at all, and are not forced onto this page.
+legitimacy_question: "The question this page can answer is unusually narrow, and the narrowness is the finding: who grants the award, who funds it, and what the award was given for in one documented case. The question it cannot answer is how the decision is made - the awarding society's pages describing nomination, endorsement, the committee, sharing, secrecy and finality all returned HTTP 403 to this audit, so nine of the twelve architecture elements are absent rather than summarised from memory."
+structural_notes: "The Nobel anatomies in this corpus document twelve architecture elements each; this one documents three. That gap is recorded rather than filled. It also reads against the requalified transparency score for this system, which the Cycle 03 baseline set at 62: an apparatus whose criteria and laureates are published while its procedure is not readable is what that score describes. The page's own centre of gravity is the separation the requalification exposed - the body that decides is a scholarly society, and the money is not its own."
+architecture:
+  granting_body: The Association for Computing Machinery, a professional computing society, gives the award annually to an individual selected for contributions of a technical nature made to the computing community.
+  funding_source: >-
+    The prize is funded by a commercial sponsor, not by the awarding society. The society's own award
+    page states that financial support for the prize is provided by Google, and the funding level rose
+    to one million US dollars effective 2014 from the quarter of a million in force from 2007. The
+    arrangement has a history, and it is not the same arrangement that was in force when this corpus's
+    one laureate received the award - see the funding rule history below.
+  eligibility: The award recognises contributions of a technical nature made to the computing community whose importance to computing is lasting and major, which in practice means it follows demonstrated durability rather than early promise.
+rule_history:
+  - element: funding_source
+    current_rule: Financial support for the prize is provided by Google, at a funding level of one million US dollars effective 2014.
+    effective_from: 2014
+    predecessor_state: >-
+      Known in outline, and different from the current arrangement. A reference work records that Intel
+      Corporation began funding the award in 2002 and that Google joined Intel in funding it in 2007,
+      when the accompanying prize rose to 250,000 US dollars; the society's own page records the rise to
+      one million effective 2014. The awarding society's own account of the funding history, and the
+      terms of either sponsorship agreement, were not reached by this audit.
+    exception:
+      search_date: '2026-09-12'
+      search_note: >-
+        Searched the awarding society's award pages, media-centre announcements and award-committee
+        documents for a dated account of who has funded the prize and on what terms. Every page on the
+        society's domains returned HTTP 403 to this audit on this date, including the award page that
+        was readable during the Cycle 03 requalification on 2026-09-11. The dated sequence therefore
+        rests on a reference work rather than on the society's record.
+      best_source: 4
+    events_covered:
+      - case: barbara-liskov
+        event_date: 2008
+        established: false
+        note: >-
+          The funding arrangement in force in 2008 is not established at record grade, and it was not
+          the current one. The amount is anchored: her university reported at the time that the honour
+          carried a purse of 250,000 US dollars. The composition of the funding behind that amount -
+          two corporate sponsors rather than the single one named today - rests on a reference work,
+          so the entry states it and does not assert it as the award's own record.
+key_facts:
+  - fact: The award is given annually by the Association for Computing Machinery to an individual selected for contributions of a technical nature made to the computing community.
+    source: 1
+  - fact: The prize was accompanied by 250,000 US dollars from 2007 to 2013, and the funding level was increased to one million US dollars effective 2014.
+    source: 1
+  - fact: "The society's own award page states that financial support for the prize is provided by Google. That page was read during the Cycle 03 requalification on 2026-09-11 and returned HTTP 403 on 2026-09-12; see the documented exception."
+    source: 5
+  - fact: The award was first given in 1966, to Alan J. Perlis, and a reference work records that Intel Corporation began funding it in 2002 and that Google joined Intel in funding it in 2007.
+    source: 4
+  - fact: "The 2008 award was given to Barbara Liskov for contributions to practical and theoretical foundations of programming language and system design, especially related to data abstraction, fault tolerance and distributed computing."
+    source: 2
+  - fact: Her university reported at the time of the announcement that the honour carried a purse of 250,000 US dollars.
+    source: 3
+analysis:
+  - heading: Who decides and who pays, kept apart on the page
+    body: "The Cycle 03 requalification lowered this system's independence score from 85 to 62 because the entry had been reading professional-society governance as freedom from commercial capture, while the award's own documentation names a commercial funder. That correction lived in a scoring rationale, where a reader could miss it. It is structural here: governance and funding are separate architecture elements on every award anatomy in this project, and an anatomy that states the first without the second now fails validation. The Nobel pages were amended in the same pass and state, in the same slot, that no external sponsor is named in their governing documents."
+  - heading: The funding arrangement is not a constant, and the corpus case predates the current one
+    body: "The award's money has changed hands. A reference work dates corporate funding to 2002 and a second sponsor to 2007; the society's page records the present level from 2014. Liskov's award falls in the middle period, under a smaller purse and, on the reference account, two sponsors rather than one. That is why funding carries a rule history here rather than a single present-tense sentence: an anatomy that stated only today's arrangement would have silently dated a 2008 decision against a 2014 rule, which is the error this project corrected in the Franklin case and does not intend to repeat in a different layer."
+  - heading: Nine elements that are absent, and why that is the finding
+    body: "Nomination, who may nominate, the selection body, the decision stages, the sharing rule, any posthumous rule, secrecy, withholding and finality are all missing from the architecture above. They are missing because every page of the awarding society that documents them was unreadable to this audit, not because they do not exist. The contrast is the point: the same audit reached twelve elements for each Nobel anatomy from the awarding institution's own published rules. A recognition system that publishes its criteria and its laureates but whose procedure cannot be read is a different object from one that publishes its statutes, and this page declines to make them look alike."
+  - heading: One relation, and four cases that do not belong here
+    body: "Liskov is the only corpus case with a documented relation to this apparatus, and she is the only one below. Conway and Spärck Jones are computing cases in the same domain and neither is a laureate; recording a non-award for them would imply a candidacy that no record establishes, and the society's laureate list was in any case unreadable to this audit. Noether and Wiles are mathematics cases outside this award's remit entirely. The page has one relation because the record supports one."
+corpus_relations:
+  - case: barbara-liskov
+    architecture_element: eligibility
+    interaction_type: documented-award-outcome
+    record_anchor: [2]
+    claim: "The 2008 award was made to Barbara Liskov, with the citation: for contributions to practical and theoretical foundations of programming language and system design, especially related to data abstraction, fault tolerance and distributed computing."
+provenance:
+  architecture:granting_body:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:funding_source:
+    record_anchor: [5]
+    basis: awarding-institution-record
+  architecture:eligibility:
+    record_anchor: [1]
+    basis: awarding-institution-record
+audit_exceptions:
+  - claim: architecture:funding_source
+    search_date: '2026-09-12'
+    search_note: >-
+      The awarding society's award page, which carries the statement that financial support for the
+      prize is provided by Google, returned HTTP 403 on this date. It was read at source during the
+      Cycle 03 requalification of this system on 2026-09-11, and the claim is carried forward with that
+      date stated rather than re-asserted as if freshly verified. No source read on either date gives
+      the terms of the sponsorship.
+    best_source: 1
+    reason: "Read-at-source, dated. The funder is asserted; the terms of the arrangement are not."
+  - claim: architecture:procedure
+    search_date: '2026-09-12'
+    search_note: >-
+      Searched for the awarding society's nomination process, its advice for nominators and endorsers,
+      its award-committee procedures, its Turing Award FAQ and its Turing Award committee page. All
+      returned HTTP 403, on three separate society domains, as did the digital library. No non-society
+      institutional source describing the procedure was found.
+    best_source: 1
+    reason: >-
+      Not reached, and not summarised. Nine architecture elements are omitted rather than written from
+      general knowledge, and the omission is stated on the page itself.
+  - claim: archive-visibility
+    search_date: '2026-09-12'
+    search_note: >-
+      Sought any published account of how far the award's own deliberation or nomination record is
+      open. The society's committee page was unreachable, and no release horizon, secrecy rule or
+      archive policy for this award was found at any record-grade source.
+    best_source: 1
+    reason: >-
+      No archive layer is published on this page. The Nobel anatomies carry one because the Statutes
+      state a fifty-year rule and the archive publishes a release horizon; nothing equivalent was
+      reached here, so the layer is absent rather than asserted empty.
+sources:
+  - title: "ACM A.M. Turing Award (awarding society, criteria, prize amount from 2007 and the increase effective 2014)"
+    publisher: Heidelberg Laureate Forum Foundation
+    url: https://www.heidelberg-laureate-forum.org/laureates/awards/acm-am-turing-award/
+    type: institutional
+  - title: "Barbara Liskov - ACM A.M. Turing Award 2008, laureate record and citation"
+    publisher: Heidelberg Laureate Forum Foundation
+    url: https://www.heidelberg-laureate-forum.org/laureate/barbara-liskov/
+    type: institutional
+  - title: "Barbara Liskov wins Turing Award (10 March 2009) - the prize purse at the time of the award"
+    publisher: MIT News, Massachusetts Institute of Technology
+    url: https://news.mit.edu/2009/turing-liskov-0310
+    type: institutional
+  - title: "Turing Award - history, first laureate, and the funding sequence (Intel from 2002, Google joining in 2007)"
+    publisher: Encyclopaedia Britannica
+    url: https://www.britannica.com/topic/Turing-Award
+    type: reference-secondary
+  - title: "ACM A.M. Turing Award - official award page (criteria, prize amount, financial support provided by Google); read at source 2026-09-11, HTTP 403 on 2026-09-12"
+    publisher: Association for Computing Machinery
+    url: https://awards.acm.org/turing
+    type: institutional

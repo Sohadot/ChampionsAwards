@@ -537,6 +537,14 @@ def is_valid_hypothesis_state(value: object) -> bool:
 # ---------------------------------------------------------------------------
 AWARD_ARCHITECTURE_FIELDS: Final[tuple[tuple[str, str], ...]] = (
     ("granting_body", "Granting body"),
+    # Who decides and who pays are different facts, and an award entry that states
+    # only the first invites the reader to infer the second. The Cycle 03
+    # requalification of the Turing Award lowered its independence score from 85 to
+    # 62 on exactly that confusion: professional-society governance had been read as
+    # freedom from commercial funding, while the award's own page names a single
+    # corporate funder. The separation is therefore structural here, not a remark in
+    # a rationale - see FUNDING_SEPARATION_REQUIRED below.
+    ("funding_source", "Funding source"),
     ("governing_documents", "Governing documents"),
     ("eligibility", "Eligibility"),
     ("nomination_eligibility", "Who may nominate"),
@@ -551,6 +559,11 @@ AWARD_ARCHITECTURE_FIELDS: Final[tuple[tuple[str, str], ...]] = (
 )
 
 AWARD_ARCHITECTURE_KEYS: Final[frozenset[str]] = frozenset(k for k, _ in AWARD_ARCHITECTURE_FIELDS)
+
+# An anatomy may not say who decides without saying who pays. Where the funder is
+# not documented, the entry says that in `funding_source` and carries an audit
+# exception; what it may not do is leave the question unasked.
+FUNDING_SEPARATION_REQUIRED: Final[tuple[str, str]] = ("granting_body", "funding_source")
 
 # Corpus-relation semantics. `architecture_element` says WHICH part of the award
 # apparatus a relation touches; `interaction_type` says WHAT the record shows
