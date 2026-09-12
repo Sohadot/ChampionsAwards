@@ -81,6 +81,11 @@ sources:
     publisher: The Nobel Prize (Nobel Prize Outreach)
     url: https://www.nobelprize.org/nomination/archive/
     type: institutional
+  - publisher: The Nobel Foundation (nobelprize.org)
+    title: Nobel Prize facts - posthumous Nobel Prizes (rule introduced in 1974; two awarded posthumously
+      before then)
+    type: institutional
+    url: https://www.nobelprize.org/prizes/facts/nobel-prize-facts/
 provenance:
   contribution:
     record_anchor: [2]
@@ -121,3 +126,73 @@ mechanism_audit:
     nomination archive is open only through 1953 and committee evaluations are not published. The gap
     is measured; the mechanism behind it is not recorded here.
   best_sources: [3, 4]
+mechanism_reaudit:
+  search_date: '2026-09-12'
+  ontology_revision: MOR-006
+  revision_basis: Re-audit performed under MOR-006, the revision in force at commit 442ffa6, and tested
+    against its full mechanism set.
+  remediates:
+    original_search_date: '2026-09-11'
+    original_revision: MOR-003
+    untested_then:
+    - theory-experiment-asymmetry
+  considered:
+  - credit-misattribution
+  - delayed-recognition
+  - institutional-exclusion
+  - institutional-gatekeeping
+  - posthumous-recognition
+  - theory-experiment-asymmetry
+  - compulsory-secrecy
+  verdicts:
+  - mechanism: credit-misattribution
+    verdict: not-supported
+    note: The 1944 experiment is attributed to Avery, MacLeod and McCarty throughout the record, and no
+      rival claimant appears. What the case documents is non-award, not displaced credit.
+  - mechanism: delayed-recognition
+    verdict: not-supported
+    note: Withdrawn in the original audit and still not supported. The mechanism describes acknowledgment
+      arriving long after a contribution; here no prize acknowledgment ever arrived, and the scientific
+      credit was never in dispute. Sustained non-award is a different thing from delay.
+  - mechanism: institutional-exclusion
+    verdict: not-supported
+    note: He held a research position at the Rockefeller Institute and was nominated by its own members
+      and by laureates. No formal barrier is documented.
+  - mechanism: institutional-gatekeeping
+    verdict: not-supported
+    note: Nothing in the available record documents an act obstructing publication or dissemination; the
+      1944 paper appeared in the Journal of Experimental Medicine.
+  - mechanism: posthumous-recognition
+    verdict: not-supported
+    note: Tested against the full nomination record rather than against the outcome. Thirty-seven of his
+      thirty-eight recorded nominations were for Physiology or Medicine between 1932 and 1953, all within
+      his lifetime; the thirty-eighth was for Chemistry in 1957, two years after his death in 1955. The
+      Nobel Foundation's prohibition on posthumous awards did not enter the Statutes until 1974, so no
+      codified bar was in force when that nomination was made, and the archive publishes no decision on
+      it. No eligibility rule is shown to have determined anything in this case, which is what the mechanism
+      requires.
+  - mechanism: theory-experiment-asymmetry
+    verdict: not-supported
+    note: The mechanism this re-audit was opened for, and on the face of the history it is the strongest
+      candidate in this domain - so it was tested against the mechanism's own fault line rather than against
+      the general shape of the story. That fault line requires a prediction, an experimental confirmation
+      of it, and reward flowing to the predicting theorists. Avery's 1944 result was itself the experimental
+      identification of the transforming principle, not the confirmation of someone else's prediction,
+      and the later structural work on DNA was a separate discovery rather than a theory his experiment
+      had verified. Nothing in the record documents a theorist rewarded for predicting what he demonstrated.
+  - mechanism: compulsory-secrecy
+    verdict: not-supported
+    note: No nondisclosure or classification obligation appears in the record; the work was published
+      in 1944.
+  finding: no-mechanism-evidenced
+  note: 'Re-audit against the full MOR-006 ontology, opened because the 2026-09-11 audit never tested
+    theory-experiment asymmetry. All seven mechanisms are now tested and none is supported, so the original
+    finding stands on a complete test. The measured gap remains unexplained by any mechanism in the ontology,
+    and that is left standing rather than filled: the committee''s evaluations are not published and the
+    Physiology or Medicine nomination archive is open only through 1953, so the reasons for the non-award
+    are not available to any audit this corpus can perform. No pattern changes and no score is touched.'
+  patterns_changed: false
+  scores_changed: false
+  best_sources:
+  - 3
+  - 4

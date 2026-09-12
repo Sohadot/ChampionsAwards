@@ -145,3 +145,66 @@ mechanism_audit:
     what the record shows is a contested credit, not a quiet interval. No claim is made about the
     committee's reasons, which are not published.
   best_sources: [2, 3]
+mechanism_reaudit:
+  search_date: '2026-09-12'
+  ontology_revision: MOR-006
+  revision_basis: Re-audit performed under MOR-006, the revision in force at commit 442ffa6, and tested
+    against its full mechanism set.
+  remediates:
+    original_search_date: '2026-09-11'
+    original_revision: MOR-003
+    untested_then:
+    - theory-experiment-asymmetry
+  considered:
+  - credit-misattribution
+  - delayed-recognition
+  - institutional-exclusion
+  - institutional-gatekeeping
+  - posthumous-recognition
+  - theory-experiment-asymmetry
+  - compulsory-secrecy
+  verdicts:
+  - mechanism: credit-misattribution
+    verdict: supported
+    note: 'Unchanged, and evidenced by records rather than recollection: first authorship on the 1944
+      paper, an archived civil action stipulating co-discovery and charging the senior author with representing
+      himself as sole discoverer, a 1952 nomination naming all three authors, and an award given in full
+      to the senior author.'
+  - mechanism: delayed-recognition
+    verdict: not-supported
+    note: The record shows contested credit, not a quiet interval, which the mechanism's definition excludes.
+  - mechanism: institutional-exclusion
+    verdict: not-supported
+    note: He held a doctoral position at the institution where the work was done.
+  - mechanism: institutional-gatekeeping
+    verdict: not-supported
+    note: 'Tested again against the archived patent episode and again not tagged: that concerns the assignment
+      of rights, not the obstruction of dissemination. The 1944 paper was published with him as first
+      author.'
+  - mechanism: posthumous-recognition
+    verdict: not-supported
+    note: Every documented event falls within his lifetime - the 1944 paper, the 1950 civil action, the
+      1952 nomination naming all three authors, and the 1952 award to the senior author alone. He died
+      in 2005. No eligibility or timing rule is implicated in any of it.
+  - mechanism: theory-experiment-asymmetry
+    verdict: not-supported
+    note: The mechanism this re-audit was opened for. Both Schatz and Waksman were experimentalists working
+      in the same laboratory programme, and the displacement the record documents runs from junior to
+      senior author, not from the experiment to a prediction it confirmed. That is the seniority fault
+      line credit misattribution already names, and this mechanism's fault line - between predicting and
+      demonstrating - does not appear in the case at all.
+  - mechanism: compulsory-secrecy
+    verdict: not-supported
+    note: No nondisclosure or classification obligation appears in the record. The patent litigation in
+      the archive concerns rights, not secrecy, and the underlying work was published in 1944.
+  finding: mechanism-evidenced
+  note: Re-audit against the full MOR-006 ontology, opened because the 2026-09-11 audit never tested theory-experiment
+    asymmetry. All seven mechanisms are now tested; credit misattribution is re-confirmed on the archival
+    records and remains the only mechanism this case carries. No claim is made about the committee's reasons,
+    which are not published. No pattern changes and no score is touched.
+  patterns_changed: false
+  scores_changed: false
+  best_sources:
+  - 2
+  - 3
+  - 4

@@ -118,3 +118,65 @@ mechanism_audit:
     at fifty, shortly before taking up a research professorship, is a fact of the case and is not
     offered here as a mechanism, since the ontology contains none that it matches.
   best_sources: [1, 2]
+mechanism_reaudit:
+  search_date: '2026-09-12'
+  ontology_revision: MOR-006
+  revision_basis: Re-audit performed under MOR-006, the revision in force at commit 442ffa6, and tested
+    against its full mechanism set.
+  remediates:
+    original_search_date: '2026-09-11'
+    original_revision: MOR-003
+    untested_then:
+    - theory-experiment-asymmetry
+  considered:
+  - credit-misattribution
+  - delayed-recognition
+  - institutional-exclusion
+  - institutional-gatekeeping
+  - posthumous-recognition
+  - theory-experiment-asymmetry
+  - compulsory-secrecy
+  verdicts:
+  - mechanism: credit-misattribution
+    verdict: not-supported
+    note: Wilson's 1905 result was independent and acknowledged hers in a footnote, and current scholarship
+      credits her directly. A parallel discovery is not a displaced one.
+  - mechanism: delayed-recognition
+    verdict: not-supported
+    note: 'Recognition arrived during her lifetime: a Carnegie grant in 1903, the Ellen Richards Prize
+      in 1905, listing among the top thousand in American Men of Science in 1910, and an offered research
+      professorship in 1912.'
+  - mechanism: institutional-exclusion
+    verdict: not-supported
+    note: 'The same record is what refutes it: grant, postdoctoral position, named prize, national listing
+      and an offered professorship are the opposite of a formal barrier.'
+  - mechanism: institutional-gatekeeping
+    verdict: not-supported
+    note: No act of obstruction is documented in the sources consulted; her monograph was published by
+      the Carnegie Institution in 1905.
+  - mechanism: posthumous-recognition
+    verdict: not-supported
+    note: She died in 1912, and what the record documents afterwards is thin citation of her monograph
+      rather than an award system barred from honouring her. No eligibility or timing rule is documented
+      as determining anything.
+  - mechanism: theory-experiment-asymmetry
+    verdict: not-supported
+    note: The mechanism this re-audit was opened for. Wilson's 1905 publication was an independent parallel
+      observation, not a prior theoretical prediction that her experiments confirmed, and he acknowledged
+      her work in a footnote. Neither the prediction nor the reward flow the mechanism requires is present.
+  - mechanism: compulsory-secrecy
+    verdict: not-supported
+    note: No nondisclosure or classification obligation appears in the record; the 1905 monograph was
+      published by the Carnegie Institution.
+  finding: no-mechanism-evidenced
+  note: 'Re-audit against the full MOR-006 ontology, opened because the 2026-09-11 audit never tested
+    theory-experiment asymmetry. All seven are now tested and none is supported. What remains is what
+    the original audit recorded: a contribution of the first rank whose author occupies a smaller place
+    in the later literature than the discovery does, with a measured gap and no mechanism in the ontology
+    that the record supports. Her early death at fifty is a fact of the case and is still not offered
+    as a mechanism. No pattern changes and no score is touched.'
+  patterns_changed: false
+  scores_changed: false
+  best_sources:
+  - 1
+  - 2

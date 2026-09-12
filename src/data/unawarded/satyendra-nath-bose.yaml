@@ -96,6 +96,11 @@ sources:
   publisher: Amitabha Bhattacharya, Economic and Political Weekly, Vol. 54, Issue 14 (2019), citing Rajinder Singh, "The Ultimate Facts - SN Bose and the Missed Physics Nobel Prize", Science and Culture 83 (2017)
   url: https://www.epw.in/engage/article/remembering-life-satyendra-nath-bose
   type: scholarly-secondary
+- publisher: The Nobel Foundation (nobelprize.org)
+  title: Nobel Prize facts - posthumous Nobel Prizes (rule introduced in 1974; two awarded posthumously
+    before then)
+  type: institutional
+  url: https://www.nobelprize.org/prizes/facts/nobel-prize-facts/
 provenance:
   contribution:
     record_anchor:
@@ -135,6 +140,79 @@ mechanism_audit:
     but below the standard of the awarded work. The gap in this case therefore sits between our
     assessment and a documented evaluation, not between a contribution and a process that ignored it.
     Scores are unchanged: new evidence about the recognition record is not a reason to move a score.
+  best_sources:
+  - 4
+  - 5
+mechanism_reaudit:
+  search_date: '2026-09-12'
+  ontology_revision: MOR-006
+  revision_basis: Re-audit performed under MOR-006, the revision in force at commit 442ffa6, and tested
+    against its full mechanism set.
+  remediates:
+    original_search_date: '2026-09-10'
+    original_revision: MOR-003
+    untested_then:
+    - posthumous-recognition
+  considered:
+  - credit-misattribution
+  - delayed-recognition
+  - institutional-exclusion
+  - institutional-gatekeeping
+  - posthumous-recognition
+  - theory-experiment-asymmetry
+  - compulsory-secrecy
+  verdicts:
+  - mechanism: credit-misattribution
+    verdict: not-supported
+    note: No rival claimant took the 1924 derivation. The statistics and the particle class are named
+      after him, and the record attributes the result to him consistently.
+  - mechanism: delayed-recognition
+    verdict: not-supported
+    note: 'The mechanism requires an interval produced by time and reception. There was none: Einstein
+      translated the 1924 paper and submitted it for publication, and it entered the literature immediately.
+      What the record shows afterwards is sustained attention from the award system - eleven nominations
+      between 1956 and 1972 - not neglect.'
+  - mechanism: institutional-exclusion
+    verdict: not-supported
+    note: No formal barrier is documented. He held professorial positions, was elected a Fellow of the
+      Royal Society in 1958, and was made National Professor.
+  - mechanism: institutional-gatekeeping
+    verdict: not-supported
+    note: Tested again against the documented rejection of the 1924 manuscript by Philosophical Magazine
+      after a negative referee report. A rejection is a decision, not the active obstruction this mechanism
+      requires, and no referee report or editorial record establishing one was reached.
+  - mechanism: posthumous-recognition
+    verdict: not-supported
+    note: 'The mechanism this re-audit was opened for, and it does not hold. It turns on timing and eligibility
+      rules determining whether a contribution can be formally honoured. Every documented decision point
+      in this case falls within his lifetime: eleven nominations between 1956 and 1972, and a committee-commissioned
+      evaluation by Oskar Klein in 1956 that judged the contribution important but below the standard
+      of the awarded work. He died in 1974, the same year the Nobel Foundation''s prohibition on posthumous
+      awards entered the Statutes, and no decision was pending at his death for that rule to foreclose.
+      The rule bars any future award, but that bar falls identically on every scientist who has died since
+      1974 and distinguishes nothing about this record; the measured deficit accrued across sixteen documented
+      years of eligibility, and the rule played no part in it.'
+  - mechanism: theory-experiment-asymmetry
+    verdict: not-supported
+    note: The mechanism tracks reward flowing to predicting theorists rather than to the experimentalists
+      who confirmed them. Bose is the theorist in this case, and no experimentalist stands on the other
+      side of that fault line here. It does not run through this record.
+  - mechanism: compulsory-secrecy
+    verdict: not-supported
+    note: No nondisclosure or classification obligation of any kind appears in the record. The derivation
+      was published in Zeitschrift fuer Physik in 1924, which is the opposite of the condition this mechanism
+      requires.
+  finding: no-mechanism-evidenced
+  note: 'Re-audit against the full MOR-006 ontology, opened because the 2026-09-10 audit recorded five
+    of the six mechanisms then eligible and never tested posthumous recognition. All seven are now tested
+    and none is supported, so the original finding stands - but it now stands on a complete test rather
+    than on a partial one that claimed to be complete. The 2026-09-10 note asserted the case had been
+    ''audited against every published mechanism in the ontology''; that was not true when written, and
+    the original audit is left in place, incomplete_at_revision included, so the record shows both what
+    was done and what was missed. No pattern is added, no pattern is withdrawn, and no score is touched:
+    nothing in this search bears on assessed merit or on observed recognition.'
+  patterns_changed: false
+  scores_changed: false
   best_sources:
   - 4
   - 5

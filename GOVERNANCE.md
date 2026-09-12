@@ -240,6 +240,18 @@ Two figures follow, and the project keeps them apart:
   mechanism set? A "no" is not a defect, and it gates nothing. A closed domain
   does not become immature because the vocabulary later acquired a word.
 
+**A defect is remediated, not erased.** Where an audit was incomplete at its own
+revision, the original stays exactly as performed — `incomplete_at_revision`
+included — and a separate `mechanism_reaudit` records a new dated search under the
+revision in force. A re-audit tests the **whole** current ontology, not only the
+mechanism the first search missed, and returns a verdict with a note for each
+mechanism, so "tested" can never mean "listed". It states explicitly whether it
+moved any pattern or any score. Three figures follow and are kept apart:
+completeness when performed (never moves), defects remediated, and currency —
+which reads the latest statement of record. Rewriting the original audit would
+make the past look complete, which it was not; the corpus says instead that the
+audit was incomplete and that a later re-audit repaired it.
+
 **Mechanism accounting at 100 per cent** asserts only that every case carries
 either evidence for a mechanism or a dated audit that searched and found none.
 It does **not** assert that every audit tested every eligible mechanism; that is

@@ -448,6 +448,13 @@ def audit_is_complete_at_revision(considered: object, revision: object) -> bool:
     return revision_mechanisms(revision) <= tested
 
 
+MECHANISM_VERDICTS: Final[frozenset[str]] = frozenset({"supported", "not-supported"})
+
+
+def is_valid_mechanism_verdict(value: object) -> bool:
+    return isinstance(value, str) and value in MECHANISM_VERDICTS
+
+
 def audit_is_current(considered: object) -> bool:
     """Does the audit cover the mechanism set in force today? A 'no' is not a
     defect and never a maturity gate - the ontology grew after the audit ran."""

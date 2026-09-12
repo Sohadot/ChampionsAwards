@@ -521,5 +521,98 @@ check("an unregistered domain is still rejected",
 check("a synthesis cannot derive from a domain with no corpus",
       not is_aggregated_domain(_planned[0]))
 
+# 19. Re-audits: a historical defect is remediated, never erased.
+from config import MECHANISM_VERDICTS
+from validate_content import validate_mechanism_reaudit as _vmr
+
+_reaudited = [c for c in _audits if isinstance(c.get("mechanism_reaudit"), dict)]
+_defective = [c for c in _audits if c["mechanism_audit"].get("incomplete_at_revision")]
+
+check("every historical audit defect carries a dated re-audit",
+      all(isinstance(c.get("mechanism_reaudit"), dict) for c in _defective),
+      ", ".join(c["slug"] for c in _defective if not c.get("mechanism_reaudit")))
+check("no original audit was rewritten to look complete",
+      all(c["mechanism_audit"].get("incomplete_at_revision") for c in _reaudited),
+      "the defect must stay visible in the audit it belongs to")
+check("every re-audit tests the whole current ontology",
+      all(revision_mechanisms(CURRENT_ONTOLOGY_REVISION)
+          <= set(c["mechanism_reaudit"]["considered"]) for c in _reaudited))
+check("every re-audit returns a verdict per mechanism considered",
+      all(sorted(v["mechanism"] for v in c["mechanism_reaudit"]["verdicts"])
+          == sorted(c["mechanism_reaudit"]["considered"]) for c in _reaudited))
+check("what a re-audit supports is what its case declares",
+      all(sorted(v["mechanism"] for v in c["mechanism_reaudit"]["verdicts"]
+                 if v["verdict"] == "supported") == sorted(c.get("patterns") or [])
+          for c in _reaudited))
+check("a re-audit states whether it moved patterns and scores",
+      all(isinstance(c["mechanism_reaudit"].get(f), bool)
+          for c in _reaudited for f in ("patterns_changed", "scores_changed")))
+
+
+def _ra(case_extra=None, **kw):
+    base = {"search_date": "2026-09-12", "ontology_revision": CURRENT_ONTOLOGY_REVISION,
+            "revision_basis": "commit 442ffa6",
+            "remediates": {"original_search_date": "2026-09-11", "original_revision": "MOR-003",
+                           "untested_then": ["theory-experiment-asymmetry"]},
+            "considered": sorted(revision_mechanisms(CURRENT_ONTOLOGY_REVISION)),
+            "verdicts": [{"mechanism": m, "verdict": "not-supported", "note": "n"}
+                         for m in sorted(revision_mechanisms(CURRENT_ONTOLOGY_REVISION))],
+            "finding": "no-mechanism-evidenced", "note": "n",
+            "patterns_changed": False, "scores_changed": False}
+    base.update(kw)
+    item = {"mechanism_audit": {"search_date": "2026-09-11", "ontology_revision": "MOR-003",
+                                "incomplete_at_revision": ["theory-experiment-asymmetry"]},
+            "mechanism_reaudit": base}
+    item.update(case_extra or {})
+    return _vmr("unawarded", item, "s.yaml", set(_mechs))
+
+
+check("a well-formed re-audit passes", not _ra())
+check("a re-audit of nothing is rejected",
+      bool(_vmr("unawarded", {"mechanism_reaudit": {"search_date": "2026-09-12"}}, "s.yaml", _mechs)))
+check("a re-audit cannot run under an older revision",
+      bool(_ra(ontology_revision="MOR-005", revision_basis="commit 69ffcc0")))
+check("a re-audit cannot leave a mechanism untested",
+      bool(_ra(considered=sorted(revision_mechanisms("MOR-004")),
+               verdicts=[{"mechanism": m, "verdict": "not-supported", "note": "n"}
+                         for m in sorted(revision_mechanisms("MOR-004"))])))
+check("a re-audit cannot predate the audit it repairs",
+      bool(_ra(search_date="2026-09-10")))
+check("a re-audit must restate the defect it repairs, exactly",
+      bool(_ra(remediates={"original_search_date": "2026-09-11", "original_revision": "MOR-003",
+                           "untested_then": []})))
+check("a re-audit cannot misname the revision it repairs",
+      bool(_ra(remediates={"original_search_date": "2026-09-11", "original_revision": "MOR-004",
+                           "untested_then": ["theory-experiment-asymmetry"]})))
+check("a verdict outside the vocabulary is rejected",
+      bool(_ra(verdicts=[{"mechanism": m, "verdict": "probably", "note": "n"}
+                         for m in sorted(revision_mechanisms(CURRENT_ONTOLOGY_REVISION))])))
+check("a re-audit supporting what the case does not declare is rejected",
+      bool(_ra(finding="mechanism-evidenced",
+               verdicts=[{"mechanism": m,
+                          "verdict": "supported" if m == "delayed-recognition" else "not-supported",
+                          "note": "n"}
+                         for m in sorted(revision_mechanisms(CURRENT_ONTOLOGY_REVISION))])))
+check("a re-audit whose finding contradicts its own verdicts is rejected",
+      bool(_ra(finding="mechanism-evidenced")))
+check("a re-audit must say whether it moved patterns and scores",
+      bool(_ra(patterns_changed=None)))
+
+# The three figures are three different claims and must stay separable.
+for _domain in ("physics-astronomy", "biology-medicine", "mathematics-computing"):
+    _pd = dc.pattern_distribution(_domain)
+    check(f"remediation does not rewrite history ({_domain})",
+          _pd["n_audits_complete_at_revision"]
+          == sum(1 for r in _pd["audit_revisions"] if not r["untested_at_revision"]))
+    check(f"every declared defect is accounted for ({_domain})",
+          not _pd["audit_defects_outstanding"])
+    print(f"      [reported] {_domain}: complete when performed "
+          f"{_pd['n_audits_complete_at_revision']}/{_pd['n_audits']}, defects remediated "
+          f"{_pd['n_historical_audit_defects_remediated']}/{_pd['n_historical_audit_defects']}, "
+          f"current {_pd['n_audits_current']}/{_pd['n_audits']}")
+check("no Definition of Done criterion reads a remediation figure",
+      not any(k in str(_ds.dod_rows("biology-medicine"))
+              for k in ("remediated", "historical_audit_defects")))
+
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

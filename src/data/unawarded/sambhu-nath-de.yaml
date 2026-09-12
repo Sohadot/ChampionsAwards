@@ -126,3 +126,64 @@ mechanism_audit:
     returns no evidenced mechanism. Whether that is a pattern or an artefact of two cases is a
     question for the ontology review, not a finding.
   best_sources: [2, 3]
+mechanism_reaudit:
+  search_date: '2026-09-12'
+  ontology_revision: MOR-006
+  revision_basis: Re-audit performed under MOR-006, the revision in force at commit 442ffa6, and tested
+    against its full mechanism set.
+  remediates:
+    original_search_date: '2026-09-11'
+    original_revision: MOR-003
+    untested_then:
+    - theory-experiment-asymmetry
+  considered:
+  - credit-misattribution
+  - delayed-recognition
+  - institutional-exclusion
+  - institutional-gatekeeping
+  - posthumous-recognition
+  - theory-experiment-asymmetry
+  - compulsory-secrecy
+  verdicts:
+  - mechanism: credit-misattribution
+    verdict: not-supported
+    note: No rival claimant took the discovery, and the specialist literature attributes it to him.
+  - mechanism: delayed-recognition
+    verdict: not-supported
+    note: 'The closest candidate and still not tagged: international standing came within his working
+      life, including a Nobel nomination attributed to Joshua Lederberg, and the WHO''s 2010 republication
+      of the 1953 paper is an institutional acknowledgment rather than the delayed arrival of recognition
+      that had been withheld.'
+  - mechanism: institutional-exclusion
+    verdict: not-supported
+    note: 'Not supported on evidence rather than on plausibility: he held a departmental position and
+      published in Nature, and nothing reached documents a formal barrier.'
+  - mechanism: institutional-gatekeeping
+    verdict: not-supported
+    note: No act of obstruction is documented; the 1953 and 1959 papers were published in the Journal
+      of Pathology and Bacteriology and in Nature.
+  - mechanism: posthumous-recognition
+    verdict: not-supported
+    note: No eligibility or timing rule is documented as determining anything about his recognition.
+  - mechanism: theory-experiment-asymmetry
+    verdict: not-supported
+    note: The mechanism this re-audit was opened for. His 1953 ligated ileal-loop result and the 1959
+      cell-free filtrate result are themselves the experimental demonstration that cholera is toxin-mediated,
+      and no prior theoretical prediction that they confirmed is documented in this record as having been
+      honoured in his place.
+  - mechanism: compulsory-secrecy
+    verdict: not-supported
+    note: No nondisclosure or classification obligation appears in the record; both results were published
+      in the open literature, one of them in Nature.
+  finding: no-mechanism-evidenced
+  note: Re-audit against the full MOR-006 ontology, opened because the 2026-09-11 audit never tested theory-experiment
+    asymmetry. All seven are now tested and none is supported. The observation the original audit recorded
+    without tagging - that this is the second case in the archive, with Bose in physics, where a contribution
+    made outside the metropolitan centres of a field returns no evidenced mechanism - is unchanged by
+    a complete test and remains a question for the ontology rather than a finding. No pattern changes
+    and no score is touched.
+  patterns_changed: false
+  scores_changed: false
+  best_sources:
+  - 3
+  - 4

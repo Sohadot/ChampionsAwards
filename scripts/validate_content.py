@@ -15,6 +15,8 @@ from config import (
     COMPLETENESS_ENFORCED_FROM,
     CURRENT_ONTOLOGY_REVISION,
     LEGACY_REVISION_UNRESOLVED,
+    is_valid_mechanism_verdict,
+    MECHANISM_VERDICTS,
     is_valid_ontology_revision,
     revision_is_before,
     revision_mechanisms,
@@ -125,6 +127,9 @@ def validate_item(
     errors.extend(validate_corpus_relations(cluster_name, item, source_file, case_slugs or set()))
     errors.extend(validate_report(cluster_name, item, source_file))
     errors.extend(validate_mechanism_audit(
+        cluster_name, item, source_file,
+        mechanism_slugs if mechanism_slugs is not None else concept_slugs or set()))
+    errors.extend(validate_mechanism_reaudit(
         cluster_name, item, source_file,
         mechanism_slugs if mechanism_slugs is not None else concept_slugs or set()))
     errors.extend(validate_temporal_validity(cluster_name, item, source_file))
@@ -520,6 +525,140 @@ def validate_rule_at_time(
         errors.append(
             f"{ref}: {where} rule_at_time applies a rule that ceased at {end} to an event in {event}"
         )
+    return errors
+
+
+
+def validate_mechanism_reaudit(
+    cluster_name: str, item: dict[str, Any], source_file: str, mechanism_slugs: set[str]
+) -> list[str]:
+    """A re-audit remediates a historical audit defect without erasing it.
+
+    The original audit stays exactly as it was performed, `incomplete_at_revision`
+    included, because it is a dated record of what happened. The re-audit is a
+    second dated record saying the search was run again, under today's revision
+    and therefore against the whole ontology - not only the mechanism the first
+    audit missed. Re-opening an audit and testing one concept would produce a
+    second partial record and call it a fix.
+
+    The two are kept separate so the corpus can always say: the original audit
+    was incomplete; a later re-audit remediated it. Rewriting the original would
+    make the past look complete, which it was not.
+    """
+    ref = f"{cluster_name}/{source_file}"
+    reaudit = item.get("mechanism_reaudit")
+    if reaudit is None:
+        return []
+    if not isinstance(reaudit, dict):
+        return [f"{ref}: 'mechanism_reaudit' must be a mapping when present"]
+
+    original = item.get("mechanism_audit")
+    if not isinstance(original, dict):
+        return [f"{ref}: a mechanism_reaudit remediates a mechanism_audit, and this entry has none"]
+
+    errors: list[str] = []
+    if not is_iso_date(reaudit.get("search_date")):
+        errors.append(f"{ref}: mechanism_reaudit needs an ISO 'search_date'")
+    elif is_iso_date(original.get("search_date")) and reaudit["search_date"] < original["search_date"]:
+        errors.append(f"{ref}: mechanism_reaudit predates the audit it remediates")
+
+    # The revision rules apply unchanged, which is the point: a re-audit runs
+    # under the current revision, so MOR-006 forbids it declaring a gap.
+    errors.extend(_validate_audit_revision(f"{ref} reaudit", reaudit))
+    if reaudit.get("ontology_revision") != CURRENT_ONTOLOGY_REVISION:
+        errors.append(
+            f"{ref}: a mechanism_reaudit runs now, so its 'ontology_revision' must be "
+            f"{CURRENT_ONTOLOGY_REVISION}"
+        )
+
+    considered = [c for c in (reaudit.get("considered") or []) if isinstance(c, str)]
+    ineligible = [c for c in considered if c not in mechanism_slugs]
+    if ineligible:
+        errors.append(f"{ref}: mechanism_reaudit considered {', '.join(ineligible)}, which is not "
+                      f"an audit-eligible concept")
+
+    # What it remediates, stated against the original rather than retyped.
+    remediates = reaudit.get("remediates")
+    if not isinstance(remediates, dict):
+        errors.append(f"{ref}: mechanism_reaudit needs a 'remediates' block naming the audit it "
+                      f"repairs (its revision, its date, and what it left untested)")
+    else:
+        if remediates.get("original_revision") != original.get("ontology_revision"):
+            errors.append(f"{ref}: remediates.original_revision must match the audit's recorded "
+                          f"revision ({original.get('ontology_revision')})")
+        if remediates.get("original_search_date") != original.get("search_date"):
+            errors.append(f"{ref}: remediates.original_search_date must match the audit's own date")
+        declared = sorted(remediates.get("untested_then") or [])
+        if declared != sorted(original.get("incomplete_at_revision") or []):
+            errors.append(
+                f"{ref}: remediates.untested_then must restate the audit's own "
+                f"'incomplete_at_revision' exactly "
+                f"(expected: {', '.join(sorted(original.get('incomplete_at_revision') or [])) or 'none'})"
+            )
+
+    # A verdict per mechanism tested. A bare `considered` list can say a
+    # mechanism was tested without saying what the test found, which is the
+    # thinness this remediation exists to remove.
+    verdicts = reaudit.get("verdicts")
+    if not isinstance(verdicts, list) or not verdicts:
+        errors.append(f"{ref}: mechanism_reaudit needs a 'verdicts' list, one entry per mechanism "
+                      f"considered")
+        return errors
+
+    seen: dict[str, str] = {}
+    for index, row in enumerate(verdicts, start=1):
+        if not isinstance(row, dict):
+            errors.append(f"{ref}: mechanism_reaudit verdict #{index} must be a mapping")
+            continue
+        mechanism = row.get("mechanism")
+        if mechanism in seen:
+            errors.append(f"{ref}: mechanism_reaudit returns two verdicts for {mechanism}")
+        if not is_valid_mechanism_verdict(row.get("verdict")):
+            errors.append(f"{ref}: mechanism_reaudit verdict for {mechanism} must be one of: "
+                          f"{', '.join(sorted(MECHANISM_VERDICTS))}")
+        if not (isinstance(row.get("note"), str) and row["note"].strip()):
+            errors.append(f"{ref}: mechanism_reaudit verdict for {mechanism} needs a note stating "
+                          f"what the record did and did not show")
+        if isinstance(mechanism, str):
+            seen[mechanism] = row.get("verdict")
+
+    if sorted(seen) != sorted(set(considered)):
+        errors.append(
+            f"{ref}: mechanism_reaudit must return a verdict for exactly the mechanisms it "
+            f"considered (missing: {', '.join(sorted(set(considered) - set(seen))) or 'none'}; "
+            f"unexpected: {', '.join(sorted(set(seen) - set(considered))) or 'none'})"
+        )
+
+    # The re-audit is the current statement of record, so what it supports must
+    # be what the case declares. Anything else lets a page and its audit disagree.
+    supported = sorted(m for m, v in seen.items() if v == "supported")
+    declared_patterns = sorted(p for p in (item.get("patterns") or []) if isinstance(p, str))
+    if supported != declared_patterns:
+        errors.append(
+            f"{ref}: mechanism_reaudit supports {', '.join(supported) or 'nothing'}, but the case "
+            f"declares patterns {', '.join(declared_patterns) or 'none'}"
+        )
+
+    finding = reaudit.get("finding")
+    if not is_valid_mechanism_finding(finding):
+        errors.append(f"{ref}: mechanism_reaudit 'finding' must be one of: "
+                      f"{', '.join(sorted(MECHANISM_FINDINGS))}")
+    elif (finding == "mechanism-evidenced") != bool(supported):
+        errors.append(f"{ref}: mechanism_reaudit 'finding' disagrees with its own verdicts")
+
+    if not (isinstance(reaudit.get("note"), str) and reaudit["note"].strip()):
+        errors.append(f"{ref}: mechanism_reaudit needs an overall 'note'")
+
+    for field in ("patterns_changed", "scores_changed"):
+        if not isinstance(reaudit.get(field), bool):
+            errors.append(f"{ref}: mechanism_reaudit must state '{field}' explicitly (true/false), "
+                          f"so a re-audit that moved nothing says so rather than leaving it to be "
+                          f"inferred from a diff")
+
+    sources = item.get("sources") if isinstance(item.get("sources"), list) else []
+    for ref_index in reaudit.get("best_sources") or []:
+        if not isinstance(ref_index, int) or not (1 <= ref_index <= len(sources)):
+            errors.append(f"{ref}: mechanism_reaudit best_sources reference #{ref_index} does not exist")
     return errors
 
 

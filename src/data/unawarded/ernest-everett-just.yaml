@@ -133,3 +133,62 @@ mechanism_audit:
     about how much of the measured gap the exclusion produced; the mechanism is documented in the case,
     and the causal share is not.
   best_sources: [1, 2]
+mechanism_reaudit:
+  search_date: '2026-09-12'
+  ontology_revision: MOR-006
+  revision_basis: Re-audit performed under MOR-006, the revision in force at commit 442ffa6, and tested
+    against its full mechanism set.
+  remediates:
+    original_search_date: '2026-09-11'
+    original_revision: MOR-003
+    untested_then:
+    - theory-experiment-asymmetry
+  considered:
+  - institutional-exclusion
+  - credit-misattribution
+  - delayed-recognition
+  - institutional-gatekeeping
+  - posthumous-recognition
+  - theory-experiment-asymmetry
+  - compulsory-secrecy
+  verdicts:
+  - mechanism: institutional-exclusion
+    verdict: supported
+    note: 'Unchanged, and stated by an institution rather than inferred: the Marine Biological Laboratory''s
+      own record states that despite winning prestigious awards he was not offered faculty or research
+      positions commensurate with his abilities, and that limited opportunities in the United States took
+      his research to Europe. That is the formal barrier to positions the mechanism requires.'
+  - mechanism: credit-misattribution
+    verdict: not-supported
+    note: His published work is attributed to him throughout, including the 1939 monograph.
+  - mechanism: delayed-recognition
+    verdict: not-supported
+    note: He was recognised in his own time, most visibly by the first Spingarn Medal in 1915.
+  - mechanism: institutional-gatekeeping
+    verdict: not-supported
+    note: No act obstructing publication or dissemination is documented in the sources consulted. The
+      barrier documented here is to positions, which is a different mechanism.
+  - mechanism: posthumous-recognition
+    verdict: not-supported
+    note: No eligibility or timing rule is documented as determining whether his work could be honoured.
+      He died in 1941, and what the record documents is a constraint operating throughout his working
+      life rather than a rule operating after it.
+  - mechanism: theory-experiment-asymmetry
+    verdict: not-supported
+    note: The mechanism this re-audit was opened for. His programme was experimental, and the record documents
+      no theorist rewarded for a prediction his experiments confirmed. What it documents is a barrier
+      to the positions from which visibility is built, which institutional exclusion already carries.
+  - mechanism: compulsory-secrecy
+    verdict: not-supported
+    note: No nondisclosure or classification obligation appears in the record; his work was published,
+      including the 1939 monograph.
+  finding: mechanism-evidenced
+  note: Re-audit against the full MOR-006 ontology, opened because the 2026-09-11 audit never tested theory-experiment
+    asymmetry. All seven are now tested; institutional exclusion is re-confirmed on the Marine Biological
+    Laboratory's own record and remains the only mechanism this case carries. No claim is made about how
+    much of the measured gap the exclusion produced. No pattern changes and no score is touched.
+  patterns_changed: false
+  scores_changed: false
+  best_sources:
+  - 2
+  - 3

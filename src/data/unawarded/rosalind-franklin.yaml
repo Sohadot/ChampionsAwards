@@ -183,3 +183,76 @@ mechanism_audit:
     argues she was an equal member of the group rather than a victim of it. Institutional exclusion
     and gatekeeping were tested and are not supported by the sources consulted.
   best_sources: [5, 7]
+mechanism_reaudit:
+  search_date: '2026-09-12'
+  ontology_revision: MOR-006
+  revision_basis: Re-audit performed under MOR-006, the revision in force at commit 442ffa6, and tested
+    against its full mechanism set.
+  remediates:
+    original_search_date: '2026-09-11'
+    original_revision: MOR-003
+    untested_then:
+    - theory-experiment-asymmetry
+  considered:
+  - credit-misattribution
+  - delayed-recognition
+  - institutional-exclusion
+  - institutional-gatekeeping
+  - posthumous-recognition
+  - theory-experiment-asymmetry
+  - compulsory-secrecy
+  verdicts:
+  - mechanism: credit-misattribution
+    verdict: supported
+    note: 'Unchanged and re-anchored as before: the documentary relationship between the three April 1953
+      Nature papers and the 1962 award. It is retained as contested rather than settled, because the 2023
+      reassessment drawing on her own archive argues she was an equal member of the group that solved
+      the structure rather than a researcher whose data was taken without her understanding it. The mechanism''s
+      definition covers reward displaced toward a theorist over an experimentalist, which is the displacement
+      this record documents.'
+  - mechanism: delayed-recognition
+    verdict: not-supported
+    note: What the record documents is contested credit, which the mechanism's definition explicitly excludes.
+  - mechanism: institutional-exclusion
+    verdict: not-supported
+    note: 'Not supported by the sources consulted: no formal barrier to appointment, authorship or membership
+      is documented. She published as first author with Gosling in the same volume of Nature.'
+  - mechanism: institutional-gatekeeping
+    verdict: not-supported
+    note: No act obstructing publication or dissemination is documented in the sources consulted.
+  - mechanism: posthumous-recognition
+    verdict: not-supported
+    note: 'Withdrawn in the original audit and still not supported, for the same documented reason: the
+      prohibition on posthumous awards entered the Nobel Statutes in 1974, twelve years after the 1962
+      decision, and two prizes had been awarded posthumously before then. Applying a rule to a decision
+      that predates it is an anachronism, and no source reached establishes what rule governed the treatment
+      of someone who had died in 1958.'
+  - mechanism: theory-experiment-asymmetry
+    verdict: not-supported
+    note: 'The mechanism this re-audit was opened for, and the case that prompted the whole remediation.
+      It does not hold, and the reason is the mechanism''s narrowness rather than any doubt about the
+      record. The concept requires a prediction, an experiment that converts it into established science,
+      and reward flowing to the predicting theorists - not the broader shape of an experimentalist standing
+      beside rewarded model-builders. The documented sequence runs the other way: her diffraction work
+      and the Watson-Crick model appeared in the same April 1953 volume of Nature, with the model built
+      from the data rather than predicted in advance of it. The displacement the record does document
+      is already carried by credit misattribution, whose own definition names reward flowing to a theorist
+      over an experimentalist. Tagging both would count one displacement twice under two mechanisms.'
+  - mechanism: compulsory-secrecy
+    verdict: not-supported
+    note: No nondisclosure or classification obligation appears in the record; her work was published
+      in Nature in 1953.
+  finding: mechanism-evidenced
+  note: 'Re-audit against the full MOR-006 ontology, opened because the 2026-09-11 audit never tested
+    theory-experiment asymmetry - and this entry was the reason the defect was judged material, since
+    on the face of the record she is the corpus''s most obvious candidate for it. Tested against the concept''s
+    own conditions rather than its general shape, it is not supported: the concept tracks prediction and
+    confirmation, and this case documents data and a model built from it. That is a result, not a gap.
+    Credit misattribution is re-confirmed and remains the only mechanism this case carries, still recorded
+    as contested. No pattern changes and no score is touched.'
+  patterns_changed: false
+  scores_changed: false
+  best_sources:
+  - 3
+  - 4
+  - 7

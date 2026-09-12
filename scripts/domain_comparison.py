@@ -361,6 +361,12 @@ def pattern_distribution(domain: str) -> dict[str, Any]:
     #     a defect: the ontology grew afterwards. It is reported so that a reader
     #     can see how much of the corpus predates the present vocabulary, and it
     #     gates nothing. A closed domain does not reopen because a word was added.
+    # Completeness is a fact about the ORIGINAL audit and never moves: it records
+    # whether that search, on its day, tested everything then eligible. Currency
+    # reads the latest statement of record, which is the re-audit where one
+    # exists. Remediation is counted as its own third figure rather than folded
+    # into either, because "was incomplete, later repaired" is a different claim
+    # from "was complete" and the corpus must be able to say which it means.
     current_set = revision_mechanisms(CURRENT_ONTOLOGY_REVISION)
     audit_rows = []
     for c in cases:
@@ -368,19 +374,27 @@ def pattern_distribution(domain: str) -> dict[str, Any]:
         if not isinstance(a, dict):
             continue
         considered = [m for m in (a.get("considered") or []) if isinstance(m, str)]
+        reaudit = c.get("mechanism_reaudit") if isinstance(c.get("mechanism_reaudit"), dict) else None
+        latest = [m for m in ((reaudit or {}).get("considered") or considered) if isinstance(m, str)]
+        untested_then = sorted(a.get("incomplete_at_revision") or [])
         audit_rows.append({
             "slug": c["slug"], "title": c.get("title", c["slug"]),
             "url": f"/unawarded/{c['slug']}",
             "ontology_revision": a.get("ontology_revision"),
             "complete_at_revision": audit_is_complete_at_revision(considered, a.get("ontology_revision")),
-            "untested_at_revision": sorted(a.get("incomplete_at_revision") or []),
-            "current": audit_is_current(considered),
-            "untested_since_revision": sorted(current_set - set(considered)),
+            "untested_at_revision": untested_then,
+            "remediated": bool(untested_then and reaudit),
+            "reaudit_date": (reaudit or {}).get("search_date"),
+            "reaudit_revision": (reaudit or {}).get("ontology_revision"),
+            "current": audit_is_current(latest),
+            "untested_since_revision": sorted(current_set - set(latest)),
         })
     audit_rows.sort(key=lambda r: r["slug"])
     n_audits = len(audit_rows)
     n_complete = sum(1 for r in audit_rows if r["complete_at_revision"])
     n_current = sum(1 for r in audit_rows if r["current"])
+    defects = [r for r in audit_rows if r["untested_at_revision"]]
+    n_defects_remediated = sum(1 for r in defects if r["remediated"])
 
     # Co-occurrence: how often two evidenced mechanisms appear in the same case.
     # Descriptive only - a pair count says the record documents both in one case,
@@ -419,6 +433,9 @@ def pattern_distribution(domain: str) -> dict[str, Any]:
         "current_ontology_revision": CURRENT_ONTOLOGY_REVISION,
         "audits_incomplete_at_revision": [r for r in audit_rows if not r["complete_at_revision"]],
         "audits_not_current": [r for r in audit_rows if not r["current"]],
+        "n_historical_audit_defects": len(defects),
+        "n_historical_audit_defects_remediated": n_defects_remediated,
+        "audit_defects_outstanding": [r for r in defects if not r["remediated"]],
         "co_occurrence": co_occurrence,
     }
 

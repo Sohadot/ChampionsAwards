@@ -122,3 +122,64 @@ mechanism_audit:
     not treated as evidence of a mechanism. This case was accepted into the corpus expecting a small
     gap, and the measured gap is small; that outcome is the point of including it.
   best_sources: [1, 3]
+mechanism_reaudit:
+  search_date: '2026-09-12'
+  ontology_revision: MOR-006
+  revision_basis: Re-audit performed under MOR-006, the revision in force at commit 442ffa6, and tested
+    against its full mechanism set.
+  remediates:
+    original_search_date: '2026-09-11'
+    original_revision: MOR-003
+    untested_then:
+    - theory-experiment-asymmetry
+  considered:
+  - credit-misattribution
+  - delayed-recognition
+  - institutional-exclusion
+  - institutional-gatekeeping
+  - posthumous-recognition
+  - theory-experiment-asymmetry
+  - compulsory-secrecy
+  verdicts:
+  - mechanism: credit-misattribution
+    verdict: not-supported
+    note: Attribution is consistent and public across institutional records; no rival claimant appears.
+  - mechanism: delayed-recognition
+    verdict: not-supported
+    note: 'The major recognitions arrived during his career: the Lasker Public Service Award in 1983,
+      the National Medal of Science in 1988, and election to the National Academy of Sciences.'
+  - mechanism: institutional-exclusion
+    verdict: not-supported
+    note: No formal barrier is documented; the honours record shows the opposite.
+  - mechanism: institutional-gatekeeping
+    verdict: not-supported
+    note: No act obstructing publication or dissemination is documented; his results were published and
+      the vaccines licensed.
+  - mechanism: posthumous-recognition
+    verdict: not-supported
+    note: No eligibility or timing rule is documented as determining anything. His major honours were
+      conferred in his lifetime, and the absence of a Nobel Prize is recorded as a fact about one award
+      rather than as the operation of a rule.
+  - mechanism: theory-experiment-asymmetry
+    verdict: not-supported
+    note: The mechanism this re-audit was opened for. Vaccine development as this record documents it
+      is not organised around a prediction and its experimental confirmation, and no theorist is documented
+      as having been rewarded in his place. The fault line does not appear.
+  - mechanism: compulsory-secrecy
+    verdict: not-supported
+    note: 'Tested rather than dismissed, because parts of his career ran through settings where nondisclosure
+      obligations exist - he worked at the Walter Reed Army Institute of Research before Merck. The mechanism
+      requires an obligation covering the contribution itself and evidence that dissemination was actually
+      prevented or materially delayed. The record consulted shows the reverse: the 1968 mumps-vaccine
+      paper was published in the New England Journal of Medicine, and eight of his vaccines entered the
+      United States childhood schedule. Nothing here documents such an obligation.'
+  finding: no-mechanism-evidenced
+  note: Re-audit against the full MOR-006 ontology, opened because the 2026-09-11 audit never tested theory-experiment
+    asymmetry. All seven are now tested and none is supported. This case was accepted into the corpus
+    expecting a small gap and the measured gap is small; a complete test returning nothing is the outcome
+    the case was included to produce. No pattern changes and no score is touched.
+  patterns_changed: false
+  scores_changed: false
+  best_sources:
+  - 2
+  - 3

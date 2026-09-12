@@ -181,8 +181,13 @@ audit less complete with nothing measuring it. Two figures now follow and are
 kept apart: **completeness at the audit's own revision** (a "no" is a defect,
 declared in the case file) and **currency against the revision in force** (a "no"
 is a dated fact that gates nothing — a closed domain does not reopen because the
-vocabulary acquired a word). The registry, the assignment method and the current
-measurements are in [`ontology-revisions.md`](ontology-revisions.md).
+vocabulary acquired a word). A defect in the first figure is repaired
+by a separate, dated `mechanism_reaudit` that tests the **whole** current
+ontology and returns a verdict per mechanism; the original audit is kept exactly
+as performed, so the record says the audit was incomplete and was later
+remediated rather than presenting a past that was never wrong. The registry, the
+assignment method and the current measurements are in
+[`ontology-revisions.md`](ontology-revisions.md).
 
 From this the engine computes **mechanism accounting**: how many cases are
 accounted for — by evidence for a mechanism, or by a dated audit that searched and

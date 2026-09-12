@@ -125,3 +125,70 @@ mechanism_audit:
     Credit misattribution does not hold - no rival claimant. Institutional exclusion and gatekeeping
     were tested: no formal barrier or act of obstruction is documented in the sources consulted.
   best_sources: [1, 3]
+mechanism_reaudit:
+  search_date: '2026-09-12'
+  ontology_revision: MOR-006
+  revision_basis: Re-audit performed under MOR-006, the revision in force at commit 442ffa6, and tested
+    against its full mechanism set.
+  remediates:
+    original_search_date: '2026-09-11'
+    original_revision: MOR-003
+    untested_then:
+    - theory-experiment-asymmetry
+  considered:
+  - delayed-recognition
+  - credit-misattribution
+  - institutional-exclusion
+  - institutional-gatekeeping
+  - posthumous-recognition
+  - theory-experiment-asymmetry
+  - compulsory-secrecy
+  verdicts:
+  - mechanism: delayed-recognition
+    verdict: supported
+    note: 'Unchanged. The mechanism requires an interval that is a function of time and reception rather
+      than of contested credit, and that is exactly what the record establishes: publication in 1866 in
+      the Verhandlungen des naturforschenden Vereines in Bruenn, independent rediscovery by three botanists
+      in 1900, and no rival claimant at any point. The causes of the interval remain withdrawn, as they
+      were in the original audit; the interval itself is what is evidenced.'
+  - mechanism: credit-misattribution
+    verdict: not-supported
+    note: 'No rival claimant and no displaced reward: the work is attributed to him throughout, including
+      by the three botanists who rediscovered it.'
+  - mechanism: institutional-exclusion
+    verdict: not-supported
+    note: No formal barrier to a position, a byline or a society is documented in the sources consulted.
+  - mechanism: institutional-gatekeeping
+    verdict: not-supported
+    note: No act of obstruction is documented. The paper was published; what followed was thin uptake,
+      which is neglect rather than gatekeeping.
+  - mechanism: posthumous-recognition
+    verdict: not-supported
+    note: Recognition did arrive after his death in 1884, but the mechanism turns on timing and eligibility
+      rules determining whether a contribution can be honoured, and no such rule operated here. The 1900
+      rediscovery was an act of the scientific community, not a decision of an award system, and the Nobel
+      Prizes did not exist until 1901. The interval is already carried by delayed recognition.
+  - mechanism: theory-experiment-asymmetry
+    verdict: not-supported
+    note: The mechanism this re-audit was opened for. It requires a prediction, an experiment that converts
+      it into established science, and reward flowing to the predicting theorists. Mendel is both the
+      experimenter and the source of the theoretical statement, and the three botanists who rediscovered
+      the work in 1900 reproduced the result independently rather than being honoured for predicting it.
+      No fault line between predicting and demonstrating exists in this case.
+  - mechanism: compulsory-secrecy
+    verdict: not-supported
+    note: No nondisclosure or classification obligation appears in the record. The work was published
+      in 1866 and remained publicly available throughout the interval, which is the opposite of the condition
+      this mechanism requires - and it is what makes the case delayed reception rather than enforced silence.
+  finding: mechanism-evidenced
+  note: 'Re-audit against the full MOR-006 ontology, opened because the 2026-09-11 audit never tested
+    theory-experiment asymmetry, which had been audit-eligible since MOR-002. All seven mechanisms are
+    now tested. Delayed recognition is re-confirmed and remains the only mechanism this case carries.
+    The caveat recorded in the original audit stands and is not resolved by this search: the mechanism
+    sits close to a description of the outcome it explains, which is a question for the ontology rather
+    than for this entry. No pattern changes and no score is touched.'
+  patterns_changed: false
+  scores_changed: false
+  best_sources:
+  - 1
+  - 3

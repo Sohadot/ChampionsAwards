@@ -217,9 +217,18 @@ def pattern_readings(patterns: dict[str, Any]) -> list[str]:
         lines.append(
             f"Audit depth: {patterns['n_audits_complete_at_revision']} of {patterns['n_audits']} "
             f"mechanism audits here tested every mechanism that was audit-eligible on the day they "
-            f"ran, and {patterns['n_audits_current']} cover the mechanism set in force at "
-            f"{patterns['current_ontology_revision']}. An audit that predates a later addition to "
-            f"the ontology is recorded as such and is not counted against this domain."
+            f"ran, and {patterns['n_audits_current']} of the latest audit statements cover the "
+            f"mechanism set in force at {patterns['current_ontology_revision']}. An audit that "
+            f"predates a later addition to the ontology is recorded as such and is not counted "
+            f"against this domain."
+        )
+    if patterns["n_historical_audit_defects"]:
+        lines.append(
+            f"Of those, {patterns['n_historical_audit_defects']} were incomplete when performed and "
+            f"{patterns['n_historical_audit_defects_remediated']} have since been repaired by a "
+            f"dated re-audit against the whole current ontology. The original audit is kept as it "
+            f"was run, so the record reads as a defect that was remediated rather than as one that "
+            f"was never there."
         )
     return lines
 

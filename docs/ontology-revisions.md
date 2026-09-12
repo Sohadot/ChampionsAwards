@@ -88,7 +88,68 @@ be made to have tested it by editing a file.
 **Currency against the revision in force: 2 of 22.** Only Flowers and Ellis cover
 the present seven-mechanism set. This is reported and gates nothing.
 
-## The open consequence
+## Remediation — 2026-09-12
+
+The twelve defects were remediated by re-audit. The governing decision was that
+partial repair is not repair: re-opening an audit to test only the mechanism it
+missed would produce a second partial record and call it a fix. So each of the
+twelve carries a `mechanism_reaudit` — a new dated search under MOR-006, tested
+against **all seven** mechanisms, returning a verdict and a note for each one.
+
+The original audits are untouched, `incomplete_at_revision` included. The record
+therefore reads *the original audit was incomplete; a later re-audit remediated
+it*, which is a stronger statement than a past edited to look complete.
+
+Three figures, three different claims:
+
+| | measured |
+| --- | --- |
+| Complete when originally performed | **10 of 22** — and this never moves |
+| Historical audit defects remediated | **12 of 12** |
+| Latest audit statement current against MOR-006 | **14 of 22** |
+
+The eight that remain non-current are the Mathematics & Computing audits that
+were complete at MOR-004 and predate compulsory secrecy. They are not defects and
+were not re-run: an audit that was complete when performed has nothing to repair,
+and re-running every audit after every addition to the ontology is not what
+stability means.
+
+**No re-audit changed anything.** No pattern was added or withdrawn, and no DDI,
+observed-recognition or gap value moved. Each re-audit states both facts
+explicitly rather than leaving them to be inferred from a diff.
+
+## What the complete tests found
+
+`theory-experiment-asymmetry` is **not supported in any of the ten Biology &
+Medicine cases**. The concept is narrower than the shape it is often read as
+having: it requires a prediction, an experiment that converts it into established
+science, and reward flowing to the predicting theorists. Rosalind Franklin — the
+case that made the defect look material — fails it on exactly that narrowness.
+Her diffraction work and the Watson–Crick model appeared in the same April 1953
+volume of Nature, with the model built from the data rather than predicted ahead
+of it. The displacement the record documents is already carried by credit
+misattribution, whose own definition names reward flowing to a theorist over an
+experimentalist; tagging both would count one displacement twice. Oswald Avery,
+the other strong-looking candidate, fails for the same structural reason.
+
+`posthumous-recognition` is **not supported for either Physics & Astronomy case**,
+and the reason generalises beyond them. Read literally — timing and eligibility
+rules determining whether a contribution *can* be honoured — the mechanism is
+satisfied by every scientist who has died since the Nobel Statutes acquired the
+posthumous prohibition in 1974, Vera Rubin included, and a tag that fits every
+deceased case distinguishes nothing. Read as the corpus actually uses it, as an
+explanation of a measured recognition deficit, it requires an eligibility rule
+shown to have determined an actual decision. Rubin's deficit was already in place
+across four decades in which she was fully eligible; Bose's non-award is
+documented as an evaluative judgment, with eleven nominations between 1956 and
+1972 and a commissioned expert evaluation in 1956. The prospective foreclosure is
+real and is recorded in both re-audits; it is not what produced either gap.
+
+That tension between the two readings is an **observation for a future ontology
+review**, recorded here and deliberately not acted on: this remediation closed
+known defects and did not reopen the ontology.
+
+## The open consequence — closed
 
 The twelve gaps are not uniform in weight. Eleven concern a mechanism whose
 relevance to the case is not obvious from the record. One is different:
@@ -97,10 +158,12 @@ theory–experiment asymmetry candidate in the corpus — an experimentalist who
 data underwrote a model-building result that was recognised — and her audit never
 tested that concept.
 
-This is a possible material finding about a closed layer, not a clerical one. It
-is recorded here rather than acted on, because acting on it means re-running a
-mechanism audit against sources, which is an evidential act and not a refactor.
-A closed layer is not frozen; it stays closed and stays correctable.
+This was a possible material finding about a closed layer, not a clerical one,
+and it was recorded rather than acted on because acting on it meant re-running a
+mechanism audit against sources — an evidential act, not a refactor. It has since
+been acted on, across all twelve rather than only the two obvious candidates: see
+**Remediation** above. A closed layer is not frozen; it stays closed and stays
+correctable.
 
 ## The rule going forward
 
