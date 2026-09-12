@@ -1,0 +1,108 @@
+title: Barbara Liskov
+slug: barbara-liskov
+status: published
+last_reviewed: 2026-09-12
+domain: mathematics-computing
+subfield: computing
+summary: Barbara Liskov led the design of CLU, the first implemented programming language to provide direct linguistic support for data abstraction, and holds the highest award her field confers - the ACM A.M. Turing Award of 2008 - which makes her the corpus entry that tests whether the instrument reports alignment when recognition actually tracked contribution.
+introduction: This entry is the first case the corpus has entered on the computing side of its Mathematics and Computing domain, and it was chosen deliberately as an award-positive case rather than an omission, so that the side of the domain that began at zero cases does not begin with a single class of outcome.
+omission_case: "Her case matters for what it tests rather than what it alleges. Computing entered this corpus with three recognition systems and no cases at all, and a first case drawn from the omission literature would have fixed the side's character before a single measurement was taken. A laureate of the field's highest award, assessed by the same instrument as every other entry, is the control that keeps the reading honest."
+structural_reason: "No structural reason is offered, and none is evidenced. The record shows a contribution documented in her own published history of the work and a recognition record that runs through the professional society, an engineering institute, a national science museum, both national academies and her own university. The entry records one biographical fact without treating it as a mechanism: she is described by her university as the first woman in the United States to earn a doctorate from a computer science department. That is recorded because it is documented, not because this corpus has established that it shaped her recognition in either direction."
+assessment:
+  impact: 86
+  verification: 92
+  uniqueness: 74
+  durability: 90
+  breadth: 76
+  attribution: 88
+  observed_recognition: 90
+  evidence:
+    impact: [1, 3]
+    verification: [1, 2, 3]
+    uniqueness: [1]
+    durability: [1, 3]
+    breadth: [3]
+    attribution: [1, 3]
+    observed_recognition: [2, 3, 4]
+  rationale:
+    impact: Data abstraction reorganised how software is written, and the language that first supported it directly was designed under her direction; the Franklin Institute's citation ties the contribution to the implementation of reliable, reusable programs.
+    verification: The contribution is anchored to her own technical report on the history of the work, published by her laboratory, and is independently described by two award-giving institutions.
+    uniqueness: "CLU was the first implemented language to provide direct linguistic support for data abstraction, which is a specific and datable first. Her own history qualifies the claim in two ways this entry keeps: Alphard was being developed in parallel toward the same idea, and the concept itself was refined jointly with a colleague before the language work began."
+    durability: The constructs CLU introduced are standard in languages in use today, and the subtyping rule from her 1988 keynote carries her name.
+    breadth: The remit is computing rather than society at large, but the reach within it is wide, since the techniques are general to software rather than to one application.
+    attribution: Credit is unambiguous, is eponymous in the substitution principle, and is not contested; her own history names her collaborators and the three graduate students who designed the language with her, which is the opposite of the displacement this corpus usually records.
+    observed_recognition: The field's highest award in 2008, an engineering institute's medal in 2004, a national science museum's medal in 2023, election to both national academies, and her university's highest faculty honour in the same year as the Turing Award. This is close to the ceiling of what computing can confer, and is scored above the highest figure previously recorded in this corpus.
+key_facts:
+  - fact: "Liskov's own history of the work states that CLU was the first implemented programming language to provide direct linguistic support for data abstraction, and that it also introduced its exception handling mechanism, its iterators and its parameterized types."
+    source: 1
+  - fact: "In the same history she records that she began working with Steve Zilles at MIT in 1973 on a similar idea and that they refined the concept of abstract types together, and she names Russ Atkinson, Craig Schaffert and Alan Snyder as the other three main language designers."
+    source: 1
+  - fact: "The ACM A.M. Turing Award for 2008 was given to her for contributions to practical and theoretical foundations of programming language and system design, especially related to data abstraction, fault tolerance and distributed computing."
+    source: 2
+  - fact: "The Franklin Institute awarded her the Benjamin Franklin Medal in 2023 for seminal contributions to computer programming languages and methodology, enabling the implementation of reliable, reusable programs, and records her election to the National Academies of Sciences and of Engineering and her IEEE John von Neumann Medal."
+    source: 3
+  - fact: Her university reports that she was the first woman in the United States to earn a PhD from a computer science department, and that she was named an Institute Professor, its highest faculty honour, in the year before the Turing Award was announced.
+    source: 4
+analysis:
+  - heading: A control, entered first, on the empty side of the domain
+    body: "Computing held three recognition systems and no cases when Cycle 03 measured the domain's two halves, and the subfield audit recorded that the internal comparison the domain's name implies was not yet meaningful. The first case entered on that side therefore sets what the side looks like. This entry was selected because the recognition record is unusually complete rather than unusually thin, so that computing does not begin as a register of omissions and then get read as though the register were a finding."
+  - heading: What the instrument returns when recognition tracks contribution
+    body: "The assessed index and the observed recognition land within a few points of each other, which the gap bands classify as recognition roughly matching assessed merit. That is the intended reading. Two entries in the Biology and Medicine corpus already returned the same class, so the instrument's capacity to report alignment is not new; what is new is that this is the first entry in the corpus whose subject holds the single highest award her domain confers."
+  - heading: What this entry does not claim
+    body: "It does not claim that the absence of a mechanism here is evidence that computing recognises contribution reliably. One case establishes nothing about a system's behaviour, and the mechanism audit below returns no evidenced mechanism for the ordinary reason that there is no deficit for a mechanism to explain. It also does not treat her being the first woman in the United States to hold a computer science doctorate as an exclusion finding; the fact is documented, its bearing on her recognition is not, and this corpus keeps those apart."
+sources:
+  - title: "A History of CLU, MIT/LCS/TR-561 (first implemented language with direct support for data abstraction; the 1973 work with Zilles; the four main language designers)"
+    publisher: "Barbara Liskov, MIT Laboratory for Computer Science, April 1992"
+    url: https://publications.csail.mit.edu/lcs/pubs/pdf/MIT-LCS-TR-561.pdf
+    type: primary
+  - title: "ACM A.M. Turing Award 2008 - laureate record and citation"
+    publisher: Heidelberg Laureate Forum Foundation
+    url: https://www.heidelberg-laureate-forum.org/laureate/barbara-liskov/
+    type: institutional
+  - title: "Barbara H. Liskov - Benjamin Franklin Medal 2023 (citation, CLU, Argus, the substitution principle, academy memberships and the von Neumann Medal)"
+    publisher: The Franklin Institute
+    url: https://fi.edu/en/awards/laureates/barbara-h-liskov-phd
+    type: institutional
+  - title: "Barbara Liskov wins Turing Award (10 March 2009) - CLU, Argus, Institute Professor, first US woman with a computer science doctorate"
+    publisher: MIT News, Massachusetts Institute of Technology
+    url: https://news.mit.edu/2009/turing-liskov-0310
+    type: institutional
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+  attribution:
+    record_anchor: [1]
+    basis: primary-publication
+  observed-recognition:
+    record_anchor: [3]
+    basis: awarding-institution-record
+audit_exceptions:
+  - claim: observed-recognition
+    search_date: '2026-09-12'
+    search_note: "The awarding society's own laureate pages at awards.acm.org and amturing.acm.org returned HTTP 403 to this audit and could not be read directly, as they did in the Cycle 03 requalification of the Turing Award itself. The award year and the citation wording are taken from a foundation that co-organises its laureate meeting with the society, and are corroborated by the university's news office and by a second award-giving institution."
+    best_source: 2
+    reason: "Institution-record-sufficient at one remove. The citation is quoted from a body that publishes it as a laureate record rather than from the society that issued it, and the entry says so rather than implying access it does not have."
+mechanism_audit:
+  search_date: '2026-09-12'
+  considered:
+    - institutional-exclusion
+    - credit-misattribution
+    - delayed-recognition
+    - institutional-gatekeeping
+    - posthumous-recognition
+    - theory-experiment-asymmetry
+  finding: no-mechanism-evidenced
+  note: >-
+    No mechanism is evidenced, and in this case the finding carries no deficit to explain. The gap is
+    slightly negative, which places the case in the band where recognition roughly matches assessed
+    merit, so the audit is recorded as an aligned outcome rather than as unexplained under-recognition.
+    Each mechanism was tested against the record and none is met. Credit misattribution fails in the
+    strongest way available: her own history distributes credit outward to named collaborators, and no
+    source contests her authorship of the work. Delayed recognition fails because the major awards
+    arrived during her working life. Institutional exclusion was tested against the one documented
+    biographical fact that could support it - she is reported as the first woman in the United States
+    to earn a computer science doctorate - and is not tagged, because a documented first is not a
+    documented barrier and no formal rule or refused appointment is in the record. Gatekeeping,
+    posthumous recognition and the theory-experiment asymmetry have no purchase on this case at all.
+  best_sources: [1, 3]

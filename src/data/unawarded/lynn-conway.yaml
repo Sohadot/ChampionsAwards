@@ -1,0 +1,125 @@
+title: Lynn Conway
+slug: lynn-conway
+status: published
+last_reviewed: 2026-09-12
+domain: mathematics-computing
+subfield: computing
+summary: Lynn Conway proposed dynamic instruction scheduling at IBM in 1965, was dismissed by the company in 1968 as she underwent gender transition, rebuilt a career at Xerox PARC where she created scalable design rules and the VLSI design methodology that reorganised chip design, and received her documented honours between 2009 and 2023.
+introduction: This entry keeps three things apart that a summary of her life usually merges - what she contributed, what is documented about her dismissal, and how much recognition she received - because the corpus can establish each separately and cannot establish a causal quantity linking them.
+omission_case: "Her case matters because it is the clearest test in this corpus of whether a documented employment exclusion can be held apart from a recognition outcome. The dismissal is not inferred from an absence of honours; it is stated by the institutions that later honoured her. What remains unestablished, and is treated as unestablished here, is how much of the shape of her recognition record follows from it."
+structural_reason: "The documented barrier is a termination of employment. The Computer History Museum, which elected her a Fellow, states that IBM fired her as she underwent gender transition in 1968; the professional society's magazine reports the same event and the company's apology in 2020, delivered with a lifetime achievement award. That is the published definition of institutional exclusion in this corpus - a formal barrier to a position, constraining the visibility from which honours follow. It is not a claim that the size of her recognition gap has been derived from the dismissal. The corpus establishes the barrier, and separately measures the recognition; it does not compute the second from the first."
+assessment:
+  impact: 88
+  verification: 86
+  uniqueness: 80
+  durability: 90
+  breadth: 82
+  attribution: 72
+  observed_recognition: 75
+  evidence:
+    impact: [1, 2, 3]
+    verification: [1, 2, 4]
+    uniqueness: [2, 3]
+    durability: [1, 2]
+    breadth: [2, 3]
+    attribution: [2, 4]
+    observed_recognition: [2, 3, 5]
+  rationale:
+    impact: "Two separate contributions, each infrastructural: the out-of-order dynamic instruction scheduling proposed on the IBM supercomputer project in 1965, and the scalable design rules and design methodology that made chip design teachable and separable from fabrication."
+    verification: "The VLSI work is anchored to her own technical report from the laboratory where it was done, and to two institutions that honoured it. The 1965 contribution is anchored to an academic history project that dates it and cites her internal memorandum, not to the company's own record, and the score is held below the corpus's best-verified cases for that reason."
+    uniqueness: "The museum that elected her a Fellow credits her with inventing scalable design rules and names her principal author of the textbook. The textbook is jointly authored and the hall of fame records the induction as shared with her co-author, so the methodology is not scored as solely hers."
+    durability: "Out-of-order execution is standard in high-performance processors, and the design methodology became the basis of a curriculum: her own report records courses at about twelve universities in 1979-80 and more than eighty the following year."
+    breadth: The benefit reaches anyone who uses a processor or an integrated circuit rather than a research community only.
+    attribution: "Credit today is clear and is partly eponymous in the pairing that names the methodology after her and her co-author. It is scored well below the corpus's strongest attribution cases for a specific reason: the 1965 contribution entered the public record through a later academic history project rather than through the contemporaneous record of the project on which it was made."
+    observed_recognition: "Five honours are documented here and all fall between 2009 and 2023 - a professional society's pioneer award, a museum fellowship, an international medal, her former employer's lifetime achievement award delivered with an apology, and induction into a national hall of fame. That is recognition across independent systems without the single highest award of the field. This score sits on the boundary of the corpus's under-recognition band, so the case's classification turns on it; it is stated here plainly rather than adjusted away from the edge."
+key_facts:
+  - fact: "An academic history of the IBM Advanced Computing Systems project records that dynamic instruction scheduling concepts were presented by Lynn Conway late in 1965, and lists her internal document \"Dynamic Instruction Scheduling\" dated 23 February 1966."
+    source: 4
+  - fact: "The Computer History Museum states that IBM fired her as she underwent gender transition in 1968, that she was recruited to Xerox PARC in 1973, that she invented scalable design rules for VLSI chip design, and that she became principal author of the Mead-Conway text Introduction to VLSI Systems."
+    source: 2
+  - fact: "In her own Xerox PARC report she records the spread of the methodology: courses were offered at about twelve universities in the 1979-80 school year and at more than eighty universities in 1980-81."
+    source: 1
+  - fact: The National Inventors Hall of Fame inducted her in 2023 for very large-scale integration, jointly with Carver Mead, and records her earlier contributions to computer architecture at IBM Research including multiple-out-of-order dynamic instruction scheduling.
+    source: 3
+  - fact: "The professional society's magazine records the IEEE Computer Society Computer Pioneer Award in 2009, the IEEE/RSE James Clerk Maxwell Medal in 2015, her arrival at Xerox PARC in 1975, the publication of the textbook in 1980, her Michigan professorship from 1985 until she retired in 1998, and the company's apology for the termination in 2020."
+    source: 5
+  - fact: The Computer History Museum elected her a Fellow in 2014 for her work in developing and disseminating new methods of integrated circuit design.
+    source: 2
+analysis:
+  - heading: The barrier is documented; the quantity is not
+    body: "Two institutions that honoured her state the dismissal and its reason, which is a stronger evidentiary position than most exclusion cases in this corpus enjoy, and stronger than inferring a barrier from a thin record of honours. What no source establishes is the counterfactual - what her recognition record would have been without it. This entry therefore tags the mechanism and declines the arithmetic. A mechanism can be real, documented and consequential without the corpus being able to say how many points of recognition it cost."
+  - heading: Why delayed recognition is not the mechanism here
+    body: "The honours arrived between 2009 and 2023 for work done between 1965 and 1980, which invites the delayed-recognition label. The definition does not fit. That mechanism describes a community unable to absorb a contribution, and the contribution here was absorbed almost immediately: her own report records the methodology spreading from about twelve university courses to more than eighty within a single year. The work was not waiting for the field to catch up. What arrived late was the honouring of its author, which is a different thing, and the entry does not relabel one as the other."
+  - heading: What the mechanism audit did not find
+    body: "Credit misattribution was tested and is not tagged. No source in this audit names another person who received the reward for her work, and the methodology carries her name alongside her co-author's. The absence of contemporaneous public attribution for the 1965 contribution is recorded as an attribution weakness in the score rather than as displacement toward a named beneficiary, because displacement is what that mechanism requires and it is not in the record."
+sources:
+  - title: "The MPC Adventures: Experiences with the Generation of VLSI Design and Implementation Methodologies, Xerox PARC report VLSI-81-2 (course diffusion figures for 1979-80 and 1980-81)"
+    publisher: "Lynn Conway, Xerox Palo Alto Research Center"
+    url: https://www.bitsavers.org/pdf/xerox/parc/techReports/VLSI-81-2_The_MPC_Adventures.pdf
+    type: primary
+  - title: "Lynn Conway - Fellow of the Computer History Museum, 2014 (fellowship citation; the 1968 termination; scalable design rules; principal authorship of the Mead-Conway text)"
+    publisher: Computer History Museum
+    url: https://computerhistory.org/profile/lynn-conway/
+    type: institutional
+  - title: "Lynn Conway - inductee record, 2023 (induction for very large-scale integration with Carver Mead; the IBM contribution to computer architecture)"
+    publisher: National Inventors Hall of Fame
+    url: https://www.invent.org/inductees/lynn-conway
+    type: institutional
+  - title: "IBM ACS project history and timeline (dynamic instruction scheduling presented by Conway late in 1965; her internal document of 23 February 1966)"
+    publisher: "Mark Smotherman, Clemson University"
+    url: https://mark.people.clemson.edu/acs.html
+    type: scholarly-secondary
+  - title: "Honoring the Legacy of Chip Design Innovator Lynn Conway (Computer Pioneer Award 2009, Maxwell Medal 2015, the 1968 termination, the 2020 apology, the 1980 textbook, Michigan 1985-1998)"
+    publisher: "IEEE Spectrum, Institute of Electrical and Electronics Engineers"
+    url: https://spectrum.ieee.org/chip-design-innovator-lynn-conway
+    type: reference-secondary
+patterns:
+  - institutional-exclusion
+pattern_evidence:
+  institutional-exclusion: [2, 5]
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+  observed-recognition:
+    record_anchor: [2]
+    basis: awarding-institution-record
+audit_exceptions:
+  - claim: pattern:institutional-exclusion
+    search_date: '2026-09-12'
+    search_note: "Sought the company's own record of the 1968 termination and of the 2020 apology. No statement published by the company was reached; the apology was delivered at an internal event and is reported rather than published. The university pages that carry her departmental record, and the site she maintained there, returned HTTP 403 or were unreachable to this audit. The dismissal and its stated reason are documented consistently by the museum that elected her a Fellow and by the professional society's magazine."
+    best_source: 2
+    reason: "Secondary-record-sufficient, and stated as such. The barrier is documented by two bodies that honoured her rather than by the employer that imposed it, and the entry claims the event, not a quantified effect of it."
+  - claim: attribution
+    search_date: '2026-09-12'
+    search_note: "Sought a record-grade source establishing whether and for how long the 1965 contribution went publicly unattributed to her. The academic history of the project dates the contribution to her and cites her internal memorandum, but no source read here documents the attribution history itself."
+    best_source: 4
+    reason: "Known-status. The attribution score is lowered on what is documented - that the contribution entered the public record through a later history project - and the entry makes no claim about a period of suppression it did not read a source for."
+  - claim: observed-recognition
+    search_date: '2026-09-12'
+    search_note: "Her membership of the National Academy of Engineering is widely reported, with 1989 given as the election year. No academy page recording it was reached by this audit, so it is not listed among the honours above and does not carry the score."
+    best_source: 3
+    reason: Excluded rather than asserted. The observed-recognition score rests on the five honours documented by sources read here.
+mechanism_audit:
+  search_date: '2026-09-12'
+  considered:
+    - institutional-exclusion
+    - credit-misattribution
+    - delayed-recognition
+    - institutional-gatekeeping
+    - posthumous-recognition
+    - theory-experiment-asymmetry
+  finding: mechanism-evidenced
+  note: >-
+    Institutional exclusion is evidenced as a formal barrier to a position: the museum that elected her
+    a Fellow and the professional society's magazine both record that the company terminated her
+    employment in 1968 as she underwent gender transition, and the same society's magazine records the
+    company's apology in 2020. The mechanism is tagged for the event and not for any quantity derived
+    from it. Credit misattribution was tested and is not tagged, because no named person is documented
+    as receiving the reward for her work. Delayed recognition was tested and is not tagged, because its
+    definition turns on a community's inability to absorb the contribution, and her own report documents
+    the methodology spreading to more than eighty university courses within two years of the textbook.
+    Institutional gatekeeping requires an actor controlling publication or access and obstructing it;
+    no such actor is in the record. Posthumous recognition does not apply, since the documented honours
+    were all received in her lifetime. The theory-experiment asymmetry has no purchase on this case.
+  best_sources: [1, 2, 4]

@@ -1,0 +1,117 @@
+title: Karen Sparck Jones
+slug: karen-sparck-jones
+status: published
+last_reviewed: 2026-09-12
+domain: mathematics-computing
+subfield: computing
+summary: Karen Sparck Jones introduced inverse document frequency in a 1972 paper written at the Cambridge Computer Laboratory, collected the highest lifetime honours of two research communities, and spent thirty-seven years without an established university post - which makes her the case that separates recognition from employment standing.
+introduction: This is the second case entered on the computing side of the domain, and it was chosen because its recognition record is neither a clear omission nor a clear alignment in advance of measurement, so the instrument has to decide rather than confirm.
+omission_case: "Her case matters because two records that usually move together pull apart in it. Her professional recognition is dense and arrived in her lifetime - the premier lifetime award of information retrieval, the premier lifetime award of computational linguistics, a national academy fellowship and a national society's medal. Her institutional standing at her own university was a readership at fifty-nine and a personal chair at sixty-four, after more than three decades on short-term research funding. The entry exists to test which of those the instrument is actually measuring."
+structural_reason: "No structural reason is offered, and none is evidenced. The employment record is documented and is deliberately not converted into a recognition mechanism here. Her obituary in the field's journal of record states that she joined the Cambridge Language Research Unit in 1957 and so began a very lengthy period on soft money, and that the university awarded her a readership in 1994 and a personal chair in 1999. The same source records her own position: that she felt she was never overtly discriminated against as a woman, while noting that in professional circles she was very frequently the only woman. This entry records both statements and derives no mechanism from either."
+assessment:
+  impact: 86
+  verification: 90
+  uniqueness: 80
+  durability: 92
+  breadth: 80
+  attribution: 82
+  observed_recognition: 80
+  evidence:
+    impact: [1, 2]
+    verification: [1, 2, 3]
+    uniqueness: [1, 2]
+    durability: [2]
+    breadth: [2]
+    attribution: [2]
+    observed_recognition: [2, 3, 4]
+  rationale:
+    impact: "The 1972 paper argued that index terms should be weighted by collection frequency, and her obituary in the field's journal of record describes the resulting measure as the partial basis of all weighting schemes adopted by widely used internet search engines. The entry keeps the qualifier - partial basis - rather than dropping it."
+    verification: The contribution is anchored to her own paper, published under her name from the Cambridge Computer Laboratory, and is independently described by a scholarly obituary and by her department.
+    uniqueness: The obituary calls inverse document frequency her invention, and the statistical reading of term specificity as a function of term use rather than term meaning is the specific step the paper takes.
+    durability: The measure is still standard in retrieval more than half a century after the paper, and the paper was reprinted in the same journal in 2004.
+    breadth: Retrieval weighting reaches ordinary users of search rather than specialists only, which places the benefit wider than a discipline-internal contribution.
+    attribution: "Credit is uncontested and is routinely attached to her name in the literature and in the pairing that names the weighting model after her and a collaborator. It is scored below the corpus's clearest attribution cases for one reason: the measure itself is used far more often than it is credited, which is diffusion without displacement rather than misattribution."
+    observed_recognition: "The premier lifetime award of information retrieval, the premier lifetime award of computational linguistics, the British Computer Society's medal, a joint society award, a national academy fellowship, two artificial intelligence fellowships, the presidency of her field's association, and a readership and then a personal chair at her university. Scored below the corpus's alignment cases because the university standing arrived after more than three decades and the award cluster fell late relative to the 1972 work, and well above its exclusion cases because the honours were numerous, independent of one another and received in her lifetime."
+key_facts:
+  - fact: "In the 1972 paper she argued that specificity should be interpreted statistically, as a function of term use rather than of term meaning, and that terms should be weighted according to collection frequency so that matches on less frequent, more specific terms are of greater value than matches on frequent terms."
+    source: 1
+  - fact: The paper was published from the Computer Laboratory at the University of Cambridge in the Journal of Documentation in 1972, and was reprinted in the same journal in 2004.
+    source: 1
+  - fact: "Her obituary in Computational Linguistics states that she joined the Cambridge Language Research Unit in 1957 and so began a very lengthy period on soft money, and that the University of Cambridge finally recognised her standing by awarding her a readership in 1994 and a personal chair in 1999."
+    source: 2
+  - fact: "The same obituary lists her honours as fellowships of the American and European artificial intelligence societies, fellowship of the British Academy, the ACL Lifetime Achievement Award, the Lovelace Medal of the British Computer Society, the ACM SIGIR Salton Award, the American Society for Information Science and Technology's Award of Merit, the ACM-AAAI Allen Newell Award, and the ACM Women's Group Athena Award, which she did not live to receive formally."
+    source: 2
+  - fact: "The obituary records that she felt she was never overtly discriminated against as a woman, and that she noted she was very frequently the only woman in professional circles."
+    source: 2
+  - fact: Her department records her as Professor of Computers and Information, emeritus, and as President of the Association for Computational Linguistics in 1994.
+    source: 3
+analysis:
+  - heading: Two records that do not agree
+    body: "Most cases in this corpus have a recognition record and an institutional record that point the same way, and the instrument reads them together. Here they diverge. By the measure this project actually uses - formal recognition received - her record is dense, independent and contemporaneous, and the computed gap is small. By the measure this project does not use - employment standing at her own institution - the record is thirty-seven years of short-term funding before a readership. The entry reports the first and documents the second without scoring it as a mechanism."
+  - heading: A negative finding that is stated, not inferred
+    body: "A case with this shape invites the assumption that the late post was a gendered barrier. The source closest to her states the opposite on her own behalf: that she felt she was never overtly discriminated against, while being very frequently the only woman present. This corpus does not have standing to overrule a subject's recorded account of her own career with an inference drawn from its shape, and it does not do so here. No formal barrier to an appointment is documented, which is what the exclusion mechanism requires, so the mechanism is tested and not tagged."
+  - heading: What the second computing case does and does not establish
+    body: "Computing now holds two cases and both return small gaps, and it would be easy to read that as a property of computing as a recognition environment. Two cases establish nothing of the kind. The first was entered as a deliberate award-positive control, and the second was entered because its outcome could not be predicted, which is the only sense in which the pair is informative at all. What they jointly establish is that the side of the domain that began at zero now has a measured range, not that the range is representative."
+sources:
+  - title: "A statistical interpretation of term specificity and its application in retrieval, Journal of Documentation 28(1), 11-21 (1972), reprinted in Journal of Documentation 60(5), 493-502 (2004)"
+    publisher: "Karen Sparck Jones, Computer Laboratory, University of Cambridge"
+    url: https://www.staff.city.ac.uk/~sbrp622/idfpapers/ksj_orig.pdf
+    type: primary
+  - title: "Obituary: Karen Sparck Jones, Computational Linguistics 33(3), 289-291 (career, soft money, readership 1994, chair 1999, honours, her own account of discrimination)"
+    publisher: "John I. Tait, Association for Computational Linguistics"
+    url: https://aclanthology.org/J07-3001/
+    type: scholarly-secondary
+  - title: "Karen Sparck Jones - departmental page (title, research areas, ACL presidency, honours)"
+    publisher: "Department of Computer Science and Technology, University of Cambridge"
+    url: https://www.cl.cam.ac.uk/archive/ksj21/
+    type: institutional
+  - title: "Obituaries: Karen Sparck Jones, 1935-2007"
+    publisher: "Department of Computer Science and Technology, University of Cambridge"
+    url: https://www.cl.cam.ac.uk/misc/obituaries/sparck-jones/
+    type: institutional
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+  attribution:
+    record_anchor: [1]
+    basis: primary-publication
+  observed-recognition:
+    record_anchor: [3]
+    basis: institutional-archive
+audit_exceptions:
+  - claim: observed-recognition
+    search_date: '2026-09-12'
+    search_note: "Sought the awarding bodies' own citation records for the Salton Award, the ACL Lifetime Achievement Award, the Lovelace Medal and the Allen Newell Award. The ACM pages that would carry two of them returned HTTP 403 to this audit, as they did in the Cycle 03 requalification of the Turing Award. The honours are listed together by a scholarly obituary in the field's journal of record and, in part, by her own department."
+    best_source: 2
+    reason: "Secondary-record-sufficient. The list of honours is taken from a peer-reviewed obituary rather than from each awarding body, and no individual citation wording is quoted here, since none was read at source."
+  - claim: career-standing
+    search_date: '2026-09-12'
+    search_note: "Sought University of Cambridge records of her appointments. The department publishes her final title but not the dates of her readership or chair; those dates, and the characterisation of the preceding period as soft money, come from the obituary, which also reports her own view of whether she was discriminated against."
+    best_source: 2
+    reason: "Reported rather than archival. The employment record is stated as the obituary states it, and no mechanism is derived from it, so the claim does not carry a score."
+mechanism_audit:
+  search_date: '2026-09-12'
+  considered:
+    - institutional-exclusion
+    - credit-misattribution
+    - delayed-recognition
+    - institutional-gatekeeping
+    - posthumous-recognition
+    - theory-experiment-asymmetry
+  finding: no-mechanism-evidenced
+  note: >-
+    No mechanism is evidenced, and the computed gap is small enough that the case falls in the band
+    where recognition roughly matches assessed merit rather than in unexplained under-recognition.
+    Institutional exclusion was the mechanism this case was most likely to support and it is not
+    tagged: the definition requires a formal barrier to an appointment, membership, authorship or pay,
+    and what is documented is a long period of short-term funding followed by a readership and a chair,
+    with no rule or refusal in the record, against her own reported statement that she was never overtly
+    discriminated against. Credit misattribution is not tagged, since no source displaces the 1972
+    result to anyone else and the weighting model carries her name. Delayed recognition was tested
+    because the honours cluster falls between sixteen and thirty-five years after the paper, and is not
+    tagged, because the mechanism concerns a community's inability to absorb the work, whereas this
+    work was absorbed quickly and the awards in question are lifetime awards, which are late by
+    construction. Gatekeeping, posthumous recognition and the theory-experiment asymmetry are
+    unsupported.
+  best_sources: [1, 2]
