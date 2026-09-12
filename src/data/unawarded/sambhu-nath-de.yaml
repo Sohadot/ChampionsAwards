@@ -45,6 +45,27 @@ analysis:
     body: "The most repeated statement about De is that he was nominated for the Nobel Prize. The corpus cannot verify it: the Nobel nomination archive publishes Physiology or Medicine nominations only through 1953, and any nomination of De would fall decades later. The claim is therefore recorded with its source and its limitation, and it carries no weight in his observed-recognition score. A nomination is not recognition conferred in any case."
   - heading: Why no mechanism is tagged
     body: "It would be easy to write that a scientist working in Calcutta in the 1950s was overlooked because he worked in Calcutta. The corpus does not have the evidence for that sentence in this case, and the sentence is exactly the kind that sounds explanatory while resting on nothing checkable. What is documented is a contribution of the first rank, international standing among specialists, republication by a global health authority, and a thin formal honours record. The mechanism behind that combination is not recorded here."
+seo:
+  canonical: /unawarded/sambhu-nath-de
+  description: Sambhu Nath De showed in Calcutta in 1953 that Vibrio cholerae acts on the intestinal mucous membrane, and in 1959 that a bacteria-free culture filtrate reproduces the disease.
+  h1: Sambhu Nath De
+  incoming_links:
+  - /rankings
+  - /sectors/biology-medicine
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /sectors/biology-medicine
+  primary_query: Sambhu Nath De
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Biology & Medicine
+  - recognition gap
+  - Deservingness Index
+  title: Sambhu Nath De - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "An experimental study of the mechanism of action of Vibrio cholerae on the intestinal mucous membrane (1953)"
     publisher: "S. N. De and D. N. Chatterje, Journal of Pathology and Bacteriology 66: 559-562, PMID 13118463"

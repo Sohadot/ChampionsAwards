@@ -8,6 +8,24 @@ implications: Without understanding recognition bias, societies risk confusing f
 # tested against individual cases; the mechanisms it covers are.
 concept_type: recognition-pattern
 last_reviewed: 2026-09-11
+seo:
+  canonical: /concepts/recognition-bias
+  description: Recognition bias is the distortion that occurs when systems of prestige favor certain actors, regions, narratives.
+  h1: Recognition Bias
+  incoming_links:
+  - /concepts
+  indexing: index
+  outgoing_links:
+  - /methodology
+  primary_query: recognition bias
+  schema_types:
+  - BreadcrumbList
+  - DefinedTerm
+  secondary_entities:
+  - recognition mechanism
+  - merit vs recognition
+  - scientific recognition
+  title: Recognition Bias - Definition & Documented Cases | ChampionsAwards
 sources:
   - title: "The Matthew Effect in Science, II — cumulative advantage and the symbolism of intellectual property"
     publisher: "Robert K. Merton, Isis, Vol. 79 (1988)"

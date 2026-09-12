@@ -1,0 +1,17 @@
+{% if page and page.contract and page.contract.outgoing_links %}
+{% set anchors = seo_route_anchors %}
+{% set shown = [] %}
+{% for url in page.contract.outgoing_links %}{% if anchors.get(url) %}{% set _ = shown.append(url) %}{% endif %}{% endfor %}
+{% if shown %}
+<section class="section" aria-labelledby="hub-links-heading">
+  <div class="container narrow prose">
+    <h2 id="hub-links-heading">Where to go from here</h2>
+    <ul class="related">
+      {% for url in shown %}
+      <li><a href="{{ url }}">{{ anchors.get(url) }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+{% endif %}

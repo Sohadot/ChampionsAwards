@@ -1,0 +1,12 @@
+{% if item.related_links %}
+<section class="section" aria-labelledby="related-heading">
+  <div class="container narrow prose">
+    <h2 id="related-heading">Related governed pages</h2>
+    <ul class="related">
+      {% for link in item.related_links %}
+      <li><a href="{{ link.url }}">{{ link.text }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}

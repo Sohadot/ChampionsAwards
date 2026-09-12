@@ -154,14 +154,14 @@ seo:
   h1: Wolf Prize
   schema_types:
     - BreadcrumbList
-    - Article
+    - CreativeWork
   incoming_links:
     - /awards
     - /recognition-systems/wolf-prize
   outgoing_links:
+    - /recognition-systems/wolf-prize
     - /unawarded/andrew-wiles
     - /unawarded/chien-shiung-wu
-    - /recognition-systems/wolf-prize
   indexing: index
 sources:
   - title: "The Wolf Prize - official page (fields in science and the arts, prize composition and amount, annually reappointed international judging committees)"

@@ -163,13 +163,19 @@ seo:
   h1: Nobel Prize in Physics
   schema_types:
     - BreadcrumbList
-    - Article
+    - CreativeWork
   incoming_links:
     - /awards
     - /sectors/physics-astronomy
   outgoing_links:
-    - /sectors/physics-astronomy
     - /recognition-systems/nobel-prize-system
+    - /sectors/physics-astronomy
+    - /unawarded/chien-shiung-wu
+    - /unawarded/george-zweig
+    - /unawarded/jocelyn-bell-burnell
+    - /unawarded/ralph-alpher
+    - /unawarded/satyendra-nath-bose
+    - /unawarded/vera-rubin
   indexing: index
 sources:
   - title: Nomination and selection of physics laureates (who may nominate; fifty-year secrecy)

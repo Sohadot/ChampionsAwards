@@ -45,7 +45,16 @@ CLUSTERS: Final[dict[str, str]] = {
 }
 
 # Domains with a published sector reference at /sectors/<domain>.
-PUBLISHED_SECTORS: Final[tuple[str, ...]] = ("physics-astronomy", "biology-medicine")
+PUBLISHED_SECTORS: Final[tuple[str, ...]] = (
+    "physics-astronomy",
+    "biology-medicine",
+    # Published while its cycle is open. A sector reference is a hub for what the
+    # corpus HAS, not a claim that the corpus is finished; the page states its own
+    # maturity as measured, and the Definition of Done decides closure, not
+    # publication. Withholding the hub for the domain under active work leaves its
+    # cases, systems and award anatomies with no single page that binds them.
+    "mathematics-computing",
+)
 
 HUB_TITLES: Final[dict[str, str]] = {
     "awards": "Awards",
@@ -550,7 +559,9 @@ def is_valid_hypothesis_state(value: object) -> bool:
 # types it emits, the governed pages that link to it and that it links out to,
 # and whether it should be indexed at all.
 # ---------------------------------------------------------------------------
-SEO_CONTRACT_CLUSTERS: Final[frozenset[str]] = frozenset({"awards"})
+SEO_CONTRACT_CLUSTERS: Final[frozenset[str]] = frozenset(
+    {"awards", "unawarded", "recognition-systems", "concepts", "reports"}
+)
 
 SEO_CONTRACT_FIELDS: Final[tuple[str, ...]] = (
     "primary_query",
@@ -568,8 +579,14 @@ SEO_CONTRACT_FIELDS: Final[tuple[str, ...]] = (
 # Schema.org types this project will emit. The list is short on purpose: a type
 # we cannot populate honestly is structured data that misrepresents the page.
 # FAQPage is absent because no page here carries an FAQ.
+# The types a page may DECLARE are exactly the types it may EMIT. The gate
+# compares the declaration against the built HTML, so a contract cannot promise
+# structured data the page does not carry, and a page cannot carry structured
+# data its contract never declared. FAQPage is absent because no page here has an
+# FAQ; a type we cannot populate honestly is a misrepresentation, not an
+# optimisation.
 SEO_SCHEMA_TYPES: Final[frozenset[str]] = frozenset(
-    {"BreadcrumbList", "Article", "ScholarlyArticle", "Person", "Organization", "CreativeWork"}
+    {"BreadcrumbList", "Person", "Organization", "CreativeWork", "DefinedTerm", "Report", "ItemList"}
 )
 
 # Every governed page is a node in a breadcrumb trail, so every contract emits it.
@@ -577,6 +594,15 @@ SEO_REQUIRED_SCHEMA_TYPES: Final[frozenset[str]] = frozenset({"BreadcrumbList"})
 
 SEO_INDEXING_STATES: Final[frozenset[str]] = frozenset({"index", "noindex"})
 
+# House presentation discipline, NOT a claimed search-engine requirement.
+#
+# Search engines publish no fixed title length, rewrite title links when they
+# judge a better one exists, and compose snippets from page content - a meta
+# description may not be used at all. These numbers are therefore ours: a bound
+# that keeps a title readable at a glance and a description that says what the
+# page contains in one sentence. They are editorial limits the gate enforces on
+# us, and the project does not represent them as rules anyone else imposes. The
+# same refusal to turn a heuristic into a fact governs the evidence layers.
 SEO_BRAND_SUFFIX: Final[str] = " | ChampionsAwards"
 SEO_TITLE_MAX: Final[int] = 95
 SEO_DESCRIPTION_MIN: Final[int] = 70
@@ -596,6 +622,301 @@ SEO_BREADCRUMB_LABELS: Final[dict[str, str]] = {
 }
 
 
+# Routes that are generated rather than authored as entries - hubs, sector
+# references, the methodology pages and the calculator - carry their contract
+# here, because there is no YAML entry to hold it. Same fields, same gate.
+SEO_ROUTE_CONTRACTS: Final[dict[str, dict[str, object]]] = {
+    "/": {
+        "primary_query": "recognition systems",
+        "secondary_entities": ["recognition gap", "award architecture", "scientific recognition",
+                               "Deservingness Index", "Recognition Legitimacy Score"],
+        "title": "ChampionsAwards - Recognition Systems, Awards & Recognition Gaps | ChampionsAwards",
+        "description": "A governed reference on how recognition systems work: award architecture, "
+                       "legitimacy assessment, and the measured distance between contribution and "
+                       "the recognition it received.",
+        "canonical": "/",
+        "h1": "Recognition Systems, Measured",
+        "schema_types": [],
+        "incoming_links": ["/about", "/framework", "/methodology"],
+        "outgoing_links": ["/awards", "/concepts", "/methodology", "/rankings",
+                           "/recognition-systems", "/reports", "/sectors", "/unawarded"],
+        "indexing": "index",
+    },
+    "/awards": {
+        "primary_query": "award architecture",
+        "secondary_entities": ["Nobel Prize", "Fields Medal", "Turing Award", "Wolf Prize",
+                               "award selection process"],
+        "title": "Award Architecture - Rules, Funding & Selection Mapped | ChampionsAwards",
+        "description": "Awards mapped as mechanisms rather than brands: who grants each prize, who "
+                       "funds it, who may nominate, what its rules say, and where governed cases "
+                       "meet that structure.",
+        "canonical": "/awards",
+        "h1": "Awards: Award Architecture",
+        "schema_types": ["BreadcrumbList"],
+        "incoming_links": ["/", "/sectors"],
+        "outgoing_links": ["/awards/acm-am-turing-award", "/awards/fields-medal-award",
+                           "/awards/nobel-prize-in-physics",
+                           "/awards/nobel-prize-in-physiology-or-medicine",
+                           "/awards/wolf-prize-award", "/recognition-systems"],
+        "indexing": "index",
+    },
+    "/recognition-systems": {
+        "primary_query": "recognition system legitimacy",
+        "secondary_entities": ["Recognition Legitimacy Score", "Nobel Prize system",
+                               "Fields Medal", "Turing Award", "prize governance"],
+        "title": "Recognition System Legitimacy - RLS Assessments | ChampionsAwards",
+        "description": "The institutions that decide which work becomes visible, each scored on "
+                       "process, breadth, track record, transparency and independence by one "
+                       "published instrument.",
+        "canonical": "/recognition-systems",
+        "h1": "Recognition System Legitimacy",
+        "schema_types": ["BreadcrumbList"],
+        "incoming_links": ["/", "/awards"],
+        "outgoing_links": ["/methodology", "/recognition-systems/fields-medal",
+                           "/recognition-systems/nobel-prize-system",
+                           "/recognition-systems/turing-award", "/recognition-systems/wolf-prize"],
+        "indexing": "index",
+    },
+    "/unawarded": {
+        "primary_query": "recognition gap",
+        "secondary_entities": ["under-recognition", "scientific recognition", "historical attribution",
+                               "Deservingness Index", "recognition archive"],
+        "title": "Recognition Gap Archive - Contribution vs Recognition Recorded | ChampionsAwards",
+        "description": "A governed archive of how contribution and recognition align, diverge, or "
+                       "remain unresolved - every case assessed by the same published index and "
+                       "sourced claim by claim.",
+        "canonical": "/unawarded",
+        "h1": "The Recognition Archive: the Recognition Gap, Case by Case",
+        "schema_types": ["BreadcrumbList"],
+        "incoming_links": ["/", "/rankings"],
+        "outgoing_links": ["/concepts", "/methodology", "/rankings"],
+        "indexing": "index",
+    },
+    "/concepts": {
+        "primary_query": "recognition mechanisms",
+        "secondary_entities": ["credit misattribution", "institutional exclusion",
+                               "delayed recognition", "Matthew effect", "Matilda effect"],
+        "title": "Recognition Mechanisms - Why Recognition Fails | ChampionsAwards",
+        "description": "The defined vocabulary behind every claim here: the mechanisms by which "
+                       "recognition is displaced, delayed, blocked or withheld, each with the cases "
+                       "that evidence it.",
+        "canonical": "/concepts",
+        "h1": "Concepts: Recognition Mechanisms",
+        "schema_types": ["BreadcrumbList"],
+        "incoming_links": ["/", "/methodology"],
+        "outgoing_links": ["/concepts/credit-misattribution", "/concepts/delayed-recognition",
+                           "/concepts/institutional-exclusion", "/methodology"],
+        "indexing": "index",
+    },
+    "/reports": {
+        "primary_query": "recognition research",
+        "secondary_entities": ["recognition failure patterns", "scientific recognition",
+                               "comparative analysis"],
+        "title": "Recognition Research - Syntheses Over the Governed Corpus | ChampionsAwards",
+        "description": "Syntheses derived from the governed corpus, where every figure resolves from "
+                       "the published engine at build time and no number in the prose was typed by "
+                       "an author.",
+        "canonical": "/reports",
+        "h1": "Reports: Recognition Research",
+        "schema_types": ["BreadcrumbList"],
+        "incoming_links": ["/", "/sectors"],
+        "outgoing_links": ["/reports/explained-aligned-unresolved-biology",
+                           "/reports/recognition-failure-patterns-physics"],
+        "indexing": "index",
+    },
+    "/sectors": {
+        "primary_query": "scientific recognition by field",
+        "secondary_entities": ["Physics & Astronomy", "Biology & Medicine",
+                               "Mathematics & Computing", "recognition gap"],
+        "title": "Sectors - Scientific Recognition by Field | ChampionsAwards",
+        "description": "One reference per governed domain, binding its cases, recognition systems, "
+                       "award anatomies, mechanisms and reports into a single analytical surface.",
+        "canonical": "/sectors",
+        "h1": "Sectors: Scientific Recognition by Field",
+        "schema_types": ["BreadcrumbList"],
+        "incoming_links": ["/", "/rankings"],
+        "outgoing_links": ["/awards", "/reports", "/sectors/biology-medicine",
+                           "/sectors/mathematics-computing", "/sectors/physics-astronomy"],
+        "indexing": "index",
+    },
+    "/rankings": {
+        "primary_query": "recognition gap index",
+        "secondary_entities": ["Deservingness Index", "under-recognized scientists",
+                               "recognition gap", "comparative ranking"],
+        "title": "Recognition Gap Index - Every Governed Case Ranked | ChampionsAwards",
+        "description": "Every governed case ranked by the distance between assessed contribution and "
+                       "observed recognition, computed at build time from the published formula.",
+        "canonical": "/rankings",
+        "h1": "Rankings: the Recognition Gap Index",
+        "schema_types": ["BreadcrumbList", "ItemList"],
+        "incoming_links": ["/", "/methodology"],
+        "outgoing_links": ["/methodology", "/unawarded"],
+        "indexing": "index",
+    },
+    "/methodology": {
+        "primary_query": "Deservingness Index",
+        "secondary_entities": ["Recognition Legitimacy Score", "recognition gap",
+                               "scoring methodology", "evidence provenance"],
+        "title": "Deservingness Index & RLS - The Published Methodology | ChampionsAwards",
+        "description": "The two instruments and their weights, the gap they produce, and the "
+                       "source-to-score chain every published figure has to pass through.",
+        "canonical": "/methodology",
+        "h1": "Methodology: the Deservingness Index and the RLS",
+        "schema_types": ["BreadcrumbList"],
+        "incoming_links": ["/", "/rankings"],
+        "outgoing_links": ["/concepts", "/protocol", "/rankings"],
+        "indexing": "index",
+    },
+    "/framework": {
+        "primary_query": "recognition framework",
+        "secondary_entities": ["merit vs recognition", "award legitimacy", "documented omission"],
+        "title": "The Recognition Framework - How Recognition Is Analysed | ChampionsAwards",
+        "description": "The premises the whole project rests on: what recognition is, why omission "
+                       "is evidence, and why a measured gap is treated as a finding rather than a "
+                       "verdict.",
+        "canonical": "/framework",
+        "h1": "The Recognition Framework",
+        "schema_types": ["BreadcrumbList"],
+        "incoming_links": ["/", "/about"],
+        "outgoing_links": ["/concepts", "/methodology", "/unawarded"],
+        "indexing": "index",
+    },
+    "/protocol": {
+        "primary_query": "editorial protocol",
+        "secondary_entities": ["sourcing standards", "corrections policy", "evidence grading"],
+        "title": "Editorial Protocol - Sourcing, Neutrality & Corrections | ChampionsAwards",
+        "description": "The rules every entry passes before publication: what counts as a "
+                       "record-grade source, how a claim without one is handled, and how "
+                       "corrections are recorded.",
+        "canonical": "/protocol",
+        "h1": "Editorial Protocol",
+        "schema_types": ["BreadcrumbList"],
+        "incoming_links": ["/about", "/methodology"],
+        "outgoing_links": ["/methodology"],
+        "indexing": "index",
+    },
+    "/about": {
+        "primary_query": "about ChampionsAwards",
+        "secondary_entities": ["recognition reference", "award analysis", "editorial standards"],
+        "title": "About ChampionsAwards - What This Reference Is | ChampionsAwards",
+        "description": "What this project is, what it deliberately does not claim, and the limits it "
+                       "states about a young corpus whose scores are structured estimates rather "
+                       "than measurements.",
+        "canonical": "/about",
+        "h1": "About ChampionsAwards",
+        "schema_types": ["BreadcrumbList"],
+        "incoming_links": ["/", "/framework"],
+        "outgoing_links": ["/methodology", "/protocol", "/unawarded"],
+        "indexing": "index",
+    },
+    "/calculator": {
+        "primary_query": "Deservingness Index calculator",
+        "secondary_entities": ["DDI weights", "recognition gap"],
+        "title": "Deservingness Index Calculator - Interactive Tool | ChampionsAwards",
+        "description": "An interactive tool for applying the published weights to your own inputs. "
+                       "It is a utility rather than a reference page, and is deliberately kept out "
+                       "of the search index.",
+        "canonical": "/calculator",
+        "h1": "Deservingness Index Calculator",
+        "schema_types": ["BreadcrumbList"],
+        "incoming_links": ["/methodology"],
+        "outgoing_links": ["/methodology"],
+        "indexing": "noindex",
+    },
+}
+
+
+# An award anatomy and the recognition-system entry for the same award are two
+# pages answering two questions - how the award is built, and how legitimate the
+# instrument judges it. They must link to each other, and their titles are not
+# always identical, so the pairing is declared rather than guessed.
+# Descriptive anchor text for links between generated surfaces. A crawler and a
+# reader both learn from anchor text; "read more" teaches neither anything. Held
+# centrally so a declared link and the link the page renders cannot drift apart.
+SEO_ROUTE_ANCHORS: Final[dict[str, str]] = {
+    "/": "ChampionsAwards - recognition systems, measured",
+    "/awards": "Award architecture - how each prize is actually built",
+    "/recognition-systems": "Recognition systems - legitimacy assessed on five dimensions",
+    "/unawarded": "The Recognition Archive - every governed case and its gap",
+    "/concepts": "Recognition mechanisms - the vocabulary behind every claim here",
+    "/reports": "Reports - syntheses derived from the governed corpus",
+    "/sectors": "Sectors - scientific recognition by field",
+    "/rankings": "The Recognition Gap Index - every case ranked by its gap",
+    "/methodology": "Methodology - the Deservingness Index and the RLS, with weights",
+    "/framework": "The framework - why omission is treated as evidence",
+    "/protocol": "Editorial protocol - sourcing, neutrality and corrections",
+    "/about": "About - what this reference is, and what it does not claim",
+    "/calculator": "The calculators - apply the published weights yourself",
+}
+
+
+AWARD_SYSTEM_PAIRS: Final[dict[str, str]] = {
+    "acm-am-turing-award": "turing-award",
+    "fields-medal-award": "fields-medal",
+    "wolf-prize-award": "wolf-prize",
+    "nobel-prize-in-physics": "nobel-prize-system",
+    "nobel-prize-in-physiology-or-medicine": "nobel-prize-system",
+    "nobel-peace-prize": "nobel-prize-system",
+}
+
+
+def sector_route_contract(domain: str) -> dict[str, object]:
+    """A sector reference's contract, derived from the domain rather than typed
+    out, so a new domain cannot be published without one."""
+    label = DOMAINS.get(domain, domain.replace("-", " ").title())
+    return {
+        "primary_query": f"{label} recognition",
+        "secondary_entities": [label, "recognition gap", "recognition systems",
+                               "award architecture", "scientific recognition"],
+        "title": f"{label} Recognition - Awards, Cases & Systems | ChampionsAwards",
+        "description": (
+            f"The governed {label} reference: every assessed case and its recognition gap, the "
+            f"systems scored, the award architectures mapped, and what this corpus cannot yet say."
+        ),
+        "canonical": f"/sectors/{domain}",
+        "h1": f"{label} Recognition",
+        "schema_types": ["BreadcrumbList", "CreativeWork"],
+        "incoming_links": ["/sectors"],
+        "outgoing_links": ["/methodology", "/rankings", "/unawarded"],
+        "indexing": "index",
+    }
+
+
+def route_contract(path: str) -> dict[str, object] | None:
+    """Every generated route's contract, by path."""
+    if path in SEO_ROUTE_CONTRACTS:
+        return SEO_ROUTE_CONTRACTS[path]
+    if path.startswith("/sectors/"):
+        domain = path[len("/sectors/"):]
+        if domain in PUBLISHED_SECTORS:
+            return sector_route_contract(domain)
+    return None
+
+
+def seo_render_vars(contract: dict[str, object] | None, path: str, page_title: str) -> dict[str, object]:
+    """Turn a contract into what a template renders, plus the breadcrumb trail.
+    Shared by entry pages and generated routes so both emit the same shapes."""
+    contract = contract or {}
+    trail = [{"name": SEO_BREADCRUMB_LABELS.get("", "Home"), "url": "/"}]
+    segments = [part for part in path.split("/") if part]
+    for index, part in enumerate(segments):
+        walked = "/" + "/".join(segments[: index + 1])
+        last = index == len(segments) - 1
+        # A crumb is a place name, not a headline: prefer the short cluster label
+        # wherever one exists, and fall back to the page's own heading.
+        name = SEO_BREADCRUMB_LABELS.get(part) or (
+            (contract.get("h1") or page_title) if last else part.replace("-", " ").title())
+        trail.append({"name": name, "url": walked})
+    return {
+        "seo_title": contract.get("title"),
+        "seo_description": contract.get("description"),
+        "seo_h1": contract.get("h1"),
+        "seo_robots": ("noindex,follow" if contract.get("indexing") == "noindex"
+                       else "index,follow,max-image-preview:large"),
+        "breadcrumbs": trail,
+    }
+
+
 def is_valid_schema_type(value: object) -> bool:
     return isinstance(value, str) and value in SEO_SCHEMA_TYPES
 
@@ -603,6 +924,8 @@ def is_valid_schema_type(value: object) -> bool:
 def is_canonical_path(value: object) -> bool:
     """A canonical is a clean, absolute, extension-free site path with no
     trailing slash - the one spelling of the page that every link should use."""
+    if value == "/":
+        return True  # the site root is a path, and it is the one that ends in a slash
     return (
         isinstance(value, str)
         and value.startswith("/")

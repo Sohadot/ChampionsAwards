@@ -12,6 +12,24 @@ key_facts:
     source: 1
   - fact: The Nobel Foundation states that this provision entered the Statutes in 1974, and that before 1974 the prize had been awarded posthumously twice - in 1931 and 1961.
     source: 2
+seo:
+  canonical: /concepts/posthumous-recognition
+  description: Posthumous recognition is a pattern in which timing and eligibility rules, rather than merit, determine whether a contribution can be formally honoured within a given system.
+  h1: Posthumous Recognition
+  incoming_links:
+  - /concepts
+  indexing: index
+  outgoing_links:
+  - /methodology
+  primary_query: posthumous recognition
+  schema_types:
+  - BreadcrumbList
+  - DefinedTerm
+  secondary_entities:
+  - recognition mechanism
+  - merit vs recognition
+  - scientific recognition
+  title: Posthumous Recognition - Definition & Documented Cases | ChampionsAwards
 sources:
   - title: Statutes of the Nobel Foundation (posthumous-award provision)
     publisher: The Nobel Foundation (nobelprize.org)

@@ -5,7 +5,8 @@ from typing import Any
 
 import yaml
 
-from config import CLUSTERS, CORE_URLS, DATA, OUT, PUBLISHED_SECTORS, is_published, normalize_domain
+from config import (CLUSTERS, CORE_URLS, DATA, OUT, PUBLISHED_SECTORS, is_published,
+                    normalize_domain, route_contract)
 
 
 def load_yaml_file(path) -> dict[str, Any]:
@@ -46,6 +47,11 @@ def main() -> None:
     urls: list[str] = []
 
     for core_path in CORE_URLS:
+        # A sitemap is a list of pages we want indexed. A route the contract marks
+        # noindex does not belong in it: the two signals would contradict.
+        contract = route_contract(core_path)
+        if contract and contract.get("indexing") == "noindex":
+            continue
         urls.append(f"{domain}{core_path}")
 
     # Computed sector references (generate_sectors.py) are pages, not a cluster.

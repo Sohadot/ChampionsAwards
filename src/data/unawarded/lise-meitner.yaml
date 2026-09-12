@@ -48,6 +48,31 @@ key_facts:
 analysis:
 - heading: Why the recognition gap is structural, not incidental
   body: The fission result sat on the seam between chemistry and physics, and the prize architecture forced it onto one side. Combined with Meitner's exile, which removed her from the bench where the work was completed, the division of credit followed the shape of institutions rather than the shape of the contribution - the exact pattern this archive exists to document.
+seo:
+  canonical: /unawarded/lise-meitner
+  description: Lise Meitner co-developed the theoretical explanation of nuclear fission.
+  h1: Lise Meitner
+  incoming_links:
+  - /rankings
+  - /sectors/physics-astronomy
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /concepts/credit-misattribution
+  - /concepts/institutional-exclusion
+  - /methodology
+  - /sectors/physics-astronomy
+  primary_query: Lise Meitner
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Physics & Astronomy
+  - recognition gap
+  - Deservingness Index
+  - credit misattribution
+  - institutional exclusion
+  title: Lise Meitner - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
 - title: Lise Meitner - biography and role in nuclear fission
   publisher: Encyclopaedia Britannica

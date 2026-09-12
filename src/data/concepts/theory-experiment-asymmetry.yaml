@@ -7,6 +7,26 @@ summary: Theory-experiment asymmetry describes cases where recognition rewards a
 definition: Theory-experiment asymmetry is a pattern in which the visible reward for a discovery flows to the predicting theorists rather than to the experimentalists whose results converted the prediction into established science.
 explanation: A prediction becomes accepted science only when experiment confirms it, yet prize architectures have often honoured the theoretical statement over the experimental proof. The pattern is distinct from general credit misattribution because it tracks a specific fault line, the division between predicting and demonstrating.
 implications: Where theory-experiment asymmetry operates, the recognition record understates the role of experiment, and a domain's history of discovery can appear more theory-driven than it was.
+seo:
+  canonical: /concepts/theory-experiment-asymmetry
+  description: A pattern in which the visible reward for a discovery flows to the theorists who predicted it rather than to the experimentalists whose results established that it was real.
+  h1: Theory-Experiment Asymmetry
+  incoming_links:
+  - /concepts
+  - /unawarded/chien-shiung-wu
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /unawarded/chien-shiung-wu
+  primary_query: theory-experiment asymmetry
+  schema_types:
+  - BreadcrumbList
+  - DefinedTerm
+  secondary_entities:
+  - recognition mechanism
+  - merit vs recognition
+  - scientific recognition
+  title: Theory-Experiment Asymmetry - Definition & Documented Cases | ChampionsAwards
 sources:
   - title: "Chien-Shiung Wu - the parity experiment that confirmed the Lee-Yang prediction"
     publisher: Encyclopaedia Britannica

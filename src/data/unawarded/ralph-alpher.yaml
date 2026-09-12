@@ -52,6 +52,31 @@ key_facts:
 analysis:
 - heading: Priority lost between prediction and detection
   body: Alpher's gap turns on a seam the recognition system handles poorly - the distance between predicting a phenomenon and later detecting it. Because the 1960s detection was celebrated without connecting it to the earlier quantitative prediction, predictive priority dissolved, and the multi-author origin was compressed onto a more famous name.
+seo:
+  canonical: /unawarded/ralph-alpher
+  description: Ralph Alpher, with Robert Herman, predicted the cosmic microwave background radiation in 1948.
+  h1: Ralph Alpher
+  incoming_links:
+  - /awards/nobel-prize-in-physics
+  - /rankings
+  - /sectors/physics-astronomy
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /awards/nobel-prize-in-physics
+  - /concepts/credit-misattribution
+  - /methodology
+  - /sectors/physics-astronomy
+  primary_query: Ralph Alpher
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Physics & Astronomy
+  - recognition gap
+  - Deservingness Index
+  - credit misattribution
+  title: Ralph Alpher - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
 - title: Ralph A. Alpher, Robert C. Herman, and the Cosmic Microwave Background Radiation
   publisher: Physics in Perspective (Springer)

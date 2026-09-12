@@ -7,6 +7,26 @@ summary: Institutional gatekeeping describes cases where those controlling publi
 definition: Institutional gatekeeping is a pattern in which a person holding editorial, institutional, or reviewing authority prevents or slows the dissemination of work, shaping which contributions become visible and when.
 explanation: The mechanism is active obstruction rather than passive neglect. A gatekeeper can withhold a paper from journal submission, cancel a seminar, or steer where and whether work appears, so that priority and credit are decided by control of channels rather than by the contribution itself.
 implications: Where gatekeeping operates, the recognition record reflects who controlled access as much as who did the work, and the true timeline of a discovery can be obscured for years.
+seo:
+  canonical: /concepts/institutional-gatekeeping
+  description: Institutional gatekeeping is a pattern in which a person holding editorial, institutional, or reviewing authority prevents or slows the dissemination of work.
+  h1: Institutional Gatekeeping
+  incoming_links:
+  - /concepts
+  - /unawarded/george-zweig
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /unawarded/george-zweig
+  primary_query: institutional gatekeeping
+  schema_types:
+  - BreadcrumbList
+  - DefinedTerm
+  secondary_entities:
+  - recognition mechanism
+  - merit vs recognition
+  - scientific recognition
+  title: Institutional Gatekeeping - Definition & Documented Cases | ChampionsAwards
 sources:
   - title: "K for KLOE... and Z for Zweig (the blocking of Zweig's quark-model manuscript at CERN)"
     publisher: CERN Courier

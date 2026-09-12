@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}{{ item.title }} — The Recognition Archive — ChampionsAwards{% endblock %}
-{% block meta_description %}{{ item.summary }}{% endblock %}
+{% block title %}{{ item.seo_title | default(item.title ~ " — The Recognition Archive — ChampionsAwards", true) }}{% endblock %}
+{% block meta_description %}{{ item.seo_description | default(item.summary, true) }}{% endblock %}
+{% block robots %}{{ item.seo_robots | default('index,follow,max-image-preview:large', true) }}{% endblock %}
 {% block canonical %}{{ item.canonical_url }}{% endblock %}
 {% block canonical_link %}{{ item.canonical_url }}{% endblock %}
 {% block structured_data %}{% include "_jsonld_item.html" %}{% include "_jsonld_breadcrumbs.html" %}{% endblock %}
@@ -11,7 +12,7 @@
 <section class="page-hero">
   <div class="container narrow">
     <p class="eyebrow">The Recognition Archive</p>
-    <h1>{{ item.title }}</h1>
+    <h1>{{ item.seo_h1 | default(item.title, true) }}</h1>
     <p class="lead">{{ item.summary }}</p>
   </div>
 </section>
@@ -46,4 +47,5 @@
     {% include "_sources.html" %}
   </div>
 </section>
+{% include "_related.html" %}
 {% endblock %}

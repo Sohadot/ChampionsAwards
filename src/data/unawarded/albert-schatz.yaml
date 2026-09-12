@@ -47,6 +47,31 @@ analysis:
     body: "Most recognition-gap cases rest on one kind of evidence. This one has three that can be checked against each other: a primary paper naming Schatz first; a court record, held in the archive of the institution where the work was done, in which co-discovery is stipulated; and the awarding institution's own archive, which shows both that a nominator proposed the prize to all three authors in the award year and that the prize was given to one of them in full. The three layers agree about what happened. None of them says why."
   - heading: What the archive shows about the patent, and why it is not tagged
     body: "The same finding aid records that Schatz signed the patent application after being told his name would otherwise be removed from it. That is a documented episode about assignment of rights, not about the dissemination of the work, so it is recorded here and is not counted as institutional gatekeeping, whose published definition turns on preventing or slowing dissemination."
+seo:
+  canonical: /unawarded/albert-schatz
+  description: Albert Schatz was first author of the 1944 paper reporting streptomycin and was named a co-discoverer in a civil action settled in 1950, while the Nobel went to his supervisor.
+  h1: Albert Schatz
+  incoming_links:
+  - /awards/nobel-prize-in-physiology-or-medicine
+  - /rankings
+  - /sectors/biology-medicine
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /awards/nobel-prize-in-physiology-or-medicine
+  - /concepts/credit-misattribution
+  - /methodology
+  - /sectors/biology-medicine
+  primary_query: Albert Schatz
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Biology & Medicine
+  - recognition gap
+  - Deservingness Index
+  - credit misattribution
+  title: Albert Schatz - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "Streptomycin, a substance exhibiting antibiotic activity against gram-positive and gram-negative bacteria (1944)"
     publisher: "A. Schatz, E. Bugie and S. A. Waksman, Proc. Soc. Exp. Biol. Med. 55: 66-69; reprinted in Clinical Orthopaedics and Related Research 437: 3-6 (2005), PMID 16056018"

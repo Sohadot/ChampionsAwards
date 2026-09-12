@@ -731,7 +731,44 @@ FAQ schema without an FAQ), a canonical must match the route, no page may be an
 orphan, and no two pages may compete on one title. Nothing in the contract may
 change what an entry claims.
 
+### The SEO architecture audit (2026-09-12)
+
+Run once across the whole site, after the Wolf anatomy and before Stage 2, and
+changing presentation only. The contract moved from `awards` to all five data
+clusters and to the 16 generated routes; every one of the 63 built routes is now
+governed, and an ungoverned route fails the gate. Full account:
+[`seo-architecture-audit.md`](seo-architecture-audit.md).
+
+Its two structural outputs:
+
+**`/sectors/mathematics-computing` is published**, as an open reference rather
+than a finished one. The domain under active work had no page from which anything
+could reach its five cases, its three systems or its three award anatomies. The
+page states its own maturity as measured - `open cycle`, `DDI cases 5/10 not yet`
+- because a reference does not need to be finished to be useful; it needs to not
+claim to be finished.
+
+**The reasoning graph and the rendered graph were not the same graph.** Checking
+declared links against the built HTML rather than against other declarations found
+90 links the project assumed existed and the site never rendered - person to
+mechanism, concept to the cases evidencing it, award anatomy to its own
+recognition-system entry in both directions. They are now built from the data with
+descriptive anchors.
+
+The audit also surfaced a cannibalisation the ontology had built in: an award has
+two pages here, the anatomy answering how it is built and the system entry
+answering how legitimate it is, and both were targeting the award's name. Resolved
+by differentiating intent, not by merging pages.
+
+One rule is recorded as house discipline and explicitly not as anyone else's:
+the title and description length bounds are ChampionsAwards presentation
+discipline, **not** a claimed search-engine requirement. The project does not turn
+a heuristic into a fact in its presentation layer any more than in its evidence
+layer.
+
 ### Next
 
-The SEO architecture audit across the whole site, then Stage 2 - three case
-*types* against the three evidence gaps, not three names.
+Production verification in Search Console - submit the sitemap, inspect one URL
+per template family, confirm the Google-selected canonical and the structured-data
+parsing match what the build declares - then Stage 2: three case *types* against
+the three evidence gaps, not three names.

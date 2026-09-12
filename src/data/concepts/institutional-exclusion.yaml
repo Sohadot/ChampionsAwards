@@ -10,6 +10,33 @@ implications: Institutional exclusion means the recognition record partly measur
 key_facts:
   - fact: The "Matilda effect," named by historian Margaret W. Rossiter in 1993, describes the systematic under-recognition of women scientists.
     source: 1
+seo:
+  canonical: /concepts/institutional-exclusion
+  description: Institutional exclusion is a pattern in which formal barriers - to appointments, authorship, membership, or pay.
+  h1: Institutional Exclusion
+  incoming_links:
+  - /concepts
+  - /unawarded/cecilia-payne-gaposchkin
+  - /unawarded/emmy-noether
+  - /unawarded/ernest-everett-just
+  - /unawarded/henrietta-swan-leavitt
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /unawarded/cecilia-payne-gaposchkin
+  - /unawarded/emmy-noether
+  - /unawarded/ernest-everett-just
+  - /unawarded/henrietta-swan-leavitt
+  - /unawarded/lise-meitner
+  primary_query: institutional exclusion
+  schema_types:
+  - BreadcrumbList
+  - DefinedTerm
+  secondary_entities:
+  - recognition mechanism
+  - merit vs recognition
+  - scientific recognition
+  title: Institutional Exclusion - Definition & Documented Cases | ChampionsAwards
 sources:
   - title: "The Matthew Matilda Effect in Science (gendered under-recognition)"
     publisher: "Margaret W. Rossiter, Social Studies of Science, Vol. 23 (1993)"

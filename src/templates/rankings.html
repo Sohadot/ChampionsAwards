@@ -3,7 +3,7 @@
 {% block title %}Recognition Gap Index & Legitimacy Index — {{ site.site_name }}{% endblock %}
 {% block meta_description %}Computed rankings from the ChampionsAwards dataset: individuals ranked by recognition gap (assessed merit minus observed recognition) and award systems ranked by Recognition Legitimacy Score.{% endblock %}
 {% block canonical_link %}{{ rankings_canonical_url }}{% endblock %}
-{% block structured_data %}
+{% block structured_data %}{% include "_jsonld_breadcrumbs.html" with context %}
 {% if jsonld_deservingness %}
 <script type="application/ld+json">
 {{ jsonld_deservingness | tojson }}
@@ -16,7 +16,10 @@
 {% endif %}
 {% endblock %}
 
+{% block robots %}{{ page.seo_robots | default('index,follow,max-image-preview:large', true) }}{% endblock %}
+
 {% block content %}
+{% include "_breadcrumbs.html" with context %}
 <section class="page-hero">
   <div class="container narrow">
     <p class="eyebrow">Computed indices</p>
@@ -107,4 +110,5 @@
     </p>
   </div>
 </section>
+{% include "_hub_links.html" with context %}
 {% endblock %}

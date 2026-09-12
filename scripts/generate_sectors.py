@@ -33,6 +33,9 @@ from config import (
     TEMPLATES,
     BANNED_TERMS,
     normalize_domain,
+    SEO_ROUTE_ANCHORS,
+    route_contract,
+    seo_render_vars,
 )
 from domain_comparison import _domain_awards, _domain_cases, build_comparison
 from domain_status import dod_rows, observed_rows
@@ -335,6 +338,10 @@ def build_sector(domain: str, site: dict[str, Any]) -> dict[str, Any]:
         "award_reading": award_reading(awards, len(award_entries)),
         "dod_rows": maturity,
         "observed_rows": observed,
+        # The engine's own wording for what the subfield counts do and do not
+        # establish. Rendered verbatim so the page cannot soften it.
+        "subfield_note": (result["observations"]["subfield_coverage"].get("note")
+                          if result["observations"]["subfield_coverage"].get("composite") else None),
         "dod_version": DOD_VERSION,
         "maturity_label": "mature v1.0" if all(row["met"] for row in maturity) else "open cycle",
         "mature": all(row["met"] for row in maturity),
@@ -370,6 +377,7 @@ def main() -> None:
     env = create_environment()
     domain_root = normalize_domain(site["domain"])
     common = {
+        "seo_route_anchors": SEO_ROUTE_ANCHORS,
         "site": site,
         "build_year": datetime.now(timezone.utc).year,
         "build_timestamp": datetime.now(timezone.utc).isoformat(),
@@ -384,7 +392,11 @@ def main() -> None:
             for problem in problems:
                 print(f"  - {problem}")
             raise SystemExit(1)
-        html = env.get_template("sector.html").render(**common, sector=sector)
+        path = f"/sectors/{domain}"
+        contract = route_contract(path)
+        html = env.get_template("sector.html").render(
+            **common, sector=sector,
+            page={**seo_render_vars(contract, path, sector.get("domain_label", domain)), "contract": contract})
         path = OUT / "sectors" / domain / "index.html"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(html, encoding="utf-8")
@@ -399,6 +411,8 @@ def main() -> None:
     hub.parent.mkdir(parents=True, exist_ok=True)
     hub.write_text(
         env.get_template("sectors-hub.html").render(
+            page={**seo_render_vars(route_contract("/sectors"), "/sectors", "Sectors"),
+                  "contract": route_contract("/sectors")},
             **common, sectors=sectors, hub_canonical_url=f"{domain_root}/sectors"
         ),
         encoding="utf-8",

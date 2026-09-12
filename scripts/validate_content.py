@@ -345,11 +345,18 @@ def validate_seo(cluster_name: str, item: dict[str, Any], source_file: str) -> l
             f"it must be between {SEO_DESCRIPTION_MIN} and {SEO_DESCRIPTION_MAX}"
         )
 
-    if h1 is not None and query and query.lower() not in h1.lower():
-        errors.append(
-            f"{ref}: seo 'h1' does not contain the primary query {query!r} - the heading names the "
-            f"entity and the thesis belongs in the subheading"
-        )
+    # The H1 names the entity; the thesis belongs in a subheading. A page may
+    # legitimately target a narrower query than its own name - a legitimacy
+    # assessment of an award is not the same page as that award's anatomy - so
+    # the rule is that the heading and the query must share their entity, in
+    # either direction, not that one must quote the other exactly.
+    if h1 is not None and query:
+        low_h1, low_q = h1.lower(), query.lower()
+        if low_q not in low_h1 and low_h1 not in low_q:
+            errors.append(
+                f"{ref}: seo 'h1' {h1!r} and primary query {query!r} share no entity - the heading "
+                f"must name what the query asks for"
+            )
 
     if canonical is not None and not is_canonical_path(canonical):
         errors.append(
@@ -358,13 +365,18 @@ def validate_seo(cluster_name: str, item: dict[str, Any], source_file: str) -> l
 
     schema_types = block.get("schema_types")
     if schema_types is not None:
-        if not isinstance(schema_types, list) or not schema_types:
-            errors.append(f"{ref}: seo 'schema_types' must be a non-empty list")
+        # A page may legitimately emit no page-level structured data; what it may
+        # not do is emit a type it never declared, which the gate checks against
+        # the built HTML.
+        if not isinstance(schema_types, list):
+            errors.append(f"{ref}: seo 'schema_types' must be a list")
         else:
             for value in schema_types:
                 if not is_valid_schema_type(value):
                     errors.append(f"{ref}: seo 'schema_types' has unsupported type {value!r}")
-            missing = SEO_REQUIRED_SCHEMA_TYPES - set(schema_types)
+            # The site root has no breadcrumb trail to emit - it IS the root - so
+            # the required type is waived there and nowhere else.
+            missing = (frozenset() if canonical == "/" else SEO_REQUIRED_SCHEMA_TYPES) - set(schema_types)
             if missing:
                 errors.append(f"{ref}: seo 'schema_types' must include {', '.join(sorted(missing))}")
 

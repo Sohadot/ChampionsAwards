@@ -10,6 +10,33 @@ implications: Where credit misattribution operates, the recognition record diver
 key_facts:
   - fact: The Matthew effect describes how eminent scientists receive disproportionate credit relative to less-known contributors.
     source: 1
+seo:
+  canonical: /concepts/credit-misattribution
+  description: Credit misattribution is a pattern in which the visible reward for work is displaced away from its main contributor, whether toward a supervisor, a theorist over an experimentalist.
+  h1: Credit Misattribution
+  incoming_links:
+  - /concepts
+  - /unawarded/albert-schatz
+  - /unawarded/alice-ball
+  - /unawarded/cecilia-payne-gaposchkin
+  - /unawarded/chien-shiung-wu
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /unawarded/albert-schatz
+  - /unawarded/alice-ball
+  - /unawarded/cecilia-payne-gaposchkin
+  - /unawarded/chien-shiung-wu
+  - /unawarded/george-zweig
+  primary_query: credit misattribution
+  schema_types:
+  - BreadcrumbList
+  - DefinedTerm
+  secondary_entities:
+  - recognition mechanism
+  - merit vs recognition
+  - scientific recognition
+  title: Credit Misattribution - Definition & Documented Cases | ChampionsAwards
 sources:
   - title: "The Matthew Effect in Science (accumulated advantage in recognition)"
     publisher: "Robert K. Merton, Science, Vol. 159 (1968)"

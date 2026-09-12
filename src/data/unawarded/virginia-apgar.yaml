@@ -45,6 +45,27 @@ analysis:
     body: "This is the result the entry was opened to test. The assessment produces a high score on impact, durability, breadth and attribution, and a deliberately bounded score on counterfactual uniqueness, while the recognition record is one of the strongest in the corpus. The gap comes out slightly negative, inside the band the instrument labels as recognition roughly matching assessed merit. That is not a finding about Apgar; it is a finding about the instrument, which had never before been shown capable of producing it."
   - heading: A documented episode that is not a mechanism
     body: "The archive records that she expected the departmental chair in 1949 and that it went to a male colleague. The corpus records that too, and stops. Her recognition record does not show the displacement that the institutional-exclusion mechanism describes - she was made full professor, led her specialty's honours list and became a national figure - so no mechanism is tagged. Reading one career episode as the cause of a recognition gap that the measurement does not find would be exactly the inference this project refuses elsewhere."
+seo:
+  canonical: /unawarded/virginia-apgar
+  description: Virginia Apgar proposed in 1953 a rapid scoring method for assessing a newborn's condition at birth, which became standard practice worldwide.
+  h1: Virginia Apgar
+  incoming_links:
+  - /rankings
+  - /sectors/biology-medicine
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /sectors/biology-medicine
+  primary_query: Virginia Apgar
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Biology & Medicine
+  - recognition gap
+  - Deservingness Index
+  title: Virginia Apgar - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "A proposal for a new method of evaluation of the newborn infant (1953)"
     publisher: "Virginia Apgar, Current Researches in Anesthesia and Analgesia 32: 260-267, PMID 13083014"

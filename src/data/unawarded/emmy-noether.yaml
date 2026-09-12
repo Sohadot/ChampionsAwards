@@ -50,6 +50,27 @@ analysis:
     body: "What this entry claims about exclusion is narrow and documented: a formal route to an academic post that was closed to her as a woman, granted only after a dispute that took years, and years of teaching credited in the catalogue to someone else. That is the published definition of institutional exclusion - formal barriers to positions constraining the visibility from which honours follow. It is not a claim that every feature of her career followed from it."
   - heading: What the requalification changed
     body: "The earlier entry scored her observed recognition at 45 and explained her gap partly by the delayed diffusion of her results into physics. Both are revised. The recognition record documents two ICM invited addresses, a shared national prize in her lifetime, and eponymous standing in two fields afterwards, which the earlier figure did not reflect. The diffusion claim is withdrawn as unevidenced: how fast a theorem travelled is a question about a result, and the corpus found nothing tying it to recognition withheld from its author."
+seo:
+  canonical: /unawarded/emmy-noether
+  description: Emmy Noether published in 1918 the theorem linking continuous symmetries to conservation laws, was refused the habilitation at Goettingen until 1919 because she was a woman.
+  h1: Emmy Noether
+  incoming_links:
+  - /rankings
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /concepts/institutional-exclusion
+  - /methodology
+  primary_query: Emmy Noether
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Mathematics & Computing
+  - recognition gap
+  - Deservingness Index
+  - institutional exclusion
+  title: Emmy Noether - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "Invariante Variationsprobleme (1918), Nachrichten von der Gesellschaft der Wissenschaften zu Goettingen, Mathematisch-Physikalische Klasse - digitised"
     publisher: "Emmy Noether, Goettinger Digitalisierungszentrum (SUB Goettingen)"

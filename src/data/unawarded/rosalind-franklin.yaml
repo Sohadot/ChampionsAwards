@@ -49,6 +49,31 @@ analysis:
     body: "This entry previously stated that the Nobel could not have recognised Franklin in 1962 'even in principle', because prizes are not awarded posthumously. That is an anachronism. The Nobel Foundation's own record states that the prohibition entered the Statutes in 1974, and that two prizes had been awarded posthumously before then. A rule introduced twelve years after a decision cannot explain it. What remains documented is narrower and more useful: she died in 1958, the 1962 prize went to three living men, and the deliberations are not in the public record - the Physiology or Medicine nomination archive is open only through 1953."
   - heading: A contested attribution, shown as contested
     body: "The attribution strand is where the historical literature has moved most. The model paper acknowledged unpublished King's College results in general terms rather than naming the specific data it used, and the popular account has long described Franklin as a victim whose image was taken without her knowledge. A 2023 reassessment based on documents in her own archive argues instead that she was an equal member of a group of four and understood what her data showed. This entry records both the documentary basis of the credit question and the revision, and asserts neither the victim narrative nor its dismissal as settled."
+seo:
+  canonical: /unawarded/rosalind-franklin
+  description: Rosalind Franklin's X-ray diffraction work on DNA was published in Nature in April 1953 alongside the Watson-Crick model it helped establish.
+  h1: Rosalind Franklin
+  incoming_links:
+  - /awards/nobel-prize-in-physiology-or-medicine
+  - /rankings
+  - /sectors/biology-medicine
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /awards/nobel-prize-in-physiology-or-medicine
+  - /concepts/credit-misattribution
+  - /methodology
+  - /sectors/biology-medicine
+  primary_query: Rosalind Franklin
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Biology & Medicine
+  - recognition gap
+  - Deservingness Index
+  - credit misattribution
+  title: Rosalind Franklin - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: Rosalind Franklin - biography and contribution to DNA structure
     publisher: Encyclopaedia Britannica

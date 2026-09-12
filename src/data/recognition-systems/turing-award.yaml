@@ -38,6 +38,25 @@ analysis:
     body: "This entry previously scored independence at the level it gave the Nobel system, on the reasoning that professional-society governance keeps the award largely free of commercial capture. The award's own documentation names a single commercial sponsor as the source of its one-million-dollar prize. Governance and funding are different things, and the requalification separates them: the awarding body remains a scholarly society, and the money does not come from one. The score is lowered to reflect what the record says rather than what the governance structure suggests."
   - heading: Three claims this entry stopped making
     body: "Withdrawn in the Cycle 03 requalification: that the award has historically skewed toward a small set of institutions and regions, for which no source was found; that recipients are broadly regarded as foundational figures, which is an evaluative generalisation; and the description of the award as computing's equivalent of a Nobel Prize. The last is a widely used nickname rather than a property of the award, and the awarding body's own page could not be read directly in this audit, so it is not asserted here in reference language."
+seo:
+  canonical: /recognition-systems/turing-award
+  description: The ACM A.M. Turing Award, first presented in 1966, recognises contributions of a technical nature made to the computing community.
+  h1: Turing Award
+  incoming_links:
+  - /recognition-systems
+  indexing: index
+  outgoing_links:
+  - /awards/acm-am-turing-award
+  - /methodology
+  primary_query: Turing Award legitimacy
+  schema_types:
+  - BreadcrumbList
+  - Organization
+  secondary_entities:
+  - Mathematics & Computing
+  - Recognition Legitimacy Score
+  - award governance
+  title: Turing Award Legitimacy - RLS Assessment, Funding & Independence | ChampionsAwards
 sources:
   - title: ACM A.M. Turing Award - official award page (criteria, prize amount, financial support)
     publisher: Association for Computing Machinery

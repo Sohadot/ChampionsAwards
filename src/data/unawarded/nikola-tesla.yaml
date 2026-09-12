@@ -39,6 +39,29 @@ assessment:
     durability: AC power remains the global backbone more than a century later.
     breadth: Electrification is among the most broadly distributed technological benefits in history.
     attribution: Credit is genuinely contested across Edison, Westinghouse, and Marconi disputes, lowering attribution clarity.
+seo:
+  canonical: /unawarded/nikola-tesla
+  description: Nikola Tesla stands as one of the most cited examples of a figure whose long-term civilizational influence exceeded the recognition architecture available to him during his lifetime.
+  h1: Nikola Tesla
+  incoming_links:
+  - /rankings
+  - /sectors/physics-astronomy
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /concepts/credit-misattribution
+  - /methodology
+  - /sectors/physics-astronomy
+  primary_query: Nikola Tesla
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Physics & Astronomy
+  - recognition gap
+  - Deservingness Index
+  - credit misattribution
+  title: Nikola Tesla - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
 - title: Nikola Tesla — biography and engineering contributions
   publisher: Encyclopaedia Britannica

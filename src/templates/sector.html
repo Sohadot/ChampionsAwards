@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% set pop = sector.population %}
 
-{% block title %}{{ sector.domain_label }} — Recognition Architecture — ChampionsAwards{% endblock %}
-{% block meta_description %}A governed reference for recognition in {{ sector.domain_label|lower }}: {{ pop.ddi_cases }} assessed cases, {{ pop.rls_systems }} scored recognition systems, and the measured distance between assessed merit and observed recognition.{% endblock %}
+{% block title %}{% if page and page.seo_title %}{{ page.seo_title }}{% else %}{{ sector.domain_label }} — Recognition Architecture — ChampionsAwards{% endif %}{% endblock %}
+{% block meta_description %}{% if page and page.seo_description %}{{ page.seo_description }}{% else %}A governed reference for recognition in {{ sector.domain_label|lower }}: {{ pop.ddi_cases }} assessed cases, {{ pop.rls_systems }} scored recognition systems, and the measured distance between assessed merit and observed recognition.{% endif %}{% endblock %}
 {% block canonical_link %}{{ sector.canonical_url }}{% endblock %}
 
-{% block structured_data %}
+{% block structured_data %}{% include "_jsonld_breadcrumbs.html" with context %}
 <script type="application/ld+json">
 {{
   {
@@ -16,34 +16,24 @@
     "description": "Computed recognition reference for " ~ sector.domain_label ~ ": corpus distribution, evidenced structural mechanisms, recognition-system profiles, and award architecture.",
     "isPartOf": {"@type": "WebSite", "name": site.site_name, "url": site.domain},
     "inLanguage": site.language | default("en"),
-    "creativeWorkStatus": "Cycle 01 — open",
+    "creativeWorkStatus": sector.maturity_label,
     "version": pop.methodology_version,
     "temporalCoverage": pop.data_through,
     "about": {"@type": "Thing", "name": sector.domain_label}
   } | tojson
 }}
 </script>
-<script type="application/ld+json">
-{{
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": site.domain},
-      {"@type": "ListItem", "position": 2, "name": "Sectors", "item": site.domain ~ "/sectors"},
-      {"@type": "ListItem", "position": 3, "name": sector.domain_label, "item": sector.canonical_url}
-    ]
-  } | tojson
-}}
-</script>
 {% endblock %}
 
+{% block robots %}{{ page.seo_robots | default('index,follow,max-image-preview:large', true) }}{% endblock %}
+
 {% block content %}
+{% include "_breadcrumbs.html" with context %}
 {# ---------- 1. Recognition landscape ---------- #}
 <section class="page-hero">
   <div class="container">
     <p class="eyebrow">Sector reference · {{ pop.domain }}</p>
-    <h1>{{ sector.domain_label }} — recognition architecture</h1>
+    <h1>{{ page.seo_h1 | default(sector.domain_label ~ " — recognition architecture", true) }}</h1>
     <p class="lead">
       What this domain's governed record shows about the distance between assessed contribution and
       observed recognition. Every figure on this page is computed at build time from one corpus by one
@@ -457,7 +447,7 @@
           <table class="data">
             <tbody>
               {% for row in sector.observed_rows %}
-              <tr><td>{{ row.observation }}</td><td class="num">{{ row.value }}</td></tr>
+              <tr><td>{{ row.observation }}{% if row.observation == 'subfield coverage' and sector.subfield_note %}<div class="small muted" style="margin-top:2px;">{{ sector.subfield_note }}</div>{% endif %}</td><td class="num">{{ row.value }}</td></tr>
               {% endfor %}
             </tbody>
           </table>
@@ -509,4 +499,5 @@
     </p>
   </div>
 </section>
+{% include "_hub_links.html" with context %}
 {% endblock %}

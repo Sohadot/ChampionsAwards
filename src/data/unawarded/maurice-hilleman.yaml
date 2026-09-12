@@ -45,6 +45,27 @@ analysis:
     body: "If a recognition index finds a large gap wherever it looks, it is measuring its own selection rather than the world. This entry is the check. A contribution of the first rank, recognised by a major prize, a national medal and a national academy, should produce a small gap - and it does. The result is useful precisely because it is undramatic: it shows the instrument responding to recognition that was actually given."
   - heading: The absence of one award is not a mechanism
     body: "Hilleman received no Nobel Prize. The corpus records that as a fact about one recognition system and stops there. Treating a single non-award as evidence of a structural failure would be exactly the inference this project refuses to make elsewhere, and the mechanism audit for this case found nothing to support one."
+seo:
+  canonical: /unawarded/maurice-hilleman
+  description: Maurice Hilleman developed vaccines responsible for eight of the immunisations on the United States childhood schedule, and received the Lasker Public Service Award.
+  h1: Maurice Hilleman
+  incoming_links:
+  - /rankings
+  - /sectors/biology-medicine
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /sectors/biology-medicine
+  primary_query: Maurice Hilleman
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Biology & Medicine
+  - recognition gap
+  - Deservingness Index
+  title: Maurice Hilleman - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "Live, attenuated mumps-virus vaccine (1968)"
     publisher: "M. R. Hilleman, E. B. Buynak, R. E. Weibel and J. Stokes Jr, New England Journal of Medicine 278: 227-232, PMID 4169706"

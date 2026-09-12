@@ -18,6 +18,9 @@ from config import (
     ddi_band,
     is_published,
     normalize_domain,
+    SEO_ROUTE_ANCHORS,
+    route_contract,
+    seo_render_vars,
     normalize_slug,
     recognition_gap_label,
     rls_band,
@@ -63,7 +66,10 @@ def collect_scored_entries(domain: str) -> tuple[list[dict[str, Any]], list[dict
             if not raw_slug:
                 continue
             slug = normalize_slug(str(raw_slug))
-            url = f"{domain}/{cluster_name}/{slug}"
+            # Internal links use the site path, the same spelling as the canonical
+            # and the sitemap. Structured data below keeps the absolute URL.
+            path = f"/{cluster_name}/{slug}"
+            url = path
 
             # DDI: only from individual clusters, and only when the gap is computable.
             ddi_assessment = item.get("assessment")
@@ -106,7 +112,8 @@ def collect_scored_entries(domain: str) -> tuple[list[dict[str, Any]], list[dict
     return deservingness, legitimacy
 
 
-def build_itemlist(name: str, description: str, rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+def build_itemlist(name: str, description: str, rows: list[dict[str, Any]],
+                   domain: str) -> dict[str, Any] | None:
     """A complete schema.org ItemList describing the published ranking order."""
     if not rows:
         return None
@@ -118,7 +125,8 @@ def build_itemlist(name: str, description: str, rows: list[dict[str, Any]]) -> d
         "itemListOrder": "https://schema.org/ItemListOrderDescending",
         "numberOfItems": len(rows),
         "itemListElement": [
-            {"@type": "ListItem", "position": index, "name": row["title"], "url": row["url"]}
+            {"@type": "ListItem", "position": index, "name": row["title"],
+             "url": domain + row["url"]}
             for index, row in enumerate(rows, start=1)
         ],
     }
@@ -138,15 +146,18 @@ def main() -> None:
         "deservingness": deservingness,
         "legitimacy": legitimacy,
         "rankings_canonical_url": f"{domain}/rankings",
+        "seo_route_anchors": SEO_ROUTE_ANCHORS,
+        "page": {**seo_render_vars(route_contract("/rankings"), "/rankings", "Rankings"),
+                 "contract": route_contract("/rankings")},
         "jsonld_deservingness": build_itemlist(
             "Recognition Gap Index",
             "Individuals ranked by recognition gap (assessed DDI minus observed recognition).",
-            deservingness,
+            deservingness, domain,
         ),
         "jsonld_legitimacy": build_itemlist(
             "Recognition Legitimacy Index",
             "Recognition systems ranked by Recognition Legitimacy Score (RLS).",
-            legitimacy,
+            legitimacy, domain,
         ),
     }
 

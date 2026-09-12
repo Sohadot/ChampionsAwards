@@ -44,6 +44,31 @@ key_facts:
 analysis:
 - heading: Creating a tool versus wielding it
   body: 'Leavitt''s large recognition gap reflects a specific mechanism: the person who forges an enabling instrument is often eclipsed by those who make headline measurements with it. Her relation is invoked constantly in cosmology, while her name is far less visible than the discoveries it made possible.'
+seo:
+  canonical: /unawarded/henrietta-swan-leavitt
+  description: Henrietta Swan Leavitt discovered the period-luminosity relation for Cepheid variable stars, which became a foundational tool for measuring cosmic distances.
+  h1: Henrietta Swan Leavitt
+  incoming_links:
+  - /rankings
+  - /sectors/physics-astronomy
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /concepts/credit-misattribution
+  - /concepts/institutional-exclusion
+  - /methodology
+  - /sectors/physics-astronomy
+  primary_query: Henrietta Swan Leavitt
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Physics & Astronomy
+  - recognition gap
+  - Deservingness Index
+  - credit misattribution
+  - institutional exclusion
+  title: Henrietta Swan Leavitt - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
 - title: Henrietta Swan Leavitt - biography and the period-luminosity relation
   publisher: Encyclopaedia Britannica

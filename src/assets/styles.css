@@ -402,3 +402,8 @@ h3.sub { margin: 0 0 6px; font-size: 1.02rem; }
 .breadcrumbs a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
 .breadcrumbs a:hover { color: var(--text); border-bottom-color: currentColor; }
 .breadcrumbs [aria-current="page"] { color: var(--text); }
+
+/* Related-pages block: descriptive anchors that say what is on the other end,
+   because "read more" tells a reader and a crawler equally little. */
+.related { margin: 6px 0 0; padding-left: 18px; }
+.related li { margin: 4px 0; }

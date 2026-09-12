@@ -50,6 +50,27 @@ analysis:
     body: "The assessed index and the observed recognition land within a few points of each other, which the gap bands classify as recognition roughly matching assessed merit. That is the intended reading. Two entries in the Biology and Medicine corpus already returned the same class, so the instrument's capacity to report alignment is not new; what is new is that this is the first entry in the corpus whose subject holds the single highest award her domain confers."
   - heading: What this entry does not claim
     body: "It does not claim that the absence of a mechanism here is evidence that computing recognises contribution reliably. One case establishes nothing about a system's behaviour, and the mechanism audit below returns no evidenced mechanism for the ordinary reason that there is no deficit for a mechanism to explain. It also does not treat her being the first woman in the United States to hold a computer science doctorate as an exclusion finding; the fact is documented, its bearing on her recognition is not, and this corpus keeps those apart."
+seo:
+  canonical: /unawarded/barbara-liskov
+  description: Barbara Liskov led the design of CLU, the first implemented programming language to provide direct linguistic support for data abstraction.
+  h1: Barbara Liskov
+  incoming_links:
+  - /awards/acm-am-turing-award
+  - /rankings
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /awards/acm-am-turing-award
+  - /methodology
+  primary_query: Barbara Liskov
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Mathematics & Computing
+  - recognition gap
+  - Deservingness Index
+  title: Barbara Liskov - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "A History of CLU, MIT/LCS/TR-561 (first implemented language with direct support for data abstraction; the 1973 work with Zilles; the four main language designers)"
     publisher: "Barbara Liskov, MIT Laboratory for Computer Science, April 1992"

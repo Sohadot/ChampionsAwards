@@ -52,6 +52,29 @@ analysis:
     body: "It would have been easy, and wrong, to score his observed recognition against the one award the rule excluded him from and report a deficit. The Fields Medal is one eligibility system inside mathematics, not the whole of mathematical recognition. The score here reads the entire record - a national academy, a state honour, four international prizes and the union's own bespoke tribute - which is the only reading that can distinguish an excluded candidate from an unrecognised one."
   - heading: What this case exposes about the instrument
     body: "His breadth score is the lowest the corpus has recorded, because the benefit of the work sits inside mathematics. That single dimension is most of the reason the index lands below the recognition, and it is worth stating plainly rather than leaving in the arithmetic: an instrument that weights benefit to society will read a discipline-internal result as less deserving than the discipline itself does. That is a property of the DDI, not a finding about him."
+seo:
+  canonical: /unawarded/andrew-wiles
+  description: Andrew Wiles proved Fermat's Last Theorem in a 1995 paper in the Annals of Mathematics.
+  h1: Andrew Wiles
+  incoming_links:
+  - /awards/fields-medal-award
+  - /awards/wolf-prize-award
+  - /rankings
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /awards/fields-medal-award
+  - /awards/wolf-prize-award
+  - /methodology
+  primary_query: Andrew Wiles
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Mathematics & Computing
+  - recognition gap
+  - Deservingness Index
+  title: Andrew Wiles - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "Modular elliptic curves and Fermat's Last Theorem, Annals of Mathematics 141(3), 443-551 (1995)"
     publisher: "Andrew Wiles, Annals of Mathematics, Princeton University"

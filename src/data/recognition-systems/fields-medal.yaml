@@ -42,6 +42,26 @@ analysis:
     body: "The age rule is the medal's defining design choice: it sharpens the prize into a signal about early work, and means the system cannot, by construction, recognise significance established later in a career. Its current form is published by the IMU. Its history matters as much - the limit was codified in 1966, replacing a vaguer criterion about candidates whose careers might benefit from encouragement - so any future corpus case touching this rule must be dated against the version then in force rather than against today's."
   - heading: Two claims this entry stopped making
     body: "Until the Cycle 03 requalification this entry stated that recipients concentrate in a small number of elite institutions, and that they have overwhelmingly gone on to sustained mathematical leadership. Neither had a source. Tabulating laureates' affiliations or careers ourselves would be our own analysis presented as a documented fact, so both are now documented exceptions, and the track-record score is lowered to what the published laureate record alone supports."
+seo:
+  canonical: /recognition-systems/fields-medal
+  description: The Fields Medal is awarded every four years by the International Mathematical Union at the International Congress of Mathematicians, and its age rule.
+  h1: Fields Medal
+  incoming_links:
+  - /awards/fields-medal-award
+  - /recognition-systems
+  indexing: index
+  outgoing_links:
+  - /awards/fields-medal-award
+  - /methodology
+  primary_query: Fields Medal legitimacy
+  schema_types:
+  - BreadcrumbList
+  - Organization
+  secondary_entities:
+  - Mathematics & Computing
+  - Recognition Legitimacy Score
+  - award governance
+  title: Fields Medal Legitimacy - RLS Assessment, Governance & Breadth | ChampionsAwards
 sources:
   - title: Fields Medal - official page (award cycle, age rule, committee composition, funding, laureates, past prize committees)
     publisher: International Mathematical Union

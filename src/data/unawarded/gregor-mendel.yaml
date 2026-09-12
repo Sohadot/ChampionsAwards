@@ -39,6 +39,29 @@ key_facts:
 analysis:
   - heading: A dated interval, without an explanation attached
     body: "Mendel's is the cleanest recognition gap in this corpus to measure and the hardest to explain. Both endpoints are documented - publication in 1866, independent rediscovery in 1900 - and no rival claimant contested the credit. What produced the interval is a live question in the history of science, and this entry deliberately stops at the measurement. A gap whose cause is unknown is still a gap; calling it 'a community that was not ready' would be an explanation the record here does not carry."
+seo:
+  canonical: /unawarded/gregor-mendel
+  description: Gregor Mendel published his experiments on inheritance in pea plants in 1866.
+  h1: Gregor Mendel
+  incoming_links:
+  - /rankings
+  - /sectors/biology-medicine
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /concepts/delayed-recognition
+  - /methodology
+  - /sectors/biology-medicine
+  primary_query: Gregor Mendel
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Biology & Medicine
+  - recognition gap
+  - Deservingness Index
+  - delayed recognition
+  title: Gregor Mendel - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "Versuche ueber Pflanzen-Hybriden (Experiments on Plant Hybridisation), 1866"
     publisher: "Gregor Mendel, Verhandlungen des naturforschenden Vereines in Bruenn, Bd. IV, 3-47 (digitised scan)"

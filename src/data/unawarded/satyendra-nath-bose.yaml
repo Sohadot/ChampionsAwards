@@ -52,6 +52,29 @@ key_facts:
 analysis:
 - heading: Recognition that partly succeeded
   body: Bose's gap is deliberately modest in this archive. His name is woven into physics, so the case is not one of erasure but of dependence - his result travelled only once a metropolitan intermediary vouched for it. Including such cases keeps the index honest and resistant to a bias toward dramatic injustice alone.
+seo:
+  canonical: /unawarded/satyendra-nath-bose
+  description: Satyendra Nath Bose derived the quantum statistics that underpin Bose-Einstein statistics and the boson.
+  h1: Satyendra Nath Bose
+  incoming_links:
+  - /awards/nobel-prize-in-physics
+  - /rankings
+  - /sectors/physics-astronomy
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /awards/nobel-prize-in-physics
+  - /methodology
+  - /sectors/physics-astronomy
+  primary_query: Satyendra Nath Bose
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Physics & Astronomy
+  - recognition gap
+  - Deservingness Index
+  title: Satyendra Nath Bose - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
 - title: Satyendra Nath Bose - biography and Bose-Einstein statistics
   publisher: Encyclopaedia Britannica

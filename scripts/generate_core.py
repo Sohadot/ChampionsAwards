@@ -7,7 +7,8 @@ import shutil
 import yaml
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from config import CORE_PAGES, DATA, OUT, SRC, TEMPLATES
+from config import (CORE_PAGES, DATA, OUT, SEO_ROUTE_ANCHORS, SRC, TEMPLATES,
+                    route_contract, seo_render_vars)
 
 
 def load_yaml_file(path) -> dict[str, Any]:
@@ -47,13 +48,19 @@ def copy_root_files() -> None:
 def render_core_pages(env: Environment, site: dict[str, Any]) -> None:
     common_context = {
         "site": site,
+        "seo_route_anchors": SEO_ROUTE_ANCHORS,
         "build_year": datetime.now(timezone.utc).year,
         "build_timestamp": datetime.now(timezone.utc).isoformat(),
     }
 
     for template_name, output_relative_path in CORE_PAGES.items():
         template = env.get_template(template_name)
-        html = template.render(**common_context)
+        path = "/" + output_relative_path[: -len("index.html")].strip("/")
+        contract = route_contract(path)
+        html = template.render(
+            **common_context,
+            page={**seo_render_vars(contract, path, template_name), "contract": contract},
+        )
 
         output_path = OUT / output_relative_path
         output_path.parent.mkdir(parents=True, exist_ok=True)

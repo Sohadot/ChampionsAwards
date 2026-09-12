@@ -48,6 +48,35 @@ key_facts:
 analysis:
 - heading: Theory versus experiment in the credit structure
   body: 'Wu''s case exposes a recurring asymmetry: prize architectures often reward the prediction over the proof, even when the proof is what converts a hypothesis into accepted science. The recognition gap here is moderate, softened by later honours, but the pattern is structural rather than incidental.'
+seo:
+  canonical: /unawarded/chien-shiung-wu
+  description: Chien-Shiung Wu designed and led the experiment that demonstrated the violation of parity conservation in 1956-57.
+  h1: Chien-Shiung Wu
+  incoming_links:
+  - /awards/nobel-prize-in-physics
+  - /awards/wolf-prize-award
+  - /rankings
+  - /sectors/physics-astronomy
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /awards/nobel-prize-in-physics
+  - /awards/wolf-prize-award
+  - /concepts/credit-misattribution
+  - /concepts/theory-experiment-asymmetry
+  - /methodology
+  - /sectors/physics-astronomy
+  primary_query: Chien-Shiung Wu
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Physics & Astronomy
+  - recognition gap
+  - Deservingness Index
+  - credit misattribution
+  - theory experiment asymmetry
+  title: Chien-Shiung Wu - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
 - title: Chien-Shiung Wu - biography and the parity experiment
   publisher: Encyclopaedia Britannica

@@ -41,6 +41,29 @@ key_facts:
 analysis:
   - heading: A documented non-award, without a documented reason
     body: "Avery's record is unusual in this corpus: the absence of an award is not an inference from silence but a fact visible in the awarding institution's own archive, alongside 38 nominations across two decades. What that archive does not contain is a reason. The committee's evaluations are not published, and the Physiology or Medicine nominations are currently open only through 1953. This entry once explained the outcome by the prize's conservatism; that explanation is withdrawn, and nothing replaces it, because nothing in the available record supports one."
+seo:
+  canonical: /unawarded/oswald-avery
+  description: Oswald Avery, Colin MacLeod and Maclyn McCarty published evidence in 1944 that a deoxyribonucleic acid fraction carried the transforming principle in pneumococcus.
+  h1: Oswald Avery
+  incoming_links:
+  - /awards/nobel-prize-in-physiology-or-medicine
+  - /rankings
+  - /sectors/biology-medicine
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /awards/nobel-prize-in-physiology-or-medicine
+  - /methodology
+  - /sectors/biology-medicine
+  primary_query: Oswald Avery
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Biology & Medicine
+  - recognition gap
+  - Deservingness Index
+  title: Oswald Avery - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: Oswald Avery - biography and the identification of DNA
     publisher: Encyclopaedia Britannica

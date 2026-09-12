@@ -32,6 +32,26 @@ key_facts:
 analysis:
   - heading: What this entry stopped claiming
     body: "Two claims were removed from this entry in the Cycle 02 baseline requalification. The first was that its selections tend to favour well-resourced research environments: no record-grade source was found for it, and tabulating recipients ourselves would be our own analysis rather than a documented fact. The second was the predictive-overlap figure used to justify the track-record score, which was asserted without a count anchored to a record. Both are now documented exceptions rather than assertions. What the foundation itself documents - the founding year, the annual nomination window, and selection by an international jury - is retained and anchored."
+seo:
+  canonical: /recognition-systems/lasker-award
+  description: The Albert Lasker Medical Research Awards were created in 1945 and are administered by the Albert and Mary Lasker Foundation.
+  h1: Lasker Award
+  incoming_links:
+  - /recognition-systems
+  - /sectors/biology-medicine
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /sectors/biology-medicine
+  primary_query: Lasker Award
+  schema_types:
+  - BreadcrumbList
+  - Organization
+  secondary_entities:
+  - Biology & Medicine
+  - Recognition Legitimacy Score
+  - award governance
+  title: Lasker Award - Governance, Selection & Legitimacy | ChampionsAwards
 sources:
   - title: About the Awards (created 1945; nomination window; selection by an international jury)
     publisher: The Lasker Foundation

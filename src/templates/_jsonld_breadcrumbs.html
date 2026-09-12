@@ -1,5 +1,10 @@
-{% if item.breadcrumb_jsonld %}
+{% set crumbs = (item.breadcrumbs if item is defined and item and item.breadcrumbs else (page.breadcrumbs if page is defined and page else none)) %}
+{% if crumbs and crumbs | length > 1 %}
+{% set ns = namespace(items=[]) %}
+{% for crumb in crumbs %}
+{% set _ = ns.items.append({"@type": "ListItem", "position": loop.index, "name": crumb.name, "item": site.domain ~ (crumb.url if crumb.url != "/" else "")}) %}
+{% endfor %}
 <script type="application/ld+json">
-{{ item.breadcrumb_jsonld | tojson }}
+{{ {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": ns.items} | tojson }}
 </script>
 {% endif %}

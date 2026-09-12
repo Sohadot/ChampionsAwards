@@ -131,13 +131,13 @@ seo:
   h1: ACM A.M. Turing Award
   schema_types:
     - BreadcrumbList
-    - Article
+    - CreativeWork
   incoming_links:
     - /awards
     - /recognition-systems/turing-award
   outgoing_links:
-    - /unawarded/barbara-liskov
     - /recognition-systems/turing-award
+    - /unawarded/barbara-liskov
   indexing: index
 sources:
   - title: "ACM A.M. Turing Award (awarding society, criteria, prize amount from 2007 and the increase effective 2014)"

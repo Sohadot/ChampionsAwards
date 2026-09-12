@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}{{ site.site_name }} — Measuring recognition, merit, and the gap between them{% endblock %}
-{% block meta_description %}{{ site.description }}{% endblock %}
+{% block title %}{% if page and page.seo_title %}{{ page.seo_title }}{% else %}{{ site.site_name }} — Measuring recognition, merit, and the gap between them{% endif %}{% endblock %}
+{% block meta_description %}{% if page and page.seo_description %}{{ page.seo_description }}{% else %}{{ site.description }}{% endif %}{% endblock %}
 {% block canonical_link %}{{ site.domain }}/{% endblock %}
+{% block structured_data %}{% include "_jsonld_breadcrumbs.html" with context %}{% endblock %}
+
+{% block robots %}{{ page.seo_robots | default('index,follow,max-image-preview:large', true) }}{% endblock %}
 
 {% block content %}
 <section class="page-hero">
@@ -83,4 +86,5 @@
     </p>
   </div>
 </section>
+{% include "_hub_links.html" with context %}
 {% endblock %}

@@ -47,6 +47,29 @@ analysis:
     body: "The central attribution claim here does not rest on a later reconstruction. The university whose president published her findings under his own name is the same institution that now records, in its own words, that he failed to mention key research she conducted and renamed the method after himself. Records that run against an institution's own interest are among the strongest evidence a corpus of this kind can hold."
   - heading: Restoration is part of the record, not a coda
     body: "The corpus treats the 1922 attribution, the 2007 medal, the 2022 state proclamation and the 2026 chemical landmark as recognition actually received, not as consolation. That is why her observed recognition is not scored near zero despite a lifetime that ended with none of it: the gap being measured is between contribution and recognition as the record now stands."
+seo:
+  canonical: /unawarded/alice-ball
+  description: Alice Ball developed the injectable chaulmoogra preparation that became the first effective treatment for Hansen's disease, and died in 1916 at twenty-four before publishing it.
+  h1: Alice Ball
+  incoming_links:
+  - /rankings
+  - /sectors/biology-medicine
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /concepts/credit-misattribution
+  - /methodology
+  - /sectors/biology-medicine
+  primary_query: Alice Ball
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Biology & Medicine
+  - recognition gap
+  - Deservingness Index
+  - credit misattribution
+  title: Alice Ball - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "Alice Ball's master's thesis (1915), digitised"
     publisher: University of Hawaii

@@ -10,6 +10,26 @@ implications: Delayed recognition shows that recognition depends on the receiver
 key_facts:
   - fact: The scientometric literature describes long-dormant, later-celebrated publications as "sleeping beauties" in science.
     source: 1
+seo:
+  canonical: /concepts/delayed-recognition
+  description: Delayed recognition is a pattern in which the gap between a contribution and its acknowledgment is primarily a function of time and reception.
+  h1: Delayed Recognition
+  incoming_links:
+  - /concepts
+  - /unawarded/gregor-mendel
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /unawarded/gregor-mendel
+  primary_query: delayed recognition
+  schema_types:
+  - BreadcrumbList
+  - DefinedTerm
+  secondary_entities:
+  - recognition mechanism
+  - merit vs recognition
+  - scientific recognition
+  title: Delayed Recognition - Definition & Documented Cases | ChampionsAwards
 sources:
   - title: "Sleeping Beauties in science (long-dormant, later-cited publications)"
     publisher: "A. F. J. van Raan, Scientometrics, Vol. 59 (2004)"

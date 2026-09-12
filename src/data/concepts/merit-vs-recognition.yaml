@@ -8,6 +8,24 @@ implications: A credible evaluative framework must distinguish between what dese
 # evidenced or refuted in a single case.
 concept_type: framework-concept
 last_reviewed: 2026-09-11
+seo:
+  canonical: /concepts/merit-vs-recognition
+  description: Merit is the structural value of a contribution; recognition is what a system formally confers. This corpus measures the distance between them rather than assuming they agree.
+  h1: Merit vs Recognition
+  incoming_links:
+  - /concepts
+  indexing: index
+  outgoing_links:
+  - /methodology
+  primary_query: merit vs recognition
+  schema_types:
+  - BreadcrumbList
+  - DefinedTerm
+  secondary_entities:
+  - recognition mechanism
+  - merit vs recognition
+  - scientific recognition
+  title: Merit vs Recognition - Definition & Documented Cases | ChampionsAwards
 sources:
   - title: "The Matthew Effect in Science (accumulated advantage in recognition)"
     publisher: "Robert K. Merton, Science, Vol. 159 (1968)"

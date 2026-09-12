@@ -17,7 +17,7 @@ seo:
   h1: Nobel Peace Prize
   schema_types:
     - BreadcrumbList
-    - Article
+    - CreativeWork
   incoming_links:
     - /awards
   outgoing_links:

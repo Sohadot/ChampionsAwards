@@ -45,6 +45,29 @@ analysis:
     body: "The claim at the centre of this entry is not that a prize was withheld. It is that the positions through which a scientific career normally accumulates visibility were not offered, and that this is recorded by the laboratory where he worked rather than inferred by us. That is what the published definition of institutional exclusion requires: formal barriers to appointments constraining the visibility from which honours are usually derived."
   - heading: What the audit did not conclude
     body: "The audit tags the mechanism as documented in the case. It does not claim to have measured how much of his recognition gap the mechanism produced, and it does not treat his European research as evidence of exclusion in itself - working abroad is ordinary in science. The documented element is the absence of commensurate US positions, and that is the element the tag rests on."
+seo:
+  canonical: /unawarded/ernest-everett-just
+  description: Ernest Everett Just built an experimental programme on fertilisation and the biology of the cell surface, was the first recipient of the NAACP's Spingarn Medal in 1915.
+  h1: Ernest Everett Just
+  incoming_links:
+  - /rankings
+  - /sectors/biology-medicine
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /concepts/institutional-exclusion
+  - /methodology
+  - /sectors/biology-medicine
+  primary_query: Ernest Everett Just
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Biology & Medicine
+  - recognition gap
+  - Deservingness Index
+  - institutional exclusion
+  title: Ernest Everett Just - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "The Biology of the Cell Surface (1939), digitised"
     publisher: "Ernest Everett Just, P. Blakiston's Son & Co."

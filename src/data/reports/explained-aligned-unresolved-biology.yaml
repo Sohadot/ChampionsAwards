@@ -140,3 +140,23 @@ limits:
   - >-
     All figures are attributable to corpus snapshot {corpus_snapshot}, data through {data_through}. A
     later corpus can change them, and this report is superseded rather than amended when it does.
+seo:
+  canonical: /reports/explained-aligned-unresolved-biology
+  description: Three outcome classes in the governed Biology & Medicine corpus - explained deficits, cases where recognition matched merit, and deficits that survive a full mechanism audit.
+  h1: 'Explained, Aligned, Unresolved: Recognition Outcomes in Biology & Medicine'
+  incoming_links:
+  - /reports
+  - /sectors/biology-medicine
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /sectors/biology-medicine
+  primary_query: Explained, Aligned, Unresolved
+  schema_types:
+  - BreadcrumbList
+  - Report
+  secondary_entities:
+  - Biology & Medicine
+  - recognition gap
+  - recognition mechanisms
+  title: Explained, Aligned, Unresolved - Findings | ChampionsAwards

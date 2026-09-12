@@ -258,14 +258,15 @@ seo:
   h1: Nobel Prize in Physiology or Medicine
   schema_types:
     - BreadcrumbList
-    - Article
+    - CreativeWork
   incoming_links:
     - /awards
     - /sectors/biology-medicine
   outgoing_links:
-    - /unawarded/rosalind-franklin
-    - /unawarded/albert-schatz
     - /sectors/biology-medicine
+    - /unawarded/albert-schatz
+    - /unawarded/oswald-avery
+    - /unawarded/rosalind-franklin
   indexing: index
 sources:
   - title: Statutes of the Nobel Foundation (eligibility, sharing, posthumous provision, nomination deadline, secrecy, withholding, finality)

@@ -52,6 +52,25 @@ analysis:
     body: "A case with this shape invites the assumption that the late post was a gendered barrier. The source closest to her states the opposite on her own behalf: that she felt she was never overtly discriminated against, while being very frequently the only woman present. This corpus does not have standing to overrule a subject's recorded account of her own career with an inference drawn from its shape, and it does not do so here. No formal barrier to an appointment is documented, which is what the exclusion mechanism requires, so the mechanism is tested and not tagged."
   - heading: What the second computing case does and does not establish
     body: "Computing now holds two cases and both return small gaps, and it would be easy to read that as a property of computing as a recognition environment. Two cases establish nothing of the kind. The first was entered as a deliberate award-positive control, and the second was entered because its outcome could not be predicted, which is the only sense in which the pair is informative at all. What they jointly establish is that the side of the domain that began at zero now has a measured range, not that the range is representative."
+seo:
+  canonical: /unawarded/karen-sparck-jones
+  description: Karen Sparck Jones introduced inverse document frequency in a 1972 paper written at the Cambridge Computer Laboratory.
+  h1: Karen Sparck Jones
+  incoming_links:
+  - /rankings
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /methodology
+  primary_query: Karen Sparck Jones
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Mathematics & Computing
+  - recognition gap
+  - Deservingness Index
+  title: Karen Sparck Jones - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "A statistical interpretation of term specificity and its application in retrieval, Journal of Documentation 28(1), 11-21 (1972), reprinted in Journal of Documentation 60(5), 493-502 (2004)"
     publisher: "Karen Sparck Jones, Computer Laboratory, University of Cambridge"

@@ -48,6 +48,31 @@ key_facts:
 analysis:
 - heading: A gap the field itself later corrected
   body: 'Bell Burnell''s recognition gap is moderate rather than extreme, because the scientific community substantially corrected the record over subsequent decades through major honours. The case illustrates a softer failure mode than outright erasure: delayed recognition routed first through the institutional hierarchy before reaching the discoverer.'
+seo:
+  canonical: /unawarded/jocelyn-bell-burnell
+  description: Jocelyn Bell Burnell detected the first radio pulsars as a graduate student in 1967.
+  h1: Jocelyn Bell Burnell
+  incoming_links:
+  - /awards/nobel-prize-in-physics
+  - /rankings
+  - /sectors/physics-astronomy
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /awards/nobel-prize-in-physics
+  - /concepts/credit-misattribution
+  - /methodology
+  - /sectors/physics-astronomy
+  primary_query: Jocelyn Bell Burnell
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Physics & Astronomy
+  - recognition gap
+  - Deservingness Index
+  - credit misattribution
+  title: Jocelyn Bell Burnell - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
 - title: Jocelyn Bell Burnell - biography and discovery of pulsars
   publisher: Encyclopaedia Britannica

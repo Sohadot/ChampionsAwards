@@ -52,6 +52,27 @@ analysis:
     body: "The honours arrived between 2009 and 2023 for work done between 1965 and 1980, which invites the delayed-recognition label. The definition does not fit. That mechanism describes a community unable to absorb a contribution, and the contribution here was absorbed almost immediately: her own report records the methodology spreading from about twelve university courses to more than eighty within a single year. The work was not waiting for the field to catch up. What arrived late was the honouring of its author, which is a different thing, and the entry does not relabel one as the other."
   - heading: What the mechanism audit did not find
     body: "Credit misattribution was tested and is not tagged. No source in this audit names another person who received the reward for her work, and the methodology carries her name alongside her co-author's. The absence of contemporaneous public attribution for the 1965 contribution is recorded as an attribution weakness in the score rather than as displacement toward a named beneficiary, because displacement is what that mechanism requires and it is not in the record."
+seo:
+  canonical: /unawarded/lynn-conway
+  description: Lynn Conway proposed dynamic instruction scheduling at IBM in 1965, was dismissed by the company in 1968 as she underwent gender transition.
+  h1: Lynn Conway
+  incoming_links:
+  - /rankings
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /concepts/institutional-exclusion
+  - /methodology
+  primary_query: Lynn Conway
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Mathematics & Computing
+  - recognition gap
+  - Deservingness Index
+  - institutional exclusion
+  title: Lynn Conway - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "The MPC Adventures: Experiences with the Generation of VLSI Design and Implementation Methodologies, Xerox PARC report VLSI-81-2 (course diffusion figures for 1979-80 and 1980-81)"
     publisher: "Lynn Conway, Xerox Palo Alto Research Center"

@@ -2,8 +2,9 @@
 {% set comparison = item.comparison %}
 {% set pop = comparison.population %}
 
-{% block title %}{{ item.title }} — Reports — ChampionsAwards{% endblock %}
-{% block meta_description %}{{ item.summary }}{% endblock %}
+{% block title %}{{ item.seo_title | default(item.title ~ " — Reports — ChampionsAwards", true) }}{% endblock %}
+{% block meta_description %}{{ item.seo_description | default(item.summary, true) }}{% endblock %}
+{% block robots %}{{ item.seo_robots | default('index,follow,max-image-preview:large', true) }}{% endblock %}
 {% block canonical_link %}{{ item.canonical_url }}{% endblock %}
 {% block structured_data %}{% include "_jsonld_item.html" %}{% include "_jsonld_breadcrumbs.html" %}{% endblock %}
 
@@ -12,7 +13,7 @@
 <section class="page-hero">
   <div class="container narrow">
     <p class="eyebrow">Synthesis report · {{ item.domain }}</p>
-    <h1>{{ item.title }}</h1>
+    <h1>{{ item.seo_h1 | default(item.title, true) }}</h1>
     <p class="lead">{{ item.summary }}</p>
     <p class="small muted">
       Corpus <span class="mono">{{ comparison.corpus_snapshot }}</span> · data through {{ pop.data_through }} ·
@@ -187,4 +188,5 @@
     </p>
   </div>
 </section>
+{% include "_related.html" %}
 {% endblock %}

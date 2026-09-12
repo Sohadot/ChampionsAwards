@@ -88,6 +88,31 @@ mechanism_audit:
 analysis:
 - heading: A control case for the index
   body: Rubin is included precisely because her recognition was substantial. A transformative contribution that was broadly honoured should show a modest gap, and if the index instead forced a large one, that would signal a bias in the method. Her moderate gap is evidence the instrument is measuring, not editorialising.
+seo:
+  canonical: /unawarded/vera-rubin
+  description: Vera Rubin's observations of galaxy rotation provided decisive evidence for dark matter.
+  h1: Vera Rubin
+  incoming_links:
+  - /awards/nobel-prize-in-physics
+  - /rankings
+  - /sectors/physics-astronomy
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /awards/nobel-prize-in-physics
+  - /concepts/institutional-exclusion
+  - /methodology
+  - /sectors/physics-astronomy
+  primary_query: Vera Rubin
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Physics & Astronomy
+  - recognition gap
+  - Deservingness Index
+  - institutional exclusion
+  title: Vera Rubin - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
 - title: Vera Rubin - biography and dark matter
   publisher: Encyclopaedia Britannica

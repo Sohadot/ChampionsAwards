@@ -40,6 +40,32 @@ analysis:
   body: "Until 2026-09-12 this entry described the prize as a frequent precursor to the Nobel Prize and scored its track record on that basis. The foundation makes no such claim, and establishing it would mean compiling its laureate list against another award's - this project's own analysis presented as a documented fact. The claim is withdrawn from the summary and from the score, which now rests on the published laureate record and the award's unbroken annual cycle. The award anatomy built in the same cycle flagged the claim; this entry is where it is resolved."
 - heading: Breadth as a design choice
   body: The Wolf Prize trades some depth in any single field for coverage across many, which lifts its representational breadth relative to single-discipline awards. The RLS records this as a distinct legitimacy profile rather than ranking it against instruments built for one field only.
+seo:
+  canonical: /recognition-systems/wolf-prize
+  description: The Wolf Prize is an international award given by the Wolf Foundation since 1978 across five sciences and four arts, decided by juries reappointed annually for each field.
+  h1: Wolf Prize
+  incoming_links:
+  - /awards/wolf-prize-award
+  - /recognition-systems
+  - /sectors/biology-medicine
+  - /sectors/physics-astronomy
+  indexing: index
+  outgoing_links:
+  - /awards/wolf-prize-award
+  - /methodology
+  - /sectors/biology-medicine
+  - /sectors/physics-astronomy
+  primary_query: Wolf Prize legitimacy
+  schema_types:
+  - BreadcrumbList
+  - Organization
+  secondary_entities:
+  - Physics & Astronomy
+  - Biology & Medicine
+  - Mathematics & Computing
+  - Recognition Legitimacy Score
+  - award governance
+  title: Wolf Prize Legitimacy - RLS Assessment, Governance & Breadth | ChampionsAwards
 sources:
 - title: Wolf Prize - official site
   publisher: The Wolf Foundation

@@ -212,13 +212,13 @@ seo:
   h1: Fields Medal
   schema_types:
     - BreadcrumbList
-    - Article
+    - CreativeWork
   incoming_links:
     - /awards
     - /recognition-systems/fields-medal
   outgoing_links:
-    - /unawarded/andrew-wiles
     - /recognition-systems/fields-medal
+    - /unawarded/andrew-wiles
   indexing: index
 sources:
   - title: "Statutes for the Fields Medal, as decided at the ICM 1932 with subsequent changes (preamble and statutes 1-8: origin, age rule, four-medal cap from 1966, prize amount, committee, nomination, one-award rule)"

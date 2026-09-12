@@ -43,6 +43,27 @@ key_facts:
 analysis:
   - heading: A case that did not produce a mechanism
     body: "The audit for this entry tested every mechanism in the ontology and recorded none. Credit was not displaced to a named other: Wilson reached the same result independently and cited her. She was not excluded from the institutions of her field: she was funded by one, prized by another, and offered a professorship by a third. What the record shows is a real gap between the standing of the discovery and the standing of the discoverer in the later literature, with no documented act producing it. That is a finding, not a failure to find one."
+seo:
+  canonical: /unawarded/nettie-stevens
+  description: Nettie Stevens published the evidence in 1905 that sex is determined by a chromosomal difference, paralleled independently the same year by E. B. Wilson.
+  h1: Nettie Stevens
+  incoming_links:
+  - /rankings
+  - /sectors/biology-medicine
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /sectors/biology-medicine
+  primary_query: Nettie Stevens
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Biology & Medicine
+  - recognition gap
+  - Deservingness Index
+  title: Nettie Stevens - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
   - title: "Studies in Spermatogenesis (1905), Carnegie Institution of Washington Publication No. 36 - digitised"
     publisher: "Nettie M. Stevens, Carnegie Institution of Washington"

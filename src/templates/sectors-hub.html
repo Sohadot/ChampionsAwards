@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Sectors — Recognition Architecture by Domain — ChampionsAwards{% endblock %}
-{% block meta_description %}Domains whose recognition architecture has been mapped: assessed cases, scored recognition systems, evidenced structural mechanisms, and the measured gap between merit and recognition.{% endblock %}
+{% block title %}{{ page.seo_title | default("Sectors — Recognition Architecture by Domain — ChampionsAwards", true) }}{% endblock %}
+{% block meta_description %}{% if page and page.seo_description %}{{ page.seo_description }}{% else %}Domains whose recognition architecture has been mapped: assessed cases, scored recognition systems, evidenced structural mechanisms, and the measured gap between merit and recognition.{% endif %}{% endblock %}
 {% block canonical_link %}{{ hub_canonical_url }}{% endblock %}
+{% block structured_data %}{% include "_jsonld_breadcrumbs.html" with context %}{% endblock %}
+
+{% block robots %}{{ page.seo_robots | default('index,follow,max-image-preview:large', true) }}{% endblock %}
 
 {% block content %}
+{% include "_breadcrumbs.html" with context %}
 <section class="page-hero">
   <div class="container narrow">
     <p class="eyebrow">Sectors</p>
@@ -39,4 +43,5 @@
     </div>
   </div>
 </section>
+{% include "_hub_links.html" with context %}
 {% endblock %}

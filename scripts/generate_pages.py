@@ -16,6 +16,9 @@ from config import (
     TEMPLATES,
     RLS_DIMENSIONS,
     SEO_BREADCRUMB_LABELS,
+    SEO_ROUTE_ANCHORS,
+    route_contract,
+    seo_render_vars,
     compute_ddi,
     compute_rls,
     ddi_band,
@@ -308,7 +311,7 @@ def attach_seo(item: dict[str, Any], cluster_name: str, slug: str, site_domain: 
         "noindex,follow" if seo.get("indexing") == "noindex" else "index,follow,max-image-preview:large"
     )
 
-    from config import DOMAINS, PUBLISHED_SECTORS
+    from config import AWARD_SYSTEM_PAIRS, DOMAINS, PUBLISHED_SECTORS
 
     trail = [{"name": SEO_BREADCRUMB_LABELS.get("", "Home"), "url": "/"}]
     segments = [part for part in path.split("/") if part]
@@ -340,6 +343,116 @@ def attach_seo(item: dict[str, Any], cluster_name: str, slug: str, site_domain: 
             for i, crumb in enumerate(trail, start=1)
         ],
     }
+
+
+
+_RELATED_CACHE: dict[str, dict[str, list[dict[str, str]]]] | None = None
+
+
+def related_links(cluster_name: str, slug: str) -> list[dict[str, str]]:
+    """Memoised lookup into the graph built by attach_related."""
+    global _RELATED_CACHE
+    if _RELATED_CACHE is None:
+        items_by_cluster = {c: load_cluster_items(c) for c in CLUSTERS}
+        for cluster, items in items_by_cluster.items():
+            items_by_cluster[cluster] = [i for i in items if is_published(i) and i.get("slug")]
+        attach_related(items_by_cluster)
+        _RELATED_CACHE = {
+            cluster: {i["slug"]: i.get("related_links") or [] for i in items}
+            for cluster, items in items_by_cluster.items()
+        }
+    return _RELATED_CACHE.get(cluster_name, {}).get(slug, [])
+
+
+def attach_related(items_by_cluster: dict[str, list[dict[str, Any]]]) -> None:
+    """Build the internal graph the SEO contract declares, from the data rather
+    than by hand: person to mechanism, person to award, concept to the cases that
+    evidence it, system to its own anatomy, report to its sector.
+
+    Anchors are descriptive because a crawler and a reader both learn from the
+    anchor text; "read more" teaches neither anything.
+    """
+    from config import AWARD_SYSTEM_PAIRS, DOMAINS, PUBLISHED_SECTORS
+
+    cases = items_by_cluster.get("unawarded", [])
+    concepts = {c["slug"]: c for c in items_by_cluster.get("concepts", [])}
+    systems = items_by_cluster.get("recognition-systems", [])
+    awards = items_by_cluster.get("awards", [])
+
+    case_title = {c["slug"]: c.get("title", c["slug"]) for c in cases}
+    award_for_case: dict[str, list[dict[str, str]]] = {}
+    for award in awards:
+        for rel in award.get("corpus_relations") or []:
+            award_for_case.setdefault(rel["case"], []).append(
+                {"url": f"/awards/{award['slug']}", "title": award.get("title", award["slug"])})
+
+    system_by_slug = {s["slug"]: s for s in systems}
+    award_by_slug = {a["slug"]: a for a in awards}
+    systems_for_award = {a: system_by_slug.get(sysslug)
+                         for a, sysslug in AWARD_SYSTEM_PAIRS.items()}
+    awards_for_system: dict[str, list[dict[str, Any]]] = {}
+    for aslug, sysslug in AWARD_SYSTEM_PAIRS.items():
+        if aslug in award_by_slug:
+            awards_for_system.setdefault(sysslug, []).append(award_by_slug[aslug])
+
+    for case in cases:
+        links = []
+        for slug in case.get("patterns") or []:
+            concept = concepts.get(slug)
+            if concept:
+                links.append({
+                    "url": f"/concepts/{slug}",
+                    "text": f"{concept.get('title', slug)} — the mechanism evidenced in this case",
+                })
+        for entry in sorted(award_for_case.get(case["slug"], []), key=lambda e: e["url"]):
+            links.append({"url": entry["url"],
+                          "text": f"{entry['title']} — the award architecture this case meets"})
+        domain = case.get("domain")
+        if domain in PUBLISHED_SECTORS:
+            links.append({"url": f"/sectors/{domain}",
+                          "text": f"{DOMAINS.get(domain, domain)} — every governed case in this domain"})
+        links.append({"url": "/methodology",
+                      "text": "How the Deservingness Index and the recognition gap are computed"})
+        case["related_links"] = links
+
+    for slug, concept in concepts.items():
+        evidencing = [c for c in cases if slug in (c.get("patterns") or [])]
+        links = [{"url": f"/unawarded/{c['slug']}",
+                  "text": f"{case_title[c['slug']]} — a governed case evidencing this mechanism"}
+                 for c in sorted(evidencing, key=lambda c: c["slug"])]
+        links.append({"url": "/methodology",
+                      "text": "How a mechanism is evidenced, and what counts as pattern evidence"})
+        concept["related_links"] = links
+
+    for system in systems:
+        links = []
+        for twin in sorted(awards_for_system.get(system["slug"], []), key=lambda a: a["slug"]):
+            links.append({"url": f"/awards/{twin['slug']}",
+                          "text": f"{twin.get('title')} — the award's formal architecture, rule by rule"})
+        for domain in system.get("domains") or []:
+            if domain in PUBLISHED_SECTORS:
+                links.append({"url": f"/sectors/{domain}",
+                              "text": f"{DOMAINS.get(domain, domain)} — the domain this system governs"})
+        links.append({"url": "/methodology",
+                      "text": "How the Recognition Legitimacy Score is computed"})
+        system["related_links"] = links
+
+    for award in awards:
+        links = []
+        twin = systems_for_award.get(award["slug"])
+        if twin:
+            links.append({"url": f"/recognition-systems/{twin['slug']}",
+                          "text": f"{twin.get('title')} — this system's legitimacy assessment"})
+        award["related_links"] = links
+
+    for report in items_by_cluster.get("reports", []):
+        domain = report.get("derives_from")
+        links = []
+        if domain in PUBLISHED_SECTORS:
+            links.append({"url": f"/sectors/{domain}",
+                          "text": f"{DOMAINS.get(domain, domain)} — the corpus this synthesis derives from"})
+        links.append({"url": "/methodology", "text": "The instruments every figure here comes from"})
+        report["related_links"] = links
 
 
 def render_page(env: Environment, template_name: str, output_path, context: dict[str, Any]) -> None:
@@ -390,6 +503,7 @@ def build_cluster_item_pages(
         item["url"] = f"/{cluster_name}/{slug}"
         item["canonical_url"] = f"{domain}/{cluster_name}/{slug}"
         attach_seo(item, cluster_name, slug, domain)
+        item["related_links"] = related_links(cluster_name, slug)
         attach_assessment(item)
         attach_rls(item)
         attach_award_architecture(item, case_index or {})
@@ -430,6 +544,11 @@ def build_cluster_hub_page(
         "items": items,
         "hub_url": f"/{cluster_name}",
         "hub_canonical_url": f"{normalize_domain(site['domain'])}/{cluster_name}",
+        "page": {
+            **seo_render_vars(route_contract(f"/{cluster_name}"), f"/{cluster_name}",
+                              HUB_TITLES.get(cluster_name, cluster_name)),
+            "contract": route_contract(f"/{cluster_name}"),
+        },
     }
 
     render_page(env, "hub.html", output_path, context)
@@ -441,6 +560,7 @@ def main() -> None:
 
     common_context = {
         "site": site,
+        "seo_route_anchors": SEO_ROUTE_ANCHORS,
         "build_year": datetime.now(timezone.utc).year,
         "build_timestamp": datetime.now(timezone.utc).isoformat(),
     }

@@ -52,6 +52,33 @@ key_facts:
 analysis:
 - heading: When the channel decides the credit
   body: 'Zweig''s gap has two layers - a simultaneous discovery that shared credit, and active gatekeeping that delayed his version entering the literature. The second is the sharper point: when a gatekeeper controls whether and where work appears, priority is decided by access rather than by the contribution.'
+seo:
+  canonical: /unawarded/george-zweig
+  description: George Zweig independently proposed the quark model in 1964, which he called aces, but his manuscript was obstructed from journal publication at CERN.
+  h1: George Zweig
+  incoming_links:
+  - /awards/nobel-prize-in-physics
+  - /rankings
+  - /sectors/physics-astronomy
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /awards/nobel-prize-in-physics
+  - /concepts/credit-misattribution
+  - /concepts/institutional-gatekeeping
+  - /methodology
+  - /sectors/physics-astronomy
+  primary_query: George Zweig
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Physics & Astronomy
+  - recognition gap
+  - Deservingness Index
+  - credit misattribution
+  - institutional gatekeeping
+  title: George Zweig - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
 - title: K for KLOE... and Z for Zweig
   publisher: CERN Courier

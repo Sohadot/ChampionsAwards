@@ -52,6 +52,31 @@ key_facts:
 analysis:
 - heading: Resistance to the idea, then displaced credit
   body: Payne-Gaposchkin's gap combines two mechanisms the archive tracks separately - a result doubted and downplayed under senior pressure, and credit later flowing to that senior figure. Layered on institutional limits placed on women at her observatory, the case shows how opposition and displacement can compound.
+seo:
+  canonical: /unawarded/cecilia-payne-gaposchkin
+  description: Cecilia Payne-Gaposchkin showed in her 1925 thesis that stars are composed overwhelmingly of hydrogen and helium.
+  h1: Cecilia Payne-Gaposchkin
+  incoming_links:
+  - /rankings
+  - /sectors/physics-astronomy
+  - /unawarded
+  indexing: index
+  outgoing_links:
+  - /concepts/credit-misattribution
+  - /concepts/institutional-exclusion
+  - /methodology
+  - /sectors/physics-astronomy
+  primary_query: Cecilia Payne-Gaposchkin
+  schema_types:
+  - BreadcrumbList
+  - Person
+  secondary_entities:
+  - Physics & Astronomy
+  - recognition gap
+  - Deservingness Index
+  - credit misattribution
+  - institutional exclusion
+  title: Cecilia Payne-Gaposchkin - Contribution, Recognition Record & Gap | ChampionsAwards
 sources:
 - title: Cecilia Payne-Gaposchkin - scientific biography
   publisher: Science History Institute

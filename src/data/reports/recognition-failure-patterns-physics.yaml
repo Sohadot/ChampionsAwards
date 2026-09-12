@@ -164,3 +164,23 @@ limits:
   - >-
     All figures are attributable to corpus snapshot {corpus_snapshot}, data through {data_through}. A
     later corpus can change them, and this report is superseded rather than amended when it does.
+seo:
+  canonical: /reports/recognition-failure-patterns-physics
+  description: 'A synthesis over the governed Physics & Astronomy corpus: which mechanisms the evidence establishes, which recur across cases, and which cases stay unexplained after a full audit.'
+  h1: Recognition Failure Patterns in Twentieth-Century Physics
+  incoming_links:
+  - /reports
+  - /sectors/physics-astronomy
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /sectors/physics-astronomy
+  primary_query: Recognition Failure Patterns in Twentieth-Century Physics
+  schema_types:
+  - BreadcrumbList
+  - Report
+  secondary_entities:
+  - Physics & Astronomy
+  - recognition gap
+  - recognition mechanisms
+  title: Recognition Failure Patterns in Twentieth-Century Physics - Findings | ChampionsAwards

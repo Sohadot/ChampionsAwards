@@ -40,6 +40,26 @@ key_facts:
 analysis:
 - heading: A different shape of legitimacy
   body: 'The Breakthrough Prize scores lower than the traditional honours already in the archive, not because it is weaker but because its structure is different: private funding, an open nomination funnel, a laureate-only committee, and a discretionary Special Prize. The RLS registers this as moderate rather than strong legitimacy, which is exactly the comparison value a new-model prize adds.'
+seo:
+  canonical: /recognition-systems/breakthrough-prize-fundamental-physics
+  description: The Breakthrough Prize in Fundamental Physics is a privately funded award established in 2012, distinctive for its open public nomination, a selection committee of previous laureates.
+  h1: Breakthrough Prize in Fundamental Physics
+  incoming_links:
+  - /recognition-systems
+  - /sectors/physics-astronomy
+  indexing: index
+  outgoing_links:
+  - /methodology
+  - /sectors/physics-astronomy
+  primary_query: Breakthrough Prize in Fundamental Physics
+  schema_types:
+  - BreadcrumbList
+  - Organization
+  secondary_entities:
+  - Physics & Astronomy
+  - Recognition Legitimacy Score
+  - award governance
+  title: Breakthrough Prize in Fundamental Physics - Governance & Legitimacy | ChampionsAwards
 sources:
 - title: Breakthrough Prize in Fundamental Physics - official prize page, committee and rules
   publisher: Breakthrough Prize Foundation

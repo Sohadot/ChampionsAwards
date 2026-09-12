@@ -258,7 +258,7 @@ check("every published anatomy separates governance from funding",
 
 # 13. The SEO contract: presentation is governed as data, not by memory.
 from config import (
-    SEO_BRAND_SUFFIX, SEO_CONTRACT_CLUSTERS, SEO_CONTRACT_FIELDS,
+    CLUSTERS, SEO_BRAND_SUFFIX, SEO_CONTRACT_CLUSTERS, SEO_CONTRACT_FIELDS,
     SEO_DESCRIPTION_MAX, SEO_REQUIRED_SCHEMA_TYPES, is_canonical_path,
 )
 from validate_content import validate_seo
@@ -279,8 +279,9 @@ _cluster = sorted(SEO_CONTRACT_CLUSTERS)[0]
 check("a complete seo contract passes", not validate_seo(_cluster, {"seo": dict(_good)}, "a.yaml"))
 check("a governed cluster entry without a contract fails",
       bool(validate_seo(_cluster, {}, "a.yaml")))
+_ungoverned = sorted(set(CLUSTERS) - SEO_CONTRACT_CLUSTERS)
 check("an ungoverned cluster without a contract passes",
-      not validate_seo("concepts", {}, "c.yaml"))
+      bool(_ungoverned) and not validate_seo(_ungoverned[0], {}, "c.yaml"))
 for _field in SEO_CONTRACT_FIELDS:
     _partial = {k: v for k, v in _good.items() if k != _field}
     check(f"a contract missing '{_field}' fails", bool(validate_seo(_cluster, {"seo": _partial}, "a.yaml")))
