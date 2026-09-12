@@ -138,15 +138,34 @@ def _domain_systems(domain: str) -> list[dict[str, Any]]:
     return sorted(systems, key=lambda s: s["slug"])
 
 
+def _award_domains(item: dict[str, Any]) -> list[str]:
+    """An award anatomy may serve one domain or several. Recognition systems have
+    always carried `domains`; awards carried a single `domain` because every
+    anatomy so far was a single-field prize. A multi-field award - one whose own
+    fields span this project's governance domains - needs the plural, or its
+    relations in one domain become invisible and its relations in another become
+    mis-attributed."""
+    if isinstance(item.get("domain"), str):
+        return [item["domain"]]
+    return [d for d in (item.get("domains") or []) if isinstance(d, str)]
+
+
 def _domain_awards(domain: str) -> list[dict[str, Any]]:
-    return [item for item in _load_cluster("awards") if item.get("domain") == domain]
+    return [item for item in _load_cluster("awards") if domain in _award_domains(item)]
 
 
 def _domain_award_relations(domain: str) -> list[dict[str, Any]]:
-    """Hardened corpus relations only: interaction_type + claim + (anchor XOR exception)."""
+    """Hardened corpus relations only: interaction_type + claim + (anchor XOR exception).
+
+    A relation is counted in the domain of the CASE it names, not of the award
+    that carries it. For a single-domain award the two are the same. For an award
+    whose fields cross domains they are not, and attributing a physics laureate's
+    award outcome to a mathematics corpus would be a false count.
+    """
+    case_slugs = {c["slug"] for c in _domain_cases(domain)}
     rels = []
     for item in _load_cluster("awards"):
-        if item.get("domain") != domain:
+        if domain not in _award_domains(item):
             continue
         award = item["slug"]
         for rel in item.get("corpus_relations") or []:
@@ -155,7 +174,7 @@ def _domain_award_relations(domain: str) -> list[dict[str, Any]]:
                 and isinstance(rel.get("claim"), str)
                 and ((rel.get("record_anchor") is None) != (rel.get("exception") is None))
             )
-            if hardened:
+            if hardened and rel.get("case") in case_slugs:
                 rels.append({"award": award, **rel})
     return sorted(rels, key=lambda r: (r["award"], r["case"], r["interaction_type"]))
 

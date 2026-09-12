@@ -302,5 +302,22 @@ check("a relative canonical fails", not is_canonical_path("awards/wolf"))
 check("an unknown contract field fails",
       bool(validate_seo(_cluster, {"seo": dict(_good, keywords="wolf prize")}, "a.yaml")))
 
+# 14. A multi-field award's relations are counted in the domain of the case.
+_award_items = [yaml.safe_load(f.read_text(encoding="utf-8"))
+                for f in sorted((pathlib.Path(__file__).resolve().parent.parent
+                                 / "src" / "data" / "awards").glob("*.yaml"))]
+_multi = [a for a in _award_items if isinstance(a.get("domains"), list) and len(a["domains"]) > 1]
+check("a multi-domain award anatomy exists to exercise the rule", bool(_multi))
+for _domain in ("physics-astronomy", "biology-medicine", "mathematics-computing"):
+    _case_slugs = {c["slug"] for c in dc._domain_cases(_domain)}
+    _rels = dc._domain_award_relations(_domain)
+    check(f"every counted award relation names a case in the domain ({_domain})",
+          all(r["case"] in _case_slugs for r in _rels))
+_all_rel_cases = {r["case"] for d in ("physics-astronomy", "biology-medicine", "mathematics-computing")
+                  for r in dc._domain_award_relations(d)}
+_declared = {rel["case"] for a in _award_items for rel in (a.get("corpus_relations") or [])}
+check("no declared award relation is silently dropped from every domain",
+      _declared <= _all_rel_cases)
+
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

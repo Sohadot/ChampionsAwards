@@ -51,10 +51,16 @@ domains:
 - physics-astronomy
 - biology-medicine
 - mathematics-computing
-# The Wolf Prize is awarded across several fields, including mathematics; within
-# the composite Mathematics & Computing domain it is recorded as cross-cutting
-# rather than as evidence of coverage on either side of the join.
-subfield: cross-cutting
+# Corrected 2026-09-12, on the evidence of the award anatomy built this cycle.
+# This entry recorded the prize as cross-cutting inside Mathematics & Computing,
+# on the reasoning that a multi-field award spans the join. The foundation's own
+# list of fields is Agriculture, Chemistry, Mathematics, Medicine and Physics in
+# the sciences and Architecture, Music, Painting and Sculpture in the arts - there
+# is no computing field, so no Wolf jury could compare a mathematician with a
+# computer scientist. Within this domain the prize operates in mathematics only.
+# What is genuinely cross-cutting about it is that it crosses DOMAINS, which the
+# `domains` list above already records.
+subfield: mathematics
 provenance:
   system-facts:
     record_anchor:

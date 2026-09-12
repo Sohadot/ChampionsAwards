@@ -1,0 +1,186 @@
+title: Wolf Prize
+slug: wolf-prize-award
+status: published
+last_reviewed: 2026-09-12
+domains:
+  - mathematics-computing
+  - physics-astronomy
+  - biology-medicine
+subfield: mathematics
+summary: An anatomy of the Wolf Prize - who grants it, the family endowment behind it, its invitation-only nomination, its annually reappointed field juries, and the two governed cases it has recognised. It is the first award architecture in this project whose corpus relations fall in two different governance domains.
+introduction: This page was built to answer one question the corpus could not answer without it - whether a multi-field award bridges the two halves of Mathematics and Computing, or merely spans several disciplines. The answer is in the award's own list of fields, and it is not the expected one.
+legitimacy_question: "What the foundation publishes is the outcome layer in unusual depth: every laureate since 1978 with the year, the field, the affiliation held at the time, the citation and whether the prize was shared. What it does not publish is the input layer - who nominated, who sat on a jury, or what a jury concluded. That is the opposite emphasis to the Fields Medal, which publishes its committees back to 1936 and never opens its nominations."
+structural_notes: "The award has nine fields - Agriculture, Chemistry, Mathematics, Medicine and Physics in the sciences, Architecture, Music, Painting and Sculpture in the arts - and no computing field of any kind. It therefore cannot function as a bridge between the two sides of this composite domain, which is what the corpus had tentatively filed it as. What it is instead is the project's first cross-domain apparatus: it has recognised a governed mathematics case and a governed physics case, so its relations land in two domains that this project governs separately."
+architecture:
+  granting_body: The Wolf Foundation, established in Israel in 1975, awards the Wolf Prize annually to scientists and artists for achievements in the interest of mankind and friendly relations amongst peoples, in nine fields - Agriculture, Chemistry, Mathematics, Medicine and Physics in the sciences, and Architecture, Music, Painting and Sculpture in the arts. Five prizes are awarded in any one year.
+  funding_source: >-
+    The foundation was founded in 1975 with an endowment from the Wolf family, its major donors being
+    Dr. Ricardo Subirana Y Lobo Wolf and his wife Francisca. No commercial or state sponsor of record
+    contributes to the prize. The foundation states that its Board of Trustees, Council and Committee
+    Members, Prize Juries and Internal Auditor all perform their duties on a voluntary basis, so the
+    deciding bodies are unpaid as well as unsponsored.
+  eligibility: The prize is awarded to individuals and not to institutions, and a person cannot be nominated by themselves. It has been awarded since 1978 for achievements for the benefit of mankind.
+  nomination_eligibility: Nomination is by invitation only. Those wishing to submit are asked to contact the foundation office giving their full name, title, affiliation, position and field of research or expertise.
+  nomination: An existing nomination remains valid for three years. Submissions run to an annual deadline - for the 2026 prizes, 16 February 2026, in Physics, Medicine, Mathematics, Chemistry and the Arts.
+  selection_body: International judging committees, reappointed annually and composed of experts in their fields, select the laureates. The juries are constituted per field, so each year's decision in mathematics is taken by a different body from the one deciding in physics.
+  sharing_rule: >-
+    The prize in each field consists of a diploma, a Medal of Honor and 100,000 US dollars. The
+    laureate record shows prizes both held solely and divided - the 1978 physics prize was recorded
+    with a prize share of none, and the 1995/6 mathematics prize was shared between two laureates.
+    No published maximum number of laureates per field was reached by this audit.
+key_facts:
+  - fact: "The prize in each field consists of a diploma, a Medal of Honor and 100,000 US dollars, and international judging committees reappointed annually select the laureates."
+    source: 1
+  - fact: "The scientific fields are Medicine, Agriculture, Mathematics, Chemistry and Physics; the arts fields are Painting and Sculpture, Music, and Architecture. There is no computing field."
+    source: 1
+  - fact: The foundation was founded in 1975 with an endowment from the Wolf family, its major donors being Dr. Ricardo Subirana Y Lobo Wolf and his wife Francisca, and its trustees, committee members, prize juries and internal auditor all serve on a voluntary basis.
+    source: 2
+  - fact: "Nomination to the Wolf Prize is by invitation only; the prize is awarded to individuals and not to institutions; a person cannot be nominated by themselves; and an existing nomination is valid for three years."
+    source: 3
+  - fact: "Andrew J. Wiles was Wolf Prize Laureate in Mathematics for 1995/6, at Princeton University, for spectacular contributions to number theory and related fields, major advances on fundamental conjectures, and for settling Fermat's last theorem; the prize was shared with Robert P. Langlands."
+    source: 4
+  - fact: "Chien-Shiung Wu was Wolf Prize Laureate in Physics for 1978, at Columbia University, for her persistent and successful exploration of the weak interaction which helped establish the precise form and the non conservation of parity for this new natural force; the record gives her prize share as none, that is, she held it alone."
+    source: 5
+analysis:
+  - heading: The answer to the question this page was built to settle
+    body: "The corpus had recorded this system as cross-cutting inside Mathematics and Computing, on the reasoning that a multi-field award spans the join. It does not. The foundation's own list of fields contains mathematics and contains no computing field at all, so there is no arrangement under which a Wolf jury could compare a mathematician with a computer scientist. Whatever integrates the two halves of this domain, it is not this award. The subfield label is corrected to mathematics on that evidence, and the correction is recorded rather than quietly applied."
+  - heading: What it turned out to be instead
+    body: "It is the first apparatus in this project whose documented corpus relations fall in two different governance domains - a mathematics case from 1995/6 and a physics case from 1978, each anchored to the foundation's own laureate record. That is a genuinely new object for the corpus. Every anatomy before it sat inside one domain, so the award layer and the domain layer were the same shape. This one is not, and the engine was changed to attribute each relation to the domain of the case it names rather than to the domain of the award, because counting a physics laureate's award outcome inside a mathematics corpus would have been a false figure."
+  - heading: A transparency profile that runs opposite to the Fields Medal
+    body: "Set beside the other two anatomies in this domain, this one inverts what is open. The foundation publishes its outcomes in unusual detail - for every laureate the year, the field, the affiliation held at the time, the citation and the prize share - and publishes nothing about who nominated or who judged. The International Mathematical Union does the reverse: every Fields Medal committee since 1936 is named, including recusals, while nominations are confidential with no release horizon. The awarding society behind the Turing Award publishes neither in a form this audit could read. Three systems in one domain, three different answers to what a recognition system owes the public, and no ordering between them that a single transparency score could express."
+  - heading: One thing this page does not claim
+    body: "That the Wolf Prize is a Nobel precursor. The corpus's own recognition-system entry for this prize has carried a version of that claim since it was written, and nothing read in this audit supports it at record grade: the foundation does not make it, and establishing it would mean compiling the laureate list against another award's list, which is this project's analysis presented as a documented fact. The claim is flagged here and left to the requalification of that entry rather than repeated in an anatomy."
+corpus_relations:
+  - case: andrew-wiles
+    architecture_element: eligibility
+    interaction_type: documented-award-outcome
+    record_anchor: [4]
+    claim: "The Wolf Prize in Mathematics for 1995/6 was awarded to Andrew J. Wiles, then at Princeton University, and shared with Robert P. Langlands; the citation names his contributions to number theory and the settling of Fermat's last theorem."
+  - case: chien-shiung-wu
+    architecture_element: eligibility
+    interaction_type: documented-award-outcome
+    record_anchor: [5]
+    claim: The inaugural Wolf Prize in Physics, for 1978, was awarded to Chien-Shiung Wu, then at Columbia University, for her exploration of the weak interaction and the non-conservation of parity, and the foundation's record gives her prize share as none.
+archive_visibility:
+  secrecy_rule: >-
+    The foundation publishes no nomination archive and no list of jury members, past or present, and
+    states no release horizon for either. Nomination is by invitation and a nomination remains valid
+    for three years, so a candidacy may be live across several decisions without ever being visible.
+  as_of: '2026-09-12'
+  record_anchor: [1, 3]
+  note: >-
+    The open half of this record is the outcome layer, and it is open in more detail than either other
+    anatomy in this domain: for each laureate the foundation gives the year, the field, the affiliation
+    held at the time of the award, the full citation and whether the prize was shared. The closed half
+    is everything upstream of the decision.
+  case_status:
+    - case: andrew-wiles
+      years: 1995-1996
+      status: deliberation-not-reached
+      note: The laureate record, the citation and the prize share are published; no jury membership, nomination or deliberation record for this award was reached, and none appears to be published. No jury rationale beyond the published citation is asserted here.
+      record_anchor: [4]
+    - case: chien-shiung-wu
+      years: '1978'
+      status: deliberation-not-reached
+      note: As above for the inaugural physics prize. The citation is published in full and is the only statement of reasons this audit can attribute to the foundation.
+      record_anchor: [5]
+provenance:
+  architecture:granting_body:
+    record_anchor: [1, 2]
+    basis: awarding-institution-record
+  architecture:funding_source:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  architecture:eligibility:
+    record_anchor: [3]
+    basis: awarding-institution-record
+  architecture:nomination_eligibility:
+    record_anchor: [3]
+    basis: awarding-institution-record
+  architecture:nomination:
+    record_anchor: [3]
+    basis: awarding-institution-record
+  architecture:selection_body:
+    record_anchor: [1, 2]
+    basis: awarding-institution-record
+  architecture:sharing_rule:
+    record_anchor: [1, 4, 5]
+    basis: awarding-institution-record
+audit_exceptions:
+  - claim: architecture:governing_documents
+    search_date: '2026-09-12'
+    search_note: >-
+      Searched the foundation's site for statutes, regulations or by-laws governing the prize. None is
+      published. The rules recorded above are those the foundation states on its prize, about and
+      nomination pages, which is a weaker instrument than a published statute and is described as such
+      rather than presented as one.
+    best_source: 3
+    reason: >-
+      No governing document exists in the open record to cite. The architecture is assembled from the
+      awarding body's own descriptive pages, and the entry says so.
+  - claim: architecture:procedure
+    search_date: '2026-09-12'
+    search_note: >-
+      Sought the decision calendar beyond the submission deadline, any rule on posthumous candidates,
+      any rule on withholding a prize when no candidate is found suitable, any appeal provision, and
+      any maximum number of laureates per field. None of these is published.
+    best_source: 3
+    reason: >-
+      Not reached, and not summarised. Five architecture elements are omitted rather than inferred from
+      the other anatomies in this corpus, whose rules have no authority over this award.
+  - claim: nobel-precursor
+    search_date: '2026-09-12'
+    search_note: >-
+      Sought a record-grade basis for the claim, carried by this project's recognition-system entry for
+      the prize, that it reliably anticipates later Nobel recognition. The foundation does not state it.
+      Establishing it would require compiling its laureate list against another award's, which would be
+      this project's own analysis presented as a documented fact.
+    best_source: 1
+    reason: >-
+      Not asserted on this page. The claim is flagged for the requalification of the recognition-system
+      entry rather than repeated here.
+seo:
+  primary_query: Wolf Prize
+  secondary_entities:
+    - Wolf Foundation
+    - Wolf Prize in Mathematics
+    - Wolf Prize in Physics
+    - Ricardo Wolf
+    - Andrew Wiles
+    - Chien-Shiung Wu
+  title: "Wolf Prize - Selection, Governance, Funding & Recognition Architecture | ChampionsAwards"
+  description: "How the Wolf Prize is decided and funded: the Wolf Foundation's endowment, invitation-only nomination, annually reappointed field juries, and the two governed cases it has recognised."
+  canonical: /awards/wolf-prize-award
+  h1: Wolf Prize
+  schema_types:
+    - BreadcrumbList
+    - Article
+  incoming_links:
+    - /awards
+    - /recognition-systems/wolf-prize
+  outgoing_links:
+    - /unawarded/andrew-wiles
+    - /unawarded/chien-shiung-wu
+    - /recognition-systems/wolf-prize
+  indexing: index
+sources:
+  - title: "The Wolf Prize - official page (fields in science and the arts, prize composition and amount, annually reappointed international judging committees)"
+    publisher: The Wolf Foundation
+    url: https://wolffund.org.il/the-wolf-prize/
+    type: institutional
+  - title: "About the Wolf Foundation (founded 1975, the Wolf family endowment, Dr. Ricardo Subirana Y Lobo Wolf and Francisca, voluntary service of trustees and juries)"
+    publisher: The Wolf Foundation
+    url: https://wolffund.org.il/about-wolf-foundation/
+    type: institutional
+  - title: "Nomination for the Wolf Prize (invitation only, individuals not institutions, no self-nomination, nominations valid three years, the 2026 fields and deadline)"
+    publisher: The Wolf Foundation
+    url: https://wolffund.org.il/the-wolf-prize/call-for-proposal/
+    type: institutional
+  - title: "Andrew J. Wiles - Wolf Prize Laureate in Mathematics 1995/6 (affiliation, citation, prize share with Robert P. Langlands)"
+    publisher: The Wolf Foundation
+    url: https://wolffund.org.il/andrew-j-wiles/
+    type: institutional
+  - title: "Chien-Shiung Wu - Wolf Prize Laureate in Physics 1978 (affiliation, citation, prize share)"
+    publisher: The Wolf Foundation
+    url: https://wolffund.org.il/chien-shiung-wu/
+    type: institutional

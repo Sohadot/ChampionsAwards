@@ -34,7 +34,7 @@ from config import (
     BANNED_TERMS,
     normalize_domain,
 )
-from domain_comparison import _domain_awards, build_comparison
+from domain_comparison import _domain_awards, _domain_cases, build_comparison
 from domain_status import dod_rows, observed_rows
 from generate_pages import attach_award_architecture, build_case_index
 
@@ -278,10 +278,16 @@ def build_sector(domain: str, site: dict[str, Any]) -> dict[str, Any]:
     # rendering the award pages use), split into documented outcomes and
     # rule-bound constraints / non-award records.
     case_index = build_case_index()
+    # A multi-field award may carry relations to cases in other domains. This page
+    # is one domain's reference, so it shows only the relations whose case belongs
+    # to it - the same rule the engine counts by, or the page and its own
+    # denominator would disagree.
+    domain_case_slugs = {case["slug"] for case in _domain_cases(domain)}
     award_entries = []
     for entry in _domain_awards(domain):
         attach_award_architecture(entry, case_index)
-        relations = entry.get("corpus_relation_rows") or []
+        relations = [r for r in (entry.get("corpus_relation_rows") or [])
+                     if r.get("case_slug", r.get("case")) in domain_case_slugs]
         award_entries.append({
             "title": entry.get("title", entry["slug"]),
             "url": f"/awards/{entry['slug']}",

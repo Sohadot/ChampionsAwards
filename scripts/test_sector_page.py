@@ -72,9 +72,24 @@ check("systems are ordered alphabetically, not by score",
       [p["title"] for p in sector["profiles"]] == sorted(p["title"] for p in sector["profiles"]))
 
 # 6. Award relations are split without loss, against their own denominator.
+# A domain may now carry several anatomies, and a multi-field award may carry
+# relations to cases in other domains. So the invariant is stated twice: each
+# award's relations land in exactly one of the two buckets, and the buckets
+# across every award in the domain sum to the domain's denominator - not one
+# award's relations to the whole domain's count, which only held while every
+# domain had a single single-field anatomy.
 for award in sector["award_entries"]:
-    check(f"award relations split without loss ({award['title']})",
-          len(award["outcomes"]) + len(award["constraints"]) == sector["awards"]["denominator"])
+    check(f"an award's relations fall in exactly one bucket ({award['title']})",
+          len(award["outcomes"]) + len(award["constraints"])
+          == len({id(r) for r in award["outcomes"]} | {id(r) for r in award["constraints"]}))
+check("award relations split without loss across the domain's anatomies",
+      sum(len(a["outcomes"]) + len(a["constraints"]) for a in sector["award_entries"])
+      == sector["awards"]["denominator"],
+      f'rendered {sum(len(a["outcomes"]) + len(a["constraints"]) for a in sector["award_entries"])} '
+      f'vs denominator {sector["awards"]["denominator"]}')
+check("no rendered award relation names a case outside this domain",
+      all(row.get("case_slug") in {c["slug"] for c in sector["matrix"]}
+          for a in sector["award_entries"] for row in a["outcomes"] + a["constraints"]))
 
 # 7. Publication boundary: the sector page is HTML; no data endpoint is emitted.
 if OUT.exists():
