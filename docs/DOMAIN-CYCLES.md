@@ -898,9 +898,41 @@ Biology forced it to distinguish aligned cases from unexplained deficits.
 Mathematics & Computing forced it to distinguish two observations from two
 independent contexts.
 
-### Next
+### Synthesis (2026-09-12)
 
-**Synthesis** - the only Definition-of-Done criterion this domain has not met.
+[*Two Observations, One Context: Recognition Outcomes in Mathematics & Computing*](https://championsawards.com/reports/recurrence-and-replication-mathematics-computing)
+derives from the completed corpus at snapshot `fb8f6090f4e8`. Its question is the
+one the ontology review answered and the corpus is the first to have posed:
+
+> When the same mechanism appears in two cases drawn from one institution, one
+> legal regime and one apparatus, has a pattern recurred - or has one regime been
+> observed twice?
+
+Nine observations, every figure resolved from the engine at build time and no
+number typed by an author. Three hypotheses, each with its refutation condition -
+that compulsory secrecy is a regime signature rather than a general mechanism,
+that this domain's high alignment rate is a property of the selection rather than
+of the field, and that the Deservingness Index discriminates less sharply on merit
+than on recognition in every domain. One dated correction, withdrawing the
+provisional Stage 3 headline. Six limits, including that the mechanism column is
+younger than two of the cases it describes.
+
+The sharpest figure in it is a pair: institutional exclusion and compulsory
+secrecy carry the same case count and hold different lifecycle status, because
+one's instances stand in separate contexts and the other's do not. Identical
+support, different status, is what the distinction between recurrence and
+replication looks like once it is measured rather than argued.
+
+### Definition of Done - every criterion met
+
+`python scripts/domain_status.py` reports **Mathematics & Computing - MATURE
+v1.0**: 10 DDI cases, 3 RLS systems, mechanism accounting 10/10 with 0 unaudited,
+source-grade closure 13/13, award anatomy mapped (three of them), synthesis
+published. Reported and required by nothing: 3 of 7 audit-eligible mechanisms
+evidenced, 1 established and 2 emergent, unexplained under-recognition 0 of 5,
+aligned cases 5 of 10, cross-cutting 0/0/0.
+
+Closure is a separate decision and is not declared here.
 
 Production verification in Search Console - submit the sitemap, inspect one URL
 per template family, confirm the Google-selected canonical and the structured-data

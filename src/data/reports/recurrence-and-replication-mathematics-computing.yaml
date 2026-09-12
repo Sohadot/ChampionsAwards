@@ -1,0 +1,201 @@
+title: "Two Observations, One Context: Recognition Outcomes in Mathematics & Computing"
+slug: recurrence-and-replication-mathematics-computing
+status: published
+domain: mathematics-computing
+# A synthesis over both halves of a composite domain sits on neither side of the
+# join. Reports are not counted in subfield coverage - only cases, systems and
+# awards are - so this assignment describes the report and leaves the compartment
+# empty, which is what the evidence says it is.
+subfield: cross-cutting
+derives_from: mathematics-computing
+compares_with:
+  - physics-astronomy
+  - biology-medicine
+last_reviewed: 2026-09-12
+summary: >-
+  A governed corpus that explains all of its recognition deficits, and in doing so exposes a defect in
+  the instrument that measured them. Across {n_cases} cases in {domain_label},
+  {under_recognized_cases} carry a deficit and {explained_under_recognition} of those carry an
+  evidenced mechanism, leaving {unexplained_under_recognition} unresolved - but one of the mechanisms
+  reaches that count from {pattern_support:compulsory-secrecy} cases standing in a single institutional
+  context, which is not the same thing as recurring.
+question: >-
+  When the same mechanism appears in two cases drawn from one institution, one legal regime and one
+  apparatus, has a pattern recurred - or has one regime been observed twice?
+scope: >-
+  The evidence is the governed corpus for {domain_label} at snapshot {corpus_snapshot}, data through
+  {data_through}: {n_cases} cases scored under {methodology_version}, {n_systems} recognition systems
+  scored under {rls_version}, and {n_award_relations} hardened relations to {n_awards} mapped awards.
+  Mechanism accounting is complete at {cases_accounted} of {n_cases}, and the ontology offers
+  {eligible_concepts} audit-eligible mechanisms. The denominators below are different populations and
+  are not interchangeable: cases, cases with a deficit, ontology concepts, institutional contexts and
+  award relations are five distinct things.
+
+observations:
+  - statement: >-
+      The corpus divides into three outcome classes. {under_recognized_cases} of {n_cases} cases carry
+      a recognition gap of {under_recognition_threshold} points or more, the floor of the published
+      under-recognized band; the remaining {aligned_without_mechanism} sit in the band where
+      recognition roughly matches assessed merit.
+    derived_from: [under_recognized_cases, n_cases, under_recognition_threshold, aligned_without_mechanism]
+  - statement: >-
+      Outcome class A - mechanism evidenced. {explained_under_recognition} of the
+      {under_recognized_cases} cases with a deficit carry at least one mechanism evidenced against the
+      record, leaving {unexplained_under_recognition} in the class of deficits that survive a full
+      audit without one.
+    derived_from: [explained_under_recognition, under_recognized_cases, unexplained_under_recognition]
+  - statement: >-
+      Outcome class B - recognition aligned. {aligned_without_mechanism} cases show no material
+      deficit, from Andrew Wiles at {case_gap:andrew-wiles} to Karen Sparck Jones at
+      {case_gap:karen-sparck-jones}. Half of this corpus sits in that band, against
+      {aligned_without_mechanism@physics-astronomy} of {n_cases@physics-astronomy} in Physics &
+      Astronomy and {aligned_without_mechanism@biology-medicine} of {n_cases@biology-medicine} in
+      Biology & Medicine.
+    derived_from: [aligned_without_mechanism, case_gap:andrew-wiles, case_gap:karen-sparck-jones,
+                   aligned_without_mechanism@physics-astronomy, n_cases@physics-astronomy,
+                   aligned_without_mechanism@biology-medicine, n_cases@biology-medicine]
+  - statement: >-
+      The mechanisms this corpus evidences are institutional exclusion in
+      {pattern_support:institutional-exclusion} of {n_cases} cases
+      ({pattern_status:institutional-exclusion}), compulsory secrecy in
+      {pattern_support:compulsory-secrecy} ({pattern_status:compulsory-secrecy}), and delayed
+      recognition in {pattern_support:delayed-recognition} ({pattern_status:delayed-recognition}).
+      That is {evidenced_concepts} of the {eligible_concepts} audit-eligible concepts in the ontology,
+      a coverage figure whose denominator is the ontology rather than the corpus.
+    derived_from: [pattern_support:institutional-exclusion, pattern_status:institutional-exclusion,
+                   pattern_support:compulsory-secrecy, pattern_status:compulsory-secrecy,
+                   pattern_support:delayed-recognition, pattern_status:delayed-recognition,
+                   n_cases, evidenced_concepts, eligible_concepts]
+  - statement: >-
+      Compulsory secrecy carries {pattern_support:compulsory-secrecy} cases and remains
+      {pattern_status:compulsory-secrecy}, because both instances stand in one institutional context
+      and the threshold for an established mechanism is {pattern_min} independent contexts. Tommy
+      Flowers at {case_gap:tommy-flowers} and James H. Ellis at {case_gap:james-ellis} are the two
+      largest deficits in this corpus and were produced by the same national cryptographic apparatus.
+    derived_from: [pattern_support:compulsory-secrecy, pattern_status:compulsory-secrecy, pattern_min,
+                   case_gap:tommy-flowers, case_gap:james-ellis]
+  - statement: >-
+      Institutional exclusion reaches the same case count, {pattern_support:institutional-exclusion},
+      and is {pattern_status:institutional-exclusion} - because its instances stand in separate
+      contexts. Identical support counts, different lifecycle status, is what the distinction between
+      recurrence and replication looks like when it is measured rather than argued.
+    derived_from: [pattern_support:institutional-exclusion, pattern_status:institutional-exclusion]
+  - statement: >-
+      This domain's recognition gaps are markedly smaller than either closed domain's. Its median gap
+      is {median_gap}, against {median_gap@physics-astronomy} in Physics & Astronomy and
+      {median_gap@biology-medicine} in Biology & Medicine, and its gap range runs from {gap_min} to
+      {gap_max}.
+    derived_from: [median_gap, median_gap@physics-astronomy, median_gap@biology-medicine, gap_min, gap_max]
+  - statement: >-
+      The instrument discriminates more on the recognition side than on the merit side here. Assessed
+      index spans {ddi_spread} points, from {ddi_min} to {ddi_max}; observed recognition spans
+      {observed_spread}, from {observed_min} to {observed_max}. The two lowest-assessed cases in the
+      corpus, Jean Sammet at {case_ddi:jean-sammet} and Yitang Zhang at {case_ddi:yitang-zhang}, both
+      read {case_reading:jean-sammet}.
+    derived_from: [ddi_spread, ddi_min, ddi_max, observed_spread, observed_min, observed_max,
+                   case_ddi:jean-sammet, case_ddi:yitang-zhang, case_reading:jean-sammet]
+  - statement: >-
+      The award layer is thinner than the case layer. {n_award_relations} hardened relations connect
+      this corpus to {n_awards} mapped awards, against {n_award_relations@physics-astronomy} in
+      Physics & Astronomy over {n_awards@physics-astronomy} awards. The recognition systems scored
+      here range from {rls_min} to {rls_max}, median {rls_median}, and the dimension separating them
+      most is {rls_widest_dimension}, at {rls_widest_spread} points.
+    derived_from: [n_award_relations, n_awards, n_award_relations@physics-astronomy,
+                   n_awards@physics-astronomy, rls_min, rls_max, rls_median, rls_widest_dimension,
+                   rls_widest_spread]
+
+hypotheses:
+  - statement: >-
+      Regime signature. Compulsory secrecy describes the behaviour of one national cryptographic
+      apparatus rather than a mechanism that generalises across recognition systems.
+    basis: >-
+      Both instances arise inside a single institutional context, and the corpus has sampled no other
+      secrecy regime at all. A mechanism observed only where it was first noticed is indistinguishable,
+      from inside this corpus, from a property of that place.
+    refuted_by: >-
+      A case from an unrelated secrecy regime - another state's classification system, or a formal
+      corporate nondisclosure obligation - meeting all five of the mechanism's tests would refute it,
+      and would move the mechanism from emergent to established at the same time.
+  - statement: >-
+      Selection, not domain. This corpus aligns more often than either closed domain because of which
+      people were entered, not because mathematics and computing recognise contribution more reliably.
+    basis: >-
+      Three of the aligned cases were entered deliberately as controls or as tests of the instrument,
+      and the domain's case list was assembled to answer questions about the instrument rather than to
+      sample a field.
+    refuted_by: >-
+      A subsequent domain assembled on the same principles and returning a materially lower share of
+      aligned cases would refute it; so would this domain's alignment rate holding after a batch of
+      cases selected without regard to the instrument.
+  - statement: >-
+      Asymmetric discrimination. The Deservingness Index separates contributions less sharply than it
+      separates the recognition they received, in every domain rather than only in this one.
+    basis: >-
+      In this corpus the assessed range is narrower than the observed-recognition range, and the same
+      ordering holds in both closed domains.
+    refuted_by: >-
+      A domain whose assessed range exceeds its observed-recognition range would refute it, as would a
+      demonstration that the ordering here follows from the dimension weights rather than from the
+      distribution of the cases.
+
+corrections:
+  - date: '2026-09-12'
+    was: >-
+      The provisional reading at the close of expansion was that Mathematics & Computing produces
+      recognition gaps the current ontology cannot explain, on two deficits that no published
+      mechanism described.
+    now: >-
+      Every deficit in the domain carries an evidenced mechanism. The two cases in question were
+      unexplained because the ontology lacked a concept, not because the record lacked evidence, and an
+      ontology review over the completed corpus added compulsory secrecy and reclassified them without
+      changing a single score.
+    reason: >-
+      The earlier reading described a state of the vocabulary and reported it as a property of the
+      domain. The domain's actual contribution is methodological: it forced the project to separate how
+      many cases exhibit a mechanism from how many independent contexts do.
+
+limits:
+  - >-
+    The corpus is purposively built. Cases were entered to test the instrument - a lower-assessed
+    contribution, a collective contribution, a deficit not arising from exclusion - and not to sample
+    a field. Corpus frequency is not field prevalence here, and the share of aligned cases least of all.
+  - >-
+    Compulsory secrecy entered the ontology with every instance in one context. It is published as
+    emergent for that reason, and nothing in this report treats it as a replicated finding.
+  - >-
+    Two cases in this corpus were reclassified after publication when the ontology changed. Their
+    scores did not move, and their original audit exceptions are kept on the record rather than
+    deleted, but a reader should know that the mechanism column here is younger than the cases.
+  - >-
+    The award layer is the thinnest of the three domains, and one of its three anatomies documents only
+    a minority of the architecture elements the others do, because the awarding body's own pages were
+    unreadable to the audit. Conclusions about award interaction in this domain rest on a narrower base
+    than the case-level conclusions.
+  - >-
+    Relations state what the record connects, not why an outcome occurred. No statement here asserts
+    that a mechanism caused a particular gap's size.
+  - >-
+    The cross-cutting compartment of this composite domain is empty of cases, systems and awards. No
+    entity was ever assigned to it on evidence, and nothing was created to fill it.
+
+seo:
+  primary_query: Recognition Outcomes in Mathematics & Computing
+  secondary_entities:
+  - compulsory secrecy
+  - recognition gap
+  - recognition mechanisms
+  - Mathematics & Computing
+  title: Recognition Outcomes in Mathematics & Computing - Synthesis | ChampionsAwards
+  description: A governed corpus that explains all its recognition deficits, and in doing so exposes the difference between a mechanism recurring and a single regime being observed twice.
+  canonical: /reports/recurrence-and-replication-mathematics-computing
+  h1: "Two Observations, One Context: Recognition Outcomes in Mathematics & Computing"
+  schema_types:
+  - BreadcrumbList
+  - Report
+  incoming_links:
+  - /reports
+  - /sectors/mathematics-computing
+  outgoing_links:
+  - /methodology
+  - /sectors/mathematics-computing
+  indexing: index
