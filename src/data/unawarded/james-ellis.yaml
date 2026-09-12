@@ -46,12 +46,18 @@ key_facts:
   - fact: GCHQ describes public-key cryptography as now the basis for all secure transactions on the internet.
     source: 2
 analysis:
-  - heading: The boundary recurs, and the corpus still does not name it
-    body: "This is the second case in this domain whose recognition deficit is produced by statutory secrecy, and the second for which none of the six audit-eligible mechanisms fits. The tests came out the same way and for the same reasons: no position was barred, so exclusion fails; the receiving community was legally prevented from knowing rather than unable to absorb, so delayed recognition fails on its cause even where it matches on timing; and a classification regime binding everyone under statute is not the person exercising editorial or institutional discretion that gatekeeping describes. No concept was created here either."
-  - heading: Why two occurrences are not yet a mechanism
-    body: "The temptation after a second case is to name the pattern and count it as established. The corpus declines, and the reason is in the two cases rather than in caution. Both were produced by the same national cryptographic apparatus - one at a wartime research station whose output went to the agency, one inside the agency itself - and a shape that recurs within one institution's secrecy regime may be a property of that regime rather than a mechanism of recognition. Establishing it would need a case from a different regime entirely. That adjudication belongs to an ontology review over the completed corpus, not to the entry that motivated it."
+  - heading: The case that turned a boundary into a mechanism
+    body: "This entry was published carrying no mechanism. It is the second case in this domain whose recognition deficit is produced by a formal secrecy regime, and when it appeared none of the six audit-eligible concepts fitted it, for the same reasons as the first: no position was barred, so exclusion failed; the receiving community was legally prevented from knowing rather than unable to absorb, so delayed recognition failed on its cause even where it matched on timing; and a classification regime binding everyone is not the person exercising discretion that gatekeeping describes. Its contribution was to make the boundary reproducible - a peacetime idea, twenty-seven years later, in mathematics rather than engineering - which is what gave the ontology review grounds a single case could not."
+  - heading: Why two occurrences are still not two replications
+    body: "Naming the mechanism did not make it established, and the reason is now measured rather than argued. Both cases were produced by the same national cryptographic apparatus - one at a research station whose output went to the agency, one inside the agency itself - so the corpus records them as two cases in one independent context. Lifecycle status is decided by contexts, not by cases, which leaves compulsory secrecy emergent. What would establish it is an instance from a different regime, and the corpus does not have one."
   - heading: What this case rules out that the Flowers case could not
     body: "Credit misattribution was tested here far more seriously than in any other unmechanised case, because the reward for this idea demonstrably went to named other people who hold the field's highest award for it. It is still not tagged, and the distinction matters: Diffie, Hellman, Merkle, Rivest, Shamir and Adleman did not displace him, they arrived independently by another route without knowledge of his work. Displacement is what that mechanism requires. Independent rediscovery is a different event, and it cuts the other way - it is the reason his uniqueness score is the most bounded in the corpus."
+patterns:
+  - compulsory-secrecy
+pattern_evidence:
+  compulsory-secrecy: [1, 2]
+pattern_context:
+  compulsory-secrecy: uk-government-cryptographic-secrecy
 sources:
   - title: "J.H. Ellis, CESG, GCHQ, Research Report No. 3006, The Possibility of Secure Non-Secret Digital Encryption, January 1970 (Secret) - archival document record"
     publisher: "National Security Archive, George Washington University (Cyber Vault)"
@@ -70,6 +76,9 @@ provenance:
     basis: institutional-archive
   observed-recognition:
     record_anchor: [2]
+    basis: institutional-archive
+  pattern:compulsory-secrecy:
+    record_anchor: [1, 2]
     basis: institutional-archive
 audit_exceptions:
   - claim: contribution
@@ -96,19 +105,22 @@ audit_exceptions:
       work's existence as different from recognition of its author.
   - claim: mechanism-boundary
     search_date: '2026-09-12'
+    resolved_date: '2026-09-12'
     search_note: >-
-      Each of the six audit-eligible mechanisms was tested against this record and none is met on its
-      published definition, for the same reasons recorded in the corpus's other statutory-secrecy
-      case. No concept in the current ontology describes a contribution withheld from the record by
-      classification.
+      When this entry was published, each of the six then-eligible mechanisms was tested against this
+      record and none was met, for the same reasons recorded in the corpus's other secrecy case. The
+      exception is kept rather than deleted, because the order is the point: this case was published
+      as a recurrence of an unnamed boundary, and the ontology review that followed over the completed
+      corpus added compulsory-secrecy.
     best_source: 2
     reason: >-
-      Recorded as a recurrence of a known ontology boundary, and deliberately not resolved. Both cases
-      arise inside one national cryptographic apparatus, so the recurrence may describe that regime
-      rather than a generalisable mechanism; the adjudication belongs to an ontology review over the
-      completed corpus.
+      Resolved by the ontology review of 2026-09-12. The concern that prompted the deferral stands and
+      is now measured rather than argued: both cases arise inside one national cryptographic
+      apparatus, so the mechanism is recorded at two cases and one independent context, and is
+      emergent rather than established.
 mechanism_audit:
   search_date: '2026-09-12'
+  reviewed: '2026-09-12'
   considered:
     - institutional-exclusion
     - credit-misattribution
@@ -116,24 +128,32 @@ mechanism_audit:
     - institutional-gatekeeping
     - posthumous-recognition
     - theory-experiment-asymmetry
-  finding: no-mechanism-evidenced
+    - compulsory-secrecy
+  finding: mechanism-evidenced
   note: >-
-    No mechanism is evidenced, and the case carries the largest recognition deficit in this domain, so
-    the finding is unexplained under-recognition. Institutional exclusion is not tagged: he was an
-    employee of the agency from 1952 and did the work inside it, and nothing in the record shows a
-    position, membership, authorship or payment barred to him. Delayed recognition is not tagged, on
-    its cause rather than its timing: that mechanism describes a receiving community unable or unready
-    to absorb a contribution, and this community demonstrably was able - it produced the same concept
-    independently within about six years - but was legally prevented from knowing his existed. Credit
-    misattribution was tested hardest here, because the field's highest award for public-key
-    cryptography is held by people other than him, and is still not tagged: independent arrival by
-    another route is not displacement of credit, which is what the definition requires. Institutional
-    gatekeeping fails as it did in the corpus's other secrecy case - a statutory classification regime
-    is not the person holding editorial or institutional authority that the concept describes.
-    Posthumous recognition is not tagged: he died a month before the announcement, but that mechanism
-    turns on an eligibility rule foreclosing an honour, and no such rule appears in this record. The
-    theory-experiment asymmetry does not apply. This is the second case in the corpus to stand on the
-    same ontology boundary, and the boundary is recorded rather than filled.
+    Compulsory secrecy is evidenced, and as in the corpus's other case of this shape the tagging
+    followed the ontology review rather than preceding it. This entry was published carrying no
+    mechanism, because none of the six then-eligible concepts fitted; it was its reproduction of an
+    already-recorded boundary that gave the review the grounds to act. No score changed, because
+    nothing about the evidence changed. All five tests hold: a formal classification obligation
+    existed, the January 1970 report being issued as a research report classified Secret; the
+    contribution itself was covered by it; dissemination was prevented rather than discouraged, the
+    work being made available at first only for official governmental communications and announced
+    publicly only in December 1997; the absence of visibility was a classification regime rather than
+    editorial discretion, low uptake or contested attribution; and the effect on recognition is
+    evidenced separately - no honour attributable to this work exists in any record read here, and the
+    public announcement came a month after his death. The neighbouring mechanisms remain refused for
+    the reasons first recorded here. Institutional exclusion fails because he was an agency employee
+    from 1952 with nothing barred to him. Delayed recognition fails on cause rather than timing: this
+    community was demonstrably able to absorb the idea, having produced it independently within about
+    six years, but was legally prevented from knowing his existed. Institutional gatekeeping fails
+    because a classification regime binds everyone involved rather than being a person exercising
+    discretion. Credit misattribution was tested hardest of all, because the field's highest award for
+    public-key cryptography is held by other people, and is still refused: independent arrival by
+    another route is not displacement, which is what that definition requires. Posthumous recognition
+    fails because no eligibility rule foreclosed an honour. This instance is recorded in the
+    uk-government-cryptographic-secrecy context - the same context as the corpus's other case - which
+    is precisely what stops two observations being counted as two independent replications.
   best_sources: [1, 2]
 seo:
   primary_query: James H. Ellis
@@ -155,6 +175,7 @@ seo:
   - /sectors/mathematics-computing
   - /unawarded
   outgoing_links:
+  - /concepts/compulsory-secrecy
   - /methodology
   - /sectors/mathematics-computing
   indexing: index

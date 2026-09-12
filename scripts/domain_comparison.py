@@ -41,6 +41,7 @@ from config import (
     OUT,
     ROOT,
     PATTERN_ESTABLISHED_MIN,
+    pattern_context_key,
     RLS_CLUSTERS,
     RLS_DIMENSIONS,
     compute_ddi,
@@ -280,21 +281,35 @@ def pattern_distribution(domain: str) -> dict[str, Any]:
     support: dict[str, list[dict[str, str]]] = {}
     for c in cases:
         evidence = c.get("pattern_evidence") or {}
+        declared = c.get("pattern_context") or {}
         for pat in c.get("patterns") or []:
             if evidence.get(pat):  # evidence-backed only
-                support.setdefault(pat, []).append(
-                    {"slug": c["slug"], "title": c.get("title", c["slug"]), "url": f"/unawarded/{c['slug']}"}
-                )
+                support.setdefault(pat, []).append({
+                    "slug": c["slug"], "title": c.get("title", c["slug"]),
+                    "url": f"/unawarded/{c['slug']}",
+                    "context": pattern_context_key(c["slug"], declared.get(pat)),
+                })
     patterns = []
     for pat in sorted(support):
         cs = sorted(support[pat], key=lambda x: x["slug"])
         n = len(cs)
+        # Two observations are not two replications. Status is decided by how many
+        # INDEPENDENT CONTEXTS exhibit the pattern, not by how many cases do; a
+        # case that declares no shared context is its own context, so nothing
+        # written before this rule moves.
+        contexts = sorted({row["context"] for row in cs})
+        shared = sorted({c for c in contexts if not c.startswith("case:")})
+        independent = len(contexts)
         patterns.append({
             "pattern": pat,
             "support": n,
+            "independent_support": independent,
+            "contexts": contexts,
+            "shared_contexts": shared,
+            "regime_bounded": bool(shared) and independent < PATTERN_ESTABLISHED_MIN <= n,
             "denominator": denom,
             "corpus_percentage": round(100 * n / denom) if denom else 0,
-            "status": "established" if n >= PATTERN_ESTABLISHED_MIN else "emergent",
+            "status": "established" if independent >= PATTERN_ESTABLISHED_MIN else "emergent",
             "cases": cs,
         })
     patterns.sort(key=lambda p: (-p["support"], p["pattern"]))

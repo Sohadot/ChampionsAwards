@@ -154,7 +154,7 @@
     <div class="table-wrap" style="margin-top:18px;">
       <table class="data">
         <thead>
-          <tr><th>Mechanism</th><th class="num">Support</th><th class="num">Share of corpus</th><th>Status</th><th>Cases</th></tr>
+          <tr><th>Mechanism</th><th class="num">Cases</th><th class="num">Independent contexts</th><th class="num">Share of corpus</th><th>Status</th><th>Evidenced in</th></tr>
         </thead>
         <tbody>
           {% for p in sector.patterns.patterns %}
@@ -165,8 +165,12 @@
               {% else %}{{ p.pattern.replace('-', ' ') }}{% endif %}
             </td>
             <td class="num">{{ p.support }}/{{ p.denominator }}</td>
+            <td class="num">{{ p.independent_support }}</td>
             <td class="num">{{ p.corpus_percentage }}%</td>
-            <td><span class="badge">{{ p.status }}</span></td>
+            <td>
+              <span class="badge">{{ p.status }}</span>
+              {% if p.regime_bounded %}<div class="small muted" style="margin-top:2px;">regime-bounded: all instances in one context</div>{% endif %}
+            </td>
             <td class="small">
               {% for c in p.cases %}<a href="{{ c.url }}">{{ c.title }}</a>{% if not loop.last %} · {% endif %}{% endfor %}
             </td>
@@ -176,9 +180,11 @@
       </table>
     </div>
     <p class="small muted">
-      A mechanism is <strong>established</strong> at {{ sector.pattern_min }} or more independent
-      evidenced cases and <strong>emergent</strong> below that. Emergent mechanisms are recorded
-      but not counted toward domain maturity.
+      A mechanism is <strong>established</strong> at {{ sector.pattern_min }} or more
+      <strong>independent contexts</strong> and <strong>emergent</strong> below that. Two observations
+      are not two replications: instances arising inside one institution, legal regime or apparatus
+      count once, so a mechanism can carry several cases and remain emergent. Both figures are shown.
+      Emergent mechanisms are recorded but not counted toward domain maturity.
     </p>
 
     <div class="panel" style="margin-top:18px;max-width:860px;">

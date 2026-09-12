@@ -845,12 +845,62 @@ explains 9 of its 10 deficits, biology 5 of 8, this domain 3 of 5. Its two
 unexplained cases are not short of evidence; every fact in both is documented by
 the state agency that imposed the secrecy. They are short of a concept.
 
+### Ontology review over the completed corpus (2026-09-12)
+
+The answer to Stage 3's question is **both, and they are separate questions**:
+compulsory secrecy is a mechanism, and it is not yet independently replicated. The
+review's first job was to make the instrument able to say both at once.
+
+**The governance defect, fixed first.** `PATTERN_ESTABLISHED_MIN` was documented as
+requiring independent cases and implemented as counting cases. That held while
+every case carrying a pattern arose in a different institution, era and country.
+Flowers and Ellis broke it - two cases, one national cryptographic apparatus - and
+nothing in the code could have noticed. A case may now declare, per pattern, the
+`pattern_context` its instance belongs to; a case declaring none **is its own
+context**, so **no existing result moved**. Both figures are published, and only
+**independent-context support decides lifecycle status**; an instance set that
+collapses to one context is flagged regime-bounded. An unknown context fails
+validation rather than silently creating false independence.
+
+**The new mechanism.** `compulsory-secrecy`, audit-eligible, with five tests all of
+which must hold, and distinguished by design from its three nearest neighbours -
+exclusion needs a barrier to a position, delayed recognition needs a community
+unready to absorb, gatekeeping needs a person exercising discretion. The name was
+chosen over *state secrecy* and *statutory secrecy*, both too narrow, because it
+names the causal structure rather than the apparatus that exposed it.
+
+**Reclassification without rescoring.** Flowers and Ellis now carry the mechanism,
+both in the `uk-government-cryptographic-secrecy` context. No score moved. Their
+`mechanism-boundary` exceptions are kept and marked resolved rather than deleted:
+the sequence - boundary recorded, boundary reproduced, then concept added - is the
+thing that makes the addition defensible.
+
+After the review: deficits still 5, deficits explained **3 to 5**, unexplained
+under-recognition **2 of 5 to 0 of 5**, ontology **6 to 7** mechanisms, evidenced
+in this domain **2 of 6 to 3 of 7**, compulsory secrecy emergent at 2 cases and 1
+context. DDI range, gaps, aligned cases and award relations all unchanged. Full
+account: [`cycle-03-ontology-review.md`](cycle-03-ontology-review.md).
+
+**Three outcome classes, not four.** A fourth class for regime-bounded mechanisms
+was considered and rejected: it would mix what happened to a case with how broadly
+a mechanism has been replicated, and keeping those apart is what the recurrence
+model exists to enforce. Regime-boundedness belongs to mechanism maturity.
+
+Stage 3's provisional headline - that this domain produces gaps the ontology
+cannot explain - is **withdrawn**. Every deficit is now explained, and the domain's
+contribution is methodological:
+
+> A completed corpus forced the ontology to distinguish recurrence from
+> independent replication.
+
+Physics forced the project to stop using mechanism counts as maturity gates.
+Biology forced it to distinguish aligned cases from unexplained deficits.
+Mathematics & Computing forced it to distinguish two observations from two
+independent contexts.
+
 ### Next
 
-An **ontology review over the completed corpus**, before synthesis. Its question:
-is statutory secrecy a mechanism this project has not named, or a property of one
-apparatus the corpus happened to sample twice? The answer decides whether the
-synthesis has three outcome classes or four.
+**Synthesis** - the only Definition-of-Done criterion this domain has not met.
 
 Production verification in Search Console - submit the sitemap, inspect one URL
 per template family, confirm the Google-selected canonical and the structured-data

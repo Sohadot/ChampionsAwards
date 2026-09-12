@@ -86,6 +86,18 @@ case must also carry `pattern_evidence` (source refs proving the mechanism in
 that case); the maturity report counts a case toward a pattern only when that
 evidence is present, so a pattern is always a sourced claim, never a bare tag.
 
+**Recurrence is not replication.** A pattern becomes *established* in a domain at
+`PATTERN_ESTABLISHED_MIN` **independent contexts**, not at that many cases. A case
+may declare, per pattern, the `pattern_context` its instance belongs to — one
+institution, one legal regime, one apparatus — from the vocabulary in
+`RECURRENCE_CONTEXTS`; a case that declares none is its own context. Both figures
+are published: `support` counts cases, `independent_support` counts contexts, and
+only the second decides lifecycle status. The rule exists because two observations
+of one regime are not two replications of a mechanism, and without it the gate
+would promote a regime's signature to an established finding automatically. An
+unknown context string fails validation rather than silently creating a false
+independence.
+
 The project deepens one domain to maturity before opening the next. The model,
 the seven layers, and the machine-checked Definition of Done live in
 [`docs/DOMAIN-CYCLES.md`](docs/DOMAIN-CYCLES.md); `scripts/domain_status.py`

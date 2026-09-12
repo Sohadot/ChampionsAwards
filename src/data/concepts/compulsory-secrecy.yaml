@@ -1,0 +1,74 @@
+title: Compulsory Secrecy
+slug: compulsory-secrecy
+status: published
+concept_type: mechanism
+last_reviewed: 2026-09-12
+summary: Compulsory secrecy describes cases where a formal legal or classification regime keeps a contribution out of the public record, so that recognition cannot attach to it while the obligation holds - regardless of whether the field would have understood or valued the work.
+definition: Compulsory secrecy is a mechanism in which a formal legal or classification regime requires a contribution to remain outside the public record, constraining contemporaneous recognition independently of the receiving community's readiness to understand the work.
+explanation: >-
+  The mechanism operates before reception can begin. A nondisclosure or classification obligation
+  covers the contribution itself, so it is not published, not attributable, and in some cases not
+  known to exist; recognition has nothing to attach to, and the people who would confer it are not
+  merely uninterested but legally unable to know. This is distinct from the three mechanisms nearest
+  to it. Institutional exclusion turns on a barrier to a position, and a person under a secrecy
+  obligation may hold the post and do the work. Delayed recognition turns on a community unable or
+  unready to absorb a contribution, and a community under this mechanism may be entirely ready -
+  sometimes demonstrably so, by producing the same result independently. Institutional gatekeeping
+  turns on a person exercising editorial or institutional discretion, and a classification regime is
+  a rule binding everyone involved, including whoever would otherwise have exercised that discretion.
+implications: >-
+  Where compulsory secrecy operates, the recognition record measures what could lawfully be published
+  as much as what was done, and its effects can outlast the obligation - priority may be conceded long
+  after independent discoverers have been honoured, and the contemporaneous record from which credit
+  would ordinarily be drawn may have been destroyed under the same instruction. A corpus that reads
+  such a record without naming the mechanism will report a deficit it cannot explain.
+key_facts:
+  - fact: "GCHQ records that everyone who worked on Colossus was sworn to the Official Secrets Act, that eight of the ten machines were destroyed after the war, that its designer was ordered to hand over all documentation, and that the machine's existence was revealed only in the early 2000s after six decades of secrecy."
+    source: 1
+  - fact: "GCHQ records that the non-secret encryption work remained classified for a long time, was at first only made available for official governmental communications, and was publicly announced in December 1997 - a month after the death of the man who conceived it."
+    source: 2
+  - fact: "The archival record of the originating document gives it as a Government Communications Headquarters research report of January 1970, classified Secret."
+    source: 3
+analysis:
+  - heading: Five tests, all of which must hold
+    body: "The concept is deliberately narrow, because a mechanism that any thin record could satisfy would explain nothing. A case may carry it only when all five hold: a formal nondisclosure or classification obligation existed; the contribution itself was covered by that obligation; public dissemination was actually prevented or materially delayed, rather than merely discouraged; the absence of visibility was not editorial discretion, low uptake, or contested attribution; and the effect on recognition is evidenced separately rather than inferred from the existence of secrecy. Secrecy that leaves the recognition record intact is not this mechanism."
+  - heading: Why the name is not state secrecy or statutory secrecy
+    body: "Both alternatives were considered and rejected as too narrow. State secrecy would exclude formal nondisclosure regimes imposed by non-state bodies, which the mechanism's causal structure does not distinguish from. Statutory secrecy would exclude classification implemented administratively under a broader legal instrument, which is how much of it actually operates. Compulsory secrecy names the causal structure - an obligation that removes the choice to publish - rather than the apparatus that first exposed it."
+  - heading: Recurrence is not yet replication
+    body: "This mechanism entered the ontology carrying two documented cases and one independent context: both arose inside the same national cryptographic apparatus. Under the recurrence model adopted alongside it, that makes it emergent rather than established, and the project publishes both figures so the distinction is visible rather than buried. A case from a different regime is what would establish it, and none is in the corpus."
+sources:
+  - title: "GCHQ celebrates 80 years of Colossus (the Official Secrets Act obligation, the destruction of machines and documentation, and six decades of secrecy)"
+    publisher: Government Communications Headquarters
+    url: https://www.gchq.gov.uk/news/colossus-80
+    type: institutional
+  - title: "James Ellis (the classification of non-secret encryption, its restriction to official governmental communications, and the December 1997 announcement)"
+    publisher: Government Communications Headquarters
+    url: https://www.gchq.gov.uk/person/james-ellis
+    type: institutional
+  - title: "J.H. Ellis, CESG, GCHQ, Research Report No. 3006, The Possibility of Secure Non-Secret Digital Encryption, January 1970 (Secret) - archival document record"
+    publisher: "National Security Archive, George Washington University (Cyber Vault)"
+    url: https://nsarchive.gwu.edu/document/21971-document-02
+    type: archival
+seo:
+  primary_query: compulsory secrecy
+  secondary_entities:
+  - classified research
+  - Official Secrets Act
+  - recognition mechanism
+  - scientific recognition
+  title: Compulsory Secrecy - Definition & Documented Cases | ChampionsAwards
+  description: A mechanism in which a formal legal or classification regime keeps a contribution out of the public record, constraining recognition regardless of the field's readiness to receive it.
+  canonical: /concepts/compulsory-secrecy
+  h1: Compulsory Secrecy
+  schema_types:
+  - BreadcrumbList
+  - DefinedTerm
+  incoming_links:
+  - /concepts
+  - /unawarded/james-ellis
+  - /unawarded/tommy-flowers
+  outgoing_links:
+  - /methodology
+  - /unawarded/james-ellis
+  - /unawarded/tommy-flowers
+  indexing: index

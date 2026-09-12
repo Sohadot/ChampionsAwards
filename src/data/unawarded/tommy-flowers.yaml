@@ -44,12 +44,20 @@ key_facts:
   - fact: "English Heritage records his honours: an MBE in 1943, an honorary degree from Newcastle University in 1977, and the inaugural Post Office Martlesham Medal in 1980."
     source: 2
 analysis:
-  - heading: A constraint the corpus can document and cannot yet name
-    body: "Every element of this case is on the record, and the state agency that imposed the secrecy is the one that documents it. What the corpus cannot do is say which of its six mechanisms this is. Institutional exclusion describes a formal barrier to a position; no position was barred to him, and he held a senior engineering role throughout. Delayed recognition describes a community that could not absorb a contribution; this community was legally prevented from knowing it existed. Institutional gatekeeping describes a person with editorial or institutional authority obstructing dissemination; a wartime classification regime is not that person, and stretching the concept to fit would be the kind of accommodation this project refuses elsewhere."
-  - heading: Why no mechanism was invented for it
-    body: "The obvious move is to add a concept for classified or secret contribution and tag this case with it. The corpus does not do that here, for the same reason it removed a pattern count from its Definition of Done: a mechanism created to fit the case in hand is a taxonomy built backwards from a result. What is recorded instead is that the domain's first significantly under-recognised case returns no evidenced mechanism, and that the reason is a boundary in the ontology rather than a gap in the evidence. If a second case of this shape appears, the corpus will have grounds it does not have now."
+  - heading: A constraint the corpus documented before it could name it
+    body: "Every element of this case is on the record, and the state agency that imposed the secrecy is the one that documents it. When the entry was first published, none of this project's six mechanisms fitted. Institutional exclusion describes a formal barrier to a position; no position was barred to him, and he held a senior engineering role throughout. Delayed recognition describes a community that could not absorb a contribution; this community was legally prevented from knowing it existed. Institutional gatekeeping describes a person with editorial or institutional authority obstructing dissemination; a wartime classification regime is not that person. The case was therefore recorded as standing on a boundary, and left there."
+  - heading: How the mechanism arrived, and why the order matters
+    body: "A second case - a peacetime idea, twenty-seven years later, in mathematics rather than engineering - reproduced the same shape and failed the same six tests for the same reasons. Only then did an ontology review over the completed corpus add compulsory secrecy, with five tests all of which must hold, and only then was this case tagged. No score moved, because no evidence changed. The sequence is the discipline: a mechanism created to fit the single case that prompted it would be a taxonomy built backwards from a result, which is the error this project removed from its Definition of Done in Cycle 01."
+  - heading: Two cases, one context
+    body: "This instance and the corpus's other compulsory-secrecy case both arise inside the same national cryptographic apparatus, and the corpus records that rather than counting them as two. Under the recurrence model adopted with the concept, lifecycle status is decided by independent contexts rather than by cases, so the mechanism stands at two cases and one context - emergent, not established. What would establish it is a case from a different regime, and the corpus does not have one."
   - heading: What the destruction order did to two different scores
     body: "The same instruction reduced two dimensions for two different reasons, and the entry keeps them apart. Verification is lower because the technical record that would normally anchor the contribution no longer exists. Durability is lower because the design was sealed rather than built on, so the computers that shaped the field afterwards owed it nothing. Neither is a judgment about the machine; both are consequences of an order, and both are stated rather than absorbed into a single narrative about neglect."
+patterns:
+  - compulsory-secrecy
+pattern_evidence:
+  compulsory-secrecy: [1, 2]
+pattern_context:
+  compulsory-secrecy: uk-government-cryptographic-secrecy
 sources:
   - title: "GCHQ celebrates 80 years of Colossus (Flowers as its designer, the Official Secrets Act, the destruction of eight machines, the order to hand over documentation, and six decades of secrecy)"
     publisher: Government Communications Headquarters
@@ -69,6 +77,9 @@ provenance:
   observed-recognition:
     record_anchor: [2]
     basis: institutional-archive
+  pattern:compulsory-secrecy:
+    record_anchor: [1, 2]
+    basis: institutional-archive
 audit_exceptions:
   - claim: contribution
     search_date: '2026-09-12'
@@ -85,18 +96,22 @@ audit_exceptions:
       lowered for exactly that reason rather than the gap being written around.
   - claim: mechanism-boundary
     search_date: '2026-09-12'
+    resolved_date: '2026-09-12'
     search_note: >-
-      Each of the six audit-eligible mechanisms was tested against this record and none is met on its
-      published definition. No concept in the current ontology describes a contribution withheld from
-      the record by statutory secrecy rather than by a barrier to a position, a community's inability
-      to absorb it, or an actor's discretionary obstruction.
+      When this entry was published, each of the six audit-eligible mechanisms was tested against this
+      record and none was met on its published definition; no concept described a contribution
+      withheld from the record by a formal classification regime. The exception is kept rather than
+      deleted, because the sequence is the point: the boundary was recorded first, a second case in a
+      different decade and technology reproduced it, and only then did an ontology review over the
+      completed corpus add compulsory-secrecy.
     best_source: 1
     reason: >-
-      Recorded as an ontology boundary, not resolved by adding a concept. A mechanism created to fit
-      the single case that motivated it would be a taxonomy built backwards from a result, which is
-      the error this project removed from its Definition of Done in Cycle 01.
+      Resolved by the ontology review of 2026-09-12, not by the entry that motivated it. A mechanism
+      created to fit the single case that prompted it would be a taxonomy built backwards from a
+      result, which is the error this project removed from its Definition of Done in Cycle 01.
 mechanism_audit:
   search_date: '2026-09-12'
+  reviewed: '2026-09-12'
   considered:
     - institutional-exclusion
     - credit-misattribution
@@ -104,25 +119,31 @@ mechanism_audit:
     - institutional-gatekeeping
     - posthumous-recognition
     - theory-experiment-asymmetry
-  finding: no-mechanism-evidenced
+    - compulsory-secrecy
+  finding: mechanism-evidenced
   note: >-
-    No mechanism is evidenced, and unlike the other unmechanised cases in this domain this one does
-    carry a deficit: the gap is the largest in the domain and falls in the significantly
-    under-recognised band. The finding is therefore unexplained under-recognition, and the reason is
-    stated. Institutional exclusion is not tagged because its definition requires a formal barrier to
-    an appointment, membership, authorship or pay, and he held a senior engineering post throughout;
-    nothing was closed to him. Delayed recognition is not tagged because that mechanism turns on a
-    receiving community unable or unready to absorb a contribution, whereas this community was
-    legally prevented from knowing the contribution existed - the timing matches and the cause does
-    not. Institutional gatekeeping is the closest fit and is still not tagged: it describes a person
-    holding editorial, institutional or reviewing authority obstructing dissemination, and a wartime
-    classification regime binding everyone involved under statute is a different object; tagging it
-    would stretch a concept built for discretionary control inside a scientific community. Credit
-    misattribution fails because no other person is documented as receiving his credit. Posthumous
-    recognition is not tagged: some recognition did arrive after his death, but that mechanism turns
-    on an eligibility rule foreclosing an award, and no such rule is in this record. The
-    theory-experiment asymmetry does not apply. What this case establishes is a boundary in the
-    ontology, recorded and deliberately not filled.
+    Compulsory secrecy is evidenced, and the tagging followed the ontology review rather than
+    preceding it. When this entry was first published the corpus had no concept for a contribution
+    withheld from the record by a formal classification regime, and the case was recorded as standing
+    on a boundary rather than being forced into a neighbouring mechanism. The review over the
+    completed corpus added the concept and this case now carries it; no score changed, because nothing
+    about the evidence changed. All five of the mechanism's tests hold: everyone who worked on
+    Colossus was sworn to the Official Secrets Act; the contribution itself was covered by that
+    obligation; dissemination was not merely discouraged but prevented, with eight machines destroyed
+    and the documentation handed over on instruction; the absence of visibility was a legal regime
+    rather than editorial discretion or low uptake; and the effect on recognition is evidenced
+    separately by the body that marked the site, which records that he was largely unsung for decades
+    owing to the secrecy and that declassification brought belated recognition. The three neighbouring
+    mechanisms remain refused for the reasons first recorded here. Institutional exclusion requires a
+    formal barrier to an appointment, membership, authorship or pay, and he held a senior engineering
+    post throughout. Delayed recognition turns on a receiving community unable or unready to absorb a
+    contribution, and this one was legally prevented from knowing it existed. Institutional
+    gatekeeping turns on a person exercising editorial or institutional discretion, and a
+    classification regime binds everyone involved including that person. Credit misattribution fails
+    because no other person is documented as receiving his credit, and posthumous recognition because
+    no eligibility rule foreclosed an award. This instance is recorded in the
+    uk-government-cryptographic-secrecy context, which is what keeps it from being counted as an
+    independent replication of the same mechanism in the corpus's other secrecy case.
   best_sources: [1, 2]
 seo:
   primary_query: Tommy Flowers
@@ -144,6 +165,7 @@ seo:
   - /sectors/mathematics-computing
   - /unawarded
   outgoing_links:
+  - /concepts/compulsory-secrecy
   - /methodology
   - /sectors/mathematics-computing
   indexing: index

@@ -9,6 +9,8 @@ from config import (
     AUDIT_ELIGIBLE_CONCEPT_TYPES,
     AWARD_ARCHITECTURE_KEYS,
     FUNDING_SEPARATION_REQUIRED,
+    RECURRENCE_CONTEXTS,
+    is_valid_recurrence_context,
     SEO_BRAND_SUFFIX,
     SEO_CONTRACT_CLUSTERS,
     SEO_CONTRACT_FIELDS,
@@ -119,6 +121,7 @@ def validate_item(
     errors.extend(validate_subfield(cluster_name, item, source_file))
     errors.extend(validate_rule_history(cluster_name, item, source_file, case_slugs or set()))
     errors.extend(validate_archive_visibility(cluster_name, item, source_file, case_slugs or set()))
+    errors.extend(validate_pattern_context(cluster_name, item, source_file))
     errors.extend(validate_seo(cluster_name, item, source_file))
 
     return errors
@@ -262,6 +265,37 @@ def validate_archive_visibility(
             errors.append(f"{ref}: {label} needs a 'note'")
     return errors
 
+
+
+def validate_pattern_context(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """A case may declare, per pattern, that its instance belongs to a wider
+    context shared with other cases - one institution, one legal regime, one
+    apparatus. Declaring it is what stops two observations of one regime being
+    counted as two independent replications.
+
+    Declaring none is not an omission: a case that shares nothing with another is
+    its own context, which is what every entry written before this rule assumed.
+    """
+    ref = f"{cluster_name}/{source_file}"
+    block = item.get("pattern_context")
+    if block is None:
+        return []
+    if not isinstance(block, dict) or not block:
+        return [f"{ref}: 'pattern_context' must be a non-empty mapping when present"]
+
+    errors: list[str] = []
+    declared_patterns = set(item.get("patterns") or [])
+    for pattern, context in block.items():
+        if pattern not in declared_patterns:
+            errors.append(
+                f"{ref}: pattern_context names '{pattern}', which this case does not declare as a pattern"
+            )
+        if not is_valid_recurrence_context(context):
+            errors.append(
+                f"{ref}: unknown recurrence context {context!r} "
+                f"(known: {', '.join(sorted(RECURRENCE_CONTEXTS))})"
+            )
+    return errors
 
 
 def validate_seo(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:

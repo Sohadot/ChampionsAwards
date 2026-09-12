@@ -281,10 +281,45 @@ REQUIRE_DOMAIN: Final[bool] = True
 REQUIRE_PATTERN_EVIDENCE: Final[bool] = True
 
 # Pattern lifecycle: a structural cause is only "established" in a domain once
-# at least this many independent cases in that domain exhibit it. A pattern
-# supported by a single case is "emergent" and does NOT count toward the DoD.
+# at least this many INDEPENDENT CONTEXTS in that domain exhibit it. A pattern
+# supported by a single context is "emergent" and does NOT count toward the DoD.
 # This prevents inventing labels just to reach a threshold.
 PATTERN_ESTABLISHED_MIN: Final[int] = 2
+
+# ---------------------------------------------------------------------------
+# Recurrence contexts - two observations are not two replications.
+#
+# Until Cycle 03 the threshold above counted CASES. That was adequate while
+# every case carrying a pattern arose in a different institution, era and
+# country, so one case meant one context. Cycle 03 broke the equivalence: Tommy
+# Flowers and James Ellis both carry recognition deficits produced by formal
+# secrecy, and both arise inside the same national cryptographic apparatus. Two
+# cases; one context. Promoting that to "established" would report a regime's
+# signature as a replicated mechanism.
+#
+# A case may therefore declare, per pattern, the context its instance belongs
+# to. A case that declares none is its own context, which is what every entry
+# written before this change assumed - so no existing result moves.
+#
+# Both figures are published: `support` counts cases, `independent_support`
+# counts contexts, and only the second decides lifecycle status.
+RECURRENCE_CONTEXTS: Final[dict[str, str]] = {
+    "uk-government-cryptographic-secrecy": (
+        "The United Kingdom's government cryptographic apparatus and the statutory secrecy regime "
+        "around it - the Post Office research station working to it, and GCHQ and its predecessors. "
+        "Instances arising here share an imposing institution, a legal instrument and a disclosure "
+        "practice, so they are observations of one regime rather than independent replications."
+    ),
+}
+
+
+def is_valid_recurrence_context(value: object) -> bool:
+    return isinstance(value, str) and value in RECURRENCE_CONTEXTS
+
+
+def pattern_context_key(case_slug: str, declared: object) -> str:
+    """The context an instance counts in. A case that declares none stands alone."""
+    return declared if is_valid_recurrence_context(declared) else f"case:{case_slug}"
 
 # ---------------------------------------------------------------------------
 # Definition of Done - DoD v1.1
@@ -308,6 +343,8 @@ PATTERN_ESTABLISHED_MIN: Final[int] = 2
 #
 # Note what did NOT change: PATTERN_ESTABLISHED_MIN stays 2. That is a definition
 # of what makes a pattern recurring rather than singular, and it remains in force.
+# Cycle 03 changed what it counts - independent contexts rather than cases - and
+# not how many it requires.
 # No datum moves because of this governance decision; only the question "when is
 # a domain's inquiry complete?" is answered differently.
 # ---------------------------------------------------------------------------

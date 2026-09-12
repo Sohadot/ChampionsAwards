@@ -320,5 +320,44 @@ _declared = {rel["case"] for a in _award_items for rel in (a.get("corpus_relatio
 check("no declared award relation is silently dropped from every domain",
       _declared <= _all_rel_cases)
 
+# 15. Recurrence: two observations are not two replications.
+from config import (
+    PATTERN_ESTABLISHED_MIN as _PMIN, RECURRENCE_CONTEXTS, is_valid_recurrence_context,
+    pattern_context_key,
+)
+from validate_content import validate_pattern_context
+
+check("an undeclared context makes a case its own context",
+      pattern_context_key("a-case", None).startswith("case:"))
+check("an unknown context is not silently honoured",
+      pattern_context_key("a-case", "not-a-context").startswith("case:"))
+check("a declared context is used verbatim",
+      pattern_context_key("a-case", sorted(RECURRENCE_CONTEXTS)[0]) == sorted(RECURRENCE_CONTEXTS)[0])
+check("an unknown context fails validation",
+      bool(validate_pattern_context("unawarded",
+           {"patterns": ["p"], "pattern_context": {"p": "invented"}}, "s.yaml")))
+check("a context for an undeclared pattern fails validation",
+      bool(validate_pattern_context("unawarded",
+           {"patterns": ["p"], "pattern_context": {"q": sorted(RECURRENCE_CONTEXTS)[0]}}, "s.yaml")))
+check("a case declaring no context passes",
+      not validate_pattern_context("unawarded", {"patterns": ["p"]}, "s.yaml"))
+
+for _domain in ("physics-astronomy", "biology-medicine", "mathematics-computing"):
+    _pats = dc.pattern_distribution(_domain)["patterns"]
+    check(f"independent support never exceeds case support ({_domain})",
+          all(p["independent_support"] <= p["support"] for p in _pats))
+    check(f"status is decided by contexts, not cases ({_domain})",
+          all((p["status"] == "established") == (p["independent_support"] >= _PMIN) for p in _pats))
+    check(f"every pattern publishes both figures ({_domain})",
+          all({"support", "independent_support", "contexts"} <= set(p) for p in _pats))
+
+_mc = {p["pattern"]: p for p in dc.pattern_distribution("mathematics-computing")["patterns"]}
+check("a mechanism with several cases in one context stays emergent",
+      any(p["support"] >= _PMIN and p["independent_support"] < _PMIN and p["status"] == "emergent"
+          for p in _mc.values()),
+      str({k: (v["support"], v["independent_support"], v["status"]) for k, v in _mc.items()}))
+check("a regime-bounded mechanism is flagged as such",
+      any(p["regime_bounded"] for p in _mc.values()))
+
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)
