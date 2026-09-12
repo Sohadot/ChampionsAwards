@@ -589,7 +589,8 @@ and the engine reports coverage across the halves:
 This is an observation and gates nothing — the Definition of Done is unchanged and
 an uneven split blocks no cycle. What it refuses is the silence. Measured at the
 open of Cycle 03: mathematics 1 case and 1 system, computing **0 cases** and 1
-system, cross-cutting 1 system.
+system, cross-cutting 1 system. Re-measured at the Stage 1 pause: mathematics 2
+cases, computing 3, cross-cutting 0, and `comparison_meaningful` now True.
 
 ### Planned order
 
@@ -603,7 +604,33 @@ system, cross-cutting 1 system.
    the threshold.
 3. Synthesis, then sector reference and closure review.
 
-No names are proposed yet. The first decision after requalification is what kind
-of case the corpus needs — mathematical recognition, computing recognition,
-controls, eligibility-rule cases, attribution cases — or whether the baseline has
-revealed a different gap entirely.
+### Stage 1 — the pause at 5 (2026-09-12)
+
+The decision after requalification was to weight the first batch toward the empty
+side: **3 computing + 1 mathematics**, four researched and four published, no
+reserve drawn. Each was entered to test something specific, and none was entered
+with a pattern assigned.
+
+| Case | Subfield | Entered to test | DDI | Obs | Gap | Mechanism |
+| --- | --- | --- | --- | --- | --- | --- |
+| Barbara Liskov | computing | an award-positive control on the empty side | 85 | 90 | −5 | none |
+| Karen Spärck Jones | computing | an outcome not predictable in advance | 86 | 80 | 6 | none |
+| Lynn Conway | computing | exclusion held apart from recognition outcome | 85 | 75 | 10 | institutional exclusion |
+| Andrew Wiles | mathematics | a documented eligibility rule, dated to its event | 86 | 94 | −8 | none |
+
+Baseline at the pause — mathematics 2 cases, computing **3 cases** (from 0),
+cross-cutting 0; gap range −8 to 17, median 6; mechanism accounting 5/5;
+**unexplained under-recognition 0**; `comparison_meaningful` **False → True**;
+machine-visible award relations still **0**. Full account:
+[`cycle-03-stage1-read.md`](cycle-03-stage1-read.md).
+
+Two results are worth carrying forward. Institutional exclusion is now evidenced
+once on each side of the join (Noether, Conway) — the first mechanism in this
+corpus to span a composite domain. And the Wiles entry demonstrates, positively
+rather than defensively, what the Cycle 02 temporal machinery was built for: a
+rule published by the awarding union, applied to a dated event by that Congress's
+own press office, recorded in a `rule_at_time` block — and a **negative** gap
+alongside it. A constraint can be real, documented and consequential for one
+award without producing a present recognition deficit.
+
+The next three cases are not chosen. The read at 5 is the input to that choice.
