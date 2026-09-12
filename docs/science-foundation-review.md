@@ -270,3 +270,107 @@ domain by the Definition of Done, and neither figure gates it — deliberately, 
 that a growing vocabulary can never retroactively unmake a closed layer. What
 stays withheld is the cross-cutting claim that the foundation as a whole needs no
 further work.
+
+---
+
+# Third pass — 2026-09-12, after the twelve re-audits
+
+**The review is clean, and `Scientific Recognition Foundation — stable v1.0` is
+declared.**
+
+## What was checked
+
+The pass re-ran the same question over the whole repository: do the three closed
+layers still satisfy the current architecture without hidden legacy assumptions —
+now including the architecture the previous two passes added.
+
+| | result |
+| --- | --- |
+| The twelve historical audit defects | remediated, 12 of 12, by dated re-audit |
+| Original audits preserved, defects still visible | yes — `incomplete_at_revision` untouched on all twelve |
+| Re-audits complete against the current ontology | yes — all seven mechanisms, one verdict each, gate-enforced |
+| Domain registry | sound: states valid, aggregation derived, planned domains produce no hub and enter no maturity report, no published entry unscoped |
+| Reports and sector pages | recompute from the engine; no figure is typed |
+| Stale prose | two found and fixed (below) |
+| New material defect | none |
+
+## The two defects this pass found, and fixed
+
+Both were introduced by the remediation itself, which is the reason a third pass
+had to happen rather than being assumed.
+
+**Three added sources were left unanchored.** Testing posthumous recognition
+against Bose, Rubin and Avery required the Nobel Foundation's own record of when
+the posthumous prohibition entered the Statutes, so that source was added to
+those three entries — and then the re-audits' `best_sources` did not cite it, in
+one case because the index was guessed before the append rather than read after
+it. A claim resting on a source the entry does not point to is exactly the
+species of silence this project exists to remove. Fixed, and a sweep confirms the
+rule holds corpus-wide: every source in all thirty case entries is now referenced
+by a fact, a score, a pattern, an audit or a provenance anchor. None is orphaned.
+
+**Twelve entries carried a `last_reviewed` older than their own review.** A
+re-audit is a dated evidential act on the entry, so leaving the field at
+2026-09-10 or 2026-09-11 understated when the entry was last examined and held
+the corpus date back with it. Advanced to 2026-09-12 on all twelve. The live
+`data_through` for Physics & Astronomy and Biology & Medicine moves with it,
+which is correct and is not a conflict with their closure declarations: a
+declaration names the corpus at closure, and correctable work on a closed layer
+advances the live corpus without reopening the cycle. That distinction is now
+written into the closure-format section of `DOMAIN-CYCLES.md`, because it will
+recur every time a closed layer is corrected.
+
+## What the remediation did not change
+
+No pattern was added or withdrawn in any of the twelve, and no DDI,
+observed-recognition or gap value moved. Every established and emergent count,
+every band, every explanatory-coverage figure and every synthesis token is
+unchanged. Twelve complete tests returning the same answer as twelve partial ones
+is a real result: it says the defect was in the record of the search, not in the
+findings the corpus published from it.
+
+## Recorded for a future ontology review, not acted on
+
+`posthumous-recognition`, read literally, is satisfied by every scientist who has
+died since the Nobel Statutes acquired the posthumous prohibition in 1974 — a
+tag that fits every deceased case distinguishes nothing. The corpus's working
+practice has always been the narrower reading, in which an eligibility rule must
+be shown to have determined an actual decision, and the Franklin withdrawal, the
+Ball non-tag and now the Bose and Rubin verdicts all apply it. The concept's own
+text does not yet say so. That is a question for an ontology review, and this
+remediation deliberately closed known defects without reopening the ontology.
+
+Also recorded, and also not a defect: mechanism audits and re-audits are data and
+enter the published figures, but no case page renders an individual audit. That
+has been true since audits were introduced and is not a consequence of this work.
+Whether the audit trail should be readable per entry is a question for a future
+cycle.
+
+## Why stable v1.0 is declared
+
+Stability is not the claim that every historical audit has been re-run after
+every growth of the ontology. Eight audits remain non-current — the Mathematics &
+Computing audits that were complete at MOR-004 and predate compulsory secrecy —
+and re-running them would be work without a defect to justify it.
+
+Stability is the claim that every **known** defect is honestly closed, and that
+the system can say precisely which of its knowledge is historical, which is
+current, and which was later corrected. Three figures carry that, and the corpus
+keeps them apart rather than collapsing them into a flattering one:
+
+| | measured |
+| --- | --- |
+| Complete when originally performed | **10 of 22** — and it will never move |
+| Historical audit defects remediated | **12 of 12** |
+| Latest audit statement current against MOR-006 | **14 of 22** |
+
+The first number is the one that matters most, and it is the one a less careful
+project would have deleted. Ten of twenty-two audits were complete when they ran;
+that is now a permanent part of the record, sitting beside the fact that all
+twelve failures were later repaired. A corpus that could only say "22 of 22
+complete" would know less about itself than this one does.
+
+## Not blocking, unchanged
+
+Search Console verification remains an external parallel track. Nothing in any of
+the three passes waits on it.

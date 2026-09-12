@@ -1,7 +1,7 @@
 title: Satyendra Nath Bose
 slug: satyendra-nath-bose
 status: published
-last_reviewed: 2026-09-10
+last_reviewed: 2026-09-12
 domain: physics-astronomy
 summary: Satyendra Nath Bose derived the quantum statistics that underpin Bose-Einstein statistics and the boson, work whose importance was recognised largely because Einstein translated and championed it, and Bose never received a Nobel Prize.
 introduction: Bose's 1924 derivation reached the physics community through Einstein's mediation, and while his name became embedded in the vocabulary of physics, the case is a useful test of a smaller, more nuanced recognition gap.
@@ -216,6 +216,7 @@ mechanism_reaudit:
   best_sources:
   - 4
   - 5
+  - 6
 
 audit_exceptions:
 - claim: observed-recognition

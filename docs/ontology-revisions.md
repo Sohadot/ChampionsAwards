@@ -67,7 +67,11 @@ five conditions. That was an audit act, so they are recorded at MOR-005.
 Where history could not establish a revision, the sentinel
 `legacy-revision-unresolved` is available. It was not needed: all 22 resolve.
 
-## What the measurement found
+## What the measurement found, before remediation
+
+*The reading taken at commit `442ffa6`, when the model was introduced. It is kept
+as the dated record of what the corpus looked like before the defects were
+repaired; the current figures are in **Remediation** below.*
 
 Both figures are computed by the engine from the case files and printed by
 `scripts/domain_status.py` and on each sector page. Neither gates maturity.
@@ -85,8 +89,9 @@ Each of the twelve now declares its own gap in `incomplete_at_revision`. Nothing
 was added to any `considered` list: an audit that did not test a mechanism cannot
 be made to have tested it by editing a file.
 
-**Currency against the revision in force: 2 of 22.** Only Flowers and Ellis cover
-the present seven-mechanism set. This is reported and gates nothing.
+**Currency against the revision in force: 2 of 22.** At that commit only Flowers
+and Ellis covered the present seven-mechanism set. This is reported and gates
+nothing.
 
 ## Remediation — 2026-09-12
 

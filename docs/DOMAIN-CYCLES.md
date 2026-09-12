@@ -406,40 +406,51 @@ synthesis derives from, but an entry may now name them. That is what a planned
 domain is for. Registering a domain is not opening a cycle, and it schedules
 nothing.
 
-## Science Foundation Review v1.0 — 2026-09-12
+## Science Foundation Review v1.0 — 2026-09-12 — STABLE v1.0
 
-After Cycle 03 closed, one pass over the whole repository asked whether the three
-closed scientific layers still satisfy the current architecture without hidden
-legacy assumptions. It added no case, system or concept, changed no score, and
-opened no cycle.
+After Cycle 03 closed, a read-only pass over the whole repository asked whether
+the three closed scientific layers still satisfy the current architecture without
+hidden legacy assumptions. It ran three times, added no case, system or concept,
+opened no cycle, and changed no score.
 
-**The review is not clean, and `Scientific Recognition Foundation — stable v1.0` is
-not declared**, in either of its two passes. Three defects were fixed as wording corrections — two documents
-typing a moving corpus snapshot, the Physics report stating the establishment
-threshold in cases rather than contexts, and two case entries still denying they
-carry a mechanism after the ontology review reclassified them. One material finding
-is open: **20 of 22 mechanism audits predate the ontology they are now measured
-against**, and nothing in the gate noticed. Nothing was back-filled, because writing
-a concept into a `considered` list without running the test would fabricate dated
-evidence. Full account and the three options:
+**Three passes. The first two found real drift and withheld the label; the third
+declares it.**
+
+Pass 1 fixed three wording defects — two documents typing a moving corpus
+snapshot, the Physics report stating the establishment threshold in cases rather
+than contexts, and two case entries still denying they carry a mechanism after
+the ontology review reclassified them — and left one material finding open: the
+mechanism audits predated the ontology they were being measured against, and
+nothing in the gate noticed. Nothing was back-filled, because writing a concept
+into a `considered` list without running the test would fabricate dated evidence.
+
+Pass 2 ran after both open findings were closed by construction — the ontology
+revision model (MOR ids, recorded per audit, enforced by the gate) and the domain
+registry (`planned` / `open` / `closed`, with aggregation derived from it). It
+measured what those constructions exposed: currency 2 of 22 as expected, but
+**completeness at the audit's own revision 10 of 22**. Twelve audits had failed
+to test a mechanism that was already eligible on the day they ran — a defect that
+existed at the time, not an audit that had merely aged.
+
+All twelve were then remediated by dated re-audit under MOR-006, tested against
+the whole current ontology rather than only the mechanism each had missed, with
+the original audits kept exactly as performed so the record reads *incomplete,
+later remediated* rather than *never wrong*. Nothing moved: no pattern added or
+withdrawn, no score touched. Theory–experiment asymmetry is not supported in any
+of the ten Biology cases, Rosalind Franklin included; posthumous recognition is
+not supported for either Physics case.
+
+Pass 3 found no new material defect, and **`Scientific Recognition Foundation —
+stable v1.0` is declared**. Stability does not mean every historical audit was
+re-run after every growth of the ontology: eight audits that were complete when
+performed remain non-current, and that is correct. It means every known defect is
+honestly closed, and the corpus can say precisely which of its knowledge is
+historical, which is current, and which was later corrected. Full account:
 [`science-foundation-review.md`](science-foundation-review.md).
 
-**Second pass, after both findings were closed by construction.** The ontology
-revision model (MOR ids, recorded per audit, enforced by the gate) and the domain
-registry (`planned` / `open` / `closed`, with aggregation derived from it) were
-built, and the re-run measured what they exposed. Currency is 2 of 22 as
-expected — but **completeness at the audit's own revision is 10 of 22**: twelve
-audits failed to test a mechanism that was already eligible on the day they ran.
-Two of those gaps touch published results — `posthumous-recognition` is evidenced
-in no case in the corpus and was never tested on Vera Rubin, and
-`theory-experiment-asymmetry` was never tested in Biology & Medicine at all,
-Rosalind Franklin included. Closing either means re-auditing an entry in a closed
-layer against sources, which is an evidential act and a decision, not a refactor.
-
 The three domains remain MATURE v1.0 individually; that status is measured per
-domain and is unaffected, deliberately — a growing vocabulary must not be able to
-retroactively unmake a closed layer. What is withheld is the cross-cutting claim
-that the foundation as a whole needs no further work.
+domain and is unaffected by either audit-revision figure, deliberately — a growing
+vocabulary must not be able to retroactively unmake a closed layer.
 
 ---
 

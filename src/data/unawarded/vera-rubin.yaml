@@ -1,7 +1,7 @@
 title: Vera Rubin
 slug: vera-rubin
 status: published
-last_reviewed: 2026-09-10
+last_reviewed: 2026-09-12
 domain: physics-astronomy
 summary: Vera Rubin's observations of galaxy rotation provided decisive evidence for dark matter, and she received major honours including the National Medal of Science and the Royal Astronomical Society's Gold Medal, though never a Nobel Prize.
 introduction: Rubin's work transformed cosmology, and she was widely honoured during her lifetime, which makes her a deliberate high-recognition case for testing whether assessed merit and recognition can align closely.
@@ -171,6 +171,7 @@ mechanism_reaudit:
   - 2
   - 3
   - 4
+  - 5
 analysis:
 - heading: A control case for the index
   body: Rubin is included precisely because her recognition was substantial. A transformative contribution that was broadly honoured should show a modest gap, and if the index instead forced a large one, that would signal a bias in the method. Her moderate gap is evidence the instrument is measuring, not editorialising.
