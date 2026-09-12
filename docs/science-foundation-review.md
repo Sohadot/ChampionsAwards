@@ -154,3 +154,119 @@ Search Console verification remains an external parallel track: submit the sitem
 inspect one URL per template family, confirm the Google-selected canonical and the
 structured-data parsing match what the build declares. Nothing in this review waits
 on it, and nothing in it depends on the outcome.
+
+---
+
+# Second pass — 2026-09-12, after the revision model and the domain registry
+
+Both open findings were closed by construction, and the re-run then measured what
+those constructions exposed. **The review is still not clean, and
+`Scientific Recognition Foundation — stable v1.0` is still not declared** — but
+for a different and sharper reason than the first pass.
+
+## Finding 1 closed by construction, and the measurement was worse than expected
+
+Option **(b)** was implemented: every audit now records the ontology revision it
+ran under (`ontology_revision`) and the evidence for it (`revision_basis`), ids
+are immutable and ordered by commit, and the gate enforces that an audit tests
+everything eligible at its revision or declares exactly what it did not.
+
+All 22 revisions were recovered from history by ancestry, not guessed, so the
+sentinel `legacy-revision-unresolved` was not needed. Nothing was added to any
+`considered` list.
+
+Separating the two figures produced a result the first pass had not anticipated,
+and it is the reason this pass is not clean:
+
+| | measured |
+| --- | --- |
+| Audits complete at their own recorded revision | **10 of 22** |
+| Audits current against the revision in force | **2 of 22** |
+
+The second figure was expected. The first was not: the assumption going in was
+that audits had been complete when performed and had merely aged. They had not.
+Twelve audits failed to test a mechanism that was **already audit-eligible on the
+day they ran** — ten Biology & Medicine audits omit `theory-experiment-asymmetry`
+(eligible since MOR-002, two revisions before those audits), and the two Physics
+& Astronomy audits omit `posthumous-recognition` (eligible since MOR-001, the
+first revision of all). The assignment is robust to the one judgment call it
+required: MOR-003 and MOR-004 carry the same mechanism set, so reading those
+audits as MOR-003 audits performed before the concept-type change or as MOR-004
+audits pruned by it gives the identical gap.
+
+This is not ageing. It is a defect that existed at the time and that no check
+could see, because completeness was never measured against anything. Each of the
+twelve now declares its own gap in `incomplete_at_revision`.
+
+## The consequence that needs a decision
+
+The twelve gaps are not equal in weight, and two of them touch results the corpus
+publishes.
+
+**`posthumous-recognition` is evidenced in zero cases across the whole corpus.**
+It was tested in 20 of 22 and found in none. The two cases where it was never
+tested are Satyendra Nath Bose and **Vera Rubin** — and Rubin is, on the face of
+the record, the corpus's strongest posthumous-recognition candidate: a
+contribution of established magnitude, an award never made, and a death that
+under the Nobel statutes forecloses one permanently. The corpus therefore
+publishes "this mechanism is evidenced nowhere" while never having tested it on
+the case most likely to carry it.
+
+**`theory-experiment-asymmetry` was never tested in Biology & Medicine at all.**
+Ten audits, none considering it. **Rosalind Franklin** is the obvious candidate —
+an experimentalist whose data underwrote a model-building result that was the one
+recognised — and the biology layer's published mechanism coverage rests on a set
+of audits that never asked.
+
+Neither is a clerical matter and neither is fixable by editing a file. Testing a
+mechanism against a case is an evidential act: it means returning to the sources,
+applying the concept's conditions, and dating the result. That is a re-audit of
+two entries in closed layers, and it is the decision this pass hands back.
+
+What it is **not**: a finding that any published score is wrong. No DDI, no
+observed recognition and no gap depends on it. What would move is a mechanism
+tag, the domain's evidenced-mechanism count, and — if `posthumous-recognition`
+were evidenced — a concept that currently has no support anywhere in the corpus.
+
+## Finding 2 closed
+
+`DOMAIN_REGISTRY` separates a domain's lifecycle (`planned` / `open` / `closed`)
+from cycle state, and aggregation is derived from it. Literature and Peace are
+registered as planned; the Nobel Peace Prize is scoped to `peace` and is
+otherwise untouched — no DDI, no RLS, no mapped architecture. The gate now
+rejects any published entry in a domain-scoped cluster that names no registered
+domain, with concepts exempt by a posture declared in config rather than by a
+validator's omission.
+
+Building it surfaced a smaller defect of the same species: the maturity report
+iterated every registered domain, so a planned domain produced a row of zeroes
+and a Definition of Done reading "pending" — a domain nobody has started,
+rendered as a domain that is failing. Planned domains are now listed and not
+computed.
+
+## Corrections made in this pass
+
+Three, all the same species as the first pass — prose that was true when written:
+
+1. `docs/DOMAIN-CYCLES.md` still defined emergent and established in **cases**.
+   That is the canonical model document, and the first pass corrected the
+   derivative statements while leaving the definition itself standing.
+2. The sector pages described emergent patterns as "recorded in a single case
+   each" — false of compulsory secrecy, which is recorded in two cases sharing
+   one context. Each emergent pattern now reports both counts.
+3. The Physics report carried the same phrase as a trailing clause. It now says
+   the emergent patterns fall below the threshold, which is true at any
+   threshold and claims nothing the tokens do not carry.
+
+## Why stable v1.0 is still not declared
+
+The first pass withheld the label over a finding that turned out to be the
+smaller half of the problem. Currency was the visible drift; completeness was the
+real one, and it was invisible until the two were separated. Two named cases now
+sit between the corpus and a claim it makes about itself.
+
+The three domains remain **MATURE v1.0** individually. Maturity is measured per
+domain by the Definition of Done, and neither figure gates it — deliberately, so
+that a growing vocabulary can never retroactively unmake a closed layer. What
+stays withheld is the cross-cutting claim that the foundation as a whole needs no
+further work.

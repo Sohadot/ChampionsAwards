@@ -55,7 +55,9 @@ Measured criteria:
 - **RLS systems ≥ 3** (`DOMAIN_DOD`) — relevant recognition systems scored.
 - **Mechanism accounting = 100 %** (`DOMAIN_DOD_ACCOUNTING`) — every case either
   carries one or more mechanisms backed by `pattern_evidence`, or carries an
-  explicit, dated audit concluding that no evidenced mechanism was found.
+  explicit, dated audit concluding that no evidenced mechanism was found. It does
+  **not** assert that every audit tested every mechanism eligible at the time;
+  that is completeness at revision, measured and reported separately.
 - **Cases unaudited = 0** — nothing left unexamined.
 - **Source-grade closure** — every load-bearing claim closed against a
   record-grade anchor or carried by a documented exception (the "known-status"
@@ -117,10 +119,16 @@ property of the **investigation**. v1.1 gates the second and reports the first.
 A structural cause is not counted just because it is named once. Each pattern in
 a domain is:
 
-- **emergent** — exhibited by a single documented case; recorded, but **not**
-  counted toward the DoD; or
-- **established** — exhibited by at least `PATTERN_ESTABLISHED_MIN` (2)
-  independent cases in that domain.
+- **emergent** — exhibited below the threshold; recorded, but **not** counted
+  toward the DoD; or
+- **established** — exhibited in at least `PATTERN_ESTABLISHED_MIN` (2)
+  **independent contexts** in that domain.
+
+Contexts, not cases. Two cases sharing one institution, legal regime or apparatus
+are two observations of one context, and promoting that to an established finding
+would call a regime's signature a replicated mechanism. Both figures are
+published — `support` counts cases, `independent_support` counts contexts — and
+only the second decides status.
 
 The distinction is reported, never required (DoD v1.1): a real structural pattern
 must actually recur to be called established, but how many a domain evidences
@@ -161,9 +169,20 @@ legitimate result — but only when it is the outcome of a search, never a silen
 A `mechanism_audit` on the case records that search: the date, the mechanisms
 considered (each a published concept), the finding
 (`mechanism-evidenced` / `no-mechanism-evidenced`), a note stating what the
-record did and did not support, and the best sources found. Validation rejects an
-audit whose finding disagrees with the case's own pattern tags, so the audit and
-the tags can never say different things.
+record did and did not support, the best sources found, and — since MOR-006 —
+the **ontology revision** the search was performed against, with the commit that
+establishes it. Validation rejects an audit whose finding disagrees with the
+case's own pattern tags, so the audit and the tags can never say different things.
+
+The revision matters because the denominator moves. "Five mechanisms considered"
+is complete under one revision and five-of-seven under another, and without the
+revision recorded, every addition to the ontology silently made every existing
+audit less complete with nothing measuring it. Two figures now follow and are
+kept apart: **completeness at the audit's own revision** (a "no" is a defect,
+declared in the case file) and **currency against the revision in force** (a "no"
+is a dated fact that gates nothing — a closed domain does not reopen because the
+vocabulary acquired a word). The registry, the assignment method and the current
+measurements are in [`ontology-revisions.md`](ontology-revisions.md).
 
 From this the engine computes **mechanism accounting**: how many cases are
 accounted for — by evidence for a mechanism, or by a dated audit that searched and
@@ -390,7 +409,7 @@ legacy assumptions. It added no case, system or concept, changed no score, and
 opened no cycle.
 
 **The review is not clean, and `Scientific Recognition Foundation — stable v1.0` is
-not declared.** Three defects were fixed as wording corrections — two documents
+not declared**, in either of its two passes. Three defects were fixed as wording corrections — two documents
 typing a moving corpus snapshot, the Physics report stating the establishment
 threshold in cases rather than contexts, and two case entries still denying they
 carry a mechanism after the ontology review reclassified them. One material finding
@@ -400,9 +419,22 @@ a concept into a `considered` list without running the test would fabricate date
 evidence. Full account and the three options:
 [`science-foundation-review.md`](science-foundation-review.md).
 
+**Second pass, after both findings were closed by construction.** The ontology
+revision model (MOR ids, recorded per audit, enforced by the gate) and the domain
+registry (`planned` / `open` / `closed`, with aggregation derived from it) were
+built, and the re-run measured what they exposed. Currency is 2 of 22 as
+expected — but **completeness at the audit's own revision is 10 of 22**: twelve
+audits failed to test a mechanism that was already eligible on the day they ran.
+Two of those gaps touch published results — `posthumous-recognition` is evidenced
+in no case in the corpus and was never tested on Vera Rubin, and
+`theory-experiment-asymmetry` was never tested in Biology & Medicine at all,
+Rosalind Franklin included. Closing either means re-auditing an entry in a closed
+layer against sources, which is an evidential act and a decision, not a refactor.
+
 The three domains remain MATURE v1.0 individually; that status is measured per
-domain and is unaffected. What is withheld is the cross-cutting claim that the
-foundation as a whole needs no further work.
+domain and is unaffected, deliberately — a growing vocabulary must not be able to
+retroactively unmake a closed layer. What is withheld is the cross-cutting claim
+that the foundation as a whole needs no further work.
 
 ---
 
