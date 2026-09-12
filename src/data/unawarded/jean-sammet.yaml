@@ -1,0 +1,133 @@
+title: Jean Sammet
+slug: jean-sammet
+status: published
+last_reviewed: 2026-09-12
+domain: mathematics-computing
+subfield: computing
+summary: Jean Sammet chaired the subcommittee that wrote the statements of COBOL, originated and developed FORMAC at IBM, wrote the standard history of programming languages in 1969, led the ACM as its president, and collected honours across nine bodies between 1965 and 2013.
+introduction: This entry tests the same proposition as the Zhang entry from the other side of the domain - what the instrument does with a contribution that is real, datable and substantially collective, rather than one that can be attributed to a single decisive step.
+omission_case: "Her case matters because its uniqueness is bounded by the nature of the work rather than by any judgment this project imposes. COBOL was a committee product and she always described it as one; FORMAC is specifically hers; the 1969 book is hers alone. A corpus that only contains contributions attributable to one person cannot say anything about how recognition treats collective work, and this domain had no such case before."
+structural_reason: "No structural reason is offered, and none is evidenced. The recognition record is one of the densest in this corpus and runs from 1965 to 2013 across an employer, a national academy, two professional societies, a museum and two women-in-computing bodies. No formal barrier to an appointment, a membership, an authorship or pay appears anywhere in the record read here, and the entry derives no mechanism from the shape of her career."
+assessment:
+  impact: 74
+  verification: 88
+  uniqueness: 68
+  durability: 78
+  breadth: 72
+  attribution: 80
+  observed_recognition: 84
+  evidence:
+    impact: [1, 2]
+    verification: [1, 2, 3]
+    uniqueness: [1, 2]
+    durability: [1, 3]
+    breadth: [1]
+    attribution: [1, 2]
+    observed_recognition: [1, 2]
+  rationale:
+    impact: "Three contributions of different kinds: the language that became the standard for business computing worldwide, one of the earliest formula-manipulation languages, and the book that established how the field records its own history. Scored below the corpus's infrastructural cases because each is substantial rather than foundational."
+    verification: The contributions are documented by two institutions that honoured her and by a museum catalogue record of the book itself, and her specific committee role is stated rather than summarised.
+    uniqueness: "Bounded by the nature of the work, and documented rather than assumed. She chaired the Short Range Subcommittee that developed all the statements of COBOL - a specific and attributable role inside a collective effort that no single person authored. FORMAC is credited to her as originator and developer, and the 1969 book is hers alone. The score reflects a portfolio in which the largest item is shared by construction."
+    durability: COBOL remains in production use more than sixty years on, and the 1969 book is still the standard reference for the period it covers; FORMAC did not persist in the same way.
+    breadth: Business computing reaches ordinary economic life rather than a research community only, which places the benefit wider than the corpus's discipline-internal cases.
+    attribution: "Credit is clear and uncontested for FORMAC and for the book. For COBOL it is necessarily shared, and both institutional records describe her role as a committee role, which is how this entry states it."
+    observed_recognition: "The densest anchored recognition record in this corpus: an employer's award in 1965, a college award in 1972, election to a national academy of engineering in 1977, an honorary doctorate in 1978, the presidency of her professional society from 1974 to 1976, that society's distinguished service award in 1985, a women-in-computing award in 1989, fellowship of the society in its initial group in 1994, a museum fellowship in 2001, a computer pioneer award in 2009 and a further pioneer award in 2013. Recognition across nine independent bodies, beginning during the work and continuing for five decades."
+key_facts:
+  - fact: "She was a member of the CODASYL COBOL committee and chairman of the Short Range Subcommittee, which developed all the statements of the language."
+    source: 1
+  - fact: She was the originator and developer of FORMAC, one of the earliest formula-manipulation languages, which she directed at IBM after joining the company in 1961.
+    source: 1
+  - fact: "Her 1969 book Programming Languages: History and Fundamentals has been described as the standard work on programming languages; the Computer History Museum's catalogue records it as a 785-page volume published by Prentice-Hall."
+    source: 3
+  - fact: "The Computer History Museum elected her a Fellow in 2001 for her contributions to the field of programming languages and its history, records that she served from 1959 to 1961 on the committee that developed COBOL, and that she was president of the ACM from 1974 to 1976 and a member of the National Academy of Engineering from 1977."
+    source: 2
+  - fact: "The professional society's pioneer record lists her honours by year: an employer award in 1965, a college centennial award in 1972, the National Academy of Engineering in 1977, an honorary doctorate in 1978, the society's distinguished service award in 1985, the Augusta Ada Lovelace Award in 1989, fellowship of the society in its initial group in 1994, a museum fellowship in 2001, the Computer Pioneer Award in 2009 and a further pioneer award in 2013."
+    source: 1
+analysis:
+  - heading: A bounded uniqueness that the record states for us
+    body: "The interesting thing about this case is that the corpus did not have to decide how much of COBOL to attribute to her. Both institutional records answer it: she chaired the subcommittee that wrote the language's statements, inside a committee that produced the language. That is more specific than membership and less than authorship, and it is exactly the kind of claim this project would otherwise have had to hedge. The uniqueness score sits where it does because the record put it there."
+  - heading: The second half of the compression test
+    body: "This entry and the Zhang entry were opened together to ask whether a lower assessed index brings lower recognition. Both return the same answer from opposite directions - a narrow single-author theorem in mathematics and a broad, partly collective portfolio in computing - and in both the gap is slightly negative. Two cases do not establish a relationship, but they do establish that the earlier two-point band was a property of which five people the corpus had chosen, not a property of the instrument."
+  - heading: What this entry declines to read into the record
+    body: "A woman who chaired a COBOL subcommittee in 1959 and led a professional society in 1974 invites an exclusion reading, and this corpus has two evidenced exclusion cases to pattern-match against. Nothing in the record read here supports one: no formal barrier to an appointment, a membership, an authorship or pay appears anywhere, and the recognition record begins in 1965 and never stops. The corpus does not infer a mechanism from a biography's shape, and it does not have standing to assign one to a career the record documents as continuously recognised."
+sources:
+  - title: "Computer Pioneers - Jean E. Sammet (the CODASYL committee and Short Range Subcommittee chairmanship, FORMAC, the 1969 book, and honours by year from 1965 to 2013)"
+    publisher: IEEE Computer Society
+    url: https://history.computer.org/pioneers/sammet.html
+    type: institutional
+  - title: "Jean Sammet - Fellow of the Computer History Museum, 2001 (fellowship citation, COBOL committee 1959-1961, FORMAC at IBM, ACM presidency, National Academy of Engineering)"
+    publisher: Computer History Museum
+    url: https://computerhistory.org/profile/jean-sammet/
+    type: institutional
+  - title: "Programming languages: history and fundamentals - catalogue record for the 1969 Prentice-Hall volume"
+    publisher: "Computer History Museum, collection catalogue"
+    url: https://www.computerhistory.org/collections/catalog/102632029
+    type: institutional
+provenance:
+  contribution:
+    record_anchor: [1, 2]
+    basis: institutional-archive
+  attribution:
+    record_anchor: [1]
+    basis: institutional-archive
+  observed-recognition:
+    record_anchor: [1, 2]
+    basis: awarding-institution-record
+audit_exceptions:
+  - claim: contribution
+    search_date: '2026-09-12'
+    search_note: >-
+      Sought her own published account of the work - the 1969 book and her conference history of
+      COBOL - at a readable source. The awarding society's digital library returned HTTP 403 to this
+      audit and the book's full text was not reachable. The contribution therefore rests on two
+      institutional records that describe her role specifically, and on a museum catalogue record of
+      the book, rather than on the primary texts.
+    best_source: 1
+    reason: >-
+      Institution-record-sufficient. Both institutions state her committee role in the same specific
+      terms, and neither the role nor the authorship of the book is contested anywhere in the record.
+mechanism_audit:
+  search_date: '2026-09-12'
+  considered:
+    - institutional-exclusion
+    - credit-misattribution
+    - delayed-recognition
+    - institutional-gatekeeping
+    - posthumous-recognition
+    - theory-experiment-asymmetry
+  finding: no-mechanism-evidenced
+  note: >-
+    No mechanism is evidenced, and the gap is negative, so the case is an aligned outcome rather than
+    unexplained under-recognition. Institutional exclusion was the mechanism this case was most likely
+    to attract and is not tagged: its definition requires a formal barrier to an appointment,
+    membership, authorship or pay, and the record read here contains none, while documenting an
+    unbroken recognition record from 1965 to 2013 across nine bodies. Credit misattribution was tested
+    carefully, because a collective product is where displacement usually appears, and is not tagged:
+    no source names another person as receiving her credit, and both institutions state her specific
+    role inside the committee rather than attributing the language to an individual. Delayed
+    recognition fails because the first honour arrived while the work was current. Gatekeeping,
+    posthumous recognition and the theory-experiment asymmetry are unsupported.
+  best_sources: [1, 2]
+seo:
+  primary_query: Jean Sammet
+  secondary_entities:
+  - COBOL
+  - FORMAC
+  - programming language history
+  - Association for Computing Machinery
+  - recognition gap
+  title: Jean Sammet - Contribution, Recognition Record & Gap | ChampionsAwards
+  description: Jean Sammet's work on COBOL, FORMAC and the history of programming languages, assessed against a recognition record running from 1965 to 2013 across nine independent bodies.
+  canonical: /unawarded/jean-sammet
+  h1: Jean Sammet
+  schema_types:
+  - BreadcrumbList
+  - Person
+  incoming_links:
+  - /rankings
+  - /sectors/mathematics-computing
+  - /unawarded
+  outgoing_links:
+  - /methodology
+  - /sectors/mathematics-computing
+  indexing: index

@@ -1,0 +1,144 @@
+title: Yitang Zhang
+slug: yitang-zhang
+status: published
+last_reviewed: 2026-09-12
+domain: mathematics-computing
+subfield: mathematics
+summary: Yitang Zhang proved in a 2014 Annals of Mathematics paper that the gap between consecutive primes is infinitely often smaller than seventy million - the first finite bound of its kind - and the major awards arrived within about a year of the result rather than decades later.
+introduction: This entry was opened to test something about the instrument rather than something about the person - whether a contribution that is narrow by construction scores lower on the Deservingness Index, and if it does, whether the recognition follows it down.
+omission_case: "His case matters because the two things it puts in tension are usually confounded. The contribution is a single theorem, deliberately bounded: one finite bound on one classical question, in a method the author himself describes as a refinement of earlier work. The recognition is fast and large. Whether those move together is the question the corpus could not ask while every case in this domain sat within two points of every other."
+structural_reason: "No structural reason is offered, and none is evidenced. The record shows a result accepted quickly by the field's leading journal and honoured by an international academy and a foundation within roughly a year of publication. One fact is recorded and deliberately not treated as a mechanism: he held a lecturer's post rather than a research chair when the work was done, having worked outside academic mathematics for years beforehand. That is documented, and the corpus makes no claim that it shaped the recognition that followed."
+assessment:
+  impact: 78
+  verification: 92
+  uniqueness: 70
+  durability: 76
+  breadth: 52
+  attribution: 90
+  observed_recognition: 80
+  evidence:
+    impact: [1, 2]
+    verification: [1, 3]
+    uniqueness: [1]
+    durability: [1, 2]
+    breadth: [1]
+    attribution: [1]
+    observed_recognition: [2, 3]
+  rationale:
+    impact: "The first finite bound on the gap between consecutive primes settled a question that had resisted every prior attempt, and opened a line of work that improved the bound rapidly afterwards. It is one theorem in analytic number theory rather than a reorganisation of a field, and is scored accordingly."
+    verification: "The proof was published in the discipline's leading journal, and the field's response was to extend it immediately - an unusually direct and public form of verification."
+    uniqueness: "The lowest uniqueness score in this corpus, on the author's own framing. His abstract states that the method is a refinement of the recent work of Goldston, Pintz and Yildirim, and the society prize for the result was shared with those three for related but separate work. The bound was his and nobody else had it; the counterfactual distance between his result and the state of the art was short, and the entry says so rather than treating a breakthrough as if it were unprecedented."
+    durability: "What endures is that a finite bound exists and that the method reaches it. The specific figure of seventy million did not endure - the field reduced it within months of publication - so this dimension is scored on the result's standing rather than on its number."
+    breadth: The lowest breadth score in this corpus. The benefit is internal to number theory, and the instrument weights benefit to society; that is a property of the DDI rather than a judgment about the mathematics.
+    attribution: Sole authorship, uncontested credit, and a paper that names its own antecedents.
+    observed_recognition: "Scored on two anchored awards within about a year of publication - an international academy's prize and a foundation fellowship - both citing this result specifically. Two further prizes for the same work are widely reported and are not included here, because no awarding body's own record for them was reached; see the documented exception. This is dense and fast recognition rather than broad recognition, and it is scored below the corpus's most decorated cases for that reason."
+key_facts:
+  - fact: "The paper proves that the lower limit of the gap between consecutive primes is less than seven times ten to the seventh, and its abstract states that the method is a refinement of the recent work of Goldston, Pintz and Yildirim on small gaps between consecutive primes."
+    source: 1
+  - fact: "It was published as \"Bounded gaps between primes\" in the Annals of Mathematics, volume 179, issue 3, pages 1121 to 1174, in 2014."
+    source: 1
+  - fact: The MacArthur Foundation named him a Fellow in its class of 2014, as a professor in the Department of Mathematics at the University of New Hampshire, for proving that the difference in spacing between two consecutive primes is infinitely often bounded by a fixed number.
+    source: 2
+  - fact: "The Royal Swedish Academy of Sciences awarded him the Rolf Schock Prize in Mathematics for 2014, for his spectacular breakthrough concerning the possibility of an infinite number of twin primes."
+    source: 3
+  - fact: The MacArthur Foundation records that before this work he held a range of positions outside academic mathematics and joined the University of New Hampshire as a lecturer in 1999.
+    source: 2
+analysis:
+  - heading: What a narrower contribution does to the instrument
+    body: "This is the lowest assessed index in the domain, and the two dimensions that put it there are uniqueness and breadth - both scored down on documented grounds rather than on impression. The uniqueness score follows the author's own abstract, which frames the method as a refinement of named earlier work, and the society prize that was shared with the authors of that work. The breadth score follows the instrument's design, which weights benefit to society and therefore reads a result internal to number theory as narrower than one with a wider surface. Neither is a statement that the mathematics is lesser."
+  - heading: Lower assessed merit did not bring lower recognition
+    body: "The gap is slightly negative, which places the case in the band where recognition roughly matches assessed merit. That is the finding this entry was opened to test. A corpus whose cases all sat within two points of each other could not distinguish between an instrument that discriminates on merit and one that does not; this case shows the merit side moving several points while the recognition side stays high. The two are not locked together."
+  - heading: Why the Fields Medal is not on this page
+    body: "He was well past forty when the result appeared, and this project published an anatomy of the Fields Medal's age rule in the same cycle, so the connection is available and tempting. It is not made. No record read here shows that the rule was applied to him, that he was considered, or that any body said anything about his eligibility - and the Wiles entry earns its eligibility relation precisely because the Congress's own press office stated the rule at the time. An inference from a birth date is not a documented interaction, and the corpus does not manufacture one."
+sources:
+  - title: "Bounded gaps between primes, Annals of Mathematics 179(3), 1121-1174 (2014) - journal record and abstract"
+    publisher: "Yitang Zhang, Annals of Mathematics, Princeton University"
+    url: https://annals.math.princeton.edu/2014/179-3/p07
+    type: primary
+  - title: "Yitang Zhang - MacArthur Fellow, class of 2014 (the result, his position, and his career before it)"
+    publisher: John D. and Catherine T. MacArthur Foundation
+    url: https://www.macfound.org/fellows/class-of-2014/yitang-zhang
+    type: institutional
+  - title: "The Rolf Schock Prizes 2014 - the mathematics laureate and citation"
+    publisher: "Kungl. Vetenskapsakademien (Royal Swedish Academy of Sciences)"
+    url: https://www.kva.se/en/news/rolf-schockprisen-2014-2/
+    type: institutional
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+  attribution:
+    record_anchor: [1]
+    basis: primary-publication
+  observed-recognition:
+    record_anchor: [2, 3]
+    basis: awarding-institution-record
+audit_exceptions:
+  - claim: observed-recognition
+    search_date: '2026-09-12'
+    search_note: >-
+      Two further prizes for this result - a society prize in number theory for 2014, shared with
+      Goldston, Pintz and Yildirim, and an international prize for 2013 - are widely reported. The
+      awarding society's prize pages returned HTTP 403 to this audit and the university's own news
+      release redirected to its homepage, so neither was read at an awarding-body source.
+    best_source: 2
+    reason: >-
+      Excluded from the anchored basis rather than asserted. The observed-recognition score rests on
+      the two awards read at source; the excluded pair would not move it into a different band.
+  - claim: uniqueness
+    search_date: '2026-09-12'
+    search_note: >-
+      The shared character of the 2014 society prize, and the rapid improvement of the bound by other
+      mathematicians after publication, are reported consistently but were not read at an
+      awarding-body or journal source. What is anchored is the author's own abstract naming the work
+      his method refines.
+    best_source: 1
+    reason: >-
+      Primary-sufficient for what is claimed. The uniqueness score is lowered on the author's own
+      statement of his antecedents, which is the strongest available evidence and is in the paper.
+mechanism_audit:
+  search_date: '2026-09-12'
+  considered:
+    - institutional-exclusion
+    - credit-misattribution
+    - delayed-recognition
+    - institutional-gatekeeping
+    - posthumous-recognition
+    - theory-experiment-asymmetry
+  finding: no-mechanism-evidenced
+  note: >-
+    No mechanism is evidenced, and the gap is negative, so the case falls in the band where
+    recognition roughly matches assessed merit rather than in unexplained under-recognition. Delayed
+    recognition is the mechanism this case most conspicuously does not exhibit: the major awards
+    arrived within about a year of publication, which is the opposite of what that mechanism
+    describes. Institutional exclusion was tested against the one documented fact that could support
+    it - that he held a lecturer's post and had worked outside academic mathematics beforehand - and
+    is not tagged, because the definition requires a formal barrier to an appointment, membership,
+    authorship or pay, and none is in the record. Credit misattribution fails because his authorship
+    is sole and uncontested, and because his own paper credits the work it builds on rather than
+    obscuring it. Gatekeeping, posthumous recognition and the theory-experiment asymmetry have no
+    purchase on this case.
+  best_sources: [1, 2]
+seo:
+  primary_query: Yitang Zhang
+  secondary_entities:
+  - bounded gaps between primes
+  - Annals of Mathematics
+  - Rolf Schock Prize
+  - MacArthur Fellowship
+  - recognition gap
+  title: Yitang Zhang - Contribution, Recognition Record & Gap | ChampionsAwards
+  description: Yitang Zhang's 2014 proof of a finite bound on gaps between primes, assessed against the recognition it received - and what a deliberately narrow contribution does to the index.
+  canonical: /unawarded/yitang-zhang
+  h1: Yitang Zhang
+  schema_types:
+  - BreadcrumbList
+  - Person
+  incoming_links:
+  - /rankings
+  - /sectors/mathematics-computing
+  - /unawarded
+  outgoing_links:
+  - /methodology
+  - /sectors/mathematics-computing
+  indexing: index

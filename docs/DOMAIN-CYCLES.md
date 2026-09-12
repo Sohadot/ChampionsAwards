@@ -766,9 +766,46 @@ discipline, **not** a claimed search-engine requirement. The project does not tu
 a heuristic into a fact in its presentation layer any more than in its evidence
 layer.
 
+### Stage 2 - the pause at 8 (2026-09-12)
+
+Three cases, chosen as types against the three evidence gaps rather than as
+names: a lower-DDI mathematics test, a lower-DDI computing test, and an
+under-recognition test that does not start from institutional exclusion.
+
+| Case | Subfield | DDI | Obs | Gap | Mechanism |
+| --- | --- | --- | --- | --- | --- |
+| Yitang Zhang | mathematics | 77 | 80 | -3 | none |
+| Jean Sammet | computing | 77 | 84 | -7 | none |
+| Tommy Flowers | computing | 83 | 56 | **27** | **none - ontology boundary** |
+
+Baseline at the pause - **DDI range 77-86 (spread 1 to 9)**; gap -8 to 27, median
+1.5; 5 aligned, 2 under-recognised, 1 significantly under-recognised; mathematics
+3 cases / computing 5; mechanism accounting 8/8; **unexplained under-recognition
+1** (was 0); ontology coverage still **1 of 6**; award relations **4, unchanged**.
+Full account: [`cycle-03-stage2-read.md`](cycle-03-stage2-read.md).
+
+Three results worth carrying. The two lowest-assessed cases in the domain are both
+in the aligned band, so **a lower assessed index does not bring lower recognition**
+- the first time this corpus could show the two sides of the instrument moving
+independently. Three new cases produced **no new mechanism**, leaving one evidenced
+across eight cases. And Flowers stands on a boundary the ontology does not cover:
+his contribution was withheld from the record by statutory secrecy, which is
+neither a barrier to a position, nor a community unable to absorb the work, nor a
+person exercising discretionary obstruction. **No concept was created for it** - a
+mechanism invented to fit the case that motivated it is a taxonomy built backwards
+from a result, which is the error removed from the Definition of Done in Cycle 01.
+
+One rule was set for this stage and held: *a wider DDI range is an outcome to
+observe, not a target to manufacture*. The range widened because two genuinely
+narrower contributions scored lower on dimensions the record bounds - Zhang's
+uniqueness taken from his own abstract naming the work it refines, Sammet's from
+two institutional records stating her committee role rather than attributing COBOL
+to a person. No relation was manufactured either: Zhang carries no Fields Medal
+eligibility relation, because being over forty is not a documented interaction.
+
 ### Next
 
+The last two cases, chosen by what the corpus now shows rather than by the plan.
 Production verification in Search Console - submit the sitemap, inspect one URL
 per template family, confirm the Google-selected canonical and the structured-data
-parsing match what the build declares - then Stage 2: three case *types* against
-the three evidence gaps, not three names.
+parsing match what the build declares - runs in parallel and blocks nothing.
