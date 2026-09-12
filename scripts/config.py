@@ -51,7 +51,7 @@ HUB_TITLES: Final[dict[str, str]] = {
     "awards": "Awards",
     "recognition-systems": "Recognition Systems",
     "concepts": "Concepts",
-    "unawarded": "The Unawarded Archive",
+    "unawarded": "The Recognition Archive",
     "reports": "Reports",
     "timeline": "Timeline",
 }

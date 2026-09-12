@@ -107,6 +107,14 @@ either direction moves her between "under-recognized" and "recognition roughly
 matches assessed merit". The score was not adjusted away from the edge, and the
 case entry says so in its own rationale.
 
+> **Resolved, 2026-09-12.** The label was corrected in the round that followed
+> this read: the section is now **The Recognition Archive**, and the sentence that
+> assumed failure was replaced by the project's own three-outcome logic — *a
+> governed archive of how contribution and recognition align, diverge, or remain
+> unresolved*. The URL and the data cluster are unchanged; `unawarded` survives as
+> a corpus subset, not as the public identity. The paragraph below is left as it
+> stood when the question was still open.
+
 **The archive's name is now carrying a case it does not describe.** Liskov holds
 the Turing Award and her page renders under the eyebrow "The Unawarded Archive".
 The precedent for filing an aligned case there was set in Cycle 02 by Apgar (−2)

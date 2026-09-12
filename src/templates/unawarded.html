@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ item.title }} — The Unawarded Archive — ChampionsAwards{% endblock %}
+{% block title %}{{ item.title }} — The Recognition Archive — ChampionsAwards{% endblock %}
 {% block meta_description %}{{ item.summary }}{% endblock %}
 {% block canonical %}{{ item.canonical_url }}{% endblock %}
 {% block canonical_link %}{{ item.canonical_url }}{% endblock %}
@@ -9,7 +9,7 @@
 {% block content %}
 <section class="page-hero">
   <div class="container narrow">
-    <p class="eyebrow">The Unawarded Archive</p>
+    <p class="eyebrow">The Recognition Archive</p>
     <h1>{{ item.title }}</h1>
     <p class="lead">{{ item.summary }}</p>
   </div>
@@ -28,14 +28,15 @@
     {% endif %}
 
     {% if item.structural_reason %}
-    <h2>Structural reason for omission</h2>
+    <h2>Structural reading</h2>
     <p>{{ item.structural_reason }}</p>
     {% endif %}
 
     <h2>Archive function</h2>
     <p>
-      The Unawarded Archive exists to document the gap between contribution and recognition,
-      preserving cases where historical visibility failed to match actual significance.
+      A governed archive of how contribution and recognition align, diverge, or remain unresolved.
+      Each case is assessed by the same instrument, and the outcome class is a result of that
+      assessment rather than a condition of entry.
     </p>
 
     {% include "_body.html" %}
