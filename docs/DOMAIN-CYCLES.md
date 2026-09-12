@@ -380,7 +380,11 @@ Opened 2026-09-09. Closed 2026-09-10.
 
 > **Physics & Astronomy Recognition Layer — mature v1.0**
 > Closed at corpus snapshot `27036032e0e9` · data through 2026-09-10
-> Current snapshot `6f43ff80ba61` · data through 2026-09-11 — see the note below
+> Current snapshot `2cfe020426ee` · data through 2026-09-12 — see the note below
+> (moved 2026-09-12 by the Wolf Prize anatomy, which documents the inaugural 1978
+> physics prize to Chien-Shiung Wu: a relation that existed before the corpus could
+> see it. A closed layer is closed at a stated snapshot, not frozen against later
+> evidence.)
 > Governed by DoD v1.1 (the layer closes at v1.0; the version numbers are
 > different things — v1.1 is the Definition of Done, v1.0 is this knowledge layer's
 > first closure)
@@ -511,7 +515,10 @@ the RLS threshold. The work is making those three reliable, not adding a fourth.
 ### Closure
 
 > **Biology & Medicine Recognition Layer — mature v1.0**
-> Corpus snapshot `919d2f889371` · data through 2026-09-11 · governed by DoD v1.1
+> Closed at corpus snapshot `919d2f889371` · data through 2026-09-11 · governed by DoD v1.1
+> Current snapshot `919d2f889371` · data through 2026-09-12 — unchanged in substance: the
+> Wolf Prize anatomy entered this domain's award layer on that date but documents no
+> relation to a biology case, so the snapshot is identical and only the date moved.
 
 | Criterion | Measured |
 | --- | --- |
@@ -681,3 +688,50 @@ is not evidence about this domain. Both mature domains show a DDI spread of 13-1
 at ten cases; a spread of 1 at five deliberately top-tier cases is most
 economically read as selection. That is an observation about the corpus, not
 about the domain or the instrument.
+
+### The Wolf Prize anatomy, and the second recompute at 5 (2026-09-12)
+
+Question 5 of the anatomy read pointed at an anatomy rather than a case, and the
+anatomy answered its own question in an unexpected way. The Wolf Prize has nine
+fields and **no computing field**, so it cannot bridge the two halves of this
+domain; the `subfield: cross-cutting` label Round 1 gave it is corrected to
+`mathematics`, and the cross-cutting compartment is now empty of cases, systems
+and awards alike.
+
+What it is instead is the project's **first cross-domain apparatus**: two
+documented relations, Wiles in mathematics (1995/6, shared with Langlands) and
+Chien-Shiung Wu in physics (the inaugural 1978 prize, held alone). Wu is a Cycle
+01 case, so a closed domain gained a relation it had always had and could not see.
+Award relations: mathematics-computing 3 to 4, physics-astronomy 8 to **9**.
+
+An award anatomy may now declare `domains` in the plural, and **a relation is
+counted in the domain of the case it names, not of the award that carries it**.
+Sector pages filter by the same rule. Full account:
+[`cycle-03-wolf-read.md`](cycle-03-wolf-read.md).
+
+The domain reading is otherwise unchanged - DDI still 85-86, the deficit
+population still two cases with one mechanism, explanatory coverage still
+complete on a population of two - so the three evidence gaps Stage 2 must address
+stand exactly as the anatomy read left them.
+
+### The SEO contract (2026-09-12)
+
+From this round on, every governed page carries a presentation contract in its
+own data: primary query, secondary entities, title, description, canonical, H1,
+schema types, incoming and outgoing governed links, and indexing status. It is
+enforced in two layers - shape from one file in `validate_content`, and
+route-level facts in `seo_gate.py`, which reads the built output rather than the
+data so it cannot agree with a stale assumption. Awards are the first cluster
+under the contract.
+
+The rule this imposes on the project is the same one the evidence layers already
+follow: **presentation may not claim more than the page contains.** A title must
+name the entity it is about, structured data must match what is on the page (no
+FAQ schema without an FAQ), a canonical must match the route, no page may be an
+orphan, and no two pages may compete on one title. Nothing in the contract may
+change what an entry claims.
+
+### Next
+
+The SEO architecture audit across the whole site, then Stage 2 - three case
+*types* against the three evidence gaps, not three names.
