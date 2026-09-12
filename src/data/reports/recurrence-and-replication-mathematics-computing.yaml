@@ -90,10 +90,12 @@ observations:
       The instrument discriminates more on the recognition side than on the merit side here. Assessed
       index spans {ddi_spread} points, from {ddi_min} to {ddi_max}; observed recognition spans
       {observed_spread}, from {observed_min} to {observed_max}. The two lowest-assessed cases in the
-      corpus, Jean Sammet at {case_ddi:jean-sammet} and Yitang Zhang at {case_ddi:yitang-zhang}, both
-      read {case_reading:jean-sammet}.
+      corpus are Jean Sammet at {case_ddi:jean-sammet} ({case_reading:jean-sammet}) and Yitang Zhang
+      at {case_ddi:yitang-zhang} ({case_reading:yitang-zhang}); each band reading is resolved from its
+      own case rather than borrowed from the other.
     derived_from: [ddi_spread, ddi_min, ddi_max, observed_spread, observed_min, observed_max,
-                   case_ddi:jean-sammet, case_ddi:yitang-zhang, case_reading:jean-sammet]
+                   case_ddi:jean-sammet, case_reading:jean-sammet,
+                   case_ddi:yitang-zhang, case_reading:yitang-zhang]
   - statement: >-
       The award layer is thinner than the case layer. {n_award_relations} hardened relations connect
       this corpus to {n_awards} mapped awards, against {n_award_relations@physics-astronomy} in
@@ -124,9 +126,11 @@ hypotheses:
       and the domain's case list was assembled to answer questions about the instrument rather than to
       sample a field.
     refuted_by: >-
-      A subsequent domain assembled on the same principles and returning a materially lower share of
-      aligned cases would refute it; so would this domain's alignment rate holding after a batch of
-      cases selected without regard to the instrument.
+      Refuted if this domain continues to show a materially higher alignment rate once case-selection
+      criteria are held comparable across domains, or if a further within-domain batch selected
+      without regard to the expected instrument outcome preserves the same elevated rate. A comparison
+      against a differently selected corpus is not a test of this claim, because the people entered
+      would differ along with the criteria.
   - statement: >-
       Asymmetric discrimination. The Deservingness Index separates contributions less sharply than it
       separates the recognition they received, in every domain rather than only in this one.
