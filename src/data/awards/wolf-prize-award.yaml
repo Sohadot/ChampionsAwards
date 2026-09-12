@@ -49,7 +49,7 @@ analysis:
   - heading: A transparency profile that runs opposite to the Fields Medal
     body: "Set beside the other two anatomies in this domain, this one inverts what is open. The foundation publishes its outcomes in unusual detail - for every laureate the year, the field, the affiliation held at the time, the citation and the prize share - and publishes nothing about who nominated or who judged. The International Mathematical Union does the reverse: every Fields Medal committee since 1936 is named, including recusals, while nominations are confidential with no release horizon. The awarding society behind the Turing Award publishes neither in a form this audit could read. Three systems in one domain, three different answers to what a recognition system owes the public, and no ordering between them that a single transparency score could express."
   - heading: One thing this page does not claim
-    body: "That the Wolf Prize is a Nobel precursor. The corpus's own recognition-system entry for this prize has carried a version of that claim since it was written, and nothing read in this audit supports it at record grade: the foundation does not make it, and establishing it would mean compiling the laureate list against another award's list, which is this project's analysis presented as a documented fact. The claim is flagged here and left to the requalification of that entry rather than repeated in an anatomy."
+    body: "That the Wolf Prize is a Nobel precursor. The corpus's own recognition-system entry for this prize carried a version of that claim from the day it was written, and nothing read in this audit supports it at record grade: the foundation does not make it, and establishing it would mean compiling the laureate list against another award's list, which is this project's analysis presented as a documented fact. The anatomy flagged it rather than repeating it, and the recognition-system entry withdrew it on 2026-09-12, lowering its track-record score from 82 to 76."
 corpus_relations:
   - case: andrew-wiles
     architecture_element: eligibility
@@ -137,8 +137,8 @@ audit_exceptions:
       this project's own analysis presented as a documented fact.
     best_source: 1
     reason: >-
-      Not asserted on this page. The claim is flagged for the requalification of the recognition-system
-      entry rather than repeated here.
+      Not asserted on this page, and now resolved at source: the recognition-system entry withdrew the
+      claim on 2026-09-12 and lowered its track-record score from 82 to 76 accordingly.
 seo:
   primary_query: Wolf Prize
   secondary_entities:
