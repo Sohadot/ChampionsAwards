@@ -1,0 +1,154 @@
+title: George Green
+slug: george-green
+status: published
+last_reviewed: 2026-09-12
+domain: mathematics-computing
+subfield: mathematics
+summary: George Green introduced the potential function, Green's theorem and Green's functions in an 1828 essay sold by private subscription to fifty-one people, almost entirely self-taught; the work was rediscovered by Lord Kelvin in 1846, five years after Green's death, and republished in a German journal in the 1850s.
+introduction: This entry was opened to test a mechanism rather than a person - whether delayed recognition, which this project has published as a concept since Cycle 01 and evidenced exactly once anywhere in the corpus, survives contact with a case chosen for it.
+omission_case: "His case matters because it is the cleanest available test of a definition. Delayed recognition, as this project defines it, turns on time and reception rather than on contested credit or a formal barrier, and it names publication through a low-visibility channel as one of the ways it arises. An essay sold to fifty-one subscribers, unread for eighteen years, then found and promoted by the most eminent physicist of the next generation, is that definition's own description of itself. The entry was written to find out whether the record bears that out, not to confirm it."
+structural_reason: "The documented constraint is the channel, not a barrier and not a rival. The university's own account states that the 1828 essay was sold on a subscription basis to fifty-one people, most of whom were friends; that Green had about one year of formal schooling, between the ages of eight and nine, and was almost entirely self-taught; and that his work was rediscovered by Lord Kelvin in 1846. Nothing in the record shows a position closed to him - he entered Cambridge as an undergraduate at forty and held a college fellowship - and nothing shows another claimant taking his credit."
+assessment:
+  impact: 90
+  verification: 90
+  uniqueness: 88
+  durability: 94
+  breadth: 70
+  attribution: 92
+  observed_recognition: 67
+  evidence:
+    impact: [1, 2, 3]
+    verification: [1, 2]
+    uniqueness: [1, 2]
+    durability: [2, 3]
+    breadth: [2, 3]
+    attribution: [2]
+    observed_recognition: [2, 3]
+  rationale:
+    impact: "The essay introduced the potential function and the results now called Green's theorem and Green's functions, which the university describes as underlying its later use across physics and which the Abbey records as used in modern nuclear and solid-state physics."
+    verification: "Anchored to the text itself and to two institutions. The one qualification the entry keeps: the accessible text is a transcription made from the 1850s journal reprint rather than from a copy of the 1828 Nottingham printing, and the score is held a little below the corpus's best-verified cases for that."
+    uniqueness: "The method and the potential function were his, produced by a man with a year of schooling working outside any scientific institution, and no competing claimant appears anywhere in the record. Kelvin's role was to find the work, not to reach it independently."
+    durability: "The highest durability score in this corpus. Green's functions, Green's theorem and Green's identities are in continuous daily use nearly two centuries after the essay, across fields that did not exist when it was written."
+    breadth: Physics and engineering broadly rather than one discipline, which places the benefit wider than a result internal to pure mathematics and narrower than a contribution reaching ordinary life directly.
+    attribution: Eponymous three times over and uncontested. Credit today is as securely attached as anything in this corpus.
+    observed_recognition: "Nothing in his lifetime beyond a college fellowship, against posthumous recognition that is close to total - three eponymous constructs in standard use, a memorial stone in Westminster Abbey unveiled in 1993 adjoining the graves of Newton and Kelvin, a university library in his name, and his mill restored as a museum. Calibrated against the comparable case already in this corpus, where near-total posthumous eponymy with nothing in life was scored in the same band: this is high recognition arriving very late, not absent recognition."
+key_facts:
+  - fact: "The essay introduced the potential function; the accessible text states that Green's famous essay, published at Nottingham in 1828, was transcribed from its reprint in Crelle's Journal of 1850 to 1854."
+    source: 1
+  - fact: "The University of Nottingham records that the 1828 essay was sold on a subscription basis to fifty-one people, most of whom were friends."
+    source: 2
+  - fact: The same university record states that Green had about one year of formal schooling as a child, between the ages of eight and nine, and was almost entirely self-taught.
+    source: 2
+  - fact: "It records that in 1846 Green's work was rediscovered by Lord Kelvin, who popularised it for future mathematicians; that Green entered Cambridge as an undergraduate in 1833 at the age of forty; and that he became ill in 1840, returned to Nottingham and died the following year."
+    source: 2
+  - fact: "Westminster Abbey records that a memorial stone for George Green, mathematician and physicist, was unveiled in the nave in July 1993, adjoining the graves of Sir Isaac Newton and Lord Kelvin, and that theorems derived from his work on electricity and magnetism are used in modern nuclear and solid state physics."
+    source: 3
+  - fact: The University of Nottingham records that its George Green Library is named after him and that Green's mill was restored to working order in 1986 and operates as a museum and science centre.
+    source: 2
+analysis:
+  - heading: A definition that held
+    body: "This is the first case in this domain to evidence delayed recognition, and the corpus's second anywhere. It matters that the fit is clause by clause rather than by resemblance. The published definition turns on time and reception rather than contested credit, and names publication through a low-visibility channel as one route; the record gives a subscription list of fifty-one, eighteen years of silence, a rediscovery by a third party after the author's death, and no rival claimant at any point. Three mechanisms that could have been reached for were tested and refused: no formal barrier is documented, no one took his credit, and no eligibility rule foreclosed an honour."
+  - heading: What the self-teaching is, and is not, evidence of
+    body: "A man with one year of schooling who published the potential function invites an exclusion reading, and this corpus has two evidenced exclusion cases in this domain to pattern-match against. The record does not support one. Nothing was closed to him: he entered Cambridge, graduated, and held a fellowship at Gonville and Caius. His education is recorded here because it bears on uniqueness - the counterfactual distance between his position and his result is unusually large - and not because it is a barrier this entry can document."
+  - heading: The largest gap in this domain that an existing mechanism explains
+    body: "His is the second-largest recognition gap in Mathematics and Computing, and the only one of the three largest that the current ontology accounts for. That is worth stating plainly alongside the two it does not account for: a corpus can evidence a mechanism and still be left with deficits its vocabulary cannot reach, and this domain now shows both conditions at once."
+sources:
+  - title: "An Essay on the Application of Mathematical Analysis to the Theories of Electricity and Magnetism (Nottingham, 1828) - transcription from the Crelle's Journal reprint of 1850-1854"
+    publisher: "George Green; transcription posted to arXiv (0807.0088)"
+    url: https://arxiv.org/abs/0807.0088
+    type: primary
+  - title: "George Green - Mathematician, Physicist and Miller (the fifty-one subscribers, his schooling, Kelvin's rediscovery in 1846, Cambridge at forty, his death, the George Green Library and Green's Mill)"
+    publisher: "School of Physics and Astronomy, University of Nottingham"
+    url: https://www.nottingham.ac.uk/physics/about/history/george-green.aspx
+    type: institutional
+  - title: "George Green - commemoration (the 1993 memorial stone in the nave, adjoining Newton and Kelvin, and the standing of his theorems)"
+    publisher: Westminster Abbey
+    url: https://www.westminster-abbey.org/abbey-commemorations/commemorations/george-green
+    type: institutional
+patterns:
+  - delayed-recognition
+pattern_evidence:
+  delayed-recognition: [2]
+provenance:
+  contribution:
+    record_anchor: [1]
+    basis: primary-publication
+  attribution:
+    record_anchor: [2, 3]
+    basis: institutional-archive
+  observed-recognition:
+    record_anchor: [3]
+    basis: institutional-archive
+audit_exceptions:
+  - claim: contribution
+    search_date: '2026-09-12'
+    search_note: >-
+      Sought a readable scan of the 1828 Nottingham printing itself. The accessible text is a
+      transcription made from the essay's reprint in Crelle's Journal between 1850 and 1854, with
+      typographical corrections and an added reference section, and it says so on its own record.
+    best_source: 1
+    reason: >-
+      Primary-at-one-remove, stated. The text is the essay, by way of the reprint that Kelvin's
+      intervention produced, and the verification score is held down rather than the distinction
+      being elided.
+  - claim: pattern:delayed-recognition
+    search_date: '2026-09-12'
+    search_note: >-
+      Sought the subscription list itself and any contemporary record of the essay's reception between
+      1828 and 1846. Neither was reached. The university states the subscription basis, the number of
+      subscribers, and the date and agent of the rediscovery; no archival document recording the
+      original circulation was found.
+    best_source: 2
+    reason: >-
+      Secondary-record-sufficient, from the institution that holds his archive. What the mechanism
+      requires - a low-visibility channel and a long delay before uptake - is documented; the
+      underlying subscription record is not in hand, and the entry says so.
+mechanism_audit:
+  search_date: '2026-09-12'
+  considered:
+    - institutional-exclusion
+    - credit-misattribution
+    - delayed-recognition
+    - institutional-gatekeeping
+    - posthumous-recognition
+    - theory-experiment-asymmetry
+  finding: mechanism-evidenced
+  note: >-
+    Delayed recognition is evidenced, and on the definition rather than on resemblance. That mechanism
+    describes a gap between contribution and acknowledgment that is primarily a function of time and
+    reception rather than of contested credit, and names publication through a low-visibility channel
+    among its routes. The record gives all of it: an essay sold by subscription to fifty-one people,
+    eighteen years before a third party found it, five years after the author's death, and a reprint
+    in a foreign journal thereafter. Institutional exclusion was tested and is not tagged - his
+    schooling was minimal but nothing was closed to him, he entered Cambridge at forty and held a
+    college fellowship, and the definition requires a formal barrier. Credit misattribution is not
+    tagged: no person is documented as receiving reward for his work, and the man who found the essay
+    spent his effort attaching Green's name to it. Posthumous recognition is not tagged, because that
+    mechanism turns on an eligibility rule foreclosing an honour and no such rule is in this record;
+    that his recognition is largely posthumous is an outcome here, not a mechanism. Gatekeeping and
+    the theory-experiment asymmetry are unsupported.
+  best_sources: [1, 2]
+seo:
+  primary_query: George Green
+  secondary_entities:
+  - Green's function
+  - Green's theorem
+  - 1828 Essay on electricity and magnetism
+  - Lord Kelvin
+  - delayed recognition
+  title: George Green - Contribution, Recognition Record & Gap | ChampionsAwards
+  description: George Green's 1828 essay reached fifty-one subscribers and waited eighteen years for a reader. What that delay did to his recognition, assessed by a published index.
+  canonical: /unawarded/george-green
+  h1: George Green
+  schema_types:
+  - BreadcrumbList
+  - Person
+  incoming_links:
+  - /rankings
+  - /sectors/mathematics-computing
+  - /unawarded
+  outgoing_links:
+  - /concepts/delayed-recognition
+  - /methodology
+  - /sectors/mathematics-computing
+  indexing: index

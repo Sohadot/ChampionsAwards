@@ -803,9 +803,55 @@ two institutional records stating her committee role rather than attributing COB
 to a person. No relation was manufactured either: Zhang carries no Fields Medal
 eligibility relation, because being over forty is not a documented interaction.
 
+### Stage 3 - the full read at 10 (2026-09-12)
+
+Two cases, each chosen to test a question Stage 2 produced rather than to fill a
+row. Expansion is complete.
+
+| Case | Subfield | Question | DDI | Obs | Gap | Result |
+| --- | --- | --- | --- | --- | --- | --- |
+| George Green | mathematics | does delayed recognition survive a case chosen for it? | 88 | 67 | 21 | **evidenced** |
+| James H. Ellis | computing | is the Flowers boundary a one-off? | 78 | 44 | **34** | **it recurs** |
+
+Green evidences **delayed recognition** - the first in this domain, the corpus's
+second anywhere - and the fit is clause by clause: an 1828 essay sold by
+subscription to fifty-one people, eighteen years of silence, rediscovery by a
+third party five years after his death. Support 1 of 10, so **emergent, not
+established**; the threshold was not bent for the mechanism the round was designed
+around.
+
+Ellis reproduces the Flowers boundary exactly, in a different decade and
+technology, and **no concept was created for it**. Both cases arise inside one
+national cryptographic apparatus, so a shape recurring within a single secrecy
+regime may describe that regime rather than a mechanism of recognition; two
+occurrences are therefore not counted as a pattern. Credit misattribution was
+tested hardest here, because the field's highest award for public-key cryptography
+is held by others, and is still refused - independent arrival by another route is
+not displacement.
+
+At the pause: DDI 77-88 (spread 11); gap -8 to 34, median 8; 5 aligned, 3
+under-recognised, 2 significantly under-recognised; mathematics 4 / computing 6;
+cross-cutting still **0/0/0** across a completed corpus; mechanism accounting
+10/10; **ontology coverage 2 of 6**; unexplained under-recognition **2 of 5**,
+from 0 of 2 at n=5. Award relations 4, unchanged since n=5. Full account:
+[`cycle-03-stage3-read.md`](cycle-03-stage3-read.md).
+
+Every Definition-of-Done criterion is now met except synthesis.
+
+Read against the closed domains, this one aligns where they do not - 5 aligned
+cases against 0 in physics and 2 in biology, and a median gap of 8 against 26.5
+and 24.5 - and it produces fewer mechanisms per deficit than either: physics
+explains 9 of its 10 deficits, biology 5 of 8, this domain 3 of 5. Its two
+unexplained cases are not short of evidence; every fact in both is documented by
+the state agency that imposed the secrecy. They are short of a concept.
+
 ### Next
 
-The last two cases, chosen by what the corpus now shows rather than by the plan.
+An **ontology review over the completed corpus**, before synthesis. Its question:
+is statutory secrecy a mechanism this project has not named, or a property of one
+apparatus the corpus happened to sample twice? The answer decides whether the
+synthesis has three outcome classes or four.
+
 Production verification in Search Console - submit the sitemap, inspect one URL
 per template family, confirm the Google-selected canonical and the structured-data
 parsing match what the build declares - runs in parallel and blocks nothing.
