@@ -334,13 +334,12 @@ ONTOLOGY_REVISIONS: Final[dict[str, dict[str, object]]] = {
         "note": "The Cycle 03 ontology review adds compulsory secrecy.",
     },
     "MOR-006": {
-        "commit": None, "date": "2026-09-12", "mechanisms": _MOR_005,
+        "commit": "442ffa6", "date": "2026-09-12", "mechanisms": _MOR_005,
         "note": (
             "The revision model itself. The mechanism set is unchanged, but an audit must now "
             "record the revision it was performed against, and must test everything eligible at "
-            "that revision or name the gap. Recorded without a commit hash because the commit "
-            "that puts a revision in force cannot contain its own hash; the hash is backfilled "
-            "by the next commit that touches this registry."
+            "that revision or name the gap. The hash was backfilled immediately after the commit, "
+            "because a commit cannot contain its own hash."
         ),
     },
 }
