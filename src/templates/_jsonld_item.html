@@ -20,16 +20,3 @@
   } | tojson
 }}
 </script>
-<script type="application/ld+json">
-{{
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": site.domain},
-      {"@type": "ListItem", "position": 2, "name": hub_title, "item": site.domain ~ "/" ~ item.cluster},
-      {"@type": "ListItem", "position": 3, "name": item.title, "item": item.canonical_url}
-    ]
-  } | tojson
-}}
-</script>

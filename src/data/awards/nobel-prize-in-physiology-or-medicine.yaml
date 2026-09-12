@@ -244,6 +244,29 @@ audit_exceptions:
       Governing-document-sufficient. What is asserted is the absence of an external sponsor in the
       rules, which the governing documents carry. The mechanism that sets the annual amount is not
       asserted, because the page describing it was not reached.
+seo:
+  primary_query: Nobel Prize in Physiology or Medicine
+  secondary_entities:
+    - Nobel Assembly at Karolinska Institutet
+    - Nobel posthumous rule
+    - Nobel nomination archive
+    - Rosalind Franklin
+    - Albert Schatz
+  title: "Nobel Prize in Physiology or Medicine - Rules & Archive | ChampionsAwards"
+  description: "The Nobel medicine prize mapped where its record touches three governed cases: the rules, the dates they took effect, and how far the nomination archive is actually open."
+  canonical: /awards/nobel-prize-in-physiology-or-medicine
+  h1: Nobel Prize in Physiology or Medicine
+  schema_types:
+    - BreadcrumbList
+    - Article
+  incoming_links:
+    - /awards
+    - /sectors/biology-medicine
+  outgoing_links:
+    - /unawarded/rosalind-franklin
+    - /unawarded/albert-schatz
+    - /sectors/biology-medicine
+  indexing: index
 sources:
   - title: Statutes of the Nobel Foundation (eligibility, sharing, posthumous provision, nomination deadline, secrecy, withholding, finality)
     publisher: The Nobel Foundation (nobelprize.org)

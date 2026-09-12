@@ -4,9 +4,10 @@
 {% block meta_description %}{{ item.summary }}{% endblock %}
 {% block canonical %}{{ item.canonical_url }}{% endblock %}
 {% block canonical_link %}{{ item.canonical_url }}{% endblock %}
-{% block structured_data %}{% include "_jsonld_item.html" %}{% endblock %}
+{% block structured_data %}{% include "_jsonld_item.html" %}{% include "_jsonld_breadcrumbs.html" %}{% endblock %}
 
 {% block content %}
+{% include "_breadcrumbs.html" %}
 <section class="page-hero">
   <div class="container narrow">
     <p class="eyebrow">Recognition System</p>

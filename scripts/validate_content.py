@@ -9,6 +9,16 @@ from config import (
     AUDIT_ELIGIBLE_CONCEPT_TYPES,
     AWARD_ARCHITECTURE_KEYS,
     FUNDING_SEPARATION_REQUIRED,
+    SEO_BRAND_SUFFIX,
+    SEO_CONTRACT_CLUSTERS,
+    SEO_CONTRACT_FIELDS,
+    SEO_DESCRIPTION_MAX,
+    SEO_DESCRIPTION_MIN,
+    SEO_INDEXING_STATES,
+    SEO_REQUIRED_SCHEMA_TYPES,
+    SEO_TITLE_MAX,
+    is_canonical_path,
+    is_valid_schema_type,
     CONCEPT_TYPES,
     MECHANISM_FINDINGS,
     TIME_DEPENDENT_INTERACTIONS,
@@ -109,6 +119,7 @@ def validate_item(
     errors.extend(validate_subfield(cluster_name, item, source_file))
     errors.extend(validate_rule_history(cluster_name, item, source_file, case_slugs or set()))
     errors.extend(validate_archive_visibility(cluster_name, item, source_file, case_slugs or set()))
+    errors.extend(validate_seo(cluster_name, item, source_file))
 
     return errors
 
@@ -249,6 +260,123 @@ def validate_archive_visibility(
             )
         if not (isinstance(row.get("note"), str) and row["note"].strip()):
             errors.append(f"{ref}: {label} needs a 'note'")
+    return errors
+
+
+
+def validate_seo(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
+    """The SEO contract: what this page says it is, to a reader and to a crawler.
+
+    None of it may change what the entry claims - it governs presentation only -
+    but it is enforced as data rather than left to whoever writes the next page.
+    """
+    ref = f"{cluster_name}/{source_file}"
+    block = item.get("seo")
+    required = cluster_name in SEO_CONTRACT_CLUSTERS
+
+    if block is None:
+        return [f"{ref}: entries in '{cluster_name}' need an 'seo' contract "
+                f"({', '.join(SEO_CONTRACT_FIELDS)})"] if required else []
+    if not isinstance(block, dict):
+        return [f"{ref}: 'seo' must be a mapping"]
+
+    errors: list[str] = []
+    for field in SEO_CONTRACT_FIELDS:
+        if field not in block:
+            errors.append(f"{ref}: seo contract is missing '{field}'")
+    unknown = sorted(set(block) - set(SEO_CONTRACT_FIELDS))
+    if unknown:
+        errors.append(f"{ref}: seo contract has unknown field(s): {', '.join(unknown)}")
+
+    def text(field: str) -> str | None:
+        value = block.get(field)
+        if value is None:
+            return None
+        if not (isinstance(value, str) and value.strip()):
+            errors.append(f"{ref}: seo '{field}' must be non-empty text")
+            return None
+        return value.strip()
+
+    def path_list(field: str, allow_empty: bool = False) -> list[str]:
+        value = block.get(field)
+        if value is None:
+            return []
+        if not isinstance(value, list) or (not value and not allow_empty):
+            errors.append(f"{ref}: seo '{field}' must be a non-empty list of site paths")
+            return []
+        out = []
+        for entry in value:
+            if not is_canonical_path(entry):
+                errors.append(
+                    f"{ref}: seo '{field}' entry {entry!r} must be a clean site path - "
+                    f"absolute, no trailing slash, no .html, no query or fragment"
+                )
+            else:
+                out.append(entry)
+        return out
+
+    query = text("primary_query")
+    title = text("title")
+    description = text("description")
+    h1 = text("h1")
+    canonical = block.get("canonical")
+
+    entities = block.get("secondary_entities")
+    if entities is not None and (
+        not isinstance(entities, list) or not entities
+        or not all(isinstance(e, str) and e.strip() for e in entities)
+    ):
+        errors.append(f"{ref}: seo 'secondary_entities' must be a non-empty list of entity names")
+
+    if title is not None:
+        if not title.endswith(SEO_BRAND_SUFFIX):
+            errors.append(f"{ref}: seo 'title' must end with {SEO_BRAND_SUFFIX!r}")
+        if len(title) > SEO_TITLE_MAX:
+            errors.append(f"{ref}: seo 'title' is {len(title)} characters, over the {SEO_TITLE_MAX} limit")
+        if query and query.lower() not in title.lower():
+            errors.append(
+                f"{ref}: seo 'title' does not contain the primary query {query!r} - "
+                f"a result heading that omits the entity name cannot be matched to it"
+            )
+
+    if description is not None and not (SEO_DESCRIPTION_MIN <= len(description) <= SEO_DESCRIPTION_MAX):
+        errors.append(
+            f"{ref}: seo 'description' is {len(description)} characters; "
+            f"it must be between {SEO_DESCRIPTION_MIN} and {SEO_DESCRIPTION_MAX}"
+        )
+
+    if h1 is not None and query and query.lower() not in h1.lower():
+        errors.append(
+            f"{ref}: seo 'h1' does not contain the primary query {query!r} - the heading names the "
+            f"entity and the thesis belongs in the subheading"
+        )
+
+    if canonical is not None and not is_canonical_path(canonical):
+        errors.append(
+            f"{ref}: seo 'canonical' must be a clean site path - absolute, no trailing slash, no .html"
+        )
+
+    schema_types = block.get("schema_types")
+    if schema_types is not None:
+        if not isinstance(schema_types, list) or not schema_types:
+            errors.append(f"{ref}: seo 'schema_types' must be a non-empty list")
+        else:
+            for value in schema_types:
+                if not is_valid_schema_type(value):
+                    errors.append(f"{ref}: seo 'schema_types' has unsupported type {value!r}")
+            missing = SEO_REQUIRED_SCHEMA_TYPES - set(schema_types)
+            if missing:
+                errors.append(f"{ref}: seo 'schema_types' must include {', '.join(sorted(missing))}")
+
+    path_list("incoming_links")
+    path_list("outgoing_links")
+
+    indexing = block.get("indexing")
+    if indexing is not None and indexing not in SEO_INDEXING_STATES:
+        errors.append(
+            f"{ref}: seo 'indexing' must be one of: {', '.join(sorted(SEO_INDEXING_STATES))}"
+        )
+
     return errors
 
 

@@ -1,0 +1,5 @@
+{% if item.breadcrumb_jsonld %}
+<script type="application/ld+json">
+{{ item.breadcrumb_jsonld | tojson }}
+</script>
+{% endif %}

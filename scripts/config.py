@@ -535,6 +535,85 @@ def is_valid_hypothesis_state(value: object) -> bool:
 # ChampionsAwards cases touch this structure). The fields below are the formal
 # architecture; each is a factual claim anchorable via provenance ("architecture:<key>").
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# The SEO contract.
+#
+# A reference page is only useful if the people looking for it can find it, and
+# a search engine can only place a page it can parse. That is a presentation
+# problem, not a methodological one, so nothing here may change what an entry
+# claims - it governs how the entry announces itself.
+#
+# The contract is data on the entry and is checked by the gate, so it cannot
+# depend on anyone remembering it. Every governed page declares the query it is
+# the best answer to, the entities it sits among, the title and description a
+# result page will show, its canonical path, its visible H1, the structured-data
+# types it emits, the governed pages that link to it and that it links out to,
+# and whether it should be indexed at all.
+# ---------------------------------------------------------------------------
+SEO_CONTRACT_CLUSTERS: Final[frozenset[str]] = frozenset({"awards"})
+
+SEO_CONTRACT_FIELDS: Final[tuple[str, ...]] = (
+    "primary_query",
+    "secondary_entities",
+    "title",
+    "description",
+    "canonical",
+    "h1",
+    "schema_types",
+    "incoming_links",
+    "outgoing_links",
+    "indexing",
+)
+
+# Schema.org types this project will emit. The list is short on purpose: a type
+# we cannot populate honestly is structured data that misrepresents the page.
+# FAQPage is absent because no page here carries an FAQ.
+SEO_SCHEMA_TYPES: Final[frozenset[str]] = frozenset(
+    {"BreadcrumbList", "Article", "ScholarlyArticle", "Person", "Organization", "CreativeWork"}
+)
+
+# Every governed page is a node in a breadcrumb trail, so every contract emits it.
+SEO_REQUIRED_SCHEMA_TYPES: Final[frozenset[str]] = frozenset({"BreadcrumbList"})
+
+SEO_INDEXING_STATES: Final[frozenset[str]] = frozenset({"index", "noindex"})
+
+SEO_BRAND_SUFFIX: Final[str] = " | ChampionsAwards"
+SEO_TITLE_MAX: Final[int] = 95
+SEO_DESCRIPTION_MIN: Final[int] = 70
+SEO_DESCRIPTION_MAX: Final[int] = 185
+
+# Breadcrumb trails are built from the canonical path, and each segment needs a
+# human label. A segment with no label here would render as a slug.
+SEO_BREADCRUMB_LABELS: Final[dict[str, str]] = {
+    "": "Home",
+    "awards": "Awards",
+    "recognition-systems": "Recognition Systems",
+    "concepts": "Concepts",
+    "unawarded": "The Recognition Archive",
+    "reports": "Reports",
+    "sectors": "Sectors",
+    "rankings": "Rankings",
+}
+
+
+def is_valid_schema_type(value: object) -> bool:
+    return isinstance(value, str) and value in SEO_SCHEMA_TYPES
+
+
+def is_canonical_path(value: object) -> bool:
+    """A canonical is a clean, absolute, extension-free site path with no
+    trailing slash - the one spelling of the page that every link should use."""
+    return (
+        isinstance(value, str)
+        and value.startswith("/")
+        and not value.endswith("/")
+        and ".html" not in value
+        and "?" not in value
+        and "#" not in value
+        and " " not in value
+    )
+
+
 AWARD_ARCHITECTURE_FIELDS: Final[tuple[tuple[str, str], ...]] = (
     ("granting_body", "Granting body"),
     # Who decides and who pays are different facts, and an award entry that states

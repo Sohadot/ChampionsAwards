@@ -5,6 +5,24 @@ introduction: More than many other prizes, the Nobel Peace Prize operates at the
 legitimacy_question: The key question is whether the prize consistently honors durable peacemaking, or whether it sometimes amplifies momentary diplomatic narratives before their long-term meaning becomes clear.
 structural_notes: Because peace is politically interpreted rather than technically measured, the award faces persistent legitimacy pressure across eras and ideologies.
 last_reviewed: 2026-09-08
+seo:
+  primary_query: Nobel Peace Prize
+  secondary_entities:
+    - Norwegian Nobel Committee
+    - peace prize legitimacy
+    - recognition systems
+  title: "Nobel Peace Prize - Legitimacy Questions & Structure | ChampionsAwards"
+  description: "A short reference entry on the Nobel Peace Prize and the legitimacy pressure a politically interpreted award carries. No formal architecture has been mapped for it in this corpus yet."
+  canonical: /awards/nobel-peace-prize
+  h1: Nobel Peace Prize
+  schema_types:
+    - BreadcrumbList
+    - Article
+  incoming_links:
+    - /awards
+  outgoing_links:
+    - /recognition-systems/nobel-prize-system
+  indexing: index
 sources:
   - title: The Nobel Peace Prize — official prize archive and selection process
     publisher: The Nobel Foundation (nobelprize.org)

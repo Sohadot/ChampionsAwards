@@ -149,6 +149,28 @@ audit_exceptions:
       Governing-document-sufficient. What is asserted is the absence of an external sponsor in the
       rules, which the governing documents carry. The mechanism that sets the annual amount is not
       asserted, because the page describing it was not reached.
+seo:
+  primary_query: Nobel Prize in Physics
+  secondary_entities:
+    - Nobel Prize nomination process
+    - Royal Swedish Academy of Sciences
+    - Nobel Foundation Statutes
+    - three-laureate rule
+    - fifty-year secrecy rule
+  title: "Nobel Prize in Physics - Nomination, Selection & Secrecy Rules | ChampionsAwards"
+  description: "The Nobel Prize in Physics as a mechanism: invited nomination, committee screening, the three-laureate limit, the fifty-year secrecy rule, and where governed cases meet that structure."
+  canonical: /awards/nobel-prize-in-physics
+  h1: Nobel Prize in Physics
+  schema_types:
+    - BreadcrumbList
+    - Article
+  incoming_links:
+    - /awards
+    - /sectors/physics-astronomy
+  outgoing_links:
+    - /sectors/physics-astronomy
+    - /recognition-systems/nobel-prize-system
+  indexing: index
 sources:
   - title: Nomination and selection of physics laureates (who may nominate; fifty-year secrecy)
     publisher: The Nobel Foundation (nobelprize.org)

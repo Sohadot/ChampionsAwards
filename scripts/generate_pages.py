@@ -15,6 +15,7 @@ from config import (
     OUT,
     TEMPLATES,
     RLS_DIMENSIONS,
+    SEO_BREADCRUMB_LABELS,
     compute_ddi,
     compute_rls,
     ddi_band,
@@ -182,6 +183,7 @@ def attach_award_architecture(item: dict[str, Any], case_index: dict[str, dict[s
             info = case_index.get(rel.get("case"), {})
             rel_rows.append(
                 {
+                    "case_slug": rel.get("case"),
                     "case_title": info.get("title", rel.get("case")),
                     "case_url": info.get("url", "#"),
                     "element_label": ARCH_LABELS.get(element, element),
@@ -287,6 +289,59 @@ def load_cluster_items(cluster_name: str) -> list[dict[str, Any]]:
     return items
 
 
+
+def attach_seo(item: dict[str, Any], cluster_name: str, slug: str, site_domain: str) -> None:
+    """Turn the entry's SEO contract into what the page renders: the title and
+    description a result shows, the visible H1, the robots directive, and a
+    breadcrumb trail derived from the canonical path.
+
+    Where an entry carries no contract, the old behaviour stands, so this can be
+    rolled out cluster by cluster without a silent gap in between.
+    """
+    seo = item.get("seo") if isinstance(item.get("seo"), dict) else {}
+    path = seo.get("canonical") or f"/{cluster_name}/{slug}"
+
+    item["seo_title"] = seo.get("title")
+    item["seo_description"] = seo.get("description")
+    item["seo_h1"] = seo.get("h1")
+    item["seo_robots"] = (
+        "noindex,follow" if seo.get("indexing") == "noindex" else "index,follow,max-image-preview:large"
+    )
+
+    from config import DOMAINS, PUBLISHED_SECTORS
+
+    trail = [{"name": SEO_BREADCRUMB_LABELS.get("", "Home"), "url": "/"}]
+    segments = [part for part in path.split("/") if part]
+    if segments:
+        cluster_segment = segments[0]
+        trail.append({
+            "name": SEO_BREADCRUMB_LABELS.get(cluster_segment, cluster_segment.replace("-", " ").title()),
+            "url": f"/{cluster_segment}",
+        })
+
+    # A domain rung, but only where it resolves. An entry that serves several
+    # domains has no single parent, and a domain whose sector page is not yet
+    # published would give the crawler and the reader a link to nothing.
+    entry_domain = item.get("domain") if isinstance(item.get("domain"), str) else None
+    if entry_domain and entry_domain in PUBLISHED_SECTORS:
+        trail.append({
+            "name": DOMAINS.get(entry_domain, entry_domain.replace("-", " ").title()),
+            "url": f"/sectors/{entry_domain}",
+        })
+
+    trail.append({"name": item.get("title", slug), "url": path})
+    item["breadcrumbs"] = trail
+    item["breadcrumb_jsonld"] = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i, "name": crumb["name"],
+             "item": crumb["url"] if crumb["url"].startswith("http") else site_domain + crumb["url"].rstrip("/")}
+            for i, crumb in enumerate(trail, start=1)
+        ],
+    }
+
+
 def render_page(env: Environment, template_name: str, output_path, context: dict[str, Any]) -> None:
     template = env.get_template(template_name)
     html = template.render(**context)
@@ -334,6 +389,7 @@ def build_cluster_item_pages(
         item["cluster"] = cluster_name
         item["url"] = f"/{cluster_name}/{slug}"
         item["canonical_url"] = f"{domain}/{cluster_name}/{slug}"
+        attach_seo(item, cluster_name, slug, domain)
         attach_assessment(item)
         attach_rls(item)
         attach_award_architecture(item, case_index or {})

@@ -117,6 +117,28 @@ audit_exceptions:
       No archive layer is published on this page. The Nobel anatomies carry one because the Statutes
       state a fifty-year rule and the archive publishes a release horizon; nothing equivalent was
       reached here, so the layer is absent rather than asserted empty.
+seo:
+  primary_query: Turing Award
+  secondary_entities:
+    - ACM A.M. Turing Award
+    - Association for Computing Machinery
+    - Turing Award selection process
+    - Turing Award funding
+    - Barbara Liskov
+  title: "Turing Award - Governance, Funding & Selection Architecture | ChampionsAwards"
+  description: "Who grants the ACM A.M. Turing Award, who funds the prize, how that funding changed since 2002, and the nine architecture elements this audit could not reach."
+  canonical: /awards/acm-am-turing-award
+  h1: ACM A.M. Turing Award
+  schema_types:
+    - BreadcrumbList
+    - Article
+  incoming_links:
+    - /awards
+    - /recognition-systems/turing-award
+  outgoing_links:
+    - /unawarded/barbara-liskov
+    - /recognition-systems/turing-award
+  indexing: index
 sources:
   - title: "ACM A.M. Turing Award (awarding society, criteria, prize amount from 2007 and the increase effective 2014)"
     publisher: Heidelberg Laureate Forum Foundation

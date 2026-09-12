@@ -2,8 +2,9 @@
 
 These are the checks that keep claims and code aligned - frozen statistics,
 determinism, denominators, the publication boundary, the sector page's fidelity
-to the engine, and the synthesis rules. A failure here means a claim the project
-makes is no longer enforced.
+to the engine, the synthesis rules, and the SEO contract every governed page
+carries. A failure here means a claim the project makes - about its evidence or
+about what its pages announce themselves to be - is no longer enforced.
 """
 from __future__ import annotations
 
@@ -11,7 +12,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-SUITES = ("test_domain_comparison.py", "test_sector_page.py", "test_synthesis.py")
+SUITES = ("test_domain_comparison.py", "test_sector_page.py", "test_synthesis.py", "seo_gate.py")
 
 
 def main() -> None:

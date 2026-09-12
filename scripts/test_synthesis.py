@@ -256,5 +256,51 @@ _with_arch = [a for a in _anatomies if isinstance(a.get("architecture"), dict) a
 check("every published anatomy separates governance from funding",
       bool(_with_arch) and all(_pays in a["architecture"] for a in _with_arch))
 
+# 13. The SEO contract: presentation is governed as data, not by memory.
+from config import (
+    SEO_BRAND_SUFFIX, SEO_CONTRACT_CLUSTERS, SEO_CONTRACT_FIELDS,
+    SEO_DESCRIPTION_MAX, SEO_REQUIRED_SCHEMA_TYPES, is_canonical_path,
+)
+from validate_content import validate_seo
+
+_good = {
+    "primary_query": "Wolf Prize",
+    "secondary_entities": ["Wolf Foundation"],
+    "title": "Wolf Prize - Selection" + SEO_BRAND_SUFFIX,
+    "description": "x" * 120,
+    "canonical": "/awards/wolf-prize-award",
+    "h1": "Wolf Prize",
+    "schema_types": sorted(SEO_REQUIRED_SCHEMA_TYPES),
+    "incoming_links": ["/awards"],
+    "outgoing_links": ["/unawarded/andrew-wiles"],
+    "indexing": "index",
+}
+_cluster = sorted(SEO_CONTRACT_CLUSTERS)[0]
+check("a complete seo contract passes", not validate_seo(_cluster, {"seo": dict(_good)}, "a.yaml"))
+check("a governed cluster entry without a contract fails",
+      bool(validate_seo(_cluster, {}, "a.yaml")))
+check("an ungoverned cluster without a contract passes",
+      not validate_seo("concepts", {}, "c.yaml"))
+for _field in SEO_CONTRACT_FIELDS:
+    _partial = {k: v for k, v in _good.items() if k != _field}
+    check(f"a contract missing '{_field}' fails", bool(validate_seo(_cluster, {"seo": _partial}, "a.yaml")))
+check("a title without the brand suffix fails",
+      bool(validate_seo(_cluster, {"seo": dict(_good, title="Wolf Prize")}, "a.yaml")))
+check("a title that omits the primary query fails",
+      bool(validate_seo(_cluster, {"seo": dict(_good, title="An Anatomy" + SEO_BRAND_SUFFIX)}, "a.yaml")))
+check("an h1 that omits the primary query fails",
+      bool(validate_seo(_cluster, {"seo": dict(_good, h1="An Anatomy of a Recognition Mechanism")}, "a.yaml")))
+check("an over-long description fails",
+      bool(validate_seo(_cluster, {"seo": dict(_good, description="x" * (SEO_DESCRIPTION_MAX + 1))}, "a.yaml")))
+check("a contract without BreadcrumbList fails",
+      bool(validate_seo(_cluster, {"seo": dict(_good, schema_types=["Article"])}, "a.yaml")))
+check("an unsupported schema type fails",
+      bool(validate_seo(_cluster, {"seo": dict(_good, schema_types=["BreadcrumbList", "FAQPage"])}, "a.yaml")))
+check("a canonical with .html fails", not is_canonical_path("/awards/wolf.html"))
+check("a canonical with a trailing slash fails", not is_canonical_path("/awards/wolf/"))
+check("a relative canonical fails", not is_canonical_path("awards/wolf"))
+check("an unknown contract field fails",
+      bool(validate_seo(_cluster, {"seo": dict(_good, keywords="wolf prize")}, "a.yaml")))
+
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

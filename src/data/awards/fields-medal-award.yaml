@@ -198,6 +198,28 @@ audit_exceptions:
       Not reached, and not summarised. Four architecture elements that the Nobel anatomies carry -
       decision stages, posthumous rule, withholding and finality - are omitted here rather than written
       from general knowledge or inferred from the other award's design.
+seo:
+  primary_query: Fields Medal
+  secondary_entities:
+    - Fields Medal age limit
+    - International Mathematical Union
+    - Fields Medal Committee
+    - Fields Medal nomination
+    - Andrew Wiles
+  title: "Fields Medal - Age Rule, Selection, Funding & Eligibility | ChampionsAwards"
+  description: "The Fields Medal read from its own Statutes: the fortieth-birthday age rule and when it took effect, who may nominate, how the committee is chosen, and what the archive opens."
+  canonical: /awards/fields-medal-award
+  h1: Fields Medal
+  schema_types:
+    - BreadcrumbList
+    - Article
+  incoming_links:
+    - /awards
+    - /recognition-systems/fields-medal
+  outgoing_links:
+    - /unawarded/andrew-wiles
+    - /recognition-systems/fields-medal
+  indexing: index
 sources:
   - title: "Statutes for the Fields Medal, as decided at the ICM 1932 with subsequent changes (preamble and statutes 1-8: origin, age rule, four-medal cap from 1966, prize amount, committee, nomination, one-award rule)"
     publisher: International Mathematical Union
