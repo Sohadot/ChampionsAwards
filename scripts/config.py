@@ -280,6 +280,123 @@ REQUIRE_DOMAIN: Final[bool] = True
 # merely the tag). Published cases must supply evidence for every pattern.
 REQUIRE_PATTERN_EVIDENCE: Final[bool] = True
 
+# ---------------------------------------------------------------------------
+# Mechanism-ontology revisions.
+#
+# A mechanism audit is dated evidence: `considered` asserts that each named
+# mechanism was tested against that record on that date. When the ontology grows,
+# older audits do not become wrong - they become older. The project needs to say
+# both things without lying about either, so every revision of the audit-eligible
+# mechanism set carries an immutable id.
+#
+# Ids are immutable and ordered by the commit that changed the set, not by date:
+# more than one revision can land on one day. A revision is never edited once
+# published; a change to the set creates the next id.
+#
+# Two different figures follow from this, and they must never be conflated:
+#   * completeness at the recorded revision - did the audit test everything that
+#     was eligible WHEN IT RAN? A defect if it did not.
+#   * currency against the current revision - has the ontology grown since? Not a
+#     defect, and never a maturity gate: a closed domain does not become immature
+#     because the vocabulary later acquired a word.
+# ---------------------------------------------------------------------------
+_MOR_001: Final[frozenset[str]] = frozenset({
+    "credit-misattribution", "delayed-recognition", "institutional-exclusion",
+    "posthumous-recognition",
+})
+_MOR_002: Final[frozenset[str]] = _MOR_001 | {"theory-experiment-asymmetry"}
+_MOR_003: Final[frozenset[str]] = _MOR_002 | {"institutional-gatekeeping"}
+_MOR_005: Final[frozenset[str]] = _MOR_003 | {"compulsory-secrecy"}
+
+ONTOLOGY_REVISIONS: Final[dict[str, dict[str, object]]] = {
+    "MOR-001": {
+        "commit": "d6e52a0", "date": "2026-09-09", "mechanisms": _MOR_001,
+        "note": "Cycle 01 opens: the first four structural-cause concepts.",
+    },
+    "MOR-002": {
+        "commit": "8a26749", "date": "2026-09-09", "mechanisms": _MOR_002,
+        "note": "Pattern lifecycle hardening adds the theory-experiment asymmetry.",
+    },
+    "MOR-003": {
+        "commit": "c78250e", "date": "2026-09-09", "mechanisms": _MOR_003,
+        "note": "Physics individuals completion adds institutional gatekeeping.",
+    },
+    "MOR-004": {
+        "commit": "005a421", "date": "2026-09-11", "mechanisms": _MOR_003,
+        "note": (
+            "Concept types introduced. The mechanism set is unchanged, but eligibility becomes "
+            "formal: only concept_type 'mechanism' may be tested against a case, so the umbrella "
+            "concepts stop being admissible in a `considered` list."
+        ),
+    },
+    "MOR-005": {
+        "commit": "69ffcc0", "date": "2026-09-12", "mechanisms": _MOR_005,
+        "note": "The Cycle 03 ontology review adds compulsory secrecy.",
+    },
+    "MOR-006": {
+        "commit": None, "date": "2026-09-12", "mechanisms": _MOR_005,
+        "note": (
+            "The revision model itself. The mechanism set is unchanged, but an audit must now "
+            "record the revision it was performed against, and must test everything eligible at "
+            "that revision or name the gap. Recorded without a commit hash because the commit "
+            "that puts a revision in force cannot contain its own hash; the hash is backfilled "
+            "by the next commit that touches this registry."
+        ),
+    },
+}
+
+CURRENT_ONTOLOGY_REVISION: Final[str] = "MOR-006"
+
+# From this revision onward an audit must be complete at its own revision: the
+# declared-gap escape below exists only for audits performed before the model
+# existed. It is a one-way door, and deliberately so - without it, "incomplete
+# at revision" would become a permanent way to publish an unfinished audit.
+COMPLETENESS_ENFORCED_FROM: Final[str] = "MOR-006"
+
+# An audit whose revision cannot be established from the repository's history is
+# marked rather than guessed. Guessing a revision would fabricate exactly the kind
+# of dated fact this model exists to protect.
+LEGACY_REVISION_UNRESOLVED: Final[str] = "legacy-revision-unresolved"
+
+
+def is_valid_ontology_revision(value: object) -> bool:
+    return isinstance(value, str) and (
+        value in ONTOLOGY_REVISIONS or value == LEGACY_REVISION_UNRESOLVED
+    )
+
+
+def revision_mechanisms(revision: object) -> frozenset[str]:
+    """The audit-eligible mechanisms in force at a revision. An unresolved legacy
+    revision constrains nothing, because nothing about it is established."""
+    entry = ONTOLOGY_REVISIONS.get(revision) if isinstance(revision, str) else None
+    return entry["mechanisms"] if entry else frozenset()
+
+
+def revision_is_before(revision: object, boundary: str) -> bool:
+    """Ids are ordered by the commit that changed the set, so comparing the keys
+    in insertion order compares history. An unresolved legacy revision is treated
+    as earlier than any recorded one, because that is the only thing known of it."""
+    if revision == LEGACY_REVISION_UNRESOLVED:
+        return True
+    order = list(ONTOLOGY_REVISIONS)
+    if not isinstance(revision, str) or revision not in order:
+        return False
+    return order.index(revision) < order.index(boundary)
+
+
+def audit_is_complete_at_revision(considered: object, revision: object) -> bool:
+    """Did the audit test everything that was audit-eligible when it ran?"""
+    tested = set(considered) if isinstance(considered, (list, set, tuple)) else set()
+    return revision_mechanisms(revision) <= tested
+
+
+def audit_is_current(considered: object) -> bool:
+    """Does the audit cover the mechanism set in force today? A 'no' is not a
+    defect and never a maturity gate - the ontology grew after the audit ran."""
+    tested = set(considered) if isinstance(considered, (list, set, tuple)) else set()
+    return revision_mechanisms(CURRENT_ONTOLOGY_REVISION) <= tested
+
+
 # Pattern lifecycle: a structural cause is only "established" in a domain once
 # at least this many INDEPENDENT CONTEXTS in that domain exhibit it. A pattern
 # supported by a single context is "emergent" and does NOT count toward the DoD.
@@ -365,6 +482,18 @@ DOMAIN_DOD_ACCOUNTING: Final[dict[str, int]] = {
     "mechanism_accounting_percentage": 100,  # every case: evidenced mechanism OR dated audit
     "cases_unaudited": 0,                    # and nothing left unexamined
 }
+
+# What the 100% above does and does not assert. Written down because the two are
+# easy to conflate, and conflating them would let the corpus claim a depth of
+# examination it has not measured: accounting counts whether each case was
+# examined at all, not whether each examination tested every mechanism that was
+# eligible at the time. That second question is measured separately, reported,
+# and gates nothing.
+MECHANISM_ACCOUNTING_MEANING: Final[str] = (
+    "Every case carries either evidence for a mechanism or a dated audit that searched the "
+    "record and found none. It does not assert that each audit tested every mechanism that "
+    "was audit-eligible when it ran; that is measured separately as completeness at revision."
+)
 
 # Layer criteria: measured as present, not asserted in prose.
 DOMAIN_DOD_LAYERS: Final[tuple[str, ...]] = (

@@ -123,6 +123,12 @@ def observed_rows(domain: str) -> list[dict[str, Any]]:
                 "value": ", ".join(sub["sides_without_cases"]) + " (maturity does not establish coverage)",
             })
     return coverage_rows + [
+        {"observation": "audit completeness at its own revision",
+         "value": f"{patterns['n_audits_complete_at_revision']}/{patterns['n_audits']} audits tested "
+                  f"every mechanism eligible when they ran"},
+        {"observation": f"audit currency against {patterns['current_ontology_revision']}",
+         "value": f"{patterns['n_audits_current']}/{patterns['n_audits']} audits cover today's "
+                  f"mechanism set (an older audit is not a defect)"},
         {"observation": "evidenced mechanisms",
          "value": f"{len(patterns['patterns'])}/{coverage['n_eligible_concepts']} audit-eligible concepts"},
         {"observation": "established mechanisms", "value": patterns["established_count"]},

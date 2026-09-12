@@ -106,6 +106,9 @@ audit_exceptions:
     reason: "Institution-record-sufficient at one remove. The citation is quoted from a body that publishes it as a laureate record rather than from the society that issued it, and the entry says so rather than implying access it does not have."
 mechanism_audit:
   search_date: '2026-09-12'
+  ontology_revision: MOR-004
+  revision_basis: >-
+    Audit performed at commit 8922757, when MOR-004 was the revision in force.
   considered:
     - institutional-exclusion
     - credit-misattribution

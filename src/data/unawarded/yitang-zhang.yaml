@@ -98,6 +98,9 @@ audit_exceptions:
       statement of his antecedents, which is the strongest available evidence and is in the paper.
 mechanism_audit:
   search_date: '2026-09-12'
+  ontology_revision: MOR-004
+  revision_basis: >-
+    Audit performed at commit bd4083d, when MOR-004 was the revision in force.
   considered:
     - institutional-exclusion
     - credit-misattribution

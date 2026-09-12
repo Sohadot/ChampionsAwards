@@ -105,6 +105,9 @@ audit_exceptions:
       underlying subscription record is not in hand, and the entry says so.
 mechanism_audit:
   search_date: '2026-09-12'
+  ontology_revision: MOR-004
+  revision_basis: >-
+    Audit performed at commit 0c803c4, when MOR-004 was the revision in force.
   considered:
     - institutional-exclusion
     - credit-misattribution

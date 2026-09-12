@@ -111,6 +111,9 @@ audit_exceptions:
     reason: "Reported rather than archival. The employment record is stated as the obituary states it, and no mechanism is derived from it, so the claim does not carry a score."
 mechanism_audit:
   search_date: '2026-09-12'
+  ontology_revision: MOR-004
+  revision_basis: >-
+    Audit performed at commit 8922757, when MOR-004 was the revision in force.
   considered:
     - institutional-exclusion
     - credit-misattribution

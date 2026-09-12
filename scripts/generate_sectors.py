@@ -192,11 +192,20 @@ def pattern_readings(patterns: dict[str, Any]) -> list[str]:
             f"{pattern['support']} of {pattern['denominator']} governed cases exhibit evidenced "
             f"{label}{rank}."
         )
-    if emergent:
-        names = ", ".join(p["pattern"].replace("-", " ") for p in emergent)
+    # Emergent patterns are reported one by one, with both counts, because the
+    # two can differ: a mechanism recorded in two cases that share one legal
+    # regime has two observations and one context, and only contexts decide
+    # status. A single summary sentence had to pick one of the two numbers, and
+    # picking the case count said "recorded in a single case each" of a pattern
+    # that was recorded in two.
+    for pattern in emergent:
+        label = pattern["pattern"].replace("-", " ")
+        contexts = pattern["independent_support"]
         lines.append(
-            f"Recorded in a single case each and therefore not counted as established "
-            f"(threshold: {PATTERN_ESTABLISHED_MIN} independent cases): {names}."
+            f"{label[:1].upper()}{label[1:]} is recorded in {pattern['support']} of "
+            f"{pattern['denominator']} governed cases, across {contexts} independent "
+            f"{'context' if contexts == 1 else 'contexts'}, and is therefore emergent rather than "
+            f"established (threshold: {PATTERN_ESTABLISHED_MIN} independent contexts)."
         )
     lines.append(
         f"Mechanism accounting: {patterns['n_cases_accounted']} of {patterns['denominator']} cases "
@@ -204,6 +213,14 @@ def pattern_readings(patterns: dict[str, Any]) -> list[str]:
         f"or carry a dated audit that searched the record and found none; "
         f"{len(patterns['cases_unaudited'])} remain unaudited."
     )
+    if patterns["n_audits"]:
+        lines.append(
+            f"Audit depth: {patterns['n_audits_complete_at_revision']} of {patterns['n_audits']} "
+            f"mechanism audits here tested every mechanism that was audit-eligible on the day they "
+            f"ran, and {patterns['n_audits_current']} cover the mechanism set in force at "
+            f"{patterns['current_ontology_revision']}. An audit that predates a later addition to "
+            f"the ontology is recorded as such and is not counted against this domain."
+        )
     return lines
 
 

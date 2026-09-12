@@ -107,12 +107,19 @@ provenance:
     basis: primary-publication
 mechanism_audit:
   search_date: '2026-09-10'
+  ontology_revision: MOR-003
+  revision_basis: >-
+    Audit performed at commit 570478f (2026-09-10), when MOR-003 was the revision in force. The
+    considered list was later pruned at commit 005a421 (MOR-004) to remove concepts that had ceased
+    to be audit-eligible; no new mechanism was tested.
   considered:
   - credit-misattribution
   - institutional-exclusion
   - institutional-gatekeeping
   - delayed-recognition
   - theory-experiment-asymmetry
+  incomplete_at_revision:
+  - posthumous-recognition
   finding: no-mechanism-evidenced
   note: >-
     Audited against every published mechanism in the ontology, and none is supported by the record for

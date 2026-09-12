@@ -130,6 +130,9 @@ audit_exceptions:
     reason: "Deliberation not reached. The entry claims the rule, its application as stated publicly at the Congress, and the tribute that was given instead; it does not assert a committee rationale."
 mechanism_audit:
   search_date: '2026-09-12'
+  ontology_revision: MOR-004
+  revision_basis: >-
+    Audit performed at commit 8922757, when MOR-004 was the revision in force.
   considered:
     - institutional-exclusion
     - credit-misattribution

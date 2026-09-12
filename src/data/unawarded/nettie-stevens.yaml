@@ -90,12 +90,20 @@ audit_exceptions:
     reason: Secondary-record-sufficient, from a peer-reviewed review in a record-keeping field.
 mechanism_audit:
   search_date: '2026-09-11'
+  ontology_revision: MOR-003
+  revision_basis: >-
+    Audit performed at commit 60e148d (2026-09-11), when MOR-003 was the revision in force. The
+    considered list was later pruned at commit 005a421 (MOR-004) to remove concepts that had ceased
+    to be audit-eligible; that edit removed candidates, it did not test any new one, so the audit
+    remains an MOR-003 audit.
   considered:
     - credit-misattribution
     - institutional-exclusion
     - delayed-recognition
     - institutional-gatekeeping
     - posthumous-recognition
+  incomplete_at_revision:
+    - theory-experiment-asymmetry
   finding: no-mechanism-evidenced
   note: >-
     No mechanism in the ontology is supported for this case. Credit misattribution fails on the

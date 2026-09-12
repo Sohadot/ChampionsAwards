@@ -36,7 +36,12 @@ import yaml
 from config import (
     ASSESSMENT_CLUSTERS,
     AUDIT_ELIGIBLE_CONCEPT_TYPES,
+    CURRENT_ONTOLOGY_REVISION,
     DATA,
+    MECHANISM_ACCOUNTING_MEANING,
+    audit_is_complete_at_revision,
+    audit_is_current,
+    revision_mechanisms,
     domain_subfields,
     OUT,
     ROOT,
@@ -345,6 +350,38 @@ def pattern_distribution(domain: str) -> dict[str, Any]:
         key=lambda x: x["slug"],
     )
 
+    # Two figures about the audits themselves, which the accounting percentage
+    # above deliberately does not answer. Accounting asks whether each case was
+    # examined at all. These ask how well:
+    #
+    #   * complete at revision - did the audit test everything that was
+    #     audit-eligible on the day it ran? A "no" is a defect in the audit, and
+    #     it is declared in the case file rather than inferred here.
+    #   * current - does it cover the mechanism set in force today? A "no" is not
+    #     a defect: the ontology grew afterwards. It is reported so that a reader
+    #     can see how much of the corpus predates the present vocabulary, and it
+    #     gates nothing. A closed domain does not reopen because a word was added.
+    current_set = revision_mechanisms(CURRENT_ONTOLOGY_REVISION)
+    audit_rows = []
+    for c in cases:
+        a = c.get("mechanism_audit")
+        if not isinstance(a, dict):
+            continue
+        considered = [m for m in (a.get("considered") or []) if isinstance(m, str)]
+        audit_rows.append({
+            "slug": c["slug"], "title": c.get("title", c["slug"]),
+            "url": f"/unawarded/{c['slug']}",
+            "ontology_revision": a.get("ontology_revision"),
+            "complete_at_revision": audit_is_complete_at_revision(considered, a.get("ontology_revision")),
+            "untested_at_revision": sorted(a.get("incomplete_at_revision") or []),
+            "current": audit_is_current(considered),
+            "untested_since_revision": sorted(current_set - set(considered)),
+        })
+    audit_rows.sort(key=lambda r: r["slug"])
+    n_audits = len(audit_rows)
+    n_complete = sum(1 for r in audit_rows if r["complete_at_revision"])
+    n_current = sum(1 for r in audit_rows if r["current"])
+
     # Co-occurrence: how often two evidenced mechanisms appear in the same case.
     # Descriptive only - a pair count says the record documents both in one case,
     # never that one mechanism produced the other.
@@ -374,6 +411,14 @@ def pattern_distribution(domain: str) -> dict[str, Any]:
         "n_cases_accounted": len(accounted),
         "accounting_coverage_percentage": round(100 * len(accounted) / denom) if denom else 0,
         "cases_unaudited": unaudited,
+        "accounting_meaning": MECHANISM_ACCOUNTING_MEANING,
+        "audit_revisions": audit_rows,
+        "n_audits": n_audits,
+        "n_audits_complete_at_revision": n_complete,
+        "n_audits_current": n_current,
+        "current_ontology_revision": CURRENT_ONTOLOGY_REVISION,
+        "audits_incomplete_at_revision": [r for r in audit_rows if not r["complete_at_revision"]],
+        "audits_not_current": [r for r in audit_rows if not r["current"]],
         "co_occurrence": co_occurrence,
     }
 

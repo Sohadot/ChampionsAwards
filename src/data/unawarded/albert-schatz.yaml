@@ -118,12 +118,20 @@ audit_exceptions:
     reason: The claim is therefore not made in this entry, and the observed-recognition score rests only on what the primary, archival and institutional records establish.
 mechanism_audit:
   search_date: '2026-09-11'
+  ontology_revision: MOR-003
+  revision_basis: >-
+    Audit performed at commit 60e148d (2026-09-11), when MOR-003 was the revision in force. The
+    considered list was later pruned at commit 005a421 (MOR-004) to remove concepts that had ceased
+    to be audit-eligible; that edit removed candidates, it did not test any new one, so the audit
+    remains an MOR-003 audit.
   considered:
     - credit-misattribution
     - institutional-gatekeeping
     - institutional-exclusion
     - delayed-recognition
     - posthumous-recognition
+  incomplete_at_revision:
+    - theory-experiment-asymmetry
   finding: mechanism-evidenced
   note: >-
     Credit misattribution is evidenced by records rather than by recollection: first authorship on the

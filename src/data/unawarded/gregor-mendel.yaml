@@ -99,12 +99,20 @@ audit_exceptions:
     reason: "Secondary-record-sufficient for the closing endpoint only. The pattern claim here is the interval itself; no claim is made about its cause."
 mechanism_audit:
   search_date: '2026-09-11'
+  ontology_revision: MOR-003
+  revision_basis: >-
+    Audit performed at commit ac772a9 (2026-09-11), when MOR-003 was the revision in force. The
+    considered list was later pruned at commit 005a421 (MOR-004) to remove concepts that had ceased
+    to be audit-eligible; that edit removed candidates, it did not test any new one, so the audit
+    remains an MOR-003 audit.
   considered:
     - delayed-recognition
     - credit-misattribution
     - institutional-exclusion
     - institutional-gatekeeping
     - posthumous-recognition
+  incomplete_at_revision:
+    - theory-experiment-asymmetry
   finding: mechanism-evidenced
   note: >-
     Delayed recognition is evidenced as an interval: publication in 1866, independent rediscovery in

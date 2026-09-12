@@ -7,6 +7,12 @@ import yaml
 from config import (
     ARCHIVE_VISIBILITY_STATES,
     AUDIT_ELIGIBLE_CONCEPT_TYPES,
+    COMPLETENESS_ENFORCED_FROM,
+    CURRENT_ONTOLOGY_REVISION,
+    LEGACY_REVISION_UNRESOLVED,
+    is_valid_ontology_revision,
+    revision_is_before,
+    revision_mechanisms,
     AWARD_ARCHITECTURE_KEYS,
     FUNDING_SEPARATION_REQUIRED,
     RECURRENCE_CONTEXTS,
@@ -548,6 +554,90 @@ def validate_temporal_validity(cluster_name: str, item: dict[str, Any], source_f
     return errors
 
 
+def _validate_audit_revision(ref: str, audit: dict[str, Any]) -> list[str]:
+    """An audit is only interpretable against the ontology it was performed under.
+    Without a recorded revision, "considered these five mechanisms" cannot be read
+    as either complete or incomplete - the reader has no way to know how many were
+    eligible that day, and the number silently drifts as the ontology grows.
+
+    So each audit records its revision, the evidence for that revision, and - for
+    audits performed before this model existed - an explicit list of the eligible
+    mechanisms it did not test. A gap that is declared is a known defect; a gap
+    that is inferred later from a changing denominator is an unnoticed one. The
+    declaration is never a substitute for testing going forward: from
+    COMPLETENESS_ENFORCED_FROM onward an audit must simply be complete.
+    """
+    errors: list[str] = []
+    revision = audit.get("ontology_revision")
+    if not is_valid_ontology_revision(revision):
+        errors.append(
+            f"{ref}: mechanism_audit needs an 'ontology_revision' (a recorded revision id, or "
+            f"'{LEGACY_REVISION_UNRESOLVED}' when history cannot establish one). Without it, "
+            f"'considered' cannot be read as complete or incomplete."
+        )
+        return errors
+
+    basis = audit.get("revision_basis")
+    if not (isinstance(basis, str) and basis.strip()):
+        errors.append(
+            f"{ref}: mechanism_audit needs a 'revision_basis' naming the evidence for its "
+            f"ontology_revision (the commit that put it in force, or why none can be established)"
+        )
+
+    considered = {c for c in (audit.get("considered") or []) if isinstance(c, str)}
+    eligible = revision_mechanisms(revision)
+    untested = sorted(eligible - considered)
+
+    declared = audit.get("incomplete_at_revision")
+    if declared is None:
+        if untested:
+            errors.append(
+                f"{ref}: mechanism_audit records {revision}, under which "
+                f"{', '.join(untested)} {'was' if len(untested) == 1 else 'were'} already "
+                f"audit-eligible, but 'considered' does not test "
+                f"{'it' if len(untested) == 1 else 'them'}. Either test "
+                f"{'it' if len(untested) == 1 else 'them'}, or declare the gap in "
+                f"'incomplete_at_revision' - do not adjust the revision to fit the list."
+            )
+        return errors
+
+    if not isinstance(declared, list) or not declared:
+        return errors + [f"{ref}: 'incomplete_at_revision' must be a non-empty list when present"]
+
+    if revision == LEGACY_REVISION_UNRESOLVED:
+        return errors + [
+            f"{ref}: an audit whose revision is unresolved cannot declare a gap at that revision - "
+            f"nothing is established about what was eligible"
+        ]
+
+    if not revision_is_before(revision, COMPLETENESS_ENFORCED_FROM):
+        return errors + [
+            f"{ref}: 'incomplete_at_revision' is only available to audits performed before "
+            f"{COMPLETENESS_ENFORCED_FROM}. An audit recorded at {revision} must test every "
+            f"audit-eligible mechanism."
+        ]
+
+    overlap = sorted(set(declared) & considered)
+    if overlap:
+        errors.append(
+            f"{ref}: {', '.join(overlap)} appears in both 'considered' and "
+            f"'incomplete_at_revision' - an audit cannot both test and not test a mechanism"
+        )
+    outside = sorted(m for m in declared if m not in eligible)
+    if outside:
+        errors.append(
+            f"{ref}: 'incomplete_at_revision' names {', '.join(map(str, outside))}, which "
+            f"{'was' if len(outside) == 1 else 'were'} not audit-eligible at {revision}. An audit "
+            f"cannot fail to test a mechanism that did not yet exist."
+        )
+    if not outside and sorted(set(declared)) != untested:
+        errors.append(
+            f"{ref}: 'incomplete_at_revision' must name exactly the eligible mechanisms left "
+            f"untested at {revision} (expected: {', '.join(untested) or 'none'})"
+        )
+    return errors
+
+
 def validate_mechanism_audit(
     cluster_name: str, item: dict[str, Any], source_file: str, mechanism_slugs: set[str]
 ) -> list[str]:
@@ -578,6 +668,8 @@ def validate_mechanism_audit(
                 f"{', '.join(sorted(AUDIT_ELIGIBLE_CONCEPT_TYPES))} can be tested against a case - an "
                 f"umbrella tendency or a framework distinction cannot be a failed mechanism test."
             )
+
+    errors.extend(_validate_audit_revision(ref, audit))
 
     finding = audit.get("finding")
     if not is_valid_mechanism_finding(finding):

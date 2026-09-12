@@ -200,6 +200,37 @@ no mechanism there is the expected result. The engine therefore reports
 under-recognition (no mechanism *and* a gap at or above the `under-recognized`
 floor) is counted separately from aligned cases that require no explanation.
 
+## Ontology revisions (enforced)
+
+The set of audit-eligible mechanisms grows. An audit recording "five mechanisms
+considered" is therefore uninterpretable on its own: the reader cannot tell
+whether five was all of them. Every audit records the **ontology revision** it
+was performed under (`ontology_revision`, an immutable id such as `MOR-004`) and
+the evidence for that revision (`revision_basis` — the commit that put it in
+force). Ids are ordered by the commit that changed the set, not by date, because
+more than one revision can land on one day. A revision is never edited once
+published; a change creates the next id.
+
+Two figures follow, and the project keeps them apart:
+
+- **Completeness at its own revision** — did the audit test everything that was
+  eligible on the day it ran? A "no" is a defect in the audit. Where a legacy
+  audit did not, the gap is declared in the case file (`incomplete_at_revision`)
+  naming exactly the untested mechanisms. A declared gap is a known defect; a
+  gap inferred later from a shifting denominator is an unnoticed one. Nothing is
+  ever added to `considered` without re-running the audit, because that would
+  fabricate a test that never happened. From `MOR-006` onward the declaration is
+  unavailable: a new audit must simply be complete.
+- **Currency against the revision in force** — does the audit cover today's
+  mechanism set? A "no" is not a defect, and it gates nothing. A closed domain
+  does not become immature because the vocabulary later acquired a word.
+
+**Mechanism accounting at 100 per cent** asserts only that every case carries
+either evidence for a mechanism or a dated audit that searched and found none.
+It does **not** assert that every audit tested every eligible mechanism; that is
+the completeness figure, reported separately. `docs/ontology-revisions.md`
+carries the registry and the current measurements.
+
 ## Correction policy
 
 Being wrong in public is normal and fixable. Substantive corrections are made

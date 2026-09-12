@@ -111,6 +111,10 @@ audit_exceptions:
       result, which is the error this project removed from its Definition of Done in Cycle 01.
 mechanism_audit:
   search_date: '2026-09-12'
+  ontology_revision: MOR-005
+  revision_basis: >-
+    Audit performed at commit bd4083d under MOR-004 and extended at commit 69ffcc0, when compulsory
+    secrecy entered the ontology as MOR-005 and this case was tested against it.
   reviewed: '2026-09-12'
   considered:
     - institutional-exclusion

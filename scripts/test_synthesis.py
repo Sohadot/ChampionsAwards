@@ -385,5 +385,98 @@ check("the ontology-currency of every audit is measurable",
 print(f"      [reported] audits current against the {len(_eligible)}-concept ontology: "
       f"{len(_current)}/{len(_audits)}")
 
+# 17. Ontology revisions: an audit is only readable against the ontology it ran under.
+from config import (
+    COMPLETENESS_ENFORCED_FROM, CURRENT_ONTOLOGY_REVISION, LEGACY_REVISION_UNRESOLVED,
+    MECHANISM_ACCOUNTING_MEANING, ONTOLOGY_REVISIONS, audit_is_complete_at_revision,
+    audit_is_current, is_valid_ontology_revision, revision_is_before, revision_mechanisms,
+)
+from validate_content import validate_mechanism_audit as _vma
+
+_ids = list(ONTOLOGY_REVISIONS)
+check("revision ids are immutable and ordered by commit, not by date",
+      _ids == sorted(_ids) and CURRENT_ONTOLOGY_REVISION == _ids[-1])
+check("a revision never loses a mechanism",
+      all(revision_mechanisms(a) <= revision_mechanisms(b) for a, b in zip(_ids, _ids[1:])))
+check("only the revision in force may lack a commit hash",
+      all(ONTOLOGY_REVISIONS[i].get("commit") for i in _ids[:-1]),
+      "a published revision is anchored in history")
+check("an unresolved revision is valid but constrains nothing",
+      is_valid_ontology_revision(LEGACY_REVISION_UNRESOLVED)
+      and revision_mechanisms(LEGACY_REVISION_UNRESOLVED) == frozenset())
+check("an invented revision id is rejected", not is_valid_ontology_revision("MOR-999"))
+
+_mechs = {"credit-misattribution", "delayed-recognition", "institutional-exclusion",
+          "posthumous-recognition", "theory-experiment-asymmetry", "institutional-gatekeeping",
+          "compulsory-secrecy"}
+
+
+def _audit(**kw):
+    base = {"search_date": "2026-09-12", "considered": sorted(revision_mechanisms("MOR-005")),
+            "ontology_revision": CURRENT_ONTOLOGY_REVISION, "revision_basis": "commit deadbee",
+            "finding": "no-mechanism-evidenced", "note": "n"}
+    base.update(kw)
+    return _vma("unawarded", {"mechanism_audit": base}, "s.yaml", _mechs)
+
+
+check("a complete current audit passes", not _audit())
+check("an audit with no recorded revision fails",
+      any("ontology_revision" in e for e in _audit(ontology_revision=None)))
+check("an audit with no revision evidence fails",
+      any("revision_basis" in e for e in _audit(revision_basis="   ")))
+check("an undeclared gap at the recorded revision fails",
+      bool(_audit(considered=["delayed-recognition"])))
+check("a declared gap must name exactly the untested mechanisms",
+      bool(_audit(ontology_revision="MOR-003", revision_basis="commit c78250e",
+                  considered=["delayed-recognition"],
+                  incomplete_at_revision=["posthumous-recognition"])))
+check("a legacy audit that declares its gap exactly passes",
+      not _audit(ontology_revision="MOR-003", revision_basis="commit c78250e",
+                 considered=["delayed-recognition"],
+                 incomplete_at_revision=sorted(revision_mechanisms("MOR-003") - {"delayed-recognition"})))
+check("a gap cannot be declared in a mechanism that did not yet exist",
+      bool(_audit(ontology_revision="MOR-001", revision_basis="commit d6e52a0",
+                  considered=sorted(revision_mechanisms("MOR-001")),
+                  incomplete_at_revision=["compulsory-secrecy"])))
+check("a mechanism cannot be both tested and untested",
+      bool(_audit(ontology_revision="MOR-003", revision_basis="commit c78250e",
+                  incomplete_at_revision=["delayed-recognition"])))
+check(f"the declared-gap escape is closed from {COMPLETENESS_ENFORCED_FROM} onward",
+      bool(_audit(considered=["delayed-recognition"],
+                  incomplete_at_revision=sorted(revision_mechanisms(CURRENT_ONTOLOGY_REVISION)
+                                                - {"delayed-recognition"}))))
+check("an unresolved revision cannot declare a gap at that revision",
+      bool(_audit(ontology_revision=LEGACY_REVISION_UNRESOLVED,
+                  revision_basis="history does not establish one",
+                  incomplete_at_revision=["delayed-recognition"])))
+check("the completeness boundary is a real boundary",
+      revision_is_before(_ids[0], COMPLETENESS_ENFORCED_FROM)
+      and not revision_is_before(COMPLETENESS_ENFORCED_FROM, COMPLETENESS_ENFORCED_FROM))
+
+check("every published audit records a revision and its evidence",
+      all(is_valid_ontology_revision(c["mechanism_audit"].get("ontology_revision"))
+          and str(c["mechanism_audit"].get("revision_basis", "")).strip() for c in _audits))
+check("completeness and currency are different measurements",
+      audit_is_complete_at_revision(sorted(revision_mechanisms("MOR-003")), "MOR-003")
+      and not audit_is_current(sorted(revision_mechanisms("MOR-003"))))
+check("the accounting figure does not claim per-mechanism completeness",
+      "does not assert" in MECHANISM_ACCOUNTING_MEANING)
+
+# Currency gates nothing: every closed domain stays mature while most of its
+# audits predate the current mechanism set. A vocabulary that grows must not be
+# able to retroactively unmake a closed layer.
+import domain_status as _ds
+for _domain in ("physics-astronomy", "biology-medicine", "mathematics-computing"):
+    _pd = dc.pattern_distribution(_domain)
+    _mature, _pending = _ds.dod_status(_domain)
+    check(f"a domain with out-of-date audits stays mature ({_domain})",
+          _mature and _pd["n_audits_current"] <= _pd["n_audits"])
+    print(f"      [reported] {_domain}: complete at own revision "
+          f"{_pd['n_audits_complete_at_revision']}/{_pd['n_audits']}, current against "
+          f"{_pd['current_ontology_revision']} {_pd['n_audits_current']}/{_pd['n_audits']}")
+check("no Definition of Done criterion reads an audit-revision figure",
+      not any(k in str(_ds.dod_rows("biology-medicine"))
+              for k in ("complete_at_revision", "n_audits_current", "ontology_revision")))
+
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)
