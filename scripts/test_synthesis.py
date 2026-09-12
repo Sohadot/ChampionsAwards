@@ -359,5 +359,31 @@ check("a mechanism with several cases in one context stays emergent",
 check("a regime-bounded mechanism is flagged as such",
       any(p["regime_bounded"] for p in _mc.values()))
 
+# 16. Foundation review: legacy drift the closed layers could hide.
+_docs = pathlib.Path(__file__).resolve().parent.parent / "docs"
+_doc_text = "\n".join(f.read_text(encoding="utf-8") for f in sorted(_docs.glob("*.md")))
+check("no document types a moving corpus snapshot",
+      "Current snapshot `" not in _doc_text,
+      "a snapshot that changes must be read from the engine, not copied into prose")
+
+_concepts_dir = pathlib.Path(__file__).resolve().parent.parent / "src" / "data" / "concepts"
+_eligible = {
+    yaml.safe_load(f.read_text(encoding="utf-8"))["slug"]
+    for f in sorted(_concepts_dir.glob("*.yaml"))
+    if yaml.safe_load(f.read_text(encoding="utf-8")).get("concept_type") in AUDIT_ELIGIBLE_CONCEPT_TYPES
+}
+_cases_dir = pathlib.Path(__file__).resolve().parent.parent / "src" / "data" / "unawarded"
+_audits = [yaml.safe_load(f.read_text(encoding="utf-8")) for f in sorted(_cases_dir.glob("*.yaml"))]
+_audits = [c for c in _audits if isinstance(c.get("mechanism_audit"), dict)]
+_current = [c for c in _audits
+            if _eligible <= set(c["mechanism_audit"].get("considered") or [])]
+check("the ontology-currency of every audit is measurable",
+      bool(_audits) and all(isinstance(c["mechanism_audit"].get("considered"), list) for c in _audits))
+# Reported, never gated: an audit predating a concept is a dated fact, not a defect,
+# and back-filling a `considered` list without re-running the audit would fabricate
+# evidence. The figure exists so the corpus cannot hide the drift.
+print(f"      [reported] audits current against the {len(_eligible)}-concept ontology: "
+      f"{len(_current)}/{len(_audits)}")
+
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

@@ -45,7 +45,7 @@ observations:
     derived_from: [pattern_support:institutional-exclusion, pattern_pair:credit-misattribution+institutional-exclusion, n_cases]
   - statement: >-
       {established_patterns} of {total_patterns} mechanisms reach the established threshold of
-      {pattern_min} independent evidenced cases; the remaining {emergent_patterns} are recorded as
+      {pattern_min} independent contexts; the remaining {emergent_patterns} are recorded as
       emergent on a single case each. The corpus evidences {evidenced_concepts} of
       {eligible_concepts} audit-eligible mechanism concepts in the ontology - a statement about the
       ontology's coverage, not about how many cases carry a mechanism.

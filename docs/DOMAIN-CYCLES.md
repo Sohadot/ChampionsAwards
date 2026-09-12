@@ -372,6 +372,28 @@ promotes it.
 Physics and Astronomy begin as one cluster during construction and may be split
 once each is dense enough to stand alone.
 
+## Science Foundation Review v1.0 — 2026-09-12
+
+After Cycle 03 closed, one pass over the whole repository asked whether the three
+closed scientific layers still satisfy the current architecture without hidden
+legacy assumptions. It added no case, system or concept, changed no score, and
+opened no cycle.
+
+**The review is not clean, and `Scientific Recognition Foundation — stable v1.0` is
+not declared.** Three defects were fixed as wording corrections — two documents
+typing a moving corpus snapshot, the Physics report stating the establishment
+threshold in cases rather than contexts, and two case entries still denying they
+carry a mechanism after the ontology review reclassified them. One material finding
+is open: **20 of 22 mechanism audits predate the ontology they are now measured
+against**, and nothing in the gate noticed. Nothing was back-filled, because writing
+a concept into a `considered` list without running the test would fabricate dated
+evidence. Full account and the three options:
+[`science-foundation-review.md`](science-foundation-review.md).
+
+The three domains remain MATURE v1.0 individually; that status is measured per
+domain and is unaffected. What is withheld is the cross-cutting claim that the
+foundation as a whole needs no further work.
+
 ---
 
 ## Cycle 01 — Physics & Astronomy Recognition Architecture — CLOSED
@@ -380,11 +402,12 @@ Opened 2026-09-09. Closed 2026-09-10.
 
 > **Physics & Astronomy Recognition Layer — mature v1.0**
 > Closed at corpus snapshot `27036032e0e9` · data through 2026-09-10
-> Current snapshot `2cfe020426ee` · data through 2026-09-12 — see the note below
-> (moved 2026-09-12 by the Wolf Prize anatomy, which documents the inaugural 1978
-> physics prize to Chien-Shiung Wu: a relation that existed before the corpus could
-> see it. A closed layer is closed at a stated snapshot, not frozen against later
-> evidence.)
+> The current snapshot has moved since closure and is deliberately not copied here
+> — run `python scripts/domain_status.py` for it. It moved twice on 2026-09-12:
+> once when the Wolf Prize anatomy documented the inaugural 1978 physics prize to
+> Chien-Shiung Wu, a relation that existed before the corpus could see it, and again
+> when the Wolf Prize's track-record score was corrected. A closed layer is closed
+> at a stated snapshot, not frozen against later evidence.
 > Governed by DoD v1.1 (the layer closes at v1.0; the version numbers are
 > different things — v1.1 is the Definition of Done, v1.0 is this knowledge layer's
 > first closure)
@@ -516,9 +539,11 @@ the RLS threshold. The work is making those three reliable, not adding a fourth.
 
 > **Biology & Medicine Recognition Layer — mature v1.0**
 > Closed at corpus snapshot `919d2f889371` · data through 2026-09-11 · governed by DoD v1.1
-> Current snapshot `919d2f889371` · data through 2026-09-12 — unchanged in substance: the
-> Wolf Prize anatomy entered this domain's award layer on that date but documents no
-> relation to a biology case, so the snapshot is identical and only the date moved.
+> The current snapshot has moved since closure and is deliberately not copied here
+> — run `python scripts/domain_status.py` for it. The Wolf Prize anatomy entered this
+> domain's award layer on 2026-09-12 without documenting a relation to a biology case,
+> and the Wolf Prize's track-record score was corrected the same day; the first did
+> not move the snapshot and the second did.
 
 | Criterion | Measured |
 | --- | --- |
