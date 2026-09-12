@@ -1,0 +1,217 @@
+title: Fields Medal
+slug: fields-medal-award
+status: published
+last_reviewed: 2026-09-12
+domain: mathematics-computing
+subfield: mathematics
+summary: An anatomy of the mathematics side of a composite domain, built from the award's own Statutes - who grants it, who funds it, who may nominate, what the age rule says, how far the record is open, and the one governed case where a rule in force was applied to a dated event and the person's recognition still came out aligned.
+introduction: This page maps an award, not a field. Two of the five governed cases in this domain are mathematics cases, and only one of them has a documented relation to this apparatus; the other is not linked here, for a reason the analysis states rather than leaves implicit.
+legitimacy_question: "What this page can answer is unusually complete for this corpus, because the awarding union publishes its Statutes, its funding source, its nomination rules and every prize committee back to 1936. What it cannot answer is why a committee chose as it did: nominations are confidential under the Statutes and are never opened, so the deliberation behind any single decision is closed permanently rather than sealed for a term."
+structural_notes: "This is the project's first anatomy where a rule, a dated event and an institutional application of that rule to that event are all in the record together. It is also the first where the case that the rule excluded returns a negative recognition gap. The page is written to keep those two facts in the same frame, because separating them is how a corpus starts treating exclusion from one award as equivalent to under-recognition of a person."
+architecture:
+  granting_body: The International Mathematical Union awards the Fields Medal every four years on the occasion of the International Congress of Mathematicians, to recognise outstanding mathematical achievement for existing work and for the promise of future achievement.
+  funding_source: >-
+    The medals and cash prizes are funded by a trust established by J. C. Fields at the University of
+    Toronto, which has been supplemented periodically, and which the union's own page describes as
+    still significantly underfunded. There is no commercial or state sponsor of record, and the body
+    that decides is not the body that holds the endowment.
+  governing_documents: The Statutes for the Fields Medal, as decided at the 1932 International Congress of Mathematicians with subsequent changes, together with the IMU Guidelines regarding conflicts of interest that the Statutes require the committee to observe.
+  eligibility: >-
+    The award goes to an individual mathematician whose fortieth birthday must not occur before 1
+    January of the year of the Congress at which the medals are awarded. Two further constraints sit in
+    the same Statutes: no person may receive more than one IMU Award, with the Leelavati Prize as the
+    single exception, and no person may receive an IMU Award while serving on the IMU Executive
+    Committee.
+  nomination_eligibility: >-
+    The Statutes place no restriction on who may nominate. Nominations are submitted to the Prize
+    Committee Chair, self-nominations are strongly discouraged, and the committee is free to consider
+    mathematicians who were not nominated at all. This is the opposite arrangement to the closed,
+    invitation-only nomination the Nobel anatomies in this corpus document.
+  nomination: >-
+    A nomination must contain the candidate's name and affiliation, their date of birth, and a
+    description of the qualifying work written in terms accessible to mathematicians of different
+    backgrounds, including references to the candidate's important publications. Nominations are
+    confidential and must not be disclosed to the candidate.
+  selection_body: >-
+    The Fields Medal Committee decides the recipients. It is chosen by the Executive Committee of the
+    International Mathematical Union and is normally chaired by the IMU President, and it is asked to
+    choose at least two medalists, with a strong preference for four, and to have regard in its choice
+    to representing a diversity of mathematical fields.
+  sharing_rule: No more than four Fields Medals are awarded at one Congress. Each medal is awarded to an individual rather than divided between collaborators, so this is a cap on how many may be recognised at once rather than a limit on how a single award may be split.
+  secrecy: >-
+    The name of the Chair of the Committee is made public, but the names of the other members remain
+    anonymous until the award of the prize at the Congress, after which the union publishes the
+    committee. Nominations themselves are confidential under the Statutes, with no release horizon
+    stated.
+rule_history:
+  - element: sharing_rule
+    current_rule: No more than four Fields Medals are awarded at one International Congress of Mathematicians.
+    effective_from: 1966
+    predecessor_state: >-
+      Known, and stated by the award's own Statutes. The 1932 Congress resolution provided that two
+      gold medals should be awarded at each Congress; the Statutes record that in 1966, in light of the
+      great expansion of mathematical research, it was agreed that up to four medals could be awarded
+      at each Congress.
+    record_anchor: [1]
+    events_covered:
+      - case: andrew-wiles
+        event_date: 1998
+        established: true
+        note: >-
+          The four-medal cap was in force in 1998 and the Congress awarded four medals - to Borcherds,
+          Gowers, Kontsevich and McMullen - which is the maximum the rule allows. The corpus records
+          that the cap was at its ceiling that year and makes no claim that the cap is why he was not
+          among them; the reason stated at the time was the age rule, not the number of medals.
+  - element: eligibility
+    current_rule: A candidate's fortieth birthday must not occur before 1 January of the year of the Congress at which the Fields Medals are awarded.
+    effective_from: 1966
+    predecessor_state: >-
+      Known in outline. Before 1966 the criterion was not a fixed age but a judgment about candidates
+      whose careers might benefit from encouragement; a historian of mathematics records that the
+      fortieth-birthday limit was codified in 1966. The union's own Statutes state the rule but do not
+      date it, and date only the four-medal change to that year.
+    exception:
+      search_date: '2026-09-12'
+      search_note: >-
+        Searched the union's Statutes for the Fields Medal and its Fields Medal pages for a dated
+        history of the age rule. The Statutes carry the rule in its present form and date the
+        four-medal change to 1966, but give no adoption date for the age limit and no predecessor text.
+        The 1966 date for the age limit therefore rests on a scholarly account.
+      best_source: 4
+    events_covered:
+      - case: andrew-wiles
+        event_date: 1998
+        established: true
+        note: >-
+          The version of the rule that governed this event is established independently of when it was
+          adopted. The Congress's own press office stated in August 1998 that the completion of the
+          proof came too late for the Fields Medal because he was then over the age limit of forty,
+          which records the rule as applied at that date, and the Statutes carry the same rule today.
+archive_visibility:
+  secrecy_rule: >-
+    Nominations are confidential under the Statutes and must not be disclosed to the candidate; no
+    release horizon for them is stated, so they are closed permanently rather than sealed for a term.
+    Committee membership is anonymous only until the award is made at the Congress.
+  as_of: '2026-09-12'
+  record_anchor: [1, 2]
+  note: >-
+    The open and the closed parts of this record run the opposite way to the Nobel pattern. The union
+    publishes every former prize committee from 1936 to the present, naming the chair, the members and,
+    in recent years, those who recused themselves for conflict of interest - so who decided is known
+    for every award in the medal's history. What was said in the deliberation, and who was nominated,
+    is not published at all and has no fifty-year clock running on it.
+  case_status:
+    - case: andrew-wiles
+      years: '1998'
+      status: deliberation-not-reached
+      note: >-
+        No deliberation record for the 1998 decision was reached by this audit, and none is expected to
+        exist in the open record, since nominations are confidential without a release horizon. The
+        1998 committee's composition is published by the union. No committee rationale is asserted
+        here; the statement that the age limit was the obstacle comes from the Congress's own press
+        office, not from the committee.
+      record_anchor: [2, 3]
+key_facts:
+  - fact: "The Statutes record that a resolution was adopted at the 1932 Congress in Zurich that two gold medals should be awarded at each Congress, that J. C. Fields later donated the funds establishing the medals, that the first were awarded at the 1936 Congress in Oslo, and that in 1966 it was agreed that up to four medals could be awarded at each Congress."
+    source: 1
+  - fact: "The Statutes state the eligibility rule as: the Fields Medal is awarded to an individual mathematician whose fortieth birthday must not occur before 1 January of the year of the Congress at which the Fields Medals are awarded."
+    source: 1
+  - fact: "Nominations are submitted to the Prize Committee Chair, must state the candidate's date of birth, are confidential and must not be disclosed to the candidate, self-nominations are strongly discouraged, and the committee is free to consider mathematicians not nominated."
+    source: 1
+  - fact: The medals and cash prizes are funded by a trust established by J. C. Fields at the University of Toronto, supplemented periodically, which the union describes as still significantly underfunded.
+    source: 2
+  - fact: The union publishes its former prize committees for every Congress from 1936 to the present, naming the chair and members and, in recent years, the members who recused themselves for conflict of interest.
+    source: 2
+  - fact: "The 1998 medals were awarded to Richard E. Borcherds, W. Timothy Gowers, Maxim Kontsevich and Curtis T. McMullen, and the union's list carries the note: a silver plaque was offered to Andrew J. Wiles as a special tribute from IMU."
+    source: 2
+  - fact: "The Congress's press office announced on 18 August 1998 that he had been honoured with the IMU silver plaque, presented by the chairman of the Fields Medals Committee at the opening ceremony, and stated that this was too late for the Fields Medal because he was then over the age limit of forty."
+    source: 3
+analysis:
+  - heading: A rule in force, a dated event, and an institution applying one to the other
+    body: "This corpus built its temporal-validity machinery after finding an anachronism in its own Franklin entry - a 1974 rule applied to a 1962 decision. Everything since has used that machinery defensively, to refuse claims. Here it does the opposite. The age rule is in the union's Statutes, the Congress's own press office stated in August 1998 that it was the obstacle, and the union created a one-off object because of it. The rule-at-time block on the relation below is the first in the project where the answer is that yes, this rule governed this event, and the record says so."
+  - heading: The finding the page exists to state
+    body: "He was excluded from this award by a rule that was real and applied, and his recognition gap is negative. Both are in the data. Eligibility exclusion from one award is not equivalent to under-recognition of the person, and a corpus that cannot hold those apart will read every rule as an injury. The way this page keeps them apart is structural: the constraint is recorded here, in the award's anatomy and in the case's provenance, while the recognition score is computed across the whole of mathematical recognition and is not adjusted by anything on this page."
+  - heading: Why the number rule is recorded and not blamed
+    body: "Four medals were awarded in 1998, which is the ceiling the 1966 change set. It would be easy to let that sit next to his name and imply that the cap displaced him. The corpus records the cap because it was at its maximum that year and declines the implication: the reason given at the time was the age rule, the two constraints are independent, and no source connects the number of medals to his absence from the list."
+  - heading: Why Noether is not on this page
+    body: "She is the corpus's other mathematics case, and the apparatus does not touch her record. The 1932 Congress resolved to create the medals and the first were awarded at the 1936 Congress in Oslo; she died in 1935. No version of this committee could have considered her, no version of the eligibility rule was ever applied to her, and there is no decision on record in either direction. Linking her to the medal because she was a mathematician would put a relation on the page that the record does not support, and the corpus-relation layer exists precisely to stop that."
+  - heading: Two recognition systems with opposite openings
+    body: "Read against the Nobel anatomies, this award inverts the pattern on both of the axes this project tracks. Nomination is open here and invitation-only there. Committee membership is published here for every award since 1936 and sealed there for fifty years, while nominations are permanently confidential here and released there after the same fifty years. Neither arrangement is more transparent overall; they are transparent about different things, which is why the legitimacy instrument scores transparency as one dimension among five rather than as a verdict."
+corpus_relations:
+  - case: andrew-wiles
+    architecture_element: eligibility
+    interaction_type: eligibility-constraint
+    record_anchor: [1, 2, 3]
+    claim: The fortieth-birthday rule barred him from the 1998 Fields Medal, and the Congress's press office stated at the time that the completion of the proof came too late for the medal because he was then over the age limit of forty.
+    rule_at_time:
+      event_date: 1998
+      rule_in_force: >-
+        A candidate's fortieth birthday must not occur before 1 January of the year of the Congress at
+        which the Fields Medals are awarded. The rule is carried in the union's Statutes in this form,
+        and the Congress's own press office stated in August 1998 that it was the constraint that
+        applied to him at that Congress, which establishes the rule as applied at that date rather than
+        only as it reads now.
+      record_anchor: [1, 3]
+  - case: andrew-wiles
+    architecture_element: selection_body
+    interaction_type: historical-non-award
+    record_anchor: [2]
+    claim: The union's list of medalists records four medals for 1998, to Borcherds, Gowers, Kontsevich and McMullen, and records separately that a silver plaque was offered to Andrew J. Wiles as a special tribute from the IMU.
+provenance:
+  architecture:granting_body:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:funding_source:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  architecture:governing_documents:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:eligibility:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:nomination_eligibility:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:nomination:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:selection_body:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:sharing_rule:
+    record_anchor: [1]
+    basis: awarding-institution-record
+  architecture:secrecy:
+    record_anchor: [1, 2]
+    basis: awarding-institution-record
+audit_exceptions:
+  - claim: architecture:procedure
+    search_date: '2026-09-12'
+    search_note: >-
+      Sought the union's rules on the decision calendar, on posthumous candidates, on withholding a
+      medal when no candidate is found suitable, and on whether a decision may be appealed. The
+      Statutes for the Fields Medal carry none of these; the union's statutes and by-laws pages
+      returned HTTP 404 at the paths this audit tried.
+    best_source: 1
+    reason: >-
+      Not reached, and not summarised. Four architecture elements that the Nobel anatomies carry -
+      decision stages, posthumous rule, withholding and finality - are omitted here rather than written
+      from general knowledge or inferred from the other award's design.
+sources:
+  - title: "Statutes for the Fields Medal, as decided at the ICM 1932 with subsequent changes (preamble and statutes 1-8: origin, age rule, four-medal cap from 1966, prize amount, committee, nomination, one-award rule)"
+    publisher: International Mathematical Union
+    url: https://www.mathunion.org/fileadmin/IMU/Prizes/Fields/Statutes%20Fields%20Medal.pdf
+    type: institutional
+  - title: "Fields Medal - official page (funding and its adequacy, committee transparency, former prize committees from 1936, the 1998 medalists and the silver plaque note)"
+    publisher: International Mathematical Union
+    url: https://www.mathunion.org/imu-awards/fields-medal
+    type: institutional
+  - title: "Press release 183e, 18 August 1998 - Andrew J. Wiles honoured with the IMU silver plaque at the opening ceremony of the International Congress of Mathematicians"
+    publisher: "Press Office, Technische Universitaet Berlin, for ICM 1998"
+    url: https://webdoc.sub.gwdg.de/ICM98/TU-Presse/pi183e.htm
+    type: primary
+  - title: "The Fields Medal should return to its roots (on the 1966 codification of the age limit)"
+    publisher: "Michael J. Barany, Nature 553, 271-273 (2018)"
+    url: https://www.nature.com/articles/d41586-018-00513-8
+    type: scholarly-secondary
