@@ -372,6 +372,16 @@ promotes it.
 Physics and Astronomy begin as one cluster during construction and may be split
 once each is dense enough to stand alone.
 
+**Cycle order is not the domain registry.** A cycle is an episode of work; a
+domain's lifecycle is a property of the domain. `DOMAIN_REGISTRY` in
+`scripts/config.py` carries the second, with three states — `planned`, `open`,
+`closed` — and aggregation derived from them rather than typed out. The first two
+domains of the list above, Literature and Peace, are registered as `planned`:
+they produce no sector hub, enter no maturity report, and cannot be the corpus a
+synthesis derives from, but an entry may now name them. That is what a planned
+domain is for. Registering a domain is not opening a cycle, and it schedules
+nothing.
+
 ## Science Foundation Review v1.0 — 2026-09-12
 
 After Cycle 03 closed, one pass over the whole repository asked whether the three

@@ -76,10 +76,14 @@ interpretable.
 
 ## Domains and deepening cycles
 
-Every published scored entry is placed in a recognition domain: individuals
-carry a single `domain`, systems carry a `domains` list, and both must reference
-a domain registered in `scripts/config.py` (`DOMAINS`). The gate rejects an
-orphaned scored entry. Cases may also declare `patterns` — structural-cause
+Every published entry in a domain-scoped cluster — awards, recognition systems,
+cases, reports — must name a domain registered in `DOMAIN_REGISTRY`
+(`scripts/config.py`): individuals carry a single `domain`, systems and awards
+carry a `domains` list. The gate rejects an unscoped published entry. Concepts
+are the one exception, and it is declared in config (`DOMAIN_SCOPE_POSTURES`)
+rather than left to whichever validator happened not to check: a structural
+mechanism is defined across domains by construction, and scoping one to a single
+domain would assert it does not operate in the others. Cases may also declare `patterns` — structural-cause
 concepts (e.g. `credit-misattribution`) that must resolve to a **published**
 concept, keeping the ontology connected. Every declared pattern on a published
 case must also carry `pattern_evidence` (source refs proving the mechanism in
@@ -98,13 +102,24 @@ would promote a regime's signature to an established finding automatically. An
 unknown context string fails validation rather than silently creating a false
 independence.
 
+**A domain's lifecycle is a property of the domain, not of a cycle.** The
+registry carries a state for each: `planned` (registered and intended, with no
+assessed corpus), `open` (assessed entries exist, the Definition of Done is not
+yet met), `closed` (the Definition of Done is met). Aggregation is derived from
+that state, never typed out: a planned domain produces no sector hub, enters no
+maturity report, and cannot be the corpus a synthesis derives from. Registering a
+planned domain is what lets a reference entry say where it belongs without
+claiming a corpus for it — the Nobel Peace Prize sits in `peace` and is still
+unassessed. Closed is not frozen: a closed domain stays closed and stays
+correctable.
+
 The project deepens one domain to maturity before opening the next. The model,
 the seven layers, and the machine-checked Definition of Done live in
 [`docs/DOMAIN-CYCLES.md`](docs/DOMAIN-CYCLES.md); `scripts/domain_status.py`
 reports each domain's status from the same scoring engine the site uses.
 
-Two domains are closed: Physics & Astronomy and Biology & Medicine, both at
-mature v1.0. Maturity is governed by **DoD v1.1**: completeness of accountable inquiry, not
+Three domains are closed at mature v1.0: Physics & Astronomy, Biology & Medicine,
+and Mathematics & Computing. Maturity is governed by **DoD v1.1**: completeness of accountable inquiry, not
 conformity of findings to a target. The v1.0 requirement of four established
 mechanisms is superseded — it measured what a corpus happened to contain rather
 than how thoroughly it was examined — and is replaced by complete mechanism

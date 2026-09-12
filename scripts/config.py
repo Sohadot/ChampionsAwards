@@ -44,17 +44,7 @@ CLUSTERS: Final[dict[str, str]] = {
     "timeline": "timeline.html",
 }
 
-# Domains with a published sector reference at /sectors/<domain>.
-PUBLISHED_SECTORS: Final[tuple[str, ...]] = (
-    "physics-astronomy",
-    "biology-medicine",
-    # Published while its cycle is open. A sector reference is a hub for what the
-    # corpus HAS, not a claim that the corpus is finished; the page states its own
-    # maturity as measured, and the Definition of Done decides closure, not
-    # publication. Withholding the hub for the domain under active work leaves its
-    # cases, systems and award anatomies with no single page that binds them.
-    "mathematics-computing",
-)
+# (PUBLISHED_SECTORS is derived from DOMAIN_REGISTRY, further down.)
 
 HUB_TITLES: Final[dict[str, str]] = {
     "awards": "Awards",
@@ -235,10 +225,79 @@ REQUIRE_OBSERVED_RECOGNITION: Final[bool] = True
 # horizontally. Every scored individual carries a single `domain`; every scored
 # system carries `domains` (a list), because a prize can span fields.
 # ---------------------------------------------------------------------------
-DOMAINS: Final[dict[str, str]] = {
-    "physics-astronomy": "Physics & Astronomy",
-    "biology-medicine": "Biology & Medicine",
-    "mathematics-computing": "Mathematics & Computing",
+# The registry is separate from cycle state on purpose. A deepening cycle is an
+# episode of work with a narrative (docs/DOMAIN-CYCLES.md); a domain's lifecycle
+# is a property of the domain itself, and the two were being carried by one list.
+# While DOMAINS held only the domains under work, a domain the project intends to
+# reach had nowhere to exist except in prose, and an entry belonging to it had
+# nowhere to point - so it pointed nowhere, and the gate could not tell an
+# intentionally unscoped entry from an oversight.
+#
+#   planned - registered, intended, no assessed corpus. Produces no sector hub
+#             and enters no aggregation. An entry may name it, which is how a
+#             reference entry says where it belongs without claiming a corpus.
+#   open    - under active work: assessed entries exist, the Definition of Done
+#             is not yet met.
+#   closed  - the Definition of Done is met. Closed is not frozen: a closed
+#             domain stays closed and stays correctable.
+DOMAIN_LIFECYCLE_STATES: Final[tuple[str, ...]] = ("planned", "open", "closed")
+
+DOMAIN_REGISTRY: Final[dict[str, dict[str, str]]] = {
+    "physics-astronomy": {
+        "label": "Physics & Astronomy", "state": "closed", "state_since": "2026-09-10",
+    },
+    "biology-medicine": {
+        "label": "Biology & Medicine", "state": "closed", "state_since": "2026-09-11",
+    },
+    "mathematics-computing": {
+        "label": "Mathematics & Computing", "state": "closed", "state_since": "2026-09-12",
+    },
+    "literature": {
+        "label": "Literature", "state": "planned", "state_since": "2026-09-12",
+    },
+    "peace": {
+        "label": "Peace", "state": "planned", "state_since": "2026-09-12",
+    },
+}
+
+# Label lookup over every registered domain, whatever its state.
+DOMAINS: Final[dict[str, str]] = {k: v["label"] for k, v in DOMAIN_REGISTRY.items()}
+
+# The domains that carry an assessed corpus, and therefore the only ones that
+# aggregate: sector hubs, domain status, synthesis derivation, rankings.
+AGGREGATED_DOMAINS: Final[tuple[str, ...]] = tuple(
+    k for k, v in DOMAIN_REGISTRY.items() if v["state"] in ("open", "closed")
+)
+
+
+def domain_state(domain: object) -> str | None:
+    entry = DOMAIN_REGISTRY.get(domain) if isinstance(domain, str) else None
+    return entry["state"] if entry else None
+
+
+def is_aggregated_domain(domain: object) -> bool:
+    return domain_state(domain) in ("open", "closed")
+
+
+# Domains with a published sector reference at /sectors/<domain>. Derived from
+# the registry rather than typed out: a hub is a consequence of having a corpus,
+# and a planned domain has none. A sector reference is a hub for what the corpus
+# HAS, not a claim that the corpus is finished; the page states its own maturity
+# as measured, and the Definition of Done decides closure, not publication.
+PUBLISHED_SECTORS: Final[tuple[str, ...]] = AGGREGATED_DOMAINS
+
+
+# Clusters whose entries carry domain semantics and must therefore name a
+# registered domain. Concepts are the declared exception, and the exception is
+# written here rather than left to whichever validator happened not to check:
+# a structural mechanism is defined across domains by construction - scoping
+# `credit-misattribution` to one domain would assert it does not operate in the
+# others, which the corpus has not established.
+DOMAIN_SCOPED_CLUSTERS: Final[frozenset[str]] = frozenset(
+    {"awards", "recognition-systems", "unawarded", "reports"}
+)
+DOMAIN_SCOPE_POSTURES: Final[dict[str, str]] = {
+    "concepts": "cross-domain-by-construction: a mechanism is not the property of one domain",
 }
 
 # ---------------------------------------------------------------------------

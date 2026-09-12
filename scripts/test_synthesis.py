@@ -52,10 +52,11 @@ for path in report_files:
     item = load_yaml_file(path)
     check(f"report validates ({path.name})", not validate_report("reports", item, path.name),
           str(validate_report("reports", item, path.name)))
-    from config import DOMAINS
-    check(f"report declares a governed corpus ({path.name})", item.get("derives_from") in DOMAINS)
+    from config import AGGREGATED_DOMAINS
+    check(f"report declares a governed corpus ({path.name})",
+          item.get("derives_from") in AGGREGATED_DOMAINS)
     check(f"report's compares_with names governed domains ({path.name})",
-          all(d in DOMAINS for d in item.get("compares_with") or []))
+          all(d in AGGREGATED_DOMAINS for d in item.get("compares_with") or []))
     _figs = sf.figure_map(item["derives_from"], tuple(item.get("compares_with") or ()))
     for index, obs in enumerate(item.get("observations") or [], start=1):
         check(f"observation #{index} resolves every token ({path.name})",
@@ -477,6 +478,48 @@ for _domain in ("physics-astronomy", "biology-medicine", "mathematics-computing"
 check("no Definition of Done criterion reads an audit-revision figure",
       not any(k in str(_ds.dod_rows("biology-medicine"))
               for k in ("complete_at_revision", "n_audits_current", "ontology_revision")))
+
+# 18. Domain registry: lifecycle is a property of the domain, not of a cycle.
+from config import (
+    AGGREGATED_DOMAINS, DOMAIN_LIFECYCLE_STATES, DOMAIN_REGISTRY, DOMAIN_SCOPED_CLUSTERS,
+    DOMAIN_SCOPE_POSTURES, PUBLISHED_SECTORS, domain_state, is_aggregated_domain,
+)
+from validate_content import validate_domains as _vd
+
+check("every registered domain declares a valid state and a date",
+      all(e.get("state") in DOMAIN_LIFECYCLE_STATES and e.get("state_since") and e.get("label")
+          for e in DOMAIN_REGISTRY.values()))
+check("aggregation is derived from the registry, not typed",
+      tuple(PUBLISHED_SECTORS) == AGGREGATED_DOMAINS
+      and set(AGGREGATED_DOMAINS) == {d for d in DOMAIN_REGISTRY if domain_state(d) != "planned"})
+check("the project has at least one planned domain to be wrong about",
+      any(domain_state(d) == "planned" for d in DOMAIN_REGISTRY))
+
+_planned = [d for d in DOMAIN_REGISTRY if domain_state(d) == "planned"]
+_case_domains = [c.get("domain") for c in
+                 (yaml.safe_load(f.read_text(encoding="utf-8"))
+                  for f in sorted(_cases_dir.glob("*.yaml")))]
+_systems_dir = pathlib.Path(__file__).resolve().parent.parent / "src" / "data" / "recognition-systems"
+_system_domains = [d for f in sorted(_systems_dir.glob("*.yaml"))
+                   for d in (yaml.safe_load(f.read_text(encoding="utf-8")).get("domains") or [])]
+check("a planned domain carries no assessed case or system",
+      not (set(_planned) & (set(_case_domains) | set(_system_domains))))
+check("a planned domain publishes no sector hub",
+      not any(d in PUBLISHED_SECTORS for d in _planned))
+check("a closed domain meets its Definition of Done",
+      all(_ds.dod_status(d)[0] for d in DOMAIN_REGISTRY if domain_state(d) == "closed"))
+
+check("an unscoped published entry in a domain-scoped cluster fails",
+      bool(_vd("awards", {"status": "published", "title": "t"}, "s.yaml")))
+check("naming a planned domain is enough to be scoped",
+      not _vd("awards", {"status": "published", "domains": _planned[:1]}, "s.yaml"))
+check("a cluster with a declared posture is exempt",
+      "concepts" in DOMAIN_SCOPE_POSTURES and "concepts" not in DOMAIN_SCOPED_CLUSTERS
+      and not _vd("concepts", {"status": "published", "title": "t"}, "s.yaml"))
+check("an unregistered domain is still rejected",
+      bool(_vd("awards", {"status": "published", "domain": "chemistry"}, "s.yaml")))
+check("a synthesis cannot derive from a domain with no corpus",
+      not is_aggregated_domain(_planned[0]))
 
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

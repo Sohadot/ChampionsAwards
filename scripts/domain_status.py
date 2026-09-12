@@ -18,6 +18,8 @@ from config import (
     DOMAIN_DOD,
     DOMAIN_DOD_ACCOUNTING,
     DOMAINS,
+    DOMAIN_REGISTRY,
+    is_aggregated_domain,
     is_published,
 )
 from domain_comparison import (
@@ -151,6 +153,15 @@ def dod_status(domain: str) -> tuple[bool, list[str]]:
 def main() -> None:
     print(f"ChampionsAwards - Domain maturity report ({DOD_VERSION})\n" + "=" * 48)
     for slug, label in DOMAINS.items():
+        # A planned domain is a registry entry, not a corpus. Running the
+        # maturity report over it produced a row of zeroes and a Definition of
+        # Done "pending" - a domain nobody has started reading as a domain that
+        # is failing. It is listed, and nothing is computed for it.
+        if not is_aggregated_domain(slug):
+            entry = DOMAIN_REGISTRY[slug]
+            print(f"\n{label}  [{slug}]  -  {entry['state'].upper()} "
+                  f"(since {entry['state_since']}; no assessed corpus, aggregates nothing)")
+            continue
         corpus = corpus_distribution(slug)
         patterns = pattern_distribution(slug)
         systems = rls_profiles(slug)

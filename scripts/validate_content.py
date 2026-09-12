@@ -6,6 +6,11 @@ import yaml
 
 from config import (
     ARCHIVE_VISIBILITY_STATES,
+    DOMAIN_SCOPED_CLUSTERS,
+    DOMAIN_SCOPE_POSTURES,
+    domain_state,
+    is_aggregated_domain,
+    is_published,
     AUDIT_ELIGIBLE_CONCEPT_TYPES,
     COMPLETENESS_ENFORCED_FROM,
     CURRENT_ONTOLOGY_REVISION,
@@ -756,10 +761,14 @@ def validate_report(cluster_name: str, item: dict[str, Any], source_file: str) -
     ref = f"{cluster_name}/{source_file}"
     errors: list[str] = []
 
+    # A synthesis derives from a corpus, so the domain it names must have one.
+    # A planned domain is registered but unassessed: deriving from it would be
+    # deriving from nothing, and every figure token would resolve to zero.
     domain = item.get("derives_from")
-    if not (isinstance(domain, str) and is_valid_domain(domain)):
-        errors.append(f"{ref}: a report must declare 'derives_from' naming a known domain "
-                      f"(its evidence is that governed corpus)")
+    if not (isinstance(domain, str) and is_aggregated_domain(domain)):
+        errors.append(f"{ref}: a report must declare 'derives_from' naming a domain with an "
+                      f"assessed corpus (its evidence is that governed corpus; a planned domain "
+                      f"has none)")
         return errors
 
     for field in ("question", "scope"):
@@ -771,8 +780,8 @@ def validate_report(cluster_name: str, item: dict[str, Any], source_file: str) -
 
     figures = figure_map_cached(domain, tuple(item.get("compares_with") or ()))
     for other in item.get("compares_with") or []:
-        if not is_valid_domain(other):
-            errors.append(f"{ref}: 'compares_with' names an unknown domain: {other}")
+        if not is_aggregated_domain(other):
+            errors.append(f"{ref}: 'compares_with' names a domain with no assessed corpus: {other}")
 
     observations = item.get("observations")
     if not isinstance(observations, list) or not observations:
@@ -1054,16 +1063,33 @@ def validate_audit_exceptions(cluster_name: str, item: dict[str, Any], source_fi
 
 
 def validate_domains(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
-    """`domain` (a single value) and `domains` (a list) must reference known
-    domains when present. Both are validated for shape here; the gate decides
-    where they are required."""
+    """`domain` (a single value) and `domains` (a list) must reference a domain in
+    the registry, and an entry in a domain-scoped cluster must name one.
+
+    An unscoped entry was previously indistinguishable from a deliberate
+    exception. That silence let a published award sit outside every domain
+    without anything recording whether that was a decision or an oversight, and
+    it let the corpus grow a class of entries no domain page could ever reach.
+    The exception now has to be declared at cluster level, in config, where it
+    can be read - not inferred from an entry that simply omitted a field.
+    """
     errors: list[str] = []
+    ref = f"{cluster_name}/{source_file}"
+
+    if cluster_name in DOMAIN_SCOPED_CLUSTERS and is_published(item):
+        if not item.get("domain") and not item.get("domains"):
+            errors.append(
+                f"{ref}: a published entry in a domain-scoped cluster must name a registered "
+                f"domain. A domain may be 'planned' - naming one says where the entry belongs "
+                f"without claiming a corpus for it. Clusters exempt by declared posture: "
+                f"{', '.join(sorted(DOMAIN_SCOPE_POSTURES))}."
+            )
 
     domain = item.get("domain")
     if domain is not None and not (isinstance(domain, str) and is_valid_domain(domain)):
         errors.append(
             f"{cluster_name}/{source_file}: unknown domain '{domain}' "
-            f"(add it to DOMAINS in config.py first)"
+            f"(register it in DOMAIN_REGISTRY in config.py first)"
         )
 
     domains = item.get("domains")
