@@ -106,4 +106,17 @@ audit_exceptions:
 
 domains:
   - mathematics-computing
+assessment_scope:
+  covers:
+  - mathematics-computing
+  note: >-
+    Evidenced over the Fields Medal alone. The International Mathematical Union's committee rule,
+    the age rule and the laureate record behind these five scores are specific to this medal. The
+    domain is composite, and the medal is assessed over its mathematics side; it does not award in
+    computing and the score makes no claim about computing recognition.
+  excludes:
+  - domain: physics-astronomy
+    reason: An award of the International Mathematical Union; nothing in this assessment reaches physics.
+  - domain: biology-medicine
+    reason: An award of the International Mathematical Union; nothing in this assessment reaches medicine.
 subfield: mathematics

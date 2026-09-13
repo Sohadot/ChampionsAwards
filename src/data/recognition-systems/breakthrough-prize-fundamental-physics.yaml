@@ -4,6 +4,23 @@ status: published
 last_reviewed: 2026-09-09
 domains:
 - physics-astronomy
+assessment_scope:
+  covers:
+  - physics-astronomy
+  note: >-
+    Evidenced over the Breakthrough Prize in Fundamental Physics alone. The selection committee,
+    the funding arrangement and the laureate record behind these five scores are specific to this
+    prize; its sibling Breakthrough Prizes in life sciences and mathematics are separate awards
+    with separate committees and are not assessed here.
+  excludes:
+  - domain: biology-medicine
+    reason: >-
+      The Breakthrough Prize in Life Sciences is a separate award with its own selection committee.
+      Nothing in this assessment reaches it, and adding the domain would convert a score fixed by
+      physics evidence into a claim about a prize nobody assessed.
+  - domain: mathematics-computing
+    reason: >-
+      The Breakthrough Prize in Mathematics is likewise a separate award with its own committee.
 summary: The Breakthrough Prize in Fundamental Physics is a privately funded award established in 2012, distinctive for its open public nomination, a selection committee of previous laureates, and a discretionary Special Prize that can be given at any time.
 introduction: The prize offers a different legitimacy profile from older scientific honours - large, privately endowed, and procedurally unusual - which makes it a useful comparison case rather than another instance of the traditional model.
 power_structure: Authority rests on private philanthropic funding and on a committee of prior laureates, which grants independence from state or professional-society control but concentrates influence among past winners and founders.

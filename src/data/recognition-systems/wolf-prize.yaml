@@ -8,7 +8,7 @@ power_structure: The prize derives authority from an established foundation and 
 selection_logic: Selection recognises sustained achievement across multiple fields, broadening coverage relative to single-discipline awards while spreading attention across many domains.
 rls_assessment:
   process: 78
-  breadth: 64
+  breadth: 56
   track_record: 76
   transparency: 58
   independence: 76
@@ -26,7 +26,7 @@ rls_assessment:
     - 1
   rationale:
     process: International juries select recipients under established criteria.
-    breadth: Coverage spans multiple sciences and the arts, broadening representation across fields.
+    breadth: "Half of this dimension is now measured and half is unassessable, and the score reflects both. Field coverage is real and documented: a project analysis over the Foundation's own laureate record - all 390 laureate pages, 1978 to 2025 - finds nine fields with the five sciences distributed evenly (Physics 72, Mathematics 68, Medicine 67, Chemistry 62, Agriculture 61) alongside 60 in the arts. That is unusually broad field coverage for a single prize and it supports the score. Representation across geographies and groups cannot be assessed at all from the published record, in any field: the Foundation publishes no eligibility rules and no nomination data, and the affiliation field is free text in which 58 of the 390 laureates carry no country component and many name only an institution. Lowered from 64 on 2026-09-13, because that score rested on field coverage alone while the dimension's definition also covers geographies and groups - it was silently averaging a half nobody had measured."
     track_record: "The foundation publishes its laureates in full since 1978, with each laureate's field, year, affiliation at the time and citation, and the prize has run annually without interruption. The claim that in several fields the prize has reliably anticipated later Nobel recognition was carried by this entry until 2026-09-12 and is withdrawn as unevidenced - see the documented exception. Lowered from 82, since the score rested on it."
     transparency: "The outcome layer is published in more detail than either other system in this corpus - for every laureate the year, the field, the affiliation held at the time, the full citation and whether the prize was shared. Nothing upstream of the decision is published: no nomination archive, no jury membership past or present, and no release horizon for either. Score unchanged; the wording now states which half is open."
     independence: Foundation and jury governance provide independence within a national context.
@@ -67,7 +67,7 @@ seo:
   - award governance
   title: Wolf Prize Legitimacy - RLS Assessment, Governance & Breadth | ChampionsAwards
 sources:
-- title: Wolf Prize - official site
+- title: "Wolf Prize - official site (the nine fields; international judging committees reappointed annually; the prize in each field)"
   publisher: The Wolf Foundation
   url: https://wolffund.org.il/the-wolf-prize/
   type: institutional
@@ -75,10 +75,65 @@ sources:
   publisher: Encyclopaedia Britannica
   url: https://www.britannica.com/topic/Wolf-Prize
   type: reference-secondary
+- title: "About the Wolf Foundation (founded 1975 on an endowment from the Wolf family; trustees, council, committee members, juries and the internal auditor serve on a voluntary basis)"
+  publisher: The Wolf Foundation
+  url: https://wolffund.org.il/about-wolf-foundation/
+  type: institutional
+- title: "The Foundation's published laureate record - 390 laureate pages, 1978-2025, each carrying field, year, affiliation at the time and citation; the dataset behind this entry's field-coverage analysis and its transparency verification"
+  publisher: The Wolf Foundation
+  url: https://wolffund.org.il/the-wolf-prize/
+  type: archival
 domains:
 - physics-astronomy
 - biology-medicine
 - mathematics-computing
+assessment_scope:
+  covers:
+  - physics-astronomy
+  - biology-medicine
+  - mathematics-computing
+  note: >-
+    One Foundation, one endowment, one published selection architecture - but a separate judging
+    committee per field, which is why this scope is justified dimension by dimension below rather
+    than asserted from the common name. The portability check was run on 2026-09-13 before any
+    score was touched; it changed one dimension and left the scope intact.
+  shared_architecture:
+    process: >-
+      Shared, in the strong and slightly uncomfortable sense that there is only one published
+      account of selection and it is field-agnostic: international judging committees, reappointed
+      annually, comprising experts in their fields. The Foundation publishes no per-field rules, no
+      nomination eligibility and no selection stages, so nothing distinguishes one field's process
+      from another's in the record - and nothing describes any of them in detail either. The
+      sharing is documented; see the open finding on what that implies for the score itself.
+    breadth: >-
+      Shared on the half that can be assessed and unassessable on the other half, uniformly across
+      fields. The eligibility architecture is field-agnostic and carries no published geographic
+      restriction anywhere, and the field-coverage record is measured across all nine fields. The
+      representation half cannot be compared between fields because the affiliation record is free
+      text without a consistent country component - a limitation of the archive that applies
+      identically to physics, medicine and mathematics, not one that distinguishes them. The score
+      was lowered rather than the gap assumed away.
+    track_record: >-
+      Shared. The full laureate record is published for every field - year, field, affiliation,
+      citation and sharing - and no durability analysis exists for any of them. The score is
+      conservative for the same reason in all three domains, which is a shared evidence situation
+      rather than a shared finding about the records.
+    transparency: >-
+      Shared, and verified rather than assumed. All 390 laureate pages were examined: every one
+      publishes field and year, 389 publish a citation, 332 an affiliation, and not one page in any
+      field discloses jury membership or nomination records. The pattern - a fully published
+      outcome layer and nothing at all upstream of the decision - holds uniformly across the nine
+      fields, so it is a property of the Foundation's publication practice and not of a field.
+    independence: >-
+      Shared. A single 1975 family endowment funds every field, one Board of Trustees governs them,
+      and the Foundation records that trustees, council, committee members, juries and the internal
+      auditor all serve on a voluntary basis. No field has a separate funder or a separate
+      governance route.
+  excludes:
+  - domain: literature
+    reason: >-
+      The Wolf Prize awards in music, architecture, painting and sculpture, but not in literature.
+      Nothing in this assessment reaches a literary recognition system.
 # Corrected 2026-09-12, on the evidence of the award anatomy built this cycle.
 # This entry recorded the prize as cross-cutting inside Mathematics & Computing,
 # on the reasoning that a multi-field award spans the join. The foundation's own
@@ -95,6 +150,35 @@ provenance:
     - 1
     basis: awarding-institution-record
 audit_exceptions:
+- claim: representational-breadth
+  search_date: '2026-09-13'
+  search_note: >-
+    Attempted a project analysis of laureate geography across the three scored domains, to test
+    whether the breadth dimension is portable between them. All 390 laureate pages were fetched and
+    parsed. The attempt failed on the archive, not on effort: the Foundation publishes affiliation
+    as free text, 58 of the 390 entries carry no country component at all, many name only an
+    institution, and the field label itself is inconsistent enough to contain a spelling variant.
+    No eligibility rules and no nomination data are published for any field, so the eligible-pool
+    half cannot be examined either.
+  best_source: 4
+  reason: >-
+    Known-status. The field-coverage half of the dimension is measured and supports the score; the
+    representation half is unassessable from the published record, uniformly across fields. The
+    score was lowered from 64 rather than the gap being averaged into silence.
+- claim: process-detail
+  search_date: '2026-09-13'
+  search_note: >-
+    The process score of 78 predates this round and rests on a single published sentence -
+    international judging committees, reappointed annually, comprising experts in their fields. The
+    portability check confirmed that is the Foundation's entire published account of selection: no
+    jury membership, no nomination eligibility, no selection stages, no decision rule, for any of
+    the nine fields, verified across 390 laureate pages.
+  best_source: 1
+  reason: >-
+    Open finding, deliberately not acted on in this round, which was scoped to the gate correction
+    and the portability check. Flagged for requalification: a score of 78 sits above systems whose
+    full stage calendar and decision rule are published, and this round did not establish that it
+    should.
 - claim: track-record
   search_date: '2026-09-12'
   search_note: >-

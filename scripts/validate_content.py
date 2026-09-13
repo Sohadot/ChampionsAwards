@@ -800,10 +800,23 @@ def validate_assessment_scope(
     """
     if cluster_name != "recognition-systems":
         return []
-    scope = item.get("assessment_scope")
-    if scope is None:
-        return []
     ref = f"{cluster_name}/{source_file}"
+    scope = item.get("assessment_scope")
+
+    # The rule was bypassable for a day: the check returned early when no scope
+    # was declared, so the way to escape a requirement about multi-domain scores
+    # was to declare nothing at all - and the corpus's own oldest multi-domain
+    # entry was doing exactly that. A score is a claim about what it was
+    # evidenced over, so every scored system states that, and omission is the one
+    # thing it may not do.
+    if scope is None:
+        if is_published(item) and isinstance(item.get("rls_assessment"), dict):
+            return [
+                f"{ref}: a published system carrying an 'rls_assessment' must declare an "
+                f"'assessment_scope'. A score with no stated scope is a claim with no stated "
+                f"reach, and it is how a multi-domain score avoids having to justify itself."
+            ]
+        return []
     if not isinstance(scope, dict):
         return [f"{ref}: 'assessment_scope' must be a mapping when present"]
 

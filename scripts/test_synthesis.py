@@ -749,8 +749,33 @@ check("an exclusion must name a registered domain",
                 {**_nobel, "assessment_scope": {**_nobel["assessment_scope"],
                                                 "excludes": [{"domain": "poetry", "reason": "r"}]}},
                 "nobel-prize-in-physics-system.yaml")))
-check("a system with no scope is not asked for one",
-      not _vas("recognition-systems", {"slug": "x", "domains": ["literature"]}, "x.yaml"))
+# The loophole this suite did not have on 2026-09-13: every check above tested a
+# system that HAD declared a scope, so the way past the rule - declaring nothing -
+# went unexamined, and the corpus's own oldest multi-domain entry was taking it.
+check("a scored multi-domain system with no scope at all fails",
+      bool(_vas("recognition-systems",
+                {"slug": "x", "status": "published", "domains": ["physics-astronomy", "biology-medicine"],
+                 "rls_assessment": {"process": 70}}, "x.yaml")),
+      "this is the test whose absence let the Wolf Prize score three domains unjustified")
+check("a scored single-domain system with no scope also fails",
+      bool(_vas("recognition-systems",
+                {"slug": "x", "status": "published", "domains": ["literature"],
+                 "rls_assessment": {"process": 70}}, "x.yaml")))
+check("an unscored system is not asked for a scope",
+      not _vas("recognition-systems",
+               {"slug": "x", "status": "published", "domains": ["literature"]}, "x.yaml"))
+check("an unpublished scored system is not asked for a scope",
+      not _vas("recognition-systems",
+               {"slug": "x", "status": "draft", "domains": ["literature"],
+                "rls_assessment": {"process": 70}}, "x.yaml"))
+check("every published scored system in the corpus declares a scope",
+      all(isinstance(s.get("assessment_scope"), dict)
+          for s in _systems_docs if s.get("rls_assessment")))
+check("every multi-domain system in the corpus justifies each dimension",
+      all(set(RLS_KEYS) <= {k for k, v in (s["assessment_scope"].get("shared_architecture") or {}).items()
+                            if str(v).strip()}
+          for s in _systems_docs
+          if len(s.get("assessment_scope", {}).get("covers") or []) > 1))
 
 # The sharing rule: several deciding bodies may share one RLS only where the
 # evidence shows every scored dimension is materially shared.

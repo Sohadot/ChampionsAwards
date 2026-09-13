@@ -107,3 +107,78 @@ Both domains remain **MATURE v1.0**: the Definition of Done counts systems and
 closure, not scores, so a requalification that lowers a composite by five points
 does not disturb maturity. Closure snapshots in the cycle records stay as they
 were; the live corpus snapshot moves, as it does after any correction.
+
+---
+
+# Gate correction and the Wolf portability check — 2026-09-13
+
+The rule this document derived was bypassable for a day, and the entry that
+bypassed it was the oldest one capable of doing so.
+
+## The loophole
+
+`validate_assessment_scope()` returned early when no `assessment_scope` was
+declared. So the escape from a requirement about multi-domain scores was to
+declare nothing at all — and the Wolf Prize, covering physics, biology-medicine
+and mathematics-computing with per-field juries, carried neither a scope nor a
+`shared_architecture`. Four other systems were equally unscoped.
+
+Every test written for the rule had tested a system that *had* declared a scope.
+The absent test was the negative one, and it is now the first of its group:
+
+> a scored multi-domain system with no scope at all must fail validation
+
+**A published system carrying an `rls_assessment` must now declare an
+`assessment_scope`.** All five previously unscoped systems were migrated.
+
+## The Wolf portability check
+
+Run before any score was touched, against the Foundation's own record.
+
+| dimension | portable across physics, medicine, mathematics? |
+| --- | --- |
+| process | **Shared** — one field-agnostic published sentence is the Foundation's entire account of selection for every field |
+| breadth | **Half shared, half unassessable** — see below |
+| track record | **Shared** — full laureate record published for every field, no durability analysis for any |
+| transparency | **Shared, and verified** — all 390 laureate pages examined: every one publishes field and year, 389 a citation, 332 an affiliation, and **not one page in any field** discloses jury membership or nomination records |
+| independence | **Shared** — one 1975 family endowment, one Board, all roles voluntary |
+
+The entry keeps its three domains, and now argues for them dimension by
+dimension rather than inheriting them from a common name.
+
+## What the check changed
+
+**Breadth: 64 → 56.** A project analysis over all 390 laureate pages measured the
+field-coverage half properly for the first time — nine fields, the five sciences
+evenly distributed (Physics 72, Mathematics 68, Medicine 67, Chemistry 62,
+Agriculture 61) and 60 in the arts. That is genuinely broad and supports a score.
+The representation half cannot be assessed at all: the Foundation publishes no
+eligibility rules and no nomination data, and affiliation is free text in which
+58 of 390 laureates carry no country component, many name only an institution,
+and the field label itself contains a spelling variant. The old 64 rested on
+field coverage alone while the dimension's definition also covers geographies and
+groups — it was silently averaging a half nobody had measured.
+
+The attempt is recorded as a dated audit exception. It failed on the archive, not
+on effort, and that distinction is the finding.
+
+Composite: **71 → 69**, which moves the Wolf Prize from *Strong* to *Adequate*.
+
+## Open finding, deliberately not acted on
+
+The Wolf process score of 78 predates this round and rests on one published
+sentence. The portability check confirmed that sentence is the Foundation's
+*entire* published account of selection — no jury membership, no nomination
+eligibility, no selection stages, no decision rule, for any of the nine fields,
+verified across 390 pages. A score of 78 sits above systems whose full stage
+calendar and decision rule are published, and nothing in this round established
+that it should. Recorded as an exception and flagged for requalification rather
+than adjusted inside a round scoped to the gate and the portability question.
+
+## The general lesson
+
+Writing a governance rule and testing a new case against it is not enough. The
+oldest case capable of violating the rule has to be forced through it as well —
+and the test that proves the rule bites is the negative one, the case that must
+fail. Both of this round's findings came from asking what the rule does when
+something is *missing*, rather than what it does when something is wrong.

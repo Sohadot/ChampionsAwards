@@ -79,3 +79,14 @@ audit_exceptions:
 
 domains:
   - biology-medicine
+assessment_scope:
+  covers:
+  - biology-medicine
+  note: >-
+    Evidenced over the Lasker Awards alone. The Foundation's jury, its published criteria and its
+    laureate record behind these five scores are specific to biomedical recognition.
+  excludes:
+  - domain: physics-astronomy
+    reason: The Lasker Foundation awards in medical research; nothing in this assessment reaches physics.
+  - domain: mathematics-computing
+    reason: The Lasker Foundation awards in medical research; nothing in this assessment reaches mathematics or computing.

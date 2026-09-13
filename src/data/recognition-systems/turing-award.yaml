@@ -93,4 +93,17 @@ audit_exceptions:
 
 domains:
   - mathematics-computing
+assessment_scope:
+  covers:
+  - mathematics-computing
+  note: >-
+    Evidenced over the ACM A.M. Turing Award alone, and over the computing side of a composite
+    domain. The award's transparency score already records that the awarding society's procedural
+    pages were unreadable to this audit, so the scope note states what the score covers rather than
+    implying the evidence behind it is complete.
+  excludes:
+  - domain: physics-astronomy
+    reason: An award of the Association for Computing Machinery; nothing in this assessment reaches physics.
+  - domain: biology-medicine
+    reason: An award of the Association for Computing Machinery; nothing in this assessment reaches medicine.
 subfield: computing
