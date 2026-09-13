@@ -567,10 +567,24 @@ def validate_mechanism_reaudit(
     # The revision rules apply unchanged, which is the point: a re-audit runs
     # under the current revision, so MOR-006 forbids it declaring a gap.
     errors.extend(_validate_audit_revision(f"{ref} reaudit", reaudit))
-    if reaudit.get("ontology_revision") != CURRENT_ONTOLOGY_REVISION:
+    # A re-audit must be recorded at the revision in force when it ran, which the
+    # gate can only check by ordering: it may not be older than the audit it
+    # repairs, or it repairs nothing. Requiring it to EQUAL the current revision
+    # was the first shape of this rule and it was wrong - it would have failed
+    # every existing re-audit the moment the ontology moved again, which is
+    # retroactive invalidation of a dated search. Whether a re-audit still covers
+    # today's mechanism set is a measurement, reported as currency, not a gate.
+    revision = reaudit.get("ontology_revision")
+    if revision == LEGACY_REVISION_UNRESOLVED:
         errors.append(
-            f"{ref}: a mechanism_reaudit runs now, so its 'ontology_revision' must be "
-            f"{CURRENT_ONTOLOGY_REVISION}"
+            f"{ref}: a mechanism_reaudit is performed now, so its revision is always establishable "
+            f"and may not be recorded as unresolved"
+        )
+    elif revision_is_before(revision, str(original.get("ontology_revision"))):
+        errors.append(
+            f"{ref}: mechanism_reaudit is recorded at {revision}, older than the "
+            f"{original.get('ontology_revision')} audit it repairs - a re-audit under a smaller "
+            f"ontology cannot remediate a search performed under a larger one"
         )
 
     considered = [c for c in (reaudit.get("considered") or []) if isinstance(c, str)]

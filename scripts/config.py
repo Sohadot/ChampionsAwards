@@ -401,9 +401,21 @@ ONTOLOGY_REVISIONS: Final[dict[str, dict[str, object]]] = {
             "because a commit cannot contain its own hash."
         ),
     },
+    "MOR-007": {
+        "commit": None, "date": "2026-09-13", "mechanisms": _MOR_005,
+        "note": (
+            "Cycle 04 preflight narrows posthumous recognition. The mechanism set is unchanged, but "
+            "the concept's operational definition is not: it now requires a death-triggered "
+            "eligibility rule, in force at the time, shown by the record to have constrained a "
+            "specific recognition opportunity. Read loosely the mechanism attached to every "
+            "contributor who had died under such a rule and distinguished nothing. A revision is "
+            "recorded because a test against this concept means something different before and "
+            "after, even though the list of testable concepts is identical."
+        ),
+    },
 }
 
-CURRENT_ONTOLOGY_REVISION: Final[str] = "MOR-006"
+CURRENT_ONTOLOGY_REVISION: Final[str] = "MOR-007"
 
 # From this revision onward an audit must be complete at its own revision: the
 # declared-gap escape below exists only for audits performed before the model

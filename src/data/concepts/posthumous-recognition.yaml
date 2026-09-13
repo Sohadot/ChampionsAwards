@@ -2,11 +2,20 @@ title: Posthumous Recognition
 slug: posthumous-recognition
 status: published
 concept_type: mechanism
-last_reviewed: 2026-09-11
-summary: Posthumous recognition describes cases where acknowledgment arrives only after a contributor's death, sometimes foreclosed entirely by rules that prevent certain honours from being awarded to the deceased.
-definition: Posthumous recognition is a pattern in which timing and eligibility rules, rather than merit, determine whether a contribution can be formally honoured within a given system.
+last_reviewed: 2026-09-13
+summary: Posthumous recognition describes cases where a death-triggered eligibility rule, in force at the time, is shown to have constrained a specific recognition opportunity. Acknowledgment simply arriving after a death is not the mechanism.
+definition: Posthumous recognition is a mechanism in which a death-triggered eligibility rule, in force at the relevant time, is shown by the record to have constrained a specific recognition opportunity materially relevant to the case. That death makes a future award unavailable is not itself the mechanism.
 explanation: "Some systems encode explicit constraints, and those constraints have dates. The Statutes of the Nobel Foundation provide that a prize is not, as a general rule, awarded posthumously - a provision that entered the Statutes in 1974; before then the prize had been awarded posthumously twice. A contributor who dies before selection can therefore be structurally ineligible regardless of the work's significance, but only under the version of the rule actually in force at the time. Applying a rule to an earlier decision than the rule itself is an anachronism, not a provenance."
-implications: Posthumous recognition shows that recognition systems embed rules that can foreclose merit independently of judgment, and that the timing of a life can decide the shape of the record.
+implications: Posthumous recognition shows that recognition systems embed rules that can foreclose merit independently of judgment. Read narrowly it identifies where a rule actually bit; read loosely it would attach to every contributor who has died under such a rule, and distinguish nothing.
+analysis:
+  - heading: What does not evidence the mechanism
+    body: "Two facts are true of a great many people and explain nothing about any of them, so neither one evidences this mechanism. First, death alone. A contributor dying before an award was made is a fact about a life, not a constraint identified in a record. Second, the bare existence of a posthumous prohibition. A rule that forbids awarding the dead applies identically to everyone who has died under it, so satisfying it distinguishes no case from any other; read that way the mechanism would attach to every deceased contributor in every corpus and carry no information at all. The tag is a claim about what constrained a particular recognition record, and neither of these is such a claim."
+  - heading: Three conditions, all of which must hold
+    body: "A case may carry this mechanism only when all three hold. A specific recognition opportunity must exist - an identifiable award, decision, nomination or selection that the rule bore upon, not the abstract possibility of future honours. The rule in force at the relevant time must be established from the record, not assumed from the rule in force today: applying a rule to a decision that predates it is an anachronism, not a provenance. And the record must link that rule to that opportunity or decision, rather than leaving the link to be inferred from the date of death. The third condition is the strict one, and it is the one most cases fail."
+  - heading: A rule can interact with a case without the case carrying the mechanism
+    body: "An award anatomy may record a posthumous-constraint relation for a case that does not carry this mechanism, and the two are not in conflict. The relation states what the rule does - Vera Rubin, for instance, cannot now receive a Physics Prize, which is documented with the rule dated and anchored. The mechanism claims something further: that the rule constrained the recognition this case actually measures. Rubin's measured deficit was already in place across four decades in which she was fully eligible, so the rule describes her future and not her record. Keeping the two apart is what lets the corpus report an eligibility rule accurately without converting every such report into an explanation."
+  - heading: Why this wording was narrowed rather than replaced
+    body: "The narrowing ratifies the reading the audits had already applied, and changes no result. Four searches reached it independently before the text did: the Franklin withdrawal, on the ground that the prohibition entered the Statutes in 1974 and cannot govern a 1962 decision; the Ball non-tag, on the ground that recognition arriving after a death is not a rule foreclosing anything; and the 2026-09-12 Bose and Rubin re-audits, both on the ground that the measured deficit accrued during full eligibility. No case in the corpus carries the mechanism, so no tag, score or pattern count moves with this edit. The concept keeps its name and its slug because the historical record - every audit, every considered list - points at them, and renaming it would break the link between the tests already performed and the concept they tested."
 key_facts:
   - fact: Under the Statutes of the Nobel Foundation, a prize is generally not awarded posthumously.
     source: 1
@@ -14,7 +23,7 @@ key_facts:
     source: 2
 seo:
   canonical: /concepts/posthumous-recognition
-  description: Posthumous recognition is a pattern in which timing and eligibility rules, rather than merit, determine whether a contribution can be formally honoured within a given system.
+  description: A mechanism in which a death-triggered eligibility rule, in force at the time, is shown to have constrained a specific recognition opportunity - not merely that a contributor has died.
   h1: Posthumous Recognition
   incoming_links:
   - /concepts

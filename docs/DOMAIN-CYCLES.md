@@ -460,7 +460,7 @@ A cycle inherits the instrument it is given. These are the questions the closed
 layers left live, to be answered **before** the first Literature entry is
 assessed rather than discovered halfway through it.
 
-### 1. The operational boundary of posthumous recognition
+### 1. The operational boundary of posthumous recognition — SETTLED 2026-09-13
 
 The concept is written wider than the audits actually apply it:
 
@@ -483,9 +483,40 @@ under the same Statutes and the same 1974 provision — so the wording is settle
 before a Literature case is entered, not after one has been tagged under an
 ambiguous rule.
 
-*Recorded 2026-09-12 by the Science Foundation Review, third pass; reserved for
-preflight rather than acted on, because a closed remediation does not reopen the
-ontology.*
+**Settled: the narrow reading is codified, at MOR-007.** The concept keeps its
+name and its slug, because every audit and every `considered` list in the record
+points at them and renaming would break the link between the tests already
+performed and the concept they tested. Only the operational definition changes:
+
+> Posthumous recognition is a mechanism in which a death-triggered eligibility
+> rule, in force at the relevant time, is shown by the record to have constrained
+> a specific recognition opportunity materially relevant to the case. That death
+> makes a future award unavailable is not itself the mechanism.
+
+Two things do **not** evidence it — death alone, and the bare existence of a
+posthumous prohibition — and three conditions must all hold: a specific
+recognition opportunity the rule bore upon; the rule in force at that time,
+established from the record rather than assumed from today's; and a record
+linking the rule to that opportunity, rather than an inference from a date of
+death. The third is the strict one.
+
+The concept page also states, because it would otherwise look like a
+contradiction, that an award anatomy may record a `posthumous-constraint`
+relation for a case that does not carry the mechanism. The relation says what the
+rule does; the mechanism claims the rule constrained the recognition the case
+measures. Vera Rubin is both: the Physics anatomy documents that no prize can now
+be awarded to her, and her re-audit finds the mechanism unevidenced, because her
+deficit was in place across four decades of full eligibility.
+
+**Nothing moved.** No case carried the mechanism before the narrowing and none
+does after; no tag, score, gap or pattern count changed. A revision id was still
+recorded (**MOR-007**, mechanism set unchanged), because a test against this
+concept means something different before and after, and the registry exists
+precisely so a reader can ask what a `considered` entry meant on the day it was
+written.
+
+*Raised 2026-09-12 by the Science Foundation Review, third pass; settled
+2026-09-13 in preflight, before the first Literature entry.*
 
 ## Cycle 01 — Physics & Astronomy Recognition Architecture — CLOSED
 

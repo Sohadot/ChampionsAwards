@@ -570,8 +570,16 @@ def _ra(case_extra=None, **kw):
 check("a well-formed re-audit passes", not _ra())
 check("a re-audit of nothing is rejected",
       bool(_vmr("unawarded", {"mechanism_reaudit": {"search_date": "2026-09-12"}}, "s.yaml", _mechs)))
-check("a re-audit cannot run under an older revision",
-      bool(_ra(ontology_revision="MOR-005", revision_basis="commit 69ffcc0")))
+check("a re-audit cannot be older than the audit it repairs",
+      bool(_ra(ontology_revision="MOR-002", revision_basis="commit 8a26749",
+               considered=sorted(revision_mechanisms("MOR-002")),
+               verdicts=[{"mechanism": m, "verdict": "not-supported", "note": "n"}
+                         for m in sorted(revision_mechanisms("MOR-002"))])))
+check("a re-audit at a past-but-not-older revision still validates",
+      not _ra(ontology_revision="MOR-005", revision_basis="commit 69ffcc0"))
+check("a re-audit may not record an unresolved revision",
+      bool(_ra(ontology_revision=LEGACY_REVISION_UNRESOLVED,
+               revision_basis="history does not establish one")))
 check("a re-audit cannot leave a mechanism untested",
       bool(_ra(considered=sorted(revision_mechanisms("MOR-004")),
                verdicts=[{"mechanism": m, "verdict": "not-supported", "note": "n"}

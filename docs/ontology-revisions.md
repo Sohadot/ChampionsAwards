@@ -39,6 +39,7 @@ published revision is never edited; a change to the set creates the next id.
 | MOR-004 | `005a421` | 2026-09-11 | 6 | Concept types. The set is unchanged, but eligibility becomes formal: only `concept_type: mechanism` may be tested, so umbrella concepts stop being admissible in a `considered` list. |
 | MOR-005 | `69ffcc0` | 2026-09-12 | 7 | The Cycle 03 ontology review adds compulsory secrecy. |
 | MOR-006 | `442ffa6` | 2026-09-12 | 7 | The revision model itself. The set is unchanged, but an audit must now record its revision and either test everything eligible at it or declare the gap. |
+| MOR-007 | — | 2026-09-13 | 7 | Cycle 04 preflight narrows posthumous recognition to a rule shown to have constrained a specific recognition opportunity. The set is unchanged; what a test against that concept means is not. |
 
 MOR-004 and MOR-006 show that a revision is not only a change of mechanisms: a
 change in what an audit must do is a change the audits have to be read against.
