@@ -1,35 +1,41 @@
 title: Wolf Prize
 slug: wolf-prize
 status: published
-last_reviewed: 2026-09-12
+last_reviewed: 2026-09-13
 summary: The Wolf Prize is an international award given by the Wolf Foundation since 1978 across five sciences and four arts, decided by juries reappointed annually for each field, and funded by a family endowment rather than by a commercial or state sponsor.
 introduction: Awarded by the Wolf Foundation since 1978, the prize spans disciplines including physics, chemistry, medicine, mathematics, agriculture, and the arts, giving it unusually wide subject coverage for a single system.
 power_structure: The prize derives authority from an established foundation and international juries, providing independence while operating within a national institutional context.
 selection_logic: Selection recognises sustained achievement across multiple fields, broadening coverage relative to single-discipline awards while spreading attention across many domains.
 rls_assessment:
-  process: 78
+  process: 56
   breadth: 56
-  track_record: 76
+  track_record: 62
   transparency: 58
-  independence: 76
+  independence: 66
   evidence:
     process:
     - 1
+    - 3
     breadth:
     - 1
-    - 2
+    - 6
     track_record:
-    - 2
+    - 1
+    - 6
     transparency:
     - 1
+    - 5
+    - 6
     independence:
     - 1
+    - 4
+    - 5
   rationale:
-    process: International juries select recipients under established criteria.
+    process: "Requalified 2026-09-13 against what the Foundation actually publishes about the five things this dimension is made of - nomination, filtering, jury constitution, the decision, and any appeal. It publishes part of the first and none of the other four. Nomination is by invitation only, and the published route to being invited is to email the Foundation office with a name, title, affiliation and field; no classes of qualified nominator are defined anywhere, where every Nobel system in this corpus publishes between four and seven. Real constraints are published and are counted here: individuals only and never institutions, no self-nomination, nominations valid for three years, a dated submission deadline, and juries reappointed annually, which is a genuine structural guard against entrenchment. What is not published is everything that would let integrity be checked: no jury membership past or present, no jury size or appointment rule, no filtering stages, no decision rule, and no appeal or review route. A general description of a process is a statement about visibility, not evidence of robustness, and the previous score of 78 rested on one sentence that is the Foundation's entire published account of selection. Lowered from 78."
     breadth: "Half of this dimension is now measured and half is unassessable, and the score reflects both. Field coverage is real and documented: a project analysis over the Foundation's own laureate record - all 390 laureate pages, 1978 to 2025 - finds nine fields with the five sciences distributed evenly (Physics 72, Mathematics 68, Medicine 67, Chemistry 62, Agriculture 61) alongside 60 in the arts. That is unusually broad field coverage for a single prize and it supports the score. Representation across geographies and groups cannot be assessed at all from the published record, in any field: the Foundation publishes no eligibility rules and no nomination data, and the affiliation field is free text in which 58 of the 390 laureates carry no country component and many name only an institution. Lowered from 64 on 2026-09-13, because that score rested on field coverage alone while the dimension's definition also covers geographies and groups - it was silently averaging a half nobody had measured."
-    track_record: "The foundation publishes its laureates in full since 1978, with each laureate's field, year, affiliation at the time and citation, and the prize has run annually without interruption. The claim that in several fields the prize has reliably anticipated later Nobel recognition was carried by this entry until 2026-09-12 and is withdrawn as unevidenced - see the documented exception. Lowered from 82, since the score rested on it."
+    track_record: "Requalified 2026-09-13 under the standard applied to the Nobel systems: longevity and archive completeness are not proxies for durability. The previous score of 76 rested on three things that measure neither - a complete laureate list, the field, year, affiliation and citation published for each, and continuous operation since 1978. Those establish that the record is well kept, not that the selections proved sound. No durability analysis exists in this corpus or was found for it, in any of the nine fields, and this entry's own shared-architecture note already said so. The earlier claim that the prize reliably anticipated later Nobel recognition was withdrawn on 2026-09-12 and is not revived. What survives is a fact about operation rather than about judgement: a project analysis over all 390 published laureate records confirms award activity in every calendar year from 1978 to 2025, with each science field awarded in 38 to 41 of those 48 years, so the prize runs continuously while any single field rotates out roughly one year in six. Lowered from 76 to the same conservative figure the Nobel science systems carry, because the evidence situation is identical - no analysis either way - and not because the records have been shown comparable."
     transparency: "The outcome layer is published in more detail than either other system in this corpus - for every laureate the year, the field, the affiliation held at the time, the full citation and whether the prize was shared. Nothing upstream of the decision is published: no nomination archive, no jury membership past or present, and no release horizon for either. Score unchanged; the wording now states which half is open."
-    independence: Foundation and jury governance provide independence within a national context.
+    independence: "Requalified 2026-09-13, and the two halves of the dimension separate cleanly. Funding is genuinely independent and now documented rather than asserted: a single 1975 endowment from the Wolf family with no commercial or state sponsor of record, a named investment committee of five, a named internal auditor and a named accountant, and the Foundation's own record that trustees, council, committee members, juries and the auditor all serve on a voluntary basis. Decision-making independence cannot be verified at all: the Foundation appoints the juries that decide its prizes, publishes no jury membership past or present and no trustee list, so no separation between funder and decider is checkable from outside. The contrast is internal to the Foundation own publishing - it names who manages the money and not who picks the winners. Lowered from 76, which rested on a sentence asserting independence within a national context without distinguishing the funding from the decision."
 key_facts:
 - fact: The Wolf Prize has been awarded by the Wolf Foundation since 1978.
   source: 1
@@ -75,9 +81,17 @@ sources:
   publisher: Encyclopaedia Britannica
   url: https://www.britannica.com/topic/Wolf-Prize
   type: reference-secondary
+- title: "Nomination for the Wolf Prize - call for proposals (nomination by invitation only, with the route to being invited; individuals not institutions; no self-nomination; nominations valid three years; the submission deadline; five prizes awarded annually across nine fields)"
+  publisher: The Wolf Foundation
+  url: https://wolffund.org.il/the-wolf-prize/call-for-proposal/
+  type: institutional
 - title: "About the Wolf Foundation (founded 1975 on an endowment from the Wolf family; trustees, council, committee members, juries and the internal auditor serve on a voluntary basis)"
   publisher: The Wolf Foundation
   url: https://wolffund.org.il/about-wolf-foundation/
+  type: institutional
+- title: "Team and Consultants (the named investment committee, internal auditor and accountant - the financial governance the Foundation publishes, alongside the selection governance it does not)"
+  publisher: The Wolf Foundation
+  url: https://wolffund.org.il/team-and-consultants/
   type: institutional
 - title: "The Foundation's published laureate record - 390 laureate pages, 1978-2025, each carrying field, year, affiliation at the time and citation; the dataset behind this entry's field-coverage analysis and its transparency verification"
   publisher: The Wolf Foundation
@@ -160,7 +174,7 @@ audit_exceptions:
     institution, and the field label itself is inconsistent enough to contain a spelling variant.
     No eligibility rules and no nomination data are published for any field, so the eligible-pool
     half cannot be examined either.
-  best_source: 4
+  best_source: 6
   reason: >-
     Known-status. The field-coverage half of the dimension is measured and supports the score; the
     representation half is unassessable from the published record, uniformly across fields. The
@@ -168,17 +182,18 @@ audit_exceptions:
 - claim: process-detail
   search_date: '2026-09-13'
   search_note: >-
-    The process score of 78 predates this round and rests on a single published sentence -
-    international judging committees, reappointed annually, comprising experts in their fields. The
-    portability check confirmed that is the Foundation's entire published account of selection: no
-    jury membership, no nomination eligibility, no selection stages, no decision rule, for any of
-    the nine fields, verified across 390 laureate pages.
-  best_source: 1
+    Searched the Foundation's own site for what it publishes about nomination, filtering, jury
+    constitution, the decision and any appeal. Nomination is published in outline on the call for
+    proposals - invitation only, with an email route, individuals only, no self-nomination, three-year
+    validity and a deadline. Nothing was found on the other four: no classes of qualified nominator,
+    no jury membership or appointment rule for any of the nine fields, no filtering stages, no
+    decision rule and no appeal route. Verified additionally across 390 laureate pages, none of which
+    discloses a jury.
+  best_source: 3
   reason: >-
-    Open finding, deliberately not acted on in this round, which was scoped to the gate correction
-    and the portability check. Flagged for requalification: a score of 78 sits above systems whose
-    full stage calendar and decision rule are published, and this round did not establish that it
-    should.
+    Acted on rather than left open. The 2026-09-12 entry carried 78 on one general sentence; this
+    round scored what is published and lowered it to 56. A general description of a process is a
+    statement about visibility, not evidence of robustness.
 - claim: track-record
   search_date: '2026-09-12'
   search_note: >-

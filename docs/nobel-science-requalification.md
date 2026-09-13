@@ -182,3 +182,71 @@ oldest case capable of violating the rule has to be forced through it as well �
 and the test that proves the rule bites is the negative one, the case that must
 fail. Both of this round's findings came from asking what the rule does when
 something is *missing*, rather than what it does when something is wrong.
+
+---
+
+# Wolf Prize RLS requalification — 2026-09-13
+
+*Evidence first, scores last. All five dimensions re-examined against the current
+standard, with no assumption that any existing figure should be preserved and no
+target composite.*
+
+## What the Foundation actually publishes
+
+Researched from the Foundation's own pages and from its complete laureate record.
+
+| question this dimension asks | what is published |
+| --- | --- |
+| who may nominate | **no classes of qualified nominator anywhere.** Nomination is by invitation only; the published route to being invited is to email the office with a name, title, affiliation and field |
+| what constrains a nomination | individuals not institutions; no self-nomination; valid three years; a dated deadline |
+| who filters | **nothing published** |
+| who decides | "international judging committees, reappointed annually, comprising experts in their fields" — no membership, no size, no appointment rule, for any of the nine fields |
+| by what rule | **nothing published** |
+| any appeal or review | **nothing published** |
+| who manages the money | investment committee of five, internal auditor and accountant, **all named** |
+
+The last row is the finding that shaped two dimensions: the Foundation names who
+manages the money and does not name who picks the winners.
+
+## The scores
+
+| dimension | was | now | why |
+| --- | --- | --- | --- |
+| process | 78 | **56** | One general sentence was the entire published account of selection. Publishing part of one of the five things this dimension is made of, and none of the other four, is a fact about visibility rather than evidence of robustness. Real published constraints — no self-nomination, individuals only, three-year validity, a deadline, annually reappointed juries — are counted, and they are what keeps it above the floor. |
+| breadth | 56 | **56** | Re-examined and confirmed, not inherited. Field coverage is measured; representation across geographies and groups remains unassessable because affiliation is free text and no nomination data exists. |
+| track record | 76 | **62** | The old score rested on a complete laureate list, four published fields per laureate, and continuous operation. Those measure record-keeping, not durability. No durability analysis exists for any field. Same conservative figure as the Nobel science systems, for the same reason. |
+| transparency | 58 | **58** | Re-examined and confirmed. Verified across all 390 laureate pages: a fully published outcome layer, nothing upstream in any field. |
+| independence | 76 | **66** | Funding independence is now documented rather than asserted — one 1975 family endowment, no commercial or state sponsor, named investment committee and auditor, voluntary service throughout. Decision independence cannot be verified at all: the Foundation appoints the juries that decide its prizes and publishes neither their membership nor its trustees, so no separation between funder and decider is checkable from outside. |
+
+**Composite 69 → 59.** Still *Adequate*. Two dimensions were re-examined and kept,
+three were lowered on evidence, and none was moved to protect a band.
+
+`last_reviewed` advanced to 2026-09-13, which this round should have done when it
+changed breadth on the same day and did not.
+
+## A finding I had to withdraw before publishing it
+
+The first pass over the laureate record appeared to show four calendar years —
+1997, 2003, 2007, 2009 — with no Wolf laureate at all, which would have
+contradicted the entry's claim of continuous operation. It was an artefact of my
+own parser. Fifty-seven laureates carry two-year award labels (1994/5, 1996/7,
+2002/3, 2006/7, 2008/9), and a regular expression taking the first four digits
+had silently dropped every second year.
+
+Corrected before anything was written to the corpus. The true picture is the
+opposite of the phantom: **award activity in every calendar year from 1978 to
+2025**, with each science field awarded in 38 to 41 of those 48 years — the prize
+runs continuously while any single field rotates out roughly one year in six.
+That rotation is itself an architectural fact the entry had never recorded.
+
+The episode is worth the paragraph because the failure mode is the one this
+project keeps finding: a measurement that looks like evidence, produced by a
+method nobody checked. The parse was mine, not the Foundation's, and the only
+reason it did not become a published claim is that it contradicted something the
+entry already said — which is a weak safety net, not a strong one.
+
+## Not revisited
+
+No case, concept or DDI score. The three science domains remain **MATURE v1.0**;
+medians move to 64, 62 and 69. The Definition of Done counts systems and closure,
+not scores.
