@@ -27,7 +27,7 @@ seo:
   incoming_links:
     - /awards
   outgoing_links:
-    - /recognition-systems/nobel-prize-system
+    - /methodology
   indexing: index
 sources:
   - title: The Nobel Peace Prize — official prize archive and selection process

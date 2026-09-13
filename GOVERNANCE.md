@@ -254,6 +254,18 @@ Two figures follow, and the project keeps them apart:
   mechanism set? A "no" is not a defect, and it gates nothing. A closed domain
   does not become immature because the vocabulary later acquired a word.
 
+**An RLS scores a governed decision architecture (enforced).** Not a foundation,
+and not simply a deciding body either. One deciding body may legitimately be
+assessed across several domains; several deciding bodies may share one score only
+where the evidence shows that all five scored dimensions are materially shared. A
+system whose `assessment_scope.covers` names more than one domain must declare
+`shared_architecture` — for each RLS dimension, the evidence that it is shared —
+or fail the gate. The rule exists because the corpus ran the other experiment:
+one "Nobel Prize System" entry scored five dimensions over two deciding bodies
+from the Foundation's Statutes alone, and when each category was researched
+separately, two of the five turned out not to be shared. A score is only as
+portable as its least portable dimension.
+
 **A defect is remediated, not erased.** Where an audit was incomplete at its own
 revision, the original stays exactly as performed — `incomplete_at_revision`
 included — and a separate `mechanism_reaudit` records a new dated search under the

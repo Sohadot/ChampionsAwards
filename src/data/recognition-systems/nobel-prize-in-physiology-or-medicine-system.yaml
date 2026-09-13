@@ -1,0 +1,162 @@
+title: Nobel Prize in Physiology or Medicine Legitimacy
+slug: nobel-prize-in-physiology-or-medicine-system
+status: published
+last_reviewed: 2026-09-13
+domains:
+- biology-medicine
+summary: The Nobel Prize in Physiology or Medicine is decided by the Nobel Assembly at Karolinska Institutet - fifty professors of one university, who elect their own Nobel Committee and vote by majority on the first Monday in October - and its nomination archive is open only to 1953, two decades less than the other Nobel categories.
+introduction: This entry replaces the shared "Nobel Prize System" assessment for biology and medicine. That entry scored five dimensions from the Foundation's Statutes and Nobel's will alone, and covered two categories decided by different bodies under one rationale. Each dimension here is scored on evidence specific to this deciding body, and where no evidence exists the score is conservative and says so.
+power_structure: "The Nobel Foundation manages Alfred Nobel's estate, pays the prize and sets financial frameworks for the awarding bodies' work under §11 of its Statutes. The Nobel Assembly at Karolinska Institutet decides. It consists of fifty professors at Karolinska Institutet, meets five times a year, elects the Nobel Committee from among itself, and fills its own vacancies by election. Members must be professors at Karolinska Institutet and remain on the Assembly only while they remain on its faculty - so the deciding body is constituted entirely from the faculty of a single university, and departure from that faculty removes a member automatically."
+selection_logic: "Nomination is invitation-gated: over three thousand personal confidential invitations go out each September, and the awarding body states that no one can nominate themselves. Seven classes of nominator are defined by statute, including Assembly members, the Medicine and Biology classes of the Royal Swedish Academy of Sciences, laureates in medicine and in chemistry, all full professors of medicine in Sweden and the other Nordic countries, and holders of similar posts at no fewer than six other medical faculties worldwide selected by the Assembly for country distribution. The Nobel Committee - five members and the Secretary - reviews nominations, commissions evaluation reports from international experts between March and August, and recommends candidates to the Assembly, which decides by majority vote on the first Monday in October. The published criterion is unusually explicit about what does not qualify: lifetime achievements and scientific leadership cannot be considered."
+rls_assessment:
+  process: 72
+  breadth: 50
+  track_record: 62
+  transparency: 52
+  independence: 70
+  evidence:
+    process: [1, 2, 3]
+    breadth: [2, 6]
+    track_record: [5, 6]
+    transparency: [1, 2, 3, 4]
+    independence: [1, 3]
+  rationale:
+    process: "Three published features raise this above what the shared entry's 'committee-driven procedure' recorded. The decision rule is published and specific - a majority vote of the fifty-member Assembly on the first Monday in October, stated to be final and without appeal - where the physics body publishes no rule at all. International experts are commissioned to write evaluation reports as a published step. And the criterion carries an explicit published exclusion: lifetime achievements and scientific leadership cannot be considered, which is a rare instance of a prize stating in advance what it will not reward. Against that, the filtering body and the deciding body are drawn from the same fifty people - the Assembly elects its own Nobel Committee from among its members - so the screening stage is not independent of the deciding stage, and both are constituted from one university's faculty. Nomination is invitation-gated, with over three thousand confidential invitations sent from a nominator population defined largely over Nordic medical faculties."
+    breadth: "Measured, not asserted. A project analysis over the awarding institution's own laureate archive - all 232 laureates from 1901 to 2025 - finds 205 born in Europe or North America (88 per cent) and 14 women (6 per cent). By period, Europe and North America account for 93 per cent in 1901-1950, 89 per cent in 1951-2000 and 82 per cent in 2001-2025; women for 2, 4 and 13 per cent. The outcome record is within two points of the physics record on geography and three times better on gender, but the eligibility rule here is structurally narrower than any other Nobel category's: it names in full the medical faculties of Sweden, Denmark, Finland, Iceland and Norway, and then 'no fewer than six other faculties' worldwide. A nominator population that enumerates five countries and admits a stated minimum of six faculties from everywhere else is a documented feature of the architecture, not an inference, and it is why this dimension scores slightly above physics on outcomes and well below what a worldwide rule would earn."
+    track_record: "Scored conservatively because no durability analysis exists in this corpus or was found for it. The previous shared score of 80 rested on the sentence 'most scientific selections have proven durable, though several well-documented omissions persist', which is an evaluative conclusion with no analysis behind it; it is withdrawn rather than rephrased. What remains evidenced is an unbroken operating record from 1901 with a published laureate list, and the reserve clause exercised in nine prize years - more than any other Nobel science category - rather than the bar being lowered. This corpus separately documents cases bearing on the record, including an entry nominated thirty-eight times without an award; those are recorded in the case layer and are not scored here as track-record failures. The figure is identical to the physics figure because the evidence situation is identical - no analysis either way - and not because the two records have been shown to be equally durable."
+    transparency: "The two halves of this dimension point in opposite directions more sharply here than anywhere else in the corpus. Current procedure is the most visible of any Nobel category assessed: the decision rule, its date, its finality, the seven nominator classes, the committee's composition and the names of all fifty Assembly members are published by the deciding body itself. The historical archive is the least visible: nominations are published only for 1901-1953, where physics reaches 1974 and literature 1975. Two decades of the record that the fifty-year rule should by now have released are not available, and the archive states this as a coverage fact without giving a reason. §10 also seals proposals, investigations and opinions, makes disclosure discretionary rather than automatic, and forbids recording divergent opinions at all. The score is the lowest of the three Nobel systems assessed, and the archive horizon is what puts it there."
+    independence: "Funding and decision are separate bodies: the Foundation manages the estate and sets financial frameworks under §11, the Assembly decides, and §10 provides that no appeal may be made. But the deciding body is constituted entirely from the professoriate of a single university - members must be professors at Karolinska Institutet, they remain only while on its faculty, and vacancies are filled by the Assembly electing from that same population. That is a materially narrower base than a 1739 multidisciplinary academy of roughly 655 members, and it is the reason this score sits eight points below the physics figure rather than inheriting the shared entry's 78. No commercial or political channel into the decision is documented, and the endowment remains independent; what is scored here is that the deciding body's composition is tied to one employer."
+assessment_scope:
+  covers:
+  - biology-medicine
+  note: >-
+    Evidenced over the Nobel Prize in Physiology or Medicine alone. The deciding body is the Nobel
+    Assembly at Karolinska Institutet; the nominator classes, the decision rule, the archive horizon
+    and the laureate record behind these five scores are all specific to this category.
+  excludes:
+  - domain: physics-astronomy
+    reason: >-
+      Decided by the Royal Swedish Academy of Sciences - a general academy of roughly 655 members in
+      ten disciplinary classes rather than fifty professors of one university, with an extra
+      filtering stage, no published decision rule, and an archive open two decades further. Assessed
+      separately in this corpus, and neither score is evidence for the other.
+  - domain: literature
+    reason: >-
+      Decided by the Swedish Academy under a criterion from the will that is not the scientific one.
+      Assessed separately.
+  - domain: peace
+    reason: >-
+      Decided by the Norwegian Nobel Committee, elected by the Norwegian Storting and outside the
+      Swedish academies entirely. Nothing in this assessment reaches it.
+key_facts:
+- fact: "The Nobel Assembly at Karolinska Institutet selects the laureates from among candidates recommended by the Nobel Committee for Physiology or Medicine. The Assembly has 50 members; the Committee consists of five members and the Secretary of the Committee and Assembly."
+  source: 2
+- fact: "The Assembly consists of 50 professors at Karolinska Institutet, meets five times a year, elects the Nobel Committee, and decides by vote on the first Monday in October. Members must be professors at Karolinska Institutet and remain on the Assembly as long as they are on its faculty; a vacant seat is filled by election by the Assembly."
+  source: 3
+- fact: "The Assembly chooses the laureates through a majority vote on the first Monday in October, and the awarding body states that the decision is final and without appeal."
+  source: 2
+- fact: "Over 3,000 personal confidential invitations to nominate are sent out each September, and no self-nominations are considered."
+  source: 2
+- fact: "The published criterion states that discoveries which have changed the scientific paradigm and are of great benefit to humankind are awarded the prize, whereas lifetime achievements or scientific leadership cannot be considered."
+  source: 2
+- fact: "Qualified nominators include members of the Nobel Assembly, Swedish and foreign members of the Medicine and Biology classes of the Royal Swedish Academy of Sciences, laureates in physiology or medicine and in chemistry, Nobel Committee members, full professors at the faculties of medicine in Sweden and holders of similar posts in Denmark, Finland, Iceland and Norway, holders of similar posts at no fewer than six other medical faculties worldwide selected by the Assembly, and other scientists the Assembly may see fit to approach."
+  source: 2
+- fact: "The nomination archive publishes Physiology or Medicine nominations only to 1953, where physics reaches 1974 and literature 1975."
+  source: 4
+- fact: "A project analysis over the awarding institution's own laureate archive, covering all 232 laureates from 1901 to 2025, finds 205 born in Europe or North America (88 per cent) and 14 women (6 per cent); by period, Europe and North America account for 93 per cent in 1901-1950, 89 per cent in 1951-2000 and 82 per cent in 2001-2025, and women for 2, 4 and 13 per cent."
+  source: 6
+- fact: "The same archive records nine prize years in which no prize was awarded: 1915, 1916, 1917, 1918, 1921, 1925, 1940, 1941 and 1942."
+  source: 6
+analysis:
+- heading: What this assessment could not establish
+  body: "The nomination archive's coverage stops at 1953 and the archive states this as a coverage fact without giving a reason; no source was found explaining why two decades that the fifty-year rule should have released are unavailable, so the transparency score records the gap without attributing a cause to it. No durability analysis of the selections exists, which is why the track-record figure is conservative. And sub-field distribution within physiology and medicine is not measured, although the breadth dimension's definition covers it."
+seo:
+  primary_query: Nobel Prize in Physiology or Medicine legitimacy
+  secondary_entities:
+  - Nobel Assembly at Karolinska Institutet
+  - Recognition Legitimacy Score
+  - Nobel Committee for Physiology or Medicine
+  - award governance
+  title: Nobel Prize in Physiology or Medicine Legitimacy - RLS | ChampionsAwards
+  description: How the Nobel Prize in Physiology or Medicine is actually decided - fifty Karolinska professors, a majority vote, and an archive open only to 1953 - scored on five governed dimensions.
+  canonical: /recognition-systems/nobel-prize-in-physiology-or-medicine-system
+  h1: Nobel Prize in Physiology or Medicine Legitimacy
+  schema_types:
+  - BreadcrumbList
+  - Organization
+  incoming_links:
+  - /recognition-systems
+  - /sectors/biology-medicine
+  indexing: index
+  outgoing_links:
+  - /awards/nobel-prize-in-physiology-or-medicine
+  - /methodology
+  - /sectors/biology-medicine
+sources:
+- title: "Statutes of the Nobel Foundation (Nobel Committees in §6; nomination competence in §7; the reserve clause in §5; no appeal, non-disclosure, the bar on recording dissent and the 50-year rule in §10; financial frameworks in §11)"
+  publisher: The Nobel Foundation (nobelprize.org)
+  url: https://www.nobelprize.org/about/statutes-of-the-nobel-foundation
+  type: institutional
+- title: "Nomination and selection of medicine laureates (seven nominator classes, over 3,000 invitations, committee composition, expert evaluation reports, the majority vote on the first Monday in October and its finality, and the published exclusion of lifetime achievement)"
+  publisher: The Nobel Foundation (nobelprize.org)
+  url: https://www.nobelprize.org/nomination/medicine/
+  type: institutional
+- title: "The Nobel Assembly (50 professors at Karolinska Institutet; five meetings a year; elects the Nobel Committee; membership conditional on remaining on the faculty; vacancies filled by election)"
+  publisher: Nobel Assembly at Karolinska Institutet (nobelprizemedicine.org)
+  url: https://www.nobelprizemedicine.org/selecting-laureates/the-nobel-assembly/
+  type: institutional
+- title: "Nomination archive - coverage (Physiology or Medicine data available only to 1953)"
+  publisher: The Nobel Prize (Nobel Prize Outreach), official nomination archive
+  url: https://www.nobelprize.org/nomination/archive/
+  type: institutional
+- title: Facts on the Nobel Prize in Physiology or Medicine
+  publisher: The Nobel Foundation (nobelprize.org)
+  url: https://www.nobelprize.org/prizes/facts/facts-on-the-nobel-prize-in-physiology-or-medicine/
+  type: institutional
+- title: "Nobel Prize API v2.1 - laureate and prize records for the physiology or medicine category (232 laureates 1901-2025 with birth place and gender; 125 prize years), the dataset behind this entry's breadth and withholding analysis"
+  publisher: Nobel Prize Outreach, api.nobelprize.org
+  url: https://api.nobelprize.org/2.1/laureates?nobelPrizeCategory=med&limit=300
+  type: archival
+audit_exceptions:
+- claim: archive-horizon-cause
+  search_date: '2026-09-13'
+  search_note: >-
+    Searched for a stated reason why the Physiology or Medicine nomination archive reaches only 1953
+    when the fifty-year rule would by now release two further decades. The archive notes the coverage
+    and attributes delays generally to internal work processes, without a category-specific reason.
+  best_source: 4
+  reason: >-
+    The gap is scored as a fact about delivery; no cause is attributed to it, and no inference about
+    intent is drawn from it.
+- claim: durability-of-selections
+  search_date: '2026-09-13'
+  search_note: >-
+    Searched for any systematic analysis of whether this system's selections have endured. None was
+    found and none exists in this corpus. The previous score of 80 rested on the assertion that most
+    scientific selections have proven durable, which is an evaluative conclusion rather than a record.
+  best_source: 5
+  reason: >-
+    The assertion is withdrawn and the score lowered to a conservative figure. Not claimed in either
+    direction.
+provenance:
+  system-facts:
+    record_anchor: [2, 3]
+    basis: awarding-institution-record
+  deciding-body:
+    record_anchor: [2, 3]
+    basis: awarding-institution-record
+  decision-rule:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  nomination-architecture:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  archive-horizon:
+    record_anchor: [4]
+    basis: institutional-archive
+  outcome-distribution:
+    record_anchor: [6]
+    basis: institutional-archive
+  funding-separation:
+    record_anchor: [1]
+    basis: awarding-institution-record

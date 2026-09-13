@@ -1044,7 +1044,7 @@ SEO_ROUTE_CONTRACTS: Final[dict[str, dict[str, object]]] = {
         "schema_types": ["BreadcrumbList"],
         "incoming_links": ["/", "/awards"],
         "outgoing_links": ["/methodology", "/recognition-systems/fields-medal",
-                           "/recognition-systems/nobel-prize-system",
+                           "/recognition-systems/nobel-prize-in-physics-system",
                            "/recognition-systems/turing-award", "/recognition-systems/wolf-prize"],
         "indexing": "index",
     },
@@ -1225,9 +1225,13 @@ AWARD_SYSTEM_PAIRS: Final[dict[str, str]] = {
     "acm-am-turing-award": "turing-award",
     "fields-medal-award": "fields-medal",
     "wolf-prize-award": "wolf-prize",
-    "nobel-prize-in-physics": "nobel-prize-system",
-    "nobel-prize-in-physiology-or-medicine": "nobel-prize-system",
-    "nobel-peace-prize": "nobel-prize-system",
+    "nobel-prize-in-physics": "nobel-prize-in-physics-system",
+    "nobel-prize-in-physiology-or-medicine": "nobel-prize-in-physiology-or-medicine-system",
+    # The Nobel Peace Prize was paired to the shared science system until
+    # 2026-09-13. It was the same conflation the split corrects: the Norwegian
+    # Nobel Committee is not the Swedish academies, and an RLS scored over
+    # physics and medicine was never evidence about it. The entry keeps no
+    # pairing until a peace system is assessed on its own evidence.
 }
 
 

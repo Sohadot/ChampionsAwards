@@ -1,5 +1,5 @@
-title: Nobel Prize in Literature
-slug: nobel-prize-in-literature
+title: Nobel Prize in Literature Legitimacy
+slug: nobel-prize-in-literature-system
 status: published
 last_reviewed: 2026-09-13
 domains:
@@ -90,8 +90,8 @@ seo:
   - award governance
   title: Nobel Prize in Literature Legitimacy - RLS, Selection & Secrecy | ChampionsAwards
   description: How the Nobel Prize in Literature is actually decided - the Swedish Academy, its Nobel Committee, four classes of nominator, and a fifty-year seal - scored on five governed dimensions.
-  canonical: /recognition-systems/nobel-prize-in-literature
-  h1: Nobel Prize in Literature
+  canonical: /recognition-systems/nobel-prize-in-literature-system
+  h1: Nobel Prize in Literature Legitimacy
   schema_types:
   - BreadcrumbList
   - Organization
@@ -184,6 +184,9 @@ audit_exceptions:
     Left unestablished rather than assumed. No dimension is scored on it, and the independence
     rationale rests on self-election, which is documented.
 provenance:
+  system-facts:
+    record_anchor: [1, 3, 4]
+    basis: awarding-institution-record
   deciding-body:
     record_anchor: [1, 6]
     basis: awarding-institution-record

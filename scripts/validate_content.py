@@ -825,6 +825,33 @@ def validate_assessment_scope(
             f"its assessment does not claim to cover."
         )
 
+    # The sharing rule. Preflight 3 recorded that an RLS scores a deciding body
+    # rather than a foundation, and the requalification that followed showed the
+    # phrasing was too tight: one deciding body may legitimately be assessed over
+    # several domains, and several deciding bodies may not be assessed under one
+    # score unless the evidence shows the five dimensions are materially shared.
+    # A multi-domain scope must therefore say which it is, per dimension, rather
+    # than leaving a reader to assume the architecture is common because the name
+    # is. The shared entry this rule replaces asserted five dimensions over two
+    # deciding bodies, and two of the five turned out not to be shared at all.
+    if len(covers) > 1:
+        shared = scope.get("shared_architecture")
+        if not isinstance(shared, dict) or not shared:
+            errors.append(
+                f"{ref}: an assessment covering more than one domain must declare "
+                f"'shared_architecture' - for each scored dimension, the evidence that it is "
+                f"materially shared across everything this score covers. Several deciding bodies "
+                f"may share one RLS only where that is shown, not where the name is common."
+            )
+        else:
+            missing = [k for k in RLS_KEYS if not str(shared.get(k, "")).strip()]
+            if missing:
+                errors.append(
+                    f"{ref}: 'shared_architecture' leaves {', '.join(missing)} unaddressed. Every "
+                    f"scored dimension must be shown materially shared, because a score is only as "
+                    f"portable as its least portable dimension."
+                )
+
     excludes = scope.get("excludes")
     if excludes is None:
         return errors

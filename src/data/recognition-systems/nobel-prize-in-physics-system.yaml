@@ -1,0 +1,161 @@
+title: Nobel Prize in Physics Legitimacy
+slug: nobel-prize-in-physics-system
+status: published
+last_reviewed: 2026-09-13
+domains:
+- physics-astronomy
+summary: The Nobel Prize in Physics is decided by the Royal Swedish Academy of Sciences, a 1739 multidisciplinary academy of roughly 655 members, through a three-stage filter - a Nobel Committee that consults external experts and signs its report, a Physics Class that may substitute a different proposal, and a final Academy meeting - under a statute that publishes no decision rule.
+introduction: This entry replaces the shared "Nobel Prize System" assessment for physics. That entry scored five dimensions from the Foundation's Statutes and Nobel's will alone, and covered two categories decided by different bodies under one rationale. Each dimension here is scored on evidence specific to this deciding body, and where no evidence exists the score is conservative and says so.
+power_structure: "The Nobel Foundation manages Alfred Nobel's estate, pays the prize and sets financial frameworks for the awarding bodies' work under §11 of its Statutes. The Royal Swedish Academy of Sciences decides. Founded in 1739, it describes itself as an independent organisation, has approximately 480 Swedish and 175 foreign members, and divides them by discipline into ten classes - so the deciding body is a general scientific academy rather than the staff of any one institution, and no single employer constitutes it."
+selection_logic: "Nomination is invitation-gated: the Committee sends forms to thousands of selected scholars, and the published rules state that a proposal cannot be submitted spontaneously without an invitation. Six classes of nominator are defined by statute, including all Academy members, physics laureates, Nordic chairholders in the physical sciences, and chairholders at universities selected each year for country distribution. The Nobel Committee for Physics - nominally five voting members, in practice with voting adjunct members as well - screens nominations, sends preliminary candidates to appointed experts between March and May, and writes a report signed by all its members. That proposal then goes to the Physics Class, which may modify it or forward a different one, and additional proposals may be raised at the final Academy meeting. Withholding is possible in principle and is described by the awarding body as a seldom used choice; it has been used in six prize years."
+rls_assessment:
+  process: 74
+  breadth: 48
+  track_record: 62
+  transparency: 56
+  independence: 78
+  evidence:
+    process: [1, 2, 3]
+    breadth: [2, 3, 6]
+    track_record: [5, 6]
+    transparency: [1, 2, 4]
+    independence: [1, 3]
+  rationale:
+    process: "Three separable filtering stages are published, and the second can overturn the first: the Nobel Committee screens and recommends, the Physics Class may modify the Committee's proposal or forward a different one, and further proposals may be raised at the final Academy meeting. Two features strengthen the chain beyond what the previous shared assessment recorded. External experts are consulted on the preliminary candidates as a published step, and the Committee's report is signed by all its members - an attributable internal document, which is not true of every Nobel category. Against that, two documented limits. No decision rule is published: neither the Statutes nor the awarding body's own description of the process states the majority or threshold by which the Academy decides, where the Physiology or Medicine body publishes both its majority rule and the finality of the vote. And the nominator population is invitation-gated - the published rules state that a proposal cannot be submitted spontaneously without an invitation, so the Committee curates the population from which nominations may come. The score is above the shared entry's 72 on the strength of the published filter chain, and held below what that chain alone would suggest by the missing decision rule."
+    breadth: "Measured, not asserted. A project analysis over the awarding institution's own laureate archive - all 229 physics laureates from 1901 to 2025 - finds 202 born in Europe or North America (88 per cent) and 5 women (2 per cent). By period, Europe and North America account for 94 per cent of laureates in 1901-1950, 90 per cent in 1951-2000 and 81 per cent in 2001-2025; women for 2, 1 and 4 per cent. This is the most concentrated outcome record in the corpus on both axes. The eligibility rules do reach worldwide - chairholders at universities selected annually 'with a view to ensuring the appropriate distribution over the different countries' - but eligibility is gated by invitation, and the dimension is scored on the outcome record rather than on the rule. The previous shared score of 58 rested on the sentence 'historically concentrated in Western Europe and North America, with representation broadening only gradually', with no dataset behind it; that claim turns out to be true in direction and understated in degree. One axis is not measured: sub-field distribution within physics, which the dimension's definition also covers and for which this corpus has no dataset."
+    track_record: "Scored conservatively because no durability analysis exists in this corpus or was found for it, and the previous score of 80 rested on the sentence 'most scientific selections have proven durable, though several well-documented omissions persist' - an evaluative conclusion with no analysis behind it, of exactly the kind this project refuses elsewhere. That sentence is withdrawn. What remains evidenced is an unbroken operating record from 1901 with a published laureate list, the reserve clause exercised in six prize years rather than the bar being lowered, and - recorded rather than scored as failure - this corpus's own physics award anatomy, which documents that the 1948 prediction by Alpher and Herman was not among the work recognised in the 1978 award for the cosmic microwave background. The figure reflects an absent analysis, not a judgement that the selections were poor, and it is identical to the Physiology or Medicine figure because the evidence situation is identical, not because the two records have been shown to be equally durable."
+    transparency: "Current procedure is well published: the criterion, the six nominator classes, the committee's nominal size, the expert-consultation step, the stage calendar and the existence of a signed committee report. Two gaps are specific to this body. No decision rule is published at all, so a reader cannot know what majority the Academy requires. And §10 seals proposals, investigations and opinions for at least fifty years, makes later disclosure discretionary rather than automatic, and forbids recording divergent opinions in the first place. Delivery of the historical archive is nonetheless real and measurable: 3,843 physics nominations are published for 1901-1974. The score sits below the literature system's despite a comparable archive horizon, because that system publishes its decision rule and this one does not."
+    independence: "Funding and decision are separate bodies. The Foundation manages the estate, pays the prize and sets financial frameworks under §11; the Academy decides, and §10 provides that no appeal may be made against the decision. The deciding body is a 1739 academy that describes itself as an independent organisation, draws approximately 655 Swedish and foreign members from ten disciplinary classes, and is not constituted from the faculty of any single institution - which is what distinguishes it from the Physiology or Medicine body and is why the two scores differ here. The previous shared score of 78 is retained, but on this evidence rather than on the earlier sentence about an endowment insulating 'most categories', which asserted a property of the funding and inferred one about the deciding body."
+assessment_scope:
+  covers:
+  - physics-astronomy
+  note: >-
+    Evidenced over the Nobel Prize in Physics alone. The deciding body is the Royal Swedish Academy
+    of Sciences; the nominator classes, the filter chain, the archive horizon and the laureate record
+    behind these five scores are all specific to this category. The Foundation's Statutes are common
+    to every Nobel prize, but no dimension here is fixed by the Statutes alone.
+  excludes:
+  - domain: biology-medicine
+    reason: >-
+      Decided by the Nobel Assembly at Karolinska Institutet - a different body, a different filter
+      chain, a published decision rule this category lacks, a nominator population defined over
+      medical faculties rather than a general academy, and a nomination archive open only to 1953
+      against 1974 here. Assessed separately in this corpus, and neither score is evidence for the
+      other.
+  - domain: literature
+    reason: >-
+      Decided by the Swedish Academy under a criterion from the will that is not the scientific one.
+      Assessed separately.
+  - domain: peace
+    reason: >-
+      Decided by the Norwegian Nobel Committee, elected by the Norwegian Storting and outside the
+      Swedish academies entirely. Nothing in this assessment reaches it.
+key_facts:
+- fact: "The Royal Swedish Academy of Sciences is responsible for the selection of the physics laureates. It appoints the Nobel Committee for Physics, which consists nominally of five voting members and in practice also includes voting adjunct members."
+  source: 2
+- fact: "The Committee's proposal is discussed in the Physics Class of the Academy, which may suggest a modification or forward a different proposal, and additional proposals may be raised at the final Academy meeting."
+  source: 2
+- fact: "The Committee sends nomination invitations to thousands of selected professors and scholars worldwide, and the awarding body states that it is not possible to nominate oneself or to submit a proposal spontaneously without an invitation."
+  source: 2
+- fact: "Preliminary candidates are sent to specially appointed experts for assessment between March and May, and the Committee's report to the Academy is signed by all members of the Committee."
+  source: 2
+- fact: "The Royal Swedish Academy of Sciences was founded in 1739, describes itself as an independent organisation, and consists of approximately 480 Swedish and 175 foreign members divided by scientific discipline into ten classes."
+  source: 3
+- fact: "The nomination archive publishes 3,843 physics nominations covering 1901 to 1974."
+  source: 4
+- fact: "A project analysis over the awarding institution's own laureate archive, covering all 229 physics laureates from 1901 to 2025, finds 202 born in Europe or North America (88 per cent) and 5 women (2 per cent); by period, Europe and North America account for 94 per cent of laureates in 1901-1950, 90 per cent in 1951-2000 and 81 per cent in 2001-2025, and women for 2, 1 and 4 per cent."
+  source: 6
+- fact: "The same archive records six prize years in which no physics prize was awarded: 1916, 1931, 1934, 1940, 1941 and 1942."
+  source: 6
+- fact: "§10 of the Statutes provides that no appeal may be made against a prize decision, that proposals, investigations and opinions may not be divulged, that divergent opinions may not be included in the record, and that access to the underlying material is discretionary and not before at least 50 years have elapsed."
+  source: 1
+analysis:
+- heading: What this assessment could not establish
+  body: "Three things are left open. No decision rule for the Academy's final vote was found in the Statutes or in the awarding body's published description of the process, so the score records its absence rather than assuming a majority. Sub-field distribution within physics is not measured, although the breadth dimension's definition covers it. And no durability analysis of the selections exists, which is why the track-record figure is conservative and why the previous score's justifying sentence is withdrawn rather than rephrased."
+seo:
+  primary_query: Nobel Prize in Physics legitimacy
+  secondary_entities:
+  - Royal Swedish Academy of Sciences
+  - Recognition Legitimacy Score
+  - Nobel Committee for Physics
+  - award governance
+  title: Nobel Prize in Physics Legitimacy - RLS, Selection & Breadth | ChampionsAwards
+  description: How the Nobel Prize in Physics is actually decided - the Royal Swedish Academy of Sciences, its Nobel Committee and the Physics Class - scored on five governed dimensions.
+  canonical: /recognition-systems/nobel-prize-in-physics-system
+  h1: Nobel Prize in Physics Legitimacy
+  schema_types:
+  - BreadcrumbList
+  - Organization
+  incoming_links:
+  - /recognition-systems
+  - /sectors/physics-astronomy
+  indexing: index
+  outgoing_links:
+  - /awards/nobel-prize-in-physics
+  - /methodology
+  - /sectors/physics-astronomy
+sources:
+- title: "Statutes of the Nobel Foundation (Nobel Committees in §6; nomination competence in §7; the reserve clause in §5; no appeal, non-disclosure, the bar on recording dissent and the 50-year rule in §10; financial frameworks in §11)"
+  publisher: The Nobel Foundation (nobelprize.org)
+  url: https://www.nobelprize.org/about/statutes-of-the-nobel-foundation
+  type: institutional
+- title: "Nomination and selection of physics laureates (six nominator classes, invitation-gated nomination, committee composition, expert consultation, the signed report, the Physics Class stage)"
+  publisher: The Nobel Foundation (nobelprize.org)
+  url: https://www.nobelprize.org/nomination/physics/
+  type: institutional
+- title: "About the Royal Swedish Academy of Sciences (founded 1739; an independent organisation; approximately 480 Swedish and 175 foreign members in ten disciplinary classes)"
+  publisher: Kungliga Vetenskapsakademien (Royal Swedish Academy of Sciences)
+  url: https://www.kva.se/en/about-us/
+  type: institutional
+- title: "Nomination archive - coverage (3,843 physics nominations, 1901-1974)"
+  publisher: The Nobel Prize (Nobel Prize Outreach), official nomination archive
+  url: https://www.nobelprize.org/nomination/archive/
+  type: institutional
+- title: Facts on the Nobel Prize in Physics
+  publisher: The Nobel Foundation (nobelprize.org)
+  url: https://www.nobelprize.org/prizes/facts/facts-on-the-nobel-prize-in-physics/
+  type: institutional
+- title: "Nobel Prize API v2.1 - laureate and prize records for the physics category (229 laureates 1901-2025 with birth place and gender; 125 prize years), the dataset behind this entry's breadth and withholding analysis"
+  publisher: Nobel Prize Outreach, api.nobelprize.org
+  url: https://api.nobelprize.org/2.1/laureates?nobelPrizeCategory=phy&limit=300
+  type: archival
+audit_exceptions:
+- claim: decision-rule
+  search_date: '2026-09-13'
+  search_note: >-
+    Searched the Statutes and the awarding body's own published description of the selection process
+    for the majority or threshold by which the Academy takes its final decision. Neither states one,
+    where the Physiology or Medicine body publishes both a majority rule and the finality of the vote.
+  best_source: 2
+  reason: >-
+    Recorded as absent rather than assumed. Both the process and the transparency scores are held
+    down by it, and neither infers a rule that is not published.
+- claim: durability-of-selections
+  search_date: '2026-09-13'
+  search_note: >-
+    Searched for any systematic analysis of whether this system's selections have endured. None was
+    found and none exists in this corpus. The previous score of 80 rested on the assertion that most
+    scientific selections have proven durable, which is an evaluative conclusion rather than a record.
+  best_source: 5
+  reason: >-
+    The assertion is withdrawn and the score lowered to a conservative figure. Not claimed in either
+    direction.
+provenance:
+  system-facts:
+    record_anchor: [2, 3]
+    basis: awarding-institution-record
+  deciding-body:
+    record_anchor: [2, 3]
+    basis: awarding-institution-record
+  nomination-architecture:
+    record_anchor: [2]
+    basis: awarding-institution-record
+  archive-horizon:
+    record_anchor: [4]
+    basis: institutional-archive
+  outcome-distribution:
+    record_anchor: [6]
+    basis: institutional-archive
+  funding-separation:
+    record_anchor: [1]
+    basis: awarding-institution-record

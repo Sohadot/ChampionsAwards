@@ -715,6 +715,7 @@ check("the calibration refuses distribution advantage as breadth",
           for w in ("sales", "translation", "language community")))
 
 # 22. Assessment scope: an RLS is evidence about what it was scored over.
+from config import RLS_KEYS
 from validate_content import validate_assessment_scope as _vas
 
 _systems_docs = [yaml.safe_load(f.read_text(encoding="utf-8"))
@@ -732,20 +733,43 @@ check("every exclusion carries a reason",
       all(str(r.get("reason", "")).strip()
           for s in _scoped for r in s["assessment_scope"].get("excludes") or []))
 
-_nobel = next(s for s in _scoped if s["slug"] == "nobel-prize-system")
-check("the Nobel system excludes literature from its score",
+_nobel = next(s for s in _scoped if s["slug"] == "nobel-prize-in-physics-system")
+check("the Nobel physics system excludes literature from its score",
       "literature" in {r["domain"] for r in _nobel["assessment_scope"]["excludes"]})
+check("no Nobel system is evidence for another Nobel category",
+      all({"physics-astronomy", "biology-medicine", "literature", "peace"} - set(s["domains"])
+          <= {r["domain"] for r in s["assessment_scope"].get("excludes") or []}
+          for s in _scoped if s["slug"].startswith("nobel-prize-in-")))
 check("adding an excluded domain to a system fails",
       bool(_vas("recognition-systems",
                 {**_nobel, "domains": _nobel["domains"] + ["literature"]},
-                "nobel-system.yaml")))
+                "nobel-prize-in-physics-system.yaml")))
 check("an exclusion must name a registered domain",
       bool(_vas("recognition-systems",
                 {**_nobel, "assessment_scope": {**_nobel["assessment_scope"],
                                                 "excludes": [{"domain": "poetry", "reason": "r"}]}},
-                "nobel-system.yaml")))
+                "nobel-prize-in-physics-system.yaml")))
 check("a system with no scope is not asked for one",
       not _vas("recognition-systems", {"slug": "x", "domains": ["literature"]}, "x.yaml"))
+
+# The sharing rule: several deciding bodies may share one RLS only where the
+# evidence shows every scored dimension is materially shared.
+_two = ["physics-astronomy", "biology-medicine"]
+_multi = {"slug": "x", "domains": _two,
+          "assessment_scope": {"covers": _two, "note": "n"}}
+check("a multi-domain score must justify itself dimension by dimension",
+      bool(_vas("recognition-systems", _multi, "x.yaml")))
+check("a partial justification is not a justification",
+      bool(_vas("recognition-systems",
+                {**_multi, "assessment_scope": {**_multi["assessment_scope"],
+                 "shared_architecture": {"process": "p", "independence": "i"}}}, "x.yaml")))
+check("a fully justified multi-domain score passes",
+      not _vas("recognition-systems",
+               {**_multi, "assessment_scope": {**_multi["assessment_scope"],
+                "shared_architecture": {k: "shown shared" for k in RLS_KEYS}}}, "x.yaml"))
+check("no Nobel science category is scored under a shared architecture any more",
+      all(len(s["assessment_scope"]["covers"]) == 1
+          for s in _scoped if s["slug"].startswith("nobel-prize-in-")))
 
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

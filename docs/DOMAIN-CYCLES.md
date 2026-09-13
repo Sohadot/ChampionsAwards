@@ -592,6 +592,15 @@ the scientific one, and with a track record documented and argued in a literatur
 of its own. None of the five RLS dimensions could be evidenced over it from the
 sources that fix the current score.
 
+*Superseded in part on 2026-09-13.* The phrasing "an RLS scores a deciding body,
+not a foundation" was right about the Foundation and too tight about the rest: it
+did not sit with one entry covering physics and medicine, which are decided by
+different bodies. The rule is now **an RLS scores a governed decision
+architecture** — several deciding bodies may share one score only where the
+evidence shows all five dimensions are materially shared. The requalification
+that followed found that they were not, and the shared entry was split. See
+`docs/nobel-science-requalification.md`.
+
 **The decision is now enforced, not remembered.** The Nobel system entry records
 an `assessment_scope`: what the score covers, and what it explicitly does not,
 each exclusion with a written reason. The gate requires `covers` to equal
