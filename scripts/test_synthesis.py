@@ -796,5 +796,49 @@ check("no Nobel science category is scored under a shared architecture any more"
       all(len(s["assessment_scope"]["covers"]) == 1
           for s in _scoped if s["slug"].startswith("nobel-prize-in-")))
 
+# 23. The admission standard may not describe an aspiration as a control.
+from config import GAP_DECISIONS, GAP_LAYERS, GAP_STATUSES, GAP_VERSION, gap_coverage, gap_layer
+
+_scripts = pathlib.Path(__file__).resolve().parent
+check("every layer declares an id, a question, decisions and a status",
+      all({"id", "name", "question", "decisions", "status", "components", "note"} <= set(l)
+          for l in GAP_LAYERS))
+check("layer ids are unique and ordered",
+      [l["id"] for l in GAP_LAYERS] == sorted(l["id"] for l in GAP_LAYERS))
+check("every declared status is in the vocabulary",
+      all(l["status"] in GAP_STATUSES for l in GAP_LAYERS))
+check("every declared decision is in the vocabulary",
+      all(set(l["decisions"]) <= set(GAP_DECISIONS) for l in GAP_LAYERS))
+check("every layer may at least pass something", all("PASS" in l["decisions"] for l in GAP_LAYERS))
+
+# The rule that keeps the standard honest: a layer cannot claim enforcement
+# without naming a component that exists, and a layer naming nothing cannot
+# claim to enforce anything.
+check("no layer claims to be enforced without a component that exists",
+      all(l["components"] and all((_scripts / str(c)).exists() for c in l["components"])
+          for l in GAP_LAYERS if l["status"] == "enforced"),
+      "an enforced layer must name a real component")
+check("no layer claims partial enforcement without a component that exists",
+      all(l["components"] and all((_scripts / str(c)).exists() for c in l["components"])
+          for l in GAP_LAYERS if l["status"] == "partial"))
+check("a layer with no component is declared absent",
+      all(l["status"] == "absent" for l in GAP_LAYERS if not l["components"]))
+
+# Only hazard layers may block. An evidence layer that could BLOCK would
+# eventually be used to suppress an inconvenient finding rather than a threat.
+_HAZARD = {"GAP-01", "GAP-02", "GAP-09", "GAP-10"}
+check("only hazard layers may BLOCK",
+      all((l["id"] in _HAZARD) or ("BLOCK" not in l["decisions"]) for l in GAP_LAYERS))
+check("the evidence layers can never block, only withhold",
+      all("BLOCK" not in gap_layer(i)["decisions"] for i in ("GAP-04", "GAP-05", "GAP-12")))
+check("quarantine is distinct from blocking in the vocabulary",
+      "retained" in GAP_DECISIONS["QUARANTINE"] and "never remediated" in GAP_DECISIONS["BLOCK"])
+
+_cov = gap_coverage()
+check("coverage is computed from the registry, not asserted",
+      sum(_cov.values()) == len(GAP_LAYERS))
+print(f"      [reported] {GAP_VERSION}: {_cov['enforced']}/{len(GAP_LAYERS)} enforced, "
+      f"{_cov['partial']} partial, {_cov['absent']} absent")
+
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

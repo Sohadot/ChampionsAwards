@@ -289,6 +289,38 @@ It does **not** assert that every audit tested every eligible mechanism; that is
 the completeness figure, reported separately. `docs/ontology-revisions.md`
 carries the registry and the current measurements.
 
+## Admission (GAP v1.0)
+
+Publication is governed by an admission standard, not by a list of checks:
+**nothing enters the public corpus merely because it exists.** Twelve layers each
+own one question — repository admission, security, data, evidence, source
+quality, temporal validity, computation integrity, content quality, spam and
+abuse, build integrity, public surface, regression — and a failure belongs to
+exactly one, so "this failed" always answers "which contract did it break".
+
+Four decision states, not two: **PASS**, **REVIEW REQUIRED**, **QUARANTINE**,
+**BLOCK**. Only the hazard layers may BLOCK; an evidence layer that could block
+would eventually be used to suppress an inconvenient finding rather than a
+threat. Rejected work is quarantined with its reason rather than deleted, because
+most rejections are evidential and evidence arrives later.
+
+Three standing rules. **No silent coercion** — a validator reports a missing
+field, it never fills one in. **Overrides are structured** — there is no
+`skip_validation`, only a dated exception that is itself gated. **AI may propose;
+the pipeline decides admission** — an assistant holds no bypass, and its output
+passes the same schemas and tests as anyone's.
+
+> No artefact reaches the public corpus merely because it is syntactically valid.
+> Publication requires evidential validity, architectural validity, security
+> validity, and quality validity.
+
+The standard is `docs/governance-admission-standard.md`; the registry is
+`GAP_LAYERS` in `scripts/config.py` and `python scripts/gap_status.py` reports
+coverage from it. **A layer may not claim enforcement without naming a component
+that exists** — the check suite asserts it — so the document cannot drift from
+the code. Coverage today is 1 of 12 enforced, and the standard says so on its
+own front page.
+
 ## Correction policy
 
 Being wrong in public is normal and fixable. Substantive corrections are made

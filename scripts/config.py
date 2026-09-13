@@ -304,6 +304,205 @@ def rls_band(score: float) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Governed Admission Pipeline - GAP v1.0
+#
+# Nothing enters the public corpus merely because it exists. It enters only after
+# it proves what it is, where it came from, what it claims, and that it cannot
+# degrade the system.
+#
+# This registry is the machine-readable spine of the standard in
+# docs/governance-admission-standard.md. It exists so the standard cannot drift
+# from the code: a layer may not claim to be enforced without naming a component
+# that exists, and the coverage report is generated from here rather than typed.
+#
+# The registry describes the pipeline. It does not implement it. Most layers are
+# partial or absent today, and saying so precisely is the point of writing it
+# down - a governance document that described an aspiration as a control would be
+# the same defect this project keeps finding in its own claims.
+# ---------------------------------------------------------------------------
+GAP_VERSION: Final[str] = "GAP v1.0"
+
+# Four outcomes, not two. Malware and a missing citation are both "invalid", and
+# giving them the same word loses the only distinction that matters for what to
+# do next.
+GAP_DECISIONS: Final[dict[str, str]] = {
+    "PASS": "Admitted to the public corpus.",
+    "REVIEW_REQUIRED": (
+        "Structurally valid, but an evidential or interpretive question needs a human decision. "
+        "Does not publish while open."
+    ),
+    "QUARANTINE": (
+        "Exists and is retained, but is not admitted. The usual cause is missing evidence rather "
+        "than wrong content, so it is kept for remediation rather than deleted."
+    ),
+    "BLOCK": (
+        "A safety or integrity hazard. Must not enter the build at all, and is never remediated in "
+        "place - it is removed and the incident recorded."
+    ),
+}
+
+# Which decisions a layer may issue. Only the three hazard layers may BLOCK; an
+# evidence layer that could BLOCK would eventually be used to suppress an
+# inconvenient finding.
+GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
+    {
+        "id": "GAP-01", "name": "Repository Admission",
+        "question": "Is this file a kind of thing this repository accepts, at all?",
+        "decisions": ("PASS", "QUARANTINE", "BLOCK"),
+        "status": "absent", "components": (),
+        "note": (
+            "No file-type allowlist, no size ceiling, no secret or credential scan, no symlink or "
+            "archive policy. The repository currently tracks only yaml, html, py, md, txt and css, "
+            "which makes an allowlist cheap to write and means nothing has yet tested the absence."
+        ),
+    },
+    {
+        "id": "GAP-02", "name": "Security",
+        "question": "Does this introduce executable or network behaviour the site does not have?",
+        "decisions": ("PASS", "BLOCK"),
+        "status": "absent", "components": (),
+        "note": (
+            "The published site is static and carries no third-party script, which is the property "
+            "worth protecting and the one nothing currently checks. A new inline handler, remote "
+            "embed, tracking pixel or base64 payload would pass every gate this project has."
+        ),
+    },
+    {
+        "id": "GAP-03", "name": "Data Admission",
+        "question": "Is every field governed, typed and known?",
+        "decisions": ("PASS", "QUARANTINE"),
+        "status": "partial", "components": ("validate_content.py", "quality_gate.py"),
+        "note": (
+            "Required fields, types and controlled vocabularies are enforced across 27 validators, "
+            "and unknown keys inside an `seo` block fail. Unknown TOP-LEVEL keys are silently "
+            "ignored: an invented `ddi_override` on a case passes validation today. That is the "
+            "gap this layer names first."
+        ),
+    },
+    {
+        "id": "GAP-04", "name": "Evidence",
+        "question": "Is every checkable claim anchored, derived, or declared as analysis?",
+        "decisions": ("PASS", "REVIEW_REQUIRED", "QUARANTINE"),
+        "status": "partial", "components": ("validate_content.py", "source_audit.py"),
+        "note": (
+            "The strongest layer. Provenance slots, dated audit exceptions, the corpus-claim rule, "
+            "score calibration and assessment scope all enforce it where a structured slot exists. "
+            "Claims made in free prose - a rationale, an analysis body - are not mechanically "
+            "checkable and rest on review."
+        ),
+    },
+    {
+        "id": "GAP-05", "name": "Source Quality",
+        "question": "Is the source strong enough for the KIND of claim it is asked to carry?",
+        "decisions": ("PASS", "REVIEW_REQUIRED", "QUARANTINE"),
+        "status": "partial", "components": ("validate_content.py", "source_audit.py"),
+        "note": (
+            "Source types are a controlled vocabulary, and record-grade closure is enforced for "
+            "declared provenance slots - an institutional source can close what an institution "
+            "publishes about itself, and a scholarly-secondary source cannot. The rule binds only "
+            "where a slot exists to bind it to."
+        ),
+    },
+    {
+        "id": "GAP-06", "name": "Temporal Validity",
+        "question": "Was this rule in force at the time it is applied to?",
+        "decisions": ("PASS", "QUARANTINE"),
+        "status": "partial", "components": ("validate_content.py",),
+        "note": (
+            "Enforced where it was bought with a defect: `rule_at_time` on time-dependent award "
+            "interactions, and ontology revisions on mechanism audits. Not general - a dated claim "
+            "in prose is not checked."
+        ),
+    },
+    {
+        "id": "GAP-07", "name": "Computation Integrity",
+        "question": "Did this number come from a deterministic analyser over a retained dataset?",
+        "decisions": ("PASS", "QUARANTINE"),
+        "status": "partial", "components": ("synthesis_figures.py", "test_domain_comparison.py"),
+        "note": (
+            "Synthesis prose may not contain a hand-typed statistic, figures resolve from the "
+            "engine, and determinism and quartile definitions are frozen by tests. Ad-hoc analysers "
+            "have no such protection: a 2026-09-13 parser silently dropped every second year of a "
+            "two-year award label and produced a finding that was withdrawn before publication."
+        ),
+    },
+    {
+        "id": "GAP-08", "name": "Content Quality",
+        "question": "Does this page carry enough governed substance to exist?",
+        "decisions": ("PASS", "QUARANTINE"),
+        "status": "partial", "components": ("seo_gate.py", "generate_sectors.py"),
+        "note": (
+            "Per-page SEO contracts, description and title discipline, duplicate-title and "
+            "cannibalisation checks, and a neutrality lint over generated prose. No minimum "
+            "evidence-depth rule per page type, and no boilerplate detector - the "
+            "'Definition & Documented Cases' title survived on nine pages until a reader found it."
+        ),
+    },
+    {
+        "id": "GAP-09", "name": "Spam and Abuse",
+        "question": "Is this mass-generated, templated, or promotional?",
+        "decisions": ("PASS", "QUARANTINE", "BLOCK"),
+        "status": "absent", "components": (),
+        "note": (
+            "Nothing checks for near-duplicate routes, templated pages varying only an entity name, "
+            "unexplained outbound domains, hidden text or doorway pages. The corpus is small and "
+            "hand-built, which is why this has never bitten and is not evidence that it cannot."
+        ),
+    },
+    {
+        "id": "GAP-10", "name": "Build Integrity",
+        "question": "Was this verified against what the current sources actually produce?",
+        "decisions": ("PASS", "BLOCK"),
+        "status": "partial", "components": ("run_checks.py", "build.py"),
+        "note": (
+            "run_checks refuses to run against a build older than its inputs, which closed a real "
+            "defect on 2026-09-13. The larger half is missing: there is no continuous integration "
+            "of any kind, so nothing builds from a clean checkout and nothing runs the validators "
+            "except a person choosing to. Every green result this project has ever reported was a "
+            "local run."
+        ),
+    },
+    {
+        "id": "GAP-11", "name": "Public Surface",
+        "question": "Does the built site match the governed source graph, exactly?",
+        "decisions": ("PASS", "QUARANTINE"),
+        "status": "enforced", "components": ("seo_gate.py", "generate_sitemap.py"),
+        "note": (
+            "Every built route must carry a contract, every contract must build, canonicals must "
+            "match, declared links must exist in the built HTML, no orphans, and indexing must "
+            "agree with the sitemap. Verified against built output rather than intent."
+        ),
+    },
+    {
+        "id": "GAP-12", "name": "Regression",
+        "question": "Did admitting this lower the quality of what was already admitted?",
+        "decisions": ("PASS", "REVIEW_REQUIRED", "QUARANTINE"),
+        "status": "partial", "components": ("domain_status.py", "test_synthesis.py"),
+        "note": (
+            "Closure counts, Definition of Done criteria and domain maturity are measured every "
+            "run, and a check written over 'every aggregated domain' was caught silently changing "
+            "meaning when a new domain opened. There is no before/after comparison: nothing "
+            "computes that a metric fell relative to the previous commit."
+        ),
+    },
+)
+
+GAP_STATUSES: Final[tuple[str, ...]] = ("enforced", "partial", "absent")
+
+
+def gap_layer(layer_id: object) -> dict[str, object] | None:
+    return next((l for l in GAP_LAYERS if l["id"] == layer_id), None)
+
+
+def gap_coverage() -> dict[str, int]:
+    """How much of the standard is actually a control. Reported, never rounded up."""
+    counts = {s: 0 for s in GAP_STATUSES}
+    for layer in GAP_LAYERS:
+        counts[str(layer["status"])] += 1
+    return counts
+
+
+# ---------------------------------------------------------------------------
 # Editorial governance
 # validate_content.py checks well-formedness; quality_gate.py enforces the
 # publication policy below on entries that declare themselves published.
