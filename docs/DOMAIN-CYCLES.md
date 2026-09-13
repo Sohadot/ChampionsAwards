@@ -518,6 +518,55 @@ written.
 *Raised 2026-09-12 by the Science Foundation Review, third pass; settled
 2026-09-13 in preflight, before the first Literature entry.*
 
+### 2. Does the DDI apply to literature? — SETTLED 2026-09-13
+
+**No new instrument version.** The DDI's dimensions are defined as documentary
+questions, and every one of them is answerable from a literary record. The risk
+is not that the instrument is wrong for this domain; it is that a dimension's
+*name* carries a scientific connotation that its definition never had, and that
+the connotation gets imported by a reader or a scorer while nothing has said
+otherwise. "Independent verification" is the clearest case: it asks whether
+impact is confirmed by independent sources, and it has never asked whether a work
+is correct — a question literature cannot answer and the instrument does not put.
+
+So what is written down is the **reading**, not a new version. A domain may carry
+a score calibration (`DOMAIN_SCORE_CALIBRATION`), and Literature's is dated
+2026-09-13, before its first score. It accounts for **every input a score depends
+on** — all six dimensions plus observed recognition — either by restating it for
+this domain or by recording that it carries over unchanged. Nothing may be left
+unaddressed, because an unexamined dimension is exactly where an imported
+assumption survives.
+
+Restated: **impact** (documented change to literature, language, form, movements
+or culture — not fame or prize count); **verification** (independent verification
+of impact, reception and legacy — explicitly not proof the work is valid or
+good); **uniqueness** (counterfactual contribution the record can show — not the
+unfalsifiable claim that nobody else could have written it); **breadth** (how far
+the consequences reach — explicitly *not* sales, translation counts or the size
+of the language community, which measure distribution advantage and would make
+writing in a large language a merit).
+
+Carried over unchanged, and recorded as such: **durability** and **attribution**.
+Both are domain-neutral questions whose literary evidence is the same kind of
+record the sciences use.
+
+**Added beyond the four:** `observed_recognition` is calibrated too, because a
+score cannot be presented without it and literature is where it would otherwise
+drift. It stays what it is in the sciences — what recognition systems formally
+conferred. Canonisation, syllabus presence and scholarly attention are reception,
+and belong to impact and verification; letting them onto the recognition side
+would collapse the gap into fame minus fame.
+
+The gate enforces the sequence rather than trusting it: a published scored case
+in a calibration-required domain fails validation if no calibration exists, or if
+the calibration leaves any score input unaddressed. The calibration renders on
+the domain's sector page under *How this domain reads the instrument*.
+
+### 3. The scope of the Nobel Prize System — OPEN
+
+*Next preflight decision. Recorded here as pending so the domain cannot be opened
+around it.*
+
 ## Cycle 01 — Physics & Astronomy Recognition Architecture — CLOSED
 
 Opened 2026-09-09. Closed 2026-09-10.

@@ -670,5 +670,45 @@ if _built.exists():
               and (f"support: {_n} evidenced" in _html
                    or "support: not applicable" in _html))
 
+# 21. Score calibration: a new domain does not inherit the scientific reading.
+from config import (
+    CALIBRATION_REQUIRED_DOMAINS, DOMAIN_SCORE_CALIBRATION, SCORE_INPUT_KEYS,
+    calibration_inputs, domain_calibration,
+)
+from generate_sectors import sector_calibration
+from validate_content import validate_score_calibration as _vsc
+
+check("every score input has a calibration entry where one is required",
+      all(not (set(SCORE_INPUT_KEYS) - set(calibration_inputs(DOMAIN_SCORE_CALIBRATION[d])))
+          for d in CALIBRATION_REQUIRED_DOMAINS if d in DOMAIN_SCORE_CALIBRATION))
+check("a calibration restates or carries over, never both for one input",
+      all(not (set(c.get("recalibrated") or {}) & set(c.get("carried_over") or {}))
+          for c in DOMAIN_SCORE_CALIBRATION.values()))
+check("a calibration names only real score inputs",
+      all(set(calibration_inputs(c)) <= set(SCORE_INPUT_KEYS)
+          for c in DOMAIN_SCORE_CALIBRATION.values()))
+check("the calibration is dated and names the instrument it reads",
+      all(c.get("dated") and c.get("instrument") and c.get("summary")
+          for c in DOMAIN_SCORE_CALIBRATION.values()))
+
+_lit_case = {"status": "published", "domain": "literature", "assessment": {"impact": 80}}
+check("a scored case in a calibrated domain passes",
+      not _vsc("unawarded", _lit_case, "x.yaml"))
+check("an uncalibrated domain cannot publish a score",
+      bool(_vsc("unawarded", {**_lit_case, "domain": "peace"}, "x.yaml"))
+      if "peace" in CALIBRATION_REQUIRED_DOMAINS else True)
+check("an unscored entry is not asked for a calibration",
+      not _vsc("unawarded", {"status": "published", "domain": "literature"}, "x.yaml"))
+check("the science domains are unaffected",
+      not any(d in CALIBRATION_REQUIRED_DOMAINS for d in AGGREGATED_DOMAINS)
+      and all(sector_calibration(d) is None for d in AGGREGATED_DOMAINS))
+check("the calibration renders every input it accounts for",
+      len(sector_calibration("literature")["rows"]) == len(SCORE_INPUT_KEYS))
+check("the calibration says what verification does not mean",
+      "NOT proof" in DOMAIN_SCORE_CALIBRATION["literature"]["recalibrated"]["verification"])
+check("the calibration refuses distribution advantage as breadth",
+      all(w in DOMAIN_SCORE_CALIBRATION["literature"]["recalibrated"]["breadth"].lower()
+          for w in ("sales", "translation", "language community")))
+
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

@@ -104,6 +104,111 @@ DDI_DIMENSIONS: Final[tuple[tuple[str, str, float], ...]] = (
 
 DDI_KEYS: Final[tuple[str, ...]] = tuple(key for key, _label, _weight in DDI_DIMENSIONS)
 
+# ---------------------------------------------------------------------------
+# Domain score calibration
+#
+# The DDI was built in the sciences, and its dimension names carry scientific
+# connotations that are not part of their definitions. "Independent verification"
+# asks whether a contribution's impact is confirmed by independent sources; read
+# carelessly in a new domain it becomes "was the work proven correct", which is a
+# question literature cannot answer and the instrument never asked. The risk is
+# not that the instrument is wrong for a new domain - it is that the reader, and
+# the scorer, silently import the wrong reading of a right instrument.
+#
+# So a domain may carry a calibration: for every input a score depends on, either
+# a restatement of what the dimension means here, or an explicit record that it
+# carries over unchanged. Nothing may be left unaddressed, because an unexamined
+# dimension is exactly where an imported assumption survives.
+#
+# This is not a new instrument version. The weights, the formula and the
+# definitions are untouched; what is written down is the reading.
+# ---------------------------------------------------------------------------
+SCORE_INPUT_KEYS: Final[tuple[str, ...]] = DDI_KEYS + ("observed_recognition",)
+
+# Domains whose first published score must be preceded by a calibration. A domain
+# outside the sciences does not inherit the scientific reading by default.
+CALIBRATION_REQUIRED_DOMAINS: Final[frozenset[str]] = frozenset({"literature"})
+
+DOMAIN_SCORE_CALIBRATION: Final[dict[str, dict[str, object]]] = {
+    "literature": {
+        "instrument": "DDI v1.0",
+        "dated": "2026-09-13",
+        "summary": (
+            "The DDI needs no new version for literature. Every dimension's definition already "
+            "asks a question literature can answer; four of them, plus the recognition side, are "
+            "restated here because their scientific connotations would otherwise be imported "
+            "along with their names."
+        ),
+        "recalibrated": {
+            "impact": (
+                "Documented change to literature, language, form, movements or culture - a shift "
+                "the record shows, in what was written afterwards, in how a language or a form was "
+                "used, in what a movement took as its starting point. Not fame, not prize count, "
+                "not name recognition. A widely known writer who changed nothing scores low here, "
+                "and the dimension is meant to make that possible."
+            ),
+            "verification": (
+                "Independent verification of impact, reception and legacy - the same question the "
+                "sciences are asked, which is whether the claim rests on primary or independent "
+                "sources rather than on the actor's own account or a single institution. It is NOT "
+                "proof that the work is valid, true or good; the instrument has never asked that "
+                "of any domain, and literature is where the misreading would be easiest."
+            ),
+            "uniqueness": (
+                "Counterfactual contribution: what the record shows would not have arrived as "
+                "soon, or in this form, from someone else. Evidence is documentary - priority, "
+                "influence traced by others, a form or technique whose introduction is attributed. "
+                "It is NOT the unfalsifiable claim that no one else could have written the work, "
+                "which no record can establish and which would turn the dimension into taste."
+            ),
+            "breadth": (
+                "How far the consequences of the contribution reach beyond its immediate audience. "
+                "Explicitly NOT sales, translation counts, or the size of the language community: "
+                "those measure distribution advantage, which tracks market and language power, and "
+                "scoring them as breadth would make writing in a large language a merit and "
+                "writing in a small one a deficiency. A work whose consequences are deep in one "
+                "literature is not narrower than one distributed widely and absorbed nowhere."
+            ),
+            "observed_recognition": (
+                "What recognition systems formally conferred - prizes, membership of academies, "
+                "state and institutional honours - measured the same way as in the sciences. "
+                "Canonisation, syllabus presence and scholarly attention are reception, not "
+                "conferred recognition, and belong to impact and verification. Keeping them out of "
+                "this side is what stops the gap collapsing into a measure of fame minus fame."
+            ),
+        },
+        "carried_over": {
+            "durability": (
+                "Unchanged: whether the contribution held up over time, judged from the record. "
+                "The question is domain-neutral and its evidence in literature - continued "
+                "reading, continued influence, continued presence in what others build on - is "
+                "the same kind of record the sciences use."
+            ),
+            "attribution": (
+                "Unchanged: how clearly and consistently the record assigns the contribution to "
+                "this person. Pseudonymity, disputed authorship, collaborative and edited work and "
+                "translation all bear on it, and all are documentary questions the dimension "
+                "already handles."
+            ),
+        },
+    },
+}
+
+
+def domain_calibration(domain: object) -> dict[str, object] | None:
+    return DOMAIN_SCORE_CALIBRATION.get(domain) if isinstance(domain, str) else None
+
+
+def calibration_inputs(calibration: dict[str, object]) -> dict[str, str]:
+    """Every score input the calibration accounts for, restated or carried over."""
+    merged: dict[str, str] = {}
+    for field in ("recalibrated", "carried_over"):
+        entries = calibration.get(field)
+        if isinstance(entries, dict):
+            merged.update({k: v for k, v in entries.items() if isinstance(v, str)})
+    return merged
+
+
 
 def _clamp_score(value: float) -> float:
     return max(0.0, min(100.0, float(value)))

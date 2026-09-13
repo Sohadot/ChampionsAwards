@@ -25,6 +25,10 @@ from config import (
     DDI_DIMENSIONS,
     DOD_VERSION,
     DOMAINS,
+    DDI_DIMENSIONS,
+    SCORE_INPUT_KEYS,
+    calibration_inputs,
+    domain_calibration,
     DATA,
     OUT,
     PATTERN_ESTABLISHED_MIN,
@@ -179,6 +183,31 @@ def gap_reading(corpus: dict[str, Any]) -> str:
         f"Median assessed DDI is {_fmt(corpus['median_ddi'])} against a median observed "
         f"recognition of {_fmt(corpus['median_observed_recognition'])}."
     )
+
+
+def sector_calibration(domain: str) -> dict[str, Any] | None:
+    """How this domain reads the instrument, rendered from config rather than
+    retyped. A calibration exists so that the scientific connotations of a
+    dimension name are not imported into a domain that never agreed to them."""
+    calibration = domain_calibration(domain)
+    if not calibration:
+        return None
+    labels = {key: label for key, label, _w in DDI_DIMENSIONS}
+    labels["observed_recognition"] = "Observed recognition"
+    carried = calibration.get("carried_over") or {}
+    rows = []
+    for key in SCORE_INPUT_KEYS:
+        note = calibration_inputs(calibration).get(key)
+        if not note:
+            continue
+        rows.append({"key": key, "label": labels.get(key, key.replace("_", " ").title()),
+                     "note": note, "carried_over": key in carried})
+    return {
+        "instrument": calibration.get("instrument"),
+        "dated": calibration.get("dated"),
+        "summary": calibration.get("summary"),
+        "rows": rows,
+    }
 
 
 def pattern_readings(patterns: dict[str, Any]) -> list[str]:
@@ -342,6 +371,7 @@ def build_sector(domain: str, site: dict[str, Any]) -> dict[str, Any]:
         "concept_slugs": concept_slugs(),
         "reports": domain_reports(domain),
         "domain_label": DOMAINS.get(domain, domain),
+        "calibration": sector_calibration(domain),
         "url": f"/sectors/{domain}",
         "canonical_url": f"{normalize_domain(site['domain'])}/sectors/{domain}",
         "population": result["population"],

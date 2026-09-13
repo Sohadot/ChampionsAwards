@@ -388,6 +388,23 @@
       ({% for d in sector.ddi_dimensions %}{{ d.label|lower }} {{ (d.weight * 100)|round|int }}%{% if not loop.last %}, {% endif %}{% endfor %}),
       not a measurement of a person; the full derivation for each case is on its page.
     </p>
+
+    {% if sector.calibration %}
+    <h3 class="sub">How this domain reads the instrument</h3>
+    <p class="small">
+      {{ sector.calibration.summary }} The weights and the formula are unchanged
+      ({{ sector.calibration.instrument }}); what is recorded here is the reading, dated
+      {{ sector.calibration.dated }}, and it was written before this domain's first score.
+    </p>
+    <dl class="key-facts small">
+      {% for row in sector.calibration.rows %}
+      <div>
+        <dt>{{ row.label }}{% if row.carried_over %} — carried over unchanged{% endif %}</dt>
+        <dd>{{ row.note }}</dd>
+      </div>
+      {% endfor %}
+    </dl>
+    {% endif %}
   </div>
 </section>
 

@@ -8,6 +8,10 @@ from config import (
     ARCHIVE_VISIBILITY_STATES,
     DOMAIN_SCOPED_CLUSTERS,
     DOMAIN_SCOPE_POSTURES,
+    CALIBRATION_REQUIRED_DOMAINS,
+    SCORE_INPUT_KEYS,
+    calibration_inputs,
+    domain_calibration,
     domain_state,
     is_aggregated_domain,
     is_published,
@@ -141,6 +145,7 @@ def validate_item(
     errors.extend(validate_pattern_context(cluster_name, item, source_file))
     errors.extend(validate_seo(cluster_name, item, source_file))
     errors.extend(validate_concept_corpus_claim(cluster_name, item, source_file))
+    errors.extend(validate_score_calibration(cluster_name, item, source_file))
 
     return errors
 
@@ -724,6 +729,51 @@ def validate_concept_corpus_claim(
         f"{ref}: {where}, but {reason}. A page may not advertise evidence the engine "
         f"does not count."
     ]
+
+
+
+def validate_score_calibration(
+    cluster_name: str, item: dict[str, Any], source_file: str
+) -> list[str]:
+    """A domain outside the sciences may not publish a score before its
+    calibration is written down.
+
+    The instrument is domain-neutral; its dimension NAMES are not. "Independent
+    verification" means one thing in the definition and suggests another in a
+    field with no experiments, and the suggestion is what a scorer imports when
+    nothing has said otherwise. The calibration is the saying-otherwise, and it
+    has to exist before the first score rather than after the first argument
+    about one.
+
+    It must account for every input a score depends on - each dimension plus the
+    recognition side - either by restating it or by recording that it carries
+    over unchanged. Silence about a dimension is precisely where an imported
+    assumption survives, so silence is what fails.
+    """
+    if cluster_name != "unawarded" or not is_published(item):
+        return []
+    if not isinstance(item.get("assessment"), dict):
+        return []
+    domain = item.get("domain")
+    if domain not in CALIBRATION_REQUIRED_DOMAINS:
+        return []
+
+    ref = f"{cluster_name}/{source_file}"
+    calibration = domain_calibration(domain)
+    if not calibration:
+        return [
+            f"{ref}: {domain} requires a published score calibration before its first scored case "
+            f"(DOMAIN_SCORE_CALIBRATION in config.py). The instrument carries over; the reading of "
+            f"its dimensions into a new domain does not carry over silently."
+        ]
+    covered = calibration_inputs(calibration)
+    missing = [k for k in SCORE_INPUT_KEYS if not covered.get(k, "").strip()]
+    if missing:
+        return [
+            f"{ref}: the {domain} calibration leaves {', '.join(missing)} unaddressed. Every score "
+            f"input must be either restated for this domain or recorded as carried over unchanged."
+        ]
+    return []
 
 
 def validate_temporal_validity(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:
