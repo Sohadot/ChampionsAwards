@@ -699,9 +699,13 @@ check("an uncalibrated domain cannot publish a score",
       if "peace" in CALIBRATION_REQUIRED_DOMAINS else True)
 check("an unscored entry is not asked for a calibration",
       not _vsc("unawarded", {"status": "published", "domain": "literature"}, "x.yaml"))
+# Named rather than derived from AGGREGATED_DOMAINS: the point of the check is
+# that opening a new domain changes nothing for the closed ones, and a check
+# written over "every aggregated domain" stops saying that the moment one opens.
+_SCIENCE_DOMAINS = ("physics-astronomy", "biology-medicine", "mathematics-computing")
 check("the science domains are unaffected",
-      not any(d in CALIBRATION_REQUIRED_DOMAINS for d in AGGREGATED_DOMAINS)
-      and all(sector_calibration(d) is None for d in AGGREGATED_DOMAINS))
+      not any(d in CALIBRATION_REQUIRED_DOMAINS for d in _SCIENCE_DOMAINS)
+      and all(sector_calibration(d) is None for d in _SCIENCE_DOMAINS))
 check("the calibration renders every input it accounts for",
       len(sector_calibration("literature")["rows"]) == len(SCORE_INPUT_KEYS))
 check("the calibration says what verification does not mean",
