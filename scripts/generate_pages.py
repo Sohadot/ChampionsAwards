@@ -207,6 +207,26 @@ def attach_award_architecture(item: dict[str, Any], case_index: dict[str, dict[s
         )
 
 
+def attach_corpus_support(item: dict[str, Any], cluster_name: str) -> None:
+    """What the corpus actually holds for a concept, read from the engine at build
+    time so the page states a measurement rather than a standing assumption.
+
+    Concept pages carried "Definition & Documented Cases" as boilerplate, whether
+    the corpus evidenced the concept eleven times, once, or never. A page that
+    cannot see the count will keep advertising evidence after the evidence is
+    gone; this is what lets it say the number instead.
+    """
+    if cluster_name != "concepts":
+        return
+    from config import AUDIT_ELIGIBLE_CONCEPT_TYPES, DOMAINS
+    from domain_comparison import concept_corpus_support
+
+    support = concept_corpus_support(item.get("slug"))
+    support["case_evidenceable"] = item.get("concept_type") in AUDIT_ELIGIBLE_CONCEPT_TYPES
+    support["domain_labels"] = [DOMAINS.get(d, d) for d in support["domains"]]
+    item["corpus_support"] = support
+
+
 def attach_report(item: dict[str, Any]) -> None:
     """A synthesis report states figures as tokens; this resolves them from the
     canonical engine at build time. Nothing numeric on the rendered page was
@@ -508,6 +528,7 @@ def build_cluster_item_pages(
         attach_rls(item)
         attach_award_architecture(item, case_index or {})
         attach_report(item)
+        attach_corpus_support(item, cluster_name)
 
         output_path = OUT / cluster_name / slug / "index.html"
 

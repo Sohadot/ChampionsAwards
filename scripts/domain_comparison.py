@@ -35,6 +35,7 @@ import yaml
 
 from config import (
     ASSESSMENT_CLUSTERS,
+    PUBLISHED_SECTORS,
     AUDIT_ELIGIBLE_CONCEPT_TYPES,
     CURRENT_ONTOLOGY_REVISION,
     DATA,
@@ -439,6 +440,43 @@ def pattern_distribution(domain: str) -> dict[str, Any]:
         "co_occurrence": co_occurrence,
     }
 
+
+
+def concept_corpus_support(concept: str) -> dict[str, Any]:
+    """How much of the governed corpus actually evidences one concept, measured
+    across every aggregating domain.
+
+    A concept page is the project's semantic authority, and until now nothing
+    connected what it claimed to what the corpus held. A page could assert
+    documented cases while the engine counted none, and the assertion was as
+    permanent as the boilerplate that produced it. This function is what a page
+    and the gate both read, so the claim and the count cannot drift apart.
+
+    Only mechanisms can be evidenced by a case, so a concept of any other type
+    returns zero by construction rather than by accident.
+    """
+    cases: list[dict[str, str]] = []
+    domains: list[str] = []
+    contexts: set[str] = set()
+    for domain in PUBLISHED_SECTORS:
+        for pattern in pattern_distribution(domain)["patterns"]:
+            if pattern["pattern"] != concept:
+                continue
+            domains.append(domain)
+            contexts |= set(pattern.get("contexts") or [])
+            for case in pattern["cases"]:
+                cases.append({**case, "domain": domain})
+    cases.sort(key=lambda c: c["slug"])
+    return {
+        "concept": concept,
+        "cases": cases,
+        "n_cases": len(cases),
+        "n_contexts": len(contexts),
+        "contexts": sorted(contexts),
+        "domains": sorted(set(domains)),
+        "status": ("established" if len(contexts) >= PATTERN_ESTABLISHED_MIN
+                   else "emergent" if cases else "unevidenced"),
+    }
 
 def rls_profiles(domain: str) -> dict[str, Any]:
     systems = _domain_systems(domain)

@@ -198,6 +198,19 @@ or in a `mechanism_audit.considered` list — an umbrella tendency or a framewor
 distinction cannot be a failed mechanism test, and counting it as one makes the
 ontology look narrower than it is.
 
+**A concept page states its corpus support, and may not advertise evidence the
+engine does not count.** Every concept page renders a measured line — how many
+governed cases evidence it, across how many independent contexts, in which
+domains, and whether that makes it established, emergent or unevidenced — read
+from the engine at build time. A page whose title or description asserts
+documented cases (`CORPUS_CLAIM_PHRASES`) fails the gate unless the engine counts
+at least one. The rule exists because the claim used to be boilerplate: every
+concept page carried "Definition & Documented Cases" whether the corpus evidenced
+it eleven times, once, or never, and the boilerplate outlived the evidence in
+three places. Reading the count rather than a hand-maintained list means removing
+the last case evidencing a concept now breaks the build on the page that still
+advertises cases.
+
 ## Mechanism audits (enforced)
 
 A case may declare a `mechanism_audit`: a dated record of the search for a

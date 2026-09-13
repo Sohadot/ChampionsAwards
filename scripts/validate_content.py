@@ -17,6 +17,7 @@ from config import (
     LEGACY_REVISION_UNRESOLVED,
     is_valid_mechanism_verdict,
     MECHANISM_VERDICTS,
+    asserts_corpus_cases,
     is_valid_ontology_revision,
     revision_is_before,
     revision_mechanisms,
@@ -139,6 +140,7 @@ def validate_item(
     errors.extend(validate_archive_visibility(cluster_name, item, source_file, case_slugs or set()))
     errors.extend(validate_pattern_context(cluster_name, item, source_file))
     errors.extend(validate_seo(cluster_name, item, source_file))
+    errors.extend(validate_concept_corpus_claim(cluster_name, item, source_file))
 
     return errors
 
@@ -660,6 +662,54 @@ def validate_mechanism_reaudit(
         if not isinstance(ref_index, int) or not (1 <= ref_index <= len(sources)):
             errors.append(f"{ref}: mechanism_reaudit best_sources reference #{ref_index} does not exist")
     return errors
+
+
+
+def validate_concept_corpus_claim(
+    cluster_name: str, item: dict[str, Any], source_file: str
+) -> list[str]:
+    """A concept page may claim documented cases only when the engine counts some.
+
+    The claim used to be boilerplate: every concept page carried "Definition &
+    Documented Cases" whether the corpus evidenced the concept eleven times, once,
+    or never. A title is a claim about the record, and the boilerplate outlived
+    the evidence in three places - including a mechanism that a complete re-audit
+    had just found in no case at all.
+
+    The check reads the engine rather than a hand-maintained list, so the claim
+    cannot drift from the count again: remove the last case evidencing a concept
+    and the page that still advertises cases fails the build.
+    """
+    if cluster_name != "concepts" or not is_published(item):
+        return []
+    seo = item.get("seo")
+    if not isinstance(seo, dict):
+        return []
+
+    claimed: list[tuple[str, str]] = []
+    for field in ("title", "description", "h1"):
+        for phrase in asserts_corpus_cases(seo.get(field)):
+            claimed.append((field, phrase))
+    if not claimed:
+        return []
+
+    from domain_comparison import concept_corpus_support  # local: engine import
+    support = concept_corpus_support(item.get("slug"))
+    if support["n_cases"]:
+        return []
+
+    ref = f"{cluster_name}/{source_file}"
+    where = ", ".join(f"{field} claims {phrase!r}" for field, phrase in claimed)
+    kind = item.get("concept_type")
+    reason = (
+        "no case in the corpus evidences it"
+        if kind in AUDIT_ELIGIBLE_CONCEPT_TYPES else
+        f"a concept of type '{kind}' cannot be evidenced by a case at all"
+    )
+    return [
+        f"{ref}: {where}, but {reason}. A page may not advertise evidence the engine "
+        f"does not count."
+    ]
 
 
 def validate_temporal_validity(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:

@@ -448,6 +448,29 @@ def audit_is_complete_at_revision(considered: object, revision: object) -> bool:
     return revision_mechanisms(revision) <= tested
 
 
+# Phrases that assert the corpus holds cases evidencing a concept. A page may
+# only use one when the engine counts at least one - a title is a claim about the
+# record, and boilerplate is the easiest way for a claim to outlive its evidence.
+# The phrase list is deliberately about ASSERTED EVIDENCE, not about the word
+# "case": a page may discuss what would count as a case without claiming to have
+# one.
+CORPUS_CLAIM_PHRASES: Final[tuple[str, ...]] = (
+    "documented case",
+    "evidenced case",
+    "documented example",
+    "case studies",
+    "cases in this corpus",
+)
+
+
+def asserts_corpus_cases(text: object) -> tuple[str, ...]:
+    """Which corpus-case claims a piece of page text makes, if any."""
+    if not isinstance(text, str):
+        return ()
+    lowered = text.lower()
+    return tuple(phrase for phrase in CORPUS_CLAIM_PHRASES if phrase in lowered)
+
+
 MECHANISM_VERDICTS: Final[frozenset[str]] = frozenset({"supported", "not-supported"})
 
 

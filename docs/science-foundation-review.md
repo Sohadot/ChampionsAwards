@@ -374,3 +374,78 @@ complete" would know less about itself than this one does.
 
 Search Console verification remains an external parallel track. Nothing in any of
 the three passes waits on it.
+
+---
+
+# Post-stability correction — 2026-09-13
+
+Stability is not a freeze, and this is the first correction made under it. It is
+recorded here rather than as a fourth pass, because it is a presentation defect
+rather than a finding or an architectural fault, and it does not reopen
+`Scientific Recognition Foundation — stable v1.0`.
+
+## What was wrong
+
+The `posthumous-recognition` concept page carried the title *"Definition &
+Documented Cases"* while the corpus evidences the mechanism in no case at all —
+a claim the 2026-09-12 re-audits had just made false in the most explicit way
+possible, by testing it against every governed case and finding it nowhere. The
+page also linked to no case, so the title advertised what the page itself could
+not show.
+
+Checking the rest of the cluster showed the defect was wider than the one page.
+*"Definition & Documented Cases"* was boilerplate on **all nine** concept pages,
+and three of them could not support it:
+
+| concept | type | evidenced cases |
+| --- | --- | --- |
+| `posthumous-recognition` | mechanism | 0 — tested everywhere, found nowhere |
+| `merit-vs-recognition` | framework-concept | 0 — and no case can ever carry it |
+| `recognition-bias` | recognition-pattern | 0 — and no case can ever carry it |
+
+The last two are a category error rather than a count problem: only a
+`mechanism` can be evidenced by a case, so those pages advertised a kind of
+evidence their own concept type forbids.
+
+## What was done
+
+The three titles are corrected. More importantly, the claim is now **measured
+rather than asserted**. Every concept page renders a corpus-support line built
+from the engine at build time:
+
+> Current corpus support: 0 evidenced cases. The mechanism is defined and
+> audit-eligible, and every governed case has been tested against it, but none in
+> this corpus evidences it.
+
+against, for an evidenced one:
+
+> Current corpus support: 11 evidenced cases across 11 independent contexts, in
+> Biology & Medicine and Physics & Astronomy … this one is established.
+
+and, for a concept no case can carry:
+
+> Current corpus support: not applicable. This is a recognition pattern rather
+> than a mechanism, so no case can be tagged with it.
+
+And the gate now refuses the claim itself. A concept whose title or description
+asserts documented cases fails validation unless the engine counts at least one.
+The check reads the engine, not a maintained list, so removing the last case
+evidencing a concept breaks the build on the page that still advertises cases.
+The boilerplate cannot outlive the evidence a second time.
+
+## Why this was not caught by the third pass
+
+The third pass swept prose for claims falsified by the remediation and checked
+every figure against the engine. It did not treat **SEO fields as claims about
+the record** — they were governed for length, uniqueness, entity coverage and
+link resolution, but never for truth. That was the blind spot, and closing it is
+what makes this a correction rather than a recurrence.
+
+## Still reserved, still not acted on
+
+The operational boundary of `posthumous-recognition` — whether the mechanism
+means that death forecloses a future award, or requires an eligibility rule shown
+to have constrained a relevant recognition opportunity — is now the first
+question in the Cycle 04 preflight, in `DOMAIN-CYCLES.md`. Every audit in the
+corpus already applies the narrower reading; the concept's text does not yet say
+so, and Literature runs under the same Statutes that make the question live.

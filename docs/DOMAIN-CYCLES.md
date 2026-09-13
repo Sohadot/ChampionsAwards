@@ -454,6 +454,39 @@ vocabulary must not be able to retroactively unmake a closed layer.
 
 ---
 
+## Cycle 04 preflight — questions to settle before the first case
+
+A cycle inherits the instrument it is given. These are the questions the closed
+layers left live, to be answered **before** the first Literature entry is
+assessed rather than discovered halfway through it.
+
+### 1. The operational boundary of posthumous recognition
+
+The concept is written wider than the audits actually apply it:
+
+> Does `posthumous-recognition` mean simply that death makes a future award
+> impossible, or does it require showing that an eligibility rule constrained a
+> recognition opportunity genuinely relevant to the case?
+
+Read the first way, the mechanism is satisfied by every scientist who has died
+since the Nobel Statutes acquired the posthumous prohibition in 1974 — a tag that
+fits every deceased case distinguishes nothing. Read the second, it requires an
+eligibility rule shown to have determined an actual decision. Every audit in the
+corpus has applied the second reading: the Franklin withdrawal rested on the rule
+post-dating the 1962 decision, the Ball non-tag on no rule having foreclosed
+anything, and the 2026-09-12 Bose and Rubin re-audits on the deficit having
+accrued while each was fully eligible. The concept's own text does not yet say so.
+
+The second reading is the one to codify, because it is the one that discriminates.
+Literature is where this becomes live again — the Nobel Prize in Literature runs
+under the same Statutes and the same 1974 provision — so the wording is settled
+before a Literature case is entered, not after one has been tagged under an
+ambiguous rule.
+
+*Recorded 2026-09-12 by the Science Foundation Review, third pass; reserved for
+preflight rather than acted on, because a closed remediation does not reopen the
+ontology.*
+
 ## Cycle 01 — Physics & Astronomy Recognition Architecture — CLOSED
 
 Opened 2026-09-09. Closed 2026-09-10.

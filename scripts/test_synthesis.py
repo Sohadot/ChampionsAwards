@@ -614,5 +614,53 @@ check("no Definition of Done criterion reads a remediation figure",
       not any(k in str(_ds.dod_rows("biology-medicine"))
               for k in ("remediated", "historical_audit_defects")))
 
+# 20. A concept page may not advertise evidence the engine does not count.
+from config import CORPUS_CLAIM_PHRASES, asserts_corpus_cases
+from domain_comparison import concept_corpus_support
+from validate_content import validate_concept_corpus_claim as _vcc
+
+_concept_docs = [yaml.safe_load(f.read_text(encoding="utf-8"))
+                 for f in sorted(_concepts_dir.glob("*.yaml"))]
+check("a corpus claim is detected wherever it appears",
+      asserts_corpus_cases("Definition & Documented Cases | ChampionsAwards")
+      == ("documented case",)
+      and asserts_corpus_cases("Definition & Eligibility Rules") == ())
+check("no published concept claims cases the engine does not count",
+      all(not (asserts_corpus_cases(c["seo"]["title"]) or asserts_corpus_cases(c["seo"]["description"]))
+          or concept_corpus_support(c["slug"])["n_cases"] for c in _concept_docs))
+check("the claim is caught in a title",
+      bool(_vcc("concepts", {"status": "published", "slug": "posthumous-recognition",
+                             "concept_type": "mechanism",
+                             "seo": {"title": "X - Documented Cases"}}, "s.yaml")))
+check("the claim is caught in a description",
+      bool(_vcc("concepts", {"status": "published", "slug": "posthumous-recognition",
+                             "concept_type": "mechanism",
+                             "seo": {"description": "with evidenced cases"}}, "s.yaml")))
+check("a concept type no case can carry may never claim cases",
+      bool(_vcc("concepts", {"status": "published", "slug": "recognition-bias",
+                             "concept_type": "recognition-pattern",
+                             "seo": {"title": "X - Documented Cases"}}, "s.yaml")))
+check("an evidenced concept may claim its cases",
+      not _vcc("concepts", {"status": "published", "slug": "credit-misattribution",
+                            "concept_type": "mechanism",
+                            "seo": {"title": "X - Documented Cases"}}, "s.yaml"))
+check("a page that makes no claim is not asked to prove one",
+      not _vcc("concepts", {"status": "published", "slug": "posthumous-recognition",
+                            "concept_type": "mechanism",
+                            "seo": {"title": "X - Definition & Eligibility Rules"}}, "s.yaml"))
+
+_built = pathlib.Path(__file__).resolve().parent.parent / "public" / "concepts"
+if _built.exists():
+    for _doc in _concept_docs:
+        _page = _built / _doc["slug"] / "index.html"
+        if not _page.exists():
+            continue
+        _html = _page.read_text(encoding="utf-8")
+        _n = concept_corpus_support(_doc["slug"])["n_cases"]
+        check(f"the built page states its corpus support ({_doc['slug']})",
+              "Corpus support" in _html
+              and (f"support: {_n} evidenced" in _html
+                   or "support: not applicable" in _html))
+
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

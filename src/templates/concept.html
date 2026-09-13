@@ -34,6 +34,36 @@
     <p>{{ item.implications }}</p>
     {% endif %}
 
+    {% if item.corpus_support %}
+    {% set support = item.corpus_support %}
+    <h2>Corpus support</h2>
+    {% if support.n_cases %}
+    <p>
+      Current corpus support: {{ support.n_cases }} evidenced
+      {{ 'case' if support.n_cases == 1 else 'cases' }} across {{ support.n_contexts }} independent
+      {{ 'context' if support.n_contexts == 1 else 'contexts' }},
+      in {{ support.domain_labels | join(' and ') }}. A mechanism is counted here only where a
+      governed case carries source references proving it in that case, and status is decided by
+      independent contexts rather than by case count: this one is
+      <strong>{{ support.status }}</strong>. The cases are linked below.
+    </p>
+    {% elif support.case_evidenceable %}
+    <p>
+      Current corpus support: 0 evidenced cases. The mechanism is defined and audit-eligible, and
+      every governed case has been tested against it, but none in this corpus evidences it. That is
+      a measured result rather than an omission — a concept the record does not support is kept and
+      reported, because removing it would hide the tests that returned nothing.
+    </p>
+    {% else %}
+    <p>
+      Current corpus support: not applicable. This is a
+      {{ item.concept_type | replace('-', ' ') }} rather than a mechanism, so no case can be tagged
+      with it. It frames how the corpus reads its evidence; it is not itself a finding the evidence
+      can carry.
+    </p>
+    {% endif %}
+    {% endif %}
+
     <h2>Reference function</h2>
     <p>
       Concept pages establish the semantic authority of the platform. They define the vocabulary
