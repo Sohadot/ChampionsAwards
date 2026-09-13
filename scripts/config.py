@@ -358,7 +358,7 @@ DOMAIN_REGISTRY: Final[dict[str, dict[str, str]]] = {
         "label": "Mathematics & Computing", "state": "closed", "state_since": "2026-09-12",
     },
     "literature": {
-        "label": "Literature", "state": "planned", "state_since": "2026-09-12",
+        "label": "Literature", "state": "open", "state_since": "2026-09-13",
     },
     "peace": {
         "label": "Peace", "state": "planned", "state_since": "2026-09-12",

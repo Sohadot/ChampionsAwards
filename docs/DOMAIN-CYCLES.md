@@ -390,6 +390,7 @@ promotes it.
 1. **Cycle 01 — Physics & Astronomy** *(closed 2026-09-10 — mature v1.0)*
 2. **Cycle 02 — Biology, Medicine & Genetics** *(closed 2026-09-11 — mature v1.0)*
 3. **Cycle 03 — Mathematics & Computing** *(closed 2026-09-12 — mature v1.0)*
+4. **Cycle 04 — Literature** *(opened 2026-09-13)*
 4. Then, and only then, outside the sciences: Literature → Peace →
    Human Rights / Law → Arts → Social Sciences → Technology / Engineering.
 
@@ -609,6 +610,58 @@ remains an unassessed reference entry in a planned domain.
 Consequence for the next stage: Literature's first recognition system is the
 Nobel Prize in Literature, scored on its own evidence, with its own award
 anatomy — and it is one of the three architectures, not a free addition.
+
+## Cycle 04 — Literature — OPEN
+
+> Opened 2026-09-13, after three preflight decisions and with nothing else in it.
+
+**Baseline at opening — zero, and deliberately so:**
+
+| | at opening |
+| --- | --- |
+| DDI cases | 0 |
+| Literature RLS systems | 0 |
+| Literature award anatomies | 0 |
+| Syntheses | 0 |
+
+This cycle does not begin with a requalification, because there is nothing to
+requalify. Cycles 02 and 03 opened against a corpus that already held entries in
+their domain; Literature holds none. The only legacy element touching it is the
+Nobel Prize System, and preflight 3 settled that its RLS is not evidence for
+literature and may not be extended to it — enforced, not remembered.
+
+**The opening is a status decision and nothing else.** No system, no anatomy, no
+case and no score arrives in the same commit that opens the domain. That is the
+same separation the closures used, for the same reason: a commit that both
+declares a state and produces the knowledge justifying it cannot be reviewed
+against itself.
+
+### What opening actually changes
+
+`literature` moves from `planned` to `open` in `DOMAIN_REGISTRY`, and everything
+downstream follows from the registry rather than from a second edit. The domain
+now aggregates: it has a sector reference at `/sectors/literature`, it appears in
+the maturity report, and a synthesis could derive from it. All of those currently
+report zero, which is the honest reading of a domain that has been opened and not
+yet worked.
+
+### The order of work, fixed before it starts
+
+1. Nobel Prize in Literature — recognition system (RLS)
+2. Nobel Prize in Literature — award anatomy, built from its own entities
+3. Booker Prize — recognition system
+4. Neustadt International Prize for Literature — recognition system
+5. Recompute the architecture-only baseline
+6. **Only then** the first batch of cases
+
+The three architectures come before the first name on purpose. A corpus that
+starts from "who should have won the Nobel" is a corpus of Nobel omissions, not
+of literary recognition, and the instrument would then be measuring the canon's
+argument with itself. Three institutionally different architectures — a
+closed-nomination global prize under a fifty-year seal, a publisher-submitted
+single-work prize gated by language and place of publication, and a
+peer-nomination international prize outside that market logic — give the first
+cases somewhere to be measured against other than the Nobel.
 
 ## Cycle 01 — Physics & Astronomy Recognition Architecture — CLOSED
 
