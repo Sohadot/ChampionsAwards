@@ -402,7 +402,7 @@ ONTOLOGY_REVISIONS: Final[dict[str, dict[str, object]]] = {
         ),
     },
     "MOR-007": {
-        "commit": None, "date": "2026-09-13", "mechanisms": _MOR_005,
+        "commit": "af76e55", "date": "2026-09-13", "mechanisms": _MOR_005,
         "note": (
             "Cycle 04 preflight narrows posthumous recognition. The mechanism set is unchanged, but "
             "the concept's operational definition is not: it now requires a death-triggered "
