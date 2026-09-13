@@ -562,10 +562,53 @@ in a calibration-required domain fails validation if no calibration exists, or i
 the calibration leaves any score input unaddressed. The calibration renders on
 the domain's sector page under *How this domain reads the instrument*.
 
-### 3. The scope of the Nobel Prize System — OPEN
+### 3. The scope of the Nobel Prize System — SETTLED 2026-09-13
 
-*Next preflight decision. Recorded here as pending so the domain cannot be opened
-around it.*
+**Decision: the Nobel Prize in Literature becomes its own recognition system,
+with its own award anatomy. The existing `nobel-prize-system` is not extended.**
+
+The reason is evidential, not editorial. **The RLS scores a deciding body, not a
+foundation.** Process, breadth, track record, transparency and independence are
+properties of whoever decides — and under the Nobel Foundation those bodies are
+several: the Royal Swedish Academy of Sciences (physics, chemistry), the
+Karolinska Institute (medicine), the Swedish Academy (literature), and the
+Norwegian Nobel Committee (peace).
+
+The existing entry is scored over the first two. They share the Statutes, the
+closed-nomination architecture, the fifty-year seal and the endowment, and the
+rationales on that page are written to hold across both. They are not written to
+hold further, and the page says so in its own words: its track-record rationale
+reads *"most scientific selections have proven durable"*. Adding `literature` to
+that entry's domains would cost one line and would silently convert that sentence
+into a claim about literature — a score nobody assessed, presented as evidence.
+
+The corpus precedent points the same way. One system already carries two award
+anatomies (Physics, Physiology or Medicine), so "one system, several anatomies"
+is established — but both of those anatomies are scientific selections under
+shared statutes. Literature is decided by a separate institution with its own
+statutes and its own membership, under a criterion from Nobel's will that is not
+the scientific one, and with a track record documented and argued in a literature
+of its own. None of the five RLS dimensions could be evidenced over it from the
+sources that fix the current score.
+
+**The decision is now enforced, not remembered.** The Nobel system entry records
+an `assessment_scope`: what the score covers, and what it explicitly does not,
+each exclusion with a written reason. The gate requires `covers` to equal
+`domains`, so the two cannot drift, and refuses any domain that appears in both
+`domains` and `excludes`. Reversing an exclusion therefore means deleting a
+written reason — a deliberate act that leaves a trace — rather than appending a
+line to a list.
+
+**Peace is excluded on the same reasoning, now rather than later.** The Norwegian
+Nobel Committee is appointed by the Norwegian Parliament and sits outside the
+Swedish academies entirely, so the argument applies with more force. Recording it
+in preflight settles the question before that domain is ever opened instead of
+during it. It changes nothing about the existing Nobel Peace Prize entry, which
+remains an unassessed reference entry in a planned domain.
+
+Consequence for the next stage: Literature's first recognition system is the
+Nobel Prize in Literature, scored on its own evidence, with its own award
+anatomy — and it is one of the three architectures, not a free addition.
 
 ## Cycle 01 — Physics & Astronomy Recognition Architecture — CLOSED
 

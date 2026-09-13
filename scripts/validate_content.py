@@ -146,6 +146,7 @@ def validate_item(
     errors.extend(validate_seo(cluster_name, item, source_file))
     errors.extend(validate_concept_corpus_claim(cluster_name, item, source_file))
     errors.extend(validate_score_calibration(cluster_name, item, source_file))
+    errors.extend(validate_assessment_scope(cluster_name, item, source_file))
 
     return errors
 
@@ -774,6 +775,81 @@ def validate_score_calibration(
             f"input must be either restated for this domain or recorded as carried over unchanged."
         ]
     return []
+
+
+
+def validate_assessment_scope(
+    cluster_name: str, item: dict[str, Any], source_file: str
+) -> list[str]:
+    """An RLS score is evidence about what it was scored over, and nothing else.
+
+    A recognition system that governs several categories under one name is the
+    easy case to get wrong: the score was fixed by sources describing some of
+    them, and extending the system's `domains` costs one line and silently
+    converts that score into evidence for a category nobody assessed. The Nobel
+    Prize System is exactly that shape - its track-record rationale says "most
+    scientific selections", and adding literature to its domains would make that
+    sentence a claim about literature.
+
+    So a system may record what its assessment covers and what it explicitly does
+    not. `covers` must equal `domains`, so the two cannot drift; a domain named in
+    `excludes` may never appear in `domains`; and every exclusion carries a reason,
+    because the point is to record a decision rather than a preference. Reversing
+    one then requires deleting a written reason, which is a deliberate act that
+    leaves a trace.
+    """
+    if cluster_name != "recognition-systems":
+        return []
+    scope = item.get("assessment_scope")
+    if scope is None:
+        return []
+    ref = f"{cluster_name}/{source_file}"
+    if not isinstance(scope, dict):
+        return [f"{ref}: 'assessment_scope' must be a mapping when present"]
+
+    errors: list[str] = []
+    covers = scope.get("covers")
+    if not isinstance(covers, list) or not covers:
+        errors.append(f"{ref}: assessment_scope needs a non-empty 'covers' list")
+        covers = []
+    if not (isinstance(scope.get("note"), str) and scope["note"].strip()):
+        errors.append(f"{ref}: assessment_scope needs a 'note' stating what the score was "
+                      f"evidenced over")
+
+    declared = list(item.get("domains") or [])
+    if covers and sorted(map(str, covers)) != sorted(map(str, declared)):
+        errors.append(
+            f"{ref}: assessment_scope 'covers' must match the system's 'domains' exactly "
+            f"(covers: {', '.join(sorted(map(str, covers))) or 'none'}; domains: "
+            f"{', '.join(sorted(map(str, declared))) or 'none'}). A system cannot govern a domain "
+            f"its assessment does not claim to cover."
+        )
+
+    excludes = scope.get("excludes")
+    if excludes is None:
+        return errors
+    if not isinstance(excludes, list) or not excludes:
+        return errors + [f"{ref}: assessment_scope 'excludes' must be a non-empty list when present"]
+
+    for index, row in enumerate(excludes, start=1):
+        if not isinstance(row, dict):
+            errors.append(f"{ref}: assessment_scope exclusion #{index} must be a mapping")
+            continue
+        domain = row.get("domain")
+        if not (isinstance(domain, str) and is_valid_domain(domain)):
+            errors.append(f"{ref}: assessment_scope exclusion #{index} names unregistered domain "
+                          f"{domain!r}")
+        if not (isinstance(row.get("reason"), str) and row["reason"].strip()):
+            errors.append(f"{ref}: assessment_scope exclusion of {domain!r} needs a 'reason' - an "
+                          f"exclusion is a recorded decision, not a preference")
+        if domain in declared:
+            errors.append(
+                f"{ref}: {domain!r} is excluded from this system's assessment scope and also "
+                f"declared in its 'domains'. Reusing a score as evidence for a domain it excludes "
+                f"is the failure this field exists to prevent - widen the assessment on its own "
+                f"evidence, or leave the domain to its own system."
+            )
+    return errors
 
 
 def validate_temporal_validity(cluster_name: str, item: dict[str, Any], source_file: str) -> list[str]:

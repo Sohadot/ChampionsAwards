@@ -72,6 +72,32 @@ rls_assessment:
 domains:
 - physics-astronomy
 - biology-medicine
+assessment_scope:
+  covers:
+  - physics-astronomy
+  - biology-medicine
+  note: >-
+    The RLS above is an evidenced score, not a description of a foundation. What it scores is a
+    deciding body's process, breadth, track record, transparency and independence - and under the
+    Nobel Foundation those bodies are several. The Royal Swedish Academy of Sciences and the
+    Karolinska Institute share the Statutes, the closed-nomination architecture, the fifty-year seal
+    and the endowment, and the rationales above are written to hold across both. They are not
+    written to hold beyond them: the track-record rationale on this page says "most scientific
+    selections", which is a statement about the categories it was scored over and about no others.
+  excludes:
+  - domain: literature
+    reason: >-
+      The Nobel Prize in Literature is decided by the Swedish Academy - a separate institution with
+      its own statutes and its own membership - under a criterion from Nobel's will that is not the
+      scientific one, and its track record is documented and argued in a literature of its own. None
+      of the five dimensions above could be evidenced over it from the sources that fix them here.
+      It requires its own recognition system, scored on its own evidence.
+  - domain: peace
+    reason: >-
+      The Nobel Peace Prize is decided by the Norwegian Nobel Committee, appointed by the Norwegian
+      Parliament, under a different criterion and outside the Swedish academies entirely. The same
+      reasoning applies with more force, and is recorded now so the question is settled before that
+      domain is ever opened rather than during it.
 provenance:
   system-facts:
     record_anchor:

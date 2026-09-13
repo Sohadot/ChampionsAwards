@@ -710,5 +710,38 @@ check("the calibration refuses distribution advantage as breadth",
       all(w in DOMAIN_SCORE_CALIBRATION["literature"]["recalibrated"]["breadth"].lower()
           for w in ("sales", "translation", "language community")))
 
+# 22. Assessment scope: an RLS is evidence about what it was scored over.
+from validate_content import validate_assessment_scope as _vas
+
+_systems_docs = [yaml.safe_load(f.read_text(encoding="utf-8"))
+                 for f in sorted(_systems_dir.glob("*.yaml"))]
+_scoped = [s for s in _systems_docs if isinstance(s.get("assessment_scope"), dict)]
+check("at least one system records what its assessment covers", bool(_scoped))
+check("every published scope is valid",
+      all(not _vas("recognition-systems", s, f"{s['slug']}.yaml") for s in _scoped))
+check("covers and domains cannot drift",
+      all(sorted(s["assessment_scope"]["covers"]) == sorted(s["domains"]) for s in _scoped))
+check("no system governs a domain it excludes",
+      all(not ({r["domain"] for r in s["assessment_scope"].get("excludes") or []}
+               & set(s["domains"])) for s in _scoped))
+check("every exclusion carries a reason",
+      all(str(r.get("reason", "")).strip()
+          for s in _scoped for r in s["assessment_scope"].get("excludes") or []))
+
+_nobel = next(s for s in _scoped if s["slug"] == "nobel-prize-system")
+check("the Nobel system excludes literature from its score",
+      "literature" in {r["domain"] for r in _nobel["assessment_scope"]["excludes"]})
+check("adding an excluded domain to a system fails",
+      bool(_vas("recognition-systems",
+                {**_nobel, "domains": _nobel["domains"] + ["literature"]},
+                "nobel-system.yaml")))
+check("an exclusion must name a registered domain",
+      bool(_vas("recognition-systems",
+                {**_nobel, "assessment_scope": {**_nobel["assessment_scope"],
+                                                "excludes": [{"domain": "poetry", "reason": "r"}]}},
+                "nobel-system.yaml")))
+check("a system with no scope is not asked for one",
+      not _vas("recognition-systems", {"slug": "x", "domains": ["literature"]}, "x.yaml"))
+
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

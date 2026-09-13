@@ -41,6 +41,23 @@
     </p>
 
     {% include "_rls_scorecard.html" %}
+
+    {% if item.assessment_scope %}
+    <h2>What this assessment covers</h2>
+    <p>{{ item.assessment_scope.note }}</p>
+    {% if item.assessment_scope.excludes %}
+    <p class="small muted">
+      Explicitly outside this score, and why. An exclusion is a recorded decision: the score above
+      is evidence about the categories it was assessed over, and extending it to another would make
+      its rationales claims about a category nobody assessed.
+    </p>
+    <ul class="key-facts">
+      {% for row in item.assessment_scope.excludes %}
+      <li><strong>{{ row.domain | replace('-', ' ') | title }}</strong> — {{ row.reason }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endif %}
     {% include "_body.html" %}
     {% include "_sources.html" %}
   </div>
