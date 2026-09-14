@@ -4,6 +4,12 @@ status: published
 last_reviewed: 2026-09-13
 domains:
 - physics-astronomy
+# DELIBERATE DEFECT - CI negative verification, 2026-09-14.
+# 'literature' is named in this entry's assessment_scope.excludes, so declaring it
+# here must fail validate_assessment_scope twice: covers no longer matches domains,
+# and a domain appears in both domains and excludes. This branch exists to prove
+# the governance workflow turns red on a real violation. It must never be merged.
+- literature
 summary: The Nobel Prize in Physics is decided by the Royal Swedish Academy of Sciences, a 1739 multidisciplinary academy of roughly 655 members, through a three-stage filter - a Nobel Committee that consults external experts and signs its report, a Physics Class that may substitute a different proposal, and a final Academy meeting - under a statute that publishes no decision rule.
 introduction: This entry replaces the shared "Nobel Prize System" assessment for physics. That entry scored five dimensions from the Foundation's Statutes and Nobel's will alone, and covered two categories decided by different bodies under one rationale. Each dimension here is scored on evidence specific to this deciding body, and where no evidence exists the score is conservative and says so.
 power_structure: "The Nobel Foundation manages Alfred Nobel's estate, pays the prize and sets financial frameworks for the awarding bodies' work under §11 of its Statutes. The Royal Swedish Academy of Sciences decides. Founded in 1739, it describes itself as an independent organisation, has approximately 480 Swedish and 175 foreign members, and divides them by discipline into ten classes - so the deciding body is a general scientific academy rather than the staff of any one institution, and no single employer constitutes it."
