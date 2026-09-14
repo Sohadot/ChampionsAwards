@@ -797,16 +797,21 @@ check("no Nobel science category is scored under a shared architecture any more"
           for s in _scoped if s["slug"].startswith("nobel-prize-in-")))
 
 # 23. The admission standard may not describe an aspiration as a control.
-from config import GAP_DECISIONS, GAP_LAYERS, GAP_STATUSES, GAP_VERSION, gap_coverage, gap_layer
+from config import (
+    GAP_DECISIONS, GAP_ENFORCEMENT, GAP_IMPLEMENTATION, GAP_LAYERS, GAP_VERSION,
+    gap_coverage, gap_layer,
+)
 
 _scripts = pathlib.Path(__file__).resolve().parent
-check("every layer declares an id, a question, decisions and a status",
-      all({"id", "name", "question", "decisions", "status", "components", "note"} <= set(l)
-          for l in GAP_LAYERS))
+check("every layer declares both axes and its contract",
+      all({"id", "name", "question", "decisions", "implementation", "enforcement",
+           "components", "note"} <= set(l) for l in GAP_LAYERS))
 check("layer ids are unique and ordered",
       [l["id"] for l in GAP_LAYERS] == sorted(l["id"] for l in GAP_LAYERS))
-check("every declared status is in the vocabulary",
-      all(l["status"] in GAP_STATUSES for l in GAP_LAYERS))
+check("every declared implementation is in the vocabulary",
+      all(l["implementation"] in GAP_IMPLEMENTATION for l in GAP_LAYERS))
+check("every declared enforcement is in the vocabulary",
+      all(l["enforcement"] in GAP_ENFORCEMENT for l in GAP_LAYERS))
 check("every declared decision is in the vocabulary",
       all(set(l["decisions"]) <= set(GAP_DECISIONS) for l in GAP_LAYERS))
 check("every layer may at least pass something", all("PASS" in l["decisions"] for l in GAP_LAYERS))
@@ -816,13 +821,13 @@ check("every layer may at least pass something", all("PASS" in l["decisions"] fo
 # claim to enforce anything.
 check("no layer claims to be enforced without a component that exists",
       all(l["components"] and all((_scripts / str(c)).exists() for c in l["components"])
-          for l in GAP_LAYERS if l["status"] == "enforced"),
+          for l in GAP_LAYERS if l["implementation"] == "enforced"),
       "an enforced layer must name a real component")
 check("no layer claims partial enforcement without a component that exists",
       all(l["components"] and all((_scripts / str(c)).exists() for c in l["components"])
-          for l in GAP_LAYERS if l["status"] == "partial"))
+          for l in GAP_LAYERS if l["implementation"] == "partial"))
 check("a layer with no component is declared absent",
-      all(l["status"] == "absent" for l in GAP_LAYERS if not l["components"]))
+      all(l["implementation"] == "absent" for l in GAP_LAYERS if not l["components"]))
 
 # Only hazard layers may block. An evidence layer that could BLOCK would
 # eventually be used to suppress an inconvenient finding rather than a threat.
@@ -834,11 +839,39 @@ check("the evidence layers can never block, only withhold",
 check("quarantine is distinct from blocking in the vocabulary",
       "retained" in GAP_DECISIONS["QUARANTINE"] and "never remediated" in GAP_DECISIONS["BLOCK"])
 
+# The two axes must stay independent, and the second must not be claimable
+# without the thing that provides it.
+_workflow = pathlib.Path(__file__).resolve().parent.parent / ".github" / "workflows" / "governance.yml"
+check("a layer with no control claims no enforcement",
+      all(l["enforcement"] == "none" for l in GAP_LAYERS if l["implementation"] == "absent"))
+check("a layer with a control claims some enforcement",
+      all(l["enforcement"] != "none" for l in GAP_LAYERS if l["implementation"] != "absent"))
+check("no layer claims CI enforcement without a workflow that exists",
+      _workflow.exists() or all(l["enforcement"] in ("none", "local-only") for l in GAP_LAYERS),
+      "ci-observed and required both require a workflow file")
+check("the workflow builds before it checks, and checks what it built",
+      _workflow.exists() and (lambda t: t.index("scripts/build.py") < t.index("scripts/run_checks.py")
+                              )(_workflow.read_text(encoding="utf-8")))
+check("the workflow refuses a checkout that already carries build output",
+      "generated output must never be committed" in _workflow.read_text(encoding="utf-8"))
+check("the coverage report is not itself a gate",
+      "if: always()" in _workflow.read_text(encoding="utf-8"))
+
 _cov = gap_coverage()
-check("coverage is computed from the registry, not asserted",
-      sum(_cov.values()) == len(GAP_LAYERS))
-print(f"      [reported] {GAP_VERSION}: {_cov['enforced']}/{len(GAP_LAYERS)} enforced, "
-      f"{_cov['partial']} partial, {_cov['absent']} absent")
+check("both axes are computed from the registry, not asserted",
+      sum(_cov["implementation"].values()) == len(GAP_LAYERS)
+      and sum(_cov["enforcement"].values()) == len(GAP_LAYERS))
+check("effective enforcement requires implemented AND required",
+      _cov["effective"] == sum(1 for l in GAP_LAYERS
+                               if l["implementation"] == "enforced" and l["enforcement"] == "required"))
+check("every hazard layer separates what it withholds from what it blocks",
+      all(set(gap_layer(i)["decision_rules"]) >= {"BLOCK"} for i in _HAZARD))
+check("spam is quarantined and hostility is blocked, not conflated",
+      set(gap_layer("GAP-09")["decision_rules"]) == {"QUARANTINE", "BLOCK"})
+print(f"      [reported] {GAP_VERSION}: implementation "
+      f"{_cov['implementation']['enforced']}/{_cov['total']} enforced, "
+      f"{_cov['implementation']['partial']} partial, {_cov['implementation']['absent']} absent; "
+      f"EFFECTIVELY ENFORCED {_cov['effective']}/{_cov['total']}")
 
 print("\n" + ("ALL CHECKS PASSED" if not failures else f"{len(failures)} CHECK(S) FAILED: {failures}"))
 raise SystemExit(1 if failures else 0)

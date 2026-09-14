@@ -1,0 +1,72 @@
+# ChampionsAwards - Governed Admission Pipeline, CI v1
+#
+# One job, deliberately. A matrix, caches and parallel jobs would each add a way
+# for the gate to be green for a reason unrelated to the corpus, and the point of
+# this workflow is that its green means exactly one thing: these sources, built
+# from nothing in this run, passed every governed check against the output of
+# that same build.
+#
+# This file makes the checks automatic. It does NOT make them binding - that
+# requires "governance" to be a required status check and main to be protected,
+# which are repository settings and cannot live in a file. Until both are set,
+# GAP-10 enforcement is 'ci-observed': a detector, not a gate.
+name: governance
+
+on:
+  pull_request:
+    branches: [main]
+  # Also on push, so a direct commit to main is at least visible. Visibility is
+  # not admission: only branch protection makes this decide anything.
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: governance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  governance:
+    name: Governed admission checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Clean checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install pinned dependencies
+        run: python -m pip install --no-cache-dir -r requirements.txt
+
+      - name: Prove the build output is absent before we build it
+        # public/ and reports/ are gitignored, so a clean checkout must not
+        # contain them. If either exists here, something committed generated
+        # output and every later check would be reading someone else's build.
+        run: |
+          set -euo pipefail
+          for d in public reports; do
+            if [ -e "$d" ]; then
+              echo "::error::$d exists in a clean checkout - generated output must never be committed"
+              exit 1
+            fi
+          done
+          echo "clean: no build output present"
+
+      - name: Build from source
+        run: python scripts/build.py
+
+      - name: Run governed checks against this run's build
+        run: python scripts/run_checks.py
+
+      - name: Admission pipeline coverage (report, not a gate)
+        if: always()
+        run: python scripts/gap_status.py

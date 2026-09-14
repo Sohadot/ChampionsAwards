@@ -341,15 +341,42 @@ GAP_DECISIONS: Final[dict[str, str]] = {
     ),
 }
 
-# Which decisions a layer may issue. Only the three hazard layers may BLOCK; an
-# evidence layer that could BLOCK would eventually be used to suppress an
-# inconvenient finding.
+# Two axes, because one word was doing two jobs. A layer can be fully implemented
+# and still not bind anything: GAP-11 refuses what it names, and refused nothing
+# on any push, because no automated step invoked it. Saying "enforced" for the
+# first and "advisory" for the second in the same document was ambiguous rather
+# than wrong, so the axes are now separate and measured separately.
+#
+#   implementation - does a control exist that refuses the thing this layer names?
+#   enforcement    - where does that control actually run?
+#
+# A layer is EFFECTIVELY enforced only when it is implemented AND required. That
+# is the number that matters, and it is currently zero.
+GAP_IMPLEMENTATION: Final[tuple[str, ...]] = ("enforced", "partial", "absent")
+GAP_ENFORCEMENT: Final[dict[str, str]] = {
+    "none": "No control exists, so there is nothing to run anywhere.",
+    "local-only": "Runs when a person chooses to run it. Nothing invokes it on a change.",
+    "ci-observed": "Runs automatically on every pull request, and reports. A failure is visible "
+                   "but does not prevent a merge.",
+    "required": "Runs automatically and blocks the merge when it fails. The only state in which a "
+                "layer governs admission rather than describing it.",
+}
+
+# Which decisions a layer may issue. Only the four hazard layers may BLOCK - GAP-01,
+# GAP-02, GAP-09 and GAP-10. An evidence layer that could BLOCK would eventually be
+# used to suppress an inconvenient finding rather than a threat.
 GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
     {
         "id": "GAP-01", "name": "Repository Admission",
         "question": "Is this file a kind of thing this repository accepts, at all?",
         "decisions": ("PASS", "QUARANTINE", "BLOCK"),
-        "status": "absent", "components": (),
+        "decision_rules": {
+            "QUARANTINE": "An unrecognised but inert file type, or one over the size ceiling.",
+            "BLOCK": "A secret, credential or key; an executable, archive or obfuscated payload; a "
+                     "symlink escaping the repository.",
+        },
+        "implementation": "absent", "components": (),
+        "enforcement": "none",
         "note": (
             "No file-type allowlist, no size ceiling, no secret or credential scan, no symlink or "
             "archive policy. The repository currently tracks only yaml, html, py, md, txt and css, "
@@ -360,7 +387,12 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "id": "GAP-02", "name": "Security",
         "question": "Does this introduce executable or network behaviour the site does not have?",
         "decisions": ("PASS", "BLOCK"),
-        "status": "absent", "components": (),
+        "decision_rules": {
+            "BLOCK": "Any new third-party script, inline handler, remote embed, tracking pixel, "
+                     "base64 payload or outbound call on a site that today has none.",
+        },
+        "implementation": "absent", "components": (),
+        "enforcement": "none",
         "note": (
             "The published site is static and carries no third-party script, which is the property "
             "worth protecting and the one nothing currently checks. A new inline handler, remote "
@@ -371,7 +403,8 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "id": "GAP-03", "name": "Data Admission",
         "question": "Is every field governed, typed and known?",
         "decisions": ("PASS", "QUARANTINE"),
-        "status": "partial", "components": ("validate_content.py", "quality_gate.py"),
+        "implementation": "partial", "components": ("validate_content.py", "quality_gate.py"),
+        "enforcement": "ci-observed",
         "note": (
             "Required fields, types and controlled vocabularies are enforced across 27 validators, "
             "and unknown keys inside an `seo` block fail. Unknown TOP-LEVEL keys are silently "
@@ -383,7 +416,8 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "id": "GAP-04", "name": "Evidence",
         "question": "Is every checkable claim anchored, derived, or declared as analysis?",
         "decisions": ("PASS", "REVIEW_REQUIRED", "QUARANTINE"),
-        "status": "partial", "components": ("validate_content.py", "source_audit.py"),
+        "implementation": "partial", "components": ("validate_content.py", "source_audit.py"),
+        "enforcement": "ci-observed",
         "note": (
             "The strongest layer. Provenance slots, dated audit exceptions, the corpus-claim rule, "
             "score calibration and assessment scope all enforce it where a structured slot exists. "
@@ -395,7 +429,8 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "id": "GAP-05", "name": "Source Quality",
         "question": "Is the source strong enough for the KIND of claim it is asked to carry?",
         "decisions": ("PASS", "REVIEW_REQUIRED", "QUARANTINE"),
-        "status": "partial", "components": ("validate_content.py", "source_audit.py"),
+        "implementation": "partial", "components": ("validate_content.py", "source_audit.py"),
+        "enforcement": "ci-observed",
         "note": (
             "Source types are a controlled vocabulary, and record-grade closure is enforced for "
             "declared provenance slots - an institutional source can close what an institution "
@@ -407,7 +442,8 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "id": "GAP-06", "name": "Temporal Validity",
         "question": "Was this rule in force at the time it is applied to?",
         "decisions": ("PASS", "QUARANTINE"),
-        "status": "partial", "components": ("validate_content.py",),
+        "implementation": "partial", "components": ("validate_content.py",),
+        "enforcement": "ci-observed",
         "note": (
             "Enforced where it was bought with a defect: `rule_at_time` on time-dependent award "
             "interactions, and ontology revisions on mechanism audits. Not general - a dated claim "
@@ -418,7 +454,8 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "id": "GAP-07", "name": "Computation Integrity",
         "question": "Did this number come from a deterministic analyser over a retained dataset?",
         "decisions": ("PASS", "QUARANTINE"),
-        "status": "partial", "components": ("synthesis_figures.py", "test_domain_comparison.py"),
+        "implementation": "partial", "components": ("synthesis_figures.py", "test_domain_comparison.py"),
+        "enforcement": "ci-observed",
         "note": (
             "Synthesis prose may not contain a hand-typed statistic, figures resolve from the "
             "engine, and determinism and quartile definitions are frozen by tests. Ad-hoc analysers "
@@ -430,7 +467,8 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "id": "GAP-08", "name": "Content Quality",
         "question": "Does this page carry enough governed substance to exist?",
         "decisions": ("PASS", "QUARANTINE"),
-        "status": "partial", "components": ("seo_gate.py", "generate_sectors.py"),
+        "implementation": "partial", "components": ("seo_gate.py", "generate_sectors.py"),
+        "enforcement": "ci-observed",
         "note": (
             "Per-page SEO contracts, description and title discipline, duplicate-title and "
             "cannibalisation checks, and a neutrality lint over generated prose. No minimum "
@@ -440,9 +478,16 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
     },
     {
         "id": "GAP-09", "name": "Spam and Abuse",
-        "question": "Is this mass-generated, templated, or promotional?",
+        "question": "Is this mass-generated, templated, promotional - or hostile?",
         "decisions": ("PASS", "QUARANTINE", "BLOCK"),
-        "status": "absent", "components": (),
+        "decision_rules": {
+            "QUARANTINE": "Mass-generated, near-duplicate, templated or promotional content. Low "
+                          "quality is withheld and kept for remediation; it is not a threat.",
+            "BLOCK": "Malicious injection, hidden payload, cloaked or doorway behaviour. A hazard, "
+                     "removed rather than remediated.",
+        },
+        "implementation": "absent", "components": (),
+        "enforcement": "none",
         "note": (
             "Nothing checks for near-duplicate routes, templated pages varying only an entity name, "
             "unexplained outbound domains, hidden text or doorway pages. The corpus is small and "
@@ -453,7 +498,13 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "id": "GAP-10", "name": "Build Integrity",
         "question": "Was this verified against what the current sources actually produce?",
         "decisions": ("PASS", "BLOCK"),
-        "status": "partial", "components": ("run_checks.py", "build.py"),
+        "decision_rules": {
+            "BLOCK": "Checks run against output older than its inputs, or against output the job "
+                     "did not build itself. A verification of something that no longer exists is "
+                     "worse than no verification, because it reports green.",
+        },
+        "implementation": "partial", "components": ("run_checks.py", "build.py"),
+        "enforcement": "ci-observed",
         "note": (
             "run_checks refuses to run against a build older than its inputs, which closed a real "
             "defect on 2026-09-13. The larger half is missing: there is no continuous integration "
@@ -466,7 +517,8 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "id": "GAP-11", "name": "Public Surface",
         "question": "Does the built site match the governed source graph, exactly?",
         "decisions": ("PASS", "QUARANTINE"),
-        "status": "enforced", "components": ("seo_gate.py", "generate_sitemap.py"),
+        "implementation": "enforced", "components": ("seo_gate.py", "generate_sitemap.py"),
+        "enforcement": "ci-observed",
         "note": (
             "Every built route must carry a contract, every contract must build, canonicals must "
             "match, declared links must exist in the built HTML, no orphans, and indexing must "
@@ -477,7 +529,8 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "id": "GAP-12", "name": "Regression",
         "question": "Did admitting this lower the quality of what was already admitted?",
         "decisions": ("PASS", "REVIEW_REQUIRED", "QUARANTINE"),
-        "status": "partial", "components": ("domain_status.py", "test_synthesis.py"),
+        "implementation": "partial", "components": ("domain_status.py", "test_synthesis.py"),
+        "enforcement": "ci-observed",
         "note": (
             "Closure counts, Definition of Done criteria and domain maturity are measured every "
             "run, and a check written over 'every aggregated domain' was caught silently changing "
@@ -487,19 +540,28 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
     },
 )
 
-GAP_STATUSES: Final[tuple[str, ...]] = ("enforced", "partial", "absent")
-
-
 def gap_layer(layer_id: object) -> dict[str, object] | None:
     return next((l for l in GAP_LAYERS if l["id"] == layer_id), None)
 
 
-def gap_coverage() -> dict[str, int]:
-    """How much of the standard is actually a control. Reported, never rounded up."""
-    counts = {s: 0 for s in GAP_STATUSES}
+def gap_coverage() -> dict[str, dict[str, int] | int]:
+    """Both axes, and the only figure that governs anything.
+
+    `effective` counts layers that both refuse what they name AND run where a
+    failure stops a merge. A layer that is implemented but merely observed is a
+    detector, not a gate - which is the whole distinction this project spent a
+    session learning. Reported, never rounded up.
+    """
+    impl = {k: 0 for k in GAP_IMPLEMENTATION}
+    enf = {k: 0 for k in GAP_ENFORCEMENT}
+    effective = 0
     for layer in GAP_LAYERS:
-        counts[str(layer["status"])] += 1
-    return counts
+        impl[str(layer["implementation"])] += 1
+        enf[str(layer["enforcement"])] += 1
+        if layer["implementation"] == "enforced" and layer["enforcement"] == "required":
+            effective += 1
+    return {"implementation": impl, "enforcement": enf,
+            "effective": effective, "total": len(GAP_LAYERS)}
 
 
 # ---------------------------------------------------------------------------

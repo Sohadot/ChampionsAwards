@@ -314,12 +314,24 @@ passes the same schemas and tests as anyone's.
 > Publication requires evidential validity, architectural validity, security
 > validity, and quality validity.
 
+Status has two axes, because one word was doing two jobs. **Implementation**
+(`enforced` / `partial` / `absent`) asks whether a control exists that refuses
+what the layer names. **Enforcement** (`none` / `local-only` / `ci-observed` /
+`required`) asks where that control runs. A layer governs admission only when it
+is implemented **and** required; anything short of both is a detector.
+
 The standard is `docs/governance-admission-standard.md`; the registry is
 `GAP_LAYERS` in `scripts/config.py` and `python scripts/gap_status.py` reports
-coverage from it. **A layer may not claim enforcement without naming a component
-that exists** — the check suite asserts it — so the document cannot drift from
-the code. Coverage today is 1 of 12 enforced, and the standard says so on its
-own front page.
+both axes from it. **A layer may not claim enforcement without naming a component
+that exists, nor claim CI enforcement without a workflow that exists** — the
+check suite asserts both — so the document cannot drift from the code.
+Implementation today is 1 of 12 enforced; **effectively enforced is 0 of 12**,
+and stays there until `governance` is a required status check on a protected
+`main`.
+
+**Governance maturity and domain maturity advance in parallel.** Governance must
+be enforceable before new knowledge production resumes; it does not need to be
+complete before knowledge production can continue.
 
 ## Correction policy
 
