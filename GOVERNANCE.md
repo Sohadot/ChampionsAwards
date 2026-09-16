@@ -326,8 +326,10 @@ both axes from it. **A layer may not claim enforcement without naming a componen
 that exists, nor claim CI enforcement without a workflow that exists** — the
 check suite asserts both — so the document cannot drift from the code.
 Implementation today is 1 of 12 enforced; **effectively enforced is 0 of 12**,
-and stays there until `governance` is a required status check on a protected
-`main`.
+and stays there until `main` requires a pull request, requires the
+`Governed admission checks` job to pass, and allows no bypass. The observable
+test is `mergeable_state` on a failing pull request: `unstable` means the check
+is red but not required, `blocked` means it governs.
 
 **Governance maturity and domain maturity advance in parallel.** Governance must
 be enforceable before new knowledge production resumes; it does not need to be
