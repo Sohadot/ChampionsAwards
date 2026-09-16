@@ -169,14 +169,39 @@ mean every later check was reading someone else's build. And it runs the checks
 local gate report green against output that no longer existed.
 
 **It is still not a gate.** A workflow makes checks automatic; it does not make
-them binding. Two repository settings do that, and neither can live in a file:
+them binding. **Three** repository settings do that, and none can live in a file:
 
-1. `governance` set as a **required status check** on `main`
-2. **branch protection** on `main` rejecting direct pushes that bypass it
+1. **Require a pull request before merging** — this is what forces every change
+   onto the PR path. Reviewer approvals are optional for a solo maintainer; the
+   PR requirement is not, because without it a change can reach `main` without
+   ever becoming a pull request for the check to run on.
+2. **Require status checks to pass before merging**, selecting the job
+   `Governed admission checks` (GitHub lists it by job name, sometimes as
+   `governance / Governed admission checks`).
+3. **Do not allow bypassing the above settings** — without it, administrators,
+   including the repository owner, are exempt by default.
 
-Until both are set, every layer's enforcement is `ci-observed` — a detector that
-reports. **Effectively enforced: 0 of 12**, and it stays 0 until a human changes
-those two settings, whatever this document or the workflow says.
+An earlier version of this section listed only 2 and 3. That was wrong in a way
+worth recording: a required status check governs *merges*, and "do not allow
+bypassing" governs *who is exempt from the rules that exist*. Neither compels a
+change to become a pull request in the first place, which is rule 1's job. The
+document had described two thirds of a gate as a gate.
+
+Until all three are set, every layer's enforcement is `ci-observed` — a detector
+that reports. **Effectively enforced: 0 of 12**, and it stays 0 until a human
+changes those settings, whatever this document or the workflow says.
+
+### How to tell, without trusting anyone's word
+
+`mergeable_state` on an open pull request whose check has failed:
+
+| value | meaning |
+| --- | --- |
+| `unstable` | the check is red and **not required** — the merge is still permitted |
+| `blocked` | the check is red and **required** — the merge is refused |
+
+That single field is the difference between a detector and a gate, and it is
+observable without asking whether the settings were applied.
 
 A green workflow is not proof of teeth. That lesson came from `assessment_scope`,
 which passed every test written for it while remaining bypassable, and the same
