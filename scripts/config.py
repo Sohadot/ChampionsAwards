@@ -403,7 +403,7 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
             "BLOCK": "A secret, credential or key; an executable, archive or obfuscated payload; a "
                      "symlink escaping the repository.",
         },
-        "implementation": "enforced",
+        "implementation": "partial",
         "components": ("repository_admission.py", "test_repository_admission.py"),
         "enforcement": "required",
         "note": (
@@ -414,11 +414,13 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
             "symlink, a non-file git mode. BLOCK: executable git mode; an executable or archive "
             "suffix; an executable or archive signature under any name; a NUL byte; an unbroken "
             "encoded run of 1024+ characters; an absolute or escaping symlink; a credential file "
-            "name; a private-key block or one of seven high-confidence token formats. Secret "
-            "detection is signature-only - no entropy rule - so a plain password in a value, or "
-            "an unlisted token format, passes. 'Obfuscated payload' is held to its artefact-level "
-            "meaning (disguised binary, encoded run); obfuscated behaviour in admitted source is "
-            "GAP-02's question."
+            "name; a private-key block or one of seven high-confidence token formats. Partial, "
+            "because the BLOCK rule above is the standard and the control is a subset of it: "
+            "'a secret, credential or key' is detected only by signature - a plain password in "
+            "a value, or an unlisted token format, passes - and 'obfuscated payload' only as a "
+            "disguised binary or an unbroken encoded run, so escaped or whitespace-broken "
+            "encodings pass. The rule is not narrowed to fit the control; the control has to "
+            "grow to fit the rule. Obfuscated behaviour in admitted source is GAP-02's question."
         ),
     },
     {

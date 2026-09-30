@@ -198,6 +198,69 @@ for name, (path, data, mode, rule) in cases_b.items():
     if name == "archive by extension":
         check("BLOCK exits non-zero (2)", run_main(root)[0] == 2)
 
+# ---------------------------------------------------------------------------
+# Every secret signature the scanner claims, one fixture each. Values are
+# assembled from fragments and a fixed hash at runtime; none is live.
+# ---------------------------------------------------------------------------
+_ALNUM_ = _ALNUM + "_"
+_KEY_ARMOUR = "-----" + "BEGIN {}PRIVATE" + " KEY{}-----"
+SIGNATURE_FIXTURES: dict[str, list[tuple[str, str]]] = {
+    "private-key-block": [
+        ("RSA armour", _KEY_ARMOUR.format("RSA ", "")),
+        ("PKCS#8 armour", _KEY_ARMOUR.format("", "")),
+        ("OpenSSH armour", _KEY_ARMOUR.format("OPEN" + "SSH ", "")),
+        ("EC armour", _KEY_ARMOUR.format("EC ", "")),
+        ("encrypted PKCS#8 armour", _KEY_ARMOUR.format("ENCRYPTED ", "")),
+        ("PGP armour", _KEY_ARMOUR.format("PGP ", " BLOCK")),
+    ],
+    "aws-access-key-id": [
+        ("long-term AKIA id", AWS_ID),
+        ("temporary ASIA id", synthetic("AS" + "IA", 16, _UPPER_NUM)),
+    ],
+    "github-token": [
+        ("classic personal token", GH_TOKEN),
+        ("OAuth token", synthetic("gh" + "o_", 36, _ALNUM)),
+        ("server token", synthetic("gh" + "s_", 36, _ALNUM)),
+    ],
+    "github-fine-grained-token": [
+        ("fine-grained personal token", synthetic("github" + "_pat_", 82, _ALNUM_)),
+    ],
+    "slack-token": [
+        ("bot token", synthetic("xo" + "xb-", 40, _ALNUM + "-")),
+        ("user token", synthetic("xo" + "xp-", 40, _ALNUM + "-")),
+    ],
+    "google-api-key": [
+        ("API key", synthetic("AI" + "za", 35, _ALNUM + "_-")),
+    ],
+    "stripe-live-secret-key": [
+        ("live secret key", synthetic("sk" + "_live_", 24, _ALNUM)),
+        ("live restricted key", synthetic("rk" + "_live_", 24, _ALNUM)),
+    ],
+    "anthropic-api-key": [
+        ("API key", synthetic("sk" + "-ant-", 40, _ALNUM + "_-")),
+    ],
+}
+check("every claimed secret signature has at least one fixture",
+      set(SIGNATURE_FIXTURES) == {rule for rule, _ in ra.SECRET_SIGNATURES},
+      f"untested: {sorted({r for r, _ in ra.SECRET_SIGNATURES} - set(SIGNATURE_FIXTURES))}")
+_all_values: list[str] = []
+for rule, variants in SIGNATURE_FIXTURES.items():
+    for label, value in variants:
+        _all_values.append(value)
+        root = new_repo()
+        track(root, "src/data/x.yaml", f"note: fixture\nvalue: {value}\n".encode())
+        decision, findings = scan(root)
+        check(f"BLOCK: secret signature {rule} ({label})",
+              decision == ra.BLOCK and ("src/data/x.yaml", f"secret:{rule}", ra.BLOCK) in rules(findings),
+              str([f.render() for f in findings]))
+root = new_repo()
+for i, value in enumerate(_all_values):
+    track(root, f"docs/s{i:02d}.md", f"# s\n{value}\n".encode())
+code, output = run_main(root)
+check("every signature is reported at its line, and no value is echoed",
+      code == 2 and output.count("line 2, fingerprint sha256:") == len(_all_values)
+      and not any(v in output for v in _all_values))
+
 # Guard against the obvious false positives the signatures were narrowed for.
 root = new_repo()
 track(root, "docs/a.md", b"MZ is how this paragraph starts, and it is prose.\n")
