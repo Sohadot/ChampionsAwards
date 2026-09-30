@@ -4,7 +4,8 @@
 > it proves what it is, where it came from, what it claims, and that it cannot
 > degrade the system.
 
-*Written 2026-09-13, two-axis model and CI v1 added 2026-09-14. This is the
+*Written 2026-09-13, two-axis model and CI v1 added 2026-09-14, enforcement state
+synchronised with branch protection as verified 2026-09-30. This is the
 standard, not the implementation. The registry in `scripts/config.py` says which
 layers exist as controls and where those controls run; the two are different
 questions and are measured separately. A governance document that described its
@@ -145,13 +146,21 @@ check suite: **a layer may not claim enforcement without naming a component that
 exists**, and a layer naming nothing must declare itself absent.
 
 **Implementation: 1 of 12 enforced, 8 partial, 3 absent.
-Effectively enforced: 0 of 12.**
+Enforcement: 9 required, 3 none. Effectively enforced: 1 of 12.**
+
+The one is GAP-11, public surface — the only layer whose control was already
+complete, and whose control (`seo_gate.py`, over the sitemap `generate_sitemap.py`
+emits) runs inside the required job. The eight partial layers are now also
+required, and remain partial: a required check on half a control blocks only the
+half that exists. From 2026-09-14 until protection was applied, the same registry
+read *9 ci-observed, effectively enforced 0 of 12*; the implementation axis did not move
+when the gate became binding, and nothing in this change moved it.
 
 The three absent layers — repository admission, security, spam/abuse — have never
 been tested by events. The corpus is small, hand-built and tracks only six file
 types, which is why none has bitten, and is not evidence that none can.
 
-## CI v1 — what it does and what it still cannot do
+## CI v1 — what it does, and when it became a gate
 
 `.github/workflows/governance.yml`, added 2026-09-14. One job, deliberately: a
 matrix, caches or parallel jobs would each add a way for the gate to be green for
@@ -168,8 +177,9 @@ mean every later check was reading someone else's build. And it runs the checks
 **against the build produced in that same job**, which is the defect that made a
 local gate report green against output that no longer existed.
 
-**It is still not a gate.** A workflow makes checks automatic; it does not make
-them binding. **Three** repository settings do that, and none can live in a file:
+**The workflow alone was not a gate, and at first it was not one.** A workflow
+makes checks automatic; it does not make them binding. **Three**
+repository settings do that, and none can live in a file:
 
 1. **Require a pull request before merging** — this is what forces every change
    onto the PR path. Reviewer approvals are optional for a solo maintainer; the
@@ -187,9 +197,13 @@ bypassing" governs *who is exempt from the rules that exist*. Neither compels a
 change to become a pull request in the first place, which is rule 1's job. The
 document had described two thirds of a gate as a gate.
 
-Until all three are set, every layer's enforcement is `ci-observed` — a detector
-that reports. **Effectively enforced: 0 of 12**, and it stays 0 until a human
-changes those settings, whatever this document or the workflow says.
+Until all three were set, every implemented layer's enforcement was
+`ci-observed` — a detector that reports — and **effectively enforced was 0 of
+12**, whatever this document or the workflow said. All three were in place on
+`main` by 2026-09-30, with the protection applying to everyone. Enforcement moved
+to `required` only for layers whose control the required job actually executes
+on a failing path (traced in the comment above `GAP_LAYERS` in
+`scripts/config.py`); the absent layers name no control and stay `none`.
 
 ### How to tell, without trusting anyone's word
 
@@ -202,6 +216,16 @@ changes those settings, whatever this document or the workflow says.
 
 That single field is the difference between a detector and a gate, and it is
 observable without asking whether the settings were applied.
+
+**Verified 2026-09-30, by PR #1.** PR #1 was opened on 2026-09-14 as a
+deliberately invalid change — a recognition system declaring a domain its own
+`assessment_scope` excludes — and was never meant to merge. Its first half passed
+at once: the job went red at *Build from source*, `validate_content` refused it,
+and the checks correctly never ran against an unbuilt tree. Its second half
+failed for as long as the settings were missing: the pull request read
+`unstable`, a red check a merge could ignore. Once protection was applied it read
+`blocked`, and it was closed without merging. The gate is binding because a change
+that should fail was shown unable to merge — not because the workflow is green.
 
 A green workflow is not proof of teeth. That lesson came from `assessment_scope`,
 which passed every test written for it while remaining bypassable, and the same
@@ -217,8 +241,8 @@ report changing.
 
 The order this analysis suggests, and the reason for each:
 
-1. ~~**CI from clean checkout**~~ — done 2026-09-14; becomes real when the two
-   repository settings above are applied.
+1. ~~**CI from clean checkout**~~ — done 2026-09-14; binding once the three
+   repository settings above were applied (verified by PR #1, 2026-09-30).
 2. **GAP-01 repository admission** — a six-entry file-type allowlist and a secret
    scan; cheap, and it is the layer with the widest blast radius when absent.
 3. **GAP-03 unknown-key rejection** — the concrete hole measured today: an

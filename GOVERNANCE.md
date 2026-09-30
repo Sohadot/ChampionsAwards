@@ -325,11 +325,17 @@ The standard is `docs/governance-admission-standard.md`; the registry is
 both axes from it. **A layer may not claim enforcement without naming a component
 that exists, nor claim CI enforcement without a workflow that exists** — the
 check suite asserts both — so the document cannot drift from the code.
-Implementation today is 1 of 12 enforced; **effectively enforced is 0 of 12**,
-and stays there until `main` requires a pull request, requires the
-`Governed admission checks` job to pass, and allows no bypass. The observable
-test is `mergeable_state` on a failing pull request: `unstable` means the check
-is red but not required, `blocked` means it governs.
+As of 2026-09-30 `main` requires a pull request, requires the
+`Governed admission checks` job to pass, and allows no bypass, administrators
+included; before those settings were applied the job reported and bound nothing,
+and effectively enforced was 0 of 12. The observable test is `mergeable_state` on a failing pull
+request: `unstable` means the check is red but not required, `blocked` means it
+governs. PR #1, a deliberately invalid change, read `unstable` until the settings
+were applied and `blocked` after, and was closed unmerged. Implementation today is
+1 of 12 enforced, 8 partial, 3 absent; every implemented or partial layer is now
+`required`, because its control runs inside that job. **Effectively enforced is 1
+of 12** — public surface, the only layer that is both complete and required. The
+eight partial layers are required and still partial.
 
 **Governance maturity and domain maturity advance in parallel.** Governance must
 be enforceable before new knowledge production resumes; it does not need to be
