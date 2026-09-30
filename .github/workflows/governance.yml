@@ -47,6 +47,13 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: GAP-01 repository admission (before anything installs or builds)
+        # Standard library and git only. Judges every tracked file - type, size,
+        # git mode, payload signatures, symlinks, high-confidence secrets - before
+        # dependency installation or the build can give an inadmissible tree any
+        # more authority. QUARANTINE and BLOCK both fail this job.
+        run: python scripts/repository_admission.py
+
       - name: Install pinned dependencies
         run: python -m pip install --no-cache-dir -r requirements.txt
 
