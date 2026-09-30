@@ -59,15 +59,6 @@ key_facts:
     source: 2
   - fact: Her university reported at the time of the announcement that the honour carried a purse of 250,000 US dollars.
     source: 3
-analysis:
-  - heading: Who decides and who pays, kept apart on the page
-    body: "The Cycle 03 requalification lowered this system's independence score from 85 to 62 because the entry had been reading professional-society governance as freedom from commercial capture, while the award's own documentation names a commercial funder. That correction lived in a scoring rationale, where a reader could miss it. It is structural here: governance and funding are separate architecture elements on every award anatomy in this project, and an anatomy that states the first without the second now fails validation. The Nobel pages were amended in the same pass and state, in the same slot, that no external sponsor is named in their governing documents."
-  - heading: The funding arrangement is not a constant, and the corpus case predates the current one
-    body: "The award's money has changed hands. A reference work dates corporate funding to 2002 and a second sponsor to 2007; the society's page records the present level from 2014. Liskov's award falls in the middle period, under a smaller purse and, on the reference account, two sponsors rather than one. That is why funding carries a rule history here rather than a single present-tense sentence: an anatomy that stated only today's arrangement would have silently dated a 2008 decision against a 2014 rule, which is the error this project corrected in the Franklin case and does not intend to repeat in a different layer."
-  - heading: Nine elements that are absent, and why that is the finding
-    body: "Nomination, who may nominate, the selection body, the decision stages, the sharing rule, any posthumous rule, secrecy, withholding and finality are all missing from the architecture above. They are missing because every page of the awarding society that documents them was unreadable to this audit, not because they do not exist. The contrast is the point: the same audit reached twelve elements for each Nobel anatomy from the awarding institution's own published rules. A recognition system that publishes its criteria and its laureates but whose procedure cannot be read is a different object from one that publishes its statutes, and this page declines to make them look alike."
-  - heading: One relation, and four cases that do not belong here
-    body: "Liskov is the only corpus case with a documented relation to this apparatus, and she is the only one below. Conway and Spärck Jones are computing cases in the same domain and neither is a laureate; recording a non-award for them would imply a candidacy that no record establishes, and the society's laureate list was in any case unreadable to this audit. Noether and Wiles are mathematics cases outside this award's remit entirely. The page has one relation because the record supports one."
 corpus_relations:
   - case: barbara-liskov
     architecture_element: eligibility

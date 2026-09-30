@@ -46,6 +46,3 @@ key_facts:
     source: 1
   - fact: The prize can be withheld in years when the committee judges that no candidate meets the criteria.
     source: 1
-analysis:
-  - heading: Why its legitimacy is contested
-    body: Because peace is judged politically rather than measured technically, each award doubles as an endorsement of a contested interpretation of events. The same decision can read as principled recognition or as premature diplomatic signaling depending on how history later resolves — which is precisely why the prize draws sustained scrutiny across eras and ideologies.
