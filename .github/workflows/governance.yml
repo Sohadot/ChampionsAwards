@@ -7,16 +7,19 @@
 # that same build.
 #
 # This file makes the checks automatic. It does NOT make them binding - that
-# requires "governance" to be a required status check and main to be protected,
-# which are repository settings and cannot live in a file. Until both are set,
-# GAP-10 enforcement is 'ci-observed': a detector, not a gate.
+# takes repository settings, which cannot live in a file: main protected, changes
+# only through a pull request, this job ("Governed admission checks") a required
+# status check, and no bypass. From 2026-09-14 to 2026-09-30 none of that was set
+# and this job was a detector. Since 2026-09-30 all of it is, which PR #1 proved by
+# going from mergeable_state 'unstable' to 'blocked'. A layer is 'required' in the
+# GAP registry only where a control it names actually runs, and can fail, below.
 name: governance
 
 on:
   pull_request:
     branches: [main]
-  # Also on push, so a direct commit to main is at least visible. Visibility is
-  # not admission: only branch protection makes this decide anything.
+  # Also on push, so a commit landing on main is visible. Visibility is not
+  # admission: branch protection is what decides, by refusing the merge.
   push:
     branches: [main]
 

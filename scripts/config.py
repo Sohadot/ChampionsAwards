@@ -351,7 +351,9 @@ GAP_DECISIONS: Final[dict[str, str]] = {
 #   enforcement    - where does that control actually run?
 #
 # A layer is EFFECTIVELY enforced only when it is implemented AND required. That
-# is the number that matters, and it is currently zero.
+# is the number that matters. It was zero from 2026-09-14, when CI v1 made the
+# checks automatic, until 2026-09-30, when branch protection made them binding;
+# gap_coverage() computes what it is now, and nothing here states it.
 GAP_IMPLEMENTATION: Final[tuple[str, ...]] = ("enforced", "partial", "absent")
 GAP_ENFORCEMENT: Final[dict[str, str]] = {
     "none": "No control exists, so there is nothing to run anywhere.",
@@ -361,6 +363,29 @@ GAP_ENFORCEMENT: Final[dict[str, str]] = {
     "required": "Runs automatically and blocks the merge when it fails. The only state in which a "
                 "layer governs admission rather than describing it.",
 }
+
+# Enforcement state, as of 2026-09-30. `main` is protected: every change goes
+# through a pull request, the `Governed admission checks` job (governance.yml) is
+# a required status check, and there is no bypass, administrators included. PR #1
+# proved it negatively - a deliberately invalid change went from
+# `mergeable_state: unstable` (red, not required) to `blocked` (red, required) when
+# the settings were applied, and was closed unmerged.
+#
+# A layer is marked `required` only where the required job actually executes its
+# control on a failure path, traced from the workflow rather than from prose:
+#   build.py        -> validate_content.py, quality_gate.py, generate_core.py,
+#                      generate_pages.py, generate_rankings.py, generate_sectors.py,
+#                      generate_sitemap.py (a non-zero exit fails the build);
+#                      then domain_status.py, source_audit.py, domain_comparison.py
+#                      (reports: executed, and a crash fails the build, but
+#                      domain_status and source_audit refuse no finding; only
+#                      domain_comparison raises, on a denominator mismatch)
+#   run_checks.py   -> test_domain_comparison.py, test_sector_page.py,
+#                      test_synthesis.py, seo_gate.py (any failure fails the job)
+#   synthesis_figures.py is imported by validate_content.py, generate_pages.py and
+#                      test_synthesis.py, so it runs on the failing path too.
+# Becoming required moved the ENFORCEMENT axis only. A partial layer that is now
+# required is still partial: a gate on half a control is half a gate.
 
 # Which decisions a layer may issue. Only the four hazard layers may BLOCK - GAP-01,
 # GAP-02, GAP-09 and GAP-10. An evidence layer that could BLOCK would eventually be
@@ -404,7 +429,7 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "question": "Is every field governed, typed and known?",
         "decisions": ("PASS", "QUARANTINE"),
         "implementation": "partial", "components": ("validate_content.py", "quality_gate.py"),
-        "enforcement": "ci-observed",
+        "enforcement": "required",
         "note": (
             "Required fields, types and controlled vocabularies are enforced across 27 validators, "
             "and unknown keys inside an `seo` block fail. Unknown TOP-LEVEL keys are silently "
@@ -417,7 +442,7 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "question": "Is every checkable claim anchored, derived, or declared as analysis?",
         "decisions": ("PASS", "REVIEW_REQUIRED", "QUARANTINE"),
         "implementation": "partial", "components": ("validate_content.py", "source_audit.py"),
-        "enforcement": "ci-observed",
+        "enforcement": "required",
         "note": (
             "The strongest layer. Provenance slots, dated audit exceptions, the corpus-claim rule, "
             "score calibration and assessment scope all enforce it where a structured slot exists. "
@@ -430,7 +455,7 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "question": "Is the source strong enough for the KIND of claim it is asked to carry?",
         "decisions": ("PASS", "REVIEW_REQUIRED", "QUARANTINE"),
         "implementation": "partial", "components": ("validate_content.py", "source_audit.py"),
-        "enforcement": "ci-observed",
+        "enforcement": "required",
         "note": (
             "Source types are a controlled vocabulary, and record-grade closure is enforced for "
             "declared provenance slots - an institutional source can close what an institution "
@@ -443,7 +468,7 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "question": "Was this rule in force at the time it is applied to?",
         "decisions": ("PASS", "QUARANTINE"),
         "implementation": "partial", "components": ("validate_content.py",),
-        "enforcement": "ci-observed",
+        "enforcement": "required",
         "note": (
             "Enforced where it was bought with a defect: `rule_at_time` on time-dependent award "
             "interactions, and ontology revisions on mechanism audits. Not general - a dated claim "
@@ -455,7 +480,7 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "question": "Did this number come from a deterministic analyser over a retained dataset?",
         "decisions": ("PASS", "QUARANTINE"),
         "implementation": "partial", "components": ("synthesis_figures.py", "test_domain_comparison.py"),
-        "enforcement": "ci-observed",
+        "enforcement": "required",
         "note": (
             "Synthesis prose may not contain a hand-typed statistic, figures resolve from the "
             "engine, and determinism and quartile definitions are frozen by tests. Ad-hoc analysers "
@@ -468,7 +493,7 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "question": "Does this page carry enough governed substance to exist?",
         "decisions": ("PASS", "QUARANTINE"),
         "implementation": "partial", "components": ("seo_gate.py", "generate_sectors.py"),
-        "enforcement": "ci-observed",
+        "enforcement": "required",
         "note": (
             "Per-page SEO contracts, description and title discipline, duplicate-title and "
             "cannibalisation checks, and a neutrality lint over generated prose. No minimum "
@@ -504,13 +529,16 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
                      "worse than no verification, because it reports green.",
         },
         "implementation": "partial", "components": ("run_checks.py", "build.py"),
-        "enforcement": "ci-observed",
+        "enforcement": "required",
         "note": (
             "run_checks refuses to run against a build older than its inputs, which closed a real "
-            "defect on 2026-09-13. The larger half is missing: there is no continuous integration "
-            "of any kind, so nothing builds from a clean checkout and nothing runs the validators "
-            "except a person choosing to. Every green result this project has ever reported was a "
-            "local run."
+            "defect on 2026-09-13. Until 2026-09-14 there was no continuous integration of any "
+            "kind, and every green result this project reported was a local run. CI v1 now builds "
+            "from a clean checkout, refuses a checkout that already carries build output, and "
+            "checks the build it produced - and since 2026-09-30 that job is required, so a "
+            "failure blocks the merge. The implementation grade is deliberately not revisited "
+            "here: that is a separate decision with its own evidence, not a side effect of the "
+            "gate becoming binding."
         ),
     },
     {
@@ -518,7 +546,7 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "question": "Does the built site match the governed source graph, exactly?",
         "decisions": ("PASS", "QUARANTINE"),
         "implementation": "enforced", "components": ("seo_gate.py", "generate_sitemap.py"),
-        "enforcement": "ci-observed",
+        "enforcement": "required",
         "note": (
             "Every built route must carry a contract, every contract must build, canonicals must "
             "match, declared links must exist in the built HTML, no orphans, and indexing must "
@@ -530,7 +558,7 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
         "question": "Did admitting this lower the quality of what was already admitted?",
         "decisions": ("PASS", "REVIEW_REQUIRED", "QUARANTINE"),
         "implementation": "partial", "components": ("domain_status.py", "test_synthesis.py"),
-        "enforcement": "ci-observed",
+        "enforcement": "required",
         "note": (
             "Closure counts, Definition of Done criteria and domain maturity are measured every "
             "run, and a check written over 'every aggregated domain' was caught silently changing "
