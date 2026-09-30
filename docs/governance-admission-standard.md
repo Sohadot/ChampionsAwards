@@ -5,7 +5,7 @@
 > degrade the system.
 
 *Written 2026-09-13, two-axis model and CI v1 added 2026-09-14, enforcement state
-synchronised with branch protection 2026-09-30. This is the
+synchronised with branch protection as verified 2026-09-30. This is the
 standard, not the implementation. The registry in `scripts/config.py` says which
 layers exist as controls and where those controls run; the two are different
 questions and are measured separately. A governance document that described its
@@ -152,8 +152,8 @@ The one is GAP-11, public surface — the only layer whose control was already
 complete, and whose control (`seo_gate.py`, over the sitemap `generate_sitemap.py`
 emits) runs inside the required job. The eight partial layers are now also
 required, and remain partial: a required check on half a control blocks only the
-half that exists. From 2026-09-14 to 2026-09-30 the same registry read *9
-ci-observed, effectively enforced 0 of 12*; the implementation axis did not move
+half that exists. From 2026-09-14 until protection was applied, the same registry
+read *9 ci-observed, effectively enforced 0 of 12*; the implementation axis did not move
 when the gate became binding, and nothing in this change moved it.
 
 The three absent layers — repository admission, security, spam/abuse — have never
@@ -177,8 +177,8 @@ mean every later check was reading someone else's build. And it runs the checks
 **against the build produced in that same job**, which is the defect that made a
 local gate report green against output that no longer existed.
 
-**The workflow alone was not a gate, and for sixteen days it was not one.** A
-workflow makes checks automatic; it does not make them binding. **Three**
+**The workflow alone was not a gate, and at first it was not one.** A workflow
+makes checks automatic; it does not make them binding. **Three**
 repository settings do that, and none can live in a file:
 
 1. **Require a pull request before merging** — this is what forces every change
@@ -199,8 +199,8 @@ document had described two thirds of a gate as a gate.
 
 Until all three were set, every implemented layer's enforcement was
 `ci-observed` — a detector that reports — and **effectively enforced was 0 of
-12**, whatever this document or the workflow said. All three were applied to
-`main` on 2026-09-30, with the protection applying to everyone. Enforcement moved
+12**, whatever this document or the workflow said. All three were in place on
+`main` by 2026-09-30, with the protection applying to everyone. Enforcement moved
 to `required` only for layers whose control the required job actually executes
 on a failing path (traced in the comment above `GAP_LAYERS` in
 `scripts/config.py`); the absent layers name no control and stay `none`.
@@ -241,8 +241,8 @@ report changing.
 
 The order this analysis suggests, and the reason for each:
 
-1. ~~**CI from clean checkout**~~ — done 2026-09-14; binding since 2026-09-30,
-   when the three repository settings above were applied (verified by PR #1).
+1. ~~**CI from clean checkout**~~ — done 2026-09-14; binding once the three
+   repository settings above were applied (verified by PR #1, 2026-09-30).
 2. **GAP-01 repository admission** — a six-entry file-type allowlist and a secret
    scan; cheap, and it is the layer with the widest blast radius when absent.
 3. **GAP-03 unknown-key rejection** — the concrete hole measured today: an

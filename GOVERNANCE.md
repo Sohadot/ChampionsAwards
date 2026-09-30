@@ -325,10 +325,10 @@ The standard is `docs/governance-admission-standard.md`; the registry is
 both axes from it. **A layer may not claim enforcement without naming a component
 that exists, nor claim CI enforcement without a workflow that exists** — the
 check suite asserts both — so the document cannot drift from the code.
-Since 2026-09-30 `main` requires a pull request, requires the
+As of 2026-09-30 `main` requires a pull request, requires the
 `Governed admission checks` job to pass, and allows no bypass, administrators
-included; before that date the job reported and bound nothing, and effectively
-enforced was 0 of 12. The observable test is `mergeable_state` on a failing pull
+included; before those settings were applied the job reported and bound nothing,
+and effectively enforced was 0 of 12. The observable test is `mergeable_state` on a failing pull
 request: `unstable` means the check is red but not required, `blocked` means it
 governs. PR #1, a deliberately invalid change, read `unstable` until the settings
 were applied and `blocked` after, and was closed unmerged. Implementation today is

@@ -9,9 +9,9 @@
 # This file makes the checks automatic. It does NOT make them binding - that
 # takes repository settings, which cannot live in a file: main protected, changes
 # only through a pull request, this job ("Governed admission checks") a required
-# status check, and no bypass. From 2026-09-14 to 2026-09-30 none of that was set
-# and this job was a detector. Since 2026-09-30 all of it is, which PR #1 proved by
-# going from mergeable_state 'unstable' to 'blocked'. A layer is 'required' in the
+# status check, and no bypass. From 2026-09-14 until those settings were applied
+# this job was a detector. All of them were in place by 2026-09-30, which PR #1
+# proved by going from mergeable_state 'unstable' to 'blocked'. A layer is 'required' in the
 # GAP registry only where a control it names actually runs, and can fail, below.
 name: governance
 

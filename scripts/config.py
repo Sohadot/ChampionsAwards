@@ -352,8 +352,8 @@ GAP_DECISIONS: Final[dict[str, str]] = {
 #
 # A layer is EFFECTIVELY enforced only when it is implemented AND required. That
 # is the number that matters. It was zero from 2026-09-14, when CI v1 made the
-# checks automatic, until 2026-09-30, when branch protection made them binding;
-# gap_coverage() computes what it is now, and nothing here states it.
+# checks automatic, until branch protection made them binding (confirmed in place
+# by 2026-09-30); gap_coverage() computes what it is now, and nothing here states it.
 GAP_IMPLEMENTATION: Final[tuple[str, ...]] = ("enforced", "partial", "absent")
 GAP_ENFORCEMENT: Final[dict[str, str]] = {
     "none": "No control exists, so there is nothing to run anywhere.",
