@@ -373,6 +373,8 @@ GAP_ENFORCEMENT: Final[dict[str, str]] = {
 #
 # A layer is marked `required` only where the required job actually executes its
 # control on a failure path, traced from the workflow rather than from prose:
+#   repository_admission.py (its own step, before dependencies are installed;
+#                      QUARANTINE or BLOCK fails the job)
 #   build.py        -> validate_content.py, quality_gate.py, generate_core.py,
 #                      generate_pages.py, generate_rankings.py, generate_sectors.py,
 #                      generate_sitemap.py (a non-zero exit fails the build);
@@ -380,8 +382,9 @@ GAP_ENFORCEMENT: Final[dict[str, str]] = {
 #                      (reports: executed, and a crash fails the build, but
 #                      domain_status and source_audit refuse no finding; only
 #                      domain_comparison raises, on a denominator mismatch)
-#   run_checks.py   -> test_domain_comparison.py, test_sector_page.py,
-#                      test_synthesis.py, seo_gate.py (any failure fails the job)
+#   run_checks.py   -> test_repository_admission.py, test_domain_comparison.py,
+#                      test_sector_page.py, test_synthesis.py, seo_gate.py (any
+#                      failure fails the job)
 #   synthesis_figures.py is imported by validate_content.py, generate_pages.py and
 #                      test_synthesis.py, so it runs on the failing path too.
 # Becoming required moved the ENFORCEMENT axis only. A partial layer that is now
@@ -400,12 +403,24 @@ GAP_LAYERS: Final[tuple[dict[str, object], ...]] = (
             "BLOCK": "A secret, credential or key; an executable, archive or obfuscated payload; a "
                      "symlink escaping the repository.",
         },
-        "implementation": "absent", "components": (),
-        "enforcement": "none",
+        "implementation": "partial",
+        "components": ("repository_admission.py", "test_repository_admission.py"),
+        "enforcement": "required",
         "note": (
-            "No file-type allowlist, no size ceiling, no secret or credential scan, no symlink or "
-            "archive policy. The repository currently tracks only yaml, html, py, md, txt and css, "
-            "which makes an allowlist cheap to write and means nothing has yet tested the absence."
+            "Every tracked file (the git index, read from the object database; ignored output "
+            "is out of scope) is judged before dependencies install or anything builds. "
+            "QUARANTINE: a type outside the audited allowlist (.py .yaml .yml .html .css .md .txt, "
+            "and .gitignore), a file over the fixed 512 KiB ceiling, non-UTF-8 text, an internal "
+            "symlink, a non-file git mode. BLOCK: executable git mode; an executable or archive "
+            "suffix; an executable or archive signature under any name; a NUL byte; an unbroken "
+            "encoded run of 1024+ characters; an absolute or escaping symlink; a credential file "
+            "name; a private-key block or one of seven high-confidence token formats. Partial, "
+            "because the BLOCK rule above is the standard and the control is a subset of it: "
+            "'a secret, credential or key' is detected only by signature - a plain password in "
+            "a value, or an unlisted token format, passes - and 'obfuscated payload' only as a "
+            "disguised binary or an unbroken encoded run, so escaped or whitespace-broken "
+            "encodings pass. The rule is not narrowed to fit the control; the control has to "
+            "grow to fit the rule. Obfuscated behaviour in admitted source is GAP-02's question."
         ),
     },
     {

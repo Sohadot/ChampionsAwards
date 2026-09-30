@@ -332,10 +332,23 @@ and effectively enforced was 0 of 12. The observable test is `mergeable_state` o
 request: `unstable` means the check is red but not required, `blocked` means it
 governs. PR #1, a deliberately invalid change, read `unstable` until the settings
 were applied and `blocked` after, and was closed unmerged. Implementation today is
-1 of 12 enforced, 8 partial, 3 absent; every implemented or partial layer is now
+1 of 12 enforced, 9 partial, 2 absent; every implemented or partial layer is
 `required`, because its control runs inside that job. **Effectively enforced is 1
-of 12** — public surface, the only layer that is both complete and required. The
-eight partial layers are required and still partial.
+of 12** — public surface, the only layer both complete and required. The nine
+partial layers are required and still partial.
+
+**Repository admission (GAP-01)** runs first in that job, before dependencies are
+installed: `scripts/repository_admission.py` judges every tracked file against an
+allowlist of the types the repository actually holds (`.py` `.yaml` `.yml`
+`.html` `.css` `.md` `.txt`, and `.gitignore`) and a fixed 512 KiB ceiling. An
+unknown type or oversized file is quarantined. An executable mode, an executable
+or archive payload under any name, a NUL byte, a long encoded run, an escaping
+symlink, a credential file or a high-confidence secret signature is blocked. The
+secret scan is signature-only and says so; it does not make the repository safe,
+only admissible by the rules it tests. GAP-01 is therefore **partial**: its rule
+names any secret and any obfuscated payload, and the control detects listed
+signatures and unbroken encoded runs. The rule stays as written; the control is
+the subset.
 
 **Governance maturity and domain maturity advance in parallel.** Governance must
 be enforceable before new knowledge production resumes; it does not need to be

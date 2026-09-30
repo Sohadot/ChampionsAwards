@@ -12,7 +12,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-SUITES = ("test_domain_comparison.py", "test_sector_page.py", "test_synthesis.py", "seo_gate.py")
+SUITES = ("test_repository_admission.py", "test_domain_comparison.py", "test_sector_page.py",
+          "test_synthesis.py", "seo_gate.py")
 
 # Directories whose contents decide what the built site should contain.
 INPUT_DIRS = ("src", "scripts")
